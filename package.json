@@ -1,0 +1,31 @@
+{
+  "name": "vector",
+  "version": "0.0.1",
+  "description": "Linear algebra library for Typescript and JavaScript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "precommit": "lint-staged"
+  },
+  "author": "Joshua Brown",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.10"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.110",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.2.0",
+    "prettier": "^1.13.5",
+    "typescript": "^2.9.2"
+  },
+  "lint-staged": {
+    "*.{ts,json,css,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "prettier": {
+    "printWidth": 100
+  }
+}
