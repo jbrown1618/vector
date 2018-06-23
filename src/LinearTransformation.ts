@@ -1,3 +1,3 @@
 export interface LinearTransformation<V, U> {
-  apply(V): U;
+  apply(vector: V): U;
 }

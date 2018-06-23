@@ -3,5 +3,4 @@ export interface AbstractVector<V extends AbstractVector> {
   multiply(scalar: number): V;
   innerProduct(other: V): number;
   getDimension(): number;
-  toString(): string;
 }
