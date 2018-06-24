@@ -1,4 +1,4 @@
-export interface AbstractVector<V extends AbstractVector> {
+export interface AbstractVector<V extends AbstractVector<any>> {
   add(other: V): V;
   scalarMultiply(scalar: number): V;
   innerProduct(other: V): number;

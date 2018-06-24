@@ -1,22 +1,24 @@
 import { AbstractVector } from "./AbstractVector";
-import { Matrix } from "./Matrix";
+import { Matrix, MatrixData } from "./Matrix";
+
+export type VectorData = Array<number>;
 
 export class Vector implements AbstractVector<Vector> {
-  private readonly _data: Array<number>;
+  private readonly _data: VectorData;
 
-  private constructor(contents: Array<number>) {
+  private constructor(contents: VectorData) {
     this._data = contents;
   }
 
-  static fromArray(contents: Array<number>): Vector {
+  static fromArray(contents: VectorData): Vector {
     return new Vector(contents);
   }
 
-  static fromValues(...values: Array<number>): Vector {
+  static fromValues(...values: VectorData): Vector {
     return Vector.fromArray(values);
   }
 
-  public getData(): Array<number> {
+  public getData(): VectorData {
     return [...this._data];
   }
 
@@ -51,7 +53,7 @@ export class Vector implements AbstractVector<Vector> {
   }
 
   public outerProduct(other: Vector): Matrix {
-    const matrixData = [];
+    const matrixData: MatrixData = [];
 
     if (this.getDimension() === 0 || other.getDimension() === 0) {
       return Matrix.fromData([]);

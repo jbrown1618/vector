@@ -2,8 +2,9 @@
   "name": "vector",
   "version": "0.0.1",
   "description": "Linear algebra library for Typescript and JavaScript",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
+    "build": "tsc",
     "test": "mocha -r ts-node/register src/**/*.spec.ts",
     "precommit": "lint-staged"
   },

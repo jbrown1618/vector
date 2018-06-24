@@ -1,11 +1,13 @@
 import { LinearTransformation } from "./LinearTransformation";
-import { Vector } from "./Vector";
+import { Vector, VectorData } from "./Vector";
 import { AbstractVector } from "./AbstractVector";
 
-export class Matrix implements LinearTransformation<Vector, Vector>, AbstractVector<Matrix> {
-  private readonly _data: Array<Array<number>>;
+export type MatrixData = Array<VectorData>;
 
-  private constructor(data: Array<Array<number>>) {
+export class Matrix implements LinearTransformation<Vector, Vector>, AbstractVector<Matrix> {
+  private readonly _data: MatrixData;
+
+  private constructor(data: MatrixData) {
     if (data.length > 0) {
       const rowDimension = data[0].length;
       for (let i = 0; i < data.length; i++) {
@@ -21,12 +23,12 @@ export class Matrix implements LinearTransformation<Vector, Vector>, AbstractVec
     this._data = data;
   }
 
-  static fromData(data: Array<Array<number>>) {
+  static fromData(data: MatrixData) {
     return new Matrix(data);
   }
 
   static fromColumnVectors(columns: Array<Vector>) {
-    const data = [];
+    const data: MatrixData = [];
 
     if (columns.length === 0) {
       return Matrix.fromData(data);
@@ -54,7 +56,7 @@ export class Matrix implements LinearTransformation<Vector, Vector>, AbstractVec
   }
 
   static fromRowVectors(rows: Array<Vector>): Matrix {
-    const data = [];
+    const data: MatrixData = [];
 
     if (rows.length === 0) {
       return Matrix.fromData(data);
@@ -70,7 +72,7 @@ export class Matrix implements LinearTransformation<Vector, Vector>, AbstractVec
     return Matrix.fromData(rows.map(row => row.getData()));
   }
 
-  public getData(): Array<Array<number>> {
+  public getData(): MatrixData {
     return this.getRowVectors().map(row => row.getData());
   }
 
