@@ -6,6 +6,18 @@ export class Matrix implements LinearTransformation<Vector, Vector>, AbstractVec
   private readonly _data: Array<Array<number>>;
 
   private constructor(data: Array<Array<number>>) {
+    if (data.length > 0) {
+      const rowDimension = data[0].length;
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].length != rowDimension) {
+          throw Error("Non-rectangular data");
+        }
+      }
+
+      if (rowDimension === 0) {
+        data = [];
+      }
+    }
     this._data = data;
   }
 
@@ -16,7 +28,7 @@ export class Matrix implements LinearTransformation<Vector, Vector>, AbstractVec
   static fromColumnVectors(columns: Array<Vector>) {
     const data = [];
 
-    if ((columns.length = 0)) {
+    if (columns.length === 0) {
       return Matrix.fromData(data);
     }
 
@@ -33,7 +45,7 @@ export class Matrix implements LinearTransformation<Vector, Vector>, AbstractVec
     }
 
     columns.forEach((columnVector, columnIndex) => {
-      columnVector.getContents().forEach((value, rowIndex) => {
+      columnVector.getData().forEach((value, rowIndex) => {
         data[rowIndex][columnIndex] = value;
       });
     });
@@ -44,7 +56,7 @@ export class Matrix implements LinearTransformation<Vector, Vector>, AbstractVec
   static fromRowVectors(rows: Array<Vector>): Matrix {
     const data = [];
 
-    if ((rows.length = 0)) {
+    if (rows.length === 0) {
       return Matrix.fromData(data);
     }
 
@@ -55,30 +67,101 @@ export class Matrix implements LinearTransformation<Vector, Vector>, AbstractVec
       }
     });
 
-    return Matrix.fromData(rows.map(row => row.getContents()));
+    return Matrix.fromData(rows.map(row => row.getData()));
   }
 
   public getData(): Array<Array<number>> {
-    return this._data;
+    return this.getRowVectors().map(row => row.getData());
   }
 
-  add(other: Matrix): Matrix {
-    return undefined;
+  public getNumberOfRows(): number {
+    return this.getRowVectors().length;
   }
 
-  apply(vector: Vector): Vector {
-    return undefined;
+  public getNumberOfColumns(): number {
+    return this.getColumnVectors().length;
   }
 
-  getDimension(): number {
-    return 0;
+  public getRowVectors(): Array<Vector> {
+    return this._data.map(row => Vector.fromArray(row));
   }
 
-  innerProduct(other: Matrix): number {
-    return 0;
+  public getRow(rowIndex: number): Vector {
+    if (rowIndex > this.getNumberOfRows() - 1 || rowIndex < 0) {
+      throw new Error("Index out of bounds");
+    }
+    return this.getColumnVectors()[rowIndex];
   }
 
-  multiply(scalar: number): Matrix {
-    return undefined;
+  public getColumnVectors(): Array<Vector> {
+    return this.transpose().getRowVectors();
+  }
+
+  public getColumn(columnIndex: number): Vector {
+    if (columnIndex > this.getNumberOfColumns() - 1 || columnIndex < 0) {
+      throw new Error("Index out of bounds");
+    }
+    return this.getColumnVectors()[columnIndex];
+  }
+
+  public getEntry(rowIndex: number, columnIndex: number) {
+    return this.getRow(rowIndex).getEntry(columnIndex);
+  }
+
+  public getDimension(): number {
+    return this.getNumberOfRows() * this.getNumberOfColumns();
+  }
+
+  public multiply(other: Matrix): Matrix {
+    if (this.getNumberOfColumns() !== other.getNumberOfRows()) {
+      throw new Error("Dimension mismatch");
+    }
+
+    return Matrix.fromData(
+      this.getRowVectors().map(row =>
+        other.getColumnVectors().map(column => row.innerProduct(column))
+      )
+    );
+  }
+
+  public transpose(): Matrix {
+    return Matrix.fromColumnVectors(this.getRowVectors());
+  }
+
+  public add(other: Matrix): Matrix {
+    return Matrix.fromColumnVectors(
+      this.getColumnVectors().map((column, columnIndex) => column.add(other.getColumn(columnIndex)))
+    );
+  }
+
+  public apply(vector: Vector): Vector {
+    const vectorAsColumnMatrix = Matrix.fromColumnVectors([vector]);
+    return this.multiply(vectorAsColumnMatrix).getColumn(0);
+  }
+
+  public innerProduct(other: Matrix): number {
+    return this.getRowVectors()
+      .map((row, rowIndex) => row.innerProduct(other.getRow(rowIndex)))
+      .reduce((sum, next) => sum + next);
+  }
+
+  public scalarMultiply(scalar: number): Matrix {
+    return Matrix.fromColumnVectors(
+      this.getColumnVectors().map(column => column.scalarMultiply(scalar))
+    );
+  }
+
+  public equals(other: Matrix): boolean {
+    if (this.getNumberOfColumns() !== other.getNumberOfColumns()) {
+      return false;
+    }
+
+    if (this.getNumberOfRows() !== other.getNumberOfRows()) {
+      return false;
+    }
+
+    return this.getColumnVectors()
+      .map((column, i) => column.equals(other.getColumn(i)))
+      .reduce((all, current) => all && current, true);
   }
 }

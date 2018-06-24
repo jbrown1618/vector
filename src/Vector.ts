@@ -2,10 +2,10 @@ import { AbstractVector } from "./AbstractVector";
 import { Matrix } from "./Matrix";
 
 export class Vector implements AbstractVector<Vector> {
-  private readonly _contents: Array<number>;
+  private readonly _data: Array<number>;
 
   private constructor(contents: Array<number>) {
-    this._contents = contents;
+    this._data = contents;
   }
 
   static fromArray(contents: Array<number>): Vector {
@@ -16,51 +16,68 @@ export class Vector implements AbstractVector<Vector> {
     return Vector.fromArray(values);
   }
 
-  public getContents(): Array<number> {
-    return [...this._contents];
+  public getData(): Array<number> {
+    return [...this._data];
   }
 
-  add(other: Vector): Vector {
+  public getEntry(index: number): number {
+    if (index >= this.getDimension()) {
+      throw new Error("Index out of bounds");
+    }
+    return this._data[index];
+  }
+
+  public add(other: Vector): Vector {
     this.checkForDimensionMismatch(other);
 
-    const newContents = this._contents.map((entry, i) => {
-      return entry + other._contents[i];
+    const newContents = this._data.map((entry, i) => {
+      return entry + other._data[i];
     });
     return new Vector(newContents);
   }
 
-  multiply(scalar: number): Vector {
-    const newContents = this._contents.map(entry => entry * scalar);
+  public scalarMultiply(scalar: number): Vector {
+    const newContents = this._data.map(entry => entry * scalar);
     return new Vector(newContents);
   }
 
-  innerProduct(other: Vector): number {
+  public innerProduct(other: Vector): number {
     const degenerateInnerProduct = 0;
     this.checkForDimensionMismatch(other);
 
-    return this._contents
-      .map((entry, i) => entry * other._contents[i])
+    return this._data
+      .map((entry, i) => entry * other._data[i])
       .reduce((sum, current) => sum + current, degenerateInnerProduct);
   }
 
-  outerProduct(other: Vector): Matrix {
+  public outerProduct(other: Vector): Matrix {
     const matrixData = [];
 
     if (this.getDimension() === 0 || other.getDimension() === 0) {
       return Matrix.fromData([]);
     }
 
-    this.getContents().forEach((thisValue, rowIndex) => {
+    this.getData().forEach((thisValue, rowIndex) => {
       matrixData[rowIndex] = [];
-      other.getContents().forEach((otherValue, columnIndex) => {
+      other.getData().forEach((otherValue, columnIndex) => {
         matrixData[rowIndex][columnIndex] = thisValue * otherValue;
       });
     });
     return Matrix.fromData(matrixData);
   }
 
-  getDimension(): number {
-    return this._contents.length;
+  public getDimension(): number {
+    return this._data.length;
+  }
+
+  public equals(other: Vector): boolean {
+    if (this.getDimension() !== other.getDimension()) {
+      return false;
+    }
+
+    return this.getData()
+      .map((entry, i) => entry === other.getEntry(i))
+      .reduce((all, current) => all && current, true);
   }
 
   private checkForDimensionMismatch(other: Vector) {

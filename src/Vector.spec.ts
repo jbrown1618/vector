@@ -5,11 +5,11 @@ import { Vector } from "./Vector";
 describe("Vector", () => {
   describe("constructors", () => {
     it("can be constructed from an array", () => {
-      expect(Vector.fromArray([1, 2, 3]).getContents()).to.deep.equal([1, 2, 3]);
+      expect(Vector.fromArray([1, 2, 3]).getData()).to.deep.equal([1, 2, 3]);
     });
 
     it("can be constructed from values", () => {
-      expect(Vector.fromValues(1, 2, 3, 4).getContents()).to.deep.equal([1, 2, 3, 4]);
+      expect(Vector.fromValues(1, 2, 3, 4).getData()).to.deep.equal([1, 2, 3, 4]);
     });
 
     it("handles the degenerate case", () => {
@@ -32,7 +32,7 @@ describe("Vector", () => {
       const first = Vector.fromArray([1, 2, 3]);
       const second = Vector.fromArray([4, 5, 6]);
 
-      expect(first.add(second).getContents()).to.deep.equal([5, 7, 9]);
+      expect(first.add(second).getData()).to.deep.equal([5, 7, 9]);
     });
 
     it("throws an error when the dimensions do not match", () => {
@@ -48,22 +48,22 @@ describe("Vector", () => {
       const sum = firstEmpty.add(secondEmpty);
 
       expect(sum.getDimension()).to.equal(0);
-      expect(sum.getContents()).to.deep.equal([]);
+      expect(sum.getData()).to.deep.equal([]);
     });
   });
 
-  describe("multiply", () => {
+  describe("scalarMultiply", () => {
     it("multiplies a vector by a scalar", () => {
       const vector = Vector.fromArray([1, 2, 3]);
 
-      expect(vector.multiply(2).getContents()).to.deep.equal([2, 4, 6]);
+      expect(vector.scalarMultiply(2).getData()).to.deep.equal([2, 4, 6]);
     });
 
     it("handles the degenerate case", () => {
       const empty = Vector.fromValues();
 
-      expect(empty.multiply(2).getDimension()).to.equal(0);
-      expect(empty.multiply(2).getContents()).to.deep.equal([]);
+      expect(empty.scalarMultiply(2).getDimension()).to.equal(0);
+      expect(empty.scalarMultiply(2).getData()).to.deep.equal([]);
     });
   });
 
@@ -105,6 +105,30 @@ describe("Vector", () => {
 
       expect(empty.outerProduct(nonEmpty).getData()).to.deep.equal([]);
       expect(nonEmpty.outerProduct(empty).getData()).to.deep.equal([]);
+    });
+  });
+
+  describe("equals", () => {
+    it("returns true for an identical vector", () => {
+      expect(Vector.fromValues(1, 2, 3).equals(Vector.fromValues(1, 2, 3))).to.be.true;
+    });
+
+    it("returns true for itself", () => {
+      const vector = Vector.fromValues(1, 1, 1);
+      expect(vector.equals(vector)).to.be.true;
+    });
+
+    it("handles the degenerate case", () => {
+      expect(Vector.fromValues().equals(Vector.fromValues())).to.be.true;
+    });
+
+    it("returns false for a non-identical vector", () => {
+      expect(Vector.fromValues(1, 2, 3).equals(Vector.fromValues(1, 3, 5))).to.be.false;
+    });
+
+    it("returns false when there is a dimension mismatch", () => {
+      expect(Vector.fromValues(1, 2).equals(Vector.fromValues(1, 2, 3))).to.be.false;
+      expect(Vector.fromValues(1, 2, 3).equals(Vector.fromValues(1, 2))).to.be.false;
     });
   });
 });

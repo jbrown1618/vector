@@ -1,6 +1,7 @@
 export interface AbstractVector<V extends AbstractVector> {
   add(other: V): V;
-  multiply(scalar: number): V;
+  scalarMultiply(scalar: number): V;
   innerProduct(other: V): number;
   getDimension(): number;
+  equals(other: V): boolean;
 }
