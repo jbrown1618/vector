@@ -5,7 +5,7 @@ import { Vector } from "./Vector";
 describe("Vector", () => {
   describe("constructors", () => {
     it("can be constructed from an array", () => {
-      expect(Vector.fromArray([1, 2, 3]).getData()).to.deep.equal([1, 2, 3]);
+      expect(Vector.fromData([1, 2, 3]).getData()).to.deep.equal([1, 2, 3]);
     });
 
     it("can be constructed from values", () => {
@@ -13,7 +13,7 @@ describe("Vector", () => {
     });
 
     it("handles the degenerate case", () => {
-      expect(Vector.fromArray([]).getDimension()).to.equal(0);
+      expect(Vector.fromData([]).getDimension()).to.equal(0);
       expect(Vector.fromValues().getDimension()).to.equal(0);
     });
   });
@@ -29,15 +29,15 @@ describe("Vector", () => {
 
   describe("add", () => {
     it("adds two vectors of equal dimension", () => {
-      const first = Vector.fromArray([1, 2, 3]);
-      const second = Vector.fromArray([4, 5, 6]);
+      const first = Vector.fromData([1, 2, 3]);
+      const second = Vector.fromData([4, 5, 6]);
 
       expect(first.add(second).getData()).to.deep.equal([5, 7, 9]);
     });
 
     it("throws an error when the dimensions do not match", () => {
-      const vector2 = Vector.fromArray([0, 0]);
-      const vector3 = Vector.fromArray([0, 0, 0]);
+      const vector2 = Vector.fromData([0, 0]);
+      const vector3 = Vector.fromData([0, 0, 0]);
 
       expect(() => vector2.add(vector3)).to.throw();
     });
@@ -54,7 +54,7 @@ describe("Vector", () => {
 
   describe("scalarMultiply", () => {
     it("multiplies a vector by a scalar", () => {
-      const vector = Vector.fromArray([1, 2, 3]);
+      const vector = Vector.fromData([1, 2, 3]);
 
       expect(vector.scalarMultiply(2).getData()).to.deep.equal([2, 4, 6]);
     });
@@ -76,8 +76,8 @@ describe("Vector", () => {
     });
 
     it("throws an error when the dimensions do not match", () => {
-      const vector2 = Vector.fromArray([0, 0]);
-      const vector3 = Vector.fromArray([0, 0, 0]);
+      const vector2 = Vector.fromData([0, 0]);
+      const vector3 = Vector.fromData([0, 0, 0]);
 
       expect(() => vector2.innerProduct(vector3)).to.throw();
     });

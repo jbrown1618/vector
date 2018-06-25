@@ -22,9 +22,9 @@ describe("Matrix", () => {
     });
 
     it("can be constructed from row vectors", () => {
-      const firstRow = Vector.fromArray(data[0]);
-      const secondRow = Vector.fromArray(data[1]);
-      const thirdRow = Vector.fromArray(data[2]);
+      const firstRow = Vector.fromData(data[0]);
+      const secondRow = Vector.fromData(data[1]);
+      const thirdRow = Vector.fromData(data[2]);
 
       expect(Matrix.fromRowVectors([firstRow, secondRow, thirdRow]).getData()).to.deep.equal(data);
     });
@@ -54,13 +54,69 @@ describe("Matrix", () => {
     });
   });
 
-  describe("getDimension", () => {
-    it("returns the dimension of the matrix", () => {
-      expect(Matrix.fromData([]).getDimension()).to.equal(0);
-      expect(Matrix.fromData([[1]]).getDimension()).to.equal(1);
-      expect(Matrix.fromData([[1, 0]]).getDimension()).to.equal(2);
-      expect(Matrix.fromData([[1], [0]]).getDimension()).to.equal(2);
-      expect(Matrix.fromData([[1, 0], [0, 1]]).getDimension()).to.equal(4);
+  describe("getters", () => {
+    const testMatrix = Matrix.fromData([[1, 2, 3], [4, 5, 6]]);
+
+    describe("getDimension", () => {
+      it("returns the dimension of the matrix", () => {
+        expect(Matrix.fromData([]).getDimension()).to.equal(0);
+        expect(Matrix.fromData([[1]]).getDimension()).to.equal(1);
+        expect(Matrix.fromData([[1, 0]]).getDimension()).to.equal(2);
+        expect(Matrix.fromData([[1], [0]]).getDimension()).to.equal(2);
+        expect(Matrix.fromData([[1, 0], [0, 1]]).getDimension()).to.equal(4);
+      });
+    });
+
+    describe("getColumnVectors", () => {
+      it("returns the column vectors that make up the matrix", () => {
+        expect(Matrix.fromData([]).getColumnVectors()).to.deep.equal([]);
+        const columns = testMatrix.getColumnVectors();
+        expect(columns.length).to.equal(3);
+        expect(columns[0].getData()).to.deep.equal([1, 4]);
+        expect(columns[1].getData()).to.deep.equal([2, 5]);
+        expect(columns[2].getData()).to.deep.equal([3, 6]);
+      });
+    });
+
+    describe("getColumn", () => {
+      it("returns the column at the given index", () => {
+        expect(testMatrix.getColumn(0).getData()).to.deep.equal([1, 4]);
+        expect(testMatrix.getColumn(1).getData()).to.deep.equal([2, 5]);
+        expect(testMatrix.getColumn(2).getData()).to.deep.equal([3, 6]);
+        expect(() => testMatrix.getColumn(3)).to.throw();
+      });
+    });
+
+    describe("getRowVectors", () => {
+      it("returns the row vectors that make up the matrix", () => {
+        expect(Matrix.fromData([]).getRowVectors()).to.deep.equal([]);
+        const rows = testMatrix.getRowVectors();
+        expect(rows.length).to.equal(2);
+        expect(rows[0].getData()).to.deep.equal([1, 2, 3]);
+        expect(rows[1].getData()).to.deep.equal([4, 5, 6]);
+      });
+    });
+
+    describe("getRow", () => {
+      it("returns the row at the given index", () => {
+        expect(testMatrix.getRow(0).getData()).to.deep.equal([1, 2, 3]);
+        expect(testMatrix.getRow(1).getData()).to.deep.equal([4, 5, 6]);
+        expect(() => testMatrix.getRow(2)).to.throw();
+      });
+    });
+
+    describe("getEntry", () => {
+      it("returns the entry at the given coordinates", () => {
+        expect(testMatrix.getEntry(0, 0)).to.equal(1);
+        expect(testMatrix.getEntry(0, 1)).to.equal(2);
+        expect(testMatrix.getEntry(0, 2)).to.equal(3);
+        expect(testMatrix.getEntry(1, 0)).to.equal(4);
+        expect(testMatrix.getEntry(1, 1)).to.equal(5);
+        expect(testMatrix.getEntry(1, 2)).to.equal(6);
+        expect(() => testMatrix.getEntry(2, 0)).to.throw();
+        expect(() => testMatrix.getEntry(0, 3)).to.throw();
+        expect(() => testMatrix.getEntry(2, 3)).to.throw();
+      });
     });
   });
 

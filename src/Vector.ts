@@ -10,12 +10,12 @@ export class Vector implements AbstractVector<Vector> {
     this._data = contents;
   }
 
-  static fromArray(contents: VectorData): Vector {
+  static fromData(contents: VectorData): Vector {
     return new Vector(contents);
   }
 
   static fromValues(...values: VectorData): Vector {
-    return Vector.fromArray(values);
+    return Vector.fromData(values);
   }
 
   public getData(): VectorData {

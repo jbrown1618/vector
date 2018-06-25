@@ -85,14 +85,14 @@ export class Matrix implements LinearTransformation<Vector, Vector>, AbstractVec
   }
 
   public getRowVectors(): Array<Vector> {
-    return this._data.map(row => Vector.fromArray(row));
+    return this._data.map(row => Vector.fromData(row));
   }
 
   public getRow(rowIndex: number): Vector {
     if (rowIndex > this.getNumberOfRows() - 1 || rowIndex < 0) {
       throw new Error("Index out of bounds");
     }
-    return this.getColumnVectors()[rowIndex];
+    return this.getRowVectors()[rowIndex];
   }
 
   public getColumnVectors(): Array<Vector> {
