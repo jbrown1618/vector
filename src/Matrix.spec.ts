@@ -1,17 +1,17 @@
-import { describe, it } from "mocha";
-import { expect } from "chai";
-import { Vector } from "./Vector";
-import { Matrix } from "./Matrix";
+import { describe, it } from 'mocha';
+import { expect } from 'chai';
+import { Vector } from './Vector';
+import { Matrix } from './Matrix';
 
-describe("Matrix", () => {
-  describe("constructors", () => {
+describe('Matrix', () => {
+  describe('constructors', () => {
     const data = [[1, 2, 3], [2, 2, 1], [5, 2, 9]];
 
-    it("can be constructed from a 2d array", () => {
+    it('can be constructed from a 2d array', () => {
       expect(Matrix.fromData(data).getData()).to.deep.equal(data);
     });
 
-    it("can be constructed from column vectors", () => {
+    it('can be constructed from column vectors', () => {
       const firstColumn = Vector.fromValues(1, 2, 5);
       const secondColumn = Vector.fromValues(2, 2, 2);
       const thirdColumn = Vector.fromValues(3, 1, 9);
@@ -21,7 +21,7 @@ describe("Matrix", () => {
       ).to.deep.equal(data);
     });
 
-    it("can be constructed from row vectors", () => {
+    it('can be constructed from row vectors', () => {
       const firstRow = Vector.fromData(data[0]);
       const secondRow = Vector.fromData(data[1]);
       const thirdRow = Vector.fromData(data[2]);
@@ -29,7 +29,7 @@ describe("Matrix", () => {
       expect(Matrix.fromRowVectors([firstRow, secondRow, thirdRow]).getData()).to.deep.equal(data);
     });
 
-    it("handles degenerate cases", () => {
+    it('handles degenerate cases', () => {
       // 0x0
       expect(Matrix.fromData([]).getData()).to.deep.equal([]);
       // Nx0
@@ -40,7 +40,7 @@ describe("Matrix", () => {
       expect(Matrix.fromColumnVectors([]).getData()).to.deep.equal([]);
     });
 
-    it("rejects non-rectangular data", () => {
+    it('rejects non-rectangular data', () => {
       const badData = [[0], [0, 0], [0, 0, 0]];
       expect(() => Matrix.fromData(badData)).to.throw();
 
@@ -54,11 +54,11 @@ describe("Matrix", () => {
     });
   });
 
-  describe("getters", () => {
+  describe('getters', () => {
     const testMatrix = Matrix.fromData([[1, 2, 3], [4, 5, 6]]);
 
-    describe("getDimension", () => {
-      it("returns the dimension of the matrix", () => {
+    describe('getDimension', () => {
+      it('returns the dimension of the matrix', () => {
         expect(Matrix.fromData([]).getDimension()).to.equal(0);
         expect(Matrix.fromData([[1]]).getDimension()).to.equal(1);
         expect(Matrix.fromData([[1, 0]]).getDimension()).to.equal(2);
@@ -67,8 +67,8 @@ describe("Matrix", () => {
       });
     });
 
-    describe("getColumnVectors", () => {
-      it("returns the column vectors that make up the matrix", () => {
+    describe('getColumnVectors', () => {
+      it('returns the column vectors that make up the matrix', () => {
         expect(Matrix.fromData([]).getColumnVectors()).to.deep.equal([]);
         const columns = testMatrix.getColumnVectors();
         expect(columns.length).to.equal(3);
@@ -78,8 +78,8 @@ describe("Matrix", () => {
       });
     });
 
-    describe("getColumn", () => {
-      it("returns the column at the given index", () => {
+    describe('getColumn', () => {
+      it('returns the column at the given index', () => {
         expect(testMatrix.getColumn(0).getData()).to.deep.equal([1, 4]);
         expect(testMatrix.getColumn(1).getData()).to.deep.equal([2, 5]);
         expect(testMatrix.getColumn(2).getData()).to.deep.equal([3, 6]);
@@ -87,8 +87,8 @@ describe("Matrix", () => {
       });
     });
 
-    describe("getRowVectors", () => {
-      it("returns the row vectors that make up the matrix", () => {
+    describe('getRowVectors', () => {
+      it('returns the row vectors that make up the matrix', () => {
         expect(Matrix.fromData([]).getRowVectors()).to.deep.equal([]);
         const rows = testMatrix.getRowVectors();
         expect(rows.length).to.equal(2);
@@ -97,16 +97,16 @@ describe("Matrix", () => {
       });
     });
 
-    describe("getRow", () => {
-      it("returns the row at the given index", () => {
+    describe('getRow', () => {
+      it('returns the row at the given index', () => {
         expect(testMatrix.getRow(0).getData()).to.deep.equal([1, 2, 3]);
         expect(testMatrix.getRow(1).getData()).to.deep.equal([4, 5, 6]);
         expect(() => testMatrix.getRow(2)).to.throw();
       });
     });
 
-    describe("getEntry", () => {
-      it("returns the entry at the given coordinates", () => {
+    describe('getEntry', () => {
+      it('returns the entry at the given coordinates', () => {
         expect(testMatrix.getEntry(0, 0)).to.equal(1);
         expect(testMatrix.getEntry(0, 1)).to.equal(2);
         expect(testMatrix.getEntry(0, 2)).to.equal(3);
@@ -120,8 +120,8 @@ describe("Matrix", () => {
     });
   });
 
-  describe("multiply", () => {
-    it("returns the product of two matrices of equal dimension", () => {
+  describe('multiply', () => {
+    it('returns the product of two matrices of equal dimension', () => {
       const I = Matrix.fromData([[1, 0], [0, 1]]);
       const A = Matrix.fromData([[1, 2], [3, 4]]);
       const B = Matrix.fromData([[2, 3], [4, 5]]);
@@ -137,7 +137,7 @@ describe("Matrix", () => {
       expect(I.multiply(I).getData()).to.deep.equal(I.getData());
     });
 
-    it("returns the product of two matrices of unequal dimension", () => {
+    it('returns the product of two matrices of unequal dimension', () => {
       const A = Matrix.fromData([[1, 2, 3, 4]]);
       const B = Matrix.fromData([[1], [2], [3], [4]]);
 
@@ -150,13 +150,13 @@ describe("Matrix", () => {
       ]);
     });
 
-    it("throws an error when the dimensions are not compatible", () => {
+    it('throws an error when the dimensions are not compatible', () => {
       const A = Matrix.fromData([[1, 0], [0, 1]]);
       const B = Matrix.fromData([[1, 0, 0], [0, 1, 0], [0, 0, 1]]);
       expect(() => A.multiply(B)).to.throw();
     });
 
-    it("handles the degenerate case", () => {
+    it('handles the degenerate case', () => {
       expect(
         Matrix.fromData([])
           .multiply(Matrix.fromData([]))
@@ -165,15 +165,15 @@ describe("Matrix", () => {
     });
   });
 
-  describe("transpose", () => {
-    it("returns the transpose of a matrix", () => {
+  describe('transpose', () => {
+    it('returns the transpose of a matrix', () => {
       const A = Matrix.fromData([[1, 2, 3], [4, 5, 6]]);
       const B = Matrix.fromData([[1, 4], [2, 5], [3, 6]]);
       expect(A.transpose().equals(B)).to.be.true;
       expect(B.transpose().equals(A)).to.be.true;
     });
 
-    it("handles the degenerate case", () => {
+    it('handles the degenerate case', () => {
       const E = Matrix.fromData([]);
       expect(
         Matrix.fromData([])
@@ -183,22 +183,22 @@ describe("Matrix", () => {
     });
   });
 
-  describe("add", () => {
-    it("adds two matrices of equal dimension", () => {
+  describe('add', () => {
+    it('adds two matrices of equal dimension', () => {
       const A = Matrix.fromData([[1, 2, 3], [4, 5, 6]]);
       const B = Matrix.fromData([[2, 3, 4], [5, 6, 7]]);
 
       expect(A.add(B).getData()).to.deep.equal([[3, 5, 7], [9, 11, 13]]);
     });
 
-    it("throws an error when the dimensions do not match", () => {
+    it('throws an error when the dimensions do not match', () => {
       const A = Matrix.fromData([[1, 2, 3], [4, 5, 6]]);
       const B = Matrix.fromData([[2, 3], [5, 6]]);
 
       expect(() => A.add(B)).to.throw();
     });
 
-    it("handles the degenerate case", () => {
+    it('handles the degenerate case', () => {
       expect(
         Matrix.fromData([])
           .add(Matrix.fromData([]))
@@ -207,8 +207,8 @@ describe("Matrix", () => {
     });
   });
 
-  describe("apply", () => {
-    it("transforms a vector with the correct dimension", () => {
+  describe('apply', () => {
+    it('transforms a vector with the correct dimension', () => {
       const I = Matrix.fromData([[1, 0], [0, 1]]);
       const A = Matrix.fromData([[1, 2], [3, 4]]);
       const x = Vector.fromValues(1, 2);
@@ -217,7 +217,7 @@ describe("Matrix", () => {
       expect(A.apply(x).getData()).to.deep.equal([5, 11]);
     });
 
-    it("throws an error when the dimensions are not compatible", () => {
+    it('throws an error when the dimensions are not compatible', () => {
       const A = Matrix.fromData([[1, 2], [3, 4]]);
       const x = Vector.fromValues(1, 2, 3);
       expect(() => A.apply(x)).to.throw();

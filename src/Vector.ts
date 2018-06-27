@@ -1,5 +1,5 @@
-import { AbstractVector } from "./AbstractVector";
-import { Matrix, MatrixData } from "./Matrix";
+import { AbstractVector } from './AbstractVector';
+import { Matrix, MatrixData } from './Matrix';
 
 export type VectorData = Array<number>;
 
@@ -24,7 +24,7 @@ export class Vector implements AbstractVector<Vector> {
 
   public getEntry(index: number): number {
     if (index >= this.getDimension()) {
-      throw new Error("Index out of bounds");
+      throw new Error('Index out of bounds');
     }
     return this._data[index];
   }
@@ -84,7 +84,7 @@ export class Vector implements AbstractVector<Vector> {
 
   private checkForDimensionMismatch(other: Vector) {
     if (this.getDimension() != other.getDimension()) {
-      throw Error("Dimension mismatch");
+      throw Error('Dimension mismatch');
     }
   }
 }

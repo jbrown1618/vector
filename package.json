@@ -6,7 +6,8 @@
   "scripts": {
     "build": "tsc",
     "test": "mocha -r ts-node/register src/**/*.spec.ts **/*.spec.ts",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "format": "prettier --write"
   },
   "author": "Joshua Brown",
   "license": "ISC",
@@ -32,6 +33,7 @@
     ]
   },
   "prettier": {
-    "printWidth": 100
+    "printWidth": 100,
+    "singleQuote": true
   }
 }

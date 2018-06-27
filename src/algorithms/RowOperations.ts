@@ -1,4 +1,4 @@
-import { Matrix } from "../Matrix";
+import { Matrix } from '../Matrix';
 
 export class RowOperations {
   static multiplyRowByScalar(matrix: Matrix, rowIndex: number, scalar: number): Matrix {

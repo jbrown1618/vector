@@ -1,6 +1,6 @@
-import { Matrix } from "../Matrix";
-import { RowOperations } from "./RowOperations";
-import { VectorData } from "../Vector";
+import { Matrix } from '../Matrix';
+import { RowOperations } from './RowOperations';
+import { VectorData } from '../Vector';
 
 export function reducedRowEchelonForm(matrix: Matrix): Matrix {
   matrix = rowEchelonForm(matrix);
@@ -81,13 +81,13 @@ function checkPreconditionsForClearingBelow(
 ): void {
   // The pivot entry should be 1
   if (matrix.getEntry(pivotRow, pivotColumn) !== 1) {
-    throw Error("Not ready yet!");
+    throw Error('Not ready yet!');
   }
 
   // Values to the left of the pivot should be 0
   for (let i = 0; i < pivotColumn - 1; i++) {
     if (matrix.getEntry(pivotRow, i) !== 0) {
-      throw Error("Not ready yet!");
+      throw Error('Not ready yet!');
     }
   }
 }
@@ -112,7 +112,7 @@ function checkPreconditionsForClearingAbove(matrix: Matrix, pivotIndex: number):
     const entry = matrix.getEntry(pivotIndex, i);
     const expected = i === pivotIndex ? 1 : 0;
     if (entry !== expected) {
-      throw Error("Not ready yet!");
+      throw Error('Not ready yet!');
     }
   }
 }

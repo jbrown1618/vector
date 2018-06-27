@@ -1,4 +1,4 @@
-import { Vector, VectorData } from "../Vector";
+import { Vector, VectorData } from '../Vector';
 
 export class VectorFactory {
   static zeros(dimension: number) {

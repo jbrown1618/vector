@@ -1,6 +1,6 @@
-import { Matrix } from "../Matrix";
-import { VectorFactory } from "./VectorFactory";
-import { Vector } from "../Vector";
+import { Matrix } from '../Matrix';
+import { VectorFactory } from './VectorFactory';
+import { Vector } from '../Vector';
 
 export class MatrixFactory {
   static identity(size: number): Matrix {

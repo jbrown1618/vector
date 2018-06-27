@@ -1,6 +1,6 @@
-import { LinearTransformation } from "./LinearTransformation";
-import { Vector, VectorData } from "./Vector";
-import { AbstractVector } from "./AbstractVector";
+import { LinearTransformation } from './LinearTransformation';
+import { Vector, VectorData } from './Vector';
+import { AbstractVector } from './AbstractVector';
 
 export type MatrixData = Array<VectorData>;
 
@@ -12,7 +12,7 @@ export class Matrix implements LinearTransformation<Vector, Vector>, AbstractVec
       const rowDimension = data[0].length;
       for (let i = 0; i < data.length; i++) {
         if (data[i].length != rowDimension) {
-          throw Error("Non-rectangular data");
+          throw Error('Non-rectangular data');
         }
       }
 
@@ -37,7 +37,7 @@ export class Matrix implements LinearTransformation<Vector, Vector>, AbstractVec
     const columnDimension = columns[0].getDimension();
     columns.forEach(columnVector => {
       if (columnVector.getDimension() != columnDimension) {
-        throw new Error("Column vectors must all have the same dimension");
+        throw new Error('Column vectors must all have the same dimension');
       }
     });
 
@@ -65,7 +65,7 @@ export class Matrix implements LinearTransformation<Vector, Vector>, AbstractVec
     const columnDimension = rows[0].getDimension();
     rows.forEach(columnVector => {
       if (columnVector.getDimension() != columnDimension) {
-        throw new Error("Column vectors must all have the same dimension");
+        throw new Error('Column vectors must all have the same dimension');
       }
     });
 
@@ -90,7 +90,7 @@ export class Matrix implements LinearTransformation<Vector, Vector>, AbstractVec
 
   public getRow(rowIndex: number): Vector {
     if (rowIndex > this.getNumberOfRows() - 1 || rowIndex < 0) {
-      throw new Error("Index out of bounds");
+      throw new Error('Index out of bounds');
     }
     return this.getRowVectors()[rowIndex];
   }
@@ -101,7 +101,7 @@ export class Matrix implements LinearTransformation<Vector, Vector>, AbstractVec
 
   public getColumn(columnIndex: number): Vector {
     if (columnIndex > this.getNumberOfColumns() - 1 || columnIndex < 0) {
-      throw new Error("Index out of bounds");
+      throw new Error('Index out of bounds');
     }
     return this.getColumnVectors()[columnIndex];
   }
@@ -116,7 +116,7 @@ export class Matrix implements LinearTransformation<Vector, Vector>, AbstractVec
 
   public multiply(other: Matrix): Matrix {
     if (this.getNumberOfColumns() !== other.getNumberOfRows()) {
-      throw new Error("Dimension mismatch");
+      throw new Error('Dimension mismatch');
     }
 
     return Matrix.fromData(
