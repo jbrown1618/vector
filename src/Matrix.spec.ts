@@ -2,6 +2,7 @@ import { describe, it } from 'mocha';
 import { expect } from 'chai';
 import { Vector } from './Vector';
 import { Matrix } from './Matrix';
+import { MatrixBuilder } from './utilities/MatrixBuilder';
 
 describe('Matrix', () => {
   describe('constructors', () => {
@@ -169,8 +170,8 @@ describe('Matrix', () => {
     it('returns the transpose of a matrix', () => {
       const A = Matrix.fromData([[1, 2, 3], [4, 5, 6]]);
       const B = Matrix.fromData([[1, 4], [2, 5], [3, 6]]);
-      expect(A.transpose().equals(B)).to.be.true;
-      expect(B.transpose().equals(A)).to.be.true;
+      expect(A.transpose().approxEquals(B)).to.be.true;
+      expect(B.transpose().approxEquals(A)).to.be.true;
     });
 
     it('handles the degenerate case', () => {
@@ -180,6 +181,24 @@ describe('Matrix', () => {
           .transpose()
           .getData()
       ).to.deep.equal([]);
+    });
+  });
+
+  describe('inverse', () => {
+    it('returns the inverse of a square matrix', () => {
+      const A = Matrix.fromData([[2, 3], [3, 5]]);
+      const Ainv = Matrix.fromData([[5, -3], [-3, 2]]);
+      expect(A.inverse().approxEquals(Ainv)).to.be.true;
+    });
+
+    it('does not affect an identity matrix', () => {
+      const I = MatrixBuilder.identity(10);
+      expect(I.inverse().approxEquals(I)).to.be.true;
+    });
+
+    it('throws an error for a non-square matrix', () => {
+      const A = Matrix.fromData([[1, 1]]);
+      expect(() => A.inverse()).to.throw();
     });
   });
 

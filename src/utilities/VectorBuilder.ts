@@ -1,6 +1,6 @@
 import { Vector, VectorData } from '../Vector';
 
-export class VectorFactory {
+export class VectorBuilder {
   static zeros(dimension: number) {
     if (dimension < 0) {
       throw Error();
@@ -25,5 +25,9 @@ export class VectorFactory {
     }
 
     return Vector.fromData(data);
+  }
+
+  static concatenate(first: Vector, second: Vector) {
+    return Vector.fromData([...first.getData(), ...second.getData()]);
   }
 }

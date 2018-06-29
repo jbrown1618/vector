@@ -110,25 +110,25 @@ describe('Vector', () => {
 
   describe('equals', () => {
     it('returns true for an identical vector', () => {
-      expect(Vector.fromValues(1, 2, 3).equals(Vector.fromValues(1, 2, 3))).to.be.true;
+      expect(Vector.fromValues(1, 2, 3).approxEquals(Vector.fromValues(1, 2, 3))).to.be.true;
     });
 
     it('returns true for itself', () => {
       const vector = Vector.fromValues(1, 1, 1);
-      expect(vector.equals(vector)).to.be.true;
+      expect(vector.approxEquals(vector)).to.be.true;
     });
 
     it('handles the degenerate case', () => {
-      expect(Vector.fromValues().equals(Vector.fromValues())).to.be.true;
+      expect(Vector.fromValues().approxEquals(Vector.fromValues())).to.be.true;
     });
 
     it('returns false for a non-identical vector', () => {
-      expect(Vector.fromValues(1, 2, 3).equals(Vector.fromValues(1, 3, 5))).to.be.false;
+      expect(Vector.fromValues(1, 2, 3).approxEquals(Vector.fromValues(1, 3, 5))).to.be.false;
     });
 
     it('returns false when there is a dimension mismatch', () => {
-      expect(Vector.fromValues(1, 2).equals(Vector.fromValues(1, 2, 3))).to.be.false;
-      expect(Vector.fromValues(1, 2, 3).equals(Vector.fromValues(1, 2))).to.be.false;
+      expect(Vector.fromValues(1, 2).approxEquals(Vector.fromValues(1, 2, 3))).to.be.false;
+      expect(Vector.fromValues(1, 2, 3).approxEquals(Vector.fromValues(1, 2))).to.be.false;
     });
   });
 });

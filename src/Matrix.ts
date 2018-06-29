@@ -1,6 +1,8 @@
 import { LinearTransformation } from './LinearTransformation';
 import { Vector, VectorData } from './Vector';
 import { AbstractVector } from './AbstractVector';
+import { MatrixBuilder } from './utilities/MatrixBuilder';
+import { reducedRowEchelonForm, rowEchelonForm } from './algorithms/RowEchelon';
 
 export type MatrixData = Array<VectorData>;
 
@@ -130,6 +132,23 @@ export class Matrix implements LinearTransformation<Vector, Vector>, AbstractVec
     return Matrix.fromColumnVectors(this.getRowVectors());
   }
 
+  public isSquare(): boolean {
+    return this.getNumberOfColumns() == this.getNumberOfRows();
+  }
+
+  public inverse(): Matrix {
+    if (!this.isSquare()) {
+      throw Error('Non-square matrix has no inverse');
+    }
+
+    const augmented = MatrixBuilder.augment(
+      this,
+      MatrixBuilder.identity(this.getNumberOfColumns())
+    );
+    const rref = reducedRowEchelonForm(augmented);
+    return MatrixBuilder.slice(rref, 0, this.getNumberOfColumns());
+  }
+
   public add(other: Matrix): Matrix {
     return Matrix.fromColumnVectors(
       this.getColumnVectors().map((column, columnIndex) => column.add(other.getColumn(columnIndex)))
@@ -153,7 +172,7 @@ export class Matrix implements LinearTransformation<Vector, Vector>, AbstractVec
     );
   }
 
-  public equals(other: Matrix): boolean {
+  public approxEquals(other: Matrix): boolean {
     if (this.getNumberOfColumns() !== other.getNumberOfColumns()) {
       return false;
     }
@@ -163,7 +182,7 @@ export class Matrix implements LinearTransformation<Vector, Vector>, AbstractVec
     }
 
     return this.getColumnVectors()
-      .map((column, i) => column.equals(other.getColumn(i)))
+      .map((column, i) => column.approxEquals(other.getColumn(i)))
       .reduce((all, current) => all && current, true);
   }
 }

@@ -72,13 +72,13 @@ export class Vector implements AbstractVector<Vector> {
     return this._data.length;
   }
 
-  public equals(other: Vector): boolean {
+  public approxEquals(other: Vector): boolean {
     if (this.getDimension() !== other.getDimension()) {
       return false;
     }
 
     return this.getData()
-      .map((entry, i) => entry === other.getEntry(i))
+      .map((entry, i) => Math.abs(entry - other.getEntry(i)) < 0.0000001)
       .reduce((all, current) => all && current, true);
   }
 

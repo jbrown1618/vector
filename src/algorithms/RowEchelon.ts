@@ -5,9 +5,16 @@ import { VectorData } from '../Vector';
 export function reducedRowEchelonForm(matrix: Matrix): Matrix {
   matrix = rowEchelonForm(matrix);
 
-  const numberOfPivotEntries = Math.min(matrix.getNumberOfColumns(), matrix.getNumberOfRows());
-  for (let pivotIndex = numberOfPivotEntries - 1; pivotIndex >= 0; pivotIndex--) {
-    matrix = clearEntriesAbove(matrix, pivotIndex);
+  const maxNumberOfPivotEntries = Math.min(matrix.getNumberOfColumns(), matrix.getNumberOfRows());
+  for (let pivotRow = maxNumberOfPivotEntries - 1; pivotRow >= 0; pivotRow--) {
+    const pivotColumn = matrix
+      .getRow(pivotRow)
+      .getData()
+      .indexOf(1);
+    if (pivotColumn === -1) {
+      continue;
+    }
+    matrix = clearEntriesAbove(matrix, pivotRow, pivotColumn);
   }
 
   return matrix;
@@ -92,27 +99,35 @@ function checkPreconditionsForClearingBelow(
   }
 }
 
-function clearEntriesAbove(matrix: Matrix, pivotIndex: number): Matrix {
-  checkPreconditionsForClearingAbove(matrix, pivotIndex);
+function clearEntriesAbove(matrix: Matrix, pivotRow: number, pivotColumn: number): Matrix {
+  checkPreconditionsForClearingAbove(matrix, pivotRow, pivotColumn);
 
-  for (let rowIndex = pivotIndex - 1; rowIndex >= 0; rowIndex--) {
-    const entry = matrix.getEntry(rowIndex, pivotIndex);
+  for (let rowIndex = pivotRow - 1; rowIndex >= 0; rowIndex--) {
+    const entry = matrix.getEntry(rowIndex, pivotColumn);
     if (entry === 0) {
       continue;
     }
 
-    matrix = RowOperations.addScalarMultipleOfRowToRow(matrix, rowIndex, pivotIndex, -1 * entry);
+    matrix = RowOperations.addScalarMultipleOfRowToRow(matrix, rowIndex, pivotRow, -1 * entry);
   }
   return matrix;
 }
 
-function checkPreconditionsForClearingAbove(matrix: Matrix, pivotIndex: number): void {
-  // Values to the left and right of the pivot should be 0; the pivot should be 1
-  for (let i = 0; i < matrix.getNumberOfColumns(); i++) {
-    const entry = matrix.getEntry(pivotIndex, i);
-    const expected = i === pivotIndex ? 1 : 0;
-    if (entry !== expected) {
+function checkPreconditionsForClearingAbove(
+  matrix: Matrix,
+  pivotRow: number,
+  pivotColumn: number
+): void {
+  // Values to the left and of the pivot should be 0; the pivot should be 1
+  for (let i = 0; i < pivotColumn; i++) {
+    const entry = matrix.getEntry(pivotRow, i);
+
+    if (entry !== 0) {
       throw Error('Not ready yet!');
     }
+  }
+
+  if (matrix.getEntry(pivotRow, pivotColumn) !== 1) {
+    throw Error('Not ready yet!');
   }
 }

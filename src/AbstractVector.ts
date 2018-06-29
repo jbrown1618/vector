@@ -3,5 +3,5 @@ export interface AbstractVector<V extends AbstractVector<any>> {
   scalarMultiply(scalar: number): V;
   innerProduct(other: V): number;
   getDimension(): number;
-  equals(other: V): boolean;
+  approxEquals(other: V): boolean;
 }
