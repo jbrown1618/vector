@@ -2,7 +2,7 @@ import { LinearTransformation } from './LinearTransformation';
 import { Vector, VectorData } from './Vector';
 import { AbstractVector } from './AbstractVector';
 import { MatrixBuilder } from './utilities/MatrixBuilder';
-import { reducedRowEchelonForm, rowEchelonForm } from './algorithms/RowEchelon';
+import { reducedRowEchelonForm } from './algorithms/RowEchelon';
 
 export type MatrixData = Array<VectorData>;
 

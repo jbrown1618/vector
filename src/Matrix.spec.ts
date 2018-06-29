@@ -176,11 +176,7 @@ describe('Matrix', () => {
 
     it('handles the degenerate case', () => {
       const E = Matrix.fromData([]);
-      expect(
-        Matrix.fromData([])
-          .transpose()
-          .getData()
-      ).to.deep.equal([]);
+      expect(E.transpose().approxEquals(E)).to.be.true;
     });
   });
 
