@@ -55,6 +55,45 @@ export class MatrixBuilder {
     );
   }
 
+  private static stack(top: Matrix, bottom: Matrix): Matrix {
+    if (top.getNumberOfColumns() !== bottom.getNumberOfColumns()) {
+      throw Error('Dimension mismatch!');
+    }
+
+    const left = top.transpose();
+    const right = bottom.transpose();
+    return MatrixBuilder.augment(left, right).transpose();
+  }
+
+  static flatten(grid: Array<Array<Matrix>>): Matrix {
+    if (grid.length === 0 || grid[0].length === 0) {
+      return MatrixBuilder.empty();
+    }
+
+    const rowsAsMatrices: Array<Matrix> = grid.map(gridRow => {
+      return gridRow.reduce((accumulator: Matrix, gridEntry: Matrix) => {
+        return MatrixBuilder.augment(accumulator, gridEntry);
+      });
+    });
+
+    return rowsAsMatrices.reduce((accumulator: Matrix, row: Matrix) => {
+      return MatrixBuilder.stack(accumulator, row);
+    });
+  }
+
+  static repeat(matrix: Matrix, rows: number, columns: number) {
+    const grid: Array<Array<Matrix>> = [];
+
+    for (let i = 0; i < rows; i++) {
+      grid[i] = [];
+      for (let j = 0; j < columns; j++) {
+        grid[i][j] = matrix;
+      }
+    }
+
+    return MatrixBuilder.flatten(grid);
+  }
+
   static slice(
     matrix: Matrix,
     rowStartIndex: number = 0,

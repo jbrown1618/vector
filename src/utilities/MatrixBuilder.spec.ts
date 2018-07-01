@@ -122,6 +122,55 @@ describe('MatrixBuilder', () => {
     });
   });
 
+  describe('flatten', () => {
+    it('flattens a grid of matrices into a single matrix', () => {
+      const A = MatrixBuilder.identity(2);
+      const B = MatrixBuilder.ones(2);
+      const C = MatrixBuilder.zeros(2);
+      const D = MatrixBuilder.diagonal(Vector.fromValues(2, 4));
+
+      const grid = [[A, B], [C, D]];
+
+      const expected = Matrix.fromData([[1, 0, 1, 1], [0, 1, 1, 1], [0, 0, 2, 0], [0, 0, 0, 4]]);
+
+      expect(MatrixBuilder.flatten(grid).approxEquals(expected)).to.be.true;
+    });
+
+    it('handles mismatched dimensions', () => {
+      const A = MatrixBuilder.ones(1);
+      const B = MatrixBuilder.zeros(1, 3);
+      const C = MatrixBuilder.zeros(4, 1);
+      const D = MatrixBuilder.ones(4, 3);
+
+      const grid = [[A, B], [C, D]];
+
+      const expected = Matrix.fromData([
+        [1, 0, 0, 0],
+        [0, 1, 1, 1],
+        [0, 1, 1, 1],
+        [0, 1, 1, 1],
+        [0, 1, 1, 1]
+      ]);
+
+      expect(MatrixBuilder.flatten(grid).approxEquals(expected)).to.be.true;
+    });
+  });
+
+  describe('repeat', () => {
+    it('constructs a matrix by repeating a smaller matrix', () => {
+      const A = Matrix.fromData([[1, 2], [3, 4]]);
+
+      const expected = Matrix.fromData([
+        [1, 2, 1, 2, 1, 2],
+        [3, 4, 3, 4, 3, 4],
+        [1, 2, 1, 2, 1, 2],
+        [3, 4, 3, 4, 3, 4]
+      ]);
+
+      expect(MatrixBuilder.repeat(A, 2, 3).approxEquals(expected)).to.be.true;
+    });
+  });
+
   describe('slice', () => {
     const A = Matrix.fromData([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]);
 
