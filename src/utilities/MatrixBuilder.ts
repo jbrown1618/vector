@@ -3,6 +3,26 @@ import { VectorBuilder } from './VectorBuilder';
 import { Vector } from '../Vector';
 
 export class MatrixBuilder {
+  static empty() {
+    return Matrix.fromData([]);
+  }
+
+  static zeros(numberOfRows: number, numberOfColumns: number = numberOfRows): Matrix {
+    const columns: Array<Vector> = [];
+    for (let i = 0; i < numberOfColumns; i++) {
+      columns.push(VectorBuilder.zeros(numberOfRows));
+    }
+    return Matrix.fromColumnVectors(columns);
+  }
+
+  static ones(numberOfRows: number, numberOfColumns: number = numberOfRows): Matrix {
+    const columns: Array<Vector> = [];
+    for (let i = 0; i < numberOfColumns; i++) {
+      columns.push(VectorBuilder.ones(numberOfRows));
+    }
+    return Matrix.fromColumnVectors(columns);
+  }
+
   static identity(size: number): Matrix {
     if (size < 0) {
       throw Error();
@@ -13,6 +33,15 @@ export class MatrixBuilder {
       columns.push(VectorBuilder.elementaryVector(size, i));
     }
     return Matrix.fromColumnVectors(columns);
+  }
+
+  static diagonal(diagonalEntries: Vector): Matrix {
+    const numEntries = diagonalEntries.getDimension();
+    return Matrix.fromColumnVectors(
+      diagonalEntries
+        .getData()
+        .map((entry, i) => VectorBuilder.elementaryVector(numEntries, i).scalarMultiply(entry))
+    );
   }
 
   static augment(left: Matrix, right: Matrix): Matrix {

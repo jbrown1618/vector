@@ -28,8 +28,9 @@ npm test
 
 ## To Do:
 
-- Unit tests for `MatrixBuilder` and `VectorBuilder`
 - Write row operations in terms of elementary matrices
+- Document public methods
+- Improve error handling and messages
 - Externalize the test for approximate equality
 - Implement `matrix.set(i, j, value)` and `vector.set(i, value)`
 - More functions in MatrixBuilder

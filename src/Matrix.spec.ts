@@ -60,7 +60,7 @@ describe('Matrix', () => {
 
     describe('getDimension', () => {
       it('returns the dimension of the matrix', () => {
-        expect(Matrix.fromData([]).getDimension()).to.equal(0);
+        expect(MatrixBuilder.empty().getDimension()).to.equal(0);
         expect(Matrix.fromData([[1]]).getDimension()).to.equal(1);
         expect(Matrix.fromData([[1, 0]]).getDimension()).to.equal(2);
         expect(Matrix.fromData([[1], [0]]).getDimension()).to.equal(2);
@@ -70,7 +70,7 @@ describe('Matrix', () => {
 
     describe('getColumnVectors', () => {
       it('returns the column vectors that make up the matrix', () => {
-        expect(Matrix.fromData([]).getColumnVectors()).to.deep.equal([]);
+        expect(MatrixBuilder.empty().getColumnVectors()).to.deep.equal([]);
         const columns = testMatrix.getColumnVectors();
         expect(columns.length).to.equal(3);
         expect(columns[0].getData()).to.deep.equal([1, 4]);
@@ -90,7 +90,7 @@ describe('Matrix', () => {
 
     describe('getRowVectors', () => {
       it('returns the row vectors that make up the matrix', () => {
-        expect(Matrix.fromData([]).getRowVectors()).to.deep.equal([]);
+        expect(MatrixBuilder.empty().getRowVectors()).to.deep.equal([]);
         const rows = testMatrix.getRowVectors();
         expect(rows.length).to.equal(2);
         expect(rows[0].getData()).to.deep.equal([1, 2, 3]);
@@ -159,8 +159,8 @@ describe('Matrix', () => {
 
     it('handles the degenerate case', () => {
       expect(
-        Matrix.fromData([])
-          .multiply(Matrix.fromData([]))
+        MatrixBuilder.empty()
+          .multiply(MatrixBuilder.empty())
           .getData()
       ).to.deep.equal([]);
     });
@@ -175,7 +175,7 @@ describe('Matrix', () => {
     });
 
     it('handles the degenerate case', () => {
-      const E = Matrix.fromData([]);
+      const E = MatrixBuilder.empty();
       expect(E.transpose().approxEquals(E)).to.be.true;
     });
   });
@@ -215,8 +215,8 @@ describe('Matrix', () => {
 
     it('handles the degenerate case', () => {
       expect(
-        Matrix.fromData([])
-          .add(Matrix.fromData([]))
+        MatrixBuilder.empty()
+          .add(MatrixBuilder.empty())
           .getData()
       ).to.deep.equal([]);
     });

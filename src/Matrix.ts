@@ -5,6 +5,7 @@ import { MatrixBuilder } from './utilities/MatrixBuilder';
 import { reducedRowEchelonForm } from './algorithms/RowEchelon';
 
 export type MatrixData = Array<VectorData>;
+export type MatrixEntryCallback = (entry: number, rowIndex: number, columnIndex: number) => void;
 
 export class Matrix implements LinearTransformation<Vector, Vector>, AbstractVector<Matrix> {
   private readonly _data: MatrixData;
@@ -112,6 +113,12 @@ export class Matrix implements LinearTransformation<Vector, Vector>, AbstractVec
     return this.getRow(rowIndex).getEntry(columnIndex);
   }
 
+  public set(rowIndex: number, columnIndex: number, value: number) {
+    const copy = this.getData();
+    copy[rowIndex][columnIndex] = value;
+    return Matrix.fromData(copy);
+  }
+
   public getDimension(): number {
     return this.getNumberOfRows() * this.getNumberOfColumns();
   }
@@ -184,5 +191,13 @@ export class Matrix implements LinearTransformation<Vector, Vector>, AbstractVec
     return this.getColumnVectors()
       .map((column, i) => column.approxEquals(other.getColumn(i)))
       .reduce((all, current) => all && current, true);
+  }
+
+  public forEachEntry(callback: MatrixEntryCallback) {
+    this.getRowVectors().forEach((row, rowIndex) => {
+      row.getData().forEach((entry, columnIndex) => {
+        callback(entry, rowIndex, columnIndex);
+      });
+    });
   }
 }

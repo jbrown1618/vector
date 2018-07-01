@@ -40,7 +40,7 @@ describe('RowEchelon', () => {
     });
 
     it('handles the degenerate case', () => {
-      expect(rowEchelonForm(Matrix.fromData([])).getData()).to.deep.equal([]);
+      expect(rowEchelonForm(MatrixBuilder.empty()).getData()).to.deep.equal([]);
     });
   });
 
@@ -78,7 +78,7 @@ describe('RowEchelon', () => {
     });
 
     it('handles the degenerate case', () => {
-      expect(reducedRowEchelonForm(Matrix.fromData([])).getData()).to.deep.equal([]);
+      expect(reducedRowEchelonForm(MatrixBuilder.empty()).getData()).to.deep.equal([]);
     });
   });
 });

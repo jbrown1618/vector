@@ -1,5 +1,6 @@
 import { AbstractVector } from './AbstractVector';
 import { Matrix, MatrixData } from './Matrix';
+import { MatrixBuilder } from './utilities/MatrixBuilder';
 
 export type VectorData = Array<number>;
 
@@ -23,10 +24,19 @@ export class Vector implements AbstractVector<Vector> {
   }
 
   public getEntry(index: number): number {
-    if (index >= this.getDimension()) {
-      throw new Error('Index out of bounds');
+    if (index >= this.getDimension() || index < 0) {
+      throw Error('Index out of bounds');
     }
     return this._data[index];
+  }
+
+  public set(index: number, value: number): Vector {
+    if (index >= this.getDimension() || index < 0) {
+      throw Error('Index out of bounds');
+    }
+    const copy = this.getData();
+    copy[index] = value;
+    return Vector.fromData(copy);
   }
 
   public add(other: Vector): Vector {
@@ -56,7 +66,7 @@ export class Vector implements AbstractVector<Vector> {
     const matrixData: MatrixData = [];
 
     if (this.getDimension() === 0 || other.getDimension() === 0) {
-      return Matrix.fromData([]);
+      return MatrixBuilder.empty();
     }
 
     this.getData().forEach((thisValue, rowIndex) => {
