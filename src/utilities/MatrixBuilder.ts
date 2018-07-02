@@ -3,6 +3,8 @@ import { VectorBuilder } from './VectorBuilder';
 import { Vector } from '../Vector';
 
 export class MatrixBuilder {
+  private constructor() {}
+
   static empty() {
     return Matrix.fromData([]);
   }
@@ -42,6 +44,32 @@ export class MatrixBuilder {
         .getData()
         .map((entry, i) => VectorBuilder.elementaryVector(numEntries, i).scalarMultiply(entry))
     );
+  }
+
+  static tridiagonal(leftEntries: Vector, diagonalEntries: Vector, rightEntries: Vector): Matrix {
+    const numEntries = diagonalEntries.getDimension();
+    if (
+      leftEntries.getDimension() !== numEntries - 1 ||
+      rightEntries.getDimension() !== numEntries - 1
+    ) {
+      throw Error('');
+    }
+
+    const getColumn = (diagonalEntry: number, i: number) => {
+      let column = VectorBuilder.zeros(numEntries).set(i, diagonalEntry);
+
+      if (i !== 0) {
+        column = column.set(i - 1, leftEntries.getEntry(i - 1));
+      }
+
+      if (i < numEntries - 1) {
+        column = column.set(i + 1, rightEntries.getEntry(i));
+      }
+
+      return column;
+    };
+
+    return Matrix.fromColumnVectors(diagonalEntries.getData().map(getColumn));
   }
 
   static augment(left: Matrix, right: Matrix): Matrix {

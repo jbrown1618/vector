@@ -34,9 +34,6 @@ npm test
 - Externalize the test for approximate equality
 - Implement `matrix.set(i, j, value)` and `vector.set(i, value)`
 - More functions in MatrixBuilder
-  - Construct from matrix of matrices
-  - Zeros
-  - Diagonal
   - Tridiagonal
   - Special named matrices
     - Hilbert matrix

@@ -1,5 +1,8 @@
 import { Vector, VectorData } from '../Vector';
 
+export type VectorIndexFunction = (index: number) => number;
+export type VectorEntryFunction = (entry: number, index: number) => number;
+
 export class VectorBuilder {
   static empty() {
     return Vector.fromData([]);
@@ -39,5 +42,17 @@ export class VectorBuilder {
 
   static concatenate(first: Vector, second: Vector) {
     return Vector.fromData([...first.getData(), ...second.getData()]);
+  }
+
+  static fromIndexFunction(valueFromIndex: VectorIndexFunction, length: number): Vector {
+    const data: VectorData = [];
+    for (let i = 0; i < length; i++) {
+      data[i] = valueFromIndex(i);
+    }
+    return Vector.fromData(data);
+  }
+
+  static transform(vector: Vector, valueFromEntry: VectorEntryFunction): Vector {
+    return Vector.fromData(vector.getData().map(valueFromEntry));
   }
 }
