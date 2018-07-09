@@ -1,7 +1,25 @@
 import { RowOperations } from './RowOperations';
-import { Matrix, NumberMatrix, VectorData } from '..';
+import { Matrix, MatrixBuilder, NumberMatrix, VectorData } from '..';
+import { assertSquare } from '../utilities/ErrorAssertions';
 
-// TODO - make generic
+export function inverse(matrix: Matrix<number>): Matrix<number> | undefined {
+  assertSquare(matrix);
+  const dim = matrix.getNumberOfRows();
+  const I = MatrixBuilder.identity(dim);
+
+  const augmented = MatrixBuilder.augment(matrix, I);
+  const rref = reducedRowEchelonForm(augmented);
+
+  const left = MatrixBuilder.slice(rref, 0, 0, dim, dim);
+  const right = MatrixBuilder.slice(rref, 0, dim);
+
+  if (left.equals(I)) {
+    return right;
+  } else {
+    // Not invertible
+    return undefined;
+  }
+}
 
 export function reducedRowEchelonForm(matrix: Matrix<number>): Matrix<number> {
   matrix = rowEchelonForm(matrix);

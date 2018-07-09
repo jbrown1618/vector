@@ -12,6 +12,12 @@ export function assertRectangular(data: MatrixData<any>): void {
   }
 }
 
+export function assertSquare(matrix: Matrix<any>): void {
+  if (matrix.getNumberOfColumns() !== matrix.getNumberOfRows()) {
+    throw new Error('TODO - message');
+  }
+}
+
 export function assertHomogeneous(vectors: Array<Vector<any>>): void {
   if (vectors.length === 0) {
     return;

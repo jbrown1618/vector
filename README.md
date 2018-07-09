@@ -33,13 +33,11 @@ npm test
 - Document public methods
 - Improve error handling and messages
 - Externalize the test for approximate equality
-- Generalize to allow other numeric data types - big decimals and complex numbers
+- Accept generic data types in algorithms - requires work on additive/multiplicative inverses, and generic construction
 - More functions in MatrixBuilder
   - Special named matrices
     - Hilbert matrix
     - Toeplitz matrix
-- Implement `SparseMatrix` with efficient storage
-  - Re-think the inheritance hierarchy - do I want to extend Matrix and override everything, or extract a common interface?
 - Tests for particular matrix properties - both exact and approximate
   - isInvertible()
   - isSymmetric()
