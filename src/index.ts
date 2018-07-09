@@ -1,10 +1,18 @@
-export * from './AbstractVector';
-export * from './LinearTransformation';
-export * from './Matrix';
-export * from './Vector';
-
+export * from './algorithms/FiniteDifferences';
 export * from './algorithms/RowEchelon';
 export * from './algorithms/RowOperations';
-
+export * from './types/ArrayMatrix';
+export * from './types/ArrayVector';
+export * from './types/ComplexMatrix';
+export * from './types/ComplexNumber';
+export * from './types/ComplexVector';
+export * from './types/LinearTransformation';
+export * from './types/Matrix';
+export * from './types/NumberMatrix';
+export * from './types/NumberVector';
+export * from './types/ScalarContainer';
+export * from './types/SparseVector';
+export * from './types/Vector';
 export * from './utilities/MatrixBuilder';
+export * from './utilities/MatrixProperties';
 export * from './utilities/VectorBuilder';

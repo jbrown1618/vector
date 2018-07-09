@@ -1,5 +1,4 @@
-import { MatrixBuilder, VectorBuilder, VectorIndexFunction } from '..';
-import { Matrix } from '../Matrix';
+import { Matrix, MatrixBuilder, VectorBuilder, VectorIndexFunction } from '..';
 
 export function linspace(xMin: number, xMax: number, binCount: number) {
   const indexToX: VectorIndexFunction = index => {
@@ -9,7 +8,7 @@ export function linspace(xMin: number, xMax: number, binCount: number) {
   return VectorBuilder.fromIndexFunction(indexToX, binCount);
 }
 
-export function forwardDifferenceMatrix(binCount: number): Matrix {
+export function forwardDifferenceMatrix(binCount: number): Matrix<number> {
   return MatrixBuilder.tridiagonal(
     VectorBuilder.zeros(binCount - 1),
     VectorBuilder.ones(binCount).scalarMultiply(-1),
@@ -17,7 +16,7 @@ export function forwardDifferenceMatrix(binCount: number): Matrix {
   );
 }
 
-export function backwardDifferenceMatrix(binCount: number): Matrix {
+export function backwardDifferenceMatrix(binCount: number): Matrix<number> {
   return MatrixBuilder.tridiagonal(
     VectorBuilder.ones(binCount - 1).scalarMultiply(-1),
     VectorBuilder.ones(binCount),
@@ -25,7 +24,7 @@ export function backwardDifferenceMatrix(binCount: number): Matrix {
   );
 }
 
-export function centralDifferenceMatrix(binCount: number): Matrix {
+export function centralDifferenceMatrix(binCount: number): Matrix<number> {
   return MatrixBuilder.tridiagonal(
     VectorBuilder.ones(binCount - 1).scalarMultiply(-1 / 2),
     VectorBuilder.zeros(binCount),

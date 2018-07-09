@@ -28,31 +28,16 @@ npm test
 
 ## To Do:
 
-- Write row operations in terms of elementary matrices
+### Housekeeping
+
 - Document public methods
 - Improve error handling and messages
 - Externalize the test for approximate equality
-- Implement `matrix.set(i, j, value)` and `vector.set(i, value)`
+- Accept generic data types in algorithms - requires work on additive/multiplicative inverses, and generic construction
 - More functions in MatrixBuilder
-  - Tridiagonal
   - Special named matrices
     - Hilbert matrix
-- Determinants
-- LU Factorization
-- Cholesky Factorization
-- Implement row reduction optimizations for ill-conditioned / nearly-singular matrices
-  - Partial and complete pivoting (see text by Atkinson)
-- Find Eigenvalues and Eigenvectors
-  - Power method
-  - Inverse iteration
-- QR Factorization
-- Jordan canonical form
-- Singular value decomposition / Pseudoinverses
-- Least squares approximation
-  - Residual correction methods
-  - Gauss-Jacobi method
-  - Gauss-Seidel method
-- Generalize to allow other numeric data types - big decimals and complex numbers
+    - Toeplitz matrix
 - Tests for particular matrix properties - both exact and approximate
   - isInvertible()
   - isSymmetric()
@@ -61,3 +46,22 @@ npm test
   - isIdentity()
   - isHermitian()
   - isOrthogonal()
+
+### Topics
+
+- Solving _Ax = b_
+  - Implement row reduction optimizations for ill-conditioned / nearly-singular matrices
+  - Partial and complete pivoting (see text by Atkinson)
+  - Cholesky Factorization
+  - LU Factorization
+  - QR Factorization
+  - Singular value decomposition / Pseudoinverses
+- Determinants
+- Finding Eigenvalues and Eigenvectors _Ax = lambda\*x_
+  - Power method
+  - Inverse iteration
+- Jordan canonical form
+- Least squares approximation
+  - Residual correction methods
+  - Gauss-Jacobi method
+  - Gauss-Seidel method

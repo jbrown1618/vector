@@ -1,8 +1,27 @@
-import { Matrix } from '../Matrix';
 import { RowOperations } from './RowOperations';
-import { VectorData } from '../Vector';
+import { Matrix, MatrixBuilder, NumberMatrix, VectorData } from '..';
+import { assertSquare } from '../utilities/ErrorAssertions';
 
-export function reducedRowEchelonForm(matrix: Matrix): Matrix {
+export function inverse(matrix: Matrix<number>): Matrix<number> | undefined {
+  assertSquare(matrix);
+  const dim = matrix.getNumberOfRows();
+  const I = MatrixBuilder.identity(dim);
+
+  const augmented = MatrixBuilder.augment(matrix, I);
+  const rref = reducedRowEchelonForm(augmented);
+
+  const left = MatrixBuilder.slice(rref, 0, 0, dim, dim);
+  const right = MatrixBuilder.slice(rref, 0, dim);
+
+  if (left.equals(I)) {
+    return right;
+  } else {
+    // Not invertible
+    return undefined;
+  }
+}
+
+export function reducedRowEchelonForm(matrix: Matrix<number>): Matrix<number> {
   matrix = rowEchelonForm(matrix);
 
   const maxNumberOfPivotEntries = Math.min(matrix.getNumberOfColumns(), matrix.getNumberOfRows());
@@ -20,7 +39,7 @@ export function reducedRowEchelonForm(matrix: Matrix): Matrix {
   return matrix;
 }
 
-export function rowEchelonForm(matrix: Matrix): Matrix {
+export function rowEchelonForm(matrix: Matrix<number>): Matrix<number> {
   matrix = moveLeadingZerosToBottom(matrix);
 
   const maxNumberOfPivotEntries = Math.min(matrix.getNumberOfRows(), matrix.getNumberOfColumns());
@@ -46,8 +65,8 @@ export function rowEchelonForm(matrix: Matrix): Matrix {
   return matrix;
 }
 
-function moveLeadingZerosToBottom(matrix: Matrix): Matrix {
-  const getNumberOfLeadingZeros = (row: VectorData) => {
+function moveLeadingZerosToBottom(matrix: Matrix<number>): Matrix<number> {
+  const getNumberOfLeadingZeros = (row: VectorData<number>) => {
     let zeros = 0;
     for (let i = 0; i < row.length; i++) {
       if (row[i] === 0) {
@@ -59,14 +78,18 @@ function moveLeadingZerosToBottom(matrix: Matrix): Matrix {
     return zeros;
   };
 
-  const comparator = (a: VectorData, b: VectorData) => {
+  const comparator = (a: VectorData<number>, b: VectorData<number>) => {
     return getNumberOfLeadingZeros(a) - getNumberOfLeadingZeros(b);
   };
 
-  return Matrix.fromData(matrix.getData().sort(comparator));
+  return NumberMatrix.fromData(matrix.getData().sort(comparator));
 }
 
-function clearEntriesBelow(matrix: Matrix, pivotRow: number, pivotColumn: number): Matrix {
+function clearEntriesBelow(
+  matrix: Matrix<number>,
+  pivotRow: number,
+  pivotColumn: number
+): Matrix<number> {
   checkPreconditionsForClearingBelow(matrix, pivotRow, pivotColumn);
 
   for (let rowIndex = pivotRow + 1; rowIndex < matrix.getNumberOfRows(); rowIndex++) {
@@ -82,7 +105,7 @@ function clearEntriesBelow(matrix: Matrix, pivotRow: number, pivotColumn: number
 }
 
 function checkPreconditionsForClearingBelow(
-  matrix: Matrix,
+  matrix: Matrix<number>,
   pivotRow: number,
   pivotColumn: number
 ): void {
@@ -99,7 +122,11 @@ function checkPreconditionsForClearingBelow(
   }
 }
 
-function clearEntriesAbove(matrix: Matrix, pivotRow: number, pivotColumn: number): Matrix {
+function clearEntriesAbove(
+  matrix: Matrix<number>,
+  pivotRow: number,
+  pivotColumn: number
+): Matrix<number> {
   checkPreconditionsForClearingAbove(matrix, pivotRow, pivotColumn);
 
   for (let rowIndex = pivotRow - 1; rowIndex >= 0; rowIndex--) {
@@ -114,7 +141,7 @@ function clearEntriesAbove(matrix: Matrix, pivotRow: number, pivotColumn: number
 }
 
 function checkPreconditionsForClearingAbove(
-  matrix: Matrix,
+  matrix: Matrix<number>,
   pivotRow: number,
   pivotColumn: number
 ): void {
