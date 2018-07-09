@@ -4,5 +4,9 @@ dist/
 # Dependencies
 node_modules/
 
+# Code coverage reports
+coverage/
+.nyc_output/
+
 # IDE Configuration
 .idea/
