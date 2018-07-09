@@ -1,23 +1,16 @@
-import { NumberVector } from '../types/NumberVector';
-import { Vector, VectorData } from '../types/Vector';
+import { NumberVector } from '..';
+import { Vector, VectorData } from '..';
+import { assertValidIndex } from './ErrorAssertions';
 
 export type VectorIndexFunction = (index: number) => number;
 export type VectorEntryFunction = (entry: number, index: number) => number;
 
 export class VectorBuilder {
-  static fromData(data: VectorData<number>) {
-    return new NumberVector(data);
+  static empty(): Vector<number> {
+    return NumberVector.fromData([]);
   }
 
-  static fromValues(...args: VectorData<number>) {
-    return new NumberVector(args);
-  }
-
-  static empty() {
-    return new NumberVector([]);
-  }
-
-  static zeros(dimension: number) {
+  static zeros(dimension: number): Vector<number> {
     if (dimension < 0) {
       throw Error();
     }
@@ -27,10 +20,10 @@ export class VectorBuilder {
       data[i] = 0;
     }
 
-    return new NumberVector(data);
+    return NumberVector.fromData(data);
   }
 
-  static ones(dimension: number) {
+  static ones(dimension: number): Vector<number> {
     if (dimension < 0) {
       throw Error();
     }
@@ -40,15 +33,16 @@ export class VectorBuilder {
       data[i] = 1;
     }
 
-    return new NumberVector(data);
+    return NumberVector.fromData(data);
   }
 
-  static elementaryVector(dimension: number, oneIndex: number) {
+  static elementaryVector(dimension: number, oneIndex: number): Vector<number> {
+    assertValidIndex(oneIndex, dimension);
     return VectorBuilder.fromIndexFunction(i => (i === oneIndex ? 1 : 0), dimension);
   }
 
-  static concatenate(first: Vector<number>, second: Vector<number>) {
-    new NumberVector([...first.getData(), ...second.getData()]);
+  static concatenate(first: Vector<number>, second: Vector<number>): Vector<number> {
+    return NumberVector.fromData([...first.getData(), ...second.getData()]);
   }
 
   static fromIndexFunction(valueFromIndex: VectorIndexFunction, length: number): Vector<number> {
@@ -56,10 +50,10 @@ export class VectorBuilder {
     for (let i = 0; i < length; i++) {
       data[i] = valueFromIndex(i);
     }
-    return new NumberVector(data);
+    return NumberVector.fromData(data);
   }
 
   static transform(vector: Vector<number>, valueFromEntry: VectorEntryFunction): Vector<number> {
-    return new NumberVector(vector.getData().map(valueFromEntry));
+    return NumberVector.fromData(vector.getData().map(valueFromEntry));
   }
 }

@@ -1,5 +1,6 @@
 import { Vector, VectorData } from './Vector';
 import { Matrix, MatrixData } from './Matrix';
+import { assertHomogeneous, assertValidVectorIndex } from '../utilities/ErrorAssertions';
 
 export abstract class ArrayVector<ScalarType> implements Vector<ScalarType> {
   private readonly _data: VectorData<ScalarType>;
@@ -25,10 +26,13 @@ export abstract class ArrayVector<ScalarType> implements Vector<ScalarType> {
   abstract getMultiplicativeIdentity(): ScalarType;
 
   getEntry(index: number): ScalarType {
+    assertValidVectorIndex(this, index);
     return this._data[index];
   }
 
   add(other: Vector<ScalarType>): Vector<ScalarType> {
+    assertHomogeneous([this, other]);
+
     const newData = this.getData().map((entry, index) =>
       this.addScalars(entry, other.getEntry(index))
     );
@@ -47,6 +51,8 @@ export abstract class ArrayVector<ScalarType> implements Vector<ScalarType> {
   }
 
   innerProduct(other: Vector<ScalarType>): ScalarType {
+    assertHomogeneous([this, other]);
+
     return this._data
       .map((entry, index) => this.multiplyScalars(entry, other.getEntry(index)))
       .reduce(this.addScalars, this.getAdditiveIdentity());

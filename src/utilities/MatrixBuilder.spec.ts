@@ -1,15 +1,14 @@
 import { describe, it } from 'mocha';
 import { expect } from 'chai';
 import { MatrixBuilder } from './MatrixBuilder';
-import { Vector } from '../Vector';
-import { Matrix } from '../Matrix';
 import { VectorBuilder } from './VectorBuilder';
+import { NumberVector } from '..';
+import { NumberMatrix } from '..';
 
 describe('MatrixBuilder', () => {
   describe('empty', () => {
     it('returns an empty vector', () => {
       const E = MatrixBuilder.empty();
-      expect(E.getDimension()).to.equal(0);
       expect(E.getNumberOfRows()).to.equal(0);
       expect(E.getNumberOfColumns()).to.equal(0);
       expect(E.getData()).to.deep.equal([]);
@@ -88,16 +87,16 @@ describe('MatrixBuilder', () => {
 
   describe('diagonal', () => {
     it('constructs a diagonal matrix with the given diagonal entries', () => {
-      const diagonalEntries = Vector.fromData([1, 2, 3]);
-      const expected = Matrix.fromData([[1, 0, 0], [0, 2, 0], [0, 0, 3]]);
+      const diagonalEntries = NumberVector.fromData([1, 2, 3]);
+      const expected = NumberMatrix.fromData([[1, 0, 0], [0, 2, 0], [0, 0, 3]]);
 
-      expect(MatrixBuilder.diagonal(diagonalEntries).approxEquals(expected)).to.be.true;
+      expect(MatrixBuilder.diagonal(diagonalEntries).equals(expected)).to.be.true;
     });
 
     it('handles the degenerate case', () => {
       const diagonalEntries = VectorBuilder.empty();
       const expected = MatrixBuilder.empty();
-      expect(MatrixBuilder.diagonal(diagonalEntries).approxEquals(expected)).to.be.true;
+      expect(MatrixBuilder.diagonal(diagonalEntries).equals(expected)).to.be.true;
     });
   });
 
@@ -105,14 +104,14 @@ describe('MatrixBuilder', () => {
     it('horizontally concatenates two matrices', () => {
       const first = MatrixBuilder.identity(2);
       const second = MatrixBuilder.ones(2);
-      const expected = Matrix.fromData([[1, 0, 1, 1], [0, 1, 1, 1]]);
+      const expected = NumberMatrix.fromData([[1, 0, 1, 1], [0, 1, 1, 1]]);
 
-      expect(MatrixBuilder.augment(first, second).approxEquals(expected)).to.be.true;
+      expect(MatrixBuilder.augment(first, second).equals(expected)).to.be.true;
     });
 
     it('handles the degenerate case', () => {
       const empty = MatrixBuilder.empty();
-      expect(MatrixBuilder.augment(empty, empty).approxEquals(empty)).to.be.true;
+      expect(MatrixBuilder.augment(empty, empty).equals(empty)).to.be.true;
     });
 
     it('throws an error when the input dimensions are not compatible', () => {
@@ -127,13 +126,18 @@ describe('MatrixBuilder', () => {
       const A = MatrixBuilder.identity(2);
       const B = MatrixBuilder.ones(2);
       const C = MatrixBuilder.zeros(2);
-      const D = MatrixBuilder.diagonal(Vector.fromValues(2, 4));
+      const D = MatrixBuilder.diagonal(NumberVector.fromValues(2, 4));
 
       const grid = [[A, B], [C, D]];
 
-      const expected = Matrix.fromData([[1, 0, 1, 1], [0, 1, 1, 1], [0, 0, 2, 0], [0, 0, 0, 4]]);
+      const expected = NumberMatrix.fromData([
+        [1, 0, 1, 1],
+        [0, 1, 1, 1],
+        [0, 0, 2, 0],
+        [0, 0, 0, 4]
+      ]);
 
-      expect(MatrixBuilder.flatten(grid).approxEquals(expected)).to.be.true;
+      expect(MatrixBuilder.flatten(grid).equals(expected)).to.be.true;
     });
 
     it('handles mismatched dimensions', () => {
@@ -144,7 +148,7 @@ describe('MatrixBuilder', () => {
 
       const grid = [[A, B], [C, D]];
 
-      const expected = Matrix.fromData([
+      const expected = NumberMatrix.fromData([
         [1, 0, 0, 0],
         [0, 1, 1, 1],
         [0, 1, 1, 1],
@@ -152,51 +156,51 @@ describe('MatrixBuilder', () => {
         [0, 1, 1, 1]
       ]);
 
-      expect(MatrixBuilder.flatten(grid).approxEquals(expected)).to.be.true;
+      expect(MatrixBuilder.flatten(grid).equals(expected)).to.be.true;
     });
   });
 
   describe('repeat', () => {
     it('constructs a matrix by repeating a smaller matrix', () => {
-      const A = Matrix.fromData([[1, 2], [3, 4]]);
+      const A = NumberMatrix.fromData([[1, 2], [3, 4]]);
 
-      const expected = Matrix.fromData([
+      const expected = NumberMatrix.fromData([
         [1, 2, 1, 2, 1, 2],
         [3, 4, 3, 4, 3, 4],
         [1, 2, 1, 2, 1, 2],
         [3, 4, 3, 4, 3, 4]
       ]);
 
-      expect(MatrixBuilder.repeat(A, 2, 3).approxEquals(expected)).to.be.true;
+      expect(MatrixBuilder.repeat(A, 2, 3).equals(expected)).to.be.true;
     });
   });
 
   describe('slice', () => {
-    const A = Matrix.fromData([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]);
+    const A = NumberMatrix.fromData([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]);
 
     it('includes the start indices but excludes the end indices', () => {
-      let expectedSlice = Matrix.fromData([[1, 2], [5, 6]]);
-      expect(MatrixBuilder.slice(A, 0, 0, 2, 2).approxEquals(expectedSlice)).to.be.true;
+      let expectedSlice = NumberMatrix.fromData([[1, 2], [5, 6]]);
+      expect(MatrixBuilder.slice(A, 0, 0, 2, 2).equals(expectedSlice)).to.be.true;
 
-      expectedSlice = Matrix.fromData([[1, 2, 3]]);
-      expect(MatrixBuilder.slice(A, 0, 0, 1, 3).approxEquals(expectedSlice)).to.be.true;
+      expectedSlice = NumberMatrix.fromData([[1, 2, 3]]);
+      expect(MatrixBuilder.slice(A, 0, 0, 1, 3).equals(expectedSlice)).to.be.true;
 
-      expectedSlice = Matrix.fromData([[1], [5], [9]]);
-      expect(MatrixBuilder.slice(A, 0, 0, 3, 1).approxEquals(expectedSlice)).to.be.true;
+      expectedSlice = NumberMatrix.fromData([[1], [5], [9]]);
+      expect(MatrixBuilder.slice(A, 0, 0, 3, 1).equals(expectedSlice)).to.be.true;
     });
 
     it('defaults to the entire matrix when no indices are given', () => {
-      expect(MatrixBuilder.slice(A).approxEquals(A)).to.be.true;
+      expect(MatrixBuilder.slice(A).equals(A)).to.be.true;
     });
 
     it('defaults to the end of the matrix when no end indices are given', () => {
-      let expectedSlice = Matrix.fromData([[6, 7, 8], [10, 11, 12]]);
-      expect(MatrixBuilder.slice(A, 1, 1).approxEquals(expectedSlice)).to.be.true;
+      let expectedSlice = NumberMatrix.fromData([[6, 7, 8], [10, 11, 12]]);
+      expect(MatrixBuilder.slice(A, 1, 1).equals(expectedSlice)).to.be.true;
     });
 
     it('returns an empty matrix when a start index matches the end index', () => {
-      expect(MatrixBuilder.slice(A, 1, 1, 1, 2).approxEquals(MatrixBuilder.empty())).to.be.true;
-      expect(MatrixBuilder.slice(A, 1, 1, 2, 1).approxEquals(MatrixBuilder.empty())).to.be.true;
+      expect(MatrixBuilder.slice(A, 1, 1, 1, 2).equals(MatrixBuilder.empty())).to.be.true;
+      expect(MatrixBuilder.slice(A, 1, 1, 2, 1).equals(MatrixBuilder.empty())).to.be.true;
     });
   });
 });

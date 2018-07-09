@@ -2,9 +2,42 @@ import { ArrayMatrix } from './ArrayMatrix';
 import { Matrix, MatrixData } from './Matrix';
 import { Vector, VectorData } from './Vector';
 import { NumberVector } from './NumberVector';
+import { assertHomogeneous, assertRectangular } from '../utilities/ErrorAssertions';
 
 export class NumberMatrix extends ArrayMatrix<number> {
-  constructor(data: MatrixData<number>) {
+  static fromData(data: MatrixData<number>): NumberMatrix {
+    return new NumberMatrix(data);
+  }
+
+  static fromColumnVectors(vectors: Array<Vector<number>>): NumberMatrix {
+    assertHomogeneous(vectors);
+    const data: MatrixData<number> = [];
+    vectors.forEach((vector, j) => {
+      vector.getData().forEach((value, i) => {
+        data[i] = data[i] || [];
+        data[i][j] = value;
+      });
+    });
+    return new NumberMatrix(data);
+  }
+
+  static fromRowVectors(vectors: Array<Vector<number>>): NumberMatrix {
+    assertHomogeneous(vectors);
+    return new NumberMatrix(vectors.map(v => v.getData()));
+  }
+
+  protected constructor(data: MatrixData<number>) {
+    let allRowsEmpty = true;
+    data.forEach(row => {
+      if (row.length !== 0) {
+        allRowsEmpty = false;
+      }
+    });
+    if (allRowsEmpty) {
+      data = [];
+    }
+
+    assertRectangular(data);
     super(data);
   }
 
@@ -13,18 +46,11 @@ export class NumberMatrix extends ArrayMatrix<number> {
   }
 
   protected makeVector(vectorData: VectorData<number>): Vector<number> {
-    return new NumberVector(vectorData);
+    return NumberVector.fromData(vectorData);
   }
 
   protected newFromColumnVectors(vectors: Array<Vector<number>>): Matrix<number> {
-    const data: MatrixData<number> = [];
-    vectors.forEach((vector, j) => {
-      vector.getData().forEach((value, i) => {
-        data[i] = data[i] || [];
-        data[i][j] = value;
-      });
-    });
-    return this.newFromData([]);
+    return NumberMatrix.fromColumnVectors(vectors);
   }
 
   addScalars(first: number, second: number): number {

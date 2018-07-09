@@ -1,4 +1,6 @@
 import { Vector, VectorData } from './Vector';
+import { Matrix, MatrixData } from './Matrix';
+import { assertValidVectorIndex } from '../utilities/ErrorAssertions';
 
 export type SparseVectorDataEntry<ScalarType> = {
   readonly index: number;
@@ -22,7 +24,11 @@ export abstract class SparseVector<ScalarType> implements Vector<ScalarType> {
     this._sparseData = data;
   }
 
-  abstract newFromSparseData(sparseData: SparseVectorData<ScalarType>): SparseVector<ScalarType>;
+  protected abstract newFromSparseData(
+    sparseData: SparseVectorData<ScalarType>
+  ): SparseVector<ScalarType>;
+
+  protected abstract makeMatrix(data: MatrixData<ScalarType>): Matrix<ScalarType>;
 
   abstract addScalars(first: ScalarType, second: ScalarType): ScalarType;
 
@@ -33,6 +39,8 @@ export abstract class SparseVector<ScalarType> implements Vector<ScalarType> {
   abstract conjugateScalar(scalar: ScalarType): ScalarType;
 
   abstract getAdditiveIdentity(): ScalarType;
+
+  abstract getMultiplicativeIdentity(): ScalarType;
 
   getSparseData(): SparseVectorData<ScalarType> {
     return [...this._sparseData];
@@ -47,8 +55,8 @@ export abstract class SparseVector<ScalarType> implements Vector<ScalarType> {
   }
 
   getEntry(index: number): ScalarType {
+    assertValidVectorIndex(this, index);
     const matching = this._sparseData.filter(sparseEntry => sparseEntry.index === index);
-
     return matching.length ? matching[0].value : this.getAdditiveIdentity();
   }
 
@@ -58,6 +66,10 @@ export abstract class SparseVector<ScalarType> implements Vector<ScalarType> {
         this.multiplyScalars(sparseEntry.value, other.getEntry(sparseEntry.index))
       )
       .reduce(this.addScalars, this.getAdditiveIdentity());
+  }
+
+  outerProduct(other: Vector<ScalarType>): Matrix<ScalarType> {
+    return this.makeMatrix([other.getData()]); // TODO - implement
   }
 
   scalarMultiply(scalar: ScalarType): Vector<ScalarType> {

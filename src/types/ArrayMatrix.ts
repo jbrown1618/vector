@@ -1,5 +1,6 @@
-import { Matrix, MatrixData } from './Matrix';
+import { Matrix, MatrixData, MatrixEntryCallback } from './Matrix';
 import { Vector, VectorData } from './Vector';
+import { assertValidMatrixIndex } from '../utilities/ErrorAssertions';
 
 export abstract class ArrayMatrix<ScalarType> implements Matrix<ScalarType> {
   private readonly _data: MatrixData<ScalarType>;
@@ -79,6 +80,7 @@ export abstract class ArrayMatrix<ScalarType> implements Matrix<ScalarType> {
   }
 
   getEntry(rowIndex: number, columnIndex: number): ScalarType {
+    assertValidMatrixIndex(this, rowIndex, columnIndex);
     return this.getRow(rowIndex).getEntry(columnIndex);
   }
 
@@ -127,5 +129,13 @@ export abstract class ArrayMatrix<ScalarType> implements Matrix<ScalarType> {
 
   transpose(): Matrix<ScalarType> {
     return this.newFromColumnVectors(this.getRowVectors());
+  }
+
+  forEachEntry(cb: MatrixEntryCallback<ScalarType>) {
+    this.getRowVectors().forEach((row, i) => {
+      row.getData().forEach((entry, j) => {
+        cb(entry, i, j);
+      });
+    });
   }
 }

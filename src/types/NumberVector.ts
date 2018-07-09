@@ -4,16 +4,24 @@ import { Matrix, MatrixData } from './Matrix';
 import { NumberMatrix } from './NumberMatrix';
 
 export class NumberVector extends ArrayVector<number> {
-  constructor(data: VectorData<number>) {
+  static fromData(data: VectorData<number>): NumberVector {
+    return new NumberVector(data);
+  }
+
+  static fromValues(...args: VectorData<number>): NumberVector {
+    return new NumberVector(args);
+  }
+
+  protected constructor(data: VectorData<number>) {
     super(data);
   }
 
   protected newFromData(data: VectorData<number>): ArrayVector<number> {
-    return new NumberVector(data);
+    return NumberVector.fromData(data);
   }
 
   protected makeMatrix(data: MatrixData<number>): Matrix<number> {
-    return new NumberMatrix(data);
+    return NumberMatrix.fromData(data);
   }
 
   addScalars(first: number, second: number): number {

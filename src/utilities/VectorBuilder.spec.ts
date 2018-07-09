@@ -1,7 +1,7 @@
 import { describe, it } from 'mocha';
 import { expect } from 'chai';
 import { VectorBuilder } from './VectorBuilder';
-import { Vector } from '../Vector';
+import { NumberVector } from '../types/NumberVector';
 
 describe('VectorBuilder', () => {
   describe('empty', () => {
@@ -82,21 +82,21 @@ describe('VectorBuilder', () => {
 
   describe('concatenate', () => {
     it('concatenates two non-empty vectors', () => {
-      const first = Vector.fromData([1, 2, 3]);
-      const second = Vector.fromData([4, 5, 6]);
-      const firstSecond = Vector.fromData([1, 2, 3, 4, 5, 6]);
-      const secondFirst = Vector.fromData([4, 5, 6, 1, 2, 3]);
-      expect(VectorBuilder.concatenate(first, second).approxEquals(firstSecond)).to.be.true;
-      expect(VectorBuilder.concatenate(second, first).approxEquals(secondFirst)).to.be.true;
+      const first = NumberVector.fromData([1, 2, 3]);
+      const second = NumberVector.fromData([4, 5, 6]);
+      const firstSecond = NumberVector.fromData([1, 2, 3, 4, 5, 6]);
+      const secondFirst = NumberVector.fromData([4, 5, 6, 1, 2, 3]);
+      expect(VectorBuilder.concatenate(first, second).equals(firstSecond)).to.be.true;
+      expect(VectorBuilder.concatenate(second, first).equals(secondFirst)).to.be.true;
     });
 
     it('handles empty vectors', () => {
       const empty = VectorBuilder.empty();
-      const nonEmpty = Vector.fromData([1, 2, 3]);
+      const nonEmpty = NumberVector.fromData([1, 2, 3]);
 
-      expect(VectorBuilder.concatenate(empty, empty).approxEquals(empty)).to.be.true;
-      expect(VectorBuilder.concatenate(empty, nonEmpty).approxEquals(nonEmpty)).to.be.true;
-      expect(VectorBuilder.concatenate(nonEmpty, empty).approxEquals(nonEmpty)).to.be.true;
+      expect(VectorBuilder.concatenate(empty, empty).equals(empty)).to.be.true;
+      expect(VectorBuilder.concatenate(empty, nonEmpty).equals(nonEmpty)).to.be.true;
+      expect(VectorBuilder.concatenate(nonEmpty, empty).equals(nonEmpty)).to.be.true;
     });
   });
 });
