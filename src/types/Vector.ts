@@ -1,4 +1,5 @@
 import { ScalarContainer } from './ScalarContainer';
+import { Matrix } from './Matrix';
 
 export type VectorData<ScalarType> = Array<ScalarType>;
 
@@ -12,6 +13,8 @@ export interface Vector<ScalarType> extends ScalarContainer<ScalarType> {
   scalarMultiply(scalar: ScalarType): Vector<ScalarType>;
 
   innerProduct(other: Vector<ScalarType>): ScalarType;
+
+  outerProduct(other: Vector<ScalarType>): Matrix<ScalarType>;
 
   getDimension(): number;
 

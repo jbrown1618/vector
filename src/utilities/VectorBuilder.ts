@@ -1,11 +1,20 @@
-import { Vector, VectorData } from '../Vector';
+import { NumberVector } from '../types/NumberVector';
+import { Vector, VectorData } from '../types/Vector';
 
 export type VectorIndexFunction = (index: number) => number;
 export type VectorEntryFunction = (entry: number, index: number) => number;
 
 export class VectorBuilder {
+  static fromData(data: VectorData<number>) {
+    return new NumberVector(data);
+  }
+
+  static fromValues(...args: VectorData<number>) {
+    return new NumberVector(args);
+  }
+
   static empty() {
-    return Vector.fromData([]);
+    return new NumberVector([]);
   }
 
   static zeros(dimension: number) {
@@ -13,12 +22,12 @@ export class VectorBuilder {
       throw Error();
     }
 
-    const data: VectorData = [];
+    const data: VectorData<number> = [];
     for (let i = 0; i < dimension; i++) {
       data[i] = 0;
     }
 
-    return Vector.fromData(data);
+    return new NumberVector(data);
   }
 
   static ones(dimension: number) {
@@ -26,33 +35,31 @@ export class VectorBuilder {
       throw Error();
     }
 
-    const data: VectorData = [];
+    const data: VectorData<number> = [];
     for (let i = 0; i < dimension; i++) {
       data[i] = 1;
     }
 
-    return Vector.fromData(data);
+    return new NumberVector(data);
   }
 
   static elementaryVector(dimension: number, oneIndex: number) {
-    let vector = VectorBuilder.zeros(dimension);
-    vector = vector.set(oneIndex, 1);
-    return vector;
+    return VectorBuilder.fromIndexFunction(i => (i === oneIndex ? 1 : 0), dimension);
   }
 
-  static concatenate(first: Vector, second: Vector) {
-    return Vector.fromData([...first.getData(), ...second.getData()]);
+  static concatenate(first: Vector<number>, second: Vector<number>) {
+    new NumberVector([...first.getData(), ...second.getData()]);
   }
 
-  static fromIndexFunction(valueFromIndex: VectorIndexFunction, length: number): Vector {
-    const data: VectorData = [];
+  static fromIndexFunction(valueFromIndex: VectorIndexFunction, length: number): Vector<number> {
+    const data: VectorData<number> = [];
     for (let i = 0; i < length; i++) {
       data[i] = valueFromIndex(i);
     }
-    return Vector.fromData(data);
+    return new NumberVector(data);
   }
 
-  static transform(vector: Vector, valueFromEntry: VectorEntryFunction): Vector {
-    return Vector.fromData(vector.getData().map(valueFromEntry));
+  static transform(vector: Vector<number>, valueFromEntry: VectorEntryFunction): Vector<number> {
+    return new NumberVector(vector.getData().map(valueFromEntry));
   }
 }

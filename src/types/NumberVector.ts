@@ -1,5 +1,7 @@
 import { ArrayVector } from './ArrayVector';
 import { VectorData } from './Vector';
+import { Matrix, MatrixData } from './Matrix';
+import { NumberMatrix } from './NumberMatrix';
 
 export class NumberVector extends ArrayVector<number> {
   constructor(data: VectorData<number>) {
@@ -8,6 +10,10 @@ export class NumberVector extends ArrayVector<number> {
 
   protected newFromData(data: VectorData<number>): ArrayVector<number> {
     return new NumberVector(data);
+  }
+
+  protected makeMatrix(data: MatrixData<number>): Matrix<number> {
+    return new NumberMatrix(data);
   }
 
   addScalars(first: number, second: number): number {

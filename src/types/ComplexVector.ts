@@ -1,6 +1,8 @@
 import { ArrayVector } from './ArrayVector';
 import { ComplexNumber } from './ComplexNumber';
 import { VectorData } from './Vector';
+import { Matrix, MatrixData } from './Matrix';
+import { ComplexMatrix } from './ComplexMatrix';
 
 export class ComplexVector extends ArrayVector<ComplexNumber> {
   constructor(data: VectorData<ComplexNumber>) {
@@ -9,6 +11,10 @@ export class ComplexVector extends ArrayVector<ComplexNumber> {
 
   protected newFromData(data: VectorData<ComplexNumber>): ArrayVector<ComplexNumber> {
     return new ComplexVector(data);
+  }
+
+  protected makeMatrix(data: MatrixData<ComplexNumber>): Matrix<ComplexNumber> {
+    return new ComplexMatrix(data);
   }
 
   addScalars(first: ComplexNumber, second: ComplexNumber): ComplexNumber {
