@@ -8,7 +8,8 @@
     "test": "mocha -r ts-node/register src/**/*.spec.ts **/*.spec.ts",
     "test-coverage": "nyc --extension=.ts --exclude=**/*.spec.ts mocha -r ts-node/register src/**/*.spec.ts **/*.spec.ts",
     "precommit": "lint-staged",
-    "format": "prettier --write"
+    "format": "prettier --write",
+    "docs": "typedoc --out ./docs/ --readme ./README.md ./src/"
   },
   "author": "Joshua Brown",
   "license": "ISC",
@@ -23,6 +24,7 @@
     "nyc": "^12.0.2",
     "prettier": "^1.13.5",
     "ts-node": "^7.0.0",
+    "typedoc": "^0.11.1",
     "typescript": "^2.9.2"
   },
   "lint-staged": {
