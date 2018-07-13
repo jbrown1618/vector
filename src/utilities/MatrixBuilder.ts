@@ -2,6 +2,7 @@ import { VectorBuilder } from './VectorBuilder';
 import { NumberMatrix } from '..';
 import { Matrix, MatrixData } from '..';
 import { Vector } from '..';
+import { assertValidMatrixIndex } from './ErrorAssertions';
 
 export class MatrixBuilder {
   private constructor() {}
@@ -155,6 +156,39 @@ export class MatrixBuilder {
         newColumnIndex++;
       }
       newRowIndex++;
+    }
+
+    return NumberMatrix.fromData(data);
+  }
+
+  static exclude(
+    matrix: Matrix<number>,
+    rowToExclude: number,
+    columnToExclude: number
+  ): Matrix<number> {
+    assertValidMatrixIndex(matrix, rowToExclude, columnToExclude);
+
+    const data: MatrixData<number> = [];
+    for (let i = 0; i < matrix.getNumberOfRows(); i++) {
+      if (i < rowToExclude) {
+        data[i] = [];
+        for (let j = 0; j < matrix.getNumberOfColumns(); j++) {
+          if (j < columnToExclude) {
+            data[i][j] = matrix.getEntry(i, j);
+          } else if (j > columnToExclude) {
+            data[i][j - 1] = matrix.getEntry(i, j);
+          }
+        }
+      } else if (i > rowToExclude) {
+        data[i - 1] = [];
+        for (let j = 0; j < matrix.getNumberOfColumns(); j++) {
+          if (j < columnToExclude) {
+            data[i - 1][j] = matrix.getEntry(i, j);
+          } else if (j > columnToExclude) {
+            data[i - 1][j - 1] = matrix.getEntry(i, j);
+          }
+        }
+      }
     }
 
     return NumberMatrix.fromData(data);
