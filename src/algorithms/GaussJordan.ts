@@ -2,6 +2,14 @@ import { RowOperations } from './RowOperations';
 import { Matrix, MatrixBuilder, NumberMatrix, VectorData } from '..';
 import { assertSquare } from '../utilities/ErrorAssertions';
 
+/**
+ * Uses Gauss-Jordan elimination to calculate the inverse of a matrix.
+ * Throws an error if the matrix is not square.
+ * Returns `undefined` if the matrix is not invertible.
+ *
+ * @param {Matrix<number>} matrix  A square matrix
+ * @returns {Matrix<number> | undefined}
+ */
 export function inverse(matrix: Matrix<number>): Matrix<number> | undefined {
   assertSquare(matrix);
   const dim = matrix.getNumberOfRows();
@@ -21,6 +29,12 @@ export function inverse(matrix: Matrix<number>): Matrix<number> | undefined {
   }
 }
 
+/**
+ * Uses Gauss-Jordan elimination to convert a matrix to Reduced Row-Echelon Form (RREF)
+ *
+ * @param {Matrix<number>} matrix
+ * @returns {Matrix<number>}
+ */
 export function reducedRowEchelonForm(matrix: Matrix<number>): Matrix<number> {
   matrix = rowEchelonForm(matrix);
 
@@ -39,6 +53,12 @@ export function reducedRowEchelonForm(matrix: Matrix<number>): Matrix<number> {
   return matrix;
 }
 
+/**
+ * Uses Gauss-Jordan elimination to convert a matrix to Row-Echelon Form (REF)
+ *
+ * @param {Matrix<number>} matrix
+ * @returns {Matrix<number>}
+ */
 export function rowEchelonForm(matrix: Matrix<number>): Matrix<number> {
   matrix = moveLeadingZerosToBottom(matrix);
 
@@ -65,6 +85,9 @@ export function rowEchelonForm(matrix: Matrix<number>): Matrix<number> {
   return matrix;
 }
 
+/**
+ * Sorts the rows of a matrix according to the number of leading zeros
+ */
 function moveLeadingZerosToBottom(matrix: Matrix<number>): Matrix<number> {
   const getNumberOfLeadingZeros = (row: VectorData<number>) => {
     let zeros = 0;
@@ -85,6 +108,11 @@ function moveLeadingZerosToBottom(matrix: Matrix<number>): Matrix<number> {
   return NumberMatrix.fromData(matrix.getData().sort(comparator));
 }
 
+/**
+ * Uses elementary row operations to clear all entries below the given pivot entry.
+ * Throws an error of the necessary preconditions are not met - i.e. if the pivot entry
+ * is not 1, or the pivot row is not cleared to the left.
+ */
 function clearEntriesBelow(
   matrix: Matrix<number>,
   pivotRow: number,
@@ -104,6 +132,10 @@ function clearEntriesBelow(
   return matrix;
 }
 
+/**
+ * Throws an error if the row reduction algorithm prematurely attempts to
+ * clear the entries below a pivot column.
+ */
 function checkPreconditionsForClearingBelow(
   matrix: Matrix<number>,
   pivotRow: number,
@@ -122,6 +154,11 @@ function checkPreconditionsForClearingBelow(
   }
 }
 
+/**
+ * Uses elementary row operations to clear the entries above a pivot entry.
+ * Throws an error if the necessary preconditions are not met - i.e. if the
+ * pivot entry is not 1 or the pivot row is not cleared to the left and the right.
+ */
 function clearEntriesAbove(
   matrix: Matrix<number>,
   pivotRow: number,
@@ -140,6 +177,10 @@ function clearEntriesAbove(
   return matrix;
 }
 
+/**
+ * Throws an error if the row reduction algorithm prematurely attempts to
+ * clear the entries above a pivot entry.
+ */
 function checkPreconditionsForClearingAbove(
   matrix: Matrix<number>,
   pivotRow: number,

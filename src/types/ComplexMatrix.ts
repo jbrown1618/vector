@@ -4,6 +4,9 @@ import { Matrix, MatrixData } from './Matrix';
 import { Vector, VectorData } from './Vector';
 import { ComplexVector } from './ComplexVector';
 
+/**
+ * Implements `Matrix` as a 2-dimensional array of `ComplexNumber`s
+ */
 export class ComplexMatrix extends ArrayMatrix<ComplexNumber> {
   constructor(data: MatrixData<ComplexNumber>) {
     super(data);

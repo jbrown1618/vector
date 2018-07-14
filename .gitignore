@@ -8,5 +8,8 @@ node_modules/
 coverage/
 .nyc_output/
 
+# Generated documentation
+docs/
+
 # IDE Configuration
 .idea/

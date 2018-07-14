@@ -1,6 +1,13 @@
 import { Matrix, MatrixBuilder } from '..';
 import { assertSquare } from '../utilities/ErrorAssertions';
 
+/**
+ * Uses expansion of minors to calculate the determinant of a matrix.
+ * Throws an error if the input is not square.
+ *
+ * @param {Matrix<number>} matrix  a square matrix
+ * @returns {number}  the determinant
+ */
 export function determinant(matrix: Matrix<number>): number {
   assertSquare(matrix);
 

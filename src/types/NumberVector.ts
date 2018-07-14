@@ -3,6 +3,9 @@ import { VectorData } from './Vector';
 import { Matrix, MatrixData } from './Matrix';
 import { NumberMatrix } from './NumberMatrix';
 
+/**
+ * A `Vector` implemented as an array of JS `number` primitives.
+ */
 export class NumberVector extends ArrayVector<number> {
   static fromData(data: VectorData<number>): NumberVector {
     return new NumberVector(data);

@@ -9,12 +9,20 @@ export type SparseVectorDataEntry<ScalarType> = {
 
 export type SparseVectorData<ScalarType> = Array<SparseVectorDataEntry<ScalarType>>;
 
+/**
+ * A type guard which returns true if the input is an instance of `SparseVector`,
+ * and functions as a type check in the compiler.
+ */
 export function isSparse<ScalarType>(
   vector: Vector<ScalarType>
 ): vector is SparseVector<ScalarType> {
   return (<SparseVector<ScalarType>>vector).getSparseData !== undefined;
 }
 
+/**
+ * For large vectors with many entries equal to 0, some operations are
+ * more efficient with a `Vector` implementation that only stores the non-zero values.
+ */
 export abstract class SparseVector<ScalarType> implements Vector<ScalarType> {
   private readonly _dimension: number;
   private readonly _sparseData: SparseVectorData<ScalarType>;

@@ -4,6 +4,9 @@ import { Vector, VectorData } from './Vector';
 import { NumberVector } from './NumberVector';
 import { assertHomogeneous, assertRectangular } from '../utilities/ErrorAssertions';
 
+/**
+ * A `Matrix` implemented as a 2-dimensional array of JS `number` primitives
+ */
 export class NumberMatrix extends ArrayMatrix<number> {
   static fromData(data: MatrixData<number>): NumberMatrix {
     return new NumberMatrix(data);

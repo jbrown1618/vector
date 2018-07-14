@@ -2,6 +2,10 @@ import { Vector, VectorData } from './Vector';
 import { Matrix, MatrixData } from './Matrix';
 import { assertHomogeneous, assertValidVectorIndex } from '../utilities/ErrorAssertions';
 
+/**
+ * Implements `Vector` with an array of values.
+ * Subclasses must specify the usual scalar operations on their contents.
+ */
 export abstract class ArrayVector<ScalarType> implements Vector<ScalarType> {
   private readonly _data: VectorData<ScalarType>;
 
