@@ -25,3 +25,15 @@ cd ./vector
 npm i
 npm test
 ```
+
+### Checking unit test coverage
+
+```bash
+npm run test-coverage
+```
+
+### Generating documentation
+
+```bash
+npm run docs
+```

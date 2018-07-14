@@ -9,7 +9,7 @@
     "test-coverage": "nyc --extension=.ts --exclude=**/*.spec.ts mocha -r ts-node/register src/**/*.spec.ts **/*.spec.ts",
     "precommit": "lint-staged",
     "format": "prettier --write",
-    "docs": "typedoc --out ./docs/ --readme ./README.md ./src/"
+    "docs": "typedoc --out ./docs/ --readme ./README.md --theme minimal --exclude **/*.spec.ts --excludePrivate ./src/"
   },
   "author": "Joshua Brown",
   "license": "ISC",

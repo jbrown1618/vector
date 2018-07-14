@@ -1,5 +1,5 @@
 export * from './algorithms/FiniteDifferences';
-export * from './algorithms/RowEchelon';
+export * from './algorithms/GaussJordan';
 export * from './algorithms/RowOperations';
 export * from './types/ArrayMatrix';
 export * from './types/ArrayVector';

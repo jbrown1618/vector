@@ -2,6 +2,10 @@ import { Matrix, MatrixData, MatrixEntryCallback } from './Matrix';
 import { Vector, VectorData } from './Vector';
 import { assertValidMatrixIndex } from '../utilities/ErrorAssertions';
 
+/**
+ * Implements `Matrix` with a 2-dimensional array of values.
+ * Subclasses must specify the usual scalar operations on their contents.
+ */
 export abstract class ArrayMatrix<ScalarType> implements Matrix<ScalarType> {
   private readonly _data: MatrixData<ScalarType>;
 

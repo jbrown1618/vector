@@ -1,10 +1,10 @@
 import { describe, it } from 'mocha';
 import { expect } from 'chai';
 import { MatrixBuilder } from '..';
-import { reducedRowEchelonForm, rowEchelonForm } from './RowEchelon';
+import { reducedRowEchelonForm, rowEchelonForm } from './GaussJordan';
 import { NumberMatrix } from '..';
 
-describe('RowEchelon', () => {
+describe('GaussJordan', () => {
   describe('rowEchelonForm', () => {
     it('row reduces a "wide" matrix', () => {
       const A = NumberMatrix.fromData([[1, 2, 3], [4, 5, 6]]);
