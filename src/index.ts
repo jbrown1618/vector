@@ -10,7 +10,6 @@ export * from './types/LinearTransformation';
 export * from './types/Matrix';
 export * from './types/NumberMatrix';
 export * from './types/NumberVector';
-export * from './types/ScalarContainer';
 export * from './types/SparseVector';
 export * from './types/Vector';
 export * from './utilities/MatrixBuilder';

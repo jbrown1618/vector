@@ -56,7 +56,7 @@ export class RowOperations {
       data[targetRow][j] = data[targetRow][j] + scalar * data[rowToAdd][j];
     }
 
-    return NumberMatrix.fromData(data);
+    return NumberMatrix.builder().fromData(data);
   }
 
   /**
@@ -77,6 +77,6 @@ export class RowOperations {
     data[second] = dataCopy[first];
     data[first] = dataCopy[second];
 
-    return NumberMatrix.fromData(data);
+    return NumberMatrix.builder().fromData(data);
   }
 }

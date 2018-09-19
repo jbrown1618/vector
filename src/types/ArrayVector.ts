@@ -1,6 +1,8 @@
 import { Vector, VectorData } from './Vector';
 import { Matrix, MatrixData } from './Matrix';
 import { assertHomogeneous, assertValidVectorIndex } from '../utilities/ErrorAssertions';
+import { ScalarOperations } from './ScalarOperations';
+import { MatrixBuilder, VectorBuilder } from '..';
 
 /**
  * Implements `Vector` with an array of values.
@@ -13,21 +15,9 @@ export abstract class ArrayVector<ScalarType> implements Vector<ScalarType> {
     this._data = data;
   }
 
-  protected abstract newFromData(data: VectorData<ScalarType>): ArrayVector<ScalarType>;
-
-  protected abstract makeMatrix(data: MatrixData<ScalarType>): Matrix<ScalarType>;
-
-  abstract addScalars(first: ScalarType, second: ScalarType): ScalarType;
-
-  abstract scalarsEqual(first: ScalarType, second: ScalarType): boolean;
-
-  abstract multiplyScalars(first: ScalarType, second: ScalarType): ScalarType;
-
-  abstract conjugateScalar(scalar: ScalarType): ScalarType;
-
-  abstract getAdditiveIdentity(): ScalarType;
-
-  abstract getMultiplicativeIdentity(): ScalarType;
+  abstract ops(): ScalarOperations<ScalarType>;
+  abstract builder(): VectorBuilder<ScalarType, Vector<ScalarType>>;
+  abstract matrixBuilder(): MatrixBuilder<ScalarType, Vector<ScalarType>, Matrix<ScalarType>>;
 
   getEntry(index: number): ScalarType {
     assertValidVectorIndex(this, index);
@@ -38,10 +28,10 @@ export abstract class ArrayVector<ScalarType> implements Vector<ScalarType> {
     assertHomogeneous([this, other]);
 
     const newData = this.getData().map((entry, index) =>
-      this.addScalars(entry, other.getEntry(index))
+      this.ops().add(entry, other.getEntry(index))
     );
 
-    return this.newFromData(newData);
+    return this.builder().fromData(newData);
   }
 
   equals(other: Vector<ScalarType>): boolean {
@@ -50,7 +40,7 @@ export abstract class ArrayVector<ScalarType> implements Vector<ScalarType> {
     }
 
     return this._data
-      .map((entry, i) => this.scalarsEqual(entry, other.getEntry(i)))
+      .map((entry, i) => this.ops().equals(entry, other.getEntry(i)))
       .reduce((all, current) => all && current, true);
   }
 
@@ -58,29 +48,29 @@ export abstract class ArrayVector<ScalarType> implements Vector<ScalarType> {
     assertHomogeneous([this, other]);
 
     return this._data
-      .map((entry, index) => this.multiplyScalars(entry, other.getEntry(index)))
-      .reduce(this.addScalars, this.getAdditiveIdentity());
+      .map((entry, index) => this.ops().multiply(entry, other.getEntry(index)))
+      .reduce(this.ops().add, this.ops().zero());
   }
 
   outerProduct(other: Vector<ScalarType>): Matrix<ScalarType> {
     const matrixData: MatrixData<ScalarType> = [];
 
     if (this.getDimension() === 0 || other.getDimension() === 0) {
-      return this.makeMatrix(matrixData);
+      return this.matrixBuilder().fromData(matrixData);
     }
 
     this.getData().forEach((thisValue, rowIndex) => {
       matrixData[rowIndex] = [];
       other.getData().forEach((otherValue, columnIndex) => {
-        matrixData[rowIndex][columnIndex] = this.multiplyScalars(thisValue, otherValue);
+        matrixData[rowIndex][columnIndex] = this.ops().multiply(thisValue, otherValue);
       });
     });
 
-    return this.makeMatrix(matrixData);
+    return this.matrixBuilder().fromData(matrixData);
   }
 
   scalarMultiply(scalar: ScalarType): Vector<ScalarType> {
-    return this.newFromData(this.getData().map(entry => this.multiplyScalars(entry, scalar)));
+    return this.builder().fromData(this.getData().map(entry => this.ops().multiply(entry, scalar)));
   }
 
   getData(): VectorData<ScalarType> {

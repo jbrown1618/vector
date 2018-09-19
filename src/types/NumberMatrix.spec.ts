@@ -1,68 +1,68 @@
 import { describe, it } from 'mocha';
 import { expect } from 'chai';
-import { MatrixBuilder } from '..';
 import { NumberVector } from './NumberVector';
 import { NumberMatrix } from './NumberMatrix';
 
 describe('NumberMatrix', () => {
+  const builder = NumberMatrix.builder();
+  const vectorBuilder = NumberVector.builder();
+
   describe('constructors', () => {
     const data = [[1, 2, 3], [2, 2, 1], [5, 2, 9]];
 
     it('can be constructed from a 2d array', () => {
-      expect(NumberMatrix.fromData(data).getData()).to.deep.equal(data);
+      expect(builder.fromData(data).getData()).to.deep.equal(data);
     });
 
     it('can be constructed from column vectors', () => {
-      const firstColumn = NumberVector.fromValues(1, 2, 5);
-      const secondColumn = NumberVector.fromValues(2, 2, 2);
-      const thirdColumn = NumberVector.fromValues(3, 1, 9);
+      const firstColumn = vectorBuilder.fromValues(1, 2, 5);
+      const secondColumn = vectorBuilder.fromValues(2, 2, 2);
+      const thirdColumn = vectorBuilder.fromValues(3, 1, 9);
 
       expect(
-        NumberMatrix.fromColumnVectors([firstColumn, secondColumn, thirdColumn]).getData()
+        builder.fromColumnVectors([firstColumn, secondColumn, thirdColumn]).getData()
       ).to.deep.equal(data);
     });
 
     it('can be constructed from row vectors', () => {
-      const firstRow = NumberVector.fromData(data[0]);
-      const secondRow = NumberVector.fromData(data[1]);
-      const thirdRow = NumberVector.fromData(data[2]);
+      const firstRow = vectorBuilder.fromData(data[0]);
+      const secondRow = vectorBuilder.fromData(data[1]);
+      const thirdRow = vectorBuilder.fromData(data[2]);
 
-      expect(NumberMatrix.fromRowVectors([firstRow, secondRow, thirdRow]).getData()).to.deep.equal(
-        data
-      );
+      expect(builder.fromRowVectors([firstRow, secondRow, thirdRow]).getData()).to.deep.equal(data);
     });
 
     it('handles degenerate cases', () => {
       // 0x0
-      expect(NumberMatrix.fromData([]).getData()).to.deep.equal([]);
+      expect(builder.fromData([]).getData()).to.deep.equal([]);
       // Nx0
-      expect(NumberMatrix.fromData([[], [], []]).getData()).to.deep.equal([]);
+      expect(builder.fromData([[], [], []]).getData()).to.deep.equal([]);
       // 0xM
-      expect(NumberMatrix.fromRowVectors([]).getData()).to.deep.equal([]);
+      expect(builder.fromRowVectors([]).getData()).to.deep.equal([]);
       // Nx0
-      expect(NumberMatrix.fromColumnVectors([]).getData()).to.deep.equal([]);
+      expect(builder.fromColumnVectors([]).getData()).to.deep.equal([]);
     });
 
     it('rejects non-rectangular data', () => {
       const badData = [[0], [0, 0], [0, 0, 0]];
-      expect(() => NumberMatrix.fromData(badData)).to.throw();
+      expect(() => builder.fromData(badData)).to.throw();
 
       const badVectorData = [
-        NumberVector.fromValues(0),
-        NumberVector.fromValues(0, 0),
-        NumberVector.fromValues(0, 0, 0)
+        vectorBuilder.fromValues(0),
+        vectorBuilder.fromValues(0, 0),
+        vectorBuilder.fromValues(0, 0, 0)
       ];
-      expect(() => NumberMatrix.fromColumnVectors(badVectorData)).to.throw();
-      expect(() => NumberMatrix.fromRowVectors(badVectorData)).to.throw();
+      expect(() => builder.fromColumnVectors(badVectorData)).to.throw();
+      expect(() => builder.fromRowVectors(badVectorData)).to.throw();
     });
   });
 
   describe('getters', () => {
-    const testMatrix = NumberMatrix.fromData([[1, 2, 3], [4, 5, 6]]);
+    const testMatrix = builder.fromData([[1, 2, 3], [4, 5, 6]]);
 
     describe('getColumnVectors', () => {
       it('returns the column vectors that make up the matrix', () => {
-        expect(MatrixBuilder.empty().getColumnVectors()).to.deep.equal([]);
+        expect(builder.empty().getColumnVectors()).to.deep.equal([]);
         const columns = testMatrix.getColumnVectors();
         expect(columns.length).to.equal(3);
         expect(columns[0].getData()).to.deep.equal([1, 4]);
@@ -82,7 +82,7 @@ describe('NumberMatrix', () => {
 
     describe('getRowVectors', () => {
       it('returns the row vectors that make up the matrix', () => {
-        expect(MatrixBuilder.empty().getRowVectors()).to.deep.equal([]);
+        expect(builder.empty().getRowVectors()).to.deep.equal([]);
         const rows = testMatrix.getRowVectors();
         expect(rows.length).to.equal(2);
         expect(rows[0].getData()).to.deep.equal([1, 2, 3]);
@@ -115,9 +115,9 @@ describe('NumberMatrix', () => {
 
   describe('multiply', () => {
     it('returns the product of two matrices of equal dimension', () => {
-      const I = NumberMatrix.fromData([[1, 0], [0, 1]]);
-      const A = NumberMatrix.fromData([[1, 2], [3, 4]]);
-      const B = NumberMatrix.fromData([[2, 3], [4, 5]]);
+      const I = builder.fromData([[1, 0], [0, 1]]);
+      const A = builder.fromData([[1, 2], [3, 4]]);
+      const B = builder.fromData([[2, 3], [4, 5]]);
 
       expect(A.multiply(A).getData()).to.deep.equal([[7, 10], [15, 22]]);
       expect(A.multiply(B).getData()).to.deep.equal([[10, 13], [22, 29]]);
@@ -131,8 +131,8 @@ describe('NumberMatrix', () => {
     });
 
     it('returns the product of two matrices of unequal dimension', () => {
-      const A = NumberMatrix.fromData([[1, 2, 3, 4]]);
-      const B = NumberMatrix.fromData([[1], [2], [3], [4]]);
+      const A = builder.fromData([[1, 2, 3, 4]]);
+      const B = builder.fromData([[1], [2], [3], [4]]);
 
       expect(A.multiply(B).getData()).to.deep.equal([[30]]);
       expect(B.multiply(A).getData()).to.deep.equal([
@@ -144,15 +144,16 @@ describe('NumberMatrix', () => {
     });
 
     it('throws an error when the dimensions are not compatible', () => {
-      const A = NumberMatrix.fromData([[1, 0], [0, 1]]);
-      const B = NumberMatrix.fromData([[1, 0, 0], [0, 1, 0], [0, 0, 1]]);
+      const A = builder.fromData([[1, 0], [0, 1]]);
+      const B = builder.fromData([[1, 0, 0], [0, 1, 0], [0, 0, 1]]);
       expect(() => A.multiply(B)).to.throw();
     });
 
     it('handles the degenerate case', () => {
       expect(
-        MatrixBuilder.empty()
-          .multiply(MatrixBuilder.empty())
+        builder
+          .empty()
+          .multiply(builder.empty())
           .getData()
       ).to.deep.equal([]);
     });
@@ -160,37 +161,38 @@ describe('NumberMatrix', () => {
 
   describe('transpose', () => {
     it('returns the transpose of a matrix', () => {
-      const A = NumberMatrix.fromData([[1, 2, 3], [4, 5, 6]]);
-      const B = NumberMatrix.fromData([[1, 4], [2, 5], [3, 6]]);
+      const A = builder.fromData([[1, 2, 3], [4, 5, 6]]);
+      const B = builder.fromData([[1, 4], [2, 5], [3, 6]]);
       expect(A.transpose().equals(B)).to.be.true;
       expect(B.transpose().equals(A)).to.be.true;
     });
 
     it('handles the degenerate case', () => {
-      const E = MatrixBuilder.empty();
+      const E = builder.empty();
       expect(E.transpose().equals(E)).to.be.true;
     });
   });
 
   describe('add', () => {
     it('adds two matrices of equal dimension', () => {
-      const A = NumberMatrix.fromData([[1, 2, 3], [4, 5, 6]]);
-      const B = NumberMatrix.fromData([[2, 3, 4], [5, 6, 7]]);
+      const A = builder.fromData([[1, 2, 3], [4, 5, 6]]);
+      const B = builder.fromData([[2, 3, 4], [5, 6, 7]]);
 
       expect(A.add(B).getData()).to.deep.equal([[3, 5, 7], [9, 11, 13]]);
     });
 
     it('throws an error when the dimensions do not match', () => {
-      const A = NumberMatrix.fromData([[1, 2, 3], [4, 5, 6]]);
-      const B = NumberMatrix.fromData([[2, 3], [5, 6]]);
+      const A = builder.fromData([[1, 2, 3], [4, 5, 6]]);
+      const B = builder.fromData([[2, 3], [5, 6]]);
 
       expect(() => A.add(B)).to.throw();
     });
 
     it('handles the degenerate case', () => {
       expect(
-        MatrixBuilder.empty()
-          .add(MatrixBuilder.empty())
+        builder
+          .empty()
+          .add(builder.empty())
           .getData()
       ).to.deep.equal([]);
     });
@@ -198,17 +200,17 @@ describe('NumberMatrix', () => {
 
   describe('apply', () => {
     it('transforms a vector with the correct dimension', () => {
-      const I = NumberMatrix.fromData([[1, 0], [0, 1]]);
-      const A = NumberMatrix.fromData([[1, 2], [3, 4]]);
-      const x = NumberVector.fromValues(1, 2);
+      const I = builder.fromData([[1, 0], [0, 1]]);
+      const A = builder.fromData([[1, 2], [3, 4]]);
+      const x = vectorBuilder.fromValues(1, 2);
 
       expect(I.apply(x).getData()).to.deep.equal(x.getData());
       expect(A.apply(x).getData()).to.deep.equal([5, 11]);
     });
 
     it('throws an error when the dimensions are not compatible', () => {
-      const A = NumberMatrix.fromData([[1, 2], [3, 4]]);
-      const x = NumberVector.fromValues(1, 2, 3);
+      const A = builder.fromData([[1, 2], [3, 4]]);
+      const x = vectorBuilder.fromValues(1, 2, 3);
       expect(() => A.apply(x)).to.throw();
     });
   });

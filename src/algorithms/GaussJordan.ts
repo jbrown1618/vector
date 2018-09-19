@@ -1,5 +1,5 @@
 import { RowOperations } from './RowOperations';
-import { Matrix, MatrixBuilder, NumberMatrix, VectorData } from '..';
+import { Matrix, NumberMatrix, VectorData } from '..';
 import { assertSquare } from '../utilities/ErrorAssertions';
 
 /**
@@ -13,13 +13,13 @@ import { assertSquare } from '../utilities/ErrorAssertions';
 export function inverse(matrix: Matrix<number>): Matrix<number> | undefined {
   assertSquare(matrix);
   const dim = matrix.getNumberOfRows();
-  const I = MatrixBuilder.identity(dim);
+  const I = NumberMatrix.builder().identity(dim);
 
-  const augmented = MatrixBuilder.augment(matrix, I);
+  const augmented = NumberMatrix.builder().augment(matrix, I);
   const rref = reducedRowEchelonForm(augmented);
 
-  const left = MatrixBuilder.slice(rref, 0, 0, dim, dim);
-  const right = MatrixBuilder.slice(rref, 0, dim);
+  const left = NumberMatrix.builder().slice(rref, 0, 0, dim, dim);
+  const right = NumberMatrix.builder().slice(rref, 0, dim);
 
   if (left.equals(I)) {
     return right;
@@ -105,7 +105,7 @@ function moveLeadingZerosToBottom(matrix: Matrix<number>): Matrix<number> {
     return getNumberOfLeadingZeros(a) - getNumberOfLeadingZeros(b);
   };
 
-  return NumberMatrix.fromData(matrix.getData().sort(comparator));
+  return NumberMatrix.builder().fromData(matrix.getData().sort(comparator));
 }
 
 /**

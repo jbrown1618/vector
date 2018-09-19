@@ -1,7 +1,7 @@
 import { describe, it } from 'mocha';
 import { expect } from 'chai';
 import { derivative, linspace } from './FiniteDifferences';
-import { VectorBuilder } from '..';
+import { NumberVector } from '..';
 
 describe('FiniteDifferences', () => {
   describe('derivative', () => {
@@ -12,7 +12,7 @@ describe('FiniteDifferences', () => {
         const xMax = 6;
 
         const x = linspace(xMin, xMax, binCount);
-        const actualDerivative = VectorBuilder.transform(x, df);
+        const actualDerivative = NumberVector.builder().transform(x, df);
 
         const approximateDerivative = derivative(f, xMin, xMax, binCount);
 

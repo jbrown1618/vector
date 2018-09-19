@@ -6,7 +6,7 @@ import { NumberVector } from '../types/NumberVector';
 describe('VectorBuilder', () => {
   describe('empty', () => {
     it('returns an empty vector', () => {
-      const E = VectorBuilder.empty();
+      const E = new VectorBuilder(NumberVector).empty();
       expect(E.getDimension()).to.equal(0);
       expect(E.getData()).to.deep.equal([]);
     });
@@ -15,12 +15,12 @@ describe('VectorBuilder', () => {
   describe('zeros', () => {
     it('constructs an all-zero vector', () => {
       const testForDimension = (dim: number) => {
-        const zeros = VectorBuilder.zeros(dim);
+        const zeros = new VectorBuilder(NumberVector).zeros(dim);
         expect(zeros.getDimension()).to.equal(dim);
         const allZero = zeros
           .getData()
-          .map(entry => entry === 0)
-          .reduce((all, current) => all && current, true);
+          .map((entry: number) => entry === 0)
+          .reduce((all: boolean, current: boolean) => all && current, true);
         expect(allZero).to.be.true;
       };
 
@@ -33,7 +33,7 @@ describe('VectorBuilder', () => {
   describe('ones', () => {
     it('constructs an all-one vector', () => {
       const testForDimension = (dim: number) => {
-        const ones = VectorBuilder.ones(dim);
+        const ones = new VectorBuilder(NumberVector).ones(dim);
         expect(ones.getDimension()).to.equal(dim);
         const allOne = ones
           .getData()
@@ -51,7 +51,7 @@ describe('VectorBuilder', () => {
   describe('elementaryVector', () => {
     it('constructs a vector with all zeros, but a one in a particular position', () => {
       const testForDimensionAndPosition = (dim: number, pos: number) => {
-        const e = VectorBuilder.elementaryVector(dim, pos);
+        const e = new VectorBuilder(NumberVector).elementaryVector(dim, pos);
         expect(e.getDimension()).to.equal(dim);
         const allCorrect = e
           .getData()
@@ -69,34 +69,40 @@ describe('VectorBuilder', () => {
 
     it('throws an error when the index is out of bounds', () => {
       for (let dim = 0; dim < 100; dim++) {
-        expect(() => VectorBuilder.elementaryVector(dim, -1)).to.throw();
+        expect(() => new VectorBuilder(NumberVector).elementaryVector(dim, -1)).to.throw();
         if (dim > 0) {
-          expect(() => VectorBuilder.elementaryVector(dim, 0)).not.to.throw();
-          expect(() => VectorBuilder.elementaryVector(dim, dim - 1)).not.to.throw();
+          expect(() => new VectorBuilder(NumberVector).elementaryVector(dim, 0)).not.to.throw();
+          expect(() =>
+            new VectorBuilder(NumberVector).elementaryVector(dim, dim - 1)
+          ).not.to.throw();
         }
-        expect(() => VectorBuilder.elementaryVector(dim, dim)).to.throw();
-        expect(() => VectorBuilder.elementaryVector(dim, dim + 1)).to.throw();
+        expect(() => new VectorBuilder(NumberVector).elementaryVector(dim, dim)).to.throw();
+        expect(() => new VectorBuilder(NumberVector).elementaryVector(dim, dim + 1)).to.throw();
       }
     });
   });
 
   describe('concatenate', () => {
     it('concatenates two non-empty vectors', () => {
-      const first = NumberVector.fromData([1, 2, 3]);
-      const second = NumberVector.fromData([4, 5, 6]);
-      const firstSecond = NumberVector.fromData([1, 2, 3, 4, 5, 6]);
-      const secondFirst = NumberVector.fromData([4, 5, 6, 1, 2, 3]);
-      expect(VectorBuilder.concatenate(first, second).equals(firstSecond)).to.be.true;
-      expect(VectorBuilder.concatenate(second, first).equals(secondFirst)).to.be.true;
+      const first = new VectorBuilder(NumberVector).fromData([1, 2, 3]);
+      const second = new VectorBuilder(NumberVector).fromData([4, 5, 6]);
+      const firstSecond = new VectorBuilder(NumberVector).fromData([1, 2, 3, 4, 5, 6]);
+      const secondFirst = new VectorBuilder(NumberVector).fromData([4, 5, 6, 1, 2, 3]);
+      expect(new VectorBuilder(NumberVector).concatenate(first, second).equals(firstSecond)).to.be
+        .true;
+      expect(new VectorBuilder(NumberVector).concatenate(second, first).equals(secondFirst)).to.be
+        .true;
     });
 
     it('handles empty vectors', () => {
-      const empty = VectorBuilder.empty();
-      const nonEmpty = NumberVector.fromData([1, 2, 3]);
+      const empty = new VectorBuilder(NumberVector).empty();
+      const nonEmpty = new VectorBuilder(NumberVector).fromData([1, 2, 3]);
 
-      expect(VectorBuilder.concatenate(empty, empty).equals(empty)).to.be.true;
-      expect(VectorBuilder.concatenate(empty, nonEmpty).equals(nonEmpty)).to.be.true;
-      expect(VectorBuilder.concatenate(nonEmpty, empty).equals(nonEmpty)).to.be.true;
+      expect(new VectorBuilder(NumberVector).concatenate(empty, empty).equals(empty)).to.be.true;
+      expect(new VectorBuilder(NumberVector).concatenate(empty, nonEmpty).equals(nonEmpty)).to.be
+        .true;
+      expect(new VectorBuilder(NumberVector).concatenate(nonEmpty, empty).equals(nonEmpty)).to.be
+        .true;
     });
   });
 });

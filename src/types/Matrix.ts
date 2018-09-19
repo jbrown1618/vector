@@ -1,6 +1,7 @@
 import { LinearTransformation } from './LinearTransformation';
 import { Vector, VectorData } from './Vector';
-import { ScalarContainer } from './ScalarContainer';
+import { ScalarOperations } from './ScalarOperations';
+import { MatrixBuilder, VectorBuilder } from '..';
 
 export type MatrixData<ScalarType> = Array<VectorData<ScalarType>>;
 export type MatrixEntryCallback<ScalarType> = (
@@ -9,9 +10,23 @@ export type MatrixEntryCallback<ScalarType> = (
   columnIndex: number
 ) => void;
 
+export interface MatrixConstructor<
+  ScalarType,
+  VectorType extends Vector<ScalarType>,
+  MatrixType extends Matrix<ScalarType>
+> {
+  new (data: ScalarType[][]): MatrixType;
+  ops(): ScalarOperations<ScalarType>;
+  builder(): MatrixBuilder<ScalarType, VectorType, MatrixType>;
+  vectorBuilder(): VectorBuilder<ScalarType, VectorType>;
+}
+
 export interface Matrix<ScalarType>
-  extends LinearTransformation<Vector<ScalarType>, Vector<ScalarType>>,
-    ScalarContainer<ScalarType> {
+  extends LinearTransformation<Vector<ScalarType>, Vector<ScalarType>> {
+  ops(): ScalarOperations<ScalarType>;
+  builder(): MatrixBuilder<ScalarType, Vector<ScalarType>, Matrix<ScalarType>>;
+  vectorBuilder(): VectorBuilder<ScalarType, Vector<ScalarType>>;
+
   /**
    * @returns {MatrixData<ScalarType>}  The contents of the matrix as an array of arrays.
    */

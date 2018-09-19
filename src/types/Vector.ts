@@ -1,12 +1,23 @@
-import { ScalarContainer } from './ScalarContainer';
 import { Matrix } from './Matrix';
+import { ScalarOperations } from './ScalarOperations';
+import { MatrixBuilder, VectorBuilder } from '..';
 
 export type VectorData<ScalarType> = Array<ScalarType>;
+
+export interface VectorConstructor<ScalarType, VectorType extends Vector<ScalarType>> {
+  new (data: VectorData<ScalarType>): VectorType;
+  ops(): ScalarOperations<ScalarType>;
+  builder(): VectorBuilder<ScalarType, VectorType>;
+}
 
 /**
  * An interface for a member of a vector space - specifically a member of an inner product space.
  */
-export interface Vector<ScalarType> extends ScalarContainer<ScalarType> {
+export interface Vector<ScalarType> {
+  ops(): ScalarOperations<ScalarType>;
+  builder(): VectorBuilder<ScalarType, Vector<ScalarType>>;
+  matrixBuilder(): MatrixBuilder<ScalarType, Vector<ScalarType>, Matrix<ScalarType>>;
+
   /**
    * @returns {VectorData<ScalarType>}  The contents of the vector as an array
    */
