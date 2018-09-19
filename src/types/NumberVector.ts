@@ -1,53 +1,36 @@
 import { ArrayVector } from './ArrayVector';
-import { VectorData } from './Vector';
-import { Matrix, MatrixData } from './Matrix';
+import { VectorConstructor, VectorData } from './Vector';
 import { NumberMatrix } from './NumberMatrix';
+import { StaticImplements } from '../utilities/StaticImplements';
+import { NumberOperations } from './NumberOperations';
+import { VectorBuilder } from '..';
 
 /**
  * A `Vector` implemented as an array of JS `number` primitives.
  */
+@StaticImplements<VectorConstructor<number, NumberVector>>()
 export class NumberVector extends ArrayVector<number> {
-  static fromData(data: VectorData<number>): NumberVector {
-    return new NumberVector(data);
+  static ops(): NumberOperations {
+    return new NumberOperations();
   }
 
-  static fromValues(...args: VectorData<number>): NumberVector {
-    return new NumberVector(args);
+  static builder(): VectorBuilder<number, NumberVector> {
+    return new VectorBuilder(NumberVector);
   }
 
-  protected constructor(data: VectorData<number>) {
+  ops(): NumberOperations {
+    return NumberVector.ops();
+  }
+
+  builder(): VectorBuilder<number, NumberVector> {
+    return NumberVector.builder();
+  }
+
+  matrixBuilder() {
+    return NumberMatrix.builder();
+  }
+
+  constructor(data: VectorData<number>) {
     super(data);
-  }
-
-  protected newFromData(data: VectorData<number>): ArrayVector<number> {
-    return NumberVector.fromData(data);
-  }
-
-  protected makeMatrix(data: MatrixData<number>): Matrix<number> {
-    return NumberMatrix.fromData(data);
-  }
-
-  addScalars(first: number, second: number): number {
-    return first + second;
-  }
-
-  conjugateScalar(scalar: number): number {
-    return scalar;
-  }
-
-  getAdditiveIdentity(): number {
-    return 0;
-  }
-
-  getMultiplicativeIdentity(): number {
-    return 1;
-  }
-
-  multiplyScalars(first: number, second: number): number {
-    return first * second;
-  }
-
-  scalarsEqual(first: number, second: number): boolean {
-    return Math.abs(first - second) < 0.0000001;
   }
 }

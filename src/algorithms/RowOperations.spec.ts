@@ -4,7 +4,7 @@ import { RowOperations } from './RowOperations';
 import { NumberMatrix } from '..';
 
 describe('RowOperations', () => {
-  const original = NumberMatrix.fromData([[1, 2, 3], [4, 5, 6], [7, 8, 9]]);
+  const original = NumberMatrix.builder().fromData([[1, 2, 3], [4, 5, 6], [7, 8, 9]]);
 
   describe('multiplyRowByScalar', () => {
     it('returns a new matrix with the correct transformation applied', () => {

@@ -1,6 +1,8 @@
 import { Matrix, MatrixData, MatrixEntryCallback } from './Matrix';
 import { Vector, VectorData } from './Vector';
-import { assertValidMatrixIndex } from '../utilities/ErrorAssertions';
+import { assertRectangular, assertValidMatrixIndex } from '../utilities/ErrorAssertions';
+import { ScalarOperations } from './ScalarOperations';
+import { MatrixBuilder, VectorBuilder } from '..';
 
 /**
  * Implements `Matrix` with a 2-dimensional array of values.
@@ -10,29 +12,19 @@ export abstract class ArrayMatrix<ScalarType> implements Matrix<ScalarType> {
   private readonly _data: MatrixData<ScalarType>;
 
   protected constructor(data: MatrixData<ScalarType>) {
+    assertRectangular(data);
+    if (data.length !== 0 && data[0].length === 0) {
+      data = [];
+    }
     this._data = data;
   }
 
-  protected abstract newFromData(data: MatrixData<ScalarType>): Matrix<ScalarType>;
-
-  protected abstract newFromColumnVectors(vectors: Array<Vector<ScalarType>>): Matrix<ScalarType>;
-
-  protected abstract makeVector(vectorData: VectorData<ScalarType>): Vector<ScalarType>;
-
-  abstract addScalars(first: ScalarType, second: ScalarType): ScalarType;
-
-  abstract scalarsEqual(first: ScalarType, second: ScalarType): boolean;
-
-  abstract multiplyScalars(first: ScalarType, second: ScalarType): ScalarType;
-
-  abstract conjugateScalar(scalar: ScalarType): ScalarType;
-
-  abstract getAdditiveIdentity(): ScalarType;
-
-  abstract getMultiplicativeIdentity(): ScalarType;
+  abstract ops(): ScalarOperations<ScalarType>;
+  abstract builder(): MatrixBuilder<ScalarType, Vector<ScalarType>, Matrix<ScalarType>>;
+  abstract vectorBuilder(): VectorBuilder<ScalarType, Vector<ScalarType>>;
 
   add(other: Matrix<ScalarType>): Matrix<ScalarType> {
-    return this.newFromColumnVectors(
+    return this.builder().fromColumnVectors(
       this.getColumnVectors().map((column, columnIndex) => column.add(other.getColumn(columnIndex)))
     );
   }
@@ -43,14 +35,14 @@ export abstract class ArrayMatrix<ScalarType> implements Matrix<ScalarType> {
     transposedData.forEach((row, i) => {
       adjointData[i] = [];
       row.forEach((entry, j) => {
-        adjointData[i][j] = this.conjugateScalar(entry);
+        adjointData[i][j] = this.ops().conjugate(entry);
       });
     });
-    return this.newFromData(adjointData);
+    return this.builder().fromData(adjointData);
   }
 
   apply(vector: Vector<ScalarType>): Vector<ScalarType> {
-    const vectorAsColumnMatrix = this.newFromColumnVectors([vector]);
+    const vectorAsColumnMatrix = this.builder().fromColumnVectors([vector]);
     return this.multiply(vectorAsColumnMatrix).getColumn(0);
   }
 
@@ -104,7 +96,9 @@ export abstract class ArrayMatrix<ScalarType> implements Matrix<ScalarType> {
   }
 
   getRowVectors(): Array<Vector<ScalarType>> {
-    return this._data.map(this.makeVector);
+    return this._data.map((dataRow: VectorData<ScalarType>) =>
+      this.vectorBuilder().fromData(dataRow)
+    );
   }
 
   multiply(other: Matrix<ScalarType>): Matrix<ScalarType> {
@@ -112,7 +106,7 @@ export abstract class ArrayMatrix<ScalarType> implements Matrix<ScalarType> {
       throw new Error('Dimension mismatch');
     }
 
-    return this.newFromData(
+    return this.builder().fromData(
       this.getRowVectors().map(row =>
         other.getColumnVectors().map(column => row.innerProduct(column))
       )
@@ -120,7 +114,7 @@ export abstract class ArrayMatrix<ScalarType> implements Matrix<ScalarType> {
   }
 
   scalarMultiply(scalar: ScalarType): Matrix<ScalarType> {
-    return this.newFromColumnVectors(
+    return this.builder().fromColumnVectors(
       this.getColumnVectors().map(column => column.scalarMultiply(scalar))
     );
   }
@@ -128,11 +122,11 @@ export abstract class ArrayMatrix<ScalarType> implements Matrix<ScalarType> {
   set(rowIndex: number, columnIndex: number, value: ScalarType): Matrix<ScalarType> {
     const copy = this.getData();
     copy[rowIndex][columnIndex] = value;
-    return this.newFromData(copy);
+    return this.builder().fromData(copy);
   }
 
   transpose(): Matrix<ScalarType> {
-    return this.newFromColumnVectors(this.getRowVectors());
+    return this.builder().fromColumnVectors(this.getRowVectors());
   }
 
   forEachEntry(cb: MatrixEntryCallback<ScalarType>) {

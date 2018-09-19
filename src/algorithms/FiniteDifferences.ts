@@ -1,4 +1,4 @@
-import { Matrix, MatrixBuilder, Vector, VectorBuilder, VectorIndexFunction } from '..';
+import { NumberMatrix, NumberVector, VectorIndexFunction } from '..';
 
 /**
  * Builds a vector of `binCount` evenly spaces numbers between `xMin` (inclusive) and `xMax` (exclusive).
@@ -13,16 +13,16 @@ import { Matrix, MatrixBuilder, Vector, VectorBuilder, VectorIndexFunction } fro
  * @param {number} binCount  The number of entries
  * @returns {Vector<number>}
  */
-export function linspace(xMin: number, xMax: number, binCount: number): Vector<number> {
+export function linspace(xMin: number, xMax: number, binCount: number): NumberVector {
   if (xMin >= xMax) {
     throw Error('TODO - message');
   }
 
-  const indexToX: VectorIndexFunction = index => {
+  const indexToX: VectorIndexFunction<number> = index => {
     return xMin + ((xMax - xMin) / binCount) * index;
   };
 
-  return VectorBuilder.fromIndexFunction(indexToX, binCount);
+  return NumberVector.builder().fromIndexFunction(indexToX, binCount);
 }
 
 /**
@@ -42,11 +42,13 @@ export function linspace(xMin: number, xMax: number, binCount: number): Vector<n
  * @param {number} binCount  The size of the vector to which the output ought to be applied
  * @returns {Matrix<number>}
  */
-export function forwardDifferenceMatrix(binCount: number): Matrix<number> {
-  return MatrixBuilder.tridiagonal(
-    VectorBuilder.zeros(binCount - 1),
-    VectorBuilder.ones(binCount).scalarMultiply(-1),
-    VectorBuilder.ones(binCount - 1)
+export function forwardDifferenceMatrix(binCount: number): NumberMatrix {
+  return NumberMatrix.builder().tridiagonal(
+    NumberVector.builder().zeros(binCount - 1),
+    NumberVector.builder()
+      .ones(binCount)
+      .scalarMultiply(-1),
+    NumberVector.builder().ones(binCount - 1)
   );
 }
 
@@ -67,11 +69,13 @@ export function forwardDifferenceMatrix(binCount: number): Matrix<number> {
  * @param {number} binCount  The size of the vector to which the output ought to be applied
  * @returns {Matrix<number>}
  */
-export function backwardDifferenceMatrix(binCount: number): Matrix<number> {
-  return MatrixBuilder.tridiagonal(
-    VectorBuilder.ones(binCount - 1).scalarMultiply(-1),
-    VectorBuilder.ones(binCount),
-    VectorBuilder.zeros(binCount - 1)
+export function backwardDifferenceMatrix(binCount: number): NumberMatrix {
+  return NumberMatrix.builder().tridiagonal(
+    NumberVector.builder()
+      .ones(binCount - 1)
+      .scalarMultiply(-1),
+    NumberVector.builder().ones(binCount),
+    NumberVector.builder().zeros(binCount - 1)
   );
 }
 
@@ -94,11 +98,15 @@ export function backwardDifferenceMatrix(binCount: number): Matrix<number> {
  * @param {number} binCount  The size of the vector to which the output ought to be applied
  * @returns {Matrix<number>}
  */
-export function centralDifferenceMatrix(binCount: number): Matrix<number> {
-  return MatrixBuilder.tridiagonal(
-    VectorBuilder.ones(binCount - 1).scalarMultiply(-1 / 2),
-    VectorBuilder.zeros(binCount),
-    VectorBuilder.ones(binCount - 1).scalarMultiply(1 / 2)
+export function centralDifferenceMatrix(binCount: number): NumberMatrix {
+  return NumberMatrix.builder().tridiagonal(
+    NumberVector.builder()
+      .ones(binCount - 1)
+      .scalarMultiply(-1 / 2),
+    NumberVector.builder().zeros(binCount),
+    NumberVector.builder()
+      .ones(binCount - 1)
+      .scalarMultiply(1 / 2)
   );
 }
 
@@ -118,7 +126,7 @@ export function centralDifferenceMatrix(binCount: number): Matrix<number> {
  */
 export function derivative(f: (x: number) => number, xMin: number, xMax: number, binCount: number) {
   const x = linspace(xMin, xMax, binCount);
-  const y = VectorBuilder.transform(x, f);
+  const y = NumberVector.builder().transform(x, f);
   const delta = x.getEntry(0) - x.getEntry(1);
 
   const D = centralDifferenceMatrix(binCount);

@@ -4,6 +4,7 @@
 export class ComplexNumber {
   public static readonly ZERO = new ComplexNumber(0, 0);
   public static readonly ONE = new ComplexNumber(1, 0);
+  public static readonly NEG_ONE = new ComplexNumber(-1, 0);
   public static readonly I = new ComplexNumber(0, 1);
 
   private readonly _real: number;
@@ -31,6 +32,21 @@ export class ComplexNumber {
       this._real * other._real - this._imaginary * other._imaginary,
       this._real * other._imaginary + this._imaginary * other._real
     );
+  }
+
+  public getAdditiveInverse(): ComplexNumber {
+    return this.multiply(ComplexNumber.NEG_ONE);
+  }
+
+  public getMultiplicativeInverse(): ComplexNumber {
+    const a = this.getRealPart();
+    const b = this.getImaginaryPart();
+    const denom = a * a + b * b;
+
+    const real = a / denom;
+    const imag = (-1 * b) / denom;
+
+    return new ComplexNumber(real, imag);
   }
 
   public equals(other: ComplexNumber): boolean {

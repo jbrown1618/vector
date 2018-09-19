@@ -1,6 +1,8 @@
 import { Vector, VectorData } from './Vector';
-import { Matrix, MatrixData } from './Matrix';
+import { Matrix } from './Matrix';
 import { assertValidVectorIndex } from '../utilities/ErrorAssertions';
+import { ScalarOperations } from './ScalarOperations';
+import { MatrixBuilder, VectorBuilder } from '..';
 
 export type SparseVectorDataEntry<ScalarType> = {
   readonly index: number;
@@ -27,28 +29,22 @@ export abstract class SparseVector<ScalarType> implements Vector<ScalarType> {
   private readonly _dimension: number;
   private readonly _sparseData: SparseVectorData<ScalarType>;
 
-  protected constructor(dimension: number, data: SparseVectorData<ScalarType>) {
+  protected constructor(dimension: number, data: VectorData<ScalarType>) {
     this._dimension = dimension;
-    this._sparseData = data;
+    const sparseData: SparseVectorData<ScalarType> = [];
+    data.forEach((value: ScalarType, index: number) => {
+      if (!this.ops().equals(this.ops().zero(), value)) {
+        sparseData.push({ index, value });
+      }
+    });
+    this._sparseData = sparseData;
   }
 
-  protected abstract newFromSparseData(
-    sparseData: SparseVectorData<ScalarType>
-  ): SparseVector<ScalarType>;
+  abstract ops(): ScalarOperations<ScalarType>;
 
-  protected abstract makeMatrix(data: MatrixData<ScalarType>): Matrix<ScalarType>;
+  abstract builder(): VectorBuilder<ScalarType, Vector<ScalarType>>;
 
-  abstract addScalars(first: ScalarType, second: ScalarType): ScalarType;
-
-  abstract multiplyScalars(first: ScalarType, second: ScalarType): ScalarType;
-
-  abstract scalarsEqual(first: ScalarType, second: ScalarType): boolean;
-
-  abstract conjugateScalar(scalar: ScalarType): ScalarType;
-
-  abstract getAdditiveIdentity(): ScalarType;
-
-  abstract getMultiplicativeIdentity(): ScalarType;
+  abstract matrixBuilder(): MatrixBuilder<ScalarType, Vector<ScalarType>, Matrix<ScalarType>>;
 
   getSparseData(): SparseVectorData<ScalarType> {
     return [...this._sparseData];
@@ -65,27 +61,26 @@ export abstract class SparseVector<ScalarType> implements Vector<ScalarType> {
   getEntry(index: number): ScalarType {
     assertValidVectorIndex(this, index);
     const matching = this._sparseData.filter(sparseEntry => sparseEntry.index === index);
-    return matching.length ? matching[0].value : this.getAdditiveIdentity();
+    return matching.length ? matching[0].value : this.ops().zero();
   }
 
   innerProduct(other: Vector<ScalarType>): ScalarType {
     return this._sparseData
-      .map(sparseEntry =>
-        this.multiplyScalars(sparseEntry.value, other.getEntry(sparseEntry.index))
-      )
-      .reduce(this.addScalars, this.getAdditiveIdentity());
+      .map(sparseEntry => this.ops().multiply(sparseEntry.value, other.getEntry(sparseEntry.index)))
+      .reduce(this.ops().add, this.ops().zero());
   }
 
   outerProduct(other: Vector<ScalarType>): Matrix<ScalarType> {
-    return this.makeMatrix([other.getData()]); // TODO - implement
+    return this.matrixBuilder().fromData([other.getData()]); // TODO - implement
   }
 
   scalarMultiply(scalar: ScalarType): Vector<ScalarType> {
-    return this.newFromSparseData(
+    return this.builder().fromSparseData(
+      this._dimension,
       this._sparseData.map(sparseEntry => {
         return {
           index: sparseEntry.index,
-          value: this.multiplyScalars(sparseEntry.value, scalar)
+          value: this.ops().multiply(sparseEntry.value, scalar)
         };
       })
     );
@@ -100,7 +95,7 @@ export abstract class SparseVector<ScalarType> implements Vector<ScalarType> {
 
     return other
       .getData()
-      .map((entry, i) => this.scalarsEqual(this.getEntry(i), entry))
+      .map((entry, i) => this.ops().equals(this.getEntry(i), entry))
       .reduce((all, current) => all && current, true);
   }
 
@@ -113,7 +108,7 @@ export abstract class SparseVector<ScalarType> implements Vector<ScalarType> {
     }
 
     return thisSparseData
-      .map(sparseEntry => this.scalarsEqual(sparseEntry.value, other.getEntry(sparseEntry.index)))
+      .map(sparseEntry => this.ops().equals(sparseEntry.value, other.getEntry(sparseEntry.index)))
       .reduce((all, current) => all && current, true);
   }
 

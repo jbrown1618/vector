@@ -1,11 +1,16 @@
-import { NumberVector } from '..';
-import { Vector, VectorData } from '..';
+import { SparseVectorData, SparseVectorDataEntry, Vector, VectorConstructor, VectorData } from '..';
 import { assertValidIndex } from './ErrorAssertions';
 
-export type VectorIndexFunction = (index: number) => number;
-export type VectorEntryFunction = (entry: number, index: number) => number;
+export type VectorIndexFunction<ScalarType> = (index: number) => ScalarType;
+export type VectorEntryFunction<ScalarType> = (entry: ScalarType, index: number) => ScalarType;
 
-export class VectorBuilder {
+export class VectorBuilder<ScalarType, VectorType extends Vector<ScalarType>> {
+  private readonly _vectorConstructor: VectorConstructor<ScalarType, VectorType>;
+
+  constructor(vectorConstructor: VectorConstructor<ScalarType, VectorType>) {
+    this._vectorConstructor = vectorConstructor;
+  }
+
   /**
    * Builds a Vector of dimension 0
    *
@@ -13,10 +18,10 @@ export class VectorBuilder {
    * VectorBuilder.empty(); // []
    * ```
    *
-   * @returns {Vector<number>}
+   * @returns {VectorType}
    */
-  static empty(): Vector<number> {
-    return NumberVector.fromData([]);
+  empty(): VectorType {
+    return this.fromData([]);
   }
 
   /**
@@ -26,19 +31,19 @@ export class VectorBuilder {
    * VectorBuilder.zeros(3); // [ 0 0 0 ]
    * ```
    * @param {number} dimension  The dimension of the vector to construct
-   * @returns {Vector<number>}
+   * @returns {VectorType}
    */
-  static zeros(dimension: number): Vector<number> {
+  zeros(dimension: number): VectorType {
     if (dimension < 0) {
       throw Error();
     }
 
-    const data: VectorData<number> = [];
+    const data: VectorData<ScalarType> = [];
     for (let i = 0; i < dimension; i++) {
-      data[i] = 0;
+      data[i] = this._vectorConstructor.ops().zero();
     }
 
-    return NumberVector.fromData(data);
+    return this.fromData(data);
   }
 
   /**
@@ -48,19 +53,19 @@ export class VectorBuilder {
    * VectorBuilder.ones(3); // [ 1 1 1 ]
    * ```
    * @param {number} dimension
-   * @returns {Vector<number>}
+   * @returns {VectorType}
    */
-  static ones(dimension: number): Vector<number> {
+  ones(dimension: number): VectorType {
     if (dimension < 0) {
       throw Error();
     }
 
-    const data: VectorData<number> = [];
+    const data: VectorData<ScalarType> = [];
     for (let i = 0; i < dimension; i++) {
-      data[i] = 1;
+      data[i] = this._vectorConstructor.ops().one();
     }
 
-    return NumberVector.fromData(data);
+    return this.fromData(data);
   }
 
   /**
@@ -72,11 +77,15 @@ export class VectorBuilder {
    * ```
    * @param {number} dimension
    * @param {number} oneIndex
-   * @returns {Vector<number>}
+   * @returns {VectorType}
    */
-  static elementaryVector(dimension: number, oneIndex: number): Vector<number> {
+  elementaryVector(dimension: number, oneIndex: number): VectorType {
     assertValidIndex(oneIndex, dimension);
-    return VectorBuilder.fromIndexFunction(i => (i === oneIndex ? 1 : 0), dimension);
+    return this.fromIndexFunction(
+      i =>
+        i === oneIndex ? this._vectorConstructor.ops().one() : this._vectorConstructor.ops().zero(),
+      dimension
+    );
   }
 
   /**
@@ -88,12 +97,12 @@ export class VectorBuilder {
    *
    * VectorBuilder.concatenate(first, second); // [ 1 1 1 0 0 ]
    * ```
-   * @param {Vector<number>} first
-   * @param {Vector<number>} second
-   * @returns {Vector<number>}
+   * @param {VectorType} first
+   * @param {VectorType} second
+   * @returns {VectorType}
    */
-  static concatenate(first: Vector<number>, second: Vector<number>): Vector<number> {
-    return NumberVector.fromData([...first.getData(), ...second.getData()]);
+  concatenate(first: VectorType, second: VectorType): VectorType {
+    return this.fromData([...first.getData(), ...second.getData()]);
   }
 
   /**
@@ -105,17 +114,36 @@ export class VectorBuilder {
    * ```
    * @param {VectorIndexFunction} valueFromIndex  A function returning the entry for a given index
    * @param {number} length  The dimension of the vector to generate
-   * @returns {Vector<number>}
+   * @returns {VectorType}
    */
-  static fromIndexFunction(valueFromIndex: VectorIndexFunction, length: number): Vector<number> {
-    const data: VectorData<number> = [];
+  fromIndexFunction(valueFromIndex: VectorIndexFunction<ScalarType>, length: number): VectorType {
+    const data: VectorData<ScalarType> = [];
     for (let i = 0; i < length; i++) {
       data[i] = valueFromIndex(i);
     }
-    return NumberVector.fromData(data);
+    return this.fromData(data);
   }
 
-  static transform(vector: Vector<number>, valueFromEntry: VectorEntryFunction): Vector<number> {
-    return NumberVector.fromData(vector.getData().map(valueFromEntry));
+  transform(vector: VectorType, valueFromEntry: VectorEntryFunction<ScalarType>): VectorType {
+    return this.fromData(vector.getData().map(valueFromEntry));
+  }
+
+  fromData(data: VectorData<ScalarType>): VectorType {
+    return new this._vectorConstructor(data);
+  }
+
+  fromValues(...data: VectorData<ScalarType>): VectorType {
+    return this.fromData(data);
+  }
+
+  fromSparseData(dimension: number, sparseData: SparseVectorData<ScalarType>): VectorType {
+    const data: VectorData<ScalarType> = [];
+    for (let i = 0; i < dimension; i++) {
+      data[i] = this._vectorConstructor.ops().zero();
+    }
+    sparseData.forEach((sparseEntry: SparseVectorDataEntry<ScalarType>) => {
+      data[sparseEntry.index] = sparseEntry.value;
+    });
+    return this.empty();
   }
 }

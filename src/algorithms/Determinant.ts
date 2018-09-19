@@ -1,4 +1,4 @@
-import { Matrix, MatrixBuilder } from '..';
+import { Matrix } from '..';
 import { assertSquare } from '../utilities/ErrorAssertions';
 
 /**
@@ -8,22 +8,32 @@ import { assertSquare } from '../utilities/ErrorAssertions';
  * @param {Matrix<number>} matrix  a square matrix
  * @returns {number}  the determinant
  */
-export function determinant(matrix: Matrix<number>): number {
+export function determinant<ScalarType>(matrix: Matrix<ScalarType>): ScalarType {
   assertSquare(matrix);
+  const ops = matrix.ops();
+  const builder = matrix.builder();
 
   // Definition of a 2x2 determinant
   if (matrix.getNumberOfRows() === 2) {
-    return (
-      matrix.multiplyScalars(matrix.getEntry(0, 0), matrix.getEntry(1, 1)) -
-      matrix.multiplyScalars(matrix.getEntry(0, 1), matrix.getEntry(1, 0))
+    return ops.subtract(
+      ops.multiply(matrix.getEntry(0, 0), matrix.getEntry(1, 1)),
+      ops.multiply(matrix.getEntry(0, 1), matrix.getEntry(1, 0))
     );
   }
 
   // Calculate NxN determinant by expansion of minors
-  let det = 0;
+  let det = ops.zero();
   for (let j = 0; j < matrix.getNumberOfColumns(); j++) {
-    const sign = Math.pow(-1, j);
-    det += matrix.getEntry(0, j) * determinant(MatrixBuilder.exclude(matrix, 0, j)) * sign;
+    const signFlipped = j % 2 === 1;
+    const determinantOfMinor: ScalarType = determinant(builder.exclude(matrix, 0, j));
+    const weight = matrix.getEntry(0, j);
+
+    let quantityToAdd = ops.multiply(determinantOfMinor, weight);
+    if (signFlipped) {
+      quantityToAdd = ops.multiply(quantityToAdd, ops.negativeOne());
+    }
+
+    det = ops.add(det, quantityToAdd);
   }
   return det;
 }
