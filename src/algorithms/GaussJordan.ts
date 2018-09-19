@@ -1,5 +1,5 @@
 import { RowOperations } from './RowOperations';
-import { Matrix, NumberMatrix, VectorData } from '..';
+import { Matrix, VectorData } from '..';
 import { assertSquare } from '../utilities/ErrorAssertions';
 
 /**
@@ -10,16 +10,16 @@ import { assertSquare } from '../utilities/ErrorAssertions';
  * @param {Matrix<number>} matrix  A square matrix
  * @returns {Matrix<number> | undefined}
  */
-export function inverse(matrix: Matrix<number>): Matrix<number> | undefined {
+export function inverse<ScalarType>(matrix: Matrix<ScalarType>): Matrix<ScalarType> | undefined {
   assertSquare(matrix);
   const dim = matrix.getNumberOfRows();
-  const I = NumberMatrix.builder().identity(dim);
+  const I = matrix.builder().identity(dim);
 
-  const augmented = NumberMatrix.builder().augment(matrix, I);
+  const augmented = matrix.builder().augment(matrix, I);
   const rref = reducedRowEchelonForm(augmented);
 
-  const left = NumberMatrix.builder().slice(rref, 0, 0, dim, dim);
-  const right = NumberMatrix.builder().slice(rref, 0, dim);
+  const left = matrix.builder().slice(rref, 0, 0, dim, dim);
+  const right = matrix.builder().slice(rref, 0, dim);
 
   if (left.equals(I)) {
     return right;
@@ -32,10 +32,10 @@ export function inverse(matrix: Matrix<number>): Matrix<number> | undefined {
 /**
  * Uses Gauss-Jordan elimination to convert a matrix to Reduced Row-Echelon Form (RREF)
  *
- * @param {Matrix<number>} matrix
- * @returns {Matrix<number>}
+ * @param {Matrix<ScalarType>} matrix
+ * @returns {Matrix<ScalarType>}
  */
-export function reducedRowEchelonForm(matrix: Matrix<number>): Matrix<number> {
+export function reducedRowEchelonForm<ScalarType>(matrix: Matrix<ScalarType>): Matrix<ScalarType> {
   matrix = rowEchelonForm(matrix);
 
   const maxNumberOfPivotEntries = Math.min(matrix.getNumberOfColumns(), matrix.getNumberOfRows());
@@ -43,7 +43,7 @@ export function reducedRowEchelonForm(matrix: Matrix<number>): Matrix<number> {
     const pivotColumn = matrix
       .getRow(pivotRow)
       .getData()
-      .indexOf(1);
+      .indexOf(matrix.ops().one());
     if (pivotColumn === -1) {
       continue;
     }
@@ -56,27 +56,32 @@ export function reducedRowEchelonForm(matrix: Matrix<number>): Matrix<number> {
 /**
  * Uses Gauss-Jordan elimination to convert a matrix to Row-Echelon Form (REF)
  *
- * @param {Matrix<number>} matrix
- * @returns {Matrix<number>}
+ * @param {Matrix<ScalarType>} matrix
+ * @returns {Matrix<ScalarType>}
  */
-export function rowEchelonForm(matrix: Matrix<number>): Matrix<number> {
+export function rowEchelonForm<ScalarType>(matrix: Matrix<ScalarType>): Matrix<ScalarType> {
   matrix = moveLeadingZerosToBottom(matrix);
+  const ops = matrix.ops();
 
   const maxNumberOfPivotEntries = Math.min(matrix.getNumberOfRows(), matrix.getNumberOfColumns());
   for (let pivotRow = 0; pivotRow < maxNumberOfPivotEntries; pivotRow++) {
     let pivotColumn = pivotRow;
     let pivotEntry = matrix.getEntry(pivotRow, pivotColumn);
 
-    while (pivotEntry == 0 && pivotColumn < matrix.getNumberOfColumns() - 1) {
+    while (ops.equals(pivotEntry, ops.zero()) && pivotColumn < matrix.getNumberOfColumns() - 1) {
       pivotEntry = matrix.getEntry(pivotRow, ++pivotColumn);
     }
 
-    if (pivotEntry === 0) {
+    if (ops.equals(pivotEntry, ops.zero())) {
       continue;
     }
 
-    if (pivotEntry !== 1) {
-      matrix = RowOperations.multiplyRowByScalar(matrix, pivotRow, 1 / pivotEntry);
+    if (!ops.equals(pivotEntry, ops.zero())) {
+      matrix = RowOperations.multiplyRowByScalar(
+        matrix,
+        pivotRow,
+        matrix.ops().getMultiplicativeInverse(pivotEntry)
+      );
     }
 
     matrix = clearEntriesBelow(matrix, pivotRow, pivotColumn);
@@ -88,11 +93,13 @@ export function rowEchelonForm(matrix: Matrix<number>): Matrix<number> {
 /**
  * Sorts the rows of a matrix according to the number of leading zeros
  */
-function moveLeadingZerosToBottom(matrix: Matrix<number>): Matrix<number> {
-  const getNumberOfLeadingZeros = (row: VectorData<number>) => {
+function moveLeadingZerosToBottom<ScalarType>(matrix: Matrix<ScalarType>): Matrix<ScalarType> {
+  const ops = matrix.ops();
+
+  const getNumberOfLeadingZeros = (row: VectorData<ScalarType>) => {
     let zeros = 0;
     for (let i = 0; i < row.length; i++) {
-      if (row[i] === 0) {
+      if (ops.equals(row[i], ops.zero())) {
         ++zeros;
       } else {
         break;
@@ -101,11 +108,11 @@ function moveLeadingZerosToBottom(matrix: Matrix<number>): Matrix<number> {
     return zeros;
   };
 
-  const comparator = (a: VectorData<number>, b: VectorData<number>) => {
+  const comparator = (a: VectorData<ScalarType>, b: VectorData<ScalarType>) => {
     return getNumberOfLeadingZeros(a) - getNumberOfLeadingZeros(b);
   };
 
-  return NumberMatrix.builder().fromData(matrix.getData().sort(comparator));
+  return matrix.builder().fromData(matrix.getData().sort(comparator));
 }
 
 /**
@@ -113,20 +120,26 @@ function moveLeadingZerosToBottom(matrix: Matrix<number>): Matrix<number> {
  * Throws an error of the necessary preconditions are not met - i.e. if the pivot entry
  * is not 1, or the pivot row is not cleared to the left.
  */
-function clearEntriesBelow(
-  matrix: Matrix<number>,
+function clearEntriesBelow<ScalarType>(
+  matrix: Matrix<ScalarType>,
   pivotRow: number,
   pivotColumn: number
-): Matrix<number> {
+): Matrix<ScalarType> {
   checkPreconditionsForClearingBelow(matrix, pivotRow, pivotColumn);
+  const ops = matrix.ops();
 
   for (let rowIndex = pivotRow + 1; rowIndex < matrix.getNumberOfRows(); rowIndex++) {
     const entry = matrix.getEntry(rowIndex, pivotColumn);
-    if (entry === 0) {
+    if (ops.equals(entry, ops.zero())) {
       continue;
     }
 
-    matrix = RowOperations.addScalarMultipleOfRowToRow(matrix, rowIndex, pivotRow, -1 * entry);
+    matrix = RowOperations.addScalarMultipleOfRowToRow(
+      matrix,
+      rowIndex,
+      pivotRow,
+      ops.getAdditiveInverse(entry)
+    );
   }
 
   return matrix;
@@ -136,19 +149,20 @@ function clearEntriesBelow(
  * Throws an error if the row reduction algorithm prematurely attempts to
  * clear the entries below a pivot column.
  */
-function checkPreconditionsForClearingBelow(
-  matrix: Matrix<number>,
+function checkPreconditionsForClearingBelow<ScalarType>(
+  matrix: Matrix<ScalarType>,
   pivotRow: number,
   pivotColumn: number
 ): void {
+  const ops = matrix.ops();
   // The pivot entry should be 1
-  if (matrix.getEntry(pivotRow, pivotColumn) !== 1) {
+  if (!ops.equals(matrix.getEntry(pivotRow, pivotColumn), ops.one())) {
     throw Error('Not ready yet!');
   }
 
   // Values to the left of the pivot should be 0
   for (let i = 0; i < pivotColumn - 1; i++) {
-    if (matrix.getEntry(pivotRow, i) !== 0) {
+    if (!ops.equals(matrix.getEntry(pivotRow, i), ops.zero())) {
       throw Error('Not ready yet!');
     }
   }
@@ -159,20 +173,26 @@ function checkPreconditionsForClearingBelow(
  * Throws an error if the necessary preconditions are not met - i.e. if the
  * pivot entry is not 1 or the pivot row is not cleared to the left and the right.
  */
-function clearEntriesAbove(
-  matrix: Matrix<number>,
+function clearEntriesAbove<ScalarType>(
+  matrix: Matrix<ScalarType>,
   pivotRow: number,
   pivotColumn: number
-): Matrix<number> {
+): Matrix<ScalarType> {
   checkPreconditionsForClearingAbove(matrix, pivotRow, pivotColumn);
+  const ops = matrix.ops();
 
   for (let rowIndex = pivotRow - 1; rowIndex >= 0; rowIndex--) {
     const entry = matrix.getEntry(rowIndex, pivotColumn);
-    if (entry === 0) {
+    if (ops.equals(entry, ops.zero())) {
       continue;
     }
 
-    matrix = RowOperations.addScalarMultipleOfRowToRow(matrix, rowIndex, pivotRow, -1 * entry);
+    matrix = RowOperations.addScalarMultipleOfRowToRow(
+      matrix,
+      rowIndex,
+      pivotRow,
+      ops.getAdditiveInverse(entry)
+    );
   }
   return matrix;
 }
@@ -181,21 +201,23 @@ function clearEntriesAbove(
  * Throws an error if the row reduction algorithm prematurely attempts to
  * clear the entries above a pivot entry.
  */
-function checkPreconditionsForClearingAbove(
-  matrix: Matrix<number>,
+function checkPreconditionsForClearingAbove<ScalarType>(
+  matrix: Matrix<ScalarType>,
   pivotRow: number,
   pivotColumn: number
 ): void {
+  const ops = matrix.ops();
+
   // Values to the left and of the pivot should be 0; the pivot should be 1
   for (let i = 0; i < pivotColumn; i++) {
     const entry = matrix.getEntry(pivotRow, i);
 
-    if (entry !== 0) {
+    if (!ops.equals(entry, ops.zero())) {
       throw Error('Not ready yet!');
     }
   }
 
-  if (matrix.getEntry(pivotRow, pivotColumn) !== 1) {
+  if (!ops.equals(matrix.getEntry(pivotRow, pivotColumn), ops.one())) {
     throw Error('Not ready yet!');
   }
 }
