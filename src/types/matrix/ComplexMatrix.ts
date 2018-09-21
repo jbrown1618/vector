@@ -1,9 +1,9 @@
 import { ArrayMatrix } from './ArrayMatrix';
-import { ComplexNumber } from './ComplexNumber';
+import { ComplexNumber } from '../scalar/ComplexNumber';
 import { MatrixConstructor, MatrixData } from './Matrix';
-import { ComplexNumberOperations } from './ComplexNumberOperations';
-import { StaticImplements } from '../utilities/StaticImplements';
-import { ComplexVector, MatrixBuilder, VectorBuilder } from '..';
+import { ComplexNumberOperations } from '../scalar/ComplexNumberOperations';
+import { StaticImplements } from '../../utilities/StaticImplements';
+import { ComplexVector, MatrixBuilder, VectorBuilder } from '../../index';
 
 /**
  * Implements `Matrix` as a 2-dimensional array of `ComplexNumber`s

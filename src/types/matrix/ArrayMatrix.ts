@@ -1,8 +1,8 @@
 import { Matrix, MatrixData, MatrixEntryCallback } from './Matrix';
-import { Vector, VectorData } from './Vector';
-import { assertRectangular, assertValidMatrixIndex } from '../utilities/ErrorAssertions';
-import { ScalarOperations } from './ScalarOperations';
-import { MatrixBuilder, VectorBuilder } from '..';
+import { Vector, VectorData } from '../vector/Vector';
+import { assertRectangular, assertValidMatrixIndex } from '../../utilities/ErrorAssertions';
+import { ScalarOperations } from '../scalar/ScalarOperations';
+import { MatrixBuilder, VectorBuilder } from '../../index';
 
 /**
  * Implements `Matrix` with a 2-dimensional array of values.

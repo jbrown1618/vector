@@ -1,6 +1,6 @@
 import { describe, it } from 'mocha';
 import { expect } from 'chai';
-import { NumberVector } from './NumberVector';
+import { NumberVector } from '../vector/NumberVector';
 import { NumberMatrix } from './NumberMatrix';
 
 describe('NumberMatrix', () => {

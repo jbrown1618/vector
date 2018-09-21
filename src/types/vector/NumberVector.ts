@@ -1,9 +1,9 @@
 import { ArrayVector } from './ArrayVector';
 import { VectorConstructor, VectorData } from './Vector';
-import { NumberMatrix } from './NumberMatrix';
-import { StaticImplements } from '../utilities/StaticImplements';
-import { NumberOperations } from './NumberOperations';
-import { VectorBuilder } from '..';
+import { NumberMatrix } from '../matrix/NumberMatrix';
+import { StaticImplements } from '../../utilities/StaticImplements';
+import { NumberOperations } from '../scalar/NumberOperations';
+import { VectorBuilder } from '../../index';
 
 /**
  * A `Vector` implemented as an array of JS `number` primitives.

@@ -1,8 +1,8 @@
 import { Vector, VectorData } from './Vector';
-import { Matrix, MatrixData } from './Matrix';
-import { assertHomogeneous, assertValidVectorIndex } from '../utilities/ErrorAssertions';
-import { ScalarOperations } from './ScalarOperations';
-import { MatrixBuilder, VectorBuilder } from '..';
+import { Matrix, MatrixData } from '../matrix/Matrix';
+import { assertHomogeneous, assertValidVectorIndex } from '../../utilities/ErrorAssertions';
+import { ScalarOperations } from '../scalar/ScalarOperations';
+import { MatrixBuilder, VectorBuilder } from '../../index';
 
 /**
  * Implements `Vector` with an array of values.

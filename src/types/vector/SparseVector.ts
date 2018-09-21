@@ -1,8 +1,8 @@
 import { Vector, VectorData } from './Vector';
-import { Matrix } from './Matrix';
-import { assertValidVectorIndex } from '../utilities/ErrorAssertions';
-import { ScalarOperations } from './ScalarOperations';
-import { MatrixBuilder, VectorBuilder } from '..';
+import { Matrix } from '../matrix/Matrix';
+import { assertValidVectorIndex } from '../../utilities/ErrorAssertions';
+import { ScalarOperations } from '../scalar/ScalarOperations';
+import { MatrixBuilder, VectorBuilder } from '../../index';
 
 export type SparseVectorDataEntry<ScalarType> = {
   readonly index: number;

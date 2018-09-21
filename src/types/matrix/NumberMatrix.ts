@@ -1,8 +1,7 @@
 import { ArrayMatrix } from './ArrayMatrix';
-import { MatrixConstructor, MatrixData } from './Matrix';
-import { NumberOperations } from './NumberOperations';
-import { StaticImplements } from '../utilities/StaticImplements';
-import { MatrixBuilder, NumberVector, VectorBuilder } from '..';
+import { NumberOperations } from '../scalar/NumberOperations';
+import { StaticImplements } from '../../utilities/StaticImplements';
+import { MatrixBuilder, MatrixConstructor, MatrixData, NumberVector, VectorBuilder } from '../..';
 
 /**
  * A `Matrix` implemented as a 2-dimensional array of JS `number` primitives
