@@ -22,7 +22,7 @@ export function linspace(xMin: number, xMax: number, binCount: number): NumberVe
     return xMin + ((xMax - xMin) / binCount) * index;
   };
 
-  return NumberVector.builder().fromIndexFunction(indexToX, binCount);
+  return NumberVector.builder().fromIndexFunction(binCount, indexToX);
 }
 
 /**
@@ -120,14 +120,14 @@ export function centralDifferenceMatrix(binCount: number): NumberMatrix {
  *
  * @param {(x: number) => number} f  A deterministic function with no side effects
  * @param {number} xMin  The minimum value for which the derivative will be approximated
- * @param {number} xMax  The macimum (exclusive) value for which the derivative will be approcimated
+ * @param {number} xMax  The maximum (exclusive) value for which the derivative will be approximated
  * @param {number} binCount  The number of approximations
  * @returns {Vector<number>}
  */
 export function derivative(f: (x: number) => number, xMin: number, xMax: number, binCount: number) {
   const x = linspace(xMin, xMax, binCount);
-  const y = NumberVector.builder().transform(x, f);
-  const delta = x.getEntry(0) - x.getEntry(1);
+  const y = NumberVector.builder().map(x, f);
+  const delta = x.getEntry(1) - x.getEntry(0);
 
   const D = centralDifferenceMatrix(binCount);
   return D.apply(y).scalarMultiply(1 / delta);

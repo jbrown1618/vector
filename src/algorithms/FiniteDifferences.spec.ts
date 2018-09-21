@@ -12,7 +12,7 @@ describe('FiniteDifferences', () => {
         const xMax = 6;
 
         const x = linspace(xMin, xMax, binCount);
-        const actualDerivative = NumberVector.builder().transform(x, df);
+        const actualDerivative = NumberVector.builder().map(x, df);
 
         const approximateDerivative = derivative(f, xMin, xMax, binCount);
 

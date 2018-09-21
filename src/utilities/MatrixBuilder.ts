@@ -1,5 +1,13 @@
 import { Matrix, MatrixConstructor, MatrixData, Vector } from '..';
 import { assertHomogeneous, assertValidMatrixIndex } from './ErrorAssertions';
+import { ScalarOperations } from '../types/ScalarOperations';
+
+export type MatrixIndexFunction<ScalarType> = (i: number, j: number) => ScalarType;
+export type MatrixEntryFunction<ScalarType> = (
+  entry: ScalarType,
+  i: number,
+  j: number
+) => ScalarType;
 
 export class MatrixBuilder<
   ScalarType,
@@ -12,11 +20,15 @@ export class MatrixBuilder<
     this._matrixConstructor = matrixConstructor;
   }
 
+  private ops(): ScalarOperations<ScalarType> {
+    return this._matrixConstructor.ops();
+  }
+
   /**
    * Returns a 0x0 matrix
    *
    * ```
-   * MatrixBuilder.empty(); // []
+   * matrixBuilder.empty(); // []
    * ```
    */
   empty(): MatrixType {
@@ -25,6 +37,27 @@ export class MatrixBuilder<
 
   fromData(data: MatrixData<ScalarType>): MatrixType {
     return new this._matrixConstructor(data);
+  }
+
+  fromIndexFunction(
+    numRows: number,
+    numColumns: number,
+    indexFunction: MatrixIndexFunction<ScalarType>
+  ) {
+    const data: MatrixData<ScalarType> = [];
+    for (let i = 0; i < numRows; i++) {
+      data[i] = [];
+      for (let j = 0; j < numColumns; j++) {
+        data[i][j] = indexFunction(i, j);
+      }
+    }
+    return new this._matrixConstructor(data);
+  }
+
+  map(matrix: Matrix<ScalarType>, entryFunction: MatrixEntryFunction<ScalarType>) {
+    return this.fromIndexFunction(matrix.getNumberOfRows(), matrix.getNumberOfColumns(), (i, j) =>
+      entryFunction(matrix.getEntry(i, j), i, j)
+    );
   }
 
   fromColumnVectors(columns: Vector<ScalarType>[]): MatrixType {
@@ -38,14 +71,7 @@ export class MatrixBuilder<
       return this.empty();
     }
 
-    const data: MatrixData<ScalarType> = [];
-    for (let i = 0; i < numberOfRows; i++) {
-      data[i] = [];
-      for (let j = 0; j < numberOfColumns; j++) {
-        data[i][j] = columns[j].getEntry(i);
-      }
-    }
-    return new this._matrixConstructor(data);
+    return this.fromIndexFunction(numberOfRows, numberOfColumns, (i, j) => columns[j].getEntry(i));
   }
 
   fromRowVectors(rows: Vector<ScalarType>[]): MatrixType {
@@ -59,21 +85,14 @@ export class MatrixBuilder<
       return this.empty();
     }
 
-    const data: MatrixData<ScalarType> = [];
-    for (let i = 0; i < numberOfRows; i++) {
-      data[i] = [];
-      for (let j = 0; j < numberOfColumns; j++) {
-        data[i][j] = rows[i].getEntry(j);
-      }
-    }
-    return new this._matrixConstructor(data);
+    return this.fromIndexFunction(numberOfRows, numberOfColumns, (i, j) => rows[i].getEntry(j));
   }
 
   /**
    * Returns a matrix of the specified dimensions, consisting of all zeros
    *
    * ```
-   * MatrixBuilder.zeros(2, 3);
+   * matrixBuilder.zeros(2, 3);
    *
    * // [ 0 0 0 ]
    * // [ 0 0 0 ]
@@ -83,18 +102,14 @@ export class MatrixBuilder<
    * @returns {MatrixType}
    */
   zeros(numberOfRows: number, numberOfColumns: number = numberOfRows): MatrixType {
-    const columns: Array<Vector<ScalarType>> = [];
-    for (let i = 0; i < numberOfColumns; i++) {
-      columns.push(this._matrixConstructor.vectorBuilder().zeros(numberOfRows));
-    }
-    return this.fromColumnVectors(columns);
+    return this.fromIndexFunction(numberOfRows, numberOfColumns, () => this.ops().zero());
   }
 
   /**
    * Returns a matrix of the specified dimensions, consisting of all ones
    *
    * ```
-   * MatrixBuilder.ones(2, 3);
+   * matrixBuilder.ones(2, 3);
    *
    * // [ 1 1 1 ]
    * // [ 1 1 1 ]
@@ -104,18 +119,14 @@ export class MatrixBuilder<
    * @returns {MatrixType}
    */
   ones(numberOfRows: number, numberOfColumns: number = numberOfRows): MatrixType {
-    const columns: Array<VectorType> = [];
-    for (let i = 0; i < numberOfColumns; i++) {
-      columns.push(this._matrixConstructor.vectorBuilder().ones(numberOfRows));
-    }
-    return this.fromColumnVectors(columns);
+    return this.fromIndexFunction(numberOfRows, numberOfColumns, () => this.ops().one());
   }
 
   /**
    * Returns a `size` x `size` identity matrix
    *
    * ```
-   * MatrixBuilder.identity(3);
+   * matrixBuilder.identity(3);
    *
    * // [ 1 0 0 ]
    * // [ 0 1 0 ]
@@ -125,15 +136,11 @@ export class MatrixBuilder<
    * @returns {MatrixType}
    */
   identity(size: number): MatrixType {
-    const data: MatrixData<ScalarType> = [];
-    const ops = this._matrixConstructor.ops();
-    for (let i = 0; i < size; i++) {
-      data[i] = [];
-      for (let j = 0; j < size; j++) {
-        data[i][j] = i === j ? ops.one() : ops.zero();
-      }
-    }
-    return new this._matrixConstructor(data);
+    return this.fromIndexFunction(
+      size,
+      size,
+      (i, j) => (i === j ? this.ops().one() : this.ops().zero())
+    );
   }
 
   /**
@@ -141,7 +148,7 @@ export class MatrixBuilder<
    *
    * ```
    * const diagonalEntries = NumberVector.fromValues(1, 2, 3);
-   * MatrixBuilder.diagonal(diagonalEntries);
+   * matrixBuilder.diagonal(diagonalEntries);
    *
    * // [ 1 0 0 ]
    * // [ 0 2 0 ]
@@ -151,14 +158,11 @@ export class MatrixBuilder<
    * @returns {MatrixType}
    */
   diagonal(diagonalEntries: VectorType): MatrixType {
-    const numEntries = diagonalEntries.getDimension();
-    return this.fromColumnVectors(
-      diagonalEntries.getData().map((entry, i) =>
-        this._matrixConstructor
-          .vectorBuilder()
-          .elementaryVector(numEntries, i)
-          .scalarMultiply(entry)
-      )
+    const size = diagonalEntries.getDimension();
+    return this.fromIndexFunction(
+      size,
+      size,
+      (i, j) => (i === j ? diagonalEntries.getEntry(i) : this.ops().zero())
     );
   }
 
@@ -175,7 +179,7 @@ export class MatrixBuilder<
    * const diagonalEntries = NumberVector.fromEntries(3, 4, 5);
    * const rightEntries = NumberVector.fromEntries(6, 7);
    *
-   * MatrixBuilder.tridiagonal(leftEntries, diagonalEntries, rightEntries);
+   * matrixBuilder.tridiagonal(leftEntries, diagonalEntries, rightEntries);
    *
    * // [ 3 6 0 ]
    * // [ 1 4 7 ]
@@ -192,28 +196,25 @@ export class MatrixBuilder<
     diagonalEntries: Vector<ScalarType>,
     rightEntries: Vector<ScalarType>
   ): MatrixType {
-    const numEntries = diagonalEntries.getDimension();
-    if (
-      leftEntries.getDimension() !== numEntries - 1 ||
-      rightEntries.getDimension() !== numEntries - 1
-    ) {
+    const size = diagonalEntries.getDimension();
+    const hasSizeMismatch =
+      leftEntries.getDimension() !== size - 1 || rightEntries.getDimension() !== size - 1;
+
+    if (hasSizeMismatch) {
       throw Error('');
     }
 
-    const getColumn = (diagonalEntry: ScalarType, i: number) => {
-      return this._matrixConstructor.vectorBuilder().fromIndexFunction(index => {
-        if (index === i) {
-          return diagonalEntry;
-        } else if (index === i - 1) {
-          return leftEntries.getEntry(i - 1);
-        } else if (index === i + 1) {
-          return rightEntries.getEntry(i);
-        }
-        return this._matrixConstructor.ops().zero();
-      }, numEntries);
-    };
-
-    return this.fromColumnVectors(diagonalEntries.getData().map(getColumn));
+    return this.fromIndexFunction(size, size, (i, j) => {
+      if (i === j) {
+        return diagonalEntries.getEntry(i);
+      } else if (i === j + 1) {
+        return leftEntries.getEntry(j);
+      } else if (i === j - 1) {
+        return rightEntries.getEntry(i);
+      } else {
+        return this.ops().zero();
+      }
+    });
   }
 
   /**
@@ -221,10 +222,10 @@ export class MatrixBuilder<
    * Throws an error of `left` and `right` do not have the same number of rows.
    *
    * ```
-   * const left = MatrixBuilder.ones(2, 3);
-   * const right = MatrixBuilder.zeros(2, 4);
+   * const left = matrixBuilder.ones(2, 3);
+   * const right = matrixBuilder.zeros(2, 4);
    *
-   * MatrixBuilder.augment(left, right);
+   * matrixBuilder.augment(left, right);
    *
    * // [ 1 1 1 0 0 0 0 ]
    * // [ 1 1 1 0 0 0 0 ]
@@ -246,10 +247,10 @@ export class MatrixBuilder<
    * Throws an error if `top` and `bottom` do not have the same number of columns.
    *
    * ```
-   * const top = MatrixBuilder.ones(2, 3);
-   * const bottom = MatrixBuilder.zeros(1,3);
+   * const top = matrixBuilder.ones(2, 3);
+   * const bottom = matrixBuilder.zeros(1,3);
    *
-   * MatrixBuilder.stack(top, bottom);
+   * matrixBuilder.stack(top, bottom);
    *
    * // [ 1 1 1 ]
    * // [ 1 1 1 ]
@@ -272,17 +273,17 @@ export class MatrixBuilder<
    * Throws an error if any of the dimensions are incompatible.
    *
    * ```
-   * const upperLeft = MatrixBuilder.ones(1, 1);
-   * const upperRight = MatrixBuilder.zeros(1, 2);
-   * const lowerLeft = MatrixBuilder.zeros(2, 1);
-   * const lowerRight = MatrixBuilder.ones(2, 2);
+   * const upperLeft = matrixBuilder.ones(1, 1);
+   * const upperRight = matrixBuilder.zeros(1, 2);
+   * const lowerLeft = matrixBuilder.zeros(2, 1);
+   * const lowerRight = matrixBuilder.ones(2, 2);
    *
    * const grid = [
    *   [ upperLeft, upperRight ],
    *   [ lowerLeft, lowerRight ]
    * ];
    *
-   * MatrixBuilder.flatten(grid);
+   * matrixBuilder.flatten(grid);
    *
    * // [ 1 0 0 ]
    * // [ 0 1 1 ]
@@ -311,8 +312,8 @@ export class MatrixBuilder<
    * Returns a new matrix consisted of repetitions of a smaller matrix.
    *
    * ```
-   * const I = MatrixBuilder.identity(2);
-   * MatrixBuilder.repeat(I, 1, 2);
+   * const I = matrixBuilder.identity(2);
+   * matrixBuilder.repeat(I, 1, 2);
    *
    * // [ 1 0 1 0 ]
    * // [ 0 1 0 1 ]
@@ -339,8 +340,8 @@ export class MatrixBuilder<
    * Returns a new matrix based on a rectangular slice of a larger matrix
    *
    * ```
-   * const matrix = MatrixBuilder.identity(4);
-   * MatrixBuilder.slice(matrix, 2, 2, 3, 4);
+   * const matrix = matrixBuilder.identity(4);
+   * matrixBuilder.slice(matrix, 2, 2, 3, 4);
    *
    * // [  1  0  0  0  ]
    * // [  0  1* 0* 0* ]  =>  [ 1 0 0 ]
@@ -394,8 +395,8 @@ export class MatrixBuilder<
    * column `columnToExclude` removed.
    *
    * ```
-   * const I = MatrixBuilder.identity(4);
-   * MatrixBuilder.slice(I, 1, 2)
+   * const I = matrixBuilder.identity(4);
+   * matrixBuilder.slice(I, 1, 2)
    *
    * // [  1  0  0* 0  ]
    * // [  0* 1* 0* 0* ]  =>  [ 1 0 0 ]

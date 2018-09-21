@@ -1,5 +1,6 @@
 import { SparseVectorData, SparseVectorDataEntry, Vector, VectorConstructor, VectorData } from '..';
 import { assertValidIndex } from './ErrorAssertions';
+import { ScalarOperations } from '../types/ScalarOperations';
 
 export type VectorIndexFunction<ScalarType> = (index: number) => ScalarType;
 export type VectorEntryFunction<ScalarType> = (entry: ScalarType, index: number) => ScalarType;
@@ -9,6 +10,10 @@ export class VectorBuilder<ScalarType, VectorType extends Vector<ScalarType>> {
 
   constructor(vectorConstructor: VectorConstructor<ScalarType, VectorType>) {
     this._vectorConstructor = vectorConstructor;
+  }
+
+  private ops(): ScalarOperations<ScalarType> {
+    return this._vectorConstructor.ops();
   }
 
   /**
@@ -38,12 +43,7 @@ export class VectorBuilder<ScalarType, VectorType extends Vector<ScalarType>> {
       throw Error();
     }
 
-    const data: VectorData<ScalarType> = [];
-    for (let i = 0; i < dimension; i++) {
-      data[i] = this._vectorConstructor.ops().zero();
-    }
-
-    return this.fromData(data);
+    return this.fromIndexFunction(dimension, () => this.ops().zero());
   }
 
   /**
@@ -60,12 +60,7 @@ export class VectorBuilder<ScalarType, VectorType extends Vector<ScalarType>> {
       throw Error();
     }
 
-    const data: VectorData<ScalarType> = [];
-    for (let i = 0; i < dimension; i++) {
-      data[i] = this._vectorConstructor.ops().one();
-    }
-
-    return this.fromData(data);
+    return this.fromIndexFunction(dimension, () => this.ops().one());
   }
 
   /**
@@ -82,9 +77,8 @@ export class VectorBuilder<ScalarType, VectorType extends Vector<ScalarType>> {
   elementaryVector(dimension: number, oneIndex: number): VectorType {
     assertValidIndex(oneIndex, dimension);
     return this.fromIndexFunction(
-      i =>
-        i === oneIndex ? this._vectorConstructor.ops().one() : this._vectorConstructor.ops().zero(),
-      dimension
+      dimension,
+      i => (i === oneIndex ? this.ops().one() : this.ops().zero())
     );
   }
 
@@ -112,19 +106,19 @@ export class VectorBuilder<ScalarType, VectorType extends Vector<ScalarType>> {
    * ```
    * VectorBuilder.fromIndexFunction(i => i + 3, 4); // [ 3 4 5 6 ]
    * ```
+   * @param {number} size  The dimension of the vector to generate
    * @param {VectorIndexFunction} valueFromIndex  A function returning the entry for a given index
-   * @param {number} length  The dimension of the vector to generate
    * @returns {VectorType}
    */
-  fromIndexFunction(valueFromIndex: VectorIndexFunction<ScalarType>, length: number): VectorType {
+  fromIndexFunction(size: number, valueFromIndex: VectorIndexFunction<ScalarType>): VectorType {
     const data: VectorData<ScalarType> = [];
-    for (let i = 0; i < length; i++) {
+    for (let i = 0; i < size; i++) {
       data[i] = valueFromIndex(i);
     }
     return this.fromData(data);
   }
 
-  transform(vector: VectorType, valueFromEntry: VectorEntryFunction<ScalarType>): VectorType {
+  map(vector: VectorType, valueFromEntry: VectorEntryFunction<ScalarType>): VectorType {
     return this.fromData(vector.getData().map(valueFromEntry));
   }
 
@@ -139,7 +133,7 @@ export class VectorBuilder<ScalarType, VectorType extends Vector<ScalarType>> {
   fromSparseData(dimension: number, sparseData: SparseVectorData<ScalarType>): VectorType {
     const data: VectorData<ScalarType> = [];
     for (let i = 0; i < dimension; i++) {
-      data[i] = this._vectorConstructor.ops().zero();
+      data[i] = this.ops().zero();
     }
     sparseData.forEach((sparseEntry: SparseVectorDataEntry<ScalarType>) => {
       data[sparseEntry.index] = sparseEntry.value;
