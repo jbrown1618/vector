@@ -1,10 +1,4 @@
-import {
-  SparseVectorData,
-  SparseVectorDataEntry,
-  Vector,
-  VectorConstructor,
-  VectorData
-} from '../../index';
+import { SparseVectorData, Vector, VectorConstructor, VectorData } from '../../index';
 import { assertValidIndex } from '../../utilities/ErrorAssertions';
 import { ScalarOperations } from '../scalar/ScalarOperations';
 
@@ -141,8 +135,8 @@ export class VectorBuilder<ScalarType, VectorType extends Vector<ScalarType>> {
     for (let i = 0; i < dimension; i++) {
       data[i] = this.ops().zero();
     }
-    sparseData.forEach((sparseEntry: SparseVectorDataEntry<ScalarType>) => {
-      data[sparseEntry.index] = sparseEntry.value;
+    sparseData.forEach((value, index) => {
+      data[index] = value;
     });
     return this.empty();
   }
