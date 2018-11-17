@@ -1,4 +1,5 @@
 import { ScalarOperations } from './ScalarOperations';
+import { approximatelyEqual } from '../../utilities/NumberUtilities';
 
 export class NumberOperations extends ScalarOperations<number> {
   add(first: number, second: number): number {
@@ -21,7 +22,10 @@ export class NumberOperations extends ScalarOperations<number> {
     return 1;
   }
 
-  getMultiplicativeInverse(x: number): number {
+  getMultiplicativeInverse(x: number): number | undefined {
+    if (x === 0) {
+      return undefined;
+    }
     return 1 / x;
   }
 
@@ -30,6 +34,6 @@ export class NumberOperations extends ScalarOperations<number> {
   }
 
   equals(first: number, second: number): boolean {
-    return Math.abs(first - second) < 0.000001;
+    return approximatelyEqual(first, second);
   }
 }

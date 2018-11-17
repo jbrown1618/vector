@@ -1,6 +1,12 @@
-import { SparseVectorData, SparseVectorDataEntry, Vector, VectorConstructor, VectorData } from '..';
-import { assertValidIndex } from './ErrorAssertions';
-import { ScalarOperations } from '../types/scalar/ScalarOperations';
+import {
+  SparseVectorData,
+  SparseVectorDataEntry,
+  Vector,
+  VectorConstructor,
+  VectorData
+} from '../../index';
+import { assertValidIndex } from '../../utilities/ErrorAssertions';
+import { ScalarOperations } from '../scalar/ScalarOperations';
 
 export type VectorIndexFunction<ScalarType> = (index: number) => ScalarType;
 export type VectorEntryFunction<ScalarType> = (entry: ScalarType, index: number) => ScalarType;

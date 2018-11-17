@@ -12,6 +12,6 @@ export * from './types/matrix/NumberMatrix';
 export * from './types/vector/NumberVector';
 export * from './types/vector/SparseVector';
 export * from './types/vector/Vector';
-export * from './utilities/MatrixBuilder';
+export * from './types/matrix/MatrixBuilder';
 export * from './utilities/MatrixProperties';
-export * from './utilities/VectorBuilder';
+export * from './types/vector/VectorBuilder';

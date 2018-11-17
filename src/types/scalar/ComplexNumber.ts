@@ -1,6 +1,8 @@
 /**
  * Numbers of the form _a + bi_ where _i_ is the imaginary unit.
  */
+import { approximatelyEqual } from '../../utilities/NumberUtilities';
+
 export class ComplexNumber {
   public static readonly ZERO = new ComplexNumber(0, 0);
   public static readonly ONE = new ComplexNumber(1, 0);
@@ -28,20 +30,24 @@ export class ComplexNumber {
   }
 
   public multiply(other: ComplexNumber): ComplexNumber {
-    return new ComplexNumber(
-      this._real * other._real - this._imaginary * other._imaginary,
-      this._real * other._imaginary + this._imaginary * other._real
-    );
+    const ac = this._real * other._real;
+    const bd = this._imaginary * other._imaginary;
+    const aPlusBTimesCPlusD = (this._real + this._imaginary) * (other._real + other._imaginary);
+    return new ComplexNumber(ac - bd, aPlusBTimesCPlusD - ac - bd);
   }
 
   public getAdditiveInverse(): ComplexNumber {
     return this.multiply(ComplexNumber.NEG_ONE);
   }
 
-  public getMultiplicativeInverse(): ComplexNumber {
+  public getMultiplicativeInverse(): ComplexNumber | undefined {
     const a = this.getRealPart();
     const b = this.getImaginaryPart();
     const denom = a * a + b * b;
+
+    if (denom === 0) {
+      return undefined;
+    }
 
     const real = a / denom;
     const imag = (-1 * b) / denom;
@@ -50,7 +56,10 @@ export class ComplexNumber {
   }
 
   public equals(other: ComplexNumber): boolean {
-    return this._real === other._real && this._imaginary === other._imaginary;
+    return (
+      approximatelyEqual(this._real, other._real) &&
+      approximatelyEqual(this._imaginary, other._imaginary)
+    );
   }
 
   public conjugate(): ComplexNumber {

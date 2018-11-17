@@ -1,7 +1,7 @@
 import { describe, it } from 'mocha';
 import { expect } from 'chai';
-import { MatrixBuilder, NumberVector, VectorBuilder } from '..';
-import { NumberMatrix } from '..';
+import { MatrixBuilder, NumberVector, VectorBuilder } from '../../index';
+import { NumberMatrix } from '../../index';
 
 describe('MatrixBuilder', () => {
   const matrixBuilder = new MatrixBuilder(NumberMatrix);

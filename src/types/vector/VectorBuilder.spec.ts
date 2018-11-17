@@ -1,7 +1,7 @@
 import { describe, it } from 'mocha';
 import { expect } from 'chai';
 import { VectorBuilder } from './VectorBuilder';
-import { NumberVector } from '../types/vector/NumberVector';
+import { NumberVector } from './NumberVector';
 
 describe('VectorBuilder', () => {
   describe('empty', () => {
