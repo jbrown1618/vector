@@ -138,6 +138,6 @@ export class VectorBuilder<ScalarType, VectorType extends Vector<ScalarType>> {
     sparseData.forEach((value, index) => {
       data[index] = value;
     });
-    return this.empty();
+    return this.fromData(data);
   }
 }

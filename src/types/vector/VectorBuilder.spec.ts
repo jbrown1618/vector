@@ -5,6 +5,17 @@ import { NumberVector } from './NumberVector';
 describe('VectorBuilder', () => {
   const builder = NumberVector.builder();
 
+  describe('fromSparseData', () => {
+    it('builds a vector of all 0s except for the specified entries', () => {
+      const sparseData: Map<number, number> = new Map();
+      sparseData.set(3, 1);
+      sparseData.set(4, 2);
+      const V = builder.fromSparseData(6, sparseData);
+      const expected = builder.fromData([0, 0, 0, 1, 2, 0]);
+      expect(V.equals(expected)).to.be.true;
+    });
+  });
+
   describe('empty', () => {
     it('returns an empty vector', () => {
       const E = builder.empty();
@@ -31,7 +42,7 @@ describe('VectorBuilder', () => {
     });
 
     it('rejects a negative size', () => {
-      expect(() => builder.zeros(-1)).to.throw;
+      expect(() => builder.zeros(-1)).to.throw();
     });
   });
 
@@ -53,7 +64,7 @@ describe('VectorBuilder', () => {
     });
 
     it('rejects a negative size', () => {
-      expect(() => builder.ones(-1)).to.throw;
+      expect(() => builder.ones(-1)).to.throw();
     });
   });
 

@@ -1,9 +1,81 @@
 import { describe, it } from 'mocha';
 import { expect } from 'chai';
-import { derivative, linspace } from './FiniteDifferences';
-import { NumberVector } from '..';
+import {
+  backwardDifferenceMatrix,
+  centralDifferenceMatrix,
+  derivative,
+  forwardDifferenceMatrix,
+  linspace
+} from './FiniteDifferences';
+import { NumberMatrix, NumberVector } from '..';
 
 describe('FiniteDifferences', () => {
+  describe('linspace', () => {
+    it('creates a vector of evenly spaced numbers', () => {
+      const expected = NumberVector.builder().fromData([
+        0,
+        0.1,
+        0.2,
+        0.3,
+        0.4,
+        0.5,
+        0.6,
+        0.7,
+        0.8,
+        0.9
+      ]);
+      const spaces = linspace(0, 1, 10);
+      expect(spaces.equals(expected)).to.be.true;
+    });
+
+    it('rejects a max less than a min', () => {
+      expect(() => linspace(2, 1, 10)).to.throw();
+    });
+
+    it('rejects a negative bin count', () => {
+      expect(() => linspace(0, 1, -10)).to.throw();
+    });
+  });
+
+  describe('forwardDifferenceMatrix', () => {
+    it('constructs a forward difference matrix', () => {
+      const expected = NumberMatrix.builder().fromData([
+        [-1, 1, 0, 0],
+        [0, -1, 1, 0],
+        [0, 0, -1, 1],
+        [0, 0, 0, -1]
+      ]);
+      const forwardDifference = forwardDifferenceMatrix(4);
+      expect(forwardDifference.equals(expected)).to.be.true;
+    });
+  });
+
+  describe('backwardDifferenceMatrix', () => {
+    it('constructs a backward difference matrix', () => {
+      const expected = NumberMatrix.builder().fromData([
+        [1, 0, 0, 0],
+        [-1, 1, 0, 0],
+        [0, -1, 1, 0],
+        [0, 0, -1, 1]
+      ]);
+      const backwardDifference = backwardDifferenceMatrix(4);
+      expect(backwardDifference.equals(expected)).to.be.true;
+    });
+  });
+
+  describe('centralDifferenceMatrix', () => {
+    it('constructs a central difference matrix', () => {
+      const expected = NumberMatrix.builder().fromData([
+        [0, 1 / 2, 0, 0],
+        [-1 / 2, 0, 1 / 2, 0],
+        [0, -1 / 2, 0, 1 / 2],
+        [0, 0, -1 / 2, 0]
+      ]);
+      const centralDifference = centralDifferenceMatrix(4);
+      expect(centralDifference.equals(expected)).to.be.true;
+    });
+  });
+
   describe('derivative', () => {
     it('calculates a finite difference derivative', () => {
       const testDifferentiation = (f: (x: number) => number, df: (x: number) => number) => {

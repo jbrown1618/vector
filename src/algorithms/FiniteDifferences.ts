@@ -18,6 +18,10 @@ export function linspace(xMin: number, xMax: number, binCount: number): NumberVe
     throw Error('TODO - message');
   }
 
+  if (binCount < 0) {
+    throw Error('TODO - message');
+  }
+
   const indexToX: VectorIndexFunction<number> = index => {
     return xMin + ((xMax - xMin) / binCount) * index;
   };
