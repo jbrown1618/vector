@@ -4,12 +4,7 @@ import { assertValidVectorIndex } from '../../utilities/ErrorAssertions';
 import { ScalarOperations } from '../scalar/ScalarOperations';
 import { MatrixBuilder, VectorBuilder } from '../../index';
 
-export type SparseVectorDataEntry<ScalarType> = {
-  readonly index: number;
-  readonly value: ScalarType;
-};
-
-export type SparseVectorData<ScalarType> = Array<SparseVectorDataEntry<ScalarType>>;
+export type SparseVectorData<ScalarType> = Map<number, ScalarType>;
 
 /**
  * A type guard which returns true if the input is an instance of `SparseVector`,
@@ -31,10 +26,10 @@ export abstract class SparseVector<ScalarType> implements Vector<ScalarType> {
 
   protected constructor(dimension: number, data: VectorData<ScalarType>) {
     this._dimension = dimension;
-    const sparseData: SparseVectorData<ScalarType> = [];
+    const sparseData: SparseVectorData<ScalarType> = new Map();
     data.forEach((value: ScalarType, index: number) => {
       if (!this.ops().equals(this.ops().zero(), value)) {
-        sparseData.push({ index, value });
+        sparseData.set(index, value);
       }
     });
     this._sparseData = sparseData;
@@ -47,7 +42,7 @@ export abstract class SparseVector<ScalarType> implements Vector<ScalarType> {
   abstract matrixBuilder(): MatrixBuilder<ScalarType, Vector<ScalarType>, Matrix<ScalarType>>;
 
   getSparseData(): SparseVectorData<ScalarType> {
-    return [...this._sparseData];
+    return this._sparseData;
   }
 
   getData(): VectorData<ScalarType> {
@@ -60,30 +55,31 @@ export abstract class SparseVector<ScalarType> implements Vector<ScalarType> {
 
   getEntry(index: number): ScalarType {
     assertValidVectorIndex(this, index);
-    const matching = this._sparseData.filter(sparseEntry => sparseEntry.index === index);
-    return matching.length ? matching[0].value : this.ops().zero();
+    return this._sparseData.get(index) || this.ops().zero();
   }
 
   innerProduct(other: Vector<ScalarType>): ScalarType {
-    return this._sparseData
-      .map(sparseEntry => this.ops().multiply(sparseEntry.value, other.getEntry(sparseEntry.index)))
-      .reduce(this.ops().add, this.ops().zero());
+    let innerProduct: ScalarType = this.ops().zero();
+    this._sparseData.forEach((value, index) => {
+      innerProduct = this.ops().add(
+        innerProduct,
+        this.ops().multiply(value, other.getEntry(index))
+      );
+    });
+    return innerProduct;
   }
 
   outerProduct(other: Vector<ScalarType>): Matrix<ScalarType> {
-    return this.matrixBuilder().fromData([other.getData()]); // TODO - implement
+    // TODO - implement.  This is just here to satisfy the compiler.
+    return this.matrixBuilder().fromData([other.getData()]);
   }
 
   scalarMultiply(scalar: ScalarType): Vector<ScalarType> {
-    return this.builder().fromSparseData(
-      this._dimension,
-      this._sparseData.map(sparseEntry => {
-        return {
-          index: sparseEntry.index,
-          value: this.ops().multiply(sparseEntry.value, scalar)
-        };
-      })
-    );
+    const newSparseData = new Map();
+    this._sparseData.forEach((value, index) => {
+      newSparseData.set(index, this.ops().multiply(value, scalar));
+    });
+    return this.builder().fromSparseData(this._dimension, newSparseData);
   }
 
   abstract add(other: Vector<ScalarType>): Vector<ScalarType>;
@@ -100,16 +96,18 @@ export abstract class SparseVector<ScalarType> implements Vector<ScalarType> {
   }
 
   private equalsSparse(other: SparseVector<ScalarType>): boolean {
-    const thisSparseData = this._sparseData;
-    const otherSparseData = other._sparseData;
-
-    if (thisSparseData.length !== otherSparseData.length) {
+    if (this._sparseData.size !== other._sparseData.size) {
       return false;
     }
 
-    return thisSparseData
-      .map(sparseEntry => this.ops().equals(sparseEntry.value, other.getEntry(sparseEntry.index)))
-      .reduce((all, current) => all && current, true);
+    let hasMismatch = false;
+    this._sparseData.forEach((value, index) => {
+      if (!this.ops().equals(other.getEntry(index), value)) {
+        hasMismatch = true;
+      }
+    });
+    // It is sufficient to check in one direction since they have the same number of elements.
+    return hasMismatch;
   }
 
   getDimension(): number {

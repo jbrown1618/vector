@@ -1,7 +1,7 @@
 import { describe, it } from 'mocha';
 import { expect } from 'chai';
-import { reducedRowEchelonForm, rowEchelonForm } from './GaussJordan';
-import { NumberMatrix } from '..';
+import { inverse, reducedRowEchelonForm, rowEchelonForm } from './GaussJordan';
+import { Matrix, NumberMatrix } from '..';
 
 describe('GaussJordan', () => {
   describe('rowEchelonForm', () => {
@@ -78,6 +78,34 @@ describe('GaussJordan', () => {
 
     it('handles the degenerate case', () => {
       expect(reducedRowEchelonForm(NumberMatrix.builder().empty()).getData()).to.deep.equal([]);
+    });
+  });
+
+  describe('inverse', () => {
+    it('does not affect an identity matrix', () => {
+      const I = NumberMatrix.builder().identity(3);
+      const Iinv = inverse(I);
+      expect(Iinv).to.not.be.undefined;
+      expect((Iinv as Matrix<number>).equals(I)).to.be.true;
+    });
+
+    it('calculates the inverse of a square matrix', () => {
+      const A = NumberMatrix.builder().fromData([[4, 7], [2, 6]]);
+      const expectedInverse = NumberMatrix.builder().fromData([[0.6, -0.7], [-0.2, 0.4]]);
+      const Ainv = inverse(A) as Matrix<number>;
+      expect(Ainv).to.not.be.undefined;
+      expect(Ainv.equals(expectedInverse)).to.be.true;
+    });
+
+    it('rejects a non-square matrix', () => {
+      const nonSquare = NumberMatrix.builder().fromData([[0, 1]]);
+      expect(() => inverse(nonSquare)).to.throw();
+    });
+
+    it('returns undefined for a singular matrix', () => {
+      const S = NumberMatrix.builder().fromData([[0, 0], [0, 0]]);
+      const Sinv = inverse(S);
+      expect(Sinv).to.be.undefined;
     });
   });
 });

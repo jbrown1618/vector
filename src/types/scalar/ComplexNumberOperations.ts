@@ -18,7 +18,7 @@ export class ComplexNumberOperations extends ScalarOperations<ComplexNumber> {
     return ComplexNumber.ONE;
   }
 
-  getMultiplicativeInverse(scalar: ComplexNumber): ComplexNumber {
+  getMultiplicativeInverse(scalar: ComplexNumber): ComplexNumber | undefined {
     return scalar.getMultiplicativeInverse();
   }
 

@@ -214,4 +214,13 @@ describe('NumberMatrix', () => {
       expect(() => A.apply(x)).to.throw();
     });
   });
+
+  describe('adjoint', () => {
+    it('returns the transpose of the original matrix', () => {
+      const M = builder.fromData([[1, 2], [3, 4]]);
+      const Mstar = M.adjoint();
+      const Mtrans = M.transpose();
+      expect(Mstar.equals(Mtrans)).to.be.true;
+    });
+  });
 });

@@ -77,11 +77,9 @@ export function rowEchelonForm<ScalarType>(matrix: Matrix<ScalarType>): Matrix<S
     }
 
     if (!ops.equals(pivotEntry, ops.zero())) {
-      matrix = RowOperations.multiplyRowByScalar(
-        matrix,
-        pivotRow,
-        matrix.ops().getMultiplicativeInverse(pivotEntry)
-      );
+      // cast from ScalarType|undefined to ScalarType, since pivotEntry is not 0
+      const pivotInverse = ops.getMultiplicativeInverse(pivotEntry) as ScalarType;
+      matrix = RowOperations.multiplyRowByScalar(matrix, pivotRow, pivotInverse);
     }
 
     matrix = clearEntriesBelow(matrix, pivotRow, pivotColumn);
