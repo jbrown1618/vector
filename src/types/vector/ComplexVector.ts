@@ -1,9 +1,10 @@
-import { ArrayVector } from './ArrayVector';
-import { ComplexNumber } from '../scalar/ComplexNumber';
-import { VectorConstructor, VectorData } from './Vector';
-import { ComplexMatrix, VectorBuilder } from '../../index';
 import { StaticImplements } from '../../utilities/StaticImplements';
 import { ComplexNumberOperations } from '../scalar/ComplexNumberOperations';
+import { ComplexMatrix } from '../matrix/ComplexMatrix';
+import { VectorConstructor, VectorData } from './Vector';
+import { VectorBuilder } from './VectorBuilder';
+import { ComplexNumber } from '../scalar/ComplexNumber';
+import { ArrayVector } from './ArrayVector';
 
 /**
  * Implements `Vector` as an array of `ComplexNumber`s

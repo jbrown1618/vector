@@ -1,5 +1,5 @@
 /**
- * Ensures that the static part of a class implements a certain interface.
+ * Ensures at compile time that the static part of a class implements a certain interface.
  * Usage:
  *
  * ```

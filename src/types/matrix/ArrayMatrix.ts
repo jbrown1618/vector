@@ -1,8 +1,9 @@
 import { Matrix, MatrixData, MatrixEntryCallback } from './Matrix';
-import { Vector, VectorData } from '../vector/Vector';
 import { assertRectangular, assertValidMatrixIndex } from '../../utilities/ErrorAssertions';
 import { ScalarOperations } from '../scalar/ScalarOperations';
-import { MatrixBuilder, VectorBuilder } from '../../index';
+import { MatrixBuilder } from './MatrixBuilder';
+import { Vector, VectorData } from '../vector/Vector';
+import { VectorBuilder } from '../vector/VectorBuilder';
 
 /**
  * Implements `Matrix` with a 2-dimensional array of values.
@@ -34,7 +35,7 @@ export abstract class ArrayMatrix<ScalarType> implements Matrix<ScalarType> {
     const adjointData: MatrixData<ScalarType> = [];
     transposedData.forEach((row, i) => {
       adjointData[i] = [];
-      row.forEach((entry, j) => {
+      row.forEach((entry: ScalarType, j: number) => {
         adjointData[i][j] = this.ops().conjugate(entry);
       });
     });

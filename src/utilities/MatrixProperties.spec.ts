@@ -1,5 +1,6 @@
-import { isSquare, NumberMatrix } from '..';
 import { expect } from 'chai';
+import { NumberMatrix } from '../types/matrix/NumberMatrix';
+import { isSquare } from './MatrixProperties';
 
 describe('MatrixProperties', () => {
   describe('isSquare', () => {

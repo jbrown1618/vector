@@ -1,4 +1,4 @@
-import { Matrix } from '..';
+import { Matrix } from '../types/matrix/Matrix';
 import { assertSquare } from '../utilities/ErrorAssertions';
 
 /**

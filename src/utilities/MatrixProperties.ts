@@ -1,4 +1,4 @@
-import { Matrix } from '..';
+import { Matrix } from '../types/matrix/Matrix';
 
 /**
  * @param {Matrix<any>} matrix

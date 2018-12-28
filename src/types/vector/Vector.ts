@@ -1,6 +1,7 @@
+import { MatrixBuilder } from '../matrix/MatrixBuilder';
 import { Matrix } from '../matrix/Matrix';
 import { ScalarOperations } from '../scalar/ScalarOperations';
-import { MatrixBuilder, VectorBuilder } from '../../index';
+import { VectorBuilder } from './VectorBuilder';
 
 export type VectorData<ScalarType> = Array<ScalarType>;
 
