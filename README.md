@@ -1,38 +1,40 @@
 # Vector
 
-Vector is a linear algebra library for Typescript and JavaScript.
+A linear algebra library written in TypeScript that focuses on generality, extensibility, and ease of use.
+
+## Features
+
+- Basic manipulation of vectors and matrices
+- Out-of-the-box support for `number` and `ComplexNumber`
+- Extensible to support general scalar types
+- Matrix determinants
+- Elementary row operations
+- Gauss-Jordan elimination
+- Differentiation via finite differences
+- And more to come!
+
+## Design Priorities
+
+- Generality
+- Extensibility
+- Ease of use
+- Immutability
+
+Notably absent from this list is performance. Better solutions (and languages)
+exist for performing heavy linear algebra computations.
 
 ## Using Vector
 
-Vector is not yet published to npm. If you want to try it out anyway, you can clone the repository
-and include the cloned directory in your package.json:
-
-```
-"dependencies": {
-  ...
-  "vector": "./relative/path/to/vector",
-  ...
-}
-```
+See our [Usage Guide](./docs/Usage-Guide.md) for more on how to use **Vector** in your project.
 
 ## Contributing to Vector
 
-Getting set up is easy! All you need is npm and git.
+See our [Contribution Guide](./docs/Contribution-Guide.md) for contribution guidelines and coding standards.
 
-```bash
-git clone https://github.com/jbrown1618/vector.git
-cd ./vector
-npm i
-npm test
-```
+## Documentation
 
-### Checking unit test coverage
-
-```bash
-npm run test-coverage
-```
-
-### Generating documentation
+Since this is still in very preliminary stages, the documentation is not
+published anywhere. You can generate it for yourself as follows:
 
 ```bash
 npm run docs

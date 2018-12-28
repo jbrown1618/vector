@@ -1,4 +1,6 @@
-import { NumberMatrix, NumberVector, VectorIndexFunction } from '..';
+import { NumberMatrix } from '../types/matrix/NumberMatrix';
+import { NumberVector } from '../types/vector/NumberVector';
+import { VectorIndexFunction } from '../types/vector/VectorBuilder';
 
 /**
  * Builds a vector of `binCount` evenly spaces numbers between `xMin` (inclusive) and `xMax` (exclusive).

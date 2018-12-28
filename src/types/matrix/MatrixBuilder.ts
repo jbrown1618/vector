@@ -1,6 +1,7 @@
-import { Matrix, MatrixConstructor, MatrixData, Vector } from '../../index';
-import { assertHomogeneous, assertValidMatrixIndex } from '../../utilities/ErrorAssertions';
+import { Vector } from '../vector/Vector';
+import { Matrix, MatrixConstructor, MatrixData } from './Matrix';
 import { ScalarOperations } from '../scalar/ScalarOperations';
+import { assertHomogeneous, assertValidMatrixIndex } from '../../utilities/ErrorAssertions';
 
 export type MatrixIndexFunction<ScalarType> = (i: number, j: number) => ScalarType;
 export type MatrixEntryFunction<ScalarType> = (

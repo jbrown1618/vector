@@ -1,8 +1,9 @@
-import { Vector, VectorData } from './Vector';
+import { MatrixBuilder } from '../matrix/MatrixBuilder';
 import { Matrix } from '../matrix/Matrix';
-import { assertValidVectorIndex } from '../../utilities/ErrorAssertions';
 import { ScalarOperations } from '../scalar/ScalarOperations';
-import { MatrixBuilder, VectorBuilder } from '../../index';
+import { VectorBuilder } from './VectorBuilder';
+import { assertValidVectorIndex } from '../../utilities/ErrorAssertions';
+import { Vector, VectorData } from './Vector';
 
 export type SparseVectorData<ScalarType> = Map<number, ScalarType>;
 

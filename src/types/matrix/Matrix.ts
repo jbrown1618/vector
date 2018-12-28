@@ -1,7 +1,8 @@
-import { LinearTransformation } from './LinearTransformation';
 import { Vector, VectorData } from '../vector/Vector';
 import { ScalarOperations } from '../scalar/ScalarOperations';
-import { MatrixBuilder, VectorBuilder } from '../../index';
+import { MatrixBuilder } from './MatrixBuilder';
+import { VectorBuilder } from '../vector/VectorBuilder';
+import { LinearTransformation } from './LinearTransformation';
 
 export type MatrixData<ScalarType> = Array<VectorData<ScalarType>>;
 export type MatrixEntryCallback<ScalarType> = (

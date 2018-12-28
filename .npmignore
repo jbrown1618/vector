@@ -1,0 +1,6 @@
+# Code coverage reports
+coverage/
+.nyc_output/
+
+# IDE Configuration
+.idea/

@@ -1,7 +1,8 @@
 import { describe, it } from 'mocha';
 import { expect } from 'chai';
+import { NumberMatrix } from '../types/matrix/NumberMatrix';
 import { inverse, reducedRowEchelonForm, rowEchelonForm } from './GaussJordan';
-import { Matrix, NumberMatrix } from '..';
+import { Matrix } from '../types/matrix/Matrix';
 
 describe('GaussJordan', () => {
   describe('rowEchelonForm', () => {

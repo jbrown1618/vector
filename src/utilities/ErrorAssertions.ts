@@ -1,4 +1,5 @@
-import { Matrix, MatrixData, Vector } from '..';
+import { Matrix, MatrixData } from '../types/matrix/Matrix';
+import { Vector } from '../types/vector/Vector';
 
 /**
  * Throws an error of the 2d array `data` is not square - i.e. if

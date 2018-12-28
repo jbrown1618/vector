@@ -1,17 +1,18 @@
 {
-  "name": "vector",
+  "name": "@jbrown/vector",
   "version": "0.0.1",
-  "description": "Linear algebra library for Typescript and JavaScript",
+  "author": "Joshua Brown",
+  "license": "ISC",
+  "description": "A linear algebra library written in TypeScript that focuses on generality, extensibility, and ease of use.",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "test": "mocha -r ts-node/register src/**/*.spec.ts **/*.spec.ts",
     "test-coverage": "nyc --extension=.ts --exclude=**/*.spec.ts mocha -r ts-node/register src/**/*.spec.ts **/*.spec.ts",
     "format": "prettier --write",
-    "docs": "typedoc --out ./docs/ --readme ./README.md --theme minimal --exclude **/*.spec.ts --excludePrivate ./src/"
+    "docs": "typedoc --out ./docs-generated/ --readme none --theme minimal --exclude '**/+(*.spec.ts|index.ts)' --excludePrivate ./src/"
   },
-  "author": "Joshua Brown",
-  "license": "ISC",
   "dependencies": {},
   "devDependencies": {
     "@types/chai": "^4.1.4",

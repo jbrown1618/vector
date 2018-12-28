@@ -1,6 +1,7 @@
 import { RowOperations } from './RowOperations';
-import { Matrix, VectorData } from '..';
+import { Matrix } from '../types/matrix/Matrix';
 import { assertSquare } from '../utilities/ErrorAssertions';
+import { VectorData } from '../types/vector/Vector';
 
 /**
  * Uses Gauss-Jordan elimination to calculate the inverse of a matrix.
