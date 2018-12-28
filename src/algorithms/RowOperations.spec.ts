@@ -1,7 +1,7 @@
 import { describe, it } from 'mocha';
 import { expect } from 'chai';
+import { NumberMatrix } from '../types/matrix/NumberMatrix';
 import { RowOperations } from './RowOperations';
-import { NumberMatrix } from '..';
 
 describe('RowOperations', () => {
   const original = NumberMatrix.builder().fromData([[1, 2, 3], [4, 5, 6], [7, 8, 9]]);

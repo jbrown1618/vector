@@ -1,8 +1,8 @@
+import { approximatelyEqual } from '../../utilities/NumberUtilities';
+
 /**
  * Numbers of the form _a + bi_ where _i_ is the imaginary unit.
  */
-import { approximatelyEqual } from '../../utilities/NumberUtilities';
-
 export class ComplexNumber {
   public static readonly ZERO = new ComplexNumber(0, 0);
   public static readonly ONE = new ComplexNumber(1, 0);

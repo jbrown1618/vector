@@ -1,5 +1,5 @@
-import { approximatelyEqual } from './NumberUtilities';
 import { expect } from 'chai';
+import { approximatelyEqual } from './NumberUtilities';
 
 describe('NumberUtilities', () => {
   describe('approximatelyEqual', () => {

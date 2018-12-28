@@ -1,5 +1,6 @@
 import { describe, it } from 'mocha';
 import { expect } from 'chai';
+import { NumberVector } from '../types/vector/NumberVector';
 import {
   backwardDifferenceMatrix,
   centralDifferenceMatrix,
@@ -7,7 +8,7 @@ import {
   forwardDifferenceMatrix,
   linspace
 } from './FiniteDifferences';
-import { NumberMatrix, NumberVector } from '..';
+import { NumberMatrix } from '../types/matrix/NumberMatrix';
 
 describe('FiniteDifferences', () => {
   describe('linspace', () => {
