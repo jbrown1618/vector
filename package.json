@@ -1,6 +1,6 @@
 {
   "name": "@josh-brown/vector",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Joshua Brown",
   "license": "ISC",
   "description": "A linear algebra library written in TypeScript that focuses on generality, extensibility, and ease of use.",
