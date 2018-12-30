@@ -11,7 +11,7 @@
     "test": "mocha -r ts-node/register src/**/*.spec.ts **/*.spec.ts",
     "test-coverage": "nyc --extension=.ts --exclude=**/*.spec.ts mocha -r ts-node/register src/**/*.spec.ts **/*.spec.ts",
     "format": "prettier --write",
-    "docs": "typedoc --out ./docs-generated/ --readme none --theme minimal --exclude '**/+(*.spec.ts|index.ts)' --excludePrivate ./src/"
+    "docs": "typedoc --out ./api-docs/ --readme none --theme minimal --exclude '**/+(*.spec.ts|index.ts)' --excludePrivate ./src/"
   },
   "dependencies": {},
   "devDependencies": {
