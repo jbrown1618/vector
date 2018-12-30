@@ -43,6 +43,16 @@ export function assertHomogeneous(vectors: Array<Vector<any>>): void {
 }
 
 /**
+ * Throws an error if empty
+ */
+export function assertNonEmpty(values: any[]) {
+  if (values.length > 0) {
+    return;
+  }
+  throw Error('TODO - message');
+}
+
+/**
  * Throws an error if `index` is not a valid identifier for an entry in `vector`
  */
 export function assertValidVectorIndex(vector: Vector<any>, index: number): void {

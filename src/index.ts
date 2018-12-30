@@ -1,6 +1,7 @@
 export * from './algorithms/Determinant';
 export * from './algorithms/FiniteDifferences';
 export * from './algorithms/GaussJordan';
+export * from './algorithms/LeastSquares';
 export * from './algorithms/RowOperations';
 export * from './types/matrix/ArrayMatrix';
 export * from './types/matrix/ComplexMatrix';

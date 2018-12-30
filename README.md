@@ -11,6 +11,7 @@ A linear algebra library written in TypeScript that focuses on generality, exten
 - Elementary row operations
 - Gauss-Jordan elimination
 - Differentiation via finite differences
+- Least-Squares Regression for arbitrary model functions
 - And more to come!
 
 ## Design Priorities
