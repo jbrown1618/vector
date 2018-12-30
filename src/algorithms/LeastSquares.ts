@@ -3,21 +3,51 @@ import { Vector } from '../types/vector/Vector';
 import { inverse } from './GaussJordan';
 import { assertHomogeneous, assertNonEmpty } from '../utilities/ErrorAssertions';
 
-export type DataPoint<ScalarType> = Vector<ScalarType>;
-
+/**
+ * The result of a least squares approximation.
+ *
+ * - `coefficiencts`: a vector whose entries correspond to the coefficients which must
+ *     be plugged into the function template to yield the best approximation function
+ * - `approximationFunction`: a function which takes a vector of the independent variable
+ *     values, and returns the predicted value of the dependent variable
+ */
 export type LeastSquaresApproximation<ScalarType> = {
   coefficients: Vector<ScalarType>;
   approximationFunction: ApproximationFunction<ScalarType>;
 };
 
+/**
+ * A function that takes a vector of inputs and produces an output.  This must always
+ * be a pure function that is linear in its coefficients.
+ */
 export type ApproximationFunction<ScalarType> = (input: Vector<ScalarType>) => ScalarType;
 
+/**
+ * A higher-order function which is used to generate an `ApproximationFunction`.  This
+ * must be linear in its coefficients, or the result of the linear regression will not
+ * be correct.
+ */
 export type ApproximationFunctionTemplate<ScalarType> = (
   coefficients: Vector<ScalarType>
 ) => ApproximationFunction<ScalarType>;
 
+/**
+ * Calculates a linear regression model for the provided `dataPoints`.
+ * The result is an object which has:
+ *
+ * - `coefficiencts`: a vector whose first entry is the constant term, and whose
+ *     following entries are the coefficients for the other independent variables, in
+ *     the same order they appear in the `dataPoints`
+ * - `approximationFunction`: a function which takes a vector of the independent variable
+ *     values, and returns the predicted value of the dependent variable
+ *
+ * @param {Vector<ScalarType>[]} dataPoints - an array of vectors, each of which
+ *    represents a single data point where the last entry is the variable to be predicted,
+ *    and the other entries are the values of the independent variables
+ * @returns {LeastSquaresApproximation<ScalarType>} - the result of the linear regression
+ */
 export function calculateLinearLeastSquaresApproximation<ScalarType>(
-  dataPoints: DataPoint<ScalarType>[]
+  dataPoints: Vector<ScalarType>[]
 ): LeastSquaresApproximation<ScalarType> {
   assertNonEmpty(dataPoints);
   assertHomogeneous(dataPoints);
@@ -43,8 +73,25 @@ export function calculateLinearLeastSquaresApproximation<ScalarType>(
   );
 }
 
+/**
+ * Calculates a regression model for an arbitrary function.
+ * The result is on object which has:
+ *
+ * - `coefficiencts`: a vector whose entries correspond to the coefficients which must
+ *     be plugged into the function template to yield the best approximation function
+ * - `approximationFunction`: a function which takes a vector of the independent variable
+ *     values, and returns the predicted value of the dependent variable
+ *
+ * @param {Vector<ScalarType>} dataPoints - the data used to construct the approximation
+ * @param {ApproximationFunctionTemplate<ScalarType>} functionTemplate - a higher-order
+ *     function which takes a vector of coefficients and yields a new function which takes
+ *     a vector of independent variables to produce a value for the dependent variable
+ * @param {number} numberOfTerms - the number of coefficients needed to produce
+ *     the approximation function
+ * @returns {LeastSquaresApproximation<ScalarType>} - the result of the linear regression
+ */
 export function calculateGeneralLeastSquaresApproximation<ScalarType>(
-  dataPoints: DataPoint<ScalarType>[],
+  dataPoints: Vector<ScalarType>[],
   functionTemplate: ApproximationFunctionTemplate<ScalarType>,
   numberOfTerms: number
 ): LeastSquaresApproximation<ScalarType> {
@@ -92,7 +139,7 @@ export function calculateGeneralLeastSquaresApproximation<ScalarType>(
  * A.transpose().multiply(A).apply(x) === A.transpose().apply(b)
  * ```
  *
- * This function returns the approximate solution _x_, or undefined
+ * This function returns the approximate solution _x_, or `undefined`
  * if _x_ does not exist
  *
  * @param {Matrix<ScalarType>} A - the matrix _A_ in _Ax = b_
