@@ -64,7 +64,7 @@ export abstract class SparseVector<ScalarType> implements Vector<ScalarType> {
     this._sparseData.forEach((value, index) => {
       innerProduct = this.ops().add(
         innerProduct,
-        this.ops().multiply(value, other.getEntry(index))
+        this.ops().multiply(value, this.ops().conjugate(other.getEntry(index)))
       );
     });
     return innerProduct;
