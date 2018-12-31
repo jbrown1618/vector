@@ -53,6 +53,23 @@ export interface Vector<ScalarType> {
   innerProduct(other: Vector<ScalarType>): ScalarType;
 
   /**
+   * @returns {ScalarType} the Euclidean norm of the vector
+   */
+  norm(): ScalarType;
+
+  /**
+   * @returns {Vector<ScalarType>} a new vector with the same direction
+   *     but magnitude 1, or `undefined` if it is the zero vector
+   */
+  normalize(): Vector<ScalarType> | undefined;
+
+  /**
+   * @param u - the vector on which to project this
+   * @returns this vector projected onto `u`
+   */
+  projectOnto(u: Vector<ScalarType>): Vector<ScalarType>;
+
+  /**
    * @param {Vector<ScalarType>} other
    * @returns {Matrix<ScalarType>}  The outer product
    */

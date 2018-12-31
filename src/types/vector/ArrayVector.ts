@@ -72,6 +72,29 @@ export abstract class ArrayVector<ScalarType> implements Vector<ScalarType> {
     return this.matrixBuilder().fromData(matrixData);
   }
 
+  norm(): ScalarType {
+    return this.ops().getPrincipalSquareRoot(this.innerProduct(this));
+  }
+
+  normalize(): Vector<ScalarType> | undefined {
+    const oneOverNorm = this.ops().getMultiplicativeInverse(this.norm());
+    if (oneOverNorm === undefined) {
+      return undefined;
+    }
+    return this.scalarMultiply(oneOverNorm);
+  }
+
+  projectOnto(u: Vector<ScalarType>) {
+    const oneOverUDotU = this.ops().getMultiplicativeInverse(u.innerProduct(u));
+    if (oneOverUDotU === undefined) {
+      throw Error('TODO - cannot project onto the zero vector');
+    }
+
+    const uDotV = u.innerProduct(this);
+    const magnitudeOfProjection = this.ops().multiply(uDotV, oneOverUDotU);
+    return u.scalarMultiply(magnitudeOfProjection);
+  }
+
   scalarMultiply(scalar: ScalarType): Vector<ScalarType> {
     return this.builder().fromData(this.getData().map(entry => this.ops().multiply(entry, scalar)));
   }
