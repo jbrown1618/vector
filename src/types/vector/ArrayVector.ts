@@ -49,7 +49,9 @@ export abstract class ArrayVector<ScalarType> implements Vector<ScalarType> {
     assertHomogeneous([this, other]);
 
     return this._data
-      .map((entry, index) => this.ops().multiply(entry, other.getEntry(index)))
+      .map((entry, index) =>
+        this.ops().multiply(entry, this.ops().conjugate(other.getEntry(index)))
+      )
       .reduce(this.ops().add, this.ops().zero());
   }
 

@@ -96,20 +96,19 @@ describe('ComplexVector', () => {
 
   describe('innerProduct', () => {
     it('computes a scalar product of two vectors', () => {
-      const two = new ComplexNumber(2, 0);
-      const three = new ComplexNumber(3, 0);
-      const four = new ComplexNumber(4, 0);
-      const five = new ComplexNumber(5, 0);
+      const first = new ComplexNumber(2, 1);
+      const second = new ComplexNumber(3, -2);
+      const third = new ComplexNumber(4, -1);
+      const fourth = new ComplexNumber(5, 2);
 
-      const first = builder.fromValues(two, three, four);
-      const second = builder.fromValues(three, four, five);
+      const v1 = builder.fromValues(first, second);
+      const v2 = builder.fromValues(third, fourth);
 
-      const expectedInnerProduct = two
-        .multiply(three)
-        .add(three.multiply(four))
-        .add(four.multiply(five));
+      const expectedInnerProduct = first
+        .multiply(third.conjugate())
+        .add(second.multiply(fourth.conjugate())); // 18 - 10i
 
-      expect(first.innerProduct(second)).to.deep.equal(expectedInnerProduct);
+      expect(v1.innerProduct(v2)).to.deep.equal(expectedInnerProduct);
     });
 
     it('throws an error when the dimensions do not match', () => {
