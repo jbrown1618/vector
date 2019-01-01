@@ -22,7 +22,10 @@ This will happen automatically every time you commit.
 ### Naming
 
 - Prefer long, descriptive names.
-- Accept short names only to match well-known libraries (e.g. `linspace` matches NumPy and MATLAB/Octave)
+  - Exception: accept short names only to match well-known libraries
+    (e.g. `linspace` matches NumPy and MATLAB/Octave)
+  - Exception: accept short names to adhere to mathematical convention
+    (e.g. `A` is a good name for a generic matrix when solving a system _Ax = b_)
 - Prefix private member variables with an underscore
   - JavaScript consumers do not have the compiler to tell them they shouldn't be using the private part of your class.
 

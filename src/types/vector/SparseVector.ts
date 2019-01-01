@@ -114,4 +114,27 @@ export abstract class SparseVector<ScalarType> implements Vector<ScalarType> {
   getDimension(): number {
     return this._dimension;
   }
+
+  norm(): ScalarType {
+    return this.ops().getPrincipalSquareRoot(this.innerProduct(this));
+  }
+
+  normalize(): Vector<ScalarType> | undefined {
+    const oneOverNorm = this.ops().getMultiplicativeInverse(this.norm());
+    if (oneOverNorm === undefined) {
+      return undefined;
+    }
+    return this.scalarMultiply(oneOverNorm);
+  }
+
+  projectOnto(u: Vector<ScalarType>) {
+    const oneOverUDotU = this.ops().getMultiplicativeInverse(u.innerProduct(u));
+    if (oneOverUDotU === undefined) {
+      throw Error('TODO - cannot project onto the zero vector');
+    }
+
+    const uDotV = u.innerProduct(this);
+    const magnitudeOfProjection = this.ops().multiply(uDotV, oneOverUDotU);
+    return u.scalarMultiply(magnitudeOfProjection);
+  }
 }

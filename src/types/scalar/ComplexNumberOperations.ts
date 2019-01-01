@@ -26,6 +26,26 @@ export class ComplexNumberOperations extends ScalarOperations<ComplexNumber> {
     return first.multiply(second);
   }
 
+  getPrincipalSquareRoot(x: ComplexNumber): ComplexNumber {
+    const r = Math.sqrt(Math.pow(x.getRealPart(), 2) + Math.pow(x.getImaginaryPart(), 2));
+    const theta = Math.atan(x.getImaginaryPart() / x.getRealPart());
+    const rootR = Math.sqrt(r);
+
+    const real = rootR * Math.cos(theta / 2);
+    const imag = rootR * Math.sin(theta / 2);
+
+    // As with real numbers, x^2 = y has two solutions for all complex y.
+    // Unlike with real numbers, there is not really a standard for which
+    // value we accept as the principal value for the square root function.
+    // However, for our purposes (calculating vector norms), it is useful
+    // to choose the value for which the real part is positive.
+    if (real > 0) {
+      return new ComplexNumber(real, imag);
+    } else {
+      return new ComplexNumber(-real, -imag);
+    }
+  }
+
   equals(first: ComplexNumber, second: ComplexNumber): boolean {
     return first.equals(second);
   }

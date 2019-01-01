@@ -92,4 +92,6 @@ export abstract class ScalarOperations<ScalarType> {
    * @returns {ScalarType}  The multiplicative inverse
    */
   abstract getMultiplicativeInverse(x: ScalarType): ScalarType | undefined;
+
+  abstract getPrincipalSquareRoot(x: ScalarType): ScalarType;
 }

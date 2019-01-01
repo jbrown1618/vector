@@ -29,6 +29,10 @@ export class NumberOperations extends ScalarOperations<number> {
     return 1 / x;
   }
 
+  getPrincipalSquareRoot(x: number): number {
+    return Math.sqrt(x);
+  }
+
   multiply(first: number, second: number): number {
     return first * second;
   }

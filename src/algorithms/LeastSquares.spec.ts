@@ -1,12 +1,13 @@
 import { describe, it } from 'mocha';
 import { expect } from 'chai';
+import { NumberMatrix } from '../types/matrix/NumberMatrix';
 import { NumberVector } from '../types/vector/NumberVector';
+import { Vector } from '../types/vector/Vector';
 import {
   calculateGeneralLeastSquaresApproximation,
   calculateLinearLeastSquaresApproximation,
   solveOverdeterminedSystem
 } from './LeastSquares';
-import { NumberMatrix, Vector } from '..';
 
 describe('LeastSquares', () => {
   const vectorBuilder = NumberVector.builder();
