@@ -1,7 +1,11 @@
 import { Vector } from '../vector/Vector';
 import { Matrix, MatrixConstructor, MatrixData } from './Matrix';
 import { ScalarOperations } from '../scalar/ScalarOperations';
-import { assertHomogeneous, assertValidMatrixIndex } from '../../utilities/ErrorAssertions';
+import {
+  assertHomogeneous,
+  assertValidDimensions,
+  assertValidMatrixIndex
+} from '../../utilities/ErrorAssertions';
 
 export type MatrixIndexFunction<ScalarType> = (i: number, j: number) => ScalarType;
 export type MatrixEntryFunction<ScalarType> = (
@@ -25,42 +29,24 @@ export class MatrixBuilder<
     return this._matrixConstructor.ops();
   }
 
-  /**
-   * Returns a 0x0 matrix
-   *
-   * ```
-   * matrixBuilder.empty(); // []
-   * ```
-   */
-  empty(): MatrixType {
-    return new this._matrixConstructor([]);
-  }
-
   fromData(data: MatrixData<ScalarType>): MatrixType {
     return new this._matrixConstructor(data);
   }
 
-  fromIndexFunction(
-    numRows: number,
-    numColumns: number,
-    indexFunction: MatrixIndexFunction<ScalarType>
-  ) {
-    const data: MatrixData<ScalarType> = [];
-    for (let i = 0; i < numRows; i++) {
-      data[i] = [];
-      for (let j = 0; j < numColumns; j++) {
-        data[i][j] = indexFunction(i, j);
-      }
-    }
-    return new this._matrixConstructor(data);
-  }
-
-  map(matrix: Matrix<ScalarType>, entryFunction: MatrixEntryFunction<ScalarType>) {
-    return this.fromIndexFunction(matrix.getNumberOfRows(), matrix.getNumberOfColumns(), (i, j) =>
-      entryFunction(matrix.getEntry(i, j), i, j)
-    );
-  }
-
+  /**
+   * Builds a matrix from an array of column vectors
+   *
+   * ```
+   * const firstColumn = vectorBuilder.fromData([ 1, 2, 3 ]);
+   * const secondColumn = vectorBuilder.fromData([ 4, 5, 6 ]);
+   *
+   * const matrix = matrixBuilder.fromColumnVectors([ firstColumn, secondColumn ]);
+   * // [ 1 4 ]
+   * // [ 2 5 ]
+   * // [ 3 6 ]
+   * ```
+   * @param columns
+   */
   fromColumnVectors(columns: Vector<ScalarType>[]): MatrixType {
     assertHomogeneous(columns);
     const numberOfColumns = columns.length;
@@ -75,6 +61,21 @@ export class MatrixBuilder<
     return this.fromIndexFunction(numberOfRows, numberOfColumns, (i, j) => columns[j].getEntry(i));
   }
 
+  /**
+   * Builds a matrix from an array of row vectors
+   *
+   * ```
+   * const firstRow = vectorBuilder.fromData([ 1, 2, 3 ]);
+   * const secondRow = vectorBuilder.fromData([ 4, 5, 6 ]);
+   *
+   * const matrix = matrixBuilder.fromRowVectors([ firstRow, secondRow ]);
+   * // [ 1 2 3 ]
+   * // [ 4 5 6 ]
+   * ```
+   *
+   * @param rows
+   * @returns {MatrixType}
+   */
   fromRowVectors(rows: Vector<ScalarType>[]): MatrixType {
     assertHomogeneous(rows);
     const numberOfRows = rows.length;
@@ -87,6 +88,100 @@ export class MatrixBuilder<
     }
 
     return this.fromIndexFunction(numberOfRows, numberOfColumns, (i, j) => rows[i].getEntry(j));
+  }
+
+  /**
+   * Builds a matrix with entries given by _entry = f(i, j)_ where _f_ is `indexFunction`
+   * and `i` and `j` are the indices of the element
+   *
+   * ```
+   * matrixBuilder.fromIndexFunction(3, 4, (i, j) => i + j + 3);
+   * // [ 3 4 5 6 ]
+   * // [ 4 5 6 7 ]
+   * // [ 5 6 7 8 ]
+   * ```
+   * @param {number} numRows
+   * @param {number} numColumns
+   * @param {MatrixIndexFunction} indexFunction  A function returning the entry for a given `i`, `j`
+   * @returns {MatrixType}
+   */
+  fromIndexFunction(
+    numRows: number,
+    numColumns: number,
+    indexFunction: MatrixIndexFunction<ScalarType>
+  ): MatrixType {
+    assertValidDimensions(numRows, numColumns);
+    const data: MatrixData<ScalarType> = [];
+    for (let i = 0; i < numRows; i++) {
+      data[i] = [];
+      for (let j = 0; j < numColumns; j++) {
+        data[i][j] = indexFunction(i, j);
+      }
+    }
+    return new this._matrixConstructor(data);
+  }
+
+  /**
+   * Builds a matrix by transforming the values of another matrix.
+   *
+   * ```
+   * const original = matrixBuilder.fromData([
+   *   [ 1, 2, 3 ]
+   *   [ 4, 5, 6 ]
+   * ]);
+   *
+   * const originalPlusOne = matrixBuilder.map(original, (value) => value + 1);
+   * // [ 2 3 4 ]
+   * // [ 5 6 7 ]
+   *
+   * const originalPlusIMinusJ = vectorBuilder.map(original, (value, i, j) => value + i - j);
+   * // [ 1 1 1 ]
+   * // [ 5 5 5 ]
+   * ```
+   * @param {Matrix<ScalarType>} matrix  The matrix on whose entries to base the entries of the new matrix
+   * @param {MatrixEntryFunction<ScalarType>} entryFunction  A function which takes an entry of
+   *     the original matrix and its indices, and returns the corresponding entry of the new matrix
+   * @returns {VectorType}
+   */
+  map(matrix: Matrix<ScalarType>, entryFunction: MatrixEntryFunction<ScalarType>): MatrixType {
+    return this.fromIndexFunction(matrix.getNumberOfRows(), matrix.getNumberOfColumns(), (i, j) =>
+      entryFunction(matrix.getEntry(i, j), i, j)
+    );
+  }
+
+  /**
+   * Returns a 0x0 matrix
+   *
+   * ```
+   * matrixBuilder.empty(); // []
+   * ```
+   */
+  empty(): MatrixType {
+    return new this._matrixConstructor([]);
+  }
+
+  /**
+   * Returns a matrix of the specified dimension, whose entries are all the specified value
+   *
+   * ```
+   * matrixBuilder.fill(2, 3, 4)
+   *
+   * // [ 2 2 2 2 ]
+   * // [ 2 2 2 2 ]
+   * // [ 2 2 2 2 ]
+   * ```
+   *
+   * @param {ScalarType} value
+   * @param {number} numberOfRows
+   * @param {number} numberOfColumns
+   * @returns {MatrixType}
+   */
+  fill(
+    value: ScalarType,
+    numberOfRows: number,
+    numberOfColumns: number = numberOfRows
+  ): MatrixType {
+    return this.fromIndexFunction(numberOfRows, numberOfColumns, () => value);
   }
 
   /**
@@ -103,7 +198,7 @@ export class MatrixBuilder<
    * @returns {MatrixType}
    */
   zeros(numberOfRows: number, numberOfColumns: number = numberOfRows): MatrixType {
-    return this.fromIndexFunction(numberOfRows, numberOfColumns, () => this.ops().zero());
+    return this.fill(this.ops().zero(), numberOfRows, numberOfColumns);
   }
 
   /**
@@ -120,7 +215,7 @@ export class MatrixBuilder<
    * @returns {MatrixType}
    */
   ones(numberOfRows: number, numberOfColumns: number = numberOfRows): MatrixType {
-    return this.fromIndexFunction(numberOfRows, numberOfColumns, () => this.ops().one());
+    return this.fill(this.ops().one(), numberOfRows, numberOfColumns);
   }
 
   /**
@@ -141,6 +236,50 @@ export class MatrixBuilder<
       size,
       size,
       (i, j) => (i === j ? this.ops().one() : this.ops().zero())
+    );
+  }
+
+  /**
+   * Returns a matrix of the specified size whose entries are (uniformly-distributed) random
+   * numbers between `min` and `max`
+   *
+   * @param numberOfRows
+   * @param numberOfColumns
+   * @param min
+   * @param max
+   */
+  random(
+    numberOfRows: number,
+    numberOfColumns: number = numberOfRows,
+    min: number = 0,
+    max: number = 1
+  ): MatrixType {
+    if (min >= max) {
+      throw Error('TODO - message');
+    }
+    return this.fromIndexFunction(numberOfRows, numberOfColumns, () => this.ops().random(min, max));
+  }
+
+  /**
+   * Returns a matrix of the specified size whose entries are normally distributed with the
+   * specified mean and standard deviation.
+   *
+   * @param numberOfRows
+   * @param numberOfColumns
+   * @param mean
+   * @param standardDeviation
+   */
+  randomNormal(
+    numberOfRows: number,
+    numberOfColumns: number = numberOfRows,
+    mean: number = 0,
+    standardDeviation: number = 1
+  ): MatrixType {
+    if (standardDeviation <= 0) {
+      throw Error('TODO - message');
+    }
+    return this.fromIndexFunction(numberOfRows, numberOfColumns, () =>
+      this.ops().randomNormal(mean, standardDeviation)
     );
   }
 
@@ -324,7 +463,7 @@ export class MatrixBuilder<
    * @param {number} columns
    * @returns {MatrixType}
    */
-  repeat(matrix: MatrixType, rows: number, columns: number) {
+  repeat(matrix: MatrixType, rows: number, columns: number): MatrixType {
     const grid: Array<Array<MatrixType>> = [];
 
     for (let i = 0; i < rows; i++) {

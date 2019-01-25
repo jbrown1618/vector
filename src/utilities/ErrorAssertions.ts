@@ -53,6 +53,23 @@ export function assertNonEmpty(values: any[]) {
 }
 
 /**
+ * Throws an error if `dimension` is negative
+ */
+export function assertValidDimension(dimension: number): void {
+  if (dimension < 0) {
+    throw Error('TODO - message');
+  }
+}
+
+/**
+ * Throws an error if `numberOfRows` or `numberOfColumns` is negative
+ */
+export function assertValidDimensions(numberOfRows: number, numberOfColumns: number): void {
+  assertValidDimension(numberOfRows);
+  assertValidDimension(numberOfColumns);
+}
+
+/**
  * Throws an error if `index` is not a valid identifier for an entry in `vector`
  */
 export function assertValidVectorIndex(vector: Vector<any>, index: number): void {
