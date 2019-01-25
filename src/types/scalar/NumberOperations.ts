@@ -1,5 +1,5 @@
 import { ScalarOperations } from './ScalarOperations';
-import { approximatelyEqual } from '../../utilities/NumberUtilities';
+import { approximatelyEqual, random, randomNormal } from '../../utilities/NumberUtilities';
 
 export class NumberOperations extends ScalarOperations<number> {
   add(first: number, second: number): number {
@@ -39,5 +39,13 @@ export class NumberOperations extends ScalarOperations<number> {
 
   equals(first: number, second: number): boolean {
     return approximatelyEqual(first, second);
+  }
+
+  random(min: number = 0, max: number = 1): number {
+    return random(min, max);
+  }
+
+  randomNormal(mean: number = 0, standardDeviation: number = 1): number {
+    return randomNormal(mean, standardDeviation);
   }
 }

@@ -1,5 +1,6 @@
 import { ScalarOperations } from './ScalarOperations';
 import { ComplexNumber } from './ComplexNumber';
+import { random, randomNormal } from '../../utilities/NumberUtilities';
 
 export class ComplexNumberOperations extends ScalarOperations<ComplexNumber> {
   conjugate(scalar: ComplexNumber): ComplexNumber {
@@ -52,5 +53,16 @@ export class ComplexNumberOperations extends ScalarOperations<ComplexNumber> {
 
   add(first: ComplexNumber, second: ComplexNumber): ComplexNumber {
     return first.add(second);
+  }
+
+  random(min: number = 0, max: number = 1): ComplexNumber {
+    return new ComplexNumber(random(min, max), random(min, max));
+  }
+
+  randomNormal(mean: number = 0, standardDeviation: number = 1): ComplexNumber {
+    return new ComplexNumber(
+      randomNormal(mean, standardDeviation),
+      randomNormal(mean, standardDeviation)
+    );
   }
 }

@@ -28,6 +28,14 @@ export abstract class ScalarOperations<ScalarType> {
    */
   abstract multiply(first: ScalarType, second: ScalarType): ScalarType;
 
+  divide(numerator: ScalarType, denominator: ScalarType): ScalarType | undefined {
+    var inverseOfSecond = this.getMultiplicativeInverse(denominator);
+    if (inverseOfSecond === undefined) {
+      return undefined;
+    }
+    return this.multiply(numerator, inverseOfSecond);
+  }
+
   /**
    * Returns the complex conjugate of a scalar.
    * For real-valued scalars, this can just be an identity function.
@@ -85,8 +93,12 @@ export abstract class ScalarOperations<ScalarType> {
   }
 
   /**
-   * Returns the unique scalar such that `
-   * multiplyScalars(scalar, getMultiplicativeInverse(scalar)) === getMultiplicativeIdentity()`
+   * Returns the unique scalar such that
+   *
+   * ```
+   * multiplyScalars(scalar, getMultiplicativeInverse(scalar)) === getMultiplicativeIdentity()
+   * ```
+   *
    * is true for `scalar`
    *
    * @returns {ScalarType}  The multiplicative inverse
@@ -94,4 +106,8 @@ export abstract class ScalarOperations<ScalarType> {
   abstract getMultiplicativeInverse(x: ScalarType): ScalarType | undefined;
 
   abstract getPrincipalSquareRoot(x: ScalarType): ScalarType;
+
+  abstract random(min: number, max: number): ScalarType;
+
+  abstract randomNormal(mean: number, standardDeviation: number): ScalarType;
 }

@@ -5,6 +5,28 @@ import { NumberVector } from './NumberVector';
 describe('VectorBuilder', () => {
   const builder = NumberVector.builder();
 
+  describe('fromValues', () => {
+    it('builds a vector whose elements are the provided arguments', () => {
+      const data = [1, 2, 3, 4, 5];
+      expect(builder.fromValues(...data).getData()).to.deep.equal(data);
+    });
+
+    it('handles no arguments', () => {
+      expect(builder.fromValues().getData()).to.deep.equal([]);
+    });
+  });
+
+  describe('fromData', () => {
+    it('builds a vector from an array of data values', () => {
+      const data = [1, 2, 3, 4, 5];
+      expect(builder.fromData(data).getData()).to.deep.equal(data);
+    });
+
+    it('handles an empty array', () => {
+      expect(builder.fromData([]).getData()).to.deep.equal([]);
+    });
+  });
+
   describe('fromSparseData', () => {
     it('builds a vector of all 0s except for the specified entries', () => {
       const sparseData: Map<number, number> = new Map();
@@ -14,6 +36,37 @@ describe('VectorBuilder', () => {
       const expected = builder.fromData([0, 0, 0, 1, 2, 0]);
       expect(V.equals(expected)).to.be.true;
     });
+
+    it('handles an empty map', () => {
+      expect(builder.fromSparseData(5, new Map())).to.deep.equal(builder.zeros(5));
+    });
+  });
+
+  describe('fromIndexFunction', () => {
+    it('builds a vector whose values are determined by a function of their index', () => {
+      const expected = builder.fromData([0, 2, 4, 6, 8]);
+      expect(builder.fromIndexFunction(5, i => i * 2)).to.deep.equal(expected);
+    });
+
+    it('handles size 0', () => {
+      expect(builder.fromIndexFunction(0, i => i)).to.deep.equal(builder.empty());
+    });
+
+    it('rejects a negative size', () => {
+      expect(() => builder.fromIndexFunction(-1, i => i)).to.throw();
+    });
+  });
+
+  describe('map', () => {
+    it('builds a vector by transforming the values of another vector', () => {
+      const original = builder.fromValues(1, 2, 3, 4);
+      const expected = builder.fromValues(1, 3, 5, 7);
+      expect(builder.map(original, (value, index) => value + index)).to.deep.equal(expected);
+    });
+
+    it('handles an empty vector', () => {
+      expect(builder.map(builder.empty(), value => value + 1)).to.deep.equal(builder.empty());
+    });
   });
 
   describe('empty', () => {
@@ -21,6 +74,30 @@ describe('VectorBuilder', () => {
       const E = builder.empty();
       expect(E.getDimension()).to.equal(0);
       expect(E.getData()).to.deep.equal([]);
+    });
+  });
+
+  describe('fill', () => {
+    it('builds a vector whose entries are all equal to the provided value', () => {
+      const testForDimension = (dim: number, value: number) => {
+        const filled = builder.fill(value, dim);
+        expect(filled.getDimension()).to.equal(dim);
+        const allCorrectValue = filled
+          .getData()
+          .map((entry: number) => entry === value)
+          .reduce((all: boolean, current: boolean) => all && current, true);
+        expect(allCorrectValue).to.be.true;
+      };
+
+      for (let dim = 0; dim < 10; dim++) {
+        [-1, 0, 1, 2].forEach(value => {
+          testForDimension(dim, value);
+        });
+      }
+    });
+
+    it('rejects a negative size', () => {
+      expect(() => builder.fill(2, -1)).to.throw();
     });
   });
 
@@ -97,6 +174,68 @@ describe('VectorBuilder', () => {
         expect(() => builder.elementaryVector(dim, dim)).to.throw();
         expect(() => builder.elementaryVector(dim, dim + 1)).to.throw();
       }
+    });
+  });
+
+  describe('random', () => {
+    it('constructs a vector of random numbers between min and max', () => {
+      const bounds = [-1, 0, 1, 2];
+
+      bounds.forEach(min => {
+        bounds.forEach(max => {
+          if (max > min) {
+            const randomVector = builder.random(100, min, max);
+            randomVector.getData().forEach(value => {
+              expect(value).to.be.greaterThan(min);
+              expect(value).to.be.lessThan(max);
+            });
+          }
+        });
+      });
+    });
+
+    it('defaults to min = 0 and max = 1', () => {
+      const randomVector = builder.random(50);
+      randomVector.getData().forEach(value => {
+        expect(value).to.be.greaterThan(0);
+        expect(value).to.be.lessThan(1);
+      });
+    });
+
+    it('throws an error when min > max', () => {
+      expect(() => builder.random(10, 1, 0)).to.throw();
+    });
+  });
+
+  describe('randomNormal', () => {
+    // Technically this test is non-deterministic and will fail in about 0.006% of cases
+    // Ideally we would seed the RNG, but there doesn't seem to be a good way to do that
+
+    it('constructs a vector of numbers randomly drawn from a normal distribution', () => {
+      const means = [-1, 0, 1];
+      const standardDeviations = [1, 2, 10];
+      means.forEach(mean => {
+        standardDeviations.forEach(standardDeviation => {
+          const randomVector = builder.randomNormal(100, mean, standardDeviation);
+          const average = randomVector.getData().reduce((accum, next) => accum + next, 0) / 100;
+
+          const fourSamplingSDFromMean =
+            4 * Math.sqrt((standardDeviation * standardDeviation) / 100);
+          expect(Math.abs(average - mean)).to.be.lessThan(fourSamplingSDFromMean);
+        });
+      });
+    });
+
+    it('defaults to mean=0 and sd=1', () => {
+      const randomVector = builder.randomNormal(100);
+      const average = randomVector.getData().reduce((accum, next) => accum + next, 0) / 100;
+
+      const fourSamplingSDFromMean = 0.4;
+      expect(Math.abs(average)).to.be.lessThan(fourSamplingSDFromMean);
+    });
+
+    it('rejects a negative standard deviation', () => {
+      expect(() => builder.randomNormal(1, 0, -1)).to.throw();
     });
   });
 
