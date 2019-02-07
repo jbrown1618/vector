@@ -70,3 +70,56 @@ Merge requests will only be accepted if:
 - The code coverage for each individual file is above 85%
 
 The only exceptions are abstract classes which do not have any concrete subclasses.
+
+### Documentation
+
+Documentation is generated with [Typedoc](https://typedoc.org/), which uses the standard tsdoc
+format defined by [tsdoc](https://github.com/Microsoft/tsdoc).
+
+- Document all public functions and methods.
+- Always include a summary, `@param`s, and `@returns`
+- Parameters take the form `@param name - Description`. No type annotation is needed.
+- Returns take the form `@returns Description`. Again, no type annotation is needed.
+- When implementing an interface, use `@inheritdoc` to indicate that documentation
+  should be pulled from the parent.
+
+#### Example for formatting (not for content!):
+
+```typescript
+/**
+ * An interface for things which can be done.
+ */
+interface Thing {
+  /**
+   * Does the thing, parametrized by the provided `options`
+   *
+   * @param options - Options that affect how the thing is done
+   */
+  do(options: string[]): void;
+}
+
+/**
+ * A Thing which, when done, logs its options to the `console`
+ */
+class LoggingThing implements Thing {
+  /**
+   * @inheritdoc
+   */
+  do(options: string[]): void {
+    options.forEach(option => console.log(option));
+  }
+}
+
+/**
+ * Does each `Thing` in `things`
+ *
+ * @parameter things - The things to be done
+ * @parameter options - The parameters to be used for every thing
+ * @returns The first thing, because I need an example for `@returns`, or undefined if the first
+ *     thing is unavailable.
+ */
+function doTheThings(things: Thing[], options: string[]): Thing | undefined {
+  things.forEach(thing => thing.do(options));
+  return things.length > 0 ? things[0] : undefined;
+}
+```
