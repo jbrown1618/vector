@@ -23,14 +23,23 @@ export class NumberMatrix extends ArrayMatrix<number> {
     return new VectorBuilder(NumberVector);
   }
 
+  /**
+   * @inheritdoc
+   */
   ops() {
     return NumberMatrix.ops();
   }
 
+  /**
+   * @inheritdoc
+   */
   builder(): MatrixBuilder<number, NumberVector, NumberMatrix> {
     return NumberMatrix.builder();
   }
 
+  /**
+   * @inheritdoc
+   */
   vectorBuilder(): VectorBuilder<number, NumberVector> {
     return NumberMatrix.vectorBuilder();
   }

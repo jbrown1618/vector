@@ -10,10 +10,10 @@ import { VectorIndexFunction } from '../types/vector/VectorBuilder';
  * linspace(0, 1, 5); // [ 0, 0.2, 0.4, 0.6, 0.8 ]
  * ```
  *
- * @param {number} xMin  The smallest value in the vector
- * @param {number} xMax  The largest value in the vector
- * @param {number} binCount  The number of entries
- * @returns {Vector<number>}
+ * @param xMin - The smallest value in the vector
+ * @param xMax - The largest value in the vector
+ * @param binCount - The number of entries
+ * @returns The evenly-spaced vector
  */
 export function linspace(xMin: number, xMax: number, binCount: number): NumberVector {
   if (xMin >= xMax) {
@@ -45,8 +45,8 @@ export function linspace(xMin: number, xMax: number, binCount: number): NumberVe
  * // [  0  0 -1  1 ]
  * // [  0  0  0 -1 ]
  * ```
- * @param {number} binCount  The size of the vector to which the output ought to be applied
- * @returns {Matrix<number>}
+ * @param binCount - The size of the vector to which the output ought to be applied
+ * @returns The forward difference matrix
  */
 export function forwardDifferenceMatrix(binCount: number): NumberMatrix {
   return NumberMatrix.builder().tridiagonal(
@@ -72,8 +72,8 @@ export function forwardDifferenceMatrix(binCount: number): NumberMatrix {
  * // [  0 -1  1  0 ]
  * // [  0  0 -1  1 ]
  * ```
- * @param {number} binCount  The size of the vector to which the output ought to be applied
- * @returns {Matrix<number>}
+ * @param binCount - The size of the vector to which the output ought to be applied
+ * @returns The backward difference matrix
  */
 export function backwardDifferenceMatrix(binCount: number): NumberMatrix {
   return NumberMatrix.builder().tridiagonal(
@@ -101,8 +101,8 @@ export function backwardDifferenceMatrix(binCount: number): NumberMatrix {
  * // [   0  -1/2   0   1/2 ]
  * // [   0    0  -1/2   0  ]
  * ```
- * @param {number} binCount  The size of the vector to which the output ought to be applied
- * @returns {Matrix<number>}
+ * @param binCount - The size of the vector to which the output ought to be applied
+ * @returns The central difference matrix
  */
 export function centralDifferenceMatrix(binCount: number): NumberMatrix {
   return NumberMatrix.builder().tridiagonal(
@@ -124,11 +124,11 @@ export function centralDifferenceMatrix(binCount: number): NumberMatrix {
  * derivative(Math.sin, 0, 2*Math.PI, 100);
  * ```
  *
- * @param {(x: number) => number} f  A deterministic function with no side effects
- * @param {number} xMin  The minimum value for which the derivative will be approximated
- * @param {number} xMax  The maximum (exclusive) value for which the derivative will be approximated
- * @param {number} binCount  The number of approximations
- * @returns {Vector<number>}
+ * @param f - A deterministic function with no side effects
+ * @param xMin - The minimum value for which the derivative will be approximated
+ * @param xMax - The maximum (exclusive) value for which the derivative will be approximated
+ * @param binCount - The number of approximations
+ * @returns A linearly spaced vector whose values represent the values of the derivative
  */
 export function derivative(f: (x: number) => number, xMin: number, xMax: number, binCount: number) {
   const x = linspace(xMin, xMax, binCount);

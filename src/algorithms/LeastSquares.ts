@@ -41,10 +41,10 @@ export type ApproximationFunctionTemplate<ScalarType> = (
  * - `approximationFunction`: a function which takes a vector of the independent variable
  *     values, and returns the predicted value of the dependent variable
  *
- * @param {Vector<ScalarType>[]} dataPoints - an array of vectors, each of which
+ * @param dataPoints - An array of vectors, each of which
  *    represents a single data point where the last entry is the variable to be predicted,
  *    and the other entries are the values of the independent variables
- * @returns {LeastSquaresApproximation<ScalarType>} - the result of the linear regression
+ * @returns - the result of the linear regression
  */
 export function calculateLinearLeastSquaresApproximation<ScalarType>(
   dataPoints: Vector<ScalarType>[]
@@ -82,13 +82,13 @@ export function calculateLinearLeastSquaresApproximation<ScalarType>(
  * - `approximationFunction`: a function which takes a vector of the independent variable
  *     values, and returns the predicted value of the dependent variable
  *
- * @param {Vector<ScalarType>} dataPoints - the data used to construct the approximation
- * @param {ApproximationFunctionTemplate<ScalarType>} functionTemplate - a higher-order
+ * @param dataPoints - The data used to construct the approximation
+ * @param functionTemplate - A higher-order
  *     function which takes a vector of coefficients and yields a new function which takes
  *     a vector of independent variables to produce a value for the dependent variable
- * @param {number} numberOfTerms - the number of coefficients needed to produce
+ * @param numberOfTerms - The number of coefficients needed to produce
  *     the approximation function
- * @returns {LeastSquaresApproximation<ScalarType>} - the result of the linear regression
+ * @returns - the result of the linear regression
  */
 export function calculateGeneralLeastSquaresApproximation<ScalarType>(
   dataPoints: Vector<ScalarType>[],
@@ -142,8 +142,8 @@ export function calculateGeneralLeastSquaresApproximation<ScalarType>(
  * This function returns the approximate solution _x_, or `undefined`
  * if _x_ does not exist
  *
- * @param {Matrix<ScalarType>} A - the matrix _A_ in _Ax = b_
- * @param {Vector<ScalarType>} b - the vector _b_ in _Ax = b_
+ * @param A - The matrix _A_ in _Ax = b_
+ * @param b - The vector _b_ in _Ax = b_
  */
 export function solveOverdeterminedSystem<ScalarType>(
   A: Matrix<ScalarType>,

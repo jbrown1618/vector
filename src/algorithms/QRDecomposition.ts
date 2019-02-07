@@ -15,7 +15,7 @@ export type QRDecomposition<ScalarType> = {
  * That is, a unitary matrix Q and upper-triangular matrix R such that Q
  * multiplied by R yields A
  *
- * @param {Matrix<ScalarType>} A - the matrix to decompose
+ * @param A - The matrix to decompose
  */
 export function calculateQRDecomposition<ScalarType>(
   A: Matrix<ScalarType>

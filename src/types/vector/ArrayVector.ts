@@ -20,11 +20,17 @@ export abstract class ArrayVector<ScalarType> implements Vector<ScalarType> {
   abstract builder(): VectorBuilder<ScalarType, Vector<ScalarType>>;
   abstract matrixBuilder(): MatrixBuilder<ScalarType, Vector<ScalarType>, Matrix<ScalarType>>;
 
+  /**
+   * @inheritdoc
+   */
   getEntry(index: number): ScalarType {
     assertValidVectorIndex(this, index);
     return this._data[index];
   }
 
+  /**
+   * @inheritdoc
+   */
   add(other: Vector<ScalarType>): Vector<ScalarType> {
     assertHomogeneous([this, other]);
 
@@ -35,6 +41,9 @@ export abstract class ArrayVector<ScalarType> implements Vector<ScalarType> {
     return this.builder().fromData(newData);
   }
 
+  /**
+   * @inheritdoc
+   */
   equals(other: Vector<ScalarType>): boolean {
     if (this.getDimension() !== other.getDimension()) {
       return false;
@@ -45,6 +54,9 @@ export abstract class ArrayVector<ScalarType> implements Vector<ScalarType> {
       .reduce((all, current) => all && current, true);
   }
 
+  /**
+   * @inheritdoc
+   */
   innerProduct(other: Vector<ScalarType>): ScalarType {
     assertHomogeneous([this, other]);
 
@@ -55,6 +67,9 @@ export abstract class ArrayVector<ScalarType> implements Vector<ScalarType> {
       .reduce(this.ops().add, this.ops().zero());
   }
 
+  /**
+   * @inheritdoc
+   */
   outerProduct(other: Vector<ScalarType>): Matrix<ScalarType> {
     const matrixData: MatrixData<ScalarType> = [];
 
@@ -72,10 +87,16 @@ export abstract class ArrayVector<ScalarType> implements Vector<ScalarType> {
     return this.matrixBuilder().fromData(matrixData);
   }
 
+  /**
+   * @inheritdoc
+   */
   norm(): ScalarType {
     return this.ops().getPrincipalSquareRoot(this.innerProduct(this));
   }
 
+  /**
+   * @inheritdoc
+   */
   normalize(): Vector<ScalarType> | undefined {
     const oneOverNorm = this.ops().getMultiplicativeInverse(this.norm());
     if (oneOverNorm === undefined) {
@@ -84,6 +105,9 @@ export abstract class ArrayVector<ScalarType> implements Vector<ScalarType> {
     return this.scalarMultiply(oneOverNorm);
   }
 
+  /**
+   * @inheritdoc
+   */
   projectOnto(u: Vector<ScalarType>) {
     const oneOverUDotU = this.ops().getMultiplicativeInverse(u.innerProduct(u));
     if (oneOverUDotU === undefined) {
@@ -95,14 +119,23 @@ export abstract class ArrayVector<ScalarType> implements Vector<ScalarType> {
     return u.scalarMultiply(magnitudeOfProjection);
   }
 
+  /**
+   * @inheritdoc
+   */
   scalarMultiply(scalar: ScalarType): Vector<ScalarType> {
     return this.builder().fromData(this.getData().map(entry => this.ops().multiply(entry, scalar)));
   }
 
+  /**
+   * @inheritdoc
+   */
   getData(): VectorData<ScalarType> {
     return [...this._data];
   }
 
+  /**
+   * @inheritdoc
+   */
   getDimension(): number {
     return this._data.length;
   }

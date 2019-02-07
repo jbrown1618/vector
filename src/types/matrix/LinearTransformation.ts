@@ -11,8 +11,8 @@
 export interface LinearTransformation<V, U> {
   /**
    * Apply the linear transformation to a vector
-   * @param {V} vector  A vector in the domain of the transformation
-   * @returns {U}  A vector in the image of the transformation
+   * @param vector - A vector in the domain of the transformation
+   * @returns A vector in the image of the transformation
    */
   apply(vector: V): U;
 }

@@ -43,9 +43,9 @@ export class VectorBuilder<ScalarType, VectorType extends Vector<ScalarType>> {
    * ```
    * vectorBuilder.fromIndexFunction(4, i => i + 3); // [ 3 4 5 6 ]
    * ```
-   * @param {number} dimension  The dimension of the vector to generate
-   * @param {VectorIndexFunction} valueFromIndex  A function returning the entry for a given index
-   * @returns {VectorType}
+   * @param dimension - The dimension of the vector to generate
+   * @param valueFromIndex - A function returning the entry for a given index
+   * @returns The new vector
    */
   fromIndexFunction(
     dimension: number,
@@ -71,10 +71,10 @@ export class VectorBuilder<ScalarType, VectorType extends Vector<ScalarType>> {
    * const originalPlusIndex = vectorBuilder.map(original, (value, index) => value + index);
    * // [1, 3, 5, 7]
    * ```
-   * @param {VectorType} vector  The vector on whose entries to base the entries of the new vector
-   * @param {VectorEntryFunction<ScalarType>} valueFromEntry  A function which takes an entry of
+   * @param vector - The vector on whose entries to base the entries of the new vector
+   * @param valueFromEntry - A function which takes an entry of
    *     the original vector and its index, and returns the corresponding entry of the new vector
-   * @returns {VectorType}
+   * @returns The new vector
    */
   map(vector: Vector<ScalarType>, valueFromEntry: VectorEntryFunction<ScalarType>): VectorType {
     return this.fromData(vector.getData().map(valueFromEntry));
@@ -87,7 +87,7 @@ export class VectorBuilder<ScalarType, VectorType extends Vector<ScalarType>> {
    * vectorBuilder.empty(); // []
    * ```
    *
-   * @returns {VectorType}
+   * @returns The new vector
    */
   empty(): VectorType {
     return this.fromData([]);
@@ -100,9 +100,9 @@ export class VectorBuilder<ScalarType, VectorType extends Vector<ScalarType>> {
    * vectorBuilder.fill(3, 5); // [ 3 3 3 3 3 ]
    * ```
    *
-   * @param value
-   * @param dimension
-   * @returns {VectorType}
+   * @param value - The value to use as the entries of the new vector
+   * @param dimension - The dimension of the new vector
+   * @returns The new vector
    */
   fill(value: ScalarType, dimension: number): VectorType {
     assertValidDimension(dimension);
@@ -115,8 +115,8 @@ export class VectorBuilder<ScalarType, VectorType extends Vector<ScalarType>> {
    * ```
    * vectorBuilder.zeros(3); // [ 0 0 0 ]
    * ```
-   * @param {number} dimension  The dimension of the vector to construct
-   * @returns {VectorType}
+   * @param dimension - The dimension of the vector to construct
+   * @returns The new vector
    */
   zeros(dimension: number): VectorType {
     return this.fill(this.ops().zero(), dimension);
@@ -128,8 +128,8 @@ export class VectorBuilder<ScalarType, VectorType extends Vector<ScalarType>> {
    * ```
    * vectorBuilder.ones(3); // [ 1 1 1 ]
    * ```
-   * @param {number} dimension
-   * @returns {VectorType}
+   * @param dimension - The dimension of the new vector
+   * @returns The new vector
    */
   ones(dimension: number): VectorType {
     return this.fill(this.ops().one(), dimension);
@@ -142,9 +142,9 @@ export class VectorBuilder<ScalarType, VectorType extends Vector<ScalarType>> {
    * vectorBuilder.elementaryVector(4, 2); // [ 0 0 1 0 ]
    * vectorBuilder.elementaryVector(3, 0); // [ 1 0 0 ]
    * ```
-   * @param {number} dimension
-   * @param {number} oneIndex
-   * @returns {VectorType}
+   * @param dimension - The dimension of the new vector
+   * @param oneIndex - The index of the element that should be the multiplicative identity
+   * @returns The new vector
    */
   elementaryVector(dimension: number, oneIndex: number): VectorType {
     assertValidDimension(dimension);
@@ -159,9 +159,9 @@ export class VectorBuilder<ScalarType, VectorType extends Vector<ScalarType>> {
    * Builds a vector whose entries are (uniformly-distributed) random numbers
    * between `min` and `max`
    *
-   * @param dimension
-   * @param min
-   * @param max
+   * @param dimension - The dimension of the new vector
+   * @param min - The lower limit of the random numbers to include
+   * @param max - The upper limit of the random numbers to include
    */
   random(dimension: number, min: number = 0, max: number = 1): VectorType {
     if (min >= max) {
@@ -174,9 +174,9 @@ export class VectorBuilder<ScalarType, VectorType extends Vector<ScalarType>> {
    * Builds a vector whose entries are normally distributed, with the specified
    * mean and standard deviation
    *
-   * @param dimension
-   * @param mean
-   * @param standardDeviation
+   * @param dimension - The dimension of the new vector
+   * @param mean - The center of the distribution of random numbers to include
+   * @param standardDeviation - The standard deviation of the distribution of random numbers to include
    */
   randomNormal(dimension: number, mean: number = 0, standardDeviation: number = 1): VectorType {
     if (standardDeviation <= 0) {
@@ -196,9 +196,9 @@ export class VectorBuilder<ScalarType, VectorType extends Vector<ScalarType>> {
    *
    * vectorBuilder.concatenate(first, second); // [ 1 1 1 0 0 ]
    * ```
-   * @param {VectorType} first
-   * @param {VectorType} second
-   * @returns {VectorType}
+   * @param first - The vector which will be used for the entries starting with index 0
+   * @param second - The vector which will be used for the entries starting with `first.getDimension()`
+   * @returns The new vector
    */
   concatenate(first: VectorType, second: VectorType): VectorType {
     return this.fromData([...first.getData(), ...second.getData()]);

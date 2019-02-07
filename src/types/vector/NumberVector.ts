@@ -18,14 +18,23 @@ export class NumberVector extends ArrayVector<number> {
     return new VectorBuilder(NumberVector);
   }
 
+  /**
+   * @inheritdoc
+   */
   ops(): NumberOperations {
     return NumberVector.ops();
   }
 
+  /**
+   * @inheritdoc
+   */
   builder(): VectorBuilder<number, NumberVector> {
     return NumberVector.builder();
   }
 
+  /**
+   * @inheritdoc
+   */
   matrixBuilder() {
     return NumberMatrix.builder();
   }

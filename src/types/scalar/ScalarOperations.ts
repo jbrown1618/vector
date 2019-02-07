@@ -3,7 +3,7 @@ export abstract class ScalarOperations<ScalarType> {
    * Returns true if the scalars are equal.
    * Implementors should ensure that the operation is reflexive, associative, and transitive.
    *
-   * @returns {boolean}  true if `first` is equal to `second`
+   * @returns true if `first` is equal to `second`
    */
   abstract equals(first: ScalarType, second: ScalarType): boolean;
 
@@ -11,7 +11,7 @@ export abstract class ScalarOperations<ScalarType> {
    * Returns the sum of two scalars.
    * Implementors should ensure that this operation is commutative and associative.
    *
-   * @returns {ScalarType}  The sum of `first` and `second`
+   * @returns The sum of `first` and `second`
    */
   abstract add(first: ScalarType, second: ScalarType): ScalarType;
 
@@ -24,7 +24,7 @@ export abstract class ScalarOperations<ScalarType> {
    * Implementors should ensure that this operation is commutative and associative,
    * and that it distributes over the addition operation.
    *
-   * @returns {ScalarType}  The product of `first` and `second`
+   * @returns The product of `first` and `second`
    */
   abstract multiply(first: ScalarType, second: ScalarType): ScalarType;
 
@@ -39,8 +39,8 @@ export abstract class ScalarOperations<ScalarType> {
   /**
    * Returns the complex conjugate of a scalar.
    * For real-valued scalars, this can just be an identity function.
-   * @param {ScalarType} scalar  The scalar to conjugate
-   * @returns {ScalarType}  The complex conjugate
+   * @param scalar - The scalar to conjugate
+   * @returns The complex conjugate
    */
   abstract conjugate(scalar: ScalarType): ScalarType;
 
@@ -49,7 +49,7 @@ export abstract class ScalarOperations<ScalarType> {
    * `addScalars(x, getAdditiveIdentity()) === x`
    * is true for all scalars `x`
    *
-   * @returns {ScalarType}  The additive identity
+   * @returns The additive identity
    */
   abstract getAdditiveIdentity(): ScalarType;
 
@@ -65,7 +65,7 @@ export abstract class ScalarOperations<ScalarType> {
    * `addScalars(scalar, getAdditiveInverse(scalar)) === getAdditiveIdentity()`
    * is true for `scalar`
    *
-   * @returns {ScalarType}  The additive inverse
+   * @returns The additive inverse
    */
   abstract getAdditiveInverse(x: ScalarType): ScalarType;
 
@@ -74,7 +74,7 @@ export abstract class ScalarOperations<ScalarType> {
    * `multiplyScalars(x, getMultiplicativeIdentity()) === x`
    * is true for all x
    *
-   * @returns {ScalarType}  The multiplicative identity
+   * @returns The multiplicative identity
    */
   abstract getMultiplicativeIdentity(): ScalarType;
 
@@ -101,7 +101,7 @@ export abstract class ScalarOperations<ScalarType> {
    *
    * is true for `scalar`
    *
-   * @returns {ScalarType}  The multiplicative inverse
+   * @returns The multiplicative inverse
    */
   abstract getMultiplicativeInverse(x: ScalarType): ScalarType | undefined;
 

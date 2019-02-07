@@ -19,14 +19,23 @@ export class ComplexVector extends ArrayVector<ComplexNumber> {
     return new VectorBuilder(ComplexVector);
   }
 
+  /**
+   * @inheritdoc
+   */
   ops(): ComplexNumberOperations {
     return ComplexVector.ops();
   }
 
+  /**
+   * @inheritdoc
+   */
   builder(): VectorBuilder<ComplexNumber, ComplexVector> {
     return ComplexVector.builder();
   }
 
+  /**
+   * @inheritdoc
+   */
   matrixBuilder() {
     return ComplexMatrix.builder();
   }

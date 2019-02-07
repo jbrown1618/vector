@@ -15,74 +15,86 @@ export interface VectorConstructor<ScalarType, VectorType extends Vector<ScalarT
  * An interface for a member of a vector space - specifically a member of an inner product space.
  */
 export interface Vector<ScalarType> {
+  /**
+   * Yields a `ScalarOperations` object which will allow consumers to work generically
+   * with the scalars contained in the vector.
+   */
   ops(): ScalarOperations<ScalarType>;
+
+  /**
+   * Yields a `VectorBuilder` which will build new vectors of the same type
+   */
   builder(): VectorBuilder<ScalarType, Vector<ScalarType>>;
+
+  /**
+   * Yields a `MatrixBuilder` which will build new matrices of a compatible type
+   */
   matrixBuilder(): MatrixBuilder<ScalarType, Vector<ScalarType>, Matrix<ScalarType>>;
 
   /**
-   * @returns {VectorData<ScalarType>}  The contents of the vector as an array
+   * @returns The contents of the vector as an array
    */
   getData(): VectorData<ScalarType>;
 
   /**
-   * @param {number} index
-   * @returns {ScalarType}  The entry located at `index`
+   * @param index - The index of the entry to retrieve
+   * @returns The entry located at `index`
    */
   getEntry(index: number): ScalarType;
 
   /**
    * Implements vector addition
    *
-   * @param {Vector<ScalarType>} other  The vector to add
-   * @returns {Vector<ScalarType>}  The vector sum
+   * @param other - The vector to add
+   * @returns The vector sum
    */
   add(other: Vector<ScalarType>): Vector<ScalarType>;
 
   /**
    * Implements vector multiplication by a scalar
    *
-   * @param {ScalarType} scalar  The scalar by which to multiply
-   * @returns {Vector<ScalarType>}  The product
+   * @param scalar - The scalar by which to multiply
+   * @returns The product
    */
   scalarMultiply(scalar: ScalarType): Vector<ScalarType>;
 
   /**
-   * @param {Vector<ScalarType>} other
-   * @returns {ScalarType}  The inner product
+   * @param other - The vector with which to calculate an inner product
+   * @returns The inner product
    */
   innerProduct(other: Vector<ScalarType>): ScalarType;
 
   /**
-   * @returns {ScalarType} the Euclidean norm of the vector
+   * @returns The Euclidean norm of the vector
    */
   norm(): ScalarType;
 
   /**
-   * @returns {Vector<ScalarType>} a new vector with the same direction
+   * @returns A new vector with the same direction
    *     but magnitude 1, or `undefined` if it is the zero vector
    */
   normalize(): Vector<ScalarType> | undefined;
 
   /**
-   * @param u - the vector on which to project this
-   * @returns this vector projected onto `u`
+   * @param u - The vector on which to project this
+   * @returns This vector projected onto `u`
    */
   projectOnto(u: Vector<ScalarType>): Vector<ScalarType>;
 
   /**
-   * @param {Vector<ScalarType>} other
-   * @returns {Matrix<ScalarType>}  The outer product
+   * @param other - The vector with which to calculate an outer product
+   * @returns The outer product
    */
   outerProduct(other: Vector<ScalarType>): Matrix<ScalarType>;
 
   /**
-   * @returns {number}  The dimension of the vector
+   * @returns The dimension of the vector
    */
   getDimension(): number;
 
   /**
-   * @param {Vector<ScalarType>} other
-   * @returns {boolean}  true if `this` is equal to `other`
+   * @param other - The vector against which to compare
+   * @returns - `true` if `this` is equal to `other`
    */
   equals(other: Vector<ScalarType>): boolean;
 }

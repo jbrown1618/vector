@@ -45,7 +45,7 @@ export class MatrixBuilder<
    * // [ 2 5 ]
    * // [ 3 6 ]
    * ```
-   * @param columns
+   * @param columns - The vectors to use as the columns of the new matrix
    */
   fromColumnVectors(columns: Vector<ScalarType>[]): MatrixType {
     assertHomogeneous(columns);
@@ -73,8 +73,8 @@ export class MatrixBuilder<
    * // [ 4 5 6 ]
    * ```
    *
-   * @param rows
-   * @returns {MatrixType}
+   * @param rows - The vectors to use as the rows of the new matrix
+   * @returns The new matrix
    */
   fromRowVectors(rows: Vector<ScalarType>[]): MatrixType {
     assertHomogeneous(rows);
@@ -100,10 +100,10 @@ export class MatrixBuilder<
    * // [ 4 5 6 7 ]
    * // [ 5 6 7 8 ]
    * ```
-   * @param {number} numRows
-   * @param {number} numColumns
-   * @param {MatrixIndexFunction} indexFunction  A function returning the entry for a given `i`, `j`
-   * @returns {MatrixType}
+   * @param numRows - The number of columns the new matrix should have
+   * @param numColumns - The number of columns the new matrix should have
+   * @param indexFunction - A function returning the entry for a given `i`, `j`
+   * @returns The new matrix
    */
   fromIndexFunction(
     numRows: number,
@@ -138,10 +138,10 @@ export class MatrixBuilder<
    * // [ 1 1 1 ]
    * // [ 5 5 5 ]
    * ```
-   * @param {Matrix<ScalarType>} matrix  The matrix on whose entries to base the entries of the new matrix
-   * @param {MatrixEntryFunction<ScalarType>} entryFunction  A function which takes an entry of
+   * @param matrix - The matrix on whose entries to base the entries of the new matrix
+   * @param entryFunction - A function which takes an entry of
    *     the original matrix and its indices, and returns the corresponding entry of the new matrix
-   * @returns {VectorType}
+   * @returns The new matrix
    */
   map(matrix: Matrix<ScalarType>, entryFunction: MatrixEntryFunction<ScalarType>): MatrixType {
     return this.fromIndexFunction(matrix.getNumberOfRows(), matrix.getNumberOfColumns(), (i, j) =>
@@ -171,10 +171,10 @@ export class MatrixBuilder<
    * // [ 2 2 2 2 ]
    * ```
    *
-   * @param {ScalarType} value
-   * @param {number} numberOfRows
-   * @param {number} numberOfColumns
-   * @returns {MatrixType}
+   * @param value - The value that should be used for every entry in the new matrix
+   * @param numberOfRows - The number of rows the new matrix should have
+   * @param numberOfColumns - The number of columns the new matrix should have
+   * @returns The new matrix
    */
   fill(
     value: ScalarType,
@@ -193,9 +193,9 @@ export class MatrixBuilder<
    * // [ 0 0 0 ]
    * // [ 0 0 0 ]
    * ```
-   * @param {number} numberOfRows
-   * @param {number} numberOfColumns
-   * @returns {MatrixType}
+   * @param numberOfRows - The number of rows the new matrix should have
+   * @param numberOfColumns - The number of columns the new matrix should have
+   * @returns The new matrix
    */
   zeros(numberOfRows: number, numberOfColumns: number = numberOfRows): MatrixType {
     return this.fill(this.ops().zero(), numberOfRows, numberOfColumns);
@@ -210,9 +210,9 @@ export class MatrixBuilder<
    * // [ 1 1 1 ]
    * // [ 1 1 1 ]
    * ```
-   * @param {number} numberOfRows
-   * @param {number} numberOfColumns
-   * @returns {MatrixType}
+   * @param numberOfRows - The number of rows the new matrix should have
+   * @param numberOfColumns - The number of columns the new matrix should have
+   * @returns The new matrix
    */
   ones(numberOfRows: number, numberOfColumns: number = numberOfRows): MatrixType {
     return this.fill(this.ops().one(), numberOfRows, numberOfColumns);
@@ -228,8 +228,8 @@ export class MatrixBuilder<
    * // [ 0 1 0 ]
    * // [ 0 0 1 ]
    * ```
-   * @param {number} size
-   * @returns {MatrixType}
+   * @param size - The dimension of the vector space for which the new matrix is the identity
+   * @returns The new matrix
    */
   identity(size: number): MatrixType {
     return this.fromIndexFunction(
@@ -243,10 +243,10 @@ export class MatrixBuilder<
    * Returns a matrix of the specified size whose entries are (uniformly-distributed) random
    * numbers between `min` and `max`
    *
-   * @param numberOfRows
-   * @param numberOfColumns
-   * @param min
-   * @param max
+   * @param numberOfRows - The number of rows the new matrix should have
+   * @param numberOfColumns - The number of columns the new matrix should have
+   * @param min - The lower limit of the random numbers to include
+   * @param max - The upper limit of the random numbers to include
    */
   random(
     numberOfRows: number,
@@ -264,10 +264,10 @@ export class MatrixBuilder<
    * Returns a matrix of the specified size whose entries are normally distributed with the
    * specified mean and standard deviation.
    *
-   * @param numberOfRows
-   * @param numberOfColumns
-   * @param mean
-   * @param standardDeviation
+   * @param numberOfRows - The number of rows the new matrix should have
+   * @param numberOfColumns - The number of columns the new matrix should have
+   * @param mean - The center of the distribution of random numbers to include
+   * @param standardDeviation - The standard deviation of the distribution of random numbers to include
    */
   randomNormal(
     numberOfRows: number,
@@ -294,8 +294,8 @@ export class MatrixBuilder<
    * // [ 0 2 0 ]
    * // [ 0 0 3 ]
    * ```
-   * @param {VectorType} diagonalEntries
-   * @returns {MatrixType}
+   * @param diagonalEntries - A vector whose entries will be used as the diagonal entries of the new matrix
+   * @returns The new matrix
    */
   diagonal(diagonalEntries: VectorType): MatrixType {
     const size = diagonalEntries.getDimension();
@@ -326,10 +326,10 @@ export class MatrixBuilder<
    * // [ 0 2 5 ]
    * ```
    *
-   * @param {VectorType} leftEntries
-   * @param {VectorType} diagonalEntries
-   * @param {VectorType} rightEntries
-   * @returns {MatrixType}
+   * @param leftEntries - A vector whose entries will be used in the left off-diagonal
+   * @param diagonalEntries - A vector whose entries will be used in the diagonal
+   * @param rightEntries - A vector whose entries will be used in the right off-diagonal
+   * @returns The new matrix
    */
   tridiagonal(
     leftEntries: Vector<ScalarType>,
@@ -370,9 +370,9 @@ export class MatrixBuilder<
    * // [ 1 1 1 0 0 0 0 ]
    * // [ 1 1 1 0 0 0 0 ]
    * ```
-   * @param {MatrixType} left
-   * @param {MatrixType} right
-   * @returns {MatrixType}
+   * @param left - The matrix that will form the left-side of the augmented matrix
+   * @param right - The matrix that will form the right-side of the augmented matrix
+   * @returns The new augmented matrix
    */
   augment(left: Matrix<ScalarType>, right: Matrix<ScalarType>): MatrixType {
     if (left.getNumberOfRows() !== right.getNumberOfRows()) {
@@ -396,9 +396,9 @@ export class MatrixBuilder<
    * // [ 1 1 1 ]
    * // [ 0 0 0 ]
    * ```
-   * @param {MatrixType} top
-   * @param {MatrixType} bottom
-   * @returns {MatrixType}
+   * @param top - The matrix that will be used for the top half of the new matrix
+   * @param bottom - The matrix that will be used for the bottom half of the new matrix
+   * @returns The new matrix
    */
   private stack(top: Matrix<ScalarType>, bottom: Matrix<ScalarType>): MatrixType {
     if (top.getNumberOfColumns() !== bottom.getNumberOfColumns()) {
@@ -429,8 +429,8 @@ export class MatrixBuilder<
    * // [ 0 1 1 ]
    * // [ 0 1 1 ]
    * ```
-   * @param {Array<Array<MatrixType>>} grid
-   * @returns {MatrixType}
+   * @param grid - A 2-dimensional array of matrices that will be combined into the new matrix
+   * @returns The new matrix
    */
   flatten(grid: Array<Array<MatrixType>>): MatrixType {
     if (grid.length === 0 || grid[0].length === 0) {
@@ -458,10 +458,10 @@ export class MatrixBuilder<
    * // [ 1 0 1 0 ]
    * // [ 0 1 0 1 ]
    * ```
-   * @param {MatrixType} matrix
-   * @param {number} rows
-   * @param {number} columns
-   * @returns {MatrixType}
+   * @param matrix - The matrix to be repeated
+   * @param rows - The number of times to repeat the matrix vertically
+   * @param columns - The number of times to repeat the matrix horizontally
+   * @returns The new matrix
    */
   repeat(matrix: MatrixType, rows: number, columns: number): MatrixType {
     const grid: Array<Array<MatrixType>> = [];
@@ -489,12 +489,12 @@ export class MatrixBuilder<
    * // [  0  0  0  1  ]
    * ```
    *
-   * @param {MatrixType} matrix  The original matrix
-   * @param {number} rowStartIndex  The (inclusive) first row of the slice
-   * @param {number} columnStartIndex  The (inclusive) first column of the slice
-   * @param {number} rowEndIndex  The (exclusive) last row of the slice
-   * @param {number} columnEndIndex  The (exclusive) last column of the slice
-   * @returns {MatrixType}
+   * @param matrix - The original matrix
+   * @param rowStartIndex - The (inclusive) first row of the slice
+   * @param columnStartIndex - The (inclusive) first column of the slice
+   * @param rowEndIndex - The (exclusive) last row of the slice
+   * @param columnEndIndex - The (exclusive) last column of the slice
+   * @returns The new matrix
    */
   slice(
     matrix: Matrix<ScalarType>,
@@ -543,10 +543,10 @@ export class MatrixBuilder<
    * // [  0  0  1* 0  ]      [ 0 0 0 ]
    * // [  0  0  0* 1  ]      [ 0 0 1 ]
    * ```
-   * @param {MatrixType} matrix
-   * @param {number} rowToExclude
-   * @param {number} columnToExclude
-   * @returns {MatrixType}
+   * @param matrix - The input matrix
+   * @param rowToExclude - The index of the row that will be removed
+   * @param columnToExclude - The index of the column that will be removed
+   * @returns The new matrix
    */
   exclude(matrix: MatrixType, rowToExclude: number, columnToExclude: number): MatrixType {
     assertValidMatrixIndex(matrix, rowToExclude, columnToExclude);
