@@ -24,14 +24,23 @@ export class ComplexMatrix extends ArrayMatrix<ComplexNumber> {
     return new VectorBuilder(ComplexVector);
   }
 
+  /**
+   * @inheritdoc
+   */
   ops() {
     return ComplexMatrix.ops();
   }
 
+  /**
+   * @inheritdoc
+   */
   builder(): MatrixBuilder<ComplexNumber, ComplexVector, ComplexMatrix> {
     return ComplexMatrix.builder();
   }
 
+  /**
+   * @inheritdoc
+   */
   vectorBuilder(): VectorBuilder<ComplexNumber, ComplexVector> {
     return ComplexMatrix.vectorBuilder();
   }

@@ -5,10 +5,10 @@ export class RowOperations {
   /**
    * Returns a new matrix whose row at `rowIndex` is multipled by `scalar`
    *
-   * @param {Matrix<ScalarType>} matrix  The original matrix
-   * @param {number} rowIndex  The index of the row to modify
-   * @param {ScalarType} scalar  The factor by which to scale the row
-   * @returns {Matrix<number>}
+   * @param matrix - The original matrix
+   * @param rowIndex - The index of the row to modify
+   * @param scalar - The factor by which to scale the row
+   * @returns The matrix with the transformation applied
    */
   static multiplyRowByScalar<ScalarType>(
     matrix: Matrix<ScalarType>,
@@ -28,10 +28,10 @@ export class RowOperations {
   /**
    * Returns a new matrix whose row at `targetRow` has had the row at `rowToAdd` added to it.
    *
-   * @param {Matrix<ScalarType>} matrix  The original matrix
-   * @param {number} targetRow  The index of the row to modify
-   * @param {number} rowToAdd  The index of the row to add
-   * @returns {Matrix<ScalarType>}
+   * @param matrix - The original matrix
+   * @param targetRow - The index of the row to modify
+   * @param rowToAdd - The index of the row to add
+   * @returns The matrix with the transformation applied
    */
   static addRowToRow<ScalarType>(
     matrix: Matrix<ScalarType>,
@@ -49,11 +49,11 @@ export class RowOperations {
   /**
    * Returns a new matrix whose row at `targetRow` has had a scalar multiple of `rowToAdd` added to it.
    *
-   * @param {Matrix<ScalarType>} matrix  The original matrix
-   * @param {number} targetRow  The index of the row to modify
-   * @param {number} rowToAdd  The index of the row to be scaled and added
-   * @param {ScalarType} scalar  The factor by which to scale the row
-   * @returns {Matrix<ScalarType>}
+   * @param matrix - The original matrix
+   * @param targetRow - The index of the row to modify
+   * @param rowToAdd - The index of the row to be scaled and added
+   * @param scalar - The factor by which to scale the row
+   * @returns The matrix with the transformation applied
    */
   static addScalarMultipleOfRowToRow<ScalarType>(
     matrix: Matrix<ScalarType>,
@@ -76,10 +76,10 @@ export class RowOperations {
   /**
    * Returns a new matrix whose row at index `first` has been exchanged with the row at index `second`
    *
-   * @param {Matrix<ScalarType>} matrix  The original matrix
-   * @param {number} first  The index of the first row to exchange
-   * @param {number} second  The index of the second row to exchange
-   * @returns {Matrix<ScalarType>}
+   * @param matrix - The original matrix
+   * @param first - The index of the first row to exchange
+   * @param second - The index of the second row to exchange
+   * @returns The matrix with the transformation applied
    */
   static exchangeRows<ScalarType>(
     matrix: Matrix<ScalarType>,

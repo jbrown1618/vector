@@ -8,8 +8,8 @@ import { VectorData } from '../types/vector/Vector';
  * Throws an error if the matrix is not square.
  * Returns `undefined` if the matrix is not invertible.
  *
- * @param {Matrix<number>} matrix  A square matrix
- * @returns {Matrix<number> | undefined}
+ * @param matrix - A square matrix
+ * @returns The inverse matrix
  */
 export function inverse<ScalarType>(matrix: Matrix<ScalarType>): Matrix<ScalarType> | undefined {
   assertSquare(matrix);
@@ -33,8 +33,8 @@ export function inverse<ScalarType>(matrix: Matrix<ScalarType>): Matrix<ScalarTy
 /**
  * Uses Gauss-Jordan elimination to convert a matrix to Reduced Row-Echelon Form (RREF)
  *
- * @param {Matrix<ScalarType>} matrix
- * @returns {Matrix<ScalarType>}
+ * @param matrix - The input matrix
+ * @returns The matrix in RREF
  */
 export function reducedRowEchelonForm<ScalarType>(matrix: Matrix<ScalarType>): Matrix<ScalarType> {
   matrix = rowEchelonForm(matrix);
@@ -57,8 +57,8 @@ export function reducedRowEchelonForm<ScalarType>(matrix: Matrix<ScalarType>): M
 /**
  * Uses Gauss-Jordan elimination to convert a matrix to Row-Echelon Form (REF)
  *
- * @param {Matrix<ScalarType>} matrix
- * @returns {Matrix<ScalarType>}
+ * @param matrix - The input matrix
+ * @returns The matrix in REF
  */
 export function rowEchelonForm<ScalarType>(matrix: Matrix<ScalarType>): Matrix<ScalarType> {
   matrix = moveLeadingZerosToBottom(matrix);
