@@ -13,3 +13,4 @@ api-docs/
 
 # IDE Configuration
 .idea/
+.vscode/
