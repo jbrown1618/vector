@@ -1,9 +1,9 @@
-import { MatrixBuilder } from '../matrix/MatrixBuilder';
 import { Matrix } from '../matrix/Matrix';
+import { MatrixBuilder } from '../matrix/MatrixBuilder';
 import { ScalarOperations } from '../scalar/ScalarOperations';
 import { VectorBuilder } from './VectorBuilder';
 
-export type VectorData<ScalarType> = Array<ScalarType>;
+export type VectorData<ScalarType> = ScalarType[];
 
 export interface VectorConstructor<ScalarType, VectorType extends Vector<ScalarType>> {
   new (data: VectorData<ScalarType>): VectorType;

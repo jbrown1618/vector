@@ -1,51 +1,51 @@
-import { ArrayMatrix } from './ArrayMatrix';
+import { StaticImplements } from '../../utilities/StaticImplements';
 import { ComplexNumber } from '../scalar/ComplexNumber';
 import { ComplexNumberOperations } from '../scalar/ComplexNumberOperations';
 import { ComplexVector } from '../vector/ComplexVector';
-import { MatrixBuilder } from './MatrixBuilder';
-import { MatrixConstructor, MatrixData } from './Matrix';
-import { StaticImplements } from '../../utilities/StaticImplements';
 import { VectorBuilder } from '../vector/VectorBuilder';
+import { ArrayMatrix } from './ArrayMatrix';
+import { MatrixConstructor, MatrixData } from './Matrix';
+import { MatrixBuilder } from './MatrixBuilder';
 
 /**
  * Implements `Matrix` as a 2-dimensional array of `ComplexNumber`s
  */
 @StaticImplements<MatrixConstructor<ComplexNumber, ComplexVector, ComplexMatrix>>()
 export class ComplexMatrix extends ArrayMatrix<ComplexNumber> {
-  static ops() {
+  public static ops() {
     return new ComplexNumberOperations();
   }
 
-  static builder(): MatrixBuilder<ComplexNumber, ComplexVector, ComplexMatrix> {
+  public static builder(): MatrixBuilder<ComplexNumber, ComplexVector, ComplexMatrix> {
     return new MatrixBuilder(ComplexMatrix);
   }
 
-  static vectorBuilder(): VectorBuilder<ComplexNumber, ComplexVector> {
+  public static vectorBuilder(): VectorBuilder<ComplexNumber, ComplexVector> {
     return new VectorBuilder(ComplexVector);
+  }
+
+  constructor(data: MatrixData<ComplexNumber>) {
+    super(data);
   }
 
   /**
    * @inheritdoc
    */
-  ops() {
+  public ops() {
     return ComplexMatrix.ops();
   }
 
   /**
    * @inheritdoc
    */
-  builder(): MatrixBuilder<ComplexNumber, ComplexVector, ComplexMatrix> {
+  public builder(): MatrixBuilder<ComplexNumber, ComplexVector, ComplexMatrix> {
     return ComplexMatrix.builder();
   }
 
   /**
    * @inheritdoc
    */
-  vectorBuilder(): VectorBuilder<ComplexNumber, ComplexVector> {
+  public vectorBuilder(): VectorBuilder<ComplexNumber, ComplexVector> {
     return ComplexMatrix.vectorBuilder();
-  }
-
-  constructor(data: MatrixData<ComplexNumber>) {
-    super(data);
   }
 }

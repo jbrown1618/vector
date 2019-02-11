@@ -1,9 +1,9 @@
-import { describe, it } from 'mocha';
 import { expect } from 'chai';
-import { NumberMatrix } from './NumberMatrix';
-import { VectorBuilder } from '../vector/VectorBuilder';
+import { describe, it } from 'mocha';
 import { NumberVector } from '../vector/NumberVector';
+import { VectorBuilder } from '../vector/VectorBuilder';
 import { MatrixBuilder, MatrixIndexFunction } from './MatrixBuilder';
+import { NumberMatrix } from './NumberMatrix';
 
 describe('MatrixBuilder', () => {
   const matrixBuilder = new MatrixBuilder(NumberMatrix);
@@ -428,7 +428,7 @@ describe('MatrixBuilder', () => {
     });
 
     it('defaults to the end of the matrix when no end indices are given', () => {
-      let expectedSlice = matrixBuilder.fromData([[6, 7, 8], [10, 11, 12]]);
+      const expectedSlice = matrixBuilder.fromData([[6, 7, 8], [10, 11, 12]]);
       expect(matrixBuilder.slice(A, 1, 1).equals(expectedSlice)).to.be.true;
     });
 

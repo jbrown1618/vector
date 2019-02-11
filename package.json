@@ -10,7 +10,8 @@
     "build": "tsc",
     "test": "mocha -r ts-node/register src/**/*.spec.ts **/*.spec.ts",
     "test-coverage": "nyc --extension=.ts --exclude=**/*.spec.ts mocha -r ts-node/register src/**/*.spec.ts **/*.spec.ts",
-    "format": "prettier --write",
+    "format": "prettier --write '**/*.{ts,json,css,md}'",
+    "lint": "tslint 'src/**/*.ts'",
     "docs": "typedoc --out ./api-docs/ --readme none --theme minimal --exclude '**/+(*.spec.ts|index.ts)' --excludePrivate ./src/"
   },
   "dependencies": {},
@@ -24,12 +25,15 @@
     "nyc": "^12.0.2",
     "prettier": "^1.13.5",
     "ts-node": "^7.0.0",
+    "tslint": "^5.12.1",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-no-unused-expression-chai": "^0.1.4",
     "typedoc": "^0.11.1",
     "typescript": "^2.9.2"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged && npm run lint && npm test"
     }
   },
   "lint-staged": {
@@ -37,9 +41,5 @@
       "prettier --write",
       "git add"
     ]
-  },
-  "prettier": {
-    "printWidth": 100,
-    "singleQuote": true
   }
 }

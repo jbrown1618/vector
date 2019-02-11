@@ -1,7 +1,7 @@
-import { describe, it } from 'mocha';
 import { expect } from 'chai';
-import { ComplexNumber } from './ComplexNumber';
+import { describe, it } from 'mocha';
 import { approximatelyEqual } from '../../utilities/NumberUtilities';
+import { ComplexNumber } from './ComplexNumber';
 
 describe('ComplexNumber', () => {
   describe('getRealPart', () => {
@@ -94,7 +94,7 @@ describe('ComplexNumber', () => {
     });
   });
 
-  describe('equals', function() {
+  describe('equals', () => {
     it('typical complex numbers equal themselves', () => {
       testComplexNumbers((r: number, i: number) => {
         const value = new ComplexNumber(r, i);

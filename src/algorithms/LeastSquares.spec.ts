@@ -1,5 +1,5 @@
-import { describe, it } from 'mocha';
 import { expect } from 'chai';
+import { describe, it } from 'mocha';
 import { NumberMatrix } from '../types/matrix/NumberMatrix';
 import { NumberVector } from '../types/vector/NumberVector';
 import { Vector } from '../types/vector/Vector';
@@ -150,7 +150,7 @@ describe('LeastSquares', () => {
       });
     });
 
-    const uselessFunctionTemplate = (_: Vector<number>) => (_: Vector<number>) => 0;
+    const uselessFunctionTemplate = (_: Vector<number>) => (__: Vector<number>) => 0;
 
     it('rejects non-homogeneous data', () => {
       const nonHomogeneousData = [vectorBuilder.ones(2), vectorBuilder.ones(3)];

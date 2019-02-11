@@ -1,7 +1,7 @@
 import { Matrix } from '../types/matrix/Matrix';
 import { Vector } from '../types/vector/Vector';
-import { inverse } from './GaussJordan';
 import { assertHomogeneous, assertNonEmpty } from '../utilities/ErrorAssertions';
+import { inverse } from './GaussJordan';
 
 /**
  * The result of a least squares approximation.
@@ -11,10 +11,10 @@ import { assertHomogeneous, assertNonEmpty } from '../utilities/ErrorAssertions'
  * - `approximationFunction`: a function which takes a vector of the independent variable
  *     values, and returns the predicted value of the dependent variable
  */
-export type LeastSquaresApproximation<ScalarType> = {
+export interface LeastSquaresApproximation<ScalarType> {
   coefficients: Vector<ScalarType>;
   approximationFunction: ApproximationFunction<ScalarType>;
-};
+}
 
 /**
  * A function that takes a vector of inputs and produces an output.  This must always
@@ -47,7 +47,7 @@ export type ApproximationFunctionTemplate<ScalarType> = (
  * @returns - the result of the linear regression
  */
 export function calculateLinearLeastSquaresApproximation<ScalarType>(
-  dataPoints: Vector<ScalarType>[]
+  dataPoints: Array<Vector<ScalarType>>
 ): LeastSquaresApproximation<ScalarType> {
   assertNonEmpty(dataPoints);
   assertHomogeneous(dataPoints);
@@ -91,7 +91,7 @@ export function calculateLinearLeastSquaresApproximation<ScalarType>(
  * @returns - the result of the linear regression
  */
 export function calculateGeneralLeastSquaresApproximation<ScalarType>(
-  dataPoints: Vector<ScalarType>[],
+  dataPoints: Array<Vector<ScalarType>>,
   functionTemplate: ApproximationFunctionTemplate<ScalarType>,
   numberOfTerms: number
 ): LeastSquaresApproximation<ScalarType> {
@@ -107,9 +107,9 @@ export function calculateGeneralLeastSquaresApproximation<ScalarType>(
   const getEntryInA = (dataPointIndex: number, coefficientIndex: number) => {
     // Use the output value that would occur at this data point if this
     // were the only nonzero coefficient and it were one
-    const coefficients = vectorBuilder.elementaryVector(numberOfTerms, coefficientIndex);
+    const elementaryCoefficients = vectorBuilder.elementaryVector(numberOfTerms, coefficientIndex);
     const inputs = dataPoints[dataPointIndex];
-    const hypotheticalApproximationFunction = functionTemplate(coefficients);
+    const hypotheticalApproximationFunction = functionTemplate(elementaryCoefficients);
     return hypotheticalApproximationFunction(inputs);
   };
 
@@ -151,16 +151,16 @@ export function solveOverdeterminedSystem<ScalarType>(
 ): Vector<ScalarType> | undefined {
   checkDimensionsForOverdeterminedSystem(A, b);
 
-  const At = A.adjoint();
-  const Atb = At.apply(b);
-  const AtA = At.multiply(A);
-  const AtAInverse = inverse(AtA);
+  const aTrans = A.adjoint();
+  const aTransB = aTrans.apply(b);
+  const aTransA = aTrans.multiply(A);
+  const aTransAInverse = inverse(aTransA);
 
-  if (!AtAInverse) {
+  if (!aTransAInverse) {
     return undefined;
   }
 
-  return AtAInverse.apply(Atb);
+  return aTransAInverse.apply(aTransB);
 }
 
 function checkDimensionsForOverdeterminedSystem<ScalarType>(

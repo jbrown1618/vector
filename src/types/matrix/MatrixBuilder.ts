@@ -1,11 +1,11 @@
-import { Vector } from '../vector/Vector';
-import { Matrix, MatrixConstructor, MatrixData } from './Matrix';
-import { ScalarOperations } from '../scalar/ScalarOperations';
 import {
   assertHomogeneous,
   assertValidDimensions,
   assertValidMatrixIndex
 } from '../../utilities/ErrorAssertions';
+import { ScalarOperations } from '../scalar/ScalarOperations';
+import { Vector } from '../vector/Vector';
+import { Matrix, MatrixConstructor, MatrixData } from './Matrix';
 
 export type MatrixIndexFunction<ScalarType> = (i: number, j: number) => ScalarType;
 export type MatrixEntryFunction<ScalarType> = (
@@ -25,11 +25,7 @@ export class MatrixBuilder<
     this._matrixConstructor = matrixConstructor;
   }
 
-  private ops(): ScalarOperations<ScalarType> {
-    return this._matrixConstructor.ops();
-  }
-
-  fromData(data: MatrixData<ScalarType>): MatrixType {
+  public fromData(data: MatrixData<ScalarType>): MatrixType {
     return new this._matrixConstructor(data);
   }
 
@@ -47,7 +43,7 @@ export class MatrixBuilder<
    * ```
    * @param columns - The vectors to use as the columns of the new matrix
    */
-  fromColumnVectors(columns: Vector<ScalarType>[]): MatrixType {
+  public fromColumnVectors(columns: Array<Vector<ScalarType>>): MatrixType {
     assertHomogeneous(columns);
     const numberOfColumns = columns.length;
     if (numberOfColumns === 0) {
@@ -76,7 +72,7 @@ export class MatrixBuilder<
    * @param rows - The vectors to use as the rows of the new matrix
    * @returns The new matrix
    */
-  fromRowVectors(rows: Vector<ScalarType>[]): MatrixType {
+  public fromRowVectors(rows: Array<Vector<ScalarType>>): MatrixType {
     assertHomogeneous(rows);
     const numberOfRows = rows.length;
     if (numberOfRows === 0) {
@@ -105,7 +101,7 @@ export class MatrixBuilder<
    * @param indexFunction - A function returning the entry for a given `i`, `j`
    * @returns The new matrix
    */
-  fromIndexFunction(
+  public fromIndexFunction(
     numRows: number,
     numColumns: number,
     indexFunction: MatrixIndexFunction<ScalarType>
@@ -143,7 +139,10 @@ export class MatrixBuilder<
    *     the original matrix and its indices, and returns the corresponding entry of the new matrix
    * @returns The new matrix
    */
-  map(matrix: Matrix<ScalarType>, entryFunction: MatrixEntryFunction<ScalarType>): MatrixType {
+  public map(
+    matrix: Matrix<ScalarType>,
+    entryFunction: MatrixEntryFunction<ScalarType>
+  ): MatrixType {
     return this.fromIndexFunction(matrix.getNumberOfRows(), matrix.getNumberOfColumns(), (i, j) =>
       entryFunction(matrix.getEntry(i, j), i, j)
     );
@@ -156,7 +155,7 @@ export class MatrixBuilder<
    * matrixBuilder.empty(); // []
    * ```
    */
-  empty(): MatrixType {
+  public empty(): MatrixType {
     return new this._matrixConstructor([]);
   }
 
@@ -176,7 +175,7 @@ export class MatrixBuilder<
    * @param numberOfColumns - The number of columns the new matrix should have
    * @returns The new matrix
    */
-  fill(
+  public fill(
     value: ScalarType,
     numberOfRows: number,
     numberOfColumns: number = numberOfRows
@@ -197,7 +196,7 @@ export class MatrixBuilder<
    * @param numberOfColumns - The number of columns the new matrix should have
    * @returns The new matrix
    */
-  zeros(numberOfRows: number, numberOfColumns: number = numberOfRows): MatrixType {
+  public zeros(numberOfRows: number, numberOfColumns: number = numberOfRows): MatrixType {
     return this.fill(this.ops().zero(), numberOfRows, numberOfColumns);
   }
 
@@ -214,7 +213,7 @@ export class MatrixBuilder<
    * @param numberOfColumns - The number of columns the new matrix should have
    * @returns The new matrix
    */
-  ones(numberOfRows: number, numberOfColumns: number = numberOfRows): MatrixType {
+  public ones(numberOfRows: number, numberOfColumns: number = numberOfRows): MatrixType {
     return this.fill(this.ops().one(), numberOfRows, numberOfColumns);
   }
 
@@ -231,7 +230,7 @@ export class MatrixBuilder<
    * @param size - The dimension of the vector space for which the new matrix is the identity
    * @returns The new matrix
    */
-  identity(size: number): MatrixType {
+  public identity(size: number): MatrixType {
     return this.fromIndexFunction(
       size,
       size,
@@ -248,7 +247,7 @@ export class MatrixBuilder<
    * @param min - The lower limit of the random numbers to include
    * @param max - The upper limit of the random numbers to include
    */
-  random(
+  public random(
     numberOfRows: number,
     numberOfColumns: number = numberOfRows,
     min: number = 0,
@@ -269,7 +268,7 @@ export class MatrixBuilder<
    * @param mean - The center of the distribution of random numbers to include
    * @param standardDeviation - The standard deviation of the distribution of random numbers to include
    */
-  randomNormal(
+  public randomNormal(
     numberOfRows: number,
     numberOfColumns: number = numberOfRows,
     mean: number = 0,
@@ -297,7 +296,7 @@ export class MatrixBuilder<
    * @param diagonalEntries - A vector whose entries will be used as the diagonal entries of the new matrix
    * @returns The new matrix
    */
-  diagonal(diagonalEntries: VectorType): MatrixType {
+  public diagonal(diagonalEntries: VectorType): MatrixType {
     const size = diagonalEntries.getDimension();
     return this.fromIndexFunction(
       size,
@@ -331,7 +330,7 @@ export class MatrixBuilder<
    * @param rightEntries - A vector whose entries will be used in the right off-diagonal
    * @returns The new matrix
    */
-  tridiagonal(
+  public tridiagonal(
     leftEntries: Vector<ScalarType>,
     diagonalEntries: Vector<ScalarType>,
     rightEntries: Vector<ScalarType>
@@ -374,38 +373,12 @@ export class MatrixBuilder<
    * @param right - The matrix that will form the right-side of the augmented matrix
    * @returns The new augmented matrix
    */
-  augment(left: Matrix<ScalarType>, right: Matrix<ScalarType>): MatrixType {
+  public augment(left: Matrix<ScalarType>, right: Matrix<ScalarType>): MatrixType {
     if (left.getNumberOfRows() !== right.getNumberOfRows()) {
       throw Error('Dimension mismatch!');
     }
 
     return this.fromColumnVectors([...left.getColumnVectors(), ...right.getColumnVectors()]);
-  }
-
-  /**
-   * Returns a new matrix consisting of `top` and `bottom` on top of one another.
-   * Throws an error if `top` and `bottom` do not have the same number of columns.
-   *
-   * ```
-   * const top = matrixBuilder.ones(2, 3);
-   * const bottom = matrixBuilder.zeros(1,3);
-   *
-   * matrixBuilder.stack(top, bottom);
-   *
-   * // [ 1 1 1 ]
-   * // [ 1 1 1 ]
-   * // [ 0 0 0 ]
-   * ```
-   * @param top - The matrix that will be used for the top half of the new matrix
-   * @param bottom - The matrix that will be used for the bottom half of the new matrix
-   * @returns The new matrix
-   */
-  private stack(top: Matrix<ScalarType>, bottom: Matrix<ScalarType>): MatrixType {
-    if (top.getNumberOfColumns() !== bottom.getNumberOfColumns()) {
-      throw Error('Dimension mismatch!');
-    }
-
-    return this.fromRowVectors([...top.getRowVectors(), ...bottom.getRowVectors()]);
   }
 
   /**
@@ -432,7 +405,7 @@ export class MatrixBuilder<
    * @param grid - A 2-dimensional array of matrices that will be combined into the new matrix
    * @returns The new matrix
    */
-  flatten(grid: Array<Array<MatrixType>>): MatrixType {
+  public flatten(grid: MatrixType[][]): MatrixType {
     if (grid.length === 0 || grid[0].length === 0) {
       return this.empty();
     }
@@ -463,8 +436,8 @@ export class MatrixBuilder<
    * @param columns - The number of times to repeat the matrix horizontally
    * @returns The new matrix
    */
-  repeat(matrix: MatrixType, rows: number, columns: number): MatrixType {
-    const grid: Array<Array<MatrixType>> = [];
+  public repeat(matrix: MatrixType, rows: number, columns: number): MatrixType {
+    const grid: MatrixType[][] = [];
 
     for (let i = 0; i < rows; i++) {
       grid[i] = [];
@@ -496,7 +469,7 @@ export class MatrixBuilder<
    * @param columnEndIndex - The (exclusive) last column of the slice
    * @returns The new matrix
    */
-  slice(
+  public slice(
     matrix: Matrix<ScalarType>,
     rowStartIndex: number = 0,
     columnStartIndex: number = 0,
@@ -548,7 +521,7 @@ export class MatrixBuilder<
    * @param columnToExclude - The index of the column that will be removed
    * @returns The new matrix
    */
-  exclude(matrix: MatrixType, rowToExclude: number, columnToExclude: number): MatrixType {
+  public exclude(matrix: MatrixType, rowToExclude: number, columnToExclude: number): MatrixType {
     assertValidMatrixIndex(matrix, rowToExclude, columnToExclude);
 
     const data: MatrixData<ScalarType> = [];
@@ -575,5 +548,35 @@ export class MatrixBuilder<
     }
 
     return this.fromData(data);
+  }
+
+  private ops(): ScalarOperations<ScalarType> {
+    return this._matrixConstructor.ops();
+  }
+
+  /**
+   * Returns a new matrix consisting of `top` and `bottom` on top of one another.
+   * Throws an error if `top` and `bottom` do not have the same number of columns.
+   *
+   * ```
+   * const top = matrixBuilder.ones(2, 3);
+   * const bottom = matrixBuilder.zeros(1,3);
+   *
+   * matrixBuilder.stack(top, bottom);
+   *
+   * // [ 1 1 1 ]
+   * // [ 1 1 1 ]
+   * // [ 0 0 0 ]
+   * ```
+   * @param top - The matrix that will be used for the top half of the new matrix
+   * @param bottom - The matrix that will be used for the bottom half of the new matrix
+   * @returns The new matrix
+   */
+  private stack(top: Matrix<ScalarType>, bottom: Matrix<ScalarType>): MatrixType {
+    if (top.getNumberOfColumns() !== bottom.getNumberOfColumns()) {
+      throw Error('Dimension mismatch!');
+    }
+
+    return this.fromRowVectors([...top.getRowVectors(), ...bottom.getRowVectors()]);
   }
 }

@@ -1,33 +1,33 @@
-import { ScalarOperations } from './ScalarOperations';
-import { ComplexNumber } from './ComplexNumber';
 import { random, randomNormal } from '../../utilities/NumberUtilities';
+import { ComplexNumber } from './ComplexNumber';
+import { ScalarOperations } from './ScalarOperations';
 
 export class ComplexNumberOperations extends ScalarOperations<ComplexNumber> {
-  conjugate(scalar: ComplexNumber): ComplexNumber {
+  public conjugate(scalar: ComplexNumber): ComplexNumber {
     return scalar.conjugate();
   }
 
-  getAdditiveIdentity(): ComplexNumber {
+  public getAdditiveIdentity(): ComplexNumber {
     return ComplexNumber.ZERO;
   }
 
-  getAdditiveInverse(scalar: ComplexNumber): ComplexNumber {
+  public getAdditiveInverse(scalar: ComplexNumber): ComplexNumber {
     return scalar.getAdditiveInverse();
   }
 
-  getMultiplicativeIdentity(): ComplexNumber {
+  public getMultiplicativeIdentity(): ComplexNumber {
     return ComplexNumber.ONE;
   }
 
-  getMultiplicativeInverse(scalar: ComplexNumber): ComplexNumber | undefined {
+  public getMultiplicativeInverse(scalar: ComplexNumber): ComplexNumber | undefined {
     return scalar.getMultiplicativeInverse();
   }
 
-  multiply(first: ComplexNumber, second: ComplexNumber): ComplexNumber {
+  public multiply(first: ComplexNumber, second: ComplexNumber): ComplexNumber {
     return first.multiply(second);
   }
 
-  getPrincipalSquareRoot(x: ComplexNumber): ComplexNumber {
+  public getPrincipalSquareRoot(x: ComplexNumber): ComplexNumber {
     const r = Math.sqrt(Math.pow(x.getRealPart(), 2) + Math.pow(x.getImaginaryPart(), 2));
     const theta = Math.atan(x.getImaginaryPart() / x.getRealPart());
     const rootR = Math.sqrt(r);
@@ -47,19 +47,19 @@ export class ComplexNumberOperations extends ScalarOperations<ComplexNumber> {
     }
   }
 
-  equals(first: ComplexNumber, second: ComplexNumber): boolean {
+  public equals(first: ComplexNumber, second: ComplexNumber): boolean {
     return first.equals(second);
   }
 
-  add(first: ComplexNumber, second: ComplexNumber): ComplexNumber {
+  public add(first: ComplexNumber, second: ComplexNumber): ComplexNumber {
     return first.add(second);
   }
 
-  random(min: number = 0, max: number = 1): ComplexNumber {
+  public random(min: number = 0, max: number = 1): ComplexNumber {
     return new ComplexNumber(random(min, max), random(min, max));
   }
 
-  randomNormal(mean: number = 0, standardDeviation: number = 1): ComplexNumber {
+  public randomNormal(mean: number = 0, standardDeviation: number = 1): ComplexNumber {
     return new ComplexNumber(
       randomNormal(mean, standardDeviation),
       randomNormal(mean, standardDeviation)
