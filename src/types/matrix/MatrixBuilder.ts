@@ -231,10 +231,8 @@ export class MatrixBuilder<
    * @returns The new matrix
    */
   public identity(size: number): MatrixType {
-    return this.fromIndexFunction(
-      size,
-      size,
-      (i, j) => (i === j ? this.ops().one() : this.ops().zero())
+    return this.fromIndexFunction(size, size, (i, j) =>
+      i === j ? this.ops().one() : this.ops().zero()
     );
   }
 
@@ -298,10 +296,8 @@ export class MatrixBuilder<
    */
   public diagonal(diagonalEntries: VectorType): MatrixType {
     const size = diagonalEntries.getDimension();
-    return this.fromIndexFunction(
-      size,
-      size,
-      (i, j) => (i === j ? diagonalEntries.getEntry(i) : this.ops().zero())
+    return this.fromIndexFunction(size, size, (i, j) =>
+      i === j ? diagonalEntries.getEntry(i) : this.ops().zero()
     );
   }
 

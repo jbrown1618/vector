@@ -148,9 +148,8 @@ export class VectorBuilder<ScalarType, VectorType extends Vector<ScalarType>> {
   public elementaryVector(dimension: number, oneIndex: number): VectorType {
     assertValidDimension(dimension);
     assertValidIndex(oneIndex, dimension);
-    return this.fromIndexFunction(
-      dimension,
-      i => (i === oneIndex ? this.ops().one() : this.ops().zero())
+    return this.fromIndexFunction(dimension, i =>
+      i === oneIndex ? this.ops().one() : this.ops().zero()
     );
   }
 
