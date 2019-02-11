@@ -10,7 +10,7 @@ export class RowOperations {
    * @param scalar - The factor by which to scale the row
    * @returns The matrix with the transformation applied
    */
-  static multiplyRowByScalar<ScalarType>(
+  public static multiplyRowByScalar<ScalarType>(
     matrix: Matrix<ScalarType>,
     rowIndex: number,
     scalar: ScalarType
@@ -33,7 +33,7 @@ export class RowOperations {
    * @param rowToAdd - The index of the row to add
    * @returns The matrix with the transformation applied
    */
-  static addRowToRow<ScalarType>(
+  public static addRowToRow<ScalarType>(
     matrix: Matrix<ScalarType>,
     targetRow: number,
     rowToAdd: number
@@ -55,7 +55,7 @@ export class RowOperations {
    * @param scalar - The factor by which to scale the row
    * @returns The matrix with the transformation applied
    */
-  static addScalarMultipleOfRowToRow<ScalarType>(
+  public static addScalarMultipleOfRowToRow<ScalarType>(
     matrix: Matrix<ScalarType>,
     targetRow: number,
     rowToAdd: number,
@@ -81,7 +81,7 @@ export class RowOperations {
    * @param second - The index of the second row to exchange
    * @returns The matrix with the transformation applied
    */
-  static exchangeRows<ScalarType>(
+  public static exchangeRows<ScalarType>(
     matrix: Matrix<ScalarType>,
     first: number,
     second: number

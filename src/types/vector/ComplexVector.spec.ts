@@ -1,7 +1,7 @@
-import { describe, it } from 'mocha';
 import { expect } from 'chai';
-import { ComplexVector } from './ComplexVector';
+import { describe, it } from 'mocha';
 import { ComplexNumber } from '../scalar/ComplexNumber';
+import { ComplexVector } from './ComplexVector';
 
 describe('ComplexVector', () => {
   const builder = ComplexVector.builder();

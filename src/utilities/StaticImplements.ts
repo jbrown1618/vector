@@ -14,6 +14,8 @@
  * ```
  */
 export function StaticImplements<T>() {
+  /* tslint:disable */
   // @ts-ignore
   return (constructor: T) => {};
+  /* tslint:enable */
 }

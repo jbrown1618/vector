@@ -5,10 +5,10 @@ import { assertSquare } from '../utilities/ErrorAssertions';
 /**
  * The result of a QR decomposition.
  */
-export type QRDecomposition<ScalarType> = {
+export interface QRDecomposition<ScalarType> {
   Q: Matrix<ScalarType>;
   R: Matrix<ScalarType>;
-};
+}
 
 /**
  * Uses the Graham-Schmidt process to calculate the QR decomposition of the matrix A.
@@ -30,22 +30,22 @@ export function calculateQRDecomposition<ScalarType>(
   // Construct a matrix U, whose columns form an orthogonal basis
   // for the column space of A, by subtracting the non-orthogonal
   // components for each column of A
-  const uColumns: Vector<ScalarType>[] = [];
+  const uColumns: Array<Vector<ScalarType>> = [];
   for (let k = 0; k < dim; k++) {
-    const Ak = A.getColumn(k);
+    const columnK = A.getColumn(k);
 
     let nonOrthogonalPart = vectorBuilder.zeros(dim);
     for (let j = 0; j < k; j++) {
       // Add the part of Ak that is not orthogonal to the already-calculated jth column of U
-      nonOrthogonalPart = nonOrthogonalPart.add(Ak.projectOnto(uColumns[j]));
+      nonOrthogonalPart = nonOrthogonalPart.add(columnK.projectOnto(uColumns[j]));
     }
-    uColumns.push(Ak.add(nonOrthogonalPart.scalarMultiply(ops.negativeOne())));
+    uColumns.push(columnK.add(nonOrthogonalPart.scalarMultiply(ops.negativeOne())));
   }
 
   // The unitary matrix Q is just U with all of its columns normalized.
   // These columns are, then, an orthonormal basis for the column space of A.
   // If any columns are the zero vector, then A was not full-rank to begin with.
-  const qColumns: Vector<ScalarType>[] = [];
+  const qColumns: Array<Vector<ScalarType>> = [];
   for (let i = 0; i < dim; i++) {
     const qi = uColumns[i].normalize();
     if (qi === undefined) {

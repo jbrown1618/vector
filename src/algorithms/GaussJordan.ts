@@ -1,7 +1,7 @@
-import { RowOperations } from './RowOperations';
 import { Matrix } from '../types/matrix/Matrix';
-import { assertSquare } from '../utilities/ErrorAssertions';
 import { VectorData } from '../types/vector/Vector';
+import { assertSquare } from '../utilities/ErrorAssertions';
+import { RowOperations } from './RowOperations';
 
 /**
  * Uses Gauss-Jordan elimination to calculate the inverse of a matrix.
@@ -97,8 +97,8 @@ function moveLeadingZerosToBottom<ScalarType>(matrix: Matrix<ScalarType>): Matri
 
   const getNumberOfLeadingZeros = (row: VectorData<ScalarType>) => {
     let zeros = 0;
-    for (let i = 0; i < row.length; i++) {
-      if (ops.equals(row[i], ops.zero())) {
+    for (const item of row) {
+      if (ops.equals(item, ops.zero())) {
         ++zeros;
       } else {
         break;

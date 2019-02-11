@@ -1,51 +1,51 @@
-import { ScalarOperations } from './ScalarOperations';
 import { approximatelyEqual, random, randomNormal } from '../../utilities/NumberUtilities';
+import { ScalarOperations } from './ScalarOperations';
 
 export class NumberOperations extends ScalarOperations<number> {
-  add(first: number, second: number): number {
+  public add(first: number, second: number): number {
     return first + second;
   }
 
-  conjugate(scalar: number): number {
+  public conjugate(scalar: number): number {
     return scalar;
   }
 
-  getAdditiveIdentity(): number {
+  public getAdditiveIdentity(): number {
     return 0;
   }
 
-  getAdditiveInverse(x: number): number {
+  public getAdditiveInverse(x: number): number {
     return -1 * x;
   }
 
-  getMultiplicativeIdentity(): number {
+  public getMultiplicativeIdentity(): number {
     return 1;
   }
 
-  getMultiplicativeInverse(x: number): number | undefined {
+  public getMultiplicativeInverse(x: number): number | undefined {
     if (x === 0) {
       return undefined;
     }
     return 1 / x;
   }
 
-  getPrincipalSquareRoot(x: number): number {
+  public getPrincipalSquareRoot(x: number): number {
     return Math.sqrt(x);
   }
 
-  multiply(first: number, second: number): number {
+  public multiply(first: number, second: number): number {
     return first * second;
   }
 
-  equals(first: number, second: number): boolean {
+  public equals(first: number, second: number): boolean {
     return approximatelyEqual(first, second);
   }
 
-  random(min: number = 0, max: number = 1): number {
+  public random(min: number = 0, max: number = 1): number {
     return random(min, max);
   }
 
-  randomNormal(mean: number = 0, standardDeviation: number = 1): number {
+  public randomNormal(mean: number = 0, standardDeviation: number = 1): number {
     return randomNormal(mean, standardDeviation);
   }
 }

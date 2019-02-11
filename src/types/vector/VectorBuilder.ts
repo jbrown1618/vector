@@ -1,7 +1,7 @@
 import { assertValidDimension, assertValidIndex } from '../../utilities/ErrorAssertions';
 import { ScalarOperations } from '../scalar/ScalarOperations';
-import { Vector, VectorConstructor, VectorData } from './Vector';
 import { SparseVectorData } from './SparseVector';
+import { Vector, VectorConstructor, VectorData } from './Vector';
 
 export type VectorIndexFunction<ScalarType> = (index: number) => ScalarType;
 export type VectorEntryFunction<ScalarType> = (entry: ScalarType, index: number) => ScalarType;
@@ -13,19 +13,15 @@ export class VectorBuilder<ScalarType, VectorType extends Vector<ScalarType>> {
     this._vectorConstructor = vectorConstructor;
   }
 
-  private ops(): ScalarOperations<ScalarType> {
-    return this._vectorConstructor.ops();
-  }
-
-  fromValues(...data: VectorData<ScalarType>): VectorType {
+  public fromValues(...data: VectorData<ScalarType>): VectorType {
     return this.fromData(data);
   }
 
-  fromData(data: VectorData<ScalarType>): VectorType {
+  public fromData(data: VectorData<ScalarType>): VectorType {
     return new this._vectorConstructor(data);
   }
 
-  fromSparseData(dimension: number, sparseData: SparseVectorData<ScalarType>): VectorType {
+  public fromSparseData(dimension: number, sparseData: SparseVectorData<ScalarType>): VectorType {
     const data: VectorData<ScalarType> = [];
     for (let i = 0; i < dimension; i++) {
       data[i] = this.ops().zero();
@@ -47,7 +43,7 @@ export class VectorBuilder<ScalarType, VectorType extends Vector<ScalarType>> {
    * @param valueFromIndex - A function returning the entry for a given index
    * @returns The new vector
    */
-  fromIndexFunction(
+  public fromIndexFunction(
     dimension: number,
     valueFromIndex: VectorIndexFunction<ScalarType>
   ): VectorType {
@@ -76,7 +72,10 @@ export class VectorBuilder<ScalarType, VectorType extends Vector<ScalarType>> {
    *     the original vector and its index, and returns the corresponding entry of the new vector
    * @returns The new vector
    */
-  map(vector: Vector<ScalarType>, valueFromEntry: VectorEntryFunction<ScalarType>): VectorType {
+  public map(
+    vector: Vector<ScalarType>,
+    valueFromEntry: VectorEntryFunction<ScalarType>
+  ): VectorType {
     return this.fromData(vector.getData().map(valueFromEntry));
   }
 
@@ -89,7 +88,7 @@ export class VectorBuilder<ScalarType, VectorType extends Vector<ScalarType>> {
    *
    * @returns The new vector
    */
-  empty(): VectorType {
+  public empty(): VectorType {
     return this.fromData([]);
   }
 
@@ -104,7 +103,7 @@ export class VectorBuilder<ScalarType, VectorType extends Vector<ScalarType>> {
    * @param dimension - The dimension of the new vector
    * @returns The new vector
    */
-  fill(value: ScalarType, dimension: number): VectorType {
+  public fill(value: ScalarType, dimension: number): VectorType {
     assertValidDimension(dimension);
     return this.fromIndexFunction(dimension, () => value);
   }
@@ -118,7 +117,7 @@ export class VectorBuilder<ScalarType, VectorType extends Vector<ScalarType>> {
    * @param dimension - The dimension of the vector to construct
    * @returns The new vector
    */
-  zeros(dimension: number): VectorType {
+  public zeros(dimension: number): VectorType {
     return this.fill(this.ops().zero(), dimension);
   }
 
@@ -131,7 +130,7 @@ export class VectorBuilder<ScalarType, VectorType extends Vector<ScalarType>> {
    * @param dimension - The dimension of the new vector
    * @returns The new vector
    */
-  ones(dimension: number): VectorType {
+  public ones(dimension: number): VectorType {
     return this.fill(this.ops().one(), dimension);
   }
 
@@ -146,12 +145,11 @@ export class VectorBuilder<ScalarType, VectorType extends Vector<ScalarType>> {
    * @param oneIndex - The index of the element that should be the multiplicative identity
    * @returns The new vector
    */
-  elementaryVector(dimension: number, oneIndex: number): VectorType {
+  public elementaryVector(dimension: number, oneIndex: number): VectorType {
     assertValidDimension(dimension);
     assertValidIndex(oneIndex, dimension);
-    return this.fromIndexFunction(
-      dimension,
-      i => (i === oneIndex ? this.ops().one() : this.ops().zero())
+    return this.fromIndexFunction(dimension, i =>
+      i === oneIndex ? this.ops().one() : this.ops().zero()
     );
   }
 
@@ -163,7 +161,7 @@ export class VectorBuilder<ScalarType, VectorType extends Vector<ScalarType>> {
    * @param min - The lower limit of the random numbers to include
    * @param max - The upper limit of the random numbers to include
    */
-  random(dimension: number, min: number = 0, max: number = 1): VectorType {
+  public random(dimension: number, min: number = 0, max: number = 1): VectorType {
     if (min >= max) {
       throw Error('TODO - message');
     }
@@ -178,7 +176,11 @@ export class VectorBuilder<ScalarType, VectorType extends Vector<ScalarType>> {
    * @param mean - The center of the distribution of random numbers to include
    * @param standardDeviation - The standard deviation of the distribution of random numbers to include
    */
-  randomNormal(dimension: number, mean: number = 0, standardDeviation: number = 1): VectorType {
+  public randomNormal(
+    dimension: number,
+    mean: number = 0,
+    standardDeviation: number = 1
+  ): VectorType {
     if (standardDeviation <= 0) {
       throw Error('TODO - message');
     }
@@ -200,7 +202,11 @@ export class VectorBuilder<ScalarType, VectorType extends Vector<ScalarType>> {
    * @param second - The vector which will be used for the entries starting with `first.getDimension()`
    * @returns The new vector
    */
-  concatenate(first: VectorType, second: VectorType): VectorType {
+  public concatenate(first: VectorType, second: VectorType): VectorType {
     return this.fromData([...first.getData(), ...second.getData()]);
+  }
+
+  private ops(): ScalarOperations<ScalarType> {
+    return this._vectorConstructor.ops();
   }
 }

@@ -1,7 +1,7 @@
-import { describe, it } from 'mocha';
 import { expect } from 'chai';
-import { determinant } from './Determinant';
+import { describe, it } from 'mocha';
 import { NumberMatrix } from '../types/matrix/NumberMatrix';
+import { determinant } from './Determinant';
 
 describe('Determinant', () => {
   describe('determinant', () => {

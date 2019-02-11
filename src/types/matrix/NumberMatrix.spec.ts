@@ -1,7 +1,7 @@
-import { describe, it } from 'mocha';
 import { expect } from 'chai';
-import { NumberMatrix } from './NumberMatrix';
+import { describe, it } from 'mocha';
 import { NumberVector } from '../vector/NumberVector';
+import { NumberMatrix } from './NumberMatrix';
 
 describe('NumberMatrix', () => {
   const builder = NumberMatrix.builder();
@@ -218,9 +218,9 @@ describe('NumberMatrix', () => {
   describe('adjoint', () => {
     it('returns the transpose of the original matrix', () => {
       const M = builder.fromData([[1, 2], [3, 4]]);
-      const Mstar = M.adjoint();
-      const Mtrans = M.transpose();
-      expect(Mstar.equals(Mtrans)).to.be.true;
+      const mStar = M.adjoint();
+      const mTrans = M.transpose();
+      expect(mStar.equals(mTrans)).to.be.true;
     });
   });
 });

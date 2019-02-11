@@ -10,8 +10,8 @@ export function assertRectangular(data: MatrixData<any>): void {
     return;
   }
   const rowSize = data[0].length;
-  for (let i = 0; i < data.length; i++) {
-    if (data[i].length !== rowSize) {
+  for (const row of data) {
+    if (row.length !== rowSize) {
       throw Error('TODO - message');
     }
   }
@@ -35,8 +35,8 @@ export function assertHomogeneous(vectors: Array<Vector<any>>): void {
     return;
   }
   const size = vectors[0].getDimension();
-  for (let i = 0; i < vectors.length; i++) {
-    if (vectors[i].getDimension() !== size) {
+  for (const vector of vectors) {
+    if (vector.getDimension() !== size) {
       throw Error('TODO - message');
     }
   }

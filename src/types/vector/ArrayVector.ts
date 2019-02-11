@@ -1,9 +1,9 @@
-import { MatrixBuilder } from '../matrix/MatrixBuilder';
-import { Matrix, MatrixData } from '../matrix/Matrix';
-import { ScalarOperations } from '../scalar/ScalarOperations';
-import { VectorBuilder } from './VectorBuilder';
 import { assertHomogeneous, assertValidVectorIndex } from '../../utilities/ErrorAssertions';
+import { Matrix, MatrixData } from '../matrix/Matrix';
+import { MatrixBuilder } from '../matrix/MatrixBuilder';
+import { ScalarOperations } from '../scalar/ScalarOperations';
 import { Vector, VectorData } from './Vector';
+import { VectorBuilder } from './VectorBuilder';
 
 /**
  * Implements `Vector` with an array of values.
@@ -16,14 +16,18 @@ export abstract class ArrayVector<ScalarType> implements Vector<ScalarType> {
     this._data = data;
   }
 
-  abstract ops(): ScalarOperations<ScalarType>;
-  abstract builder(): VectorBuilder<ScalarType, Vector<ScalarType>>;
-  abstract matrixBuilder(): MatrixBuilder<ScalarType, Vector<ScalarType>, Matrix<ScalarType>>;
+  public abstract ops(): ScalarOperations<ScalarType>;
+  public abstract builder(): VectorBuilder<ScalarType, Vector<ScalarType>>;
+  public abstract matrixBuilder(): MatrixBuilder<
+    ScalarType,
+    Vector<ScalarType>,
+    Matrix<ScalarType>
+  >;
 
   /**
    * @inheritdoc
    */
-  getEntry(index: number): ScalarType {
+  public getEntry(index: number): ScalarType {
     assertValidVectorIndex(this, index);
     return this._data[index];
   }
@@ -31,7 +35,7 @@ export abstract class ArrayVector<ScalarType> implements Vector<ScalarType> {
   /**
    * @inheritdoc
    */
-  add(other: Vector<ScalarType>): Vector<ScalarType> {
+  public add(other: Vector<ScalarType>): Vector<ScalarType> {
     assertHomogeneous([this, other]);
 
     const newData = this.getData().map((entry, index) =>
@@ -44,7 +48,7 @@ export abstract class ArrayVector<ScalarType> implements Vector<ScalarType> {
   /**
    * @inheritdoc
    */
-  equals(other: Vector<ScalarType>): boolean {
+  public equals(other: Vector<ScalarType>): boolean {
     if (this.getDimension() !== other.getDimension()) {
       return false;
     }
@@ -57,7 +61,7 @@ export abstract class ArrayVector<ScalarType> implements Vector<ScalarType> {
   /**
    * @inheritdoc
    */
-  innerProduct(other: Vector<ScalarType>): ScalarType {
+  public innerProduct(other: Vector<ScalarType>): ScalarType {
     assertHomogeneous([this, other]);
 
     return this._data
@@ -70,7 +74,7 @@ export abstract class ArrayVector<ScalarType> implements Vector<ScalarType> {
   /**
    * @inheritdoc
    */
-  outerProduct(other: Vector<ScalarType>): Matrix<ScalarType> {
+  public outerProduct(other: Vector<ScalarType>): Matrix<ScalarType> {
     const matrixData: MatrixData<ScalarType> = [];
 
     if (this.getDimension() === 0 || other.getDimension() === 0) {
@@ -90,14 +94,14 @@ export abstract class ArrayVector<ScalarType> implements Vector<ScalarType> {
   /**
    * @inheritdoc
    */
-  norm(): ScalarType {
+  public norm(): ScalarType {
     return this.ops().getPrincipalSquareRoot(this.innerProduct(this));
   }
 
   /**
    * @inheritdoc
    */
-  normalize(): Vector<ScalarType> | undefined {
+  public normalize(): Vector<ScalarType> | undefined {
     const oneOverNorm = this.ops().getMultiplicativeInverse(this.norm());
     if (oneOverNorm === undefined) {
       return undefined;
@@ -108,7 +112,7 @@ export abstract class ArrayVector<ScalarType> implements Vector<ScalarType> {
   /**
    * @inheritdoc
    */
-  projectOnto(u: Vector<ScalarType>) {
+  public projectOnto(u: Vector<ScalarType>) {
     const oneOverUDotU = this.ops().getMultiplicativeInverse(u.innerProduct(u));
     if (oneOverUDotU === undefined) {
       throw Error('TODO - cannot project onto the zero vector');
@@ -122,21 +126,21 @@ export abstract class ArrayVector<ScalarType> implements Vector<ScalarType> {
   /**
    * @inheritdoc
    */
-  scalarMultiply(scalar: ScalarType): Vector<ScalarType> {
+  public scalarMultiply(scalar: ScalarType): Vector<ScalarType> {
     return this.builder().fromData(this.getData().map(entry => this.ops().multiply(entry, scalar)));
   }
 
   /**
    * @inheritdoc
    */
-  getData(): VectorData<ScalarType> {
+  public getData(): VectorData<ScalarType> {
     return [...this._data];
   }
 
   /**
    * @inheritdoc
    */
-  getDimension(): number {
+  public getDimension(): number {
     return this._data.length;
   }
 }
