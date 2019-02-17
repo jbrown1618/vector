@@ -3,7 +3,7 @@ import { describe, it } from 'mocha';
 import { NumberMatrix } from '../types/matrix/NumberMatrix';
 import { calculateLUDecomposition } from './LUDecomposition';
 
-describe('QRDecomposition', () => {
+describe('LUDecomposition', () => {
   const matrixBuilder = NumberMatrix.builder();
 
   describe('calculateLUDecomposition', () => {
