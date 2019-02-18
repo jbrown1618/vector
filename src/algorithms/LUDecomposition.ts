@@ -1,5 +1,6 @@
 import { Matrix } from '../types/matrix/Matrix';
 import { assertSquare } from '../utilities/ErrorAssertions';
+import { moveLeadingZerosToBottom } from './RowOperations';
 
 /**
  * The result of an LU Decomposition
@@ -32,7 +33,9 @@ export function calculateLUDecomposition<ScalarType>(
   const ops = A.ops();
 
   const N = A.getNumberOfColumns();
-  const P = A.builder().identity(N);
+  const sortingResult = moveLeadingZerosToBottom(A);
+  const P = sortingResult.operator;
+  A = sortingResult.result;
 
   // U will eventually be the last U_n
   let U = A;
@@ -104,7 +107,7 @@ function getNthLowerTriangularMatrix<ScalarType>(
         const numerator = previousU.getEntry(i, columnIndex);
         const denominator = previousU.getEntry(columnIndex, columnIndex);
         const quotient = ops.divide(numerator, denominator);
-        if (!quotient) {
+        if (quotient === undefined) {
           throw Error('TODO - One of the diagonal entries was 0!');
         }
         return ops.multiply(quotient, ops.negativeOne());

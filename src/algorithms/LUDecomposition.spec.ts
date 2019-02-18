@@ -18,7 +18,24 @@ describe('LUDecomposition', () => {
       expect(U).to.deep.equal(expectedU);
       expect(P).to.deep.equal(expectedP);
 
-      // Check that QR equals A
+      // Check that LU equals PA
+      const pa = P.multiply(A);
+      const lu = L.multiply(U);
+      expect(lu.equals(pa)).to.be.true;
+    });
+
+    it('handles matrices that require pivoting', () => {
+      const A = matrixBuilder.fromData([[0, 5, 5], [2, 9, 0], [6, 8, 8]]);
+      const expectedL = matrixBuilder.fromData([[1, 0, 0], [3, 1, 0], [0, -5 / 19, 1]]);
+      const expectedU = matrixBuilder.fromData([[2, 9, 0], [0, -19, 8], [0, 0, 135 / 19]]);
+      const expectedP = matrixBuilder.fromData([[0, 1, 0], [0, 0, 1], [1, 0, 0]]);
+
+      const { L, U, P } = calculateLUDecomposition(A);
+      expect(L.equals(expectedL)).to.be.true;
+      expect(U.equals(expectedU)).to.be.true;
+      expect(P.equals(expectedP)).to.be.true;
+
+      // Check that LU equals PA
       const pa = P.multiply(A);
       const lu = L.multiply(U);
       expect(lu.equals(pa)).to.be.true;
