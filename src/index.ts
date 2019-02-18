@@ -2,6 +2,7 @@ export * from './algorithms/Determinant';
 export * from './algorithms/FiniteDifferences';
 export * from './algorithms/GaussJordan';
 export * from './algorithms/LeastSquares';
+export * from './algorithms/LUDecomposition';
 export * from './algorithms/QRDecomposition';
 export * from './algorithms/RowOperations';
 export * from './types/matrix/ArrayMatrix';
