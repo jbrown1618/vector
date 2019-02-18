@@ -1,7 +1,10 @@
 import { Matrix } from '../types/matrix/Matrix';
-import { VectorData } from '../types/vector/Vector';
 import { assertSquare } from '../utilities/ErrorAssertions';
-import { RowOperations } from './RowOperations';
+import {
+  addScalarMultipleOfRowToRow,
+  moveLeadingZerosToBottom,
+  multiplyRowByScalar
+} from './RowOperations';
 
 /**
  * Uses Gauss-Jordan elimination to calculate the inverse of a matrix.
@@ -61,7 +64,7 @@ export function reducedRowEchelonForm<ScalarType>(matrix: Matrix<ScalarType>): M
  * @returns The matrix in REF
  */
 export function rowEchelonForm<ScalarType>(matrix: Matrix<ScalarType>): Matrix<ScalarType> {
-  matrix = moveLeadingZerosToBottom(matrix);
+  matrix = moveLeadingZerosToBottom(matrix).result;
   const ops = matrix.ops();
 
   const maxNumberOfPivotEntries = Math.min(matrix.getNumberOfRows(), matrix.getNumberOfColumns());
@@ -80,38 +83,13 @@ export function rowEchelonForm<ScalarType>(matrix: Matrix<ScalarType>): Matrix<S
     if (!ops.equals(pivotEntry, ops.zero())) {
       // cast from ScalarType|undefined to ScalarType, since pivotEntry is not 0
       const pivotInverse = ops.getMultiplicativeInverse(pivotEntry) as ScalarType;
-      matrix = RowOperations.multiplyRowByScalar(matrix, pivotRow, pivotInverse);
+      matrix = multiplyRowByScalar(matrix, pivotRow, pivotInverse);
     }
 
     matrix = clearEntriesBelow(matrix, pivotRow, pivotColumn);
   }
 
   return matrix;
-}
-
-/**
- * Sorts the rows of a matrix according to the number of leading zeros
- */
-function moveLeadingZerosToBottom<ScalarType>(matrix: Matrix<ScalarType>): Matrix<ScalarType> {
-  const ops = matrix.ops();
-
-  const getNumberOfLeadingZeros = (row: VectorData<ScalarType>) => {
-    let zeros = 0;
-    for (const item of row) {
-      if (ops.equals(item, ops.zero())) {
-        ++zeros;
-      } else {
-        break;
-      }
-    }
-    return zeros;
-  };
-
-  const comparator = (a: VectorData<ScalarType>, b: VectorData<ScalarType>) => {
-    return getNumberOfLeadingZeros(a) - getNumberOfLeadingZeros(b);
-  };
-
-  return matrix.builder().fromData(matrix.getData().sort(comparator));
 }
 
 /**
@@ -133,12 +111,7 @@ function clearEntriesBelow<ScalarType>(
       continue;
     }
 
-    matrix = RowOperations.addScalarMultipleOfRowToRow(
-      matrix,
-      rowIndex,
-      pivotRow,
-      ops.getAdditiveInverse(entry)
-    );
+    matrix = addScalarMultipleOfRowToRow(matrix, rowIndex, pivotRow, ops.getAdditiveInverse(entry));
   }
 
   return matrix;
@@ -186,12 +159,7 @@ function clearEntriesAbove<ScalarType>(
       continue;
     }
 
-    matrix = RowOperations.addScalarMultipleOfRowToRow(
-      matrix,
-      rowIndex,
-      pivotRow,
-      ops.getAdditiveInverse(entry)
-    );
+    matrix = addScalarMultipleOfRowToRow(matrix, rowIndex, pivotRow, ops.getAdditiveInverse(entry));
   }
   return matrix;
 }
