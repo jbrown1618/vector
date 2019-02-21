@@ -256,6 +256,54 @@ export class MatrixBuilder<
   }
 
   /**
+   * Constructs a Toeplitz matrix from the specified first column and first row.
+   * A Toeplitz matrix has constant diagonals.  If `firstRow` is not given, then
+   * the complex conjugate of `firstColumn` is assumed.  The first entry must be
+   * real because the first entry of the first column must equal the first entry
+   * of the first row.
+   *
+   * ```
+   * matrixBuilder.toeplitz(vectorBuilder.fromData([1, 2, 3]));
+   * // [ 1 2 3 ]
+   * // [ 2 1 2 ]
+   * // [ 3 2 1 ]
+   *
+   * matrixBuilder.toeplitz(
+   *   vectorBuilder.fromData([1, 2, 3]),
+   *   vectorBuilder.fromData([1, 3, 5, 7])
+   * );
+   * // [ 1 3 5 7 ]
+   * // [ 2 1 3 5 ]
+   * // [ 3 2 1 3 ]
+   * ```
+   *
+   * @param firstColumn - The first column of the Toeplitz matrix
+   * @param firstRow - The first row of the Toeplitz matrix
+   */
+  public toeplitz(firstColumn: Vector<ScalarType>, firstRow?: Vector<ScalarType>) {
+    const vb = this._matrixConstructor.vectorBuilder();
+    const ops = this.ops();
+    firstRow = firstRow || vb.map(firstColumn, value => ops.conjugate(value));
+
+    if (firstRow.getDimension() === 0 || firstColumn.getDimension() === 0) {
+      return this.empty();
+    }
+
+    if (!this.ops().equals(firstRow.getEntry(0), firstColumn.getEntry(0))) {
+      throw Error('TODO - first entry of first column must equal first entry of first row');
+    }
+
+    return this.fromIndexFunction(firstColumn.getDimension(), firstRow.getDimension(), (i, j) => {
+      if (i >= j) {
+        return firstColumn.getEntry(i - j);
+      } else {
+        // TODO - review on TSC upgrade - should never be undefined
+        return (firstRow as Vector<ScalarType>).getEntry(j - i);
+      }
+    });
+  }
+
+  /**
    * Constructs a Hankel matrix from the specified first column and last row.
    * A Hankel matrix has constant anti-diagonals. If `lastRow` is not given,
    * then a vector with the last entry of the first row in the first entry and
@@ -284,6 +332,10 @@ export class MatrixBuilder<
    */
   public hankel(firstColumn: Vector<ScalarType>, lastRow?: Vector<ScalarType>) {
     const numRows = firstColumn.getDimension();
+    if (numRows === 0) {
+      return this.empty();
+    }
+
     lastRow =
       lastRow ||
       firstColumn
@@ -291,6 +343,10 @@ export class MatrixBuilder<
         .elementaryVector(numRows, 0)
         .scalarMultiply(firstColumn.getEntry(numRows - 1));
     const numColumns = lastRow.getDimension();
+
+    if (numColumns === 0) {
+      return this.empty();
+    }
 
     if (!this.ops().equals(lastRow.getEntry(0), firstColumn.getEntry(numRows - 1))) {
       throw Error('TODO - last entry of first column must equal first entry of last row');

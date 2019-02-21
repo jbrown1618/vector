@@ -234,6 +234,34 @@ describe('MatrixBuilder', () => {
     });
   });
 
+  describe('toeplitz', () => {
+    it('constructs a toeplitz matrix with the default first row', () => {
+      const toeplitz = matrixBuilder.toeplitz(vectorBuilder.fromData([1, 2, 3]));
+      const expected = matrixBuilder.fromData([[1, 2, 3], [2, 1, 2], [3, 2, 1]]);
+      expect(toeplitz).to.deep.equal(expected);
+    });
+
+    it('constructs a toeplitz matrix with a specified first row', () => {
+      const toeplitz = matrixBuilder.toeplitz(
+        vectorBuilder.fromData([1, 2, 3]),
+        vectorBuilder.fromData([1, 3, 5, 7])
+      );
+      const expected = matrixBuilder.fromData([[1, 3, 5, 7], [2, 1, 3, 5], [3, 2, 1, 3]]);
+      expect(toeplitz).to.deep.equal(expected);
+    });
+
+    it('handles an empty first column', () => {
+      const toeplitz = matrixBuilder.toeplitz(vectorBuilder.empty());
+      expect(toeplitz).to.deep.equal(matrixBuilder.empty());
+    });
+
+    it('rejects an entry mismatch', () => {
+      expect(() =>
+        matrixBuilder.toeplitz(vectorBuilder.fromData([1, 2]), vectorBuilder.fromData([2, 1]))
+      ).to.throw();
+    });
+  });
+
   describe('hankel', () => {
     it('constructs a hankel matrix with the default last row', () => {
       const hankel = matrixBuilder.hankel(vectorBuilder.fromData([2, 4, 6, 8]));
@@ -262,6 +290,17 @@ describe('MatrixBuilder', () => {
       );
       const expected = matrixBuilder.fromData([[1, 2, 3, 9], [2, 3, 9, 9], [3, 9, 9, 9]]);
       expect(hankel).to.deep.equal(expected);
+    });
+
+    it('handles an empty first column', () => {
+      const hankel = matrixBuilder.hankel(vectorBuilder.empty());
+      expect(hankel).to.deep.equal(matrixBuilder.empty());
+    });
+
+    it('rejects an entry mismatch', () => {
+      expect(() =>
+        matrixBuilder.hankel(vectorBuilder.fromData([1, 2]), vectorBuilder.fromData([1, 2]))
+      ).to.throw();
     });
   });
 
