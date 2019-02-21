@@ -304,6 +304,54 @@ describe('MatrixBuilder', () => {
     });
   });
 
+  describe('pascal', () => {
+    it('constructs a lower-triangular pascal matrix', () => {
+      const lower = matrixBuilder.pascal(5);
+      const expected = matrixBuilder.fromData([
+        [1, 0, 0, 0, 0],
+        [1, 1, 0, 0, 0],
+        [1, 2, 1, 0, 0],
+        [1, 3, 3, 1, 0],
+        [1, 4, 6, 4, 1]
+      ]);
+      expect(lower).to.deep.equal(expected);
+    });
+
+    it('constructs a upper-triangular pascal matrix', () => {
+      const upper = matrixBuilder.pascal(5, true);
+      const expected = matrixBuilder.fromData([
+        [1, 1, 1, 1, 1],
+        [0, 1, 2, 3, 4],
+        [0, 0, 1, 3, 6],
+        [0, 0, 0, 1, 4],
+        [0, 0, 0, 0, 1]
+      ]);
+      expect(upper).to.deep.equal(expected);
+    });
+
+    it('rejects a negative size', () => {
+      expect(() => matrixBuilder.pascal(-1)).to.throw();
+    });
+  });
+
+  describe('pascalSymmetric', () => {
+    it('constructs a symmetric pascal matrix', () => {
+      const pascal = matrixBuilder.pascalSymmetric(5);
+      const expected = matrixBuilder.fromData([
+        [1, 1, 1, 1, 1],
+        [1, 2, 3, 4, 5],
+        [1, 3, 6, 10, 15],
+        [1, 4, 10, 20, 35],
+        [1, 5, 15, 35, 70]
+      ]);
+      expect(pascal).to.deep.equal(expected);
+    });
+
+    it('rejects a negative size', () => {
+      expect(() => matrixBuilder.pascalSymmetric(-1)).to.throw();
+    });
+  });
+
   describe('circulant', () => {
     it('constructs a circulant matrix', () => {
       const entries = vectorBuilder.fromData([1, 2, 3]);

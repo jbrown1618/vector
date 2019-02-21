@@ -4,6 +4,7 @@ import {
   assertValidDimensions,
   assertValidMatrixIndex
 } from '../../utilities/ErrorAssertions';
+import { binomial } from '../../utilities/NumberUtilities';
 import { ScalarOperations } from '../scalar/ScalarOperations';
 import { Vector } from '../vector/Vector';
 import { Matrix, MatrixConstructor, MatrixData } from './Matrix';
@@ -360,6 +361,52 @@ export class MatrixBuilder<
         // TODO - review on TSC upgrade - should never be undefined
         return (lastRow as Vector<ScalarType>).getEntry(index - numRows + 1);
       }
+    });
+  }
+
+  /**
+   * Constructs a lower-triangular matrix whose entries are the binomial coefficients (j choose i)
+   *
+   * ```
+   * matrixBuilder.pascal(4);
+   * // [ 1 0 0 0 ]
+   * // [ 1 1 0 0 ]
+   * // [ 1 2 1 0 ]
+   * // [ 1 3 3 1 ]
+   *
+   * matrixBuilder.pascal(4, true);
+   * // [ 1 1 1 1 ]
+   * // [ 0 1 2 3 ]
+   * // [ 0 0 1 3 ]
+   * // [ 0 0 0 1 ]
+   * ```
+   *
+   * @param size - The size of the Pascal matrix
+   * @param upper - Construct an upper-triangular matrix (i choose j)
+   */
+  public pascal(size: number, upper: boolean = false): MatrixType {
+    return this.fromIndexFunction(size, size, (i, j) => {
+      const entry = upper ? binomial(j, i) : binomial(i, j);
+      return this.ops().fromNumber(entry);
+    });
+  }
+
+  /**
+   * Constructs a lower-triangular matrix whose entries are the binomial coefficients (i + j choose i)
+   *
+   * ```
+   * matrixBuilder.pascalSymmetric(4);
+   * // [ 1  1  1  1  ]
+   * // [ 1  2  3  4  ]
+   * // [ 1  3  6  10 ]
+   * // [ 1  4  10 20 ]
+   * ```
+   *
+   * @param size - The size of the Pascal matrix
+   */
+  public pascalSymmetric(size: number): MatrixType {
+    return this.fromIndexFunction(size, size, (i, j) => {
+      return this.ops().fromNumber(binomial(i + j, i));
     });
   }
 
