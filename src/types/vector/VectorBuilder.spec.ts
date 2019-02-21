@@ -177,14 +177,14 @@ describe('VectorBuilder', () => {
     });
   });
 
-  describe('rotate', () => {
-    it('returns a new vector with the entries rotated', () => {
+  describe('shifted', () => {
+    it('returns a new vector with the entries shifted by an offset', () => {
       const original = builder.fromData([1, 2, 3]);
-      const rightOne = builder.rotate(original);
-      const rightTwo = builder.rotate(original, 2);
-      const rightThree = builder.rotate(original, 3);
-      const leftOne = builder.rotate(original, 1, true);
-      const leftTwo = builder.rotate(original, 2, true);
+      const rightOne = builder.shift(original);
+      const rightTwo = builder.shift(original, 2);
+      const rightThree = builder.shift(original, 3);
+      const leftOne = builder.shift(original, 1, true);
+      const leftTwo = builder.shift(original, 2, true);
 
       const twoThreeOne = builder.fromData([2, 3, 1]);
       const threeOneTwo = builder.fromData([3, 1, 2]);

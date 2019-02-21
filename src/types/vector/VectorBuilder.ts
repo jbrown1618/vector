@@ -168,7 +168,7 @@ export class VectorBuilder<ScalarType, VectorType extends Vector<ScalarType>> {
    * @param offset - The amount by which to shift the indices
    * @param reverse - Shift entries backward rather than forward
    */
-  public rotate(
+  public shift(
     vector: Vector<ScalarType>,
     offset: number = 1,
     reverse: boolean = false

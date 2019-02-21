@@ -272,7 +272,7 @@ export class MatrixBuilder<
     const vb = this._matrixConstructor.vectorBuilder();
     const columns = [vector];
     for (let offset = 1; offset < vector.getDimension(); offset++) {
-      columns.push(vb.rotate(vector, offset, true));
+      columns.push(vb.shift(vector, offset, true));
     }
     return this.fromColumnVectors(columns);
   }
