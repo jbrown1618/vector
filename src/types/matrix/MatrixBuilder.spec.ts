@@ -334,6 +334,35 @@ describe('MatrixBuilder', () => {
     });
   });
 
+  describe('blockDiagonal', () => {
+    it('constructs a block matrix with the provided matrices along the diagonal', () => {
+      const ones = matrixBuilder.ones(2);
+      const twos = matrixBuilder.fill(2, 3);
+      const blockDiagonal = matrixBuilder.blockDiagonal([ones, twos, ones]);
+      const expected = matrixBuilder.fromData([
+        [1, 1, 0, 0, 0, 0, 0],
+        [1, 1, 0, 0, 0, 0, 0],
+        [0, 0, 2, 2, 2, 0, 0],
+        [0, 0, 2, 2, 2, 0, 0],
+        [0, 0, 2, 2, 2, 0, 0],
+        [0, 0, 0, 0, 0, 1, 1],
+        [0, 0, 0, 0, 0, 1, 1]
+      ]);
+
+      expect(blockDiagonal).to.deep.equal(expected);
+    });
+
+    it('rejects an array with any non-square matrices', () => {
+      const ones = matrixBuilder.ones(2);
+      const twos = matrixBuilder.fill(2, 3, 2);
+      expect(() => matrixBuilder.blockDiagonal([ones, twos, ones])).to.throw();
+    });
+
+    it('handles an empty array', () => {
+      expect(matrixBuilder.blockDiagonal([])).to.deep.equal(matrixBuilder.empty());
+    });
+  });
+
   describe('augment', () => {
     it('horizontally concatenates two matrices', () => {
       const first = matrixBuilder.identity(2);

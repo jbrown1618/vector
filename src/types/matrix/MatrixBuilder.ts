@@ -1,5 +1,6 @@
 import {
   assertHomogeneous,
+  assertSquare,
   assertValidDimensions,
   assertValidMatrixIndex
 } from '../../utilities/ErrorAssertions';
@@ -353,6 +354,46 @@ export class MatrixBuilder<
   }
 
   /**
+   * Creates a block-diagonal matrix.
+   *
+   * ```
+   * const ones = matrixBuilder.ones(2);
+   * const twos = matrixBuilder.fill(2, 3);
+   *
+   * const blockDiagonal = matrixBuilder.blockDiagonal([ones, twos, ones]);
+   *
+   * // [ 1 1 0 0 0 0 0 ]
+   * // [ 1 1 0 0 0 0 0 ]
+   * // [ 0 0 2 2 2 0 0 ]
+   * // [ 0 0 2 2 2 0 0 ]
+   * // [ 0 0 2 2 2 0 0 ]
+   * // [ 0 0 0 0 0 1 1 ]
+   * // [ 0 0 0 0 0 1 1 ]
+   * ```
+   *
+   * @param matrices - The matrices to appear along the primary diagonal of the block matrix
+   */
+  public blockDiagonal(matrices: Array<Matrix<ScalarType>>): MatrixType {
+    matrices.forEach(matrix => assertSquare(matrix));
+
+    const numberOfDiagonalMatrices = matrices.length;
+
+    const grid: Array<Array<Matrix<ScalarType>>> = matrices.map((matrix, index) => {
+      const row: Array<Matrix<ScalarType>> = [];
+      for (let i = 0; i < numberOfDiagonalMatrices; i++) {
+        if (i === index) {
+          row.push(matrix);
+        } else {
+          row.push(this.zeros(matrix.getNumberOfRows(), matrices[i].getNumberOfColumns()));
+        }
+      }
+      return row;
+    });
+
+    return this.flatten(grid);
+  }
+
+  /**
    * Returns a new matrix consisting of `left` and `right` next to one another.
    * Throws an error of `left` and `right` do not have the same number of rows.
    *
@@ -401,20 +442,23 @@ export class MatrixBuilder<
    * @param grid - A 2-dimensional array of matrices that will be combined into the new matrix
    * @returns The new matrix
    */
-  public flatten(grid: MatrixType[][]): MatrixType {
+  public flatten(grid: Array<Array<Matrix<ScalarType>>>): MatrixType {
     if (grid.length === 0 || grid[0].length === 0) {
       return this.empty();
     }
 
-    return grid
+    const data = grid
       .map(gridRow => {
-        return gridRow.reduce((accumulator: MatrixType, gridEntry: MatrixType) => {
+        return gridRow.reduce((accumulator: Matrix<ScalarType>, gridEntry: Matrix<ScalarType>) => {
           return this.augment(accumulator, gridEntry);
         });
       })
-      .reduce((accumulator: MatrixType, row: MatrixType) => {
+      .reduce((accumulator: Matrix<ScalarType>, row: Matrix<ScalarType>) => {
         return this.stack(accumulator, row);
-      });
+      })
+      .getData();
+
+    return this.fromData(data);
   }
 
   /**
