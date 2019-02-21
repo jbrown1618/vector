@@ -1,4 +1,5 @@
 import { assertValidDimension, assertValidIndex } from '../../utilities/ErrorAssertions';
+import { mod } from '../../utilities/NumberUtilities';
 import { ScalarOperations } from '../scalar/ScalarOperations';
 import { SparseVectorData } from './SparseVector';
 import { Vector, VectorConstructor, VectorData } from './Vector';
@@ -151,6 +152,32 @@ export class VectorBuilder<ScalarType, VectorType extends Vector<ScalarType>> {
     return this.fromIndexFunction(dimension, i =>
       i === oneIndex ? this.ops().one() : this.ops().zero()
     );
+  }
+
+  /**
+   * Builds a vector whose entries match the input vector, but offset by a given amount
+   *
+   * ```
+   * const original = vectorBuilder.fromData([1, 2, 3]);
+   * const rightOne = vectorBuilder.rotate(original); // [2, 3, 1];
+   * const rightTwo = vectorBuilder.rotate(original, 2); // [3, 1, 2];
+   * const leftOne = vectorBuilder.rotate(original, 1, true); // [3, 1, 2];
+   * ```
+   *
+   * @param vector - The vector whose entries to use
+   * @param offset - The amount by which to shift the indices
+   * @param reverse - Shift entries backward rather than forward
+   */
+  public shift(
+    vector: Vector<ScalarType>,
+    offset: number = 1,
+    reverse: boolean = false
+  ): VectorType {
+    const dim = vector.getDimension();
+    return this.fromIndexFunction(dim, i => {
+      const indexToUse = mod(reverse ? i - offset : i + offset, dim);
+      return vector.getEntry(indexToUse);
+    });
   }
 
   /**

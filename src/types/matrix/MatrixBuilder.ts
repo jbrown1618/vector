@@ -1,8 +1,10 @@
 import {
   assertHomogeneous,
+  assertSquare,
   assertValidDimensions,
   assertValidMatrixIndex
 } from '../../utilities/ErrorAssertions';
+import { binomial } from '../../utilities/NumberUtilities';
 import { ScalarOperations } from '../scalar/ScalarOperations';
 import { Vector } from '../vector/Vector';
 import { Matrix, MatrixConstructor, MatrixData } from './Matrix';
@@ -149,7 +151,7 @@ export class MatrixBuilder<
   }
 
   /**
-   * Returns a 0x0 matrix
+   * Constructs a 0x0 matrix
    *
    * ```
    * matrixBuilder.empty(); // []
@@ -160,7 +162,7 @@ export class MatrixBuilder<
   }
 
   /**
-   * Returns a matrix of the specified dimension, whose entries are all the specified value
+   * Constructs a matrix of the specified dimension, whose entries are all the specified value
    *
    * ```
    * matrixBuilder.fill(2, 3, 4)
@@ -184,7 +186,7 @@ export class MatrixBuilder<
   }
 
   /**
-   * Returns a matrix of the specified dimensions, consisting of all zeros
+   * Constructs a matrix of the specified dimensions, consisting of all zeros
    *
    * ```
    * matrixBuilder.zeros(2, 3);
@@ -201,7 +203,7 @@ export class MatrixBuilder<
   }
 
   /**
-   * Returns a matrix of the specified dimensions, consisting of all ones
+   * Constructs a matrix of the specified dimensions, consisting of all ones
    *
    * ```
    * matrixBuilder.ones(2, 3);
@@ -218,7 +220,7 @@ export class MatrixBuilder<
   }
 
   /**
-   * Returns a `size` x `size` identity matrix
+   * Constructs a `size` x `size` identity matrix
    *
    * ```
    * matrixBuilder.identity(3);
@@ -237,7 +239,201 @@ export class MatrixBuilder<
   }
 
   /**
-   * Returns a matrix of the specified size whose entries are (uniformly-distributed) random
+   * Constructs a Hilbert matrix of the specified size
+   *
+   * ```
+   * matrixBuilder.hilbert(3);
+   * [  1   1/2  1/3 ]
+   * [ 1/2  1/3  1/4 ]
+   * [ 1/3  1/4  1/5 ]
+   * ```
+   *
+   * @param size - The size of the Hilbert matrix
+   */
+  public hilbert(size: number): MatrixType {
+    return this.fromIndexFunction(size, size, (i, j) => {
+      return this.ops().fromNumber(1 / (i + j + 1));
+    });
+  }
+
+  /**
+   * Constructs a Toeplitz matrix from the specified first column and first row.
+   * A Toeplitz matrix has constant diagonals.  If `firstRow` is not given, then
+   * the complex conjugate of `firstColumn` is assumed.  The first entry must be
+   * real because the first entry of the first column must equal the first entry
+   * of the first row.
+   *
+   * ```
+   * matrixBuilder.toeplitz(vectorBuilder.fromData([1, 2, 3]));
+   * // [ 1 2 3 ]
+   * // [ 2 1 2 ]
+   * // [ 3 2 1 ]
+   *
+   * matrixBuilder.toeplitz(
+   *   vectorBuilder.fromData([1, 2, 3]),
+   *   vectorBuilder.fromData([1, 3, 5, 7])
+   * );
+   * // [ 1 3 5 7 ]
+   * // [ 2 1 3 5 ]
+   * // [ 3 2 1 3 ]
+   * ```
+   *
+   * @param firstColumn - The first column of the Toeplitz matrix
+   * @param firstRow - The first row of the Toeplitz matrix
+   */
+  public toeplitz(firstColumn: Vector<ScalarType>, firstRow?: Vector<ScalarType>) {
+    const vb = this._matrixConstructor.vectorBuilder();
+    const ops = this.ops();
+    firstRow = firstRow || vb.map(firstColumn, value => ops.conjugate(value));
+
+    if (firstRow.getDimension() === 0 || firstColumn.getDimension() === 0) {
+      return this.empty();
+    }
+
+    if (!this.ops().equals(firstRow.getEntry(0), firstColumn.getEntry(0))) {
+      throw Error('TODO - first entry of first column must equal first entry of first row');
+    }
+
+    return this.fromIndexFunction(firstColumn.getDimension(), firstRow.getDimension(), (i, j) => {
+      if (i >= j) {
+        return firstColumn.getEntry(i - j);
+      } else {
+        // TODO - review on TSC upgrade - should never be undefined
+        return (firstRow as Vector<ScalarType>).getEntry(j - i);
+      }
+    });
+  }
+
+  /**
+   * Constructs a Hankel matrix from the specified first column and last row.
+   * A Hankel matrix has constant anti-diagonals. If `lastRow` is not given,
+   * then a vector with the last entry of the first row in the first entry and
+   * zero elsewhere is assumed.  The last entry of the first column must equal
+   * the first entry of the last row.
+   *
+   * ```
+   * matrixBuilder.hankel(vectorBuilder.fromData([2, 4, 6, 8]));
+   * // [ 2 4 6 8 ]
+   * // [ 4 6 8 0 ]
+   * // [ 6 8 0 0 ]
+   * // [ 8 0 0 0 ]
+   *
+   * matrixBuilder.hankel(
+   *   vectorBuilder.fromData([1, 2, 3, 4]),
+   *   vectorBuilder.fromData([4, 9, 9])
+   * );
+   * // [ 1 2 3 ]
+   * // [ 2 3 4 ]
+   * // [ 3 4 9 ]
+   * // [ 4 9 9 ]
+   * ```
+   *
+   * @param firstColumn - The first column of the Hankel matrix
+   * @param lastRow - The last row of the Hankel matrix
+   */
+  public hankel(firstColumn: Vector<ScalarType>, lastRow?: Vector<ScalarType>) {
+    const numRows = firstColumn.getDimension();
+    if (numRows === 0) {
+      return this.empty();
+    }
+
+    lastRow =
+      lastRow ||
+      firstColumn
+        .builder()
+        .elementaryVector(numRows, 0)
+        .scalarMultiply(firstColumn.getEntry(numRows - 1));
+    const numColumns = lastRow.getDimension();
+
+    if (numColumns === 0) {
+      return this.empty();
+    }
+
+    if (!this.ops().equals(lastRow.getEntry(0), firstColumn.getEntry(numRows - 1))) {
+      throw Error('TODO - last entry of first column must equal first entry of last row');
+    }
+
+    return this.fromIndexFunction(numRows, numColumns, (i, j) => {
+      const index = i + j;
+      if (index < numRows) {
+        return firstColumn.getEntry(index);
+      } else {
+        // TODO - review on TSC upgrade - should never be undefined
+        return (lastRow as Vector<ScalarType>).getEntry(index - numRows + 1);
+      }
+    });
+  }
+
+  /**
+   * Constructs a lower-triangular matrix whose entries are the binomial coefficients (j choose i)
+   *
+   * ```
+   * matrixBuilder.pascal(4);
+   * // [ 1 0 0 0 ]
+   * // [ 1 1 0 0 ]
+   * // [ 1 2 1 0 ]
+   * // [ 1 3 3 1 ]
+   *
+   * matrixBuilder.pascal(4, true);
+   * // [ 1 1 1 1 ]
+   * // [ 0 1 2 3 ]
+   * // [ 0 0 1 3 ]
+   * // [ 0 0 0 1 ]
+   * ```
+   *
+   * @param size - The size of the Pascal matrix
+   * @param upper - Construct an upper-triangular matrix (i choose j)
+   */
+  public pascal(size: number, upper: boolean = false): MatrixType {
+    return this.fromIndexFunction(size, size, (i, j) => {
+      const entry = upper ? binomial(j, i) : binomial(i, j);
+      return this.ops().fromNumber(entry);
+    });
+  }
+
+  /**
+   * Constructs a lower-triangular matrix whose entries are the binomial coefficients (i + j choose i)
+   *
+   * ```
+   * matrixBuilder.pascalSymmetric(4);
+   * // [ 1  1  1  1  ]
+   * // [ 1  2  3  4  ]
+   * // [ 1  3  6  10 ]
+   * // [ 1  4  10 20 ]
+   * ```
+   *
+   * @param size - The size of the Pascal matrix
+   */
+  public pascalSymmetric(size: number): MatrixType {
+    return this.fromIndexFunction(size, size, (i, j) => {
+      return this.ops().fromNumber(binomial(i + j, i));
+    });
+  }
+
+  /**
+   * Construct a circulant matrix using entries from the input vector
+   *
+   * ```
+   * const circulant = matrixBuilder.circulant(vectorBuilder.fromData([1, 2, 3]));
+   *
+   * // [ 1 3 2 ]
+   * // [ 2 1 3 ]
+   * // [ 3 2 1 ]
+   * ```
+   *
+   * @param vector - The vector whose entries to use in the circulant matrix
+   */
+  public circulant(vector: Vector<ScalarType>): MatrixType {
+    const vb = this._matrixConstructor.vectorBuilder();
+    const columns = [vector];
+    for (let offset = 1; offset < vector.getDimension(); offset++) {
+      columns.push(vb.shift(vector, offset, true));
+    }
+    return this.fromColumnVectors(columns);
+  }
+
+  /**
+   * Constructs a matrix of the specified size whose entries are (uniformly-distributed) random
    * numbers between `min` and `max`
    *
    * @param numberOfRows - The number of rows the new matrix should have
@@ -258,7 +454,7 @@ export class MatrixBuilder<
   }
 
   /**
-   * Returns a matrix of the specified size whose entries are normally distributed with the
+   * Constructs a matrix of the specified size whose entries are normally distributed with the
    * specified mean and standard deviation.
    *
    * @param numberOfRows - The number of rows the new matrix should have
@@ -281,7 +477,7 @@ export class MatrixBuilder<
   }
 
   /**
-   * Returns a square diagonal matrix whose diagonal entries come from `diagonalEntries`
+   * Constructs a square diagonal matrix whose diagonal entries come from `diagonalEntries`
    *
    * ```
    * const diagonalEntries = NumberVector.fromValues(1, 2, 3);
@@ -302,7 +498,7 @@ export class MatrixBuilder<
   }
 
   /**
-   * Returns a square tridiagonal matrix whose diagonal entries correspond to the entries of
+   * Constructs a square tridiagonal matrix whose diagonal entries correspond to the entries of
    * `diagonalEntries`, whose entries in the left-off-diagonal correspond to the entries
    * of `leftEntries`, and whose entries in the right-off-diagonal correspond fo the
    * entries of `rightEntries`.
@@ -353,7 +549,47 @@ export class MatrixBuilder<
   }
 
   /**
-   * Returns a new matrix consisting of `left` and `right` next to one another.
+   * Creates a block-diagonal matrix.
+   *
+   * ```
+   * const ones = matrixBuilder.ones(2);
+   * const twos = matrixBuilder.fill(2, 3);
+   *
+   * const blockDiagonal = matrixBuilder.blockDiagonal([ones, twos, ones]);
+   *
+   * // [ 1 1 0 0 0 0 0 ]
+   * // [ 1 1 0 0 0 0 0 ]
+   * // [ 0 0 2 2 2 0 0 ]
+   * // [ 0 0 2 2 2 0 0 ]
+   * // [ 0 0 2 2 2 0 0 ]
+   * // [ 0 0 0 0 0 1 1 ]
+   * // [ 0 0 0 0 0 1 1 ]
+   * ```
+   *
+   * @param matrices - The matrices to appear along the primary diagonal of the block matrix
+   */
+  public blockDiagonal(matrices: Array<Matrix<ScalarType>>): MatrixType {
+    matrices.forEach(matrix => assertSquare(matrix));
+
+    const numberOfDiagonalMatrices = matrices.length;
+
+    const grid: Array<Array<Matrix<ScalarType>>> = matrices.map((matrix, index) => {
+      const row: Array<Matrix<ScalarType>> = [];
+      for (let i = 0; i < numberOfDiagonalMatrices; i++) {
+        if (i === index) {
+          row.push(matrix);
+        } else {
+          row.push(this.zeros(matrix.getNumberOfRows(), matrices[i].getNumberOfColumns()));
+        }
+      }
+      return row;
+    });
+
+    return this.flatten(grid);
+  }
+
+  /**
+   * Constructs a new matrix consisting of `left` and `right` next to one another.
    * Throws an error of `left` and `right` do not have the same number of rows.
    *
    * ```
@@ -378,7 +614,7 @@ export class MatrixBuilder<
   }
 
   /**
-   * Returns a single matrix consisting of a grid of matrices combined together.
+   * Constructs a single matrix consisting of a grid of matrices combined together.
    * Throws an error if any of the dimensions are incompatible.
    *
    * ```
@@ -401,24 +637,27 @@ export class MatrixBuilder<
    * @param grid - A 2-dimensional array of matrices that will be combined into the new matrix
    * @returns The new matrix
    */
-  public flatten(grid: MatrixType[][]): MatrixType {
+  public flatten(grid: Array<Array<Matrix<ScalarType>>>): MatrixType {
     if (grid.length === 0 || grid[0].length === 0) {
       return this.empty();
     }
 
-    return grid
+    const data = grid
       .map(gridRow => {
-        return gridRow.reduce((accumulator: MatrixType, gridEntry: MatrixType) => {
+        return gridRow.reduce((accumulator: Matrix<ScalarType>, gridEntry: Matrix<ScalarType>) => {
           return this.augment(accumulator, gridEntry);
         });
       })
-      .reduce((accumulator: MatrixType, row: MatrixType) => {
+      .reduce((accumulator: Matrix<ScalarType>, row: Matrix<ScalarType>) => {
         return this.stack(accumulator, row);
-      });
+      })
+      .getData();
+
+    return this.fromData(data);
   }
 
   /**
-   * Returns a new matrix consisted of repetitions of a smaller matrix.
+   * Constructs a new matrix consisted of repetitions of a smaller matrix.
    *
    * ```
    * const I = matrixBuilder.identity(2);
@@ -446,7 +685,7 @@ export class MatrixBuilder<
   }
 
   /**
-   * Returns a new matrix based on a rectangular slice of a larger matrix
+   * Constructs a new matrix based on a rectangular slice of a larger matrix
    *
    * ```
    * const matrix = matrixBuilder.identity(4);
@@ -500,7 +739,7 @@ export class MatrixBuilder<
   }
 
   /**
-   * Returns a new matrix with all entries in row `rowToExclude` and in
+   * Constructs a new matrix with all entries in row `rowToExclude` and in
    * column `columnToExclude` removed.
    *
    * ```
@@ -551,7 +790,7 @@ export class MatrixBuilder<
   }
 
   /**
-   * Returns a new matrix consisting of `top` and `bottom` on top of one another.
+   * Constructs a new matrix consisting of `top` and `bottom` on top of one another.
    * Throws an error if `top` and `bottom` do not have the same number of columns.
    *
    * ```

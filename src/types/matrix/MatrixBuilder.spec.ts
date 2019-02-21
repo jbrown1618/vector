@@ -214,6 +214,157 @@ describe('MatrixBuilder', () => {
     });
   });
 
+  describe('hilbert', () => {
+    it('constructs a Hilbert matrix', () => {
+      const hilbert = matrixBuilder.hilbert(3);
+      const expected = matrixBuilder.fromData([
+        [1, 1 / 2, 1 / 3],
+        [1 / 2, 1 / 3, 1 / 4],
+        [1 / 3, 1 / 4, 1 / 5]
+      ]);
+      expect(hilbert).to.deep.equal(expected);
+    });
+
+    it('handles size 0', () => {
+      expect(matrixBuilder.hilbert(0)).to.deep.equal(matrixBuilder.empty());
+    });
+
+    it('rejects a negative size', () => {
+      expect(() => matrixBuilder.hilbert(-1)).to.throw();
+    });
+  });
+
+  describe('toeplitz', () => {
+    it('constructs a toeplitz matrix with the default first row', () => {
+      const toeplitz = matrixBuilder.toeplitz(vectorBuilder.fromData([1, 2, 3]));
+      const expected = matrixBuilder.fromData([[1, 2, 3], [2, 1, 2], [3, 2, 1]]);
+      expect(toeplitz).to.deep.equal(expected);
+    });
+
+    it('constructs a toeplitz matrix with a specified first row', () => {
+      const toeplitz = matrixBuilder.toeplitz(
+        vectorBuilder.fromData([1, 2, 3]),
+        vectorBuilder.fromData([1, 3, 5, 7])
+      );
+      const expected = matrixBuilder.fromData([[1, 3, 5, 7], [2, 1, 3, 5], [3, 2, 1, 3]]);
+      expect(toeplitz).to.deep.equal(expected);
+    });
+
+    it('handles an empty first column', () => {
+      const toeplitz = matrixBuilder.toeplitz(vectorBuilder.empty());
+      expect(toeplitz).to.deep.equal(matrixBuilder.empty());
+    });
+
+    it('rejects an entry mismatch', () => {
+      expect(() =>
+        matrixBuilder.toeplitz(vectorBuilder.fromData([1, 2]), vectorBuilder.fromData([2, 1]))
+      ).to.throw();
+    });
+  });
+
+  describe('hankel', () => {
+    it('constructs a hankel matrix with the default last row', () => {
+      const hankel = matrixBuilder.hankel(vectorBuilder.fromData([2, 4, 6, 8]));
+      const expected = matrixBuilder.fromData([
+        [2, 4, 6, 8],
+        [4, 6, 8, 0],
+        [6, 8, 0, 0],
+        [8, 0, 0, 0]
+      ]);
+      expect(hankel).to.deep.equal(expected);
+    });
+
+    it('constructs a "narrow" hankel matrix with a specified last row', () => {
+      const hankel = matrixBuilder.hankel(
+        vectorBuilder.fromData([1, 2, 3, 4]),
+        vectorBuilder.fromData([4, 9, 9])
+      );
+      const expected = matrixBuilder.fromData([[1, 2, 3], [2, 3, 4], [3, 4, 9], [4, 9, 9]]);
+      expect(hankel).to.deep.equal(expected);
+    });
+
+    it('constructs a "wide" hankel matrix with a specified last row', () => {
+      const hankel = matrixBuilder.hankel(
+        vectorBuilder.fromData([1, 2, 3]),
+        vectorBuilder.fromData([3, 9, 9, 9])
+      );
+      const expected = matrixBuilder.fromData([[1, 2, 3, 9], [2, 3, 9, 9], [3, 9, 9, 9]]);
+      expect(hankel).to.deep.equal(expected);
+    });
+
+    it('handles an empty first column', () => {
+      const hankel = matrixBuilder.hankel(vectorBuilder.empty());
+      expect(hankel).to.deep.equal(matrixBuilder.empty());
+    });
+
+    it('rejects an entry mismatch', () => {
+      expect(() =>
+        matrixBuilder.hankel(vectorBuilder.fromData([1, 2]), vectorBuilder.fromData([1, 2]))
+      ).to.throw();
+    });
+  });
+
+  describe('pascal', () => {
+    it('constructs a lower-triangular pascal matrix', () => {
+      const lower = matrixBuilder.pascal(5);
+      const expected = matrixBuilder.fromData([
+        [1, 0, 0, 0, 0],
+        [1, 1, 0, 0, 0],
+        [1, 2, 1, 0, 0],
+        [1, 3, 3, 1, 0],
+        [1, 4, 6, 4, 1]
+      ]);
+      expect(lower).to.deep.equal(expected);
+    });
+
+    it('constructs a upper-triangular pascal matrix', () => {
+      const upper = matrixBuilder.pascal(5, true);
+      const expected = matrixBuilder.fromData([
+        [1, 1, 1, 1, 1],
+        [0, 1, 2, 3, 4],
+        [0, 0, 1, 3, 6],
+        [0, 0, 0, 1, 4],
+        [0, 0, 0, 0, 1]
+      ]);
+      expect(upper).to.deep.equal(expected);
+    });
+
+    it('rejects a negative size', () => {
+      expect(() => matrixBuilder.pascal(-1)).to.throw();
+    });
+  });
+
+  describe('pascalSymmetric', () => {
+    it('constructs a symmetric pascal matrix', () => {
+      const pascal = matrixBuilder.pascalSymmetric(5);
+      const expected = matrixBuilder.fromData([
+        [1, 1, 1, 1, 1],
+        [1, 2, 3, 4, 5],
+        [1, 3, 6, 10, 15],
+        [1, 4, 10, 20, 35],
+        [1, 5, 15, 35, 70]
+      ]);
+      expect(pascal).to.deep.equal(expected);
+    });
+
+    it('rejects a negative size', () => {
+      expect(() => matrixBuilder.pascalSymmetric(-1)).to.throw();
+    });
+  });
+
+  describe('circulant', () => {
+    it('constructs a circulant matrix', () => {
+      const entries = vectorBuilder.fromData([1, 2, 3]);
+      const circulant = matrixBuilder.circulant(entries);
+      const expected = matrixBuilder.fromData([[1, 3, 2], [2, 1, 3], [3, 2, 1]]);
+      expect(circulant).to.deep.equal(expected);
+    });
+
+    it('handles an empty vector', () => {
+      expect(matrixBuilder.circulant(vectorBuilder.empty())).to.deep.equal(matrixBuilder.empty());
+    });
+  });
+
   describe('random', () => {
     it('constructs a matrix of random numbers between min and max', () => {
       const bounds = [-1, 0, 1, 2];
@@ -331,6 +482,35 @@ describe('MatrixBuilder', () => {
       center = vectorBuilder.fill(2, 5);
       right = vectorBuilder.fill(3, 5);
       expect(() => matrixBuilder.tridiagonal(left, center, right)).to.throw();
+    });
+  });
+
+  describe('blockDiagonal', () => {
+    it('constructs a block matrix with the provided matrices along the diagonal', () => {
+      const ones = matrixBuilder.ones(2);
+      const twos = matrixBuilder.fill(2, 3);
+      const blockDiagonal = matrixBuilder.blockDiagonal([ones, twos, ones]);
+      const expected = matrixBuilder.fromData([
+        [1, 1, 0, 0, 0, 0, 0],
+        [1, 1, 0, 0, 0, 0, 0],
+        [0, 0, 2, 2, 2, 0, 0],
+        [0, 0, 2, 2, 2, 0, 0],
+        [0, 0, 2, 2, 2, 0, 0],
+        [0, 0, 0, 0, 0, 1, 1],
+        [0, 0, 0, 0, 0, 1, 1]
+      ]);
+
+      expect(blockDiagonal).to.deep.equal(expected);
+    });
+
+    it('rejects an array with any non-square matrices', () => {
+      const ones = matrixBuilder.ones(2);
+      const twos = matrixBuilder.fill(2, 3, 2);
+      expect(() => matrixBuilder.blockDiagonal([ones, twos, ones])).to.throw();
+    });
+
+    it('handles an empty array', () => {
+      expect(matrixBuilder.blockDiagonal([])).to.deep.equal(matrixBuilder.empty());
     });
   });
 
