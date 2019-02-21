@@ -177,6 +177,26 @@ describe('VectorBuilder', () => {
     });
   });
 
+  describe('rotate', () => {
+    it('returns a new vector with the entries rotated', () => {
+      const original = builder.fromData([1, 2, 3]);
+      const rightOne = builder.rotate(original);
+      const rightTwo = builder.rotate(original, 2);
+      const rightThree = builder.rotate(original, 3);
+      const leftOne = builder.rotate(original, 1, true);
+      const leftTwo = builder.rotate(original, 2, true);
+
+      const twoThreeOne = builder.fromData([2, 3, 1]);
+      const threeOneTwo = builder.fromData([3, 1, 2]);
+
+      expect(rightOne).to.deep.equal(twoThreeOne);
+      expect(rightTwo).to.deep.equal(threeOneTwo);
+      expect(rightThree).to.deep.equal(original);
+      expect(leftOne).to.deep.equal(threeOneTwo);
+      expect(leftTwo).to.deep.equal(twoThreeOne);
+    });
+  });
+
   describe('random', () => {
     it('constructs a vector of random numbers between min and max', () => {
       const bounds = [-1, 0, 1, 2];

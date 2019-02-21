@@ -238,6 +238,28 @@ export class MatrixBuilder<
   }
 
   /**
+   * Construct a circulant matrix using entries from the input vector
+   *
+   * ```
+   * const circulant = matrixBuilder.circulant(vectorBuilder.fromData([1, 2, 3]));
+   *
+   * // [ 1 3 2 ]
+   * // [ 2 1 3 ]
+   * // [ 3 2 1 ]
+   * ```
+   *
+   * @param vector - The vector whose entries to use in the circulant matrix
+   */
+  public circulant(vector: Vector<ScalarType>): MatrixType {
+    const vb = this._matrixConstructor.vectorBuilder();
+    const columns = [vector];
+    for (let offset = 1; offset < vector.getDimension(); offset++) {
+      columns.push(vb.rotate(vector, offset, true));
+    }
+    return this.fromColumnVectors(columns);
+  }
+
+  /**
    * Returns a matrix of the specified size whose entries are (uniformly-distributed) random
    * numbers between `min` and `max`
    *

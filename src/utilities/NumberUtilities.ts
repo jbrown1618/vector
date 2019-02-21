@@ -10,6 +10,11 @@ export function approximatelyEqual(first: number, second: number, epsilon: numbe
   return Math.abs(first - second) < epsilon;
 }
 
+export function mod(num: number, modulus: number) {
+  // Operator % yields negative results for negative numbers.
+  return ((num % modulus) + modulus) % modulus;
+}
+
 export function random(min: number = 0, max: number = 1) {
   return min + Math.random() * (max - min);
 }

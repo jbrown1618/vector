@@ -214,6 +214,19 @@ describe('MatrixBuilder', () => {
     });
   });
 
+  describe('circulant', () => {
+    it('constructs a circulant matrix', () => {
+      const entries = vectorBuilder.fromData([1, 2, 3]);
+      const circulant = matrixBuilder.circulant(entries);
+      const expected = matrixBuilder.fromData([[1, 3, 2], [2, 1, 3], [3, 2, 1]]);
+      expect(circulant).to.deep.equal(expected);
+    });
+
+    it('handles an empty vector', () => {
+      expect(matrixBuilder.circulant(vectorBuilder.empty())).to.deep.equal(matrixBuilder.empty());
+    });
+  });
+
   describe('random', () => {
     it('constructs a matrix of random numbers between min and max', () => {
       const bounds = [-1, 0, 1, 2];
