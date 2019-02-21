@@ -2,6 +2,10 @@ import { approximatelyEqual, random, randomNormal } from '../../utilities/Number
 import { ScalarOperations } from './ScalarOperations';
 
 export class NumberOperations extends ScalarOperations<number> {
+  public fromNumber(num: number): number {
+    return num;
+  }
+
   public add(first: number, second: number): number {
     return first + second;
   }

@@ -214,6 +214,26 @@ describe('MatrixBuilder', () => {
     });
   });
 
+  describe('hilbert', () => {
+    it('constructs a Hilbert matrix', () => {
+      const hilbert = matrixBuilder.hilbert(3);
+      const expected = matrixBuilder.fromData([
+        [1, 1 / 2, 1 / 3],
+        [1 / 2, 1 / 3, 1 / 4],
+        [1 / 3, 1 / 4, 1 / 5]
+      ]);
+      expect(hilbert).to.deep.equal(expected);
+    });
+
+    it('handles size 0', () => {
+      expect(matrixBuilder.hilbert(0)).to.deep.equal(matrixBuilder.empty());
+    });
+
+    it('rejects a negative size', () => {
+      expect(() => matrixBuilder.hilbert(-1)).to.throw();
+    });
+  });
+
   describe('circulant', () => {
     it('constructs a circulant matrix', () => {
       const entries = vectorBuilder.fromData([1, 2, 3]);

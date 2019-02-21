@@ -3,6 +3,10 @@ import { ComplexNumber } from './ComplexNumber';
 import { ScalarOperations } from './ScalarOperations';
 
 export class ComplexNumberOperations extends ScalarOperations<ComplexNumber> {
+  public fromNumber(num: number): ComplexNumber {
+    return new ComplexNumber(num, 0);
+  }
+
   public conjugate(scalar: ComplexNumber): ComplexNumber {
     return scalar.conjugate();
   }

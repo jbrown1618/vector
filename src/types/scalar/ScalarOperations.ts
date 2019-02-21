@@ -1,4 +1,5 @@
 export abstract class ScalarOperations<ScalarType> {
+  public abstract fromNumber(num: number): ScalarType;
   /**
    * Returns true if the scalars are equal.
    * Implementors should ensure that the operation is reflexive, associative, and transitive.

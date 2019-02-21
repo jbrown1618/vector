@@ -1,8 +1,8 @@
 import { assertValidDimension, assertValidIndex } from '../../utilities/ErrorAssertions';
+import { mod } from '../../utilities/NumberUtilities';
 import { ScalarOperations } from '../scalar/ScalarOperations';
 import { SparseVectorData } from './SparseVector';
 import { Vector, VectorConstructor, VectorData } from './Vector';
-import { mod } from '../../utilities/NumberUtilities';
 
 export type VectorIndexFunction<ScalarType> = (index: number) => ScalarType;
 export type VectorEntryFunction<ScalarType> = (entry: ScalarType, index: number) => ScalarType;

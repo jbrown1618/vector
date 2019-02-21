@@ -238,6 +238,24 @@ export class MatrixBuilder<
   }
 
   /**
+   * Returns a Hilbert matrix of the specified size
+   *
+   * ```
+   * matrixBuilder.hilbert(3);
+   * [  1   1/2  1/3 ]
+   * [ 1/2  1/3  1/4 ]
+   * [ 1/3  1/4  1/5 ]
+   * ```
+   *
+   * @param size - The size of the Hilbert matrix
+   */
+  public hilbert(size: number): MatrixType {
+    return this.fromIndexFunction(size, size, (i, j) => {
+      return this.ops().fromNumber(1 / (i + j + 1));
+    });
+  }
+
+  /**
    * Construct a circulant matrix using entries from the input vector
    *
    * ```
