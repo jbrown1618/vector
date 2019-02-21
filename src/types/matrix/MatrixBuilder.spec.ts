@@ -234,6 +234,37 @@ describe('MatrixBuilder', () => {
     });
   });
 
+  describe('hankel', () => {
+    it('constructs a hankel matrix with the default last row', () => {
+      const hankel = matrixBuilder.hankel(vectorBuilder.fromData([2, 4, 6, 8]));
+      const expected = matrixBuilder.fromData([
+        [2, 4, 6, 8],
+        [4, 6, 8, 0],
+        [6, 8, 0, 0],
+        [8, 0, 0, 0]
+      ]);
+      expect(hankel).to.deep.equal(expected);
+    });
+
+    it('constructs a "narrow" hankel matrix with a specified last row', () => {
+      const hankel = matrixBuilder.hankel(
+        vectorBuilder.fromData([1, 2, 3, 4]),
+        vectorBuilder.fromData([4, 9, 9])
+      );
+      const expected = matrixBuilder.fromData([[1, 2, 3], [2, 3, 4], [3, 4, 9], [4, 9, 9]]);
+      expect(hankel).to.deep.equal(expected);
+    });
+
+    it('constructs a "wide" hankel matrix with a specified last row', () => {
+      const hankel = matrixBuilder.hankel(
+        vectorBuilder.fromData([1, 2, 3]),
+        vectorBuilder.fromData([3, 9, 9, 9])
+      );
+      const expected = matrixBuilder.fromData([[1, 2, 3, 9], [2, 3, 9, 9], [3, 9, 9, 9]]);
+      expect(hankel).to.deep.equal(expected);
+    });
+  });
+
   describe('circulant', () => {
     it('constructs a circulant matrix', () => {
       const entries = vectorBuilder.fromData([1, 2, 3]);
