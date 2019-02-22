@@ -34,7 +34,7 @@ export class VectorBuilder<ScalarType, VectorType extends Vector<ScalarType>> {
   }
 
   /**
-   * Builds a vector with entries given by _entry = f(i)_ where _f_ is `valueFromIndex`
+   * Constructs a vector with entries given by _entry = f(i)_ where _f_ is `valueFromIndex`
    * and `i` is the index of the element
    *
    * ```
@@ -57,7 +57,7 @@ export class VectorBuilder<ScalarType, VectorType extends Vector<ScalarType>> {
   }
 
   /**
-   * Builds a vector by transforming the values of another vector.
+   * Constructs a vector by transforming the values of another vector.
    *
    * ```
    * const original = vectorBuilder.fromValues(1, 2, 3, 4);
@@ -81,7 +81,7 @@ export class VectorBuilder<ScalarType, VectorType extends Vector<ScalarType>> {
   }
 
   /**
-   * Builds a Vector of dimension 0
+   * Constructs a Vector of dimension 0
    *
    * ```
    * vectorBuilder.empty(); // []
@@ -94,7 +94,7 @@ export class VectorBuilder<ScalarType, VectorType extends Vector<ScalarType>> {
   }
 
   /**
-   * Builds a vector whose entries are all equal to the provided value
+   * Constructs a vector whose entries are all equal to the provided value
    *
    * ```
    * vectorBuilder.fill(3, 5); // [ 3 3 3 3 3 ]
@@ -110,7 +110,7 @@ export class VectorBuilder<ScalarType, VectorType extends Vector<ScalarType>> {
   }
 
   /**
-   * Builds a vector of all zeros
+   * Constructs a vector of all zeros
    *
    * ```
    * vectorBuilder.zeros(3); // [ 0 0 0 ]
@@ -123,7 +123,7 @@ export class VectorBuilder<ScalarType, VectorType extends Vector<ScalarType>> {
   }
 
   /**
-   * Builds a vector of all ones
+   * Constructs a vector of all ones
    *
    * ```
    * vectorBuilder.ones(3); // [ 1 1 1 ]
@@ -136,7 +136,7 @@ export class VectorBuilder<ScalarType, VectorType extends Vector<ScalarType>> {
   }
 
   /**
-   * Builds a vector that has the value 1 at one index, and 0 at the others
+   * Constructs a vector that has the value 1 at one index, and 0 at the others
    *
    * ```
    * vectorBuilder.elementaryVector(4, 2); // [ 0 0 1 0 ]
@@ -155,7 +155,7 @@ export class VectorBuilder<ScalarType, VectorType extends Vector<ScalarType>> {
   }
 
   /**
-   * Builds a vector whose entries match the input vector, but offset by a given amount
+   * Constructs a vector whose entries match the input vector, but offset by a given amount
    *
    * ```
    * const original = vectorBuilder.fromData([1, 2, 3]);
@@ -181,7 +181,7 @@ export class VectorBuilder<ScalarType, VectorType extends Vector<ScalarType>> {
   }
 
   /**
-   * Builds a vector whose entries are (uniformly-distributed) random numbers
+   * Constructs a vector whose entries are (uniformly-distributed) random numbers
    * between `min` and `max`
    *
    * @param dimension - The dimension of the new vector
@@ -196,7 +196,7 @@ export class VectorBuilder<ScalarType, VectorType extends Vector<ScalarType>> {
   }
 
   /**
-   * Builds a vector whose entries are normally distributed, with the specified
+   * Constructs a vector whose entries are normally distributed, with the specified
    * mean and standard deviation
    *
    * @param dimension - The dimension of the new vector
@@ -217,7 +217,7 @@ export class VectorBuilder<ScalarType, VectorType extends Vector<ScalarType>> {
   }
 
   /**
-   * Builds a vector consisting of two vectors end-to-end
+   * Constructs a vector consisting of two vectors end-to-end
    *
    * ```
    * const first = vectorBuilder.ones(3);

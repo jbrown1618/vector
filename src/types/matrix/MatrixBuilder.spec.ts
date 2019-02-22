@@ -551,7 +551,7 @@ describe('MatrixBuilder', () => {
         [0, 0, 0, 4]
       ]);
 
-      expect(matrixBuilder.flatten(grid).equals(expected)).to.be.true;
+      expect(matrixBuilder.block(grid).equals(expected)).to.be.true;
     });
 
     it('handles mismatched dimensions', () => {
@@ -570,7 +570,7 @@ describe('MatrixBuilder', () => {
         [0, 1, 1, 1]
       ]);
 
-      expect(matrixBuilder.flatten(grid).equals(expected)).to.be.true;
+      expect(matrixBuilder.block(grid).equals(expected)).to.be.true;
     });
   });
 

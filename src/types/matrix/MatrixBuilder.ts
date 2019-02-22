@@ -39,6 +39,7 @@ export class MatrixBuilder<
    * const secondColumn = vectorBuilder.fromData([ 4, 5, 6 ]);
    *
    * const matrix = matrixBuilder.fromColumnVectors([ firstColumn, secondColumn ]);
+   *
    * // [ 1 4 ]
    * // [ 2 5 ]
    * // [ 3 6 ]
@@ -67,6 +68,7 @@ export class MatrixBuilder<
    * const secondRow = vectorBuilder.fromData([ 4, 5, 6 ]);
    *
    * const matrix = matrixBuilder.fromRowVectors([ firstRow, secondRow ]);
+   *
    * // [ 1 2 3 ]
    * // [ 4 5 6 ]
    * ```
@@ -93,7 +95,8 @@ export class MatrixBuilder<
    * and `i` and `j` are the indices of the element
    *
    * ```
-   * matrixBuilder.fromIndexFunction(3, 4, (i, j) => i + j + 3);
+   * const matrix = matrixBuilder.fromIndexFunction(3, 4, (i, j) => i + j + 3);
+   *
    * // [ 3 4 5 6 ]
    * // [ 4 5 6 7 ]
    * // [ 5 6 7 8 ]
@@ -129,10 +132,12 @@ export class MatrixBuilder<
    * ]);
    *
    * const originalPlusOne = matrixBuilder.map(original, (value) => value + 1);
+   *
    * // [ 2 3 4 ]
    * // [ 5 6 7 ]
    *
    * const originalPlusIMinusJ = vectorBuilder.map(original, (value, i, j) => value + i - j);
+   *
    * // [ 1 1 1 ]
    * // [ 5 5 5 ]
    * ```
@@ -165,7 +170,7 @@ export class MatrixBuilder<
    * Constructs a matrix of the specified dimension, whose entries are all the specified value
    *
    * ```
-   * matrixBuilder.fill(2, 3, 4)
+   * const allTwos = matrixBuilder.fill(2, 3, 4)
    *
    * // [ 2 2 2 2 ]
    * // [ 2 2 2 2 ]
@@ -189,7 +194,7 @@ export class MatrixBuilder<
    * Constructs a matrix of the specified dimensions, consisting of all zeros
    *
    * ```
-   * matrixBuilder.zeros(2, 3);
+   * const allZeros = matrixBuilder.zeros(2, 3);
    *
    * // [ 0 0 0 ]
    * // [ 0 0 0 ]
@@ -206,7 +211,7 @@ export class MatrixBuilder<
    * Constructs a matrix of the specified dimensions, consisting of all ones
    *
    * ```
-   * matrixBuilder.ones(2, 3);
+   * const allOnes = matrixBuilder.ones(2, 3);
    *
    * // [ 1 1 1 ]
    * // [ 1 1 1 ]
@@ -223,7 +228,7 @@ export class MatrixBuilder<
    * Constructs a `size` x `size` identity matrix
    *
    * ```
-   * matrixBuilder.identity(3);
+   * const I3 = matrixBuilder.identity(3);
    *
    * // [ 1 0 0 ]
    * // [ 0 1 0 ]
@@ -242,10 +247,11 @@ export class MatrixBuilder<
    * Constructs a Hilbert matrix of the specified size
    *
    * ```
-   * matrixBuilder.hilbert(3);
-   * [  1   1/2  1/3 ]
-   * [ 1/2  1/3  1/4 ]
-   * [ 1/3  1/4  1/5 ]
+   * const H = matrixBuilder.hilbert(3);
+   *
+   * // [  1   1/2  1/3 ]
+   * // [ 1/2  1/3  1/4 ]
+   * // [ 1/3  1/4  1/5 ]
    * ```
    *
    * @param size - The size of the Hilbert matrix
@@ -264,15 +270,17 @@ export class MatrixBuilder<
    * of the first row.
    *
    * ```
-   * matrixBuilder.toeplitz(vectorBuilder.fromData([1, 2, 3]));
+   * const toeplitz = matrixBuilder.toeplitz(vectorBuilder.fromData([1, 2, 3]));
+   *
    * // [ 1 2 3 ]
    * // [ 2 1 2 ]
    * // [ 3 2 1 ]
    *
-   * matrixBuilder.toeplitz(
+   * const toeplitzWithSpecifiedRow = matrixBuilder.toeplitz(
    *   vectorBuilder.fromData([1, 2, 3]),
    *   vectorBuilder.fromData([1, 3, 5, 7])
    * );
+   *
    * // [ 1 3 5 7 ]
    * // [ 2 1 3 5 ]
    * // [ 3 2 1 3 ]
@@ -312,16 +320,18 @@ export class MatrixBuilder<
    * the first entry of the last row.
    *
    * ```
-   * matrixBuilder.hankel(vectorBuilder.fromData([2, 4, 6, 8]));
+   * const hankel = matrixBuilder.hankel(vectorBuilder.fromData([2, 4, 6, 8]));
+   *
    * // [ 2 4 6 8 ]
    * // [ 4 6 8 0 ]
    * // [ 6 8 0 0 ]
    * // [ 8 0 0 0 ]
    *
-   * matrixBuilder.hankel(
+   * const hankelWithSpecifiedRow = matrixBuilder.hankel(
    *   vectorBuilder.fromData([1, 2, 3, 4]),
    *   vectorBuilder.fromData([4, 9, 9])
    * );
+   *
    * // [ 1 2 3 ]
    * // [ 2 3 4 ]
    * // [ 3 4 9 ]
@@ -365,16 +375,19 @@ export class MatrixBuilder<
   }
 
   /**
-   * Constructs a lower-triangular matrix whose entries are the binomial coefficients (j choose i)
+   * Constructs a lower-triangular matrix whose entries are the binomial coefficients (j choose i).
+   * Constructs an upper triangular matrix when the second argument is `true`.
    *
    * ```
-   * matrixBuilder.pascal(4);
+   * const pascalLower = matrixBuilder.pascal(4);
+   *
    * // [ 1 0 0 0 ]
    * // [ 1 1 0 0 ]
    * // [ 1 2 1 0 ]
    * // [ 1 3 3 1 ]
    *
-   * matrixBuilder.pascal(4, true);
+   * const pascalUpper = matrixBuilder.pascal(4, true);
+   *
    * // [ 1 1 1 1 ]
    * // [ 0 1 2 3 ]
    * // [ 0 0 1 3 ]
@@ -392,10 +405,11 @@ export class MatrixBuilder<
   }
 
   /**
-   * Constructs a lower-triangular matrix whose entries are the binomial coefficients (i + j choose i)
+   * Constructs a symmatric matrix whose entries are the binomial coefficients (i + j choose i)
    *
    * ```
-   * matrixBuilder.pascalSymmetric(4);
+   * const pascalSymmetric = matrixBuilder.pascalSymmetric(4);
+   *
    * // [ 1  1  1  1  ]
    * // [ 1  2  3  4  ]
    * // [ 1  3  6  10 ]
@@ -510,7 +524,7 @@ export class MatrixBuilder<
    * const diagonalEntries = NumberVector.fromEntries(3, 4, 5);
    * const rightEntries = NumberVector.fromEntries(6, 7);
    *
-   * matrixBuilder.tridiagonal(leftEntries, diagonalEntries, rightEntries);
+   * const tridiagonal = matrixBuilder.tridiagonal(leftEntries, diagonalEntries, rightEntries);
    *
    * // [ 3 6 0 ]
    * // [ 1 4 7 ]
@@ -585,32 +599,7 @@ export class MatrixBuilder<
       return row;
     });
 
-    return this.flatten(grid);
-  }
-
-  /**
-   * Constructs a new matrix consisting of `left` and `right` next to one another.
-   * Throws an error of `left` and `right` do not have the same number of rows.
-   *
-   * ```
-   * const left = matrixBuilder.ones(2, 3);
-   * const right = matrixBuilder.zeros(2, 4);
-   *
-   * matrixBuilder.augment(left, right);
-   *
-   * // [ 1 1 1 0 0 0 0 ]
-   * // [ 1 1 1 0 0 0 0 ]
-   * ```
-   * @param left - The matrix that will form the left-side of the augmented matrix
-   * @param right - The matrix that will form the right-side of the augmented matrix
-   * @returns The new augmented matrix
-   */
-  public augment(left: Matrix<ScalarType>, right: Matrix<ScalarType>): MatrixType {
-    if (left.getNumberOfRows() !== right.getNumberOfRows()) {
-      throw Error('Dimension mismatch!');
-    }
-
-    return this.fromColumnVectors([...left.getColumnVectors(), ...right.getColumnVectors()]);
+    return this.block(grid);
   }
 
   /**
@@ -619,25 +608,25 @@ export class MatrixBuilder<
    *
    * ```
    * const upperLeft = matrixBuilder.ones(1, 1);
-   * const upperRight = matrixBuilder.zeros(1, 2);
-   * const lowerLeft = matrixBuilder.zeros(2, 1);
-   * const lowerRight = matrixBuilder.ones(2, 2);
+   * const upperRight = matrixBuilder.fill(2, 1, 2);
+   * const lowerLeft = matrixBuilder.fill(3, 2, 1);
+   * const lowerRight = matrixBuilder.fill(4, 2, 2);
    *
    * const grid = [
    *   [ upperLeft, upperRight ],
    *   [ lowerLeft, lowerRight ]
    * ];
    *
-   * matrixBuilder.flatten(grid);
+   * const block = matrixBuilder.block(grid);
    *
-   * // [ 1 0 0 ]
-   * // [ 0 1 1 ]
-   * // [ 0 1 1 ]
+   * // [ 1 2 2 ]
+   * // [ 3 4 4 ]
+   * // [ 3 4 4 ]
    * ```
    * @param grid - A 2-dimensional array of matrices that will be combined into the new matrix
    * @returns The new matrix
    */
-  public flatten(grid: Array<Array<Matrix<ScalarType>>>): MatrixType {
+  public block(grid: Array<Array<Matrix<ScalarType>>>): MatrixType {
     if (grid.length === 0 || grid[0].length === 0) {
       return this.empty();
     }
@@ -657,11 +646,36 @@ export class MatrixBuilder<
   }
 
   /**
+   * Constructs a new matrix consisting of `left` and `right` next to one another.
+   * Throws an error of `left` and `right` do not have the same number of rows.
+   *
+   * ```
+   * const left = matrixBuilder.ones(2);
+   * const right = matrixBuilder.zeros(2, 3);
+   *
+   * matrixBuilder.augment(left, right);
+   *
+   * // [ 1 1 0 0 0 ]
+   * // [ 1 1 0 0 0 ]
+   * ```
+   * @param left - The matrix that will form the left-side of the augmented matrix
+   * @param right - The matrix that will form the right-side of the augmented matrix
+   * @returns The new augmented matrix
+   */
+  public augment(left: Matrix<ScalarType>, right: Matrix<ScalarType>): MatrixType {
+    if (left.getNumberOfRows() !== right.getNumberOfRows()) {
+      throw Error('Dimension mismatch!');
+    }
+
+    return this.fromColumnVectors([...left.getColumnVectors(), ...right.getColumnVectors()]);
+  }
+
+  /**
    * Constructs a new matrix consisted of repetitions of a smaller matrix.
    *
    * ```
    * const I = matrixBuilder.identity(2);
-   * matrixBuilder.repeat(I, 1, 2);
+   * const repeated = matrixBuilder.repeat(I, 1, 2);
    *
    * // [ 1 0 1 0 ]
    * // [ 0 1 0 1 ]
@@ -681,7 +695,7 @@ export class MatrixBuilder<
       }
     }
 
-    return this.flatten(grid);
+    return this.block(grid);
   }
 
   /**
@@ -689,7 +703,7 @@ export class MatrixBuilder<
    *
    * ```
    * const matrix = matrixBuilder.identity(4);
-   * matrixBuilder.slice(matrix, 2, 2, 3, 4);
+   * const slice = matrixBuilder.slice(matrix, 2, 2, 3, 4);
    *
    * // [  1  0  0  0  ]
    * // [  0  1* 0* 0* ]  =>  [ 1 0 0 ]
@@ -744,7 +758,7 @@ export class MatrixBuilder<
    *
    * ```
    * const I = matrixBuilder.identity(4);
-   * matrixBuilder.slice(I, 1, 2)
+   * const excluded = matrixBuilder.slice(I, 1, 2)
    *
    * // [  1  0  0* 0  ]
    * // [  0* 1* 0* 0* ]  =>  [ 1 0 0 ]

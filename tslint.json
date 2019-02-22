@@ -3,8 +3,9 @@
   "extends": ["tslint:latest", "tslint-config-prettier", "tslint-no-unused-expression-chai"],
   "jsRules": {},
   "rules": {
-    "no-implicit-dependencies": [true, "dev"],
+    "array-type": [true, "array"],
     "interface-name": [true, "never-prefix"],
+    "no-implicit-dependencies": [true, "dev"],
     "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore"]
   },
   "rulesDirectory": []
