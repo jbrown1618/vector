@@ -46,7 +46,7 @@ export class MatrixBuilder<
    * ```
    * @param columns - The vectors to use as the columns of the new matrix
    */
-  public fromColumnVectors(columns: Array<Vector<ScalarType>>): MatrixType {
+  public fromColumnVectors(columns: Vector<ScalarType>[]): MatrixType {
     assertHomogeneous(columns);
     const numberOfColumns = columns.length;
     if (numberOfColumns === 0) {
@@ -76,7 +76,7 @@ export class MatrixBuilder<
    * @param rows - The vectors to use as the rows of the new matrix
    * @returns The new matrix
    */
-  public fromRowVectors(rows: Array<Vector<ScalarType>>): MatrixType {
+  public fromRowVectors(rows: Vector<ScalarType>[]): MatrixType {
     assertHomogeneous(rows);
     const numberOfRows = rows.length;
     if (numberOfRows === 0) {
@@ -582,13 +582,13 @@ export class MatrixBuilder<
    *
    * @param matrices - The matrices to appear along the primary diagonal of the block matrix
    */
-  public blockDiagonal(matrices: Array<Matrix<ScalarType>>): MatrixType {
+  public blockDiagonal(matrices: Matrix<ScalarType>[]): MatrixType {
     matrices.forEach(matrix => assertSquare(matrix));
 
     const numberOfDiagonalMatrices = matrices.length;
 
-    const grid: Array<Array<Matrix<ScalarType>>> = matrices.map((matrix, index) => {
-      const row: Array<Matrix<ScalarType>> = [];
+    const grid: Matrix<ScalarType>[][] = matrices.map((matrix, index) => {
+      const row: Matrix<ScalarType>[] = [];
       for (let i = 0; i < numberOfDiagonalMatrices; i++) {
         if (i === index) {
           row.push(matrix);
@@ -626,7 +626,7 @@ export class MatrixBuilder<
    * @param grid - A 2-dimensional array of matrices that will be combined into the new matrix
    * @returns The new matrix
    */
-  public block(grid: Array<Array<Matrix<ScalarType>>>): MatrixType {
+  public block(grid: Matrix<ScalarType>[][]): MatrixType {
     if (grid.length === 0 || grid[0].length === 0) {
       return this.empty();
     }

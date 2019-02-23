@@ -47,7 +47,7 @@ export type ApproximationFunctionTemplate<ScalarType> = (
  * @returns - the result of the linear regression
  */
 export function calculateLinearLeastSquaresApproximation<ScalarType>(
-  dataPoints: Array<Vector<ScalarType>>
+  dataPoints: Vector<ScalarType>[]
 ): LeastSquaresApproximation<ScalarType> {
   assertNonEmpty(dataPoints);
   assertHomogeneous(dataPoints);
@@ -91,7 +91,7 @@ export function calculateLinearLeastSquaresApproximation<ScalarType>(
  * @returns - the result of the linear regression
  */
 export function calculateGeneralLeastSquaresApproximation<ScalarType>(
-  dataPoints: Array<Vector<ScalarType>>,
+  dataPoints: Vector<ScalarType>[],
   functionTemplate: ApproximationFunctionTemplate<ScalarType>,
   numberOfTerms: number
 ): LeastSquaresApproximation<ScalarType> {

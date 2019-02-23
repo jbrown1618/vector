@@ -30,7 +30,7 @@ export function calculateQRDecomposition<ScalarType>(
   // Construct a matrix U, whose columns form an orthogonal basis
   // for the column space of A, by subtracting the non-orthogonal
   // components for each column of A
-  const uColumns: Array<Vector<ScalarType>> = [];
+  const uColumns: Vector<ScalarType>[] = [];
   for (let k = 0; k < dim; k++) {
     const columnK = A.getColumn(k);
 
@@ -45,7 +45,7 @@ export function calculateQRDecomposition<ScalarType>(
   // The unitary matrix Q is just U with all of its columns normalized.
   // These columns are, then, an orthonormal basis for the column space of A.
   // If any columns are the zero vector, then A was not full-rank to begin with.
-  const qColumns: Array<Vector<ScalarType>> = [];
+  const qColumns: Vector<ScalarType>[] = [];
   for (let i = 0; i < dim; i++) {
     const qi = uColumns[i].normalize();
     if (qi === undefined) {

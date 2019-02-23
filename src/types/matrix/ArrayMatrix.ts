@@ -86,7 +86,7 @@ export abstract class ArrayMatrix<ScalarType> implements Matrix<ScalarType> {
   /**
    * @inheritdoc
    */
-  public getColumnVectors(): Array<Vector<ScalarType>> {
+  public getColumnVectors(): Vector<ScalarType>[] {
     return this.transpose().getRowVectors();
   }
 
@@ -132,7 +132,7 @@ export abstract class ArrayMatrix<ScalarType> implements Matrix<ScalarType> {
   /**
    * @inheritdoc
    */
-  public getRowVectors(): Array<Vector<ScalarType>> {
+  public getRowVectors(): Vector<ScalarType>[] {
     return this._data.map((dataRow: VectorData<ScalarType>) =>
       this.vectorBuilder().fromData(dataRow)
     );

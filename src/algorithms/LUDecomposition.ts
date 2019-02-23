@@ -40,7 +40,7 @@ export function calculateLUDecomposition<ScalarType>(
   // U will eventually be the last U_n
   let U = A;
   // L will eventually be derived from the entries of these matrices
-  const lns: Array<Matrix<ScalarType>> = [];
+  const lns: Matrix<ScalarType>[] = [];
 
   for (let n = 0; n < N; n++) {
     const nthIteration = getNextDoolittleIteration(n, U);

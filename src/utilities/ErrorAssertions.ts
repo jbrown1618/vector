@@ -30,7 +30,7 @@ export function assertSquare(matrix: Matrix<any>): void {
  * Throws an error if any member of `vectors` has a different length
  * from any other member.
  */
-export function assertHomogeneous(vectors: Array<Vector<any>>): void {
+export function assertHomogeneous(vectors: Vector<any>[]): void {
   if (vectors.length === 0) {
     return;
   }

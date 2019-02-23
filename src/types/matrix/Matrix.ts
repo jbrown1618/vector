@@ -4,7 +4,7 @@ import { VectorBuilder } from '../vector/VectorBuilder';
 import { LinearTransformation } from './LinearTransformation';
 import { MatrixBuilder } from './MatrixBuilder';
 
-export type MatrixData<ScalarType> = Array<VectorData<ScalarType>>;
+export type MatrixData<ScalarType> = VectorData<ScalarType>[];
 export type MatrixEntryCallback<ScalarType> = (
   entry: ScalarType,
   rowIndex: number,
@@ -58,7 +58,7 @@ export interface Matrix<ScalarType>
   /**
    * @returns An array of vectors corresponding to the rows of the matrix
    */
-  getRowVectors(): Array<Vector<ScalarType>>;
+  getRowVectors(): Vector<ScalarType>[];
 
   /**
    * @param rowIndex - The index for which to fetch the row
@@ -69,7 +69,7 @@ export interface Matrix<ScalarType>
   /**
    * @returns An array of vectors corresponding to the columns of the matrix
    */
-  getColumnVectors(): Array<Vector<ScalarType>>;
+  getColumnVectors(): Vector<ScalarType>[];
 
   /**
    * @param columnIndex - The index for which to fetch the column
