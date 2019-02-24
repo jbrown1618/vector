@@ -108,6 +108,8 @@ export abstract class ScalarOperations<ScalarType> {
 
   public abstract getPrincipalSquareRoot(x: ScalarType): ScalarType;
 
+  public abstract norm(x: ScalarType): number;
+
   public abstract random(min: number, max: number): ScalarType;
 
   public abstract randomNormal(mean: number, standardDeviation: number): ScalarType;

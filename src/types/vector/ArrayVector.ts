@@ -94,24 +94,6 @@ export abstract class ArrayVector<ScalarType> implements Vector<ScalarType> {
   /**
    * @inheritdoc
    */
-  public norm(): ScalarType {
-    return this.ops().getPrincipalSquareRoot(this.innerProduct(this));
-  }
-
-  /**
-   * @inheritdoc
-   */
-  public normalize(): Vector<ScalarType> | undefined {
-    const oneOverNorm = this.ops().getMultiplicativeInverse(this.norm());
-    if (oneOverNorm === undefined) {
-      return undefined;
-    }
-    return this.scalarMultiply(oneOverNorm);
-  }
-
-  /**
-   * @inheritdoc
-   */
   public projectOnto(u: Vector<ScalarType>) {
     const oneOverUDotU = this.ops().getMultiplicativeInverse(u.innerProduct(u));
     if (oneOverUDotU === undefined) {

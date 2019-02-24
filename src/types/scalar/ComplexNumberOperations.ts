@@ -51,6 +51,12 @@ export class ComplexNumberOperations extends ScalarOperations<ComplexNumber> {
     }
   }
 
+  public norm(x: ComplexNumber): number {
+    const r = x.getRealPart();
+    const i = x.getImaginaryPart();
+    return Math.sqrt(r * r + i * i);
+  }
+
   public equals(first: ComplexNumber, second: ComplexNumber): boolean {
     return first.equals(second);
   }

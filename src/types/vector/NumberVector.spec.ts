@@ -134,45 +134,6 @@ describe('NumberVector', () => {
     });
   });
 
-  describe('norm', () => {
-    it('calculates the norm of a vector', () => {
-      const v = builder.fromData([3, 4]);
-      expect(v.norm()).to.equal(5);
-    });
-
-    it('handles the zero vector', () => {
-      const zero = builder.zeros(5);
-      expect(zero.norm()).to.equal(0);
-    });
-
-    it('handles the empty vector', () => {
-      const empty = builder.fromData([]);
-      expect(empty.norm()).to.equal(0);
-    });
-  });
-
-  describe('normalize', () => {
-    it('returns a vector scaled to have a norm of 1', () => {
-      const v = builder.fromData([3, 4]);
-      const expected = builder.fromData([3 / 5, 4 / 5]);
-      const normalized = v.normalize();
-      if (normalized === undefined) {
-        expect(true).to.be.false; // Should not be undefined
-        return;
-      }
-      expect(normalized.equals(expected)).to.be.true;
-      expect(normalized.norm()).to.equal(1);
-    });
-
-    it('handles the zero vector', () => {
-      expect(builder.zeros(4).normalize()).to.be.undefined;
-    });
-
-    it('handles the empty vector', () => {
-      expect(builder.fromData([]).normalize()).to.be.undefined;
-    });
-  });
-
   describe('projectOnto', () => {
     it('calculates the projection of one vector onto another', () => {
       const v = builder.fromData([3, 2]);

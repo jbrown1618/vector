@@ -8,6 +8,7 @@ A linear algebra library written in TypeScript that focuses on generality, exten
 - Out-of-the-box support for `number` and `ComplexNumber`
 - Extensible to support general scalar types
 - Matrix determinants
+- Matrix exponentials
 - Elementary row operations
 - Gauss-Jordan elimination
 - Differentiation via finite differences

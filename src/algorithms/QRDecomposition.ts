@@ -1,6 +1,7 @@
 import { Matrix } from '../types/matrix/Matrix';
 import { Vector } from '../types/vector/Vector';
 import { assertSquare } from '../utilities/ErrorAssertions';
+import { normalize } from './Norms';
 
 /**
  * The result of a QR decomposition.
@@ -47,7 +48,7 @@ export function calculateQRDecomposition<ScalarType>(
   // If any columns are the zero vector, then A was not full-rank to begin with.
   const qColumns: Vector<ScalarType>[] = [];
   for (let i = 0; i < dim; i++) {
-    const qi = uColumns[i].normalize();
+    const qi = normalize(uColumns[i]);
     if (qi === undefined) {
       throw Error('TODO - the columns of A are not linearly independent');
     }

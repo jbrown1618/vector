@@ -113,6 +113,11 @@ export interface Matrix<ScalarType>
   transpose(): Matrix<ScalarType>;
 
   /**
+   * @returns The trace of the matrix
+   */
+  trace(): ScalarType;
+
+  /**
    * Implements matrix addition
    * @param other - The matrix to add
    * @returns The matrix sum
