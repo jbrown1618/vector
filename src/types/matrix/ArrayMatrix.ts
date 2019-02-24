@@ -51,6 +51,19 @@ export abstract class ArrayMatrix<ScalarType> implements Matrix<ScalarType> {
   /**
    * @inheritdoc
    */
+  public trace(): ScalarType {
+    const ops = this.ops();
+    let trace = ops.zero();
+    const n = Math.min(this.getNumberOfColumns(), this.getNumberOfRows());
+    for (let i = 0; i < n; i++) {
+      trace = ops.add(trace, this.getEntry(i, i));
+    }
+    return trace;
+  }
+
+  /**
+   * @inheritdoc
+   */
   public apply(vector: Vector<ScalarType>): Vector<ScalarType> {
     const vectorAsColumnMatrix = this.builder().fromColumnVectors([vector]);
     return this.multiply(vectorAsColumnMatrix).getColumn(0);

@@ -57,7 +57,7 @@ export function binomial(n: number, k: number): number {
   return mapForA.get(k) as number;
 }
 
-function factorial(n: number): number {
+export function factorial(n: number): number {
   if (!factorialResults.has(n)) {
     const result = n * factorial(n - 1);
     factorialResults.set(n, result);

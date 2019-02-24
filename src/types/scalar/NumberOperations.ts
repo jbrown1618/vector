@@ -37,6 +37,10 @@ export class NumberOperations extends ScalarOperations<number> {
     return Math.sqrt(x);
   }
 
+  public norm(x: number): number {
+    return Math.abs(x);
+  }
+
   public multiply(first: number, second: number): number {
     return first * second;
   }

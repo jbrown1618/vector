@@ -229,7 +229,7 @@ export class VectorBuilder<ScalarType, VectorType extends Vector<ScalarType>> {
    * @param second - The vector which will be used for the entries starting with `first.getDimension()`
    * @returns The new vector
    */
-  public concatenate(first: VectorType, second: VectorType): VectorType {
+  public concatenate(first: Vector<ScalarType>, second: Vector<ScalarType>): VectorType {
     return this.fromData([...first.getData(), ...second.getData()]);
   }
 
