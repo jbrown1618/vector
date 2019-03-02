@@ -22,6 +22,11 @@ export class VectorBuilder<ScalarType, VectorType extends Vector<ScalarType>> {
     return new this._vectorConstructor(data);
   }
 
+  public fromNumberData(data: VectorData<number>): VectorType {
+    const ops = this.ops();
+    return this.fromData(data.map(num => ops.fromNumber(num)));
+  }
+
   public fromSparseData(dimension: number, sparseData: SparseVectorData<ScalarType>): VectorType {
     const data: VectorData<ScalarType> = [];
     for (let i = 0; i < dimension; i++) {

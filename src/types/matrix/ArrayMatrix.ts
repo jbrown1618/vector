@@ -179,6 +179,7 @@ export abstract class ArrayMatrix<ScalarType> implements Matrix<ScalarType> {
    * @inheritdoc
    */
   public set(rowIndex: number, columnIndex: number, value: ScalarType): Matrix<ScalarType> {
+    assertValidMatrixIndex(this, rowIndex, columnIndex);
     const copy = this.getData();
     copy[rowIndex][columnIndex] = value;
     return this.builder().fromData(copy);

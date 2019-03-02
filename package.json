@@ -15,8 +15,9 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "test": "mocha -r ts-node/register src/**/*.spec.ts",
-    "test-coverage": "nyc --extension=.ts --exclude=**/*.spec.ts mocha -r ts-node/register src/**/*.spec.ts",
+    "test": "mocha -r ts-node/register 'src/**/*.spec.ts'",
+    "coverage": "nyc --extension=.ts --exclude='**/*.spec.ts' --reporter=html npm run test",
+    "coverage:check": "nyc --extension=.ts --exclude=**/*.spec.ts --check-coverage --branches 95 --lines 95 --functions 100 npm run test",
     "format": "prettier --write './*.json' 'src/**/*.{ts,json,md}'",
     "format:check": "prettier --check './*.json' 'src/**/*.{ts,json,md}'",
     "lint": "tslint --fix 'src/**/*.ts'",
@@ -43,7 +44,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && npm test"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {

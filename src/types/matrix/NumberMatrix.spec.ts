@@ -113,6 +113,21 @@ describe('NumberMatrix', () => {
     });
   });
 
+  describe('set', () => {
+    it('returns the original matrix with one entry modified', () => {
+      const original = builder.zeros(3);
+      const expected = builder.fromData([[0, 0, 0], [0, 4, 0], [0, 0, 0]]);
+
+      expect(original.set(1, 1, 4)).to.deep.equal(expected);
+    });
+
+    it('throws an error for invalid indices', () => {
+      const original = builder.zeros(3);
+      expect(() => original.set(3, 1, 4)).to.throw();
+      expect(() => original.set(1, 3, 4)).to.throw();
+    });
+  });
+
   describe('multiply', () => {
     it('returns the product of two matrices of equal dimension', () => {
       const I = builder.fromData([[1, 0], [0, 1]]);
@@ -221,6 +236,12 @@ describe('NumberMatrix', () => {
       const mStar = M.adjoint();
       const mTrans = M.transpose();
       expect(mStar.equals(mTrans)).to.be.true;
+    });
+  });
+
+  describe('trace', () => {
+    it('computes the trace of a matrix', () => {
+      expect(builder.fromData([[1, 2, 3], [4, 5, 6], [7, 8, 9]]).trace()).to.equal(15);
     });
   });
 });

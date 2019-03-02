@@ -31,6 +31,12 @@ export class MatrixBuilder<
     return new this._matrixConstructor(data);
   }
 
+  public fromNumberData(numberData: MatrixData<number>): MatrixType {
+    const ops = this.ops();
+    const data = numberData.map(dataRow => dataRow.map(num => ops.fromNumber(num)));
+    return this.fromData(data);
+  }
+
   /**
    * Builds a matrix from an array of column vectors
    *
@@ -355,11 +361,10 @@ export class MatrixBuilder<
         .scalarMultiply(firstColumn.getEntry(numRows - 1));
     const numColumns = lastRow.getDimension();
 
-    if (numColumns === 0) {
-      return this.empty();
-    }
-
-    if (!this.ops().equals(lastRow.getEntry(0), firstColumn.getEntry(numRows - 1))) {
+    if (
+      numColumns === 0 ||
+      !this.ops().equals(lastRow.getEntry(0), firstColumn.getEntry(numRows - 1))
+    ) {
       throw Error('TODO - last entry of first column must equal first entry of last row');
     }
 
