@@ -1,5 +1,7 @@
 import { expect } from 'chai';
 import { describe, it } from 'mocha';
+import { ComplexNumber } from '../..';
+import { ComplexVector } from './ComplexVector';
 import { NumberVector } from './NumberVector';
 
 describe('VectorBuilder', () => {
@@ -20,6 +22,27 @@ describe('VectorBuilder', () => {
     it('builds a vector from an array of data values', () => {
       const data = [1, 2, 3, 4, 5];
       expect(builder.fromData(data).getData()).to.deep.equal(data);
+    });
+
+    it('handles an empty array', () => {
+      expect(builder.fromData([]).getData()).to.deep.equal([]);
+    });
+  });
+
+  describe('fromNumberData', () => {
+    it('builds a vector from an array of numbers', () => {
+      const data = [1, 2, 3, 4, 5];
+      expect(builder.fromNumberData(data).getData()).to.deep.equal(data);
+    });
+
+    it('builds a complex vector from numbers', () => {
+      const data = [1, 2, 3];
+      const expected = ComplexVector.builder().fromData([
+        new ComplexNumber(1, 0),
+        new ComplexNumber(2, 0),
+        new ComplexNumber(3, 0)
+      ]);
+      expect(ComplexVector.builder().fromNumberData(data)).to.deep.equal(expected);
     });
 
     it('handles an empty array', () => {

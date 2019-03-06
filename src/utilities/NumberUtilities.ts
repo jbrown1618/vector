@@ -26,7 +26,7 @@ export function randomNormal(
 ) {
   let total = 0;
   for (let i = 0; i < numberOfSamples; i++) {
-    total += Math.random();
+    total += random();
   }
 
   const halfNumberOfSamples = numberOfSamples / 2;

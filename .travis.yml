@@ -5,4 +5,4 @@ node_js:
 script:
   - npm run format:check
   - npm run lint:check
-  - npm test
+  - npm run coverage:check

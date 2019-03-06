@@ -58,18 +58,18 @@ describe('MyModule', () => {
 
 ### Coverage
 
-You can check the code coverage by running:
+You can inspect the current test coverage by running:
 
 ```
-npm run test-coverage
+npm run coverage && open ./coverage/index.html
 ```
 
-Merge requests will only be accepted if:
+Merge requests will only be accepted if the coverage check passes. You can check whether your branch
+passes the coverage thresholds by running:
 
-- The overall code coverage for the project is above 95%
-- The code coverage for each individual file is above 85%
-
-The only exceptions are abstract classes which do not have any concrete subclasses.
+```
+npm run coverage:check
+```
 
 ### Documentation
 

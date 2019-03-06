@@ -32,8 +32,15 @@ export class ComplexNumberOperations extends ScalarOperations<ComplexNumber> {
   }
 
   public getPrincipalSquareRoot(x: ComplexNumber): ComplexNumber {
+    if (x.equals(ComplexNumber.ZERO)) {
+      return ComplexNumber.ZERO;
+    }
+
     const r = Math.sqrt(Math.pow(x.getRealPart(), 2) + Math.pow(x.getImaginaryPart(), 2));
-    const theta = Math.atan(x.getImaginaryPart() / x.getRealPart());
+    let theta = Math.atan(x.getImaginaryPart() / x.getRealPart());
+    if (theta < 0) {
+      theta = 2 * Math.PI + theta;
+    }
     const rootR = Math.sqrt(r);
 
     const real = rootR * Math.cos(theta / 2);

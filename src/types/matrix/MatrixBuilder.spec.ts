@@ -1,7 +1,9 @@
 import { expect } from 'chai';
 import { describe, it } from 'mocha';
+import { ComplexNumber } from '../..';
 import { NumberVector } from '../vector/NumberVector';
 import { VectorBuilder } from '../vector/VectorBuilder';
+import { ComplexMatrix } from './ComplexMatrix';
 import { MatrixBuilder, MatrixIndexFunction } from './MatrixBuilder';
 import { NumberMatrix } from './NumberMatrix';
 
@@ -24,6 +26,32 @@ describe('MatrixBuilder', () => {
     });
   });
 
+  describe('fromNumberData', () => {
+    it('behaves exactly like fromData for a NumberMatrix', () => {
+      const data = [[1, 2, 3], [4, 5, 6]];
+      expect(matrixBuilder.fromNumberData(data).getData()).to.deep.equal(data);
+    });
+
+    it('builds a complex matrix from number data', () => {
+      const complexMatrixBuilder = ComplexMatrix.builder();
+      const data = [[1, 2, 3], [4, 5, 6]];
+      const expected = complexMatrixBuilder.fromData([
+        [new ComplexNumber(1, 0), new ComplexNumber(2, 0), new ComplexNumber(3, 0)],
+        [new ComplexNumber(4, 0), new ComplexNumber(5, 0), new ComplexNumber(6, 0)]
+      ]);
+
+      expect(complexMatrixBuilder.fromNumberData(data)).to.deep.equal(expected);
+    });
+
+    it('handles an empty array', () => {
+      expect(matrixBuilder.fromData([]).getData()).to.deep.equal([]);
+    });
+
+    it('handles an array of empty arrays', () => {
+      expect(matrixBuilder.fromData([[], [], []]).getData()).to.deep.equal([]);
+    });
+  });
+
   describe('fromColumnVectors', () => {
     it('builds a matrix from column vectors', () => {
       const first = vectorBuilder.fromValues(1, 2, 3);
@@ -35,6 +63,7 @@ describe('MatrixBuilder', () => {
 
     it('handles an empty array', () => {
       expect(matrixBuilder.fromColumnVectors([]).getData()).to.deep.equal([]);
+      expect(matrixBuilder.fromColumnVectors([vectorBuilder.empty()]).getData()).to.deep.equal([]);
     });
   });
 
@@ -49,6 +78,7 @@ describe('MatrixBuilder', () => {
 
     it('handles an empty array', () => {
       expect(matrixBuilder.fromRowVectors([]).getData()).to.deep.equal([]);
+      expect(matrixBuilder.fromRowVectors([vectorBuilder.empty()]).getData()).to.deep.equal([]);
     });
   });
 
@@ -297,6 +327,10 @@ describe('MatrixBuilder', () => {
       expect(hankel).to.deep.equal(matrixBuilder.empty());
     });
 
+    it('rejects an empty last row', () => {
+      expect(() => matrixBuilder.hankel(vectorBuilder.ones(4), vectorBuilder.empty())).to.throw();
+    });
+
     it('rejects an entry mismatch', () => {
       expect(() =>
         matrixBuilder.hankel(vectorBuilder.fromData([1, 2]), vectorBuilder.fromData([1, 2]))
@@ -535,7 +569,7 @@ describe('MatrixBuilder', () => {
     });
   });
 
-  describe('flatten', () => {
+  describe('block', () => {
     it('flattens a grid of matrices into a single matrix', () => {
       const A = matrixBuilder.identity(2);
       const B = matrixBuilder.ones(2);
@@ -554,7 +588,7 @@ describe('MatrixBuilder', () => {
       expect(matrixBuilder.block(grid).equals(expected)).to.be.true;
     });
 
-    it('handles mismatched dimensions', () => {
+    it('handles unequal dimensions', () => {
       const A = matrixBuilder.ones(1);
       const B = matrixBuilder.zeros(1, 3);
       const C = matrixBuilder.zeros(4, 1);
@@ -571,6 +605,12 @@ describe('MatrixBuilder', () => {
       ]);
 
       expect(matrixBuilder.block(grid).equals(expected)).to.be.true;
+    });
+
+    it('rejects mismatched dimensions', () => {
+      const top = matrixBuilder.ones(1, 2);
+      const bottom = matrixBuilder.zeros(1, 3);
+      expect(() => matrixBuilder.block([[top], [bottom]])).to.throw();
     });
   });
 
