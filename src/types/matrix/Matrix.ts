@@ -78,6 +78,11 @@ export interface Matrix<ScalarType>
   getColumn(columnIndex: number): Vector<ScalarType>;
 
   /**
+   * @returns A vector containing the diagonal elements of the matrix
+   */
+  getDiagonal(): Vector<ScalarType>;
+
+  /**
    * @param rowIndex - The index of the row containing the entry
    * @param columnIndex - The index of the column containing the entry
    * @returns The entry located at `(rowIndex, columnIndex)`

@@ -25,6 +25,16 @@ describe('Exponential', () => {
       expect(expA.equals(expected)).to.be.true;
     });
 
+    it('calculates a more precise exponential', () => {
+      const A = matrixBuilder.fromData([[1, 2], [3, 4]]);
+      const expected = matrixBuilder.fromData([
+        [51.968956152216535, 74.73656449924971],
+        [112.1048467488746, 164.0738029010913]
+      ]);
+      const expA = exp(A, 7);
+      expect(expA.equals(expected)).to.be.true;
+    });
+
     it('handles the degenerate case', () => {
       const A = matrixBuilder.empty();
       expect(exp(A)).to.deep.equal(A);

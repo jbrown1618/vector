@@ -61,6 +61,13 @@ describe('Norms', () => {
         expect(pNorm(empty, 2)).to.equal(0);
         expect(pNorm(empty, 3)).to.equal(0);
       });
+
+      it('rejects p < 1', () => {
+        const v = vectorBuilder.fromData([3, 4]);
+        [0, -1, -2].forEach(p => {
+          expect(() => pNorm(v, p)).to.throw();
+        });
+      });
     });
 
     describe('sumNorm', () => {

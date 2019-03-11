@@ -15,6 +15,7 @@ A linear algebra library written in TypeScript that focuses on generality, exten
 - Least-Squares Regression for arbitrary model functions
 - LU Decomposition
 - QR Decomposition
+- Eigenvalue / Eigenvector finding
 - And more to come!
 
 ## Design Priorities
