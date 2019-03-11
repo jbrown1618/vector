@@ -1,10 +1,31 @@
 import { Matrix } from '../types/matrix/Matrix';
+import { Vector } from '../types/vector/Vector';
 import { assertSquare } from '../utilities/ErrorAssertions';
+import { LinearSolution } from './LinearSolution';
 import {
   addScalarMultipleOfRowToRow,
   moveLeadingZerosToBottom,
   multiplyRowByScalar
 } from './RowOperations';
+import { backwardSubstituteAugmentedMatrix } from './Substitution';
+
+// TODO - use pivoting to improve numerical stability
+
+/**
+ * Uses Gauss-Jordan elimination and backward substitution to solve the linear equation _Ax=b_
+ *
+ * @param A - The matrix _A_ in _Ax=b_
+ * @param b - The vector _b_ in _Ax=b_
+ * @returns The vector _x_ in _Ax=b_
+ */
+export function solveByGaussianElimination<ScalarType>(
+  A: Matrix<ScalarType>,
+  b: Vector<ScalarType>
+): LinearSolution<ScalarType> {
+  const augmented = A.builder().augment(A, A.builder().fromColumnVectors([b]));
+  const ref = rowEchelonForm(augmented);
+  return backwardSubstituteAugmentedMatrix(ref);
+}
 
 /**
  * Uses Gauss-Jordan elimination to calculate the inverse of a matrix.
@@ -64,11 +85,11 @@ export function reducedRowEchelonForm<ScalarType>(matrix: Matrix<ScalarType>): M
  * @returns The matrix in REF
  */
 export function rowEchelonForm<ScalarType>(matrix: Matrix<ScalarType>): Matrix<ScalarType> {
-  matrix = moveLeadingZerosToBottom(matrix).result;
   const ops = matrix.ops();
-
   const maxNumberOfPivotEntries = Math.min(matrix.getNumberOfRows(), matrix.getNumberOfColumns());
+
   for (let pivotRow = 0; pivotRow < maxNumberOfPivotEntries; pivotRow++) {
+    matrix = moveLeadingZerosToBottom(matrix).result;
     let pivotColumn = pivotRow;
     let pivotEntry = matrix.getEntry(pivotRow, pivotColumn);
 

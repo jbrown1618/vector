@@ -106,6 +106,14 @@ export abstract class ArrayMatrix<ScalarType> implements Matrix<ScalarType> {
   /**
    * @inheritdoc
    */
+  public getDiagonal(): Vector<ScalarType> {
+    const numDiagonalElements = Math.min(this.getNumberOfRows(), this.getNumberOfColumns());
+    return this.vectorBuilder().fromIndexFunction(numDiagonalElements, i => this.getEntry(i, i));
+  }
+
+  /**
+   * @inheritdoc
+   */
   public getData(): MatrixData<ScalarType> {
     return this.getRowVectors().map(row => row.getData());
   }

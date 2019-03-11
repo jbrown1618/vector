@@ -2,9 +2,56 @@ import { expect } from 'chai';
 import { describe, it } from 'mocha';
 import { Matrix } from '../types/matrix/Matrix';
 import { NumberMatrix } from '../types/matrix/NumberMatrix';
-import { inverse, reducedRowEchelonForm, rowEchelonForm } from './GaussJordan';
+import {
+  inverse,
+  reducedRowEchelonForm,
+  rowEchelonForm,
+  solveByGaussianElimination
+} from './GaussJordan';
+import { SolutionType, UnderdeterminedSolution, UniqueSolution } from './LinearSolution';
 
 describe('GaussJordan', () => {
+  describe('solveByGaussianElimination', () => {
+    it('solves a system with a unique solution', () => {
+      const A = NumberMatrix.builder().fromData([[0, 2, 1], [1, -2, -3], [-1, 1, 2]]);
+      const b = NumberMatrix.vectorBuilder().fromData([-8, 0, 3]);
+      const solution = solveByGaussianElimination(A, b);
+      const expected = NumberMatrix.vectorBuilder().fromData([-4, -5, 2]);
+
+      expect(solution.solutionType).to.equal(SolutionType.UNIQUE);
+      expect((solution as UniqueSolution<number>).solution).to.deep.equal(expected);
+    });
+
+    it('solves a random 20x20 system', () => {
+      const A = NumberMatrix.builder().random(20, 20);
+      const b = NumberMatrix.vectorBuilder().random(20);
+      const solution = solveByGaussianElimination(A, b);
+
+      // Technically this could fail, but it's astronomically unlikely
+      expect(solution.solutionType).to.equal(SolutionType.UNIQUE);
+      const x = (solution as UniqueSolution<number>).solution;
+      expect(A.apply(x).equals(b)).to.be.true;
+    });
+
+    it('solves an underdetermined system', () => {
+      const A = NumberMatrix.builder().fromData([[0, 2, 1], [1, -2, -3], [-3, 6, 9]]);
+      const b = NumberMatrix.vectorBuilder().fromData([-4, 1, -3]);
+      const solution = solveByGaussianElimination(A, b);
+      const expected = NumberMatrix.vectorBuilder().fromData([-1, -5 / 2, 1]);
+
+      expect(solution.solutionType).to.equal(SolutionType.UNDERDETERMINED);
+      expect((solution as UnderdeterminedSolution<number>).solution).to.deep.equal(expected);
+    });
+
+    it('determines when a system is overdetermined', () => {
+      const A = NumberMatrix.builder().fromData([[1, -2, -6], [2, 4, 12], [1, -4, -12]]);
+      const b = NumberMatrix.vectorBuilder().fromData([12, -17, 22]);
+      const solution = solveByGaussianElimination(A, b);
+
+      expect(solution.solutionType).to.equal(SolutionType.OVERDETERMINED);
+    });
+  });
+
   describe('rowEchelonForm', () => {
     it('row reduces a "wide" matrix', () => {
       const A = NumberMatrix.builder().fromData([[1, 2, 3], [4, 5, 6]]);
@@ -21,9 +68,17 @@ describe('GaussJordan', () => {
 
     it('row reduces a matrix with non-independent rows', () => {
       const A = NumberMatrix.builder().fromData([[1, 2, 3], [1, 1, 1], [1, 1, 1]]);
-
       const aRef = rowEchelonForm(A);
-      expect(aRef.getData()).to.deep.equal([[1, 2, 3], [0, 1, 2], [0, 0, 0]]);
+      expect(aRef).to.deep.equal(
+        NumberMatrix.builder().fromData([[1, 2, 3], [0, 1, 2], [0, 0, 0]])
+      );
+
+      // Matrix B has an unexpected row of zeros occur, necessitating an extra swap
+      const B = NumberMatrix.builder().fromData([[1, 2, 2, 0], [-1, -2, -2, 0], [-3, 9, 9, 0]]);
+      const bRef = rowEchelonForm(B);
+      expect(bRef).to.deep.equal(
+        NumberMatrix.builder().fromData([[1, 2, 2, 0], [0, 1, 1, 0], [0, 0, 0, 0]])
+      );
     });
 
     it('row reduces a matrix with non-diagonal pivot entries', () => {
