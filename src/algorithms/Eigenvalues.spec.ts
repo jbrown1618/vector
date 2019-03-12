@@ -7,11 +7,8 @@ import { calculateEigenvalues, eig, getEigenvectorForEigenvalue } from './Eigenv
 describe('Eigenvalues', () => {
   describe('eig', () => {
     it('calculates the eigenvalue-eigenvector pairs', () => {
-      // TODO - this test will continue to need a high number of iterations
-      //  until our GE algorithm is more numerically stable, because the slight
-      //  error in the eigenvalues is propagating through the eigenvector-finding.
       const A = NumberMatrix.builder().fromData([[-1, 2, 2], [-1, -4, -2], [-3, 9, 7]]);
-      const pairs = eig(A, 50, false);
+      const pairs = eig(A, 40);
 
       const expectedValues = [3, -2, 1];
       const expectedVectors = [

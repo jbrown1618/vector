@@ -99,10 +99,10 @@ export function exchangeRows<ScalarType>(
 
 /**
  * Sorts the rows of a matrix according to the number of leading zeros
+ * and the magnitude of the first nonzero entry
  */
-export function moveLeadingZerosToBottom<ScalarType>(
-  matrix: Matrix<ScalarType>
-): RowOperationResult<ScalarType> {
+export function pivot<ScalarType>(matrix: Matrix<ScalarType>): RowOperationResult<ScalarType> {
+  const ops = matrix.ops();
   // We will sort the rows of an identity matrix according to the number
   // of leading zeros in the corresponding row of `matrix`
   const comparator = (iRow1: Vector<ScalarType>, iRow2: Vector<ScalarType>) => {
@@ -110,15 +110,26 @@ export function moveLeadingZerosToBottom<ScalarType>(
     const rowIndex2 = getNumberOfLeadingZeros(iRow2);
     const mRow1 = matrix.getRow(rowIndex1);
     const mRow2 = matrix.getRow(rowIndex2);
-    return getNumberOfLeadingZeros(mRow1) - getNumberOfLeadingZeros(mRow2);
+    const leadingZeros1 = getNumberOfLeadingZeros(mRow1);
+    const leadingZeros2 = getNumberOfLeadingZeros(mRow2);
+
+    if (leadingZeros1 === leadingZeros2) {
+      // If they have the same number of leading zeros, put
+      // the entry with the greatest magnitude on top
+      const firstEntry1 = mRow1.getEntry(leadingZeros1);
+      const firstEntry2 = mRow2.getEntry(leadingZeros2);
+      return ops.norm(firstEntry2) - ops.norm(firstEntry1);
+    }
+    return leadingZeros1 - leadingZeros2;
   };
 
   const I = matrix.builder().identity(matrix.getNumberOfRows());
   const P = matrix.builder().fromRowVectors(I.getRowVectors().sort(comparator));
+  const permuted = P.multiply(matrix);
 
   return {
     operator: P,
-    result: P.multiply(matrix)
+    result: permuted
   };
 }
 
