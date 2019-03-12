@@ -5,8 +5,8 @@ import {
   addRowToRow,
   addScalarMultipleOfRowToRow,
   exchangeRows,
-  moveLeadingZerosToBottom,
-  multiplyRowByScalar
+  multiplyRowByScalar,
+  pivot
 } from './RowOperations';
 
 describe('RowOperations', () => {
@@ -40,13 +40,13 @@ describe('RowOperations', () => {
     });
   });
 
-  describe('moveLeadingZerosToBottom', () => {
+  describe('pivot', () => {
     it('sorts a matrix by the number of leading zeros', () => {
       const unsorted = NumberMatrix.builder().fromData([[0, 5, 5], [5, 5, 5], [0, 0, 5]]);
       const sorted = NumberMatrix.builder().fromData([[5, 5, 5], [0, 5, 5], [0, 0, 5]]);
       const permutation = NumberMatrix.builder().fromData([[0, 1, 0], [1, 0, 0], [0, 0, 1]]);
 
-      const result = moveLeadingZerosToBottom(unsorted);
+      const result = pivot(unsorted);
       expect(result.result).to.deep.equal(sorted);
       expect(result.operator).to.deep.equal(permutation);
     });

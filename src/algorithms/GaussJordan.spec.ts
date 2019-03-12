@@ -56,7 +56,7 @@ describe('GaussJordan', () => {
     it('row reduces a "wide" matrix', () => {
       const A = NumberMatrix.builder().fromData([[1, 2, 3], [4, 5, 6]]);
       const aRef = rowEchelonForm(A);
-      expect(aRef.getData()).to.deep.equal([[1, 2, 3], [0, 1, 2]]);
+      expect(aRef.getData()).to.deep.equal([[1, 1.25, 1.5], [0, 1, 2]]);
     });
 
     it('row reduces a "tall" matrix', () => {
@@ -77,7 +77,7 @@ describe('GaussJordan', () => {
       const B = NumberMatrix.builder().fromData([[1, 2, 2, 0], [-1, -2, -2, 0], [-3, 9, 9, 0]]);
       const bRef = rowEchelonForm(B);
       expect(bRef).to.deep.equal(
-        NumberMatrix.builder().fromData([[1, 2, 2, 0], [0, 1, 1, 0], [0, 0, 0, 0]])
+        NumberMatrix.builder().fromData([[1, -3, -3, 0], [0, 1, 1, 0], [0, 0, 0, 0]])
       );
     });
 

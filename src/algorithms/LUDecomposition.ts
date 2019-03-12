@@ -1,6 +1,6 @@
 import { Matrix } from '../types/matrix/Matrix';
 import { assertSquare } from '../utilities/ErrorAssertions';
-import { moveLeadingZerosToBottom } from './RowOperations';
+import { pivot } from './RowOperations';
 
 /**
  * The result of an LU Decomposition
@@ -33,7 +33,7 @@ export function calculateLUDecomposition<ScalarType>(
   const ops = A.ops();
 
   const N = A.getNumberOfColumns();
-  const sortingResult = moveLeadingZerosToBottom(A);
+  const sortingResult = pivot(A);
   const P = sortingResult.operator;
   A = sortingResult.result;
 

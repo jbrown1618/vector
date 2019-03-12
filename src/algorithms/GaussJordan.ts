@@ -2,17 +2,14 @@ import { Matrix } from '../types/matrix/Matrix';
 import { Vector } from '../types/vector/Vector';
 import { assertSquare } from '../utilities/ErrorAssertions';
 import { LinearSolution } from './LinearSolution';
-import {
-  addScalarMultipleOfRowToRow,
-  moveLeadingZerosToBottom,
-  multiplyRowByScalar
-} from './RowOperations';
+import { addScalarMultipleOfRowToRow, multiplyRowByScalar, pivot } from './RowOperations';
 import { backwardSubstituteAugmentedMatrix } from './Substitution';
 
 // TODO - use pivoting to improve numerical stability
 
 /**
- * Uses Gauss-Jordan elimination and backward substitution to solve the linear equation _Ax=b_
+ * Uses Gauss-Jordan elimination with pivoting and backward substitution
+ * to solve the linear equation _Ax=b_
  *
  * @param A - The matrix _A_ in _Ax=b_
  * @param b - The vector _b_ in _Ax=b_
@@ -28,7 +25,7 @@ export function solveByGaussianElimination<ScalarType>(
 }
 
 /**
- * Uses Gauss-Jordan elimination to calculate the inverse of a matrix.
+ * Uses Gauss-Jordan elimination with pivoting to calculate the inverse of a matrix.
  * Throws an error if the matrix is not square.
  * Returns `undefined` if the matrix is not invertible.
  *
@@ -55,7 +52,7 @@ export function inverse<ScalarType>(matrix: Matrix<ScalarType>): Matrix<ScalarTy
 }
 
 /**
- * Uses Gauss-Jordan elimination to convert a matrix to Reduced Row-Echelon Form (RREF)
+ * Uses Gauss-Jordan elimination with pivoting to convert a matrix to Reduced Row-Echelon Form (RREF)
  *
  * @param matrix - The input matrix
  * @returns The matrix in RREF
@@ -79,7 +76,7 @@ export function reducedRowEchelonForm<ScalarType>(matrix: Matrix<ScalarType>): M
 }
 
 /**
- * Uses Gauss-Jordan elimination to convert a matrix to Row-Echelon Form (REF)
+ * Uses Gauss-Jordan elimination with pivoting to convert a matrix to Row-Echelon Form (REF)
  *
  * @param matrix - The input matrix
  * @returns The matrix in REF
@@ -89,7 +86,7 @@ export function rowEchelonForm<ScalarType>(matrix: Matrix<ScalarType>): Matrix<S
   const maxNumberOfPivotEntries = Math.min(matrix.getNumberOfRows(), matrix.getNumberOfColumns());
 
   for (let pivotRow = 0; pivotRow < maxNumberOfPivotEntries; pivotRow++) {
-    matrix = moveLeadingZerosToBottom(matrix).result;
+    matrix = pivot(matrix).result;
     let pivotColumn = pivotRow;
     let pivotEntry = matrix.getEntry(pivotRow, pivotColumn);
 
