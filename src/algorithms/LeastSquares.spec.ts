@@ -52,12 +52,12 @@ describe('LeastSquares', () => {
       const result = calculateLinearLeastSquaresApproximation(data);
 
       // According to Excel, the trend line equation for this data is y = -5.7147 + 3.2108x
-      const expectedCoefficients = vectorBuilder.fromData([-5.714705882354153, 3.210784313725627]);
+      const expectedCoefficients = vectorBuilder.fromData([-5.714705882354778, 3.2107843137256964]);
       expect(result.coefficients).to.deep.equal(expectedCoefficients);
 
       // The approximation function should be a line
       const expectedApproximator = (input: number) =>
-        -5.714705882354153 + 3.210784313725627 * input;
+        expectedCoefficients.getEntry(0) + expectedCoefficients.getEntry(1) * input;
 
       const inputValuesToCheck = [-1, 0, 1, 20];
       inputValuesToCheck.forEach(value => {
@@ -72,15 +72,17 @@ describe('LeastSquares', () => {
       const result = calculateLinearLeastSquaresApproximation(data);
 
       const expectedCoefficients = vectorBuilder.fromData([
-        -0.40833333333358723,
-        0.736666666666693,
-        2.5416666666666856
+        -0.40833333333329236,
+        0.7366666666667359,
+        2.5416666666665613
       ]);
       expect(result.coefficients).to.deep.equal(expectedCoefficients);
 
       // The approximation function should be a plane
       const expectedApproximator = (x1: number, x2: number) =>
-        -0.40833333333358723 + 0.736666666666693 * x1 + 2.5416666666666856 * x2;
+        expectedCoefficients.getEntry(0) +
+        expectedCoefficients.getEntry(1) * x1 +
+        expectedCoefficients.getEntry(2) * x2;
 
       const inputValuesToCheck = [-1, 0, 1, 20];
       inputValuesToCheck.forEach(value => {
@@ -132,15 +134,17 @@ describe('LeastSquares', () => {
 
       // According to Excel, the trend line equation for this data is y = 3.42 + 0.35x + 0.16x^2
       const expectedCoefficients = vectorBuilder.fromData([
-        3.42352941173948,
-        0.3250257998024608,
-        0.1603199174401464
+        3.42352941163967,
+        0.32502579983316027,
+        0.16031991743846064
       ]);
       expect(result.coefficients).to.deep.equal(expectedCoefficients);
 
       // The approximation function should be a parabola
       const expectedApproximator = (input: number) =>
-        3.42352941173948 + 0.3250257998024608 * input + 0.1603199174401464 * Math.pow(input, 2);
+        expectedCoefficients.getEntry(0) +
+        expectedCoefficients.getEntry(1) * input +
+        expectedCoefficients.getEntry(2) * Math.pow(input, 2);
 
       const inputValuesToCheck = [-1, 0, 1, 20];
       inputValuesToCheck.forEach(value => {
@@ -210,7 +214,7 @@ describe('LeastSquares', () => {
 
       const x = solveOverdeterminedSystem(A, b);
 
-      expect(x).to.deep.equal(vectorBuilder.fromData([-5.714705882354153, 3.210784313725627]));
+      expect(x).to.deep.equal(vectorBuilder.fromData([-5.714705882354778, 3.2107843137256964]));
     });
 
     it('rejects a system where A is underdetermined', () => {

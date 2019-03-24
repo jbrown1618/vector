@@ -1,7 +1,8 @@
 import { Matrix } from '../types/matrix/Matrix';
 import { Vector } from '../types/vector/Vector';
 import { assertHomogeneous, assertNonEmpty } from '../utilities/ErrorAssertions';
-import { inverse } from './GaussJordan';
+import { solveByGaussianElimination } from './GaussJordan';
+import { SolutionType } from './LinearSolution';
 
 /**
  * The result of a least squares approximation.
@@ -154,13 +155,15 @@ export function solveOverdeterminedSystem<ScalarType>(
   const aTrans = A.adjoint();
   const aTransB = aTrans.apply(b);
   const aTransA = aTrans.multiply(A);
-  const aTransAInverse = inverse(aTransA);
 
-  if (!aTransAInverse) {
+  const leastSquaresSolution = solveByGaussianElimination(aTransA, aTransB);
+  if (leastSquaresSolution.solutionType === SolutionType.UNIQUE) {
+    return leastSquaresSolution.solution;
+  } else if (leastSquaresSolution.solutionType === SolutionType.UNDERDETERMINED) {
+    return leastSquaresSolution.solution;
+  } else {
     return undefined;
   }
-
-  return aTransAInverse.apply(aTransB);
 }
 
 function checkDimensionsForOverdeterminedSystem<ScalarType>(

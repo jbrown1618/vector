@@ -11,6 +11,9 @@ coverage/
 # Generated documentation
 api-docs/
 
+# Local benchmarks
+benchmarks/local
+
 # IDE Configuration
 .idea/
 .vscode/
