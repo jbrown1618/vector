@@ -18,6 +18,7 @@
     "test": "mocha -r ts-node/register 'src/**/*.spec.ts'",
     "coverage": "nyc --extension=.ts --exclude='**/*.spec.ts' --reporter=html npm run test",
     "coverage:check": "nyc --extension=.ts --exclude=**/*.spec.ts --check-coverage --branches 95 --lines 95 --functions 100 npm run test",
+    "benchmark": "ts-node --project './tsconfig-benchmark.json' './benchmarks/benchmark.ts'",
     "format": "prettier --write './*.json' 'src/**/*.{ts,json,md}'",
     "format:check": "prettier --check './*.json' 'src/**/*.{ts,json,md}'",
     "lint": "tslint --fix 'src/**/*.ts'",
