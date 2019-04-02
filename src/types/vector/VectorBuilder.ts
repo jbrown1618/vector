@@ -28,7 +28,7 @@ export class VectorBuilder<ScalarType, VectorType extends Vector<ScalarType>> {
   }
 
   public fromSparseData(dimension: number, sparseData: SparseVectorData<ScalarType>): VectorType {
-    const data: VectorData<ScalarType> = [];
+    const data: ScalarType[] = [];
     for (let i = 0; i < dimension; i++) {
       data[i] = this.ops().zero();
     }
@@ -54,7 +54,7 @@ export class VectorBuilder<ScalarType, VectorType extends Vector<ScalarType>> {
     valueFromIndex: VectorIndexFunction<ScalarType>
   ): VectorType {
     assertValidDimension(dimension);
-    const data: VectorData<ScalarType> = [];
+    const data: ScalarType[] = [];
     for (let i = 0; i < dimension; i++) {
       data[i] = valueFromIndex(i);
     }

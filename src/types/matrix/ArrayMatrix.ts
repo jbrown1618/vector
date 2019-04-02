@@ -38,7 +38,7 @@ export abstract class ArrayMatrix<ScalarType> implements Matrix<ScalarType> {
    */
   public adjoint(): Matrix<ScalarType> {
     const transposedData = this.transpose().getData();
-    const adjointData: MatrixData<ScalarType> = [];
+    const adjointData: ScalarType[][] = [];
     transposedData.forEach((row, i) => {
       adjointData[i] = [];
       row.forEach((entry: ScalarType, j: number) => {
@@ -114,8 +114,8 @@ export abstract class ArrayMatrix<ScalarType> implements Matrix<ScalarType> {
   /**
    * @inheritdoc
    */
-  public getData(): MatrixData<ScalarType> {
-    return this.getRowVectors().map(row => row.getData());
+  public getData(): ScalarType[][] {
+    return this.getRowVectors().map(row => [...row.getData()]);
   }
 
   /**

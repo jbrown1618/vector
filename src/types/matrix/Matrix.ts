@@ -4,7 +4,7 @@ import { VectorBuilder } from '../vector/VectorBuilder';
 import { LinearTransformation } from './LinearTransformation';
 import { MatrixBuilder } from './MatrixBuilder';
 
-export type MatrixData<ScalarType> = VectorData<ScalarType>[];
+export type MatrixData<ScalarType> = ReadonlyArray<VectorData<ScalarType>>;
 export type MatrixEntryCallback<ScalarType> = (
   entry: ScalarType,
   rowIndex: number,
@@ -16,7 +16,7 @@ export interface MatrixConstructor<
   VectorType extends Vector<ScalarType>,
   MatrixType extends Matrix<ScalarType>
 > {
-  new (data: ScalarType[][]): MatrixType;
+  new (data: MatrixData<ScalarType>): MatrixType;
   ops(): ScalarOperations<ScalarType>;
   builder(): MatrixBuilder<ScalarType, VectorType, MatrixType>;
   vectorBuilder(): VectorBuilder<ScalarType, VectorType>;
@@ -43,7 +43,7 @@ export interface Matrix<ScalarType>
   /**
    * @returns The contents of the matrix as an array of arrays.
    */
-  getData(): MatrixData<ScalarType>;
+  getData(): ScalarType[][];
 
   /**
    * @returns The number of rows in the matrix

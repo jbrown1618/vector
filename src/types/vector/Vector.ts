@@ -3,7 +3,7 @@ import { MatrixBuilder } from '../matrix/MatrixBuilder';
 import { ScalarOperations } from '../scalar/ScalarOperations';
 import { VectorBuilder } from './VectorBuilder';
 
-export type VectorData<ScalarType> = ScalarType[];
+export type VectorData<ScalarType> = ReadonlyArray<ScalarType>;
 
 export interface VectorConstructor<ScalarType, VectorType extends Vector<ScalarType>> {
   new (data: VectorData<ScalarType>): VectorType;
@@ -34,7 +34,7 @@ export interface Vector<ScalarType> {
   /**
    * @returns The contents of the vector as an array
    */
-  getData(): VectorData<ScalarType>;
+  getData(): ScalarType[];
 
   /**
    * @param index - The index of the entry to retrieve
