@@ -1,5 +1,5 @@
 import { assertHomogeneous, assertValidVectorIndex } from '../../utilities/ErrorAssertions';
-import { Matrix, MatrixData } from '../matrix/Matrix';
+import { Matrix } from '../matrix/Matrix';
 import { MatrixBuilder } from '../matrix/MatrixBuilder';
 import { ScalarOperations } from '../scalar/ScalarOperations';
 import { Vector, VectorData } from './Vector';
@@ -75,7 +75,7 @@ export abstract class ArrayVector<ScalarType> implements Vector<ScalarType> {
    * @inheritdoc
    */
   public outerProduct(other: Vector<ScalarType>): Matrix<ScalarType> {
-    const matrixData: MatrixData<ScalarType> = [];
+    const matrixData: ScalarType[][] = [];
 
     if (this.getDimension() === 0 || other.getDimension() === 0) {
       return this.matrixBuilder().fromData(matrixData);
@@ -115,7 +115,7 @@ export abstract class ArrayVector<ScalarType> implements Vector<ScalarType> {
   /**
    * @inheritdoc
    */
-  public getData(): VectorData<ScalarType> {
+  public getData(): ScalarType[] {
     return [...this._data];
   }
 

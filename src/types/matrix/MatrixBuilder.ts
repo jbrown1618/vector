@@ -118,7 +118,7 @@ export class MatrixBuilder<
     indexFunction: MatrixIndexFunction<ScalarType>
   ): MatrixType {
     assertValidDimensions(numRows, numColumns);
-    const data: MatrixData<ScalarType> = [];
+    const data: ScalarType[][] = [];
     for (let i = 0; i < numRows; i++) {
       data[i] = [];
       for (let j = 0; j < numColumns; j++) {
@@ -742,7 +742,7 @@ export class MatrixBuilder<
       throw Error('index out of bounds');
     }
 
-    const data: MatrixData<ScalarType> = [];
+    const data: ScalarType[][] = [];
     let newRowIndex = 0;
     for (let i = rowStartIndex; i < rowEndIndex; i++) {
       data[newRowIndex] = [];
@@ -778,7 +778,7 @@ export class MatrixBuilder<
   public exclude(matrix: MatrixType, rowToExclude: number, columnToExclude: number): MatrixType {
     assertValidMatrixIndex(matrix, rowToExclude, columnToExclude);
 
-    const data: MatrixData<ScalarType> = [];
+    const data: ScalarType[][] = [];
     for (let i = 0; i < matrix.getNumberOfRows(); i++) {
       if (i < rowToExclude) {
         data[i] = [];
