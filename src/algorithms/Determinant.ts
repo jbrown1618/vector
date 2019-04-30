@@ -8,7 +8,7 @@ import { assertSquare } from '../utilities/ErrorAssertions';
  * @param matrix - A square matrix
  * @returns - The determinant
  */
-export function determinant<ScalarType>(matrix: Matrix<ScalarType>): ScalarType {
+export function determinant<S>(matrix: Matrix<S>): S {
   assertSquare(matrix);
   const ops = matrix.ops();
   const builder = matrix.builder();
@@ -25,7 +25,7 @@ export function determinant<ScalarType>(matrix: Matrix<ScalarType>): ScalarType 
   let det = ops.zero();
   for (let j = 0; j < matrix.getNumberOfColumns(); j++) {
     const signFlipped = j % 2 === 1;
-    const determinantOfMinor: ScalarType = determinant(builder.exclude(matrix, 0, j));
+    const determinantOfMinor: S = determinant(builder.exclude(matrix, 0, j));
     const weight = matrix.getEntry(0, j);
 
     let quantityToAdd = ops.multiply(determinantOfMinor, weight);

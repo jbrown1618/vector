@@ -5,18 +5,18 @@ import { pivot } from './RowOperations';
 /**
  * The result of an LU Decomposition
  */
-export interface LUDecomposition<ScalarType> {
-  L: Matrix<ScalarType>;
-  U: Matrix<ScalarType>;
-  P: Matrix<ScalarType>;
+export interface LUDecomposition<S> {
+  L: Matrix<S>;
+  U: Matrix<S>;
+  P: Matrix<S>;
 }
 
 /**
  * An intermediate step in the Doolittle algorithm, representing successive approximations of L and U
  */
-interface DoolittleIteration<ScalarType> {
-  ln: Matrix<ScalarType>;
-  un: Matrix<ScalarType>;
+interface DoolittleIteration<S> {
+  ln: Matrix<S>;
+  un: Matrix<S>;
 }
 
 /**
@@ -26,9 +26,7 @@ interface DoolittleIteration<ScalarType> {
  *
  * @param A - The matrix to decompose
  */
-export function calculateLUDecomposition<ScalarType>(
-  A: Matrix<ScalarType>
-): LUDecomposition<ScalarType> {
+export function calculateLUDecomposition<S>(A: Matrix<S>): LUDecomposition<S> {
   assertSquare(A);
   const ops = A.ops();
 
@@ -40,7 +38,7 @@ export function calculateLUDecomposition<ScalarType>(
   // U will eventually be the last U_n
   let U = A;
   // L will eventually be derived from the entries of these matrices
-  const lns: Matrix<ScalarType>[] = [];
+  const lns: Matrix<S>[] = [];
 
   for (let n = 0; n < N; n++) {
     const nthIteration = getNextDoolittleIteration(n, U);
@@ -74,10 +72,10 @@ export function calculateLUDecomposition<ScalarType>(
  *     to eliminate sub-diagonal entries
  * @param previousU - The matrix from which we are trying to eliminate entries
  */
-function getNextDoolittleIteration<ScalarType>(
+function getNextDoolittleIteration<S>(
   columnIndex: number,
-  previousU: Matrix<ScalarType>
-): DoolittleIteration<ScalarType> {
+  previousU: Matrix<S>
+): DoolittleIteration<S> {
   const ln = getNthLowerTriangularMatrix(columnIndex, previousU);
   const un = ln.multiply(previousU);
   return { ln, un };
@@ -92,10 +90,7 @@ function getNextDoolittleIteration<ScalarType>(
  *     to eliminate sub-diagonal entries
  * @param previousU - The matrix from which we are trying to eliminate entries
  */
-function getNthLowerTriangularMatrix<ScalarType>(
-  columnIndex: number,
-  previousU: Matrix<ScalarType>
-): Matrix<ScalarType> {
+function getNthLowerTriangularMatrix<S>(columnIndex: number, previousU: Matrix<S>): Matrix<S> {
   const ops = previousU.ops();
 
   return previousU

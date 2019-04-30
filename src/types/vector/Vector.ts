@@ -3,44 +3,44 @@ import { MatrixBuilder } from '../matrix/MatrixBuilder';
 import { ScalarOperations } from '../scalar/ScalarOperations';
 import { VectorBuilder } from './VectorBuilder';
 
-export type VectorData<ScalarType> = ReadonlyArray<ScalarType>;
+export type VectorData<S> = ReadonlyArray<S>;
 
-export interface VectorConstructor<ScalarType, VectorType extends Vector<ScalarType>> {
-  new (data: VectorData<ScalarType>): VectorType;
-  ops(): ScalarOperations<ScalarType>;
-  builder(): VectorBuilder<ScalarType, VectorType>;
+export interface VectorConstructor<S, V extends Vector<S>> {
+  new (data: VectorData<S>): V;
+  ops(): ScalarOperations<S>;
+  builder(): VectorBuilder<S, V>;
 }
 
 /**
  * An interface for a member of a vector space - specifically a member of an inner product space.
  */
-export interface Vector<ScalarType> {
+export interface Vector<S> {
   /**
    * Yields a `ScalarOperations` object which will allow consumers to work generically
    * with the scalars contained in the vector.
    */
-  ops(): ScalarOperations<ScalarType>;
+  ops(): ScalarOperations<S>;
 
   /**
    * Yields a `VectorBuilder` which will build new vectors of the same type
    */
-  builder(): VectorBuilder<ScalarType, Vector<ScalarType>>;
+  builder(): VectorBuilder<S, Vector<S>>;
 
   /**
    * Yields a `MatrixBuilder` which will build new matrices of a compatible type
    */
-  matrixBuilder(): MatrixBuilder<ScalarType, Vector<ScalarType>, Matrix<ScalarType>>;
+  matrixBuilder(): MatrixBuilder<S, Vector<S>, Matrix<S>>;
 
   /**
    * @returns The contents of the vector as an array
    */
-  getData(): ScalarType[];
+  getData(): S[];
 
   /**
    * @param index - The index of the entry to retrieve
    * @returns The entry located at `index`
    */
-  getEntry(index: number): ScalarType;
+  getEntry(index: number): S;
 
   /**
    * Implements vector addition
@@ -48,7 +48,7 @@ export interface Vector<ScalarType> {
    * @param other - The vector to add
    * @returns The vector sum
    */
-  add(other: Vector<ScalarType>): Vector<ScalarType>;
+  add(other: Vector<S>): Vector<S>;
 
   /**
    * Implements vector multiplication by a scalar
@@ -56,25 +56,25 @@ export interface Vector<ScalarType> {
    * @param scalar - The scalar by which to multiply
    * @returns The product
    */
-  scalarMultiply(scalar: ScalarType): Vector<ScalarType>;
+  scalarMultiply(scalar: S): Vector<S>;
 
   /**
    * @param other - The vector with which to calculate an inner product
    * @returns The inner product
    */
-  innerProduct(other: Vector<ScalarType>): ScalarType;
+  innerProduct(other: Vector<S>): S;
 
   /**
    * @param u - The vector on which to project this
    * @returns This vector projected onto `u`
    */
-  projectOnto(u: Vector<ScalarType>): Vector<ScalarType>;
+  projectOnto(u: Vector<S>): Vector<S>;
 
   /**
    * @param other - The vector with which to calculate an outer product
    * @returns The outer product
    */
-  outerProduct(other: Vector<ScalarType>): Matrix<ScalarType>;
+  outerProduct(other: Vector<S>): Matrix<S>;
 
   /**
    * @returns The dimension of the vector
@@ -85,5 +85,5 @@ export interface Vector<ScalarType> {
    * @param other - The vector against which to compare
    * @returns - `true` if `this` is equal to `other`
    */
-  equals(other: Vector<ScalarType>): boolean;
+  equals(other: Vector<S>): boolean;
 }

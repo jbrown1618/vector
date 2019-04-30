@@ -12,25 +12,25 @@ import { SolutionType } from './LinearSolution';
  * - `approximationFunction`: a function which takes a vector of the independent variable
  *     values, and returns the predicted value of the dependent variable
  */
-export interface LeastSquaresApproximation<ScalarType> {
-  coefficients: Vector<ScalarType>;
-  approximationFunction: ApproximationFunction<ScalarType>;
+export interface LeastSquaresApproximation<S> {
+  coefficients: Vector<S>;
+  approximationFunction: ApproximationFunction<S>;
 }
 
 /**
  * A function that takes a vector of inputs and produces an output.  This must always
  * be a pure function that is linear in its coefficients.
  */
-export type ApproximationFunction<ScalarType> = (input: Vector<ScalarType>) => ScalarType;
+export type ApproximationFunction<S> = (input: Vector<S>) => S;
 
 /**
  * A higher-order function which is used to generate an `ApproximationFunction`.  This
  * must be linear in its coefficients, or the result of the linear regression will not
  * be correct.
  */
-export type ApproximationFunctionTemplate<ScalarType> = (
-  coefficients: Vector<ScalarType>
-) => ApproximationFunction<ScalarType>;
+export type ApproximationFunctionTemplate<S> = (
+  coefficients: Vector<S>
+) => ApproximationFunction<S>;
 
 /**
  * Calculates a linear regression model for the provided `dataPoints`.
@@ -47,17 +47,17 @@ export type ApproximationFunctionTemplate<ScalarType> = (
  *    and the other entries are the values of the independent variables
  * @returns - the result of the linear regression
  */
-export function calculateLinearLeastSquaresApproximation<ScalarType>(
-  dataPoints: Vector<ScalarType>[]
-): LeastSquaresApproximation<ScalarType> {
+export function calculateLinearLeastSquaresApproximation<S>(
+  dataPoints: Vector<S>[]
+): LeastSquaresApproximation<S> {
   assertNonEmpty(dataPoints);
   assertHomogeneous(dataPoints);
 
   const ops = dataPoints[0].ops();
   const numberOfIndependentVariables = dataPoints[0].getDimension() - 1;
 
-  const linearFunctionTemplate = (coefficients: Vector<ScalarType>) => {
-    return (input: Vector<ScalarType>) => {
+  const linearFunctionTemplate = (coefficients: Vector<S>) => {
+    return (input: Vector<S>) => {
       let value = coefficients.getEntry(0); // constant term
       for (let i = 1; i < coefficients.getDimension(); i++) {
         const newTerm = ops.multiply(coefficients.getEntry(i), input.getEntry(i - 1));
@@ -91,11 +91,11 @@ export function calculateLinearLeastSquaresApproximation<ScalarType>(
  *     the approximation function
  * @returns - the result of the linear regression
  */
-export function calculateGeneralLeastSquaresApproximation<ScalarType>(
-  dataPoints: Vector<ScalarType>[],
-  functionTemplate: ApproximationFunctionTemplate<ScalarType>,
+export function calculateGeneralLeastSquaresApproximation<S>(
+  dataPoints: Vector<S>[],
+  functionTemplate: ApproximationFunctionTemplate<S>,
   numberOfTerms: number
-): LeastSquaresApproximation<ScalarType> {
+): LeastSquaresApproximation<S> {
   assertNonEmpty(dataPoints);
   assertHomogeneous(dataPoints);
 
@@ -146,10 +146,7 @@ export function calculateGeneralLeastSquaresApproximation<ScalarType>(
  * @param A - The matrix _A_ in _Ax = b_
  * @param b - The vector _b_ in _Ax = b_
  */
-export function solveOverdeterminedSystem<ScalarType>(
-  A: Matrix<ScalarType>,
-  b: Vector<ScalarType>
-): Vector<ScalarType> | undefined {
+export function solveOverdeterminedSystem<S>(A: Matrix<S>, b: Vector<S>): Vector<S> | undefined {
   checkDimensionsForOverdeterminedSystem(A, b);
 
   const aTrans = A.adjoint();
@@ -166,10 +163,7 @@ export function solveOverdeterminedSystem<ScalarType>(
   }
 }
 
-function checkDimensionsForOverdeterminedSystem<ScalarType>(
-  A: Matrix<ScalarType>,
-  b: Vector<ScalarType>
-) {
+function checkDimensionsForOverdeterminedSystem<S>(A: Matrix<S>, b: Vector<S>) {
   if (A.getNumberOfColumns() > A.getNumberOfRows()) {
     throw new Error('TODO - message');
   }

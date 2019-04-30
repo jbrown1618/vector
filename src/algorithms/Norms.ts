@@ -12,7 +12,7 @@ import { Vector } from '../types/vector/Vector';
  *
  * @param v - The vector to normalize
  */
-export function normalize<ScalarType>(v: Vector<ScalarType>): Vector<ScalarType> | undefined {
+export function normalize<S>(v: Vector<S>): Vector<S> | undefined {
   const ops = v.ops();
   const scaleFactor = ops.getMultiplicativeInverse(ops.fromNumber(euclideanNorm(v)));
   return scaleFactor === undefined ? undefined : v.scalarMultiply(scaleFactor);
@@ -31,7 +31,7 @@ export function normalize<ScalarType>(v: Vector<ScalarType>): Vector<ScalarType>
  * @param v - The vector for which to calculate the norm
  * @param p - The power used to calculate the norm
  */
-export function pNorm<ScalarType>(v: Vector<ScalarType>, p: number): number {
+export function pNorm<S>(v: Vector<S>, p: number): number {
   if (p < 1) {
     throw Error('TODO - nonsense');
   }
@@ -60,7 +60,7 @@ export function pNorm<ScalarType>(v: Vector<ScalarType>, p: number): number {
  *
  * @param v - The vector for which to calculate the norm
  */
-export function sumNorm<ScalarType>(v: Vector<ScalarType>): number {
+export function sumNorm<S>(v: Vector<S>): number {
   return pNorm(v, 1);
 }
 
@@ -74,7 +74,7 @@ export function sumNorm<ScalarType>(v: Vector<ScalarType>): number {
  *
  * @param v - The vector for which to calculate the norm
  */
-export function euclideanNorm<ScalarType>(v: Vector<ScalarType>): number {
+export function euclideanNorm<S>(v: Vector<S>): number {
   return pNorm(v, 2);
 }
 
@@ -88,7 +88,7 @@ export function euclideanNorm<ScalarType>(v: Vector<ScalarType>): number {
  *
  * @param v - The vector for which to calculate the norm
  */
-export function supremumNorm<ScalarType>(v: Vector<ScalarType>): number {
+export function supremumNorm<S>(v: Vector<S>): number {
   if (v.getDimension() === 0) {
     return 0;
   }
@@ -116,7 +116,7 @@ export function supremumNorm<ScalarType>(v: Vector<ScalarType>): number {
  *
  * @param A - The matrix for which to calculate the norm
  */
-export function frobeniusNorm<ScalarType>(A: Matrix<ScalarType>): number {
+export function frobeniusNorm<S>(A: Matrix<S>): number {
   const vb = A.vectorBuilder();
   const allEntries = A.getColumnVectors().reduce(
     (all, next) => vb.concatenate(all, next),
@@ -135,7 +135,7 @@ export function frobeniusNorm<ScalarType>(A: Matrix<ScalarType>): number {
  *
  * @param A - The matrix for which to calculate the norm
  */
-export function columnSumSupremumNorm<ScalarType>(A: Matrix<ScalarType>): number {
+export function columnSumSupremumNorm<S>(A: Matrix<S>): number {
   const columnSums = A.getColumnVectors().map(sumNorm);
   const columnSumVector = NumberVector.builder().fromData(columnSums);
   return supremumNorm(columnSumVector);
@@ -151,7 +151,7 @@ export function columnSumSupremumNorm<ScalarType>(A: Matrix<ScalarType>): number
  *
  * @param A - The matrix for which to calculate the norm
  */
-export function rowSumSupremumNorm<ScalarType>(A: Matrix<ScalarType>): number {
+export function rowSumSupremumNorm<S>(A: Matrix<S>): number {
   const rowSums = A.getRowVectors().map(sumNorm);
   const rowSumVector = NumberVector.builder().fromData(rowSums);
   return supremumNorm(rowSumVector);
