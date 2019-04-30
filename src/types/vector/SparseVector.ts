@@ -5,30 +5,30 @@
 // import { Vector, VectorData } from './Vector';
 // import { VectorBuilder } from './VectorBuilder';
 
-export type SparseVectorData<ScalarType> = Map<number, ScalarType>;
+export type SparseVectorData<S> = Map<number, S>;
 
 // /**
 //  * A type guard which returns true if the input is an instance of `SparseVector`,
 //  * and functions as a type check in the compiler.
 //  */
-// export function isSparse<ScalarType>(
-//   vector: Vector<ScalarType>
-// ): vector is SparseVector<ScalarType> {
-//   return (vector as SparseVector<ScalarType>).getSparseData !== undefined;
+// export function isSparse<S>(
+//   vector: Vector<S>
+// ): vector is SparseVector<S> {
+//   return (vector as SparseVector<S>).getSparseData !== undefined;
 // }
 //
 // /**
 //  * For large vectors with many entries equal to 0, some operations are
 //  * more efficient with a `Vector` implementation that only stores the non-zero values.
 //  */
-// export abstract class SparseVector<ScalarType> implements Vector<ScalarType> {
+// export abstract class SparseVector<S> implements Vector<S> {
 //   private readonly _dimension: number;
-//   private readonly _sparseData: SparseVectorData<ScalarType>;
+//   private readonly _sparseData: SparseVectorData<S>;
 //
-//   protected constructor(dimension: number, data: VectorData<ScalarType>) {
+//   protected constructor(dimension: number, data: VectorData<S>) {
 //     this._dimension = dimension;
-//     const sparseData: SparseVectorData<ScalarType> = new Map();
-//     data.forEach((value: ScalarType, index: number) => {
+//     const sparseData: SparseVectorData<S> = new Map();
+//     data.forEach((value: S, index: number) => {
 //       if (!this.ops().equals(this.ops().zero(), value)) {
 //         sparseData.set(index, value);
 //       }
@@ -36,28 +36,28 @@ export type SparseVectorData<ScalarType> = Map<number, ScalarType>;
 //     this._sparseData = sparseData;
 //   }
 //
-//   public abstract ops(): ScalarOperations<ScalarType>;
+//   public abstract ops(): ScalarOperations<S>;
 //
-//   public abstract builder(): VectorBuilder<ScalarType, Vector<ScalarType>>;
+//   public abstract builder(): VectorBuilder<S, Vector<S>>;
 //
 //   public abstract matrixBuilder(): MatrixBuilder<
-//     ScalarType,
-//     Vector<ScalarType>,
-//     Matrix<ScalarType>
+//     S,
+//     Vector<S>,
+//     Matrix<S>
 //   >;
 //
 //   /**
 //    * @inheritdoc
 //    */
-//   public getSparseData(): SparseVectorData<ScalarType> {
+//   public getSparseData(): SparseVectorData<S> {
 //     return this._sparseData;
 //   }
 //
 //   /**
 //    * @inheritdoc
 //    */
-//   public getData(): VectorData<ScalarType> {
-//     const data: VectorData<ScalarType> = [];
+//   public getData(): VectorData<S> {
+//     const data: VectorData<S> = [];
 //     for (let i = 0; i < this.getDimension(); i++) {
 //       data[i] = this.getEntry(i);
 //     }
@@ -67,7 +67,7 @@ export type SparseVectorData<ScalarType> = Map<number, ScalarType>;
 //   /**
 //    * @inheritdoc
 //    */
-//   public getEntry(index: number): ScalarType {
+//   public getEntry(index: number): S {
 //     assertValidVectorIndex(this, index);
 //     return this._sparseData.get(index) || this.ops().zero();
 //   }
@@ -75,8 +75,8 @@ export type SparseVectorData<ScalarType> = Map<number, ScalarType>;
 //   /**
 //    * @inheritdoc
 //    */
-//   public innerProduct(other: Vector<ScalarType>): ScalarType {
-//     let innerProduct: ScalarType = this.ops().zero();
+//   public innerProduct(other: Vector<S>): S {
+//     let innerProduct: S = this.ops().zero();
 //     this._sparseData.forEach((value, index) => {
 //       innerProduct = this.ops().add(
 //         innerProduct,
@@ -89,7 +89,7 @@ export type SparseVectorData<ScalarType> = Map<number, ScalarType>;
 //   /**
 //    * @inheritdoc
 //    */
-//   public outerProduct(other: Vector<ScalarType>): Matrix<ScalarType> {
+//   public outerProduct(other: Vector<S>): Matrix<S> {
 //     // TODO - implement.  This is just here to satisfy the compiler.
 //     return this.matrixBuilder().fromData([other.getData()]);
 //   }
@@ -97,7 +97,7 @@ export type SparseVectorData<ScalarType> = Map<number, ScalarType>;
 //   /**
 //    * @inheritdoc
 //    */
-//   public scalarMultiply(scalar: ScalarType): Vector<ScalarType> {
+//   public scalarMultiply(scalar: S): Vector<S> {
 //     const newSparseData = new Map();
 //     this._sparseData.forEach((value, index) => {
 //       newSparseData.set(index, this.ops().multiply(value, scalar));
@@ -105,12 +105,12 @@ export type SparseVectorData<ScalarType> = Map<number, ScalarType>;
 //     return this.builder().fromSparseData(this._dimension, newSparseData);
 //   }
 //
-//   public abstract add(other: Vector<ScalarType>): Vector<ScalarType>;
+//   public abstract add(other: Vector<S>): Vector<S>;
 //
 //   /**
 //    * @inheritdoc
 //    */
-//   public equals(other: Vector<ScalarType>): boolean {
+//   public equals(other: Vector<S>): boolean {
 //     if (isSparse(other)) {
 //       return this.equalsSparse(other);
 //     }
@@ -131,7 +131,7 @@ export type SparseVectorData<ScalarType> = Map<number, ScalarType>;
 //   /**
 //    * @inheritdoc
 //    */
-//   public projectOnto(u: Vector<ScalarType>) {
+//   public projectOnto(u: Vector<S>) {
 //     const oneOverUDotU = this.ops().getMultiplicativeInverse(u.innerProduct(u));
 //     if (oneOverUDotU === undefined) {
 //       throw Error('TODO - cannot project onto the zero vector');
@@ -142,7 +142,7 @@ export type SparseVectorData<ScalarType> = Map<number, ScalarType>;
 //     return u.scalarMultiply(magnitudeOfProjection);
 //   }
 //
-//   private equalsSparse(other: SparseVector<ScalarType>): boolean {
+//   private equalsSparse(other: SparseVector<S>): boolean {
 //     if (this._sparseData.size !== other._sparseData.size) {
 //       return false;
 //     }

@@ -10,7 +10,7 @@ import { columnSumSupremumNorm } from './Norms';
  * @param A - The matrix to raise to a power `n`
  * @param n - The power to which to raise `A`
  */
-export function pow<ScalarType>(A: Matrix<ScalarType>, n: number): Matrix<ScalarType> {
+export function pow<S>(A: Matrix<S>, n: number): Matrix<S> {
   // TODO - memoize these results
   if (n < 0) {
     const invA = inverse(A);
@@ -32,7 +32,7 @@ export function pow<ScalarType>(A: Matrix<ScalarType>, n: number): Matrix<Scalar
  * @param A - The matrix to exponentiate
  * @param order - The order of the approximation - higher numbers yield more accurate results
  */
-export function exp<ScalarType>(A: Matrix<ScalarType>, order: number = 6): Matrix<ScalarType> {
+export function exp<S>(A: Matrix<S>, order: number = 6): Matrix<S> {
   assertSquare(A);
   const ops = A.ops();
 
@@ -62,7 +62,7 @@ export function exp<ScalarType>(A: Matrix<ScalarType>, order: number = 6): Matri
  *
  * @param A - The matrix to scale down
  */
-function getScaleFactorExponent<ScalarType>(A: Matrix<ScalarType>): number {
+function getScaleFactorExponent<S>(A: Matrix<S>): number {
   const norm = columnSumSupremumNorm(A);
   let scaledNorm = norm;
   let exponent = 0;
@@ -80,10 +80,7 @@ function getScaleFactorExponent<ScalarType>(A: Matrix<ScalarType>): number {
  * @param exponentialOfScaledMatrix - The calculated exponential of original matrix `A` scaled down
  * @param scaleFactorExponent  - The exponent `k` that was used to scale down the original matrix `A`
  */
-function deScaleSolution<ScalarType>(
-  exponentialOfScaledMatrix: Matrix<ScalarType>,
-  scaleFactorExponent: number
-) {
+function deScaleSolution<S>(exponentialOfScaledMatrix: Matrix<S>, scaleFactorExponent: number) {
   let exponentialOfOriginalMatrix = exponentialOfScaledMatrix;
   for (let i = 0; i < scaleFactorExponent; i++) {
     exponentialOfOriginalMatrix = exponentialOfOriginalMatrix.multiply(exponentialOfOriginalMatrix);
@@ -99,7 +96,7 @@ function deScaleSolution<ScalarType>(
  * @param p - The number of terms in the numerator of the rational function
  * @param q - The number of terms in the denominator of the rational function
  */
-function computeR<ScalarType>(A: Matrix<ScalarType>, p: number, q: number): Matrix<ScalarType> {
+function computeR<S>(A: Matrix<S>, p: number, q: number): Matrix<S> {
   const N = computeN(A, p, q);
   const D = computeD(A.scalarMultiply(A.ops().negativeOne()), p, q);
   const dInverse = inverse(D);
@@ -116,7 +113,7 @@ function computeR<ScalarType>(A: Matrix<ScalarType>, p: number, q: number): Matr
  * @param p - The number of terms in the numerator of the rational function
  * @param q - The number of terms in the denominator of the rational function
  */
-function computeN<ScalarType>(A: Matrix<ScalarType>, p: number, q: number): Matrix<ScalarType> {
+function computeN<S>(A: Matrix<S>, p: number, q: number): Matrix<S> {
   let result = A.builder().zeros(A.getNumberOfColumns());
   for (let j = 0; j < p; j++) {
     result = result.add(computeJthTermOfN(A, p, q, j));
@@ -132,16 +129,11 @@ function computeN<ScalarType>(A: Matrix<ScalarType>, p: number, q: number): Matr
  * @param q - The number of terms in the denominator of the rational function
  * @param j - The index of the term being computed
  */
-function computeJthTermOfN<ScalarType>(
-  A: Matrix<ScalarType>,
-  p: number,
-  q: number,
-  j: number
-): Matrix<ScalarType> {
+function computeJthTermOfN<S>(A: Matrix<S>, p: number, q: number, j: number): Matrix<S> {
   const ops = A.ops();
   const numerator = ops.fromNumber(factorial(p + q - j) * factorial(p));
   const denominator = ops.fromNumber(factorial(p + q) * factorial(j) * factorial(p - j));
-  const coefficient = ops.divide(numerator, denominator) as ScalarType; // can never be 0
+  const coefficient = ops.divide(numerator, denominator) as S; // can never be 0
   return pow(A, j).scalarMultiply(coefficient);
 }
 
@@ -152,11 +144,7 @@ function computeJthTermOfN<ScalarType>(
  * @param p - The number of terms in the numerator of the rational function
  * @param q - The number of terms in the denominator of the rational function
  */
-function computeD<ScalarType>(
-  negativeA: Matrix<ScalarType>,
-  p: number,
-  q: number
-): Matrix<ScalarType> {
+function computeD<S>(negativeA: Matrix<S>, p: number, q: number): Matrix<S> {
   let result = negativeA.builder().zeros(negativeA.getNumberOfColumns());
   for (let j = 0; j < q; j++) {
     result = result.add(computeJthTermOfD(negativeA, p, q, j));
@@ -172,15 +160,10 @@ function computeD<ScalarType>(
  * @param q - The number of terms in the denominator of the rational function
  * @param j - The index of the term being computed
  */
-function computeJthTermOfD<ScalarType>(
-  negativeA: Matrix<ScalarType>,
-  p: number,
-  q: number,
-  j: number
-): Matrix<ScalarType> {
+function computeJthTermOfD<S>(negativeA: Matrix<S>, p: number, q: number, j: number): Matrix<S> {
   const ops = negativeA.ops();
   const numerator = ops.fromNumber(factorial(p + q - j) * factorial(q));
   const denominator = ops.fromNumber(factorial(p + q) * factorial(j) * factorial(q - j));
-  const coefficient = ops.divide(numerator, denominator) as ScalarType; // can never be 0
+  const coefficient = ops.divide(numerator, denominator) as S; // can never be 0
   return pow(negativeA, j).scalarMultiply(coefficient);
 }

@@ -8,7 +8,7 @@ export function isSquare(matrix: Matrix<any>): boolean {
   return matrix.getNumberOfColumns() === matrix.getNumberOfRows();
 }
 
-export function isUpperTriangular<ScalarType>(matrix: Matrix<ScalarType>): boolean {
+export function isUpperTriangular<S>(matrix: Matrix<S>): boolean {
   const ops = matrix.ops();
   let isUT = true;
   matrix.forEachEntry((entry, i, j) => {

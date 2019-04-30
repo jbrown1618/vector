@@ -10,15 +10,12 @@ import { LinearSolution, SolutionType } from './LinearSolution';
  * @param b - The vector `b` in _Lx=b_
  * @returns The vector `x` in _Lx=b_
  */
-export function solveByForwardSubstitution<ScalarType>(
-  L: Matrix<ScalarType>,
-  b: Vector<ScalarType>
-): LinearSolution<ScalarType> {
+export function solveByForwardSubstitution<S>(L: Matrix<S>, b: Vector<S>): LinearSolution<S> {
   const ops = L.ops();
   const vectorBuilder = L.vectorBuilder();
   const numRows = L.getNumberOfRows();
   const numCols = L.getNumberOfColumns();
-  const solution: ScalarType[] = [];
+  const solution: S[] = [];
 
   // A system cannot have a unique solution if the matrix is wider than it is tall
   let isUnique = numRows >= numCols;
@@ -77,9 +74,7 @@ export function solveByForwardSubstitution<ScalarType>(
  * @param augmented - The augmented matrix `L|b` in _Lx=b_
  * @returns The vector `x` in _Lx=b_
  */
-export function forwardSubstituteAugmentedMatrix<ScalarType>(
-  augmented: Matrix<ScalarType>
-): LinearSolution<ScalarType> {
+export function forwardSubstituteAugmentedMatrix<S>(augmented: Matrix<S>): LinearSolution<S> {
   const L = augmented
     .builder()
     .slice(augmented, 0, 0, augmented.getNumberOfRows(), augmented.getNumberOfColumns() - 1);
@@ -95,15 +90,12 @@ export function forwardSubstituteAugmentedMatrix<ScalarType>(
  * @param b - The vector `b` in _Ux=b_
  * @returns The vector `x` in _Ux=b_
  */
-export function solveByBackwardSubstitution<ScalarType>(
-  U: Matrix<ScalarType>,
-  b: Vector<ScalarType>
-): LinearSolution<ScalarType> {
+export function solveByBackwardSubstitution<S>(U: Matrix<S>, b: Vector<S>): LinearSolution<S> {
   const ops = U.ops();
   const vectorBuilder = U.vectorBuilder();
   const numRows = U.getNumberOfRows();
   const numCols = U.getNumberOfColumns();
-  const solution: ScalarType[] = [];
+  const solution: S[] = [];
 
   // A system cannot have a unique solution if the matrix is wider than it is tall
   let isUnique = numRows >= numCols;
@@ -161,9 +153,7 @@ export function solveByBackwardSubstitution<ScalarType>(
  * @param augmented - The augmented matrix `U|b` in _Ux=b_
  * @returns The vector `x` in _Ux=b_
  */
-export function backwardSubstituteAugmentedMatrix<ScalarType>(
-  augmented: Matrix<ScalarType>
-): LinearSolution<ScalarType> {
+export function backwardSubstituteAugmentedMatrix<S>(augmented: Matrix<S>): LinearSolution<S> {
   const U = augmented
     .builder()
     .slice(augmented, 0, 0, augmented.getNumberOfRows(), augmented.getNumberOfColumns() - 1);

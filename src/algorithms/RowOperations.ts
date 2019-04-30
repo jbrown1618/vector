@@ -6,9 +6,9 @@ import { assertValidMatrixIndex } from '../utilities/ErrorAssertions';
  * The result of a row operation (`result`), and the matrix that we multiply
  * by the original matrix to yield that result (`operator`)
  */
-export interface RowOperationResult<ScalarType> {
-  result: Matrix<ScalarType>;
-  operator: Matrix<ScalarType>;
+export interface RowOperationResult<S> {
+  result: Matrix<S>;
+  operator: Matrix<S>;
 }
 
 /**
@@ -19,11 +19,7 @@ export interface RowOperationResult<ScalarType> {
  * @param scalar - The factor by which to scale the row
  * @returns The matrix with the transformation applied
  */
-export function multiplyRowByScalar<ScalarType>(
-  matrix: Matrix<ScalarType>,
-  rowIndex: number,
-  scalar: ScalarType
-): Matrix<ScalarType> {
+export function multiplyRowByScalar<S>(matrix: Matrix<S>, rowIndex: number, scalar: S): Matrix<S> {
   assertValidMatrixIndex(matrix, rowIndex, 0);
   const ops = matrix.ops();
   return addScalarMultipleOfRowToRow(matrix, rowIndex, rowIndex, ops.subtract(scalar, ops.one()));
@@ -37,11 +33,7 @@ export function multiplyRowByScalar<ScalarType>(
  * @param rowToAdd - The index of the row to add
  * @returns The matrix with the transformation applied
  */
-export function addRowToRow<ScalarType>(
-  matrix: Matrix<ScalarType>,
-  targetRow: number,
-  rowToAdd: number
-): Matrix<ScalarType> {
+export function addRowToRow<S>(matrix: Matrix<S>, targetRow: number, rowToAdd: number): Matrix<S> {
   return addScalarMultipleOfRowToRow(matrix, targetRow, rowToAdd, matrix.ops().one());
 }
 
@@ -54,12 +46,12 @@ export function addRowToRow<ScalarType>(
  * @param scalar - The factor by which to scale the row
  * @returns The matrix with the transformation applied
  */
-export function addScalarMultipleOfRowToRow<ScalarType>(
-  matrix: Matrix<ScalarType>,
+export function addScalarMultipleOfRowToRow<S>(
+  matrix: Matrix<S>,
   targetRow: number,
   rowToAdd: number,
-  scalar: ScalarType
-): Matrix<ScalarType> {
+  scalar: S
+): Matrix<S> {
   assertValidMatrixIndex(matrix, targetRow, 0);
   assertValidMatrixIndex(matrix, rowToAdd, 0);
 
@@ -80,11 +72,7 @@ export function addScalarMultipleOfRowToRow<ScalarType>(
  * @param second - The index of the second row to exchange
  * @returns The matrix with the transformation applied
  */
-export function exchangeRows<ScalarType>(
-  matrix: Matrix<ScalarType>,
-  first: number,
-  second: number
-): Matrix<ScalarType> {
+export function exchangeRows<S>(matrix: Matrix<S>, first: number, second: number): Matrix<S> {
   assertValidMatrixIndex(matrix, first, 0);
   assertValidMatrixIndex(matrix, second, 0);
 
@@ -101,11 +89,11 @@ export function exchangeRows<ScalarType>(
  * Sorts the rows of a matrix according to the number of leading zeros
  * and the magnitude of the first nonzero entry
  */
-export function pivot<ScalarType>(matrix: Matrix<ScalarType>): RowOperationResult<ScalarType> {
+export function pivot<S>(matrix: Matrix<S>): RowOperationResult<S> {
   const ops = matrix.ops();
   // We will sort the rows of an identity matrix according to the number
   // of leading zeros in the corresponding row of `matrix`
-  const comparator = (iRow1: Vector<ScalarType>, iRow2: Vector<ScalarType>) => {
+  const comparator = (iRow1: Vector<S>, iRow2: Vector<S>) => {
     const rowIndex1 = getNumberOfLeadingZeros(iRow1);
     const rowIndex2 = getNumberOfLeadingZeros(iRow2);
     const mRow1 = matrix.getRow(rowIndex1);
@@ -133,7 +121,7 @@ export function pivot<ScalarType>(matrix: Matrix<ScalarType>): RowOperationResul
   };
 }
 
-function getNumberOfLeadingZeros<ScalarType>(v: Vector<ScalarType>) {
+function getNumberOfLeadingZeros<S>(v: Vector<S>) {
   const ops = v.ops();
   let zeros = 0;
   for (const item of v.getData()) {

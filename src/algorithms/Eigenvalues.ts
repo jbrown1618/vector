@@ -7,9 +7,9 @@ import { calculateQRDecomposition } from './QRDecomposition';
 
 // TODO - convert to an upper Hessenberg matrix to improve rate of convergence
 
-export interface EigenPair<ScalarType> {
-  eigenvalue: ScalarType;
-  eigenvector: Vector<ScalarType>;
+export interface EigenPair<S> {
+  eigenvalue: S;
+  eigenvector: Vector<S>;
 }
 
 /**
@@ -21,11 +21,11 @@ export interface EigenPair<ScalarType> {
  *     Otherwise, the result of the last iteration will be returned.
  * @returns An array of eigenvalue-eigenvalue pairs
  */
-export function eig<ScalarType>(
-  A: Matrix<ScalarType>,
+export function eig<S>(
+  A: Matrix<S>,
   numIterations: number = 30,
   throwOnFailure: boolean = true
-): EigenPair<ScalarType>[] {
+): EigenPair<S>[] {
   const eigenvalues = calculateEigenvalues(A, numIterations, throwOnFailure);
   return eigenvalues.getData().map(eigenvalue => {
     const eigenvector = getEigenvectorForEigenvalue(A, eigenvalue);
@@ -42,11 +42,11 @@ export function eig<ScalarType>(
  *     Otherwise, the result of the last iteration will be returned.
  * @returns A vector whose entries are the eigenvalues of `A`
  */
-export function calculateEigenvalues<ScalarType>(
-  A: Matrix<ScalarType>,
+export function calculateEigenvalues<S>(
+  A: Matrix<S>,
   numIterations: number = 30,
   throwOnFailure: boolean = true
-): Vector<ScalarType> {
+): Vector<S> {
   let n = 0;
   let nthA = A;
 
@@ -71,10 +71,7 @@ export function calculateEigenvalues<ScalarType>(
  * @param A - The matrix with eigenvalue `lambda`
  * @param lambda - The eigenvalue for which to find an eigenvector
  */
-export function getEigenvectorForEigenvalue<ScalarType>(
-  A: Matrix<ScalarType>,
-  lambda: ScalarType
-): Vector<ScalarType> {
+export function getEigenvectorForEigenvalue<S>(A: Matrix<S>, lambda: S): Vector<S> {
   const builder = A.builder();
   const ops = A.ops();
   const minusLambda = ops.multiply(lambda, ops.negativeOne());

@@ -1,12 +1,12 @@
-export abstract class ScalarOperations<ScalarType> {
-  public abstract fromNumber(num: number): ScalarType;
+export abstract class ScalarOperations<S> {
+  public abstract fromNumber(num: number): S;
   /**
    * Returns true if the scalars are equal.
    * Implementors should ensure that the operation is reflexive, associative, and transitive.
    *
    * @returns true if `first` is equal to `second`
    */
-  public abstract equals(first: ScalarType, second: ScalarType): boolean;
+  public abstract equals(first: S, second: S): boolean;
 
   /**
    * Returns the sum of two scalars.
@@ -14,9 +14,9 @@ export abstract class ScalarOperations<ScalarType> {
    *
    * @returns The sum of `first` and `second`
    */
-  public abstract add(first: ScalarType, second: ScalarType): ScalarType;
+  public abstract add(first: S, second: S): S;
 
-  public subtract(first: ScalarType, second: ScalarType): ScalarType {
+  public subtract(first: S, second: S): S {
     return this.add(first, this.getAdditiveInverse(second));
   }
 
@@ -27,9 +27,9 @@ export abstract class ScalarOperations<ScalarType> {
    *
    * @returns The product of `first` and `second`
    */
-  public abstract multiply(first: ScalarType, second: ScalarType): ScalarType;
+  public abstract multiply(first: S, second: S): S;
 
-  public divide(numerator: ScalarType, denominator: ScalarType): ScalarType | undefined {
+  public divide(numerator: S, denominator: S): S | undefined {
     const inverseOfSecond = this.getMultiplicativeInverse(denominator);
     if (inverseOfSecond === undefined) {
       return undefined;
@@ -43,7 +43,7 @@ export abstract class ScalarOperations<ScalarType> {
    * @param scalar - The scalar to conjugate
    * @returns The complex conjugate
    */
-  public abstract conjugate(scalar: ScalarType): ScalarType;
+  public abstract conjugate(scalar: S): S;
 
   /**
    * Returns the unique scalar such that
@@ -52,12 +52,12 @@ export abstract class ScalarOperations<ScalarType> {
    *
    * @returns The additive identity
    */
-  public abstract getAdditiveIdentity(): ScalarType;
+  public abstract getAdditiveIdentity(): S;
 
   /**
    * @see getAdditiveIdentity
    */
-  public zero(): ScalarType {
+  public zero(): S {
     return this.getAdditiveIdentity();
   }
 
@@ -68,7 +68,7 @@ export abstract class ScalarOperations<ScalarType> {
    *
    * @returns The additive inverse
    */
-  public abstract getAdditiveInverse(x: ScalarType): ScalarType;
+  public abstract getAdditiveInverse(x: S): S;
 
   /**
    * Returns the unique scalar such that
@@ -77,19 +77,19 @@ export abstract class ScalarOperations<ScalarType> {
    *
    * @returns The multiplicative identity
    */
-  public abstract getMultiplicativeIdentity(): ScalarType;
+  public abstract getMultiplicativeIdentity(): S;
 
   /**
    * @see getMultiplicativeIdentity
    */
-  public one(): ScalarType {
+  public one(): S {
     return this.getMultiplicativeIdentity();
   }
 
   /**
    * Returns the additive inverse of the multiplicative identity.
    */
-  public negativeOne(): ScalarType {
+  public negativeOne(): S {
     return this.getAdditiveInverse(this.getMultiplicativeIdentity());
   }
 
@@ -104,13 +104,13 @@ export abstract class ScalarOperations<ScalarType> {
    *
    * @returns The multiplicative inverse
    */
-  public abstract getMultiplicativeInverse(x: ScalarType): ScalarType | undefined;
+  public abstract getMultiplicativeInverse(x: S): S | undefined;
 
-  public abstract getPrincipalSquareRoot(x: ScalarType): ScalarType;
+  public abstract getPrincipalSquareRoot(x: S): S;
 
-  public abstract norm(x: ScalarType): number;
+  public abstract norm(x: S): number;
 
-  public abstract random(min: number, max: number): ScalarType;
+  public abstract random(min: number, max: number): S;
 
-  public abstract randomNormal(mean: number, standardDeviation: number): ScalarType;
+  public abstract randomNormal(mean: number, standardDeviation: number): S;
 }

@@ -9,29 +9,21 @@ import { ScalarOperations } from '../scalar/ScalarOperations';
 import { Vector } from '../vector/Vector';
 import { Matrix, MatrixConstructor, MatrixData } from './Matrix';
 
-export type MatrixIndexFunction<ScalarType> = (i: number, j: number) => ScalarType;
-export type MatrixEntryFunction<ScalarType> = (
-  entry: ScalarType,
-  i: number,
-  j: number
-) => ScalarType;
+export type MatrixIndexFunction<S> = (i: number, j: number) => S;
+export type MatrixEntryFunction<S> = (entry: S, i: number, j: number) => S;
 
-export class MatrixBuilder<
-  ScalarType,
-  VectorType extends Vector<ScalarType>,
-  MatrixType extends Matrix<ScalarType>
-> {
-  private readonly _matrixConstructor: MatrixConstructor<ScalarType, VectorType, MatrixType>;
+export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
+  private readonly _matrixConstructor: MatrixConstructor<S, V, M>;
 
-  constructor(matrixConstructor: MatrixConstructor<ScalarType, VectorType, MatrixType>) {
+  constructor(matrixConstructor: MatrixConstructor<S, V, M>) {
     this._matrixConstructor = matrixConstructor;
   }
 
-  public fromData(data: MatrixData<ScalarType>): MatrixType {
+  public fromData(data: MatrixData<S>): M {
     return new this._matrixConstructor(data);
   }
 
-  public fromNumberData(numberData: MatrixData<number>): MatrixType {
+  public fromNumberData(numberData: MatrixData<number>): M {
     const ops = this.ops();
     const data = numberData.map(dataRow => dataRow.map(num => ops.fromNumber(num)));
     return this.fromData(data);
@@ -52,7 +44,7 @@ export class MatrixBuilder<
    * ```
    * @param columns - The vectors to use as the columns of the new matrix
    */
-  public fromColumnVectors(columns: Vector<ScalarType>[]): MatrixType {
+  public fromColumnVectors(columns: Vector<S>[]): M {
     assertHomogeneous(columns);
     const numberOfColumns = columns.length;
     if (numberOfColumns === 0) {
@@ -82,7 +74,7 @@ export class MatrixBuilder<
    * @param rows - The vectors to use as the rows of the new matrix
    * @returns The new matrix
    */
-  public fromRowVectors(rows: Vector<ScalarType>[]): MatrixType {
+  public fromRowVectors(rows: Vector<S>[]): M {
     assertHomogeneous(rows);
     const numberOfRows = rows.length;
     if (numberOfRows === 0) {
@@ -115,10 +107,10 @@ export class MatrixBuilder<
   public fromIndexFunction(
     numRows: number,
     numColumns: number,
-    indexFunction: MatrixIndexFunction<ScalarType>
-  ): MatrixType {
+    indexFunction: MatrixIndexFunction<S>
+  ): M {
     assertValidDimensions(numRows, numColumns);
-    const data: ScalarType[][] = [];
+    const data: S[][] = [];
     for (let i = 0; i < numRows; i++) {
       data[i] = [];
       for (let j = 0; j < numColumns; j++) {
@@ -152,10 +144,7 @@ export class MatrixBuilder<
    *     the original matrix and its indices, and returns the corresponding entry of the new matrix
    * @returns The new matrix
    */
-  public map(
-    matrix: Matrix<ScalarType>,
-    entryFunction: MatrixEntryFunction<ScalarType>
-  ): MatrixType {
+  public map(matrix: Matrix<S>, entryFunction: MatrixEntryFunction<S>): M {
     return this.fromIndexFunction(matrix.getNumberOfRows(), matrix.getNumberOfColumns(), (i, j) =>
       entryFunction(matrix.getEntry(i, j), i, j)
     );
@@ -168,7 +157,7 @@ export class MatrixBuilder<
    * matrixBuilder.empty(); // []
    * ```
    */
-  public empty(): MatrixType {
+  public empty(): M {
     return new this._matrixConstructor([]);
   }
 
@@ -188,11 +177,7 @@ export class MatrixBuilder<
    * @param numberOfColumns - The number of columns the new matrix should have
    * @returns The new matrix
    */
-  public fill(
-    value: ScalarType,
-    numberOfRows: number,
-    numberOfColumns: number = numberOfRows
-  ): MatrixType {
+  public fill(value: S, numberOfRows: number, numberOfColumns: number = numberOfRows): M {
     return this.fromIndexFunction(numberOfRows, numberOfColumns, () => value);
   }
 
@@ -209,7 +194,7 @@ export class MatrixBuilder<
    * @param numberOfColumns - The number of columns the new matrix should have
    * @returns The new matrix
    */
-  public zeros(numberOfRows: number, numberOfColumns: number = numberOfRows): MatrixType {
+  public zeros(numberOfRows: number, numberOfColumns: number = numberOfRows): M {
     return this.fill(this.ops().zero(), numberOfRows, numberOfColumns);
   }
 
@@ -226,7 +211,7 @@ export class MatrixBuilder<
    * @param numberOfColumns - The number of columns the new matrix should have
    * @returns The new matrix
    */
-  public ones(numberOfRows: number, numberOfColumns: number = numberOfRows): MatrixType {
+  public ones(numberOfRows: number, numberOfColumns: number = numberOfRows): M {
     return this.fill(this.ops().one(), numberOfRows, numberOfColumns);
   }
 
@@ -243,7 +228,7 @@ export class MatrixBuilder<
    * @param size - The dimension of the vector space for which the new matrix is the identity
    * @returns The new matrix
    */
-  public identity(size: number): MatrixType {
+  public identity(size: number): M {
     return this.fromIndexFunction(size, size, (i, j) =>
       i === j ? this.ops().one() : this.ops().zero()
     );
@@ -262,7 +247,7 @@ export class MatrixBuilder<
    *
    * @param size - The size of the Hilbert matrix
    */
-  public hilbert(size: number): MatrixType {
+  public hilbert(size: number): M {
     return this.fromIndexFunction(size, size, (i, j) => {
       return this.ops().fromNumber(1 / (i + j + 1));
     });
@@ -295,7 +280,7 @@ export class MatrixBuilder<
    * @param firstColumn - The first column of the Toeplitz matrix
    * @param firstRow - The first row of the Toeplitz matrix
    */
-  public toeplitz(firstColumn: Vector<ScalarType>, firstRow?: Vector<ScalarType>) {
+  public toeplitz(firstColumn: Vector<S>, firstRow?: Vector<S>) {
     const vb = this._matrixConstructor.vectorBuilder();
     const ops = this.ops();
     firstRow = firstRow || vb.map(firstColumn, value => ops.conjugate(value));
@@ -313,7 +298,7 @@ export class MatrixBuilder<
         return firstColumn.getEntry(i - j);
       } else {
         // TODO - review on TSC upgrade - should never be undefined
-        return (firstRow as Vector<ScalarType>).getEntry(j - i);
+        return (firstRow as Vector<S>).getEntry(j - i);
       }
     });
   }
@@ -347,7 +332,7 @@ export class MatrixBuilder<
    * @param firstColumn - The first column of the Hankel matrix
    * @param lastRow - The last row of the Hankel matrix
    */
-  public hankel(firstColumn: Vector<ScalarType>, lastRow?: Vector<ScalarType>) {
+  public hankel(firstColumn: Vector<S>, lastRow?: Vector<S>) {
     const numRows = firstColumn.getDimension();
     if (numRows === 0) {
       return this.empty();
@@ -374,7 +359,7 @@ export class MatrixBuilder<
         return firstColumn.getEntry(index);
       } else {
         // TODO - review on TSC upgrade - should never be undefined
-        return (lastRow as Vector<ScalarType>).getEntry(index - numRows + 1);
+        return (lastRow as Vector<S>).getEntry(index - numRows + 1);
       }
     });
   }
@@ -402,7 +387,7 @@ export class MatrixBuilder<
    * @param size - The size of the Pascal matrix
    * @param upper - Construct an upper-triangular matrix (i choose j)
    */
-  public pascal(size: number, upper: boolean = false): MatrixType {
+  public pascal(size: number, upper: boolean = false): M {
     return this.fromIndexFunction(size, size, (i, j) => {
       const entry = upper ? binomial(j, i) : binomial(i, j);
       return this.ops().fromNumber(entry);
@@ -423,7 +408,7 @@ export class MatrixBuilder<
    *
    * @param size - The size of the Pascal matrix
    */
-  public pascalSymmetric(size: number): MatrixType {
+  public pascalSymmetric(size: number): M {
     return this.fromIndexFunction(size, size, (i, j) => {
       return this.ops().fromNumber(binomial(i + j, i));
     });
@@ -442,7 +427,7 @@ export class MatrixBuilder<
    *
    * @param vector - The vector whose entries to use in the circulant matrix
    */
-  public circulant(vector: Vector<ScalarType>): MatrixType {
+  public circulant(vector: Vector<S>): M {
     const vb = this._matrixConstructor.vectorBuilder();
     const columns = [vector];
     for (let offset = 1; offset < vector.getDimension(); offset++) {
@@ -465,7 +450,7 @@ export class MatrixBuilder<
     numberOfColumns: number = numberOfRows,
     min: number = 0,
     max: number = 1
-  ): MatrixType {
+  ): M {
     if (min >= max) {
       throw Error('TODO - message');
     }
@@ -486,7 +471,7 @@ export class MatrixBuilder<
     numberOfColumns: number = numberOfRows,
     mean: number = 0,
     standardDeviation: number = 1
-  ): MatrixType {
+  ): M {
     if (standardDeviation <= 0) {
       throw Error('TODO - message');
     }
@@ -509,7 +494,7 @@ export class MatrixBuilder<
    * @param diagonalEntries - A vector whose entries will be used as the diagonal entries of the new matrix
    * @returns The new matrix
    */
-  public diagonal(diagonalEntries: VectorType): MatrixType {
+  public diagonal(diagonalEntries: V): M {
     const size = diagonalEntries.getDimension();
     return this.fromIndexFunction(size, size, (i, j) =>
       i === j ? diagonalEntries.getEntry(i) : this.ops().zero()
@@ -542,10 +527,10 @@ export class MatrixBuilder<
    * @returns The new matrix
    */
   public tridiagonal(
-    leftEntries: Vector<ScalarType>,
-    diagonalEntries: Vector<ScalarType>,
-    rightEntries: Vector<ScalarType>
-  ): MatrixType {
+    leftEntries: Vector<S>,
+    diagonalEntries: Vector<S>,
+    rightEntries: Vector<S>
+  ): M {
     const size = diagonalEntries.getDimension();
     const hasSizeMismatch =
       leftEntries.getDimension() !== size - 1 || rightEntries.getDimension() !== size - 1;
@@ -587,13 +572,13 @@ export class MatrixBuilder<
    *
    * @param matrices - The matrices to appear along the primary diagonal of the block matrix
    */
-  public blockDiagonal(matrices: Matrix<ScalarType>[]): MatrixType {
+  public blockDiagonal(matrices: Matrix<S>[]): M {
     matrices.forEach(matrix => assertSquare(matrix));
 
     const numberOfDiagonalMatrices = matrices.length;
 
-    const grid: Matrix<ScalarType>[][] = matrices.map((matrix, index) => {
-      const row: Matrix<ScalarType>[] = [];
+    const grid: Matrix<S>[][] = matrices.map((matrix, index) => {
+      const row: Matrix<S>[] = [];
       for (let i = 0; i < numberOfDiagonalMatrices; i++) {
         if (i === index) {
           row.push(matrix);
@@ -631,18 +616,18 @@ export class MatrixBuilder<
    * @param grid - A 2-dimensional array of matrices that will be combined into the new matrix
    * @returns The new matrix
    */
-  public block(grid: Matrix<ScalarType>[][]): MatrixType {
+  public block(grid: Matrix<S>[][]): M {
     if (grid.length === 0 || grid[0].length === 0) {
       return this.empty();
     }
 
     const data = grid
       .map(gridRow => {
-        return gridRow.reduce((accumulator: Matrix<ScalarType>, gridEntry: Matrix<ScalarType>) => {
+        return gridRow.reduce((accumulator: Matrix<S>, gridEntry: Matrix<S>) => {
           return this.augment(accumulator, gridEntry);
         });
       })
-      .reduce((accumulator: Matrix<ScalarType>, row: Matrix<ScalarType>) => {
+      .reduce((accumulator: Matrix<S>, row: Matrix<S>) => {
         return this.stack(accumulator, row);
       })
       .getData();
@@ -667,7 +652,7 @@ export class MatrixBuilder<
    * @param right - The matrix that will form the right-side of the augmented matrix
    * @returns The new augmented matrix
    */
-  public augment(left: Matrix<ScalarType>, right: Matrix<ScalarType>): MatrixType {
+  public augment(left: Matrix<S>, right: Matrix<S>): M {
     if (left.getNumberOfRows() !== right.getNumberOfRows()) {
       throw Error('Dimension mismatch!');
     }
@@ -690,8 +675,8 @@ export class MatrixBuilder<
    * @param columns - The number of times to repeat the matrix horizontally
    * @returns The new matrix
    */
-  public repeat(matrix: MatrixType, rows: number, columns: number): MatrixType {
-    const grid: MatrixType[][] = [];
+  public repeat(matrix: M, rows: number, columns: number): M {
+    const grid: M[][] = [];
 
     for (let i = 0; i < rows; i++) {
       grid[i] = [];
@@ -724,12 +709,12 @@ export class MatrixBuilder<
    * @returns The new matrix
    */
   public slice(
-    matrix: Matrix<ScalarType>,
+    matrix: Matrix<S>,
     rowStartIndex: number = 0,
     columnStartIndex: number = 0,
     rowEndIndex: number = matrix.getNumberOfRows(),
     columnEndIndex: number = matrix.getNumberOfColumns()
-  ): MatrixType {
+  ): M {
     if (rowStartIndex > rowEndIndex || columnStartIndex > columnEndIndex) {
       throw Error('start index must be less than end index');
     }
@@ -742,7 +727,7 @@ export class MatrixBuilder<
       throw Error('index out of bounds');
     }
 
-    const data: ScalarType[][] = [];
+    const data: S[][] = [];
     let newRowIndex = 0;
     for (let i = rowStartIndex; i < rowEndIndex; i++) {
       data[newRowIndex] = [];
@@ -775,10 +760,10 @@ export class MatrixBuilder<
    * @param columnToExclude - The index of the column that will be removed
    * @returns The new matrix
    */
-  public exclude(matrix: MatrixType, rowToExclude: number, columnToExclude: number): MatrixType {
+  public exclude(matrix: M, rowToExclude: number, columnToExclude: number): M {
     assertValidMatrixIndex(matrix, rowToExclude, columnToExclude);
 
-    const data: ScalarType[][] = [];
+    const data: S[][] = [];
     for (let i = 0; i < matrix.getNumberOfRows(); i++) {
       if (i < rowToExclude) {
         data[i] = [];
@@ -804,7 +789,7 @@ export class MatrixBuilder<
     return this.fromData(data);
   }
 
-  private ops(): ScalarOperations<ScalarType> {
+  private ops(): ScalarOperations<S> {
     return this._matrixConstructor.ops();
   }
 
@@ -826,7 +811,7 @@ export class MatrixBuilder<
    * @param bottom - The matrix that will be used for the bottom half of the new matrix
    * @returns The new matrix
    */
-  private stack(top: Matrix<ScalarType>, bottom: Matrix<ScalarType>): MatrixType {
+  private stack(top: Matrix<S>, bottom: Matrix<S>): M {
     if (top.getNumberOfColumns() !== bottom.getNumberOfColumns()) {
       throw Error('Dimension mismatch!');
     }

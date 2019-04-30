@@ -7,26 +7,23 @@ export enum SolutionType {
   OVERDETERMINED = 'Overdetermined'
 }
 
-export interface UniqueSolution<ScalarType> {
+export interface UniqueSolution<S> {
   solutionType: SolutionType.UNIQUE;
-  solution: Vector<ScalarType>;
+  solution: Vector<S>;
 }
 
 export interface OverdeterminedSolution {
   solutionType: SolutionType.OVERDETERMINED;
 }
 
-export interface UnderdeterminedSolution<ScalarType> {
+export interface UnderdeterminedSolution<S> {
   solutionType: SolutionType.UNDERDETERMINED;
-  solution: Vector<ScalarType>;
+  solution: Vector<S>;
 }
 
-export type LinearSolution<ScalarType> =
-  | UniqueSolution<ScalarType>
+export type LinearSolution<S> =
+  | UniqueSolution<S>
   | OverdeterminedSolution
-  | UnderdeterminedSolution<ScalarType>;
+  | UnderdeterminedSolution<S>;
 
-export type Solver<ScalarType> = (
-  A: Matrix<ScalarType>,
-  b: Vector<ScalarType>
-) => LinearSolution<ScalarType>;
+export type Solver<S> = (A: Matrix<S>, b: Vector<S>) => LinearSolution<S>;

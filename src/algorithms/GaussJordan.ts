@@ -15,10 +15,7 @@ import { backwardSubstituteAugmentedMatrix } from './Substitution';
  * @param b - The vector _b_ in _Ax=b_
  * @returns The vector _x_ in _Ax=b_
  */
-export function solveByGaussianElimination<ScalarType>(
-  A: Matrix<ScalarType>,
-  b: Vector<ScalarType>
-): LinearSolution<ScalarType> {
+export function solveByGaussianElimination<S>(A: Matrix<S>, b: Vector<S>): LinearSolution<S> {
   const augmented = A.builder().augment(A, A.builder().fromColumnVectors([b]));
   const ref = rowEchelonForm(augmented);
   return backwardSubstituteAugmentedMatrix(ref);
@@ -32,7 +29,7 @@ export function solveByGaussianElimination<ScalarType>(
  * @param matrix - A square matrix
  * @returns The inverse matrix
  */
-export function inverse<ScalarType>(matrix: Matrix<ScalarType>): Matrix<ScalarType> | undefined {
+export function inverse<S>(matrix: Matrix<S>): Matrix<S> | undefined {
   assertSquare(matrix);
   const dim = matrix.getNumberOfRows();
   const I = matrix.builder().identity(dim);
@@ -57,7 +54,7 @@ export function inverse<ScalarType>(matrix: Matrix<ScalarType>): Matrix<ScalarTy
  * @param matrix - The input matrix
  * @returns The matrix in RREF
  */
-export function reducedRowEchelonForm<ScalarType>(matrix: Matrix<ScalarType>): Matrix<ScalarType> {
+export function reducedRowEchelonForm<S>(matrix: Matrix<S>): Matrix<S> {
   matrix = rowEchelonForm(matrix);
 
   const maxNumberOfPivotEntries = Math.min(matrix.getNumberOfColumns(), matrix.getNumberOfRows());
@@ -81,7 +78,7 @@ export function reducedRowEchelonForm<ScalarType>(matrix: Matrix<ScalarType>): M
  * @param matrix - The input matrix
  * @returns The matrix in REF
  */
-export function rowEchelonForm<ScalarType>(matrix: Matrix<ScalarType>): Matrix<ScalarType> {
+export function rowEchelonForm<S>(matrix: Matrix<S>): Matrix<S> {
   const ops = matrix.ops();
   const maxNumberOfPivotEntries = Math.min(matrix.getNumberOfRows(), matrix.getNumberOfColumns());
 
@@ -99,8 +96,8 @@ export function rowEchelonForm<ScalarType>(matrix: Matrix<ScalarType>): Matrix<S
     }
 
     if (!ops.equals(pivotEntry, ops.zero())) {
-      // cast from ScalarType|undefined to ScalarType, since pivotEntry is not 0
-      const pivotInverse = ops.getMultiplicativeInverse(pivotEntry) as ScalarType;
+      // cast from S|undefined to S, since pivotEntry is not 0
+      const pivotInverse = ops.getMultiplicativeInverse(pivotEntry) as S;
       matrix = multiplyRowByScalar(matrix, pivotRow, pivotInverse);
     }
 
@@ -115,11 +112,7 @@ export function rowEchelonForm<ScalarType>(matrix: Matrix<ScalarType>): Matrix<S
  * Throws an error of the necessary preconditions are not met - i.e. if the pivot entry
  * is not 1, or the pivot row is not cleared to the left.
  */
-function clearEntriesBelow<ScalarType>(
-  matrix: Matrix<ScalarType>,
-  pivotRow: number,
-  pivotColumn: number
-): Matrix<ScalarType> {
+function clearEntriesBelow<S>(matrix: Matrix<S>, pivotRow: number, pivotColumn: number): Matrix<S> {
   checkPreconditionsForClearingBelow(matrix, pivotRow, pivotColumn);
   const ops = matrix.ops();
 
@@ -139,8 +132,8 @@ function clearEntriesBelow<ScalarType>(
  * Throws an error if the row reduction algorithm prematurely attempts to
  * clear the entries below a pivot column.
  */
-function checkPreconditionsForClearingBelow<ScalarType>(
-  matrix: Matrix<ScalarType>,
+function checkPreconditionsForClearingBelow<S>(
+  matrix: Matrix<S>,
   pivotRow: number,
   pivotColumn: number
 ): void {
@@ -163,11 +156,7 @@ function checkPreconditionsForClearingBelow<ScalarType>(
  * Throws an error if the necessary preconditions are not met - i.e. if the
  * pivot entry is not 1 or the pivot row is not cleared to the left and the right.
  */
-function clearEntriesAbove<ScalarType>(
-  matrix: Matrix<ScalarType>,
-  pivotRow: number,
-  pivotColumn: number
-): Matrix<ScalarType> {
+function clearEntriesAbove<S>(matrix: Matrix<S>, pivotRow: number, pivotColumn: number): Matrix<S> {
   checkPreconditionsForClearingAbove(matrix, pivotRow, pivotColumn);
   const ops = matrix.ops();
 
@@ -186,8 +175,8 @@ function clearEntriesAbove<ScalarType>(
  * Throws an error if the row reduction algorithm prematurely attempts to
  * clear the entries above a pivot entry.
  */
-function checkPreconditionsForClearingAbove<ScalarType>(
-  matrix: Matrix<ScalarType>,
+function checkPreconditionsForClearingAbove<S>(
+  matrix: Matrix<S>,
   pivotRow: number,
   pivotColumn: number
 ): void {

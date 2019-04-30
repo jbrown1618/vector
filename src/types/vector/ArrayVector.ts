@@ -9,25 +9,21 @@ import { VectorBuilder } from './VectorBuilder';
  * Implements `Vector` with an array of values.
  * Subclasses must specify the usual scalar operations on their contents.
  */
-export abstract class ArrayVector<ScalarType> implements Vector<ScalarType> {
-  private readonly _data: VectorData<ScalarType>;
+export abstract class ArrayVector<S> implements Vector<S> {
+  private readonly _data: VectorData<S>;
 
-  protected constructor(data: VectorData<ScalarType>) {
-    this._data = data;
+  protected constructor(data: VectorData<S>) {
+    this._data = Object.freeze(data);
   }
 
-  public abstract ops(): ScalarOperations<ScalarType>;
-  public abstract builder(): VectorBuilder<ScalarType, Vector<ScalarType>>;
-  public abstract matrixBuilder(): MatrixBuilder<
-    ScalarType,
-    Vector<ScalarType>,
-    Matrix<ScalarType>
-  >;
+  public abstract ops(): ScalarOperations<S>;
+  public abstract builder(): VectorBuilder<S, Vector<S>>;
+  public abstract matrixBuilder(): MatrixBuilder<S, Vector<S>, Matrix<S>>;
 
   /**
    * @inheritdoc
    */
-  public getEntry(index: number): ScalarType {
+  public getEntry(index: number): S {
     assertValidVectorIndex(this, index);
     return this._data[index];
   }
@@ -35,7 +31,7 @@ export abstract class ArrayVector<ScalarType> implements Vector<ScalarType> {
   /**
    * @inheritdoc
    */
-  public add(other: Vector<ScalarType>): Vector<ScalarType> {
+  public add(other: Vector<S>): Vector<S> {
     assertHomogeneous([this, other]);
 
     const newData = this.getData().map((entry, index) =>
@@ -48,7 +44,7 @@ export abstract class ArrayVector<ScalarType> implements Vector<ScalarType> {
   /**
    * @inheritdoc
    */
-  public equals(other: Vector<ScalarType>): boolean {
+  public equals(other: Vector<S>): boolean {
     if (this.getDimension() !== other.getDimension()) {
       return false;
     }
@@ -61,7 +57,7 @@ export abstract class ArrayVector<ScalarType> implements Vector<ScalarType> {
   /**
    * @inheritdoc
    */
-  public innerProduct(other: Vector<ScalarType>): ScalarType {
+  public innerProduct(other: Vector<S>): S {
     assertHomogeneous([this, other]);
 
     return this._data
@@ -74,8 +70,8 @@ export abstract class ArrayVector<ScalarType> implements Vector<ScalarType> {
   /**
    * @inheritdoc
    */
-  public outerProduct(other: Vector<ScalarType>): Matrix<ScalarType> {
-    const matrixData: ScalarType[][] = [];
+  public outerProduct(other: Vector<S>): Matrix<S> {
+    const matrixData: S[][] = [];
 
     if (this.getDimension() === 0 || other.getDimension() === 0) {
       return this.matrixBuilder().fromData(matrixData);
@@ -94,7 +90,7 @@ export abstract class ArrayVector<ScalarType> implements Vector<ScalarType> {
   /**
    * @inheritdoc
    */
-  public projectOnto(u: Vector<ScalarType>) {
+  public projectOnto(u: Vector<S>) {
     const oneOverUDotU = this.ops().getMultiplicativeInverse(u.innerProduct(u));
     if (oneOverUDotU === undefined) {
       throw Error('TODO - cannot project onto the zero vector');
@@ -108,14 +104,14 @@ export abstract class ArrayVector<ScalarType> implements Vector<ScalarType> {
   /**
    * @inheritdoc
    */
-  public scalarMultiply(scalar: ScalarType): Vector<ScalarType> {
+  public scalarMultiply(scalar: S): Vector<S> {
     return this.builder().fromData(this.getData().map(entry => this.ops().multiply(entry, scalar)));
   }
 
   /**
    * @inheritdoc
    */
-  public getData(): ScalarType[] {
+  public getData(): S[] {
     return [...this._data];
   }
 

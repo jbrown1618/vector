@@ -9,25 +9,25 @@ import { MatrixBuilder } from './MatrixBuilder';
  * Implements `Matrix` with a 2-dimensional array of values.
  * Subclasses must specify the usual scalar operations on their contents.
  */
-export abstract class ArrayMatrix<ScalarType> implements Matrix<ScalarType> {
-  private readonly _data: MatrixData<ScalarType>;
+export abstract class ArrayMatrix<S> implements Matrix<S> {
+  private readonly _data: MatrixData<S>;
 
-  protected constructor(data: MatrixData<ScalarType>) {
+  protected constructor(data: MatrixData<S>) {
     assertRectangular(data);
     if (data.length !== 0 && data[0].length === 0) {
       data = [];
     }
-    this._data = data;
+    this._data = Object.freeze(data);
   }
 
-  public abstract ops(): ScalarOperations<ScalarType>;
-  public abstract builder(): MatrixBuilder<ScalarType, Vector<ScalarType>, Matrix<ScalarType>>;
-  public abstract vectorBuilder(): VectorBuilder<ScalarType, Vector<ScalarType>>;
+  public abstract ops(): ScalarOperations<S>;
+  public abstract builder(): MatrixBuilder<S, Vector<S>, Matrix<S>>;
+  public abstract vectorBuilder(): VectorBuilder<S, Vector<S>>;
 
   /**
    * @inheritdoc
    */
-  public add(other: Matrix<ScalarType>): Matrix<ScalarType> {
+  public add(other: Matrix<S>): Matrix<S> {
     return this.builder().fromColumnVectors(
       this.getColumnVectors().map((column, columnIndex) => column.add(other.getColumn(columnIndex)))
     );
@@ -36,12 +36,12 @@ export abstract class ArrayMatrix<ScalarType> implements Matrix<ScalarType> {
   /**
    * @inheritdoc
    */
-  public adjoint(): Matrix<ScalarType> {
+  public adjoint(): Matrix<S> {
     const transposedData = this.transpose().getData();
-    const adjointData: ScalarType[][] = [];
+    const adjointData: S[][] = [];
     transposedData.forEach((row, i) => {
       adjointData[i] = [];
-      row.forEach((entry: ScalarType, j: number) => {
+      row.forEach((entry: S, j: number) => {
         adjointData[i][j] = this.ops().conjugate(entry);
       });
     });
@@ -51,7 +51,7 @@ export abstract class ArrayMatrix<ScalarType> implements Matrix<ScalarType> {
   /**
    * @inheritdoc
    */
-  public trace(): ScalarType {
+  public trace(): S {
     const ops = this.ops();
     let trace = ops.zero();
     const n = Math.min(this.getNumberOfColumns(), this.getNumberOfRows());
@@ -64,7 +64,7 @@ export abstract class ArrayMatrix<ScalarType> implements Matrix<ScalarType> {
   /**
    * @inheritdoc
    */
-  public apply(vector: Vector<ScalarType>): Vector<ScalarType> {
+  public apply(vector: Vector<S>): Vector<S> {
     const vectorAsColumnMatrix = this.builder().fromColumnVectors([vector]);
     return this.multiply(vectorAsColumnMatrix).getColumn(0);
   }
@@ -72,7 +72,7 @@ export abstract class ArrayMatrix<ScalarType> implements Matrix<ScalarType> {
   /**
    * @inheritdoc
    */
-  public equals(other: Matrix<ScalarType>): boolean {
+  public equals(other: Matrix<S>): boolean {
     if (this.getNumberOfColumns() !== other.getNumberOfColumns()) {
       return false;
     }
@@ -89,7 +89,7 @@ export abstract class ArrayMatrix<ScalarType> implements Matrix<ScalarType> {
   /**
    * @inheritdoc
    */
-  public getColumn(columnIndex: number): Vector<ScalarType> {
+  public getColumn(columnIndex: number): Vector<S> {
     if (columnIndex > this.getNumberOfColumns() - 1 || columnIndex < 0) {
       throw new Error('Index out of bounds');
     }
@@ -99,14 +99,14 @@ export abstract class ArrayMatrix<ScalarType> implements Matrix<ScalarType> {
   /**
    * @inheritdoc
    */
-  public getColumnVectors(): Vector<ScalarType>[] {
+  public getColumnVectors(): Vector<S>[] {
     return this.transpose().getRowVectors();
   }
 
   /**
    * @inheritdoc
    */
-  public getDiagonal(): Vector<ScalarType> {
+  public getDiagonal(): Vector<S> {
     const numDiagonalElements = Math.min(this.getNumberOfRows(), this.getNumberOfColumns());
     return this.vectorBuilder().fromIndexFunction(numDiagonalElements, i => this.getEntry(i, i));
   }
@@ -114,14 +114,14 @@ export abstract class ArrayMatrix<ScalarType> implements Matrix<ScalarType> {
   /**
    * @inheritdoc
    */
-  public getData(): ScalarType[][] {
+  public getData(): S[][] {
     return this.getRowVectors().map(row => [...row.getData()]);
   }
 
   /**
    * @inheritdoc
    */
-  public getEntry(rowIndex: number, columnIndex: number): ScalarType {
+  public getEntry(rowIndex: number, columnIndex: number): S {
     assertValidMatrixIndex(this, rowIndex, columnIndex);
     return this.getRow(rowIndex).getEntry(columnIndex);
   }
@@ -143,7 +143,7 @@ export abstract class ArrayMatrix<ScalarType> implements Matrix<ScalarType> {
   /**
    * @inheritdoc
    */
-  public getRow(rowIndex: number): Vector<ScalarType> {
+  public getRow(rowIndex: number): Vector<S> {
     if (rowIndex > this.getNumberOfRows() - 1 || rowIndex < 0) {
       throw new Error('Index out of bounds');
     }
@@ -153,16 +153,14 @@ export abstract class ArrayMatrix<ScalarType> implements Matrix<ScalarType> {
   /**
    * @inheritdoc
    */
-  public getRowVectors(): Vector<ScalarType>[] {
-    return this._data.map((dataRow: VectorData<ScalarType>) =>
-      this.vectorBuilder().fromData(dataRow)
-    );
+  public getRowVectors(): Vector<S>[] {
+    return this._data.map((dataRow: VectorData<S>) => this.vectorBuilder().fromData(dataRow));
   }
 
   /**
    * @inheritdoc
    */
-  public multiply(other: Matrix<ScalarType>): Matrix<ScalarType> {
+  public multiply(other: Matrix<S>): Matrix<S> {
     if (this.getNumberOfColumns() !== other.getNumberOfRows()) {
       throw new Error('Dimension mismatch');
     }
@@ -177,7 +175,7 @@ export abstract class ArrayMatrix<ScalarType> implements Matrix<ScalarType> {
   /**
    * @inheritdoc
    */
-  public scalarMultiply(scalar: ScalarType): Matrix<ScalarType> {
+  public scalarMultiply(scalar: S): Matrix<S> {
     return this.builder().fromColumnVectors(
       this.getColumnVectors().map(column => column.scalarMultiply(scalar))
     );
@@ -186,7 +184,7 @@ export abstract class ArrayMatrix<ScalarType> implements Matrix<ScalarType> {
   /**
    * @inheritdoc
    */
-  public set(rowIndex: number, columnIndex: number, value: ScalarType): Matrix<ScalarType> {
+  public set(rowIndex: number, columnIndex: number, value: S): Matrix<S> {
     assertValidMatrixIndex(this, rowIndex, columnIndex);
     const copy = this.getData();
     copy[rowIndex][columnIndex] = value;
@@ -196,14 +194,14 @@ export abstract class ArrayMatrix<ScalarType> implements Matrix<ScalarType> {
   /**
    * @inheritdoc
    */
-  public transpose(): Matrix<ScalarType> {
+  public transpose(): Matrix<S> {
     return this.builder().fromColumnVectors(this.getRowVectors());
   }
 
   /**
    * @inheritdoc
    */
-  public forEachEntry(cb: MatrixEntryCallback<ScalarType>) {
+  public forEachEntry(cb: MatrixEntryCallback<S>) {
     this.getRowVectors().forEach((row, i) => {
       row.getData().forEach((entry, j) => {
         cb(entry, i, j);
