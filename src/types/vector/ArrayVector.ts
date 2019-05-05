@@ -118,6 +118,23 @@ export abstract class ArrayVector<S> implements Vector<S> {
   /**
    * @inheritdoc
    */
+  public getSparseData(): Map<number, S> {
+    const ops = this.ops();
+    const zero = ops.zero();
+
+    const sparseData: Map<number, S> = new Map();
+    this.getData().forEach((value, index) => {
+      if (!ops.equals(zero, value)) {
+        sparseData.set(index, value);
+      }
+    });
+
+    return sparseData;
+  }
+
+  /**
+   * @inheritdoc
+   */
   public getDimension(): number {
     return this._data.length;
   }

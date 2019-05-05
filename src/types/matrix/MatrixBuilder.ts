@@ -8,6 +8,7 @@ import { binomial } from '../../utilities/NumberUtilities';
 import { ScalarOperations } from '../scalar/ScalarOperations';
 import { Vector } from '../vector/Vector';
 import { Matrix, MatrixConstructor, MatrixData } from './Matrix';
+import { SparseMatrixData } from './SparseMatrix';
 
 export type MatrixIndexFunction<S> = (i: number, j: number) => S;
 export type MatrixEntryFunction<S> = (entry: S, i: number, j: number) => S;
@@ -26,6 +27,16 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
   public fromNumberData(numberData: MatrixData<number>): M {
     const ops = this.ops();
     const data = numberData.map(dataRow => dataRow.map(num => ops.fromNumber(num)));
+    return this.fromData(data);
+  }
+
+  public fromSparseData(numRows: number, numCols: number, sparseData: SparseMatrixData<S>): M {
+    const data: S[][] = this.zeros(numRows, numCols).getData();
+    sparseData.forEach((sparseRowData, rowIndex) => {
+      sparseRowData.forEach((value, colIndex) => {
+        data[rowIndex][colIndex] = value;
+      });
+    });
     return this.fromData(data);
   }
 

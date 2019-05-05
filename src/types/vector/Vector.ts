@@ -37,6 +37,11 @@ export interface Vector<S> {
   getData(): S[];
 
   /**
+   * @returns The contents of the vector as a map of indices to nonzero values
+   */
+  getSparseData(): Map<number, S>;
+
+  /**
    * @param index - The index of the entry to retrieve
    * @returns The entry located at `index`
    */
