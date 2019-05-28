@@ -119,6 +119,19 @@ configs.forEach(({ testClassName, builder }) => {
         expect(empty.outerProduct(nonEmpty).getData()).to.deep.equal([]);
         expect(nonEmpty.outerProduct(empty).getData()).to.deep.equal([]);
       });
+
+      configs.forEach(otherConfig => {
+        it(`handles ${otherConfig.testClassName} inputs`, () => {
+          const first = builder.fromData([1, 2]);
+          const second = otherConfig.builder.fromData([3, 4, 5]);
+          const expectedData = [[3, 4, 5], [6, 8, 10]];
+          expect(first.outerProduct(second).getData()).to.deep.equal(expectedData);
+
+          const empty = builder.empty();
+          const otherEmpty = otherConfig.builder.empty();
+          expect(empty.outerProduct(otherEmpty).getData()).to.deep.equal([]);
+        });
+      });
     });
 
     describe('equals', () => {
@@ -143,6 +156,16 @@ configs.forEach(({ testClassName, builder }) => {
         expect(builder.fromValues(1, 2).equals(builder.fromValues(1, 2, 3))).to.be.false;
         expect(builder.fromValues(1, 2, 3).equals(builder.fromValues(1, 2))).to.be.false;
       });
+
+      configs.forEach(otherConfig => {
+        it(`handles ${otherConfig.testClassName} inputs`, () => {
+          const original = builder.fromData([1, 2, 3]);
+          const equal = otherConfig.builder.fromData([1, 2, 3]);
+          const unequal = otherConfig.builder.fromData([1, 2, 2]);
+          expect(original.equals(equal)).to.be.true;
+          expect(original.equals(unequal)).to.be.false;
+        });
+      });
     });
 
     describe('projectOnto', () => {
@@ -164,6 +187,15 @@ configs.forEach(({ testClassName, builder }) => {
         const v1 = builder.ones(3);
         const v2 = builder.ones(2);
         expect(() => v1.projectOnto(v2)).to.throw();
+      });
+    });
+
+    describe('getSparseData', () => {
+      it('returns a map of the contents of the vector', () => {
+        const v = builder.fromData([0, 0, 1, 0, 2, 0]);
+        const expected = new Map();
+        expected.set(2, 1).set(4, 2);
+        expect(v.getSparseData()).to.deep.equal(expected);
       });
     });
   });

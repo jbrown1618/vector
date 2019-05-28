@@ -126,14 +126,41 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
           expect(() => testMatrix.getEntry(2, 3)).to.throw();
         });
       });
+
+      describe('getDiagonal', () => {
+        it('returns the diagonal entries of a square matrix', () => {
+          const A = builder.fromData([[1, 2, 3], [4, 5, 6], [7, 8, 9]]);
+          expect(A.getDiagonal().getData()).to.deep.equal([1, 5, 9]);
+        });
+
+        it('returns the diagonal entries of a non-square matrix', () => {
+          const wide = builder.fromData([[1, 2, 3], [4, 5, 6]]);
+          expect(wide.getDiagonal().getData()).to.deep.equal([1, 5]);
+
+          const tall = builder.fromData([[1, 2], [3, 4], [5, 6]]);
+          expect(tall.getDiagonal().getData()).to.deep.equal([1, 4]);
+        });
+      });
+
+      describe('getSparseData', () => {
+        const A = builder.identity(3);
+        const data = A.getSparseData();
+        const expected = new Map();
+        expected.set(0, new Map().set(0, 1));
+        expected.set(1, new Map().set(1, 1));
+        expected.set(2, new Map().set(2, 1));
+        expect(data).to.deep.equal(expected);
+      });
     });
 
     describe('set', () => {
       it('returns the original matrix with one entry modified', () => {
         const original = builder.zeros(3);
         const expected = builder.fromData([[0, 0, 0], [0, 4, 0], [0, 0, 0]]);
+        const second = builder.fromData([[0, 0, 0], [0, 4, 5], [0, 0, 0]]);
 
         expect(original.set(1, 1, 4)).to.deep.equal(expected);
+        expect(original.set(1, 1, 4).set(1, 2, 5)).to.deep.equal(second);
       });
 
       it('throws an error for invalid indices', () => {
@@ -186,6 +213,14 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
             .multiply(builder.empty())
             .getData()
         ).to.deep.equal([]);
+      });
+    });
+
+    describe('scalarMultiply', () => {
+      it('returns the original matrix with each entry multiplied by a constant', () => {
+        const original = builder.ones(4, 5);
+        const expected = builder.fill(2, 4, 5);
+        expect(original.scalarMultiply(2)).to.deep.equal(expected);
       });
     });
 
@@ -257,6 +292,15 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
     describe('trace', () => {
       it('computes the trace of a matrix', () => {
         expect(builder.fromData([[1, 2, 3], [4, 5, 6], [7, 8, 9]]).trace()).to.equal(15);
+      });
+    });
+
+    describe('forEachEntry', () => {
+      it('runs a function for each entry in the matrix', () => {
+        let numCalls = 0;
+        const A = builder.zeros(6, 7);
+        A.forEachEntry(() => ++numCalls);
+        expect(numCalls).to.equal(6 * 7);
       });
     });
   });
