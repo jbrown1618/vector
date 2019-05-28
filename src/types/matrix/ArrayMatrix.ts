@@ -118,6 +118,26 @@ export abstract class ArrayMatrix<S> implements Matrix<S> {
     return this.getRowVectors().map(row => [...row.getData()]);
   }
 
+  public getSparseData(): Map<number, Map<number, S>> {
+    const ops = this.ops();
+    const zero = ops.zero();
+    const sparseData: Map<number, Map<number, S>> = new Map();
+    this.forEachEntry((value, rowIndex, colIndex) => {
+      if (ops.equals(zero, value)) {
+        return;
+      }
+      const rowData = sparseData.get(rowIndex);
+      if (rowData) {
+        rowData.set(colIndex, value);
+      } else {
+        const newRowData: Map<number, S> = new Map();
+        newRowData.set(colIndex, value);
+        sparseData.set(rowIndex, newRowData);
+      }
+    });
+    return sparseData;
+  }
+
   /**
    * @inheritdoc
    */

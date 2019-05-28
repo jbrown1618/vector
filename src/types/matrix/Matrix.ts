@@ -37,6 +37,11 @@ export interface Matrix<S> extends LinearTransformation<Vector<S>, Vector<S>> {
   getData(): S[][];
 
   /**
+   * @returns The contents of the matrix as a nested map of rowIndex to columnIndex to nonzero value
+   */
+  getSparseData(): Map<number, Map<number, S>>;
+
+  /**
    * @returns The number of rows in the matrix
    */
   getNumberOfRows(): number;
