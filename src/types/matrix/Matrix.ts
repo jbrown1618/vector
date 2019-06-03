@@ -4,7 +4,7 @@ import { VectorBuilder } from '../vector/VectorBuilder';
 import { LinearTransformation } from './LinearTransformation';
 import { MatrixBuilder } from './MatrixBuilder';
 
-export type MatrixData<S> = ReadonlyArray<VectorData<S>>;
+export type MatrixData<S> = readonly VectorData<S>[];
 export type MatrixEntryCallback<S> = (entry: S, rowIndex: number, columnIndex: number) => void;
 
 export interface MatrixConstructor<S, V extends Vector<S>, M extends Matrix<S>> {

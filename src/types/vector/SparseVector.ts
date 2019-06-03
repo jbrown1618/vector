@@ -12,7 +12,7 @@ export type SparseVectorData<S> = ReadonlyMap<number, S>;
  * and functions as a type check in the compiler.
  */
 export function isSparse<S>(vector: Vector<S>): vector is SparseVector<S> {
-  return (vector as any)._sparseData !== undefined;
+  return (vector as any)._sparseData !== undefined; // eslint-disable-line @typescript-eslint/no-explicit-any
 }
 
 /**

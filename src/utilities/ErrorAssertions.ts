@@ -5,7 +5,7 @@ import { Vector } from '../types/vector/Vector';
  * Throws an error of the 2d array `data` is not square - i.e. if
  * all of its rows do not have the same length
  */
-export function assertRectangular(data: MatrixData<any>): void {
+export function assertRectangular<T>(data: MatrixData<T>): void {
   if (data.length === 0) {
     return;
   }
@@ -20,7 +20,7 @@ export function assertRectangular(data: MatrixData<any>): void {
 /**
  * Throws an error if `matrix` is not square
  */
-export function assertSquare(matrix: Matrix<any>): void {
+export function assertSquare<T>(matrix: Matrix<T>): void {
   if (matrix.getNumberOfColumns() !== matrix.getNumberOfRows()) {
     throw new Error('TODO - message');
   }
@@ -30,7 +30,7 @@ export function assertSquare(matrix: Matrix<any>): void {
  * Throws an error if any member of `vectors` has a different length
  * from any other member.
  */
-export function assertHomogeneous(vectors: Vector<any>[]): void {
+export function assertHomogeneous<T>(vectors: Vector<T>[]): void {
   if (vectors.length === 0) {
     return;
   }
@@ -45,7 +45,7 @@ export function assertHomogeneous(vectors: Vector<any>[]): void {
 /**
  * Throws an error if empty
  */
-export function assertNonEmpty(values: any[]) {
+export function assertNonEmpty<T>(values: T[]) {
   if (values.length > 0) {
     return;
   }
@@ -72,15 +72,15 @@ export function assertValidDimensions(numberOfRows: number, numberOfColumns: num
 /**
  * Throws an error if `index` is not a valid identifier for an entry in `vector`
  */
-export function assertValidVectorIndex(vector: Vector<any>, index: number): void {
+export function assertValidVectorIndex<T>(vector: Vector<T>, index: number): void {
   assertValidIndex(index, vector.getDimension());
 }
 
 /**
  * Throws an error if `(rowIndex, colIndex)` is not a valid identifier for an entry in `matrix`
  */
-export function assertValidMatrixIndex(
-  matrix: Matrix<any>,
+export function assertValidMatrixIndex<T>(
+  matrix: Matrix<T>,
   rowIndex: number,
   colIndex: number
 ): void {

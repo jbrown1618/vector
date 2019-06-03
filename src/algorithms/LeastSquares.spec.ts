@@ -154,7 +154,7 @@ describe('LeastSquares', () => {
       });
     });
 
-    const uselessFunctionTemplate = (_: Vector<number>) => (__: Vector<number>) => 0;
+    const uselessFunctionTemplate = () => () => 0;
 
     it('rejects non-homogeneous data', () => {
       const nonHomogeneousData = [vectorBuilder.ones(2), vectorBuilder.ones(3)];
