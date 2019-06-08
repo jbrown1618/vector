@@ -154,7 +154,7 @@ describe('LeastSquares', () => {
       });
     });
 
-    const uselessFunctionTemplate = (_: Vector<number>) => (__: Vector<number>) => 0;
+    const uselessFunctionTemplate = () => () => 0;
 
     it('rejects non-homogeneous data', () => {
       const nonHomogeneousData = [vectorBuilder.ones(2), vectorBuilder.ones(3)];
@@ -221,7 +221,8 @@ describe('LeastSquares', () => {
       const A = matrixBuilder.fromData([[1, 2, 3], [4, 5, 6]]);
       const b = vectorBuilder.fromData([1, 2]);
 
-      expect(() => solveOverdeterminedSystem(A, b)).to.throw();
+      const solution = solveOverdeterminedSystem(A, b);
+      expect(solution).to.not.be.undefined;
     });
 
     it('rejects a system with a dimension mismatch', () => {

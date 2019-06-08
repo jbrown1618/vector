@@ -3,7 +3,7 @@ import { MatrixBuilder } from '../matrix/MatrixBuilder';
 import { ScalarOperations } from '../scalar/ScalarOperations';
 import { VectorBuilder } from './VectorBuilder';
 
-export type VectorData<S> = ReadonlyArray<S>;
+export type VectorData<S> = readonly S[];
 
 export interface VectorConstructor<S, V extends Vector<S>> {
   new (data: VectorData<S>): V;
