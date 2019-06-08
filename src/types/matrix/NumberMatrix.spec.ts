@@ -72,6 +72,33 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
       });
     });
 
+    describe('equals', () => {
+      configs.forEach(otherConfig => {
+        const otherBuilder = otherConfig.builder;
+        describe(otherConfig.testClassName, () => {
+          it('returns true for matrices with equal entries', () => {
+            const first = builder.fromData([[1, 2], [0, 1]]);
+            const second = otherBuilder.fromData([[1, 2], [0, 1]]);
+            expect(first.equals(second)).to.be.true;
+          });
+
+          it('returns false when the data does not match', () => {
+            const first = builder.fromData([[1, 2], [0, 1]]);
+            const second = otherBuilder.fromData([[1, 2], [0.001, 1]]);
+            expect(first.equals(second)).to.be.false;
+          });
+
+          it('returns false when the dimensions do not match', () => {
+            const first = builder.fromData([[1, 2], [0, 1]]);
+            const fewerRows = otherBuilder.fromData([[1, 2]]);
+            const fewerColumns = otherBuilder.fromData([[1], [0]]);
+            expect(first.equals(fewerRows)).to.be.false;
+            expect(first.equals(fewerColumns)).to.be.false;
+          });
+        });
+      });
+    });
+
     describe('getters', () => {
       const testMatrix = builder.fromData([[1, 2, 3], [4, 5, 6]]);
 

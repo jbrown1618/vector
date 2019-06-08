@@ -164,10 +164,6 @@ export function solveOverdeterminedSystem<S>(A: Matrix<S>, b: Vector<S>): Vector
 }
 
 function checkDimensionsForOverdeterminedSystem<S>(A: Matrix<S>, b: Vector<S>) {
-  if (A.getNumberOfColumns() > A.getNumberOfRows()) {
-    throw new Error('TODO - message');
-  }
-
   if (A.getNumberOfRows() !== b.getDimension()) {
     throw new Error('TODO - message');
   }

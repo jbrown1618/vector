@@ -221,7 +221,8 @@ describe('LeastSquares', () => {
       const A = matrixBuilder.fromData([[1, 2, 3], [4, 5, 6]]);
       const b = vectorBuilder.fromData([1, 2]);
 
-      expect(() => solveOverdeterminedSystem(A, b)).to.throw();
+      const solution = solveOverdeterminedSystem(A, b);
+      expect(solution).to.not.be.undefined;
     });
 
     it('rejects a system with a dimension mismatch', () => {
