@@ -113,4 +113,6 @@ export abstract class ScalarOperations<S> {
   public abstract random(min: number, max: number): S;
 
   public abstract randomNormal(mean: number, standardDeviation: number): S;
+
+  public abstract prettyPrint(x: S): string;
 }
