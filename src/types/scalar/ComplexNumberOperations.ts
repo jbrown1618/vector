@@ -1,6 +1,7 @@
 import { random, randomNormal } from '../../utilities/NumberUtilities';
 import { ComplexNumber } from './ComplexNumber';
 import { ScalarOperations } from './ScalarOperations';
+import { prettyPrint } from '../../utilities/prettyPrint';
 
 export class ComplexNumberOperations extends ScalarOperations<ComplexNumber> {
   public fromNumber(num: number): ComplexNumber {
@@ -81,5 +82,9 @@ export class ComplexNumberOperations extends ScalarOperations<ComplexNumber> {
       randomNormal(mean, standardDeviation),
       randomNormal(mean, standardDeviation)
     );
+  }
+
+  public prettyPrint(x: ComplexNumber): string {
+    return `${prettyPrint(x.getRealPart())} + ${prettyPrint(x.getImaginaryPart())}i`;
   }
 }

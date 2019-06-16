@@ -1,5 +1,6 @@
 import { approximatelyEqual, random, randomNormal } from '../../utilities/NumberUtilities';
 import { ScalarOperations } from './ScalarOperations';
+import { prettyPrint } from '../../utilities/prettyPrint';
 
 export class NumberOperations extends ScalarOperations<number> {
   public fromNumber(num: number): number {
@@ -55,5 +56,9 @@ export class NumberOperations extends ScalarOperations<number> {
 
   public randomNormal(mean: number = 0, standardDeviation: number = 1): number {
     return randomNormal(mean, standardDeviation);
+  }
+
+  public prettyPrint(x: number): string {
+    return prettyPrint(x);
   }
 }
