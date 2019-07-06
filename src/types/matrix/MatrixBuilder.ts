@@ -20,14 +20,14 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
     this._matrixConstructor = matrixConstructor;
   }
 
-  public fromData(data: MatrixData<S>): M {
+  public fromArray(data: MatrixData<S>): M {
     return new this._matrixConstructor(data);
   }
 
   public fromNumberData(numberData: MatrixData<number>): M {
     const ops = this.ops();
     const data = numberData.map(dataRow => dataRow.map(num => ops.fromNumber(num)));
-    return this.fromData(data);
+    return this.fromArray(data);
   }
 
   public fromSparseData(numRows: number, numCols: number, sparseData: SparseMatrixData<S>): M {
@@ -37,15 +37,15 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
         data[rowIndex][colIndex] = value;
       });
     });
-    return this.fromData(data);
+    return this.fromArray(data);
   }
 
   /**
    * Builds a matrix from an array of column vectors
    *
    * ```
-   * const firstColumn = vectorBuilder.fromData([ 1, 2, 3 ]);
-   * const secondColumn = vectorBuilder.fromData([ 4, 5, 6 ]);
+   * const firstColumn = vectorBuilder.fromArray([ 1, 2, 3 ]);
+   * const secondColumn = vectorBuilder.fromArray([ 4, 5, 6 ]);
    *
    * const matrix = matrixBuilder.fromColumnVectors([ firstColumn, secondColumn ]);
    *
@@ -73,8 +73,8 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * Builds a matrix from an array of row vectors
    *
    * ```
-   * const firstRow = vectorBuilder.fromData([ 1, 2, 3 ]);
-   * const secondRow = vectorBuilder.fromData([ 4, 5, 6 ]);
+   * const firstRow = vectorBuilder.fromArray([ 1, 2, 3 ]);
+   * const secondRow = vectorBuilder.fromArray([ 4, 5, 6 ]);
    *
    * const matrix = matrixBuilder.fromRowVectors([ firstRow, secondRow ]);
    *
@@ -135,7 +135,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * Builds a matrix by transforming the values of another matrix.
    *
    * ```
-   * const original = matrixBuilder.fromData([
+   * const original = matrixBuilder.fromArray([
    *   [ 1, 2, 3 ]
    *   [ 4, 5, 6 ]
    * ]);
@@ -272,15 +272,15 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * of the first row.
    *
    * ```
-   * const toeplitz = matrixBuilder.toeplitz(vectorBuilder.fromData([1, 2, 3]));
+   * const toeplitz = matrixBuilder.toeplitz(vectorBuilder.fromArray([1, 2, 3]));
    *
    * // [ 1 2 3 ]
    * // [ 2 1 2 ]
    * // [ 3 2 1 ]
    *
    * const toeplitzWithSpecifiedRow = matrixBuilder.toeplitz(
-   *   vectorBuilder.fromData([1, 2, 3]),
-   *   vectorBuilder.fromData([1, 3, 5, 7])
+   *   vectorBuilder.fromArray([1, 2, 3]),
+   *   vectorBuilder.fromArray([1, 3, 5, 7])
    * );
    *
    * // [ 1 3 5 7 ]
@@ -322,7 +322,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * the first entry of the last row.
    *
    * ```
-   * const hankel = matrixBuilder.hankel(vectorBuilder.fromData([2, 4, 6, 8]));
+   * const hankel = matrixBuilder.hankel(vectorBuilder.fromArray([2, 4, 6, 8]));
    *
    * // [ 2 4 6 8 ]
    * // [ 4 6 8 0 ]
@@ -330,8 +330,8 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * // [ 8 0 0 0 ]
    *
    * const hankelWithSpecifiedRow = matrixBuilder.hankel(
-   *   vectorBuilder.fromData([1, 2, 3, 4]),
-   *   vectorBuilder.fromData([4, 9, 9])
+   *   vectorBuilder.fromArray([1, 2, 3, 4]),
+   *   vectorBuilder.fromArray([4, 9, 9])
    * );
    *
    * // [ 1 2 3 ]
@@ -429,7 +429,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * Construct a circulant matrix using entries from the input vector
    *
    * ```
-   * const circulant = matrixBuilder.circulant(vectorBuilder.fromData([1, 2, 3]));
+   * const circulant = matrixBuilder.circulant(vectorBuilder.fromArray([1, 2, 3]));
    *
    * // [ 1 3 2 ]
    * // [ 2 1 3 ]
@@ -643,7 +643,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
       })
       .getData();
 
-    return this.fromData(data);
+    return this.fromArray(data);
   }
 
   /**
@@ -750,7 +750,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
       newRowIndex++;
     }
 
-    return this.fromData(data);
+    return this.fromArray(data);
   }
 
   /**
@@ -797,7 +797,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
       }
     }
 
-    return this.fromData(data);
+    return this.fromArray(data);
   }
 
   private ops(): ScalarOperations<S> {

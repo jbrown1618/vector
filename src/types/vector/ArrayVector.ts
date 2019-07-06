@@ -38,7 +38,7 @@ export abstract class ArrayVector<S> implements Vector<S> {
       this.ops().add(entry, other.getEntry(index))
     );
 
-    return this.builder().fromData(newData);
+    return this.builder().fromArray(newData);
   }
 
   /**
@@ -74,7 +74,7 @@ export abstract class ArrayVector<S> implements Vector<S> {
     const matrixData: S[][] = [];
 
     if (this.getDimension() === 0 || other.getDimension() === 0) {
-      return this.matrixBuilder().fromData(matrixData);
+      return this.matrixBuilder().fromArray(matrixData);
     }
 
     this.getData().forEach((thisValue, rowIndex) => {
@@ -84,7 +84,7 @@ export abstract class ArrayVector<S> implements Vector<S> {
       });
     });
 
-    return this.matrixBuilder().fromData(matrixData);
+    return this.matrixBuilder().fromArray(matrixData);
   }
 
   /**
@@ -105,7 +105,9 @@ export abstract class ArrayVector<S> implements Vector<S> {
    * @inheritdoc
    */
   public scalarMultiply(scalar: S): Vector<S> {
-    return this.builder().fromData(this.getData().map(entry => this.ops().multiply(entry, scalar)));
+    return this.builder().fromArray(
+      this.getData().map(entry => this.ops().multiply(entry, scalar))
+    );
   }
 
   /**

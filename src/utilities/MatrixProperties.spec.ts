@@ -12,8 +12,8 @@ describe('MatrixProperties', () => {
     });
 
     it('returns false for a non-square matrix', () => {
-      const wide = NumberMatrix.builder().fromData([[1, 2]]);
-      const tall = NumberMatrix.builder().fromData([[1], [2]]);
+      const wide = NumberMatrix.builder().fromArray([[1, 2]]);
+      const tall = NumberMatrix.builder().fromArray([[1], [2]]);
 
       expect(isSquare(wide)).to.be.false;
       expect(isSquare(tall)).to.be.false;

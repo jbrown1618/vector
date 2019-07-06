@@ -13,7 +13,7 @@ describe('ComplexVector', () => {
   describe('constructors', () => {
     it('can be constructed from an array', () => {
       const data = [ComplexNumber.ONE, new ComplexNumber(2, 0), new ComplexNumber(3, 0)];
-      expect(builder.fromData(data).getData()).to.deep.equal(data);
+      expect(builder.fromArray(data).getData()).to.deep.equal(data);
     });
 
     it('can be constructed from values', () => {
@@ -22,7 +22,7 @@ describe('ComplexVector', () => {
     });
 
     it('handles the degenerate case', () => {
-      expect(builder.fromData([]).getDimension()).to.equal(0);
+      expect(builder.fromArray([]).getDimension()).to.equal(0);
       expect(builder.fromValues().getDimension()).to.equal(0);
     });
   });
@@ -47,8 +47,8 @@ describe('ComplexVector', () => {
 
   describe('add', () => {
     it('adds two vectors of equal dimension', () => {
-      const first = builder.fromData(complexify([1, 2, 3]));
-      const second = builder.fromData(complexify([4, 5, 6]));
+      const first = builder.fromArray(complexify([1, 2, 3]));
+      const second = builder.fromArray(complexify([4, 5, 6]));
 
       expect(first.add(second).getData()).to.deep.equal([
         new ComplexNumber(5, 0),
@@ -58,8 +58,8 @@ describe('ComplexVector', () => {
     });
 
     it('throws an error when the dimensions do not match', () => {
-      const vector2 = builder.fromData([ComplexNumber.ZERO, ComplexNumber.ZERO]);
-      const vector3 = builder.fromData([
+      const vector2 = builder.fromArray([ComplexNumber.ZERO, ComplexNumber.ZERO]);
+      const vector3 = builder.fromArray([
         ComplexNumber.ZERO,
         ComplexNumber.ZERO,
         ComplexNumber.ZERO
@@ -80,7 +80,7 @@ describe('ComplexVector', () => {
 
   describe('scalarMultiply', () => {
     it('multiplies a vector by a scalar', () => {
-      const vector = builder.fromData(complexify([1, 2, 3]));
+      const vector = builder.fromArray(complexify([1, 2, 3]));
       const scalar = new ComplexNumber(2, 0);
 
       expect(vector.scalarMultiply(scalar).getData()).to.deep.equal(complexify([2, 4, 6]));
@@ -112,8 +112,8 @@ describe('ComplexVector', () => {
     });
 
     it('throws an error when the dimensions do not match', () => {
-      const vector2 = builder.fromData([ComplexNumber.ZERO, ComplexNumber.ZERO]);
-      const vector3 = builder.fromData([
+      const vector2 = builder.fromArray([ComplexNumber.ZERO, ComplexNumber.ZERO]);
+      const vector3 = builder.fromArray([
         ComplexNumber.ZERO,
         ComplexNumber.ZERO,
         ComplexNumber.ZERO
@@ -132,16 +132,16 @@ describe('ComplexVector', () => {
 
   describe('outerProduct', () => {
     it('computes a matrix product of two vectors', () => {
-      const first = builder.fromData(complexify([1, 2]));
-      const second = builder.fromData(complexify([3, 4, 5]));
+      const first = builder.fromArray(complexify([1, 2]));
+      const second = builder.fromArray(complexify([3, 4, 5]));
       const expectedData = [complexify([3, 4, 5]), complexify([6, 8, 10])];
 
       expect(first.outerProduct(second).getData()).to.deep.equal(expectedData);
     });
 
     it('handles the degenerate case', () => {
-      const empty = builder.fromData([]);
-      const nonEmpty = builder.fromData(complexify([1, 2, 3]));
+      const empty = builder.fromArray([]);
+      const nonEmpty = builder.fromArray(complexify([1, 2, 3]));
 
       expect(empty.outerProduct(nonEmpty).getData()).to.deep.equal([]);
       expect(nonEmpty.outerProduct(empty).getData()).to.deep.equal([]);
@@ -150,14 +150,14 @@ describe('ComplexVector', () => {
 
   describe('equals', () => {
     it('returns true for an identical vector', () => {
-      const first = builder.fromData(complexify([1, 2, 3]));
-      const second = builder.fromData(complexify([1, 2, 3]));
+      const first = builder.fromArray(complexify([1, 2, 3]));
+      const second = builder.fromArray(complexify([1, 2, 3]));
 
       expect(first.equals(second)).to.be.true;
     });
 
     it('returns true for itself', () => {
-      const vector = builder.fromData(complexify([1, 1, 1]));
+      const vector = builder.fromArray(complexify([1, 1, 1]));
       expect(vector.equals(vector)).to.be.true;
     });
 
@@ -166,15 +166,15 @@ describe('ComplexVector', () => {
     });
 
     it('returns false for a non-identical vector', () => {
-      const first = builder.fromData(complexify([1, 2, 3]));
-      const second = builder.fromData(complexify([1, 3, 5]));
+      const first = builder.fromArray(complexify([1, 2, 3]));
+      const second = builder.fromArray(complexify([1, 3, 5]));
 
       expect(first.equals(second)).to.be.false;
     });
 
     it('returns false when there is a dimension mismatch', () => {
-      const first = builder.fromData(complexify([1, 2]));
-      const second = builder.fromData(complexify([1, 2, 3]));
+      const first = builder.fromArray(complexify([1, 2]));
+      const second = builder.fromArray(complexify([1, 2, 3]));
 
       expect(first.equals(second)).to.be.false;
       expect(second.equals(first)).to.be.false;

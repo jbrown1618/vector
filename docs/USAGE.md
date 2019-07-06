@@ -16,9 +16,9 @@ npm i --save @josh-brown/vector
 import { NumberVector, NumberMatrix } from '@jbrown/vector';
 
 let position = NumberVector.builder().zeros(2);
-let velocity = NumberVector.builder().fromData([1, 1]);
-const acceleration = NumberVector.builder().fromData([0, -9.8]);
-const bounce = NumberMatrix.builder().fromData([[1, 0], [0, -1]]);
+let velocity = NumberVector.builder().fromArray([1, 1]);
+const acceleration = NumberVector.builder().fromArray([0, -9.8]);
+const bounce = NumberMatrix.builder().fromArray([[1, 0], [0, -1]]);
 const timeStep = 0.001;
 
 for (let t = 0; t < 10; t += timeStep) {

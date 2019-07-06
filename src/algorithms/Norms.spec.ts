@@ -20,8 +20,8 @@ describe('Norms', () => {
   describe('Vector norms', () => {
     describe('normalize', () => {
       it('returns a vector scaled to have a norm of 1', () => {
-        const v = vectorBuilder.fromData([3, 4]);
-        const expected = vectorBuilder.fromData([3 / 5, 4 / 5]);
+        const v = vectorBuilder.fromArray([3, 4]);
+        const expected = vectorBuilder.fromArray([3 / 5, 4 / 5]);
         const normalized = normalize(v);
         if (normalized === undefined) {
           expect(true).to.be.false; // Should not be undefined
@@ -36,13 +36,13 @@ describe('Norms', () => {
       });
 
       it('handles the empty vector', () => {
-        expect(normalize(vectorBuilder.fromData([]))).to.be.undefined;
+        expect(normalize(vectorBuilder.fromArray([]))).to.be.undefined;
       });
     });
 
     describe('pNorm', () => {
       it('calculates the p-norm of a vector', () => {
-        const v = vectorBuilder.fromData([3, 4]);
+        const v = vectorBuilder.fromArray([3, 4]);
         expect(pNorm(v, 1)).to.equal(7);
         expect(pNorm(v, 2)).to.equal(5);
         expect(pNorm(v, 3)).to.equal(4.497941445275415);
@@ -56,14 +56,14 @@ describe('Norms', () => {
       });
 
       it('handles the empty vector', () => {
-        const empty = vectorBuilder.fromData([]);
+        const empty = vectorBuilder.fromArray([]);
         expect(pNorm(empty, 1)).to.equal(0);
         expect(pNorm(empty, 2)).to.equal(0);
         expect(pNorm(empty, 3)).to.equal(0);
       });
 
       it('rejects p < 1', () => {
-        const v = vectorBuilder.fromData([3, 4]);
+        const v = vectorBuilder.fromArray([3, 4]);
         [0, -1, -2].forEach(p => {
           expect(() => pNorm(v, p)).to.throw();
         });
@@ -72,7 +72,7 @@ describe('Norms', () => {
 
     describe('sumNorm', () => {
       it('calculates the 1-norm of a vector', () => {
-        const v = vectorBuilder.fromData([3, 4]);
+        const v = vectorBuilder.fromArray([3, 4]);
         expect(sumNorm(v)).to.equal(7);
       });
 
@@ -82,14 +82,14 @@ describe('Norms', () => {
       });
 
       it('handles the empty vector', () => {
-        const empty = vectorBuilder.fromData([]);
+        const empty = vectorBuilder.fromArray([]);
         expect(sumNorm(empty)).to.equal(0);
       });
     });
 
     describe('euclideanNorm', () => {
       it('calculates the 2-norm of a vector', () => {
-        const v = vectorBuilder.fromData([3, 4]);
+        const v = vectorBuilder.fromArray([3, 4]);
         expect(euclideanNorm(v)).to.equal(5);
       });
 
@@ -99,14 +99,14 @@ describe('Norms', () => {
       });
 
       it('handles the empty vector', () => {
-        const empty = vectorBuilder.fromData([]);
+        const empty = vectorBuilder.fromArray([]);
         expect(euclideanNorm(empty)).to.equal(0);
       });
     });
 
     describe('supremumNorm', () => {
       it('calculates the infinity-norm of a vector', () => {
-        const v = vectorBuilder.fromData([3, 4]);
+        const v = vectorBuilder.fromArray([3, 4]);
         expect(supremumNorm(v)).to.equal(4);
       });
 
@@ -116,7 +116,7 @@ describe('Norms', () => {
       });
 
       it('handles the empty vector', () => {
-        const empty = vectorBuilder.fromData([]);
+        const empty = vectorBuilder.fromArray([]);
         expect(supremumNorm(empty)).to.equal(0);
       });
     });
@@ -125,7 +125,7 @@ describe('Norms', () => {
   describe('Matrix norms', () => {
     describe('frobeniusNorm', () => {
       it('calculates the Frobenius Norm of a matrix', () => {
-        const A = matrixBuilder.fromData([[1, 2], [3, 4]]);
+        const A = matrixBuilder.fromArray([[1, 2], [3, 4]]);
         const norm = frobeniusNorm(A);
         expect(norm).to.equal(5.477225575051661);
       });
@@ -136,14 +136,14 @@ describe('Norms', () => {
       });
 
       it('handles the empty matrix', () => {
-        const empty = matrixBuilder.fromData([]);
+        const empty = matrixBuilder.fromArray([]);
         expect(frobeniusNorm(empty)).to.equal(0);
       });
     });
 
     describe('columnSumSupremumNorm', () => {
       it('calculates the 1-norm of a matrix', () => {
-        const A = matrixBuilder.fromData([[1, 2], [3, 4]]);
+        const A = matrixBuilder.fromArray([[1, 2], [3, 4]]);
         const norm = columnSumSupremumNorm(A);
         expect(norm).to.equal(6);
       });
@@ -154,14 +154,14 @@ describe('Norms', () => {
       });
 
       it('handles the empty matrix', () => {
-        const empty = matrixBuilder.fromData([]);
+        const empty = matrixBuilder.fromArray([]);
         expect(columnSumSupremumNorm(empty)).to.equal(0);
       });
     });
 
     describe('rowSumSupremumNorm', () => {
       it('calculates the infinity-norm of a matrix', () => {
-        const A = matrixBuilder.fromData([[1, 2], [3, 4]]);
+        const A = matrixBuilder.fromArray([[1, 2], [3, 4]]);
         const norm = rowSumSupremumNorm(A);
         expect(norm).to.equal(7);
       });
@@ -172,7 +172,7 @@ describe('Norms', () => {
       });
 
       it('handles the empty matrix', () => {
-        const empty = matrixBuilder.fromData([]);
+        const empty = matrixBuilder.fromArray([]);
         expect(rowSumSupremumNorm(empty)).to.equal(0);
       });
     });

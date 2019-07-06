@@ -15,16 +15,16 @@ export class VectorBuilder<S, V extends Vector<S>> {
   }
 
   public fromValues(...data: VectorData<S>): V {
-    return this.fromData(data);
+    return this.fromArray(data);
   }
 
-  public fromData(data: VectorData<S>): V {
+  public fromArray(data: VectorData<S>): V {
     return new this._vectorConstructor(data);
   }
 
   public fromNumberData(data: VectorData<number>): V {
     const ops = this.ops();
-    return this.fromData(data.map(num => ops.fromNumber(num)));
+    return this.fromArray(data.map(num => ops.fromNumber(num)));
   }
 
   public fromSparseData(dimension: number, sparseData: SparseVectorData<S>): V {
@@ -35,7 +35,7 @@ export class VectorBuilder<S, V extends Vector<S>> {
     sparseData.forEach((value, index) => {
       data[index] = value;
     });
-    return this.fromData(data);
+    return this.fromArray(data);
   }
 
   /**
@@ -55,7 +55,7 @@ export class VectorBuilder<S, V extends Vector<S>> {
     for (let i = 0; i < dimension; i++) {
       data[i] = valueFromIndex(i);
     }
-    return this.fromData(data);
+    return this.fromArray(data);
   }
 
   /**
@@ -76,7 +76,7 @@ export class VectorBuilder<S, V extends Vector<S>> {
    * @returns The new vector
    */
   public map(vector: Vector<S>, valueFromEntry: VectorEntryFunction<S>): V {
-    return this.fromData(vector.getData().map(valueFromEntry));
+    return this.fromArray(vector.getData().map(valueFromEntry));
   }
 
   /**
@@ -89,7 +89,7 @@ export class VectorBuilder<S, V extends Vector<S>> {
    * @returns The new vector
    */
   public empty(): V {
-    return this.fromData([]);
+    return this.fromArray([]);
   }
 
   /**
@@ -157,7 +157,7 @@ export class VectorBuilder<S, V extends Vector<S>> {
    * Constructs a vector whose entries match the input vector, but offset by a given amount
    *
    * ```
-   * const original = vectorBuilder.fromData([1, 2, 3]);
+   * const original = vectorBuilder.fromArray([1, 2, 3]);
    * const rightOne = vectorBuilder.rotate(original); // [2, 3, 1];
    * const rightTwo = vectorBuilder.rotate(original, 2); // [3, 1, 2];
    * const leftOne = vectorBuilder.rotate(original, 1, true); // [3, 1, 2];
@@ -221,7 +221,7 @@ export class VectorBuilder<S, V extends Vector<S>> {
    * @returns The new vector
    */
   public concatenate(first: Vector<S>, second: Vector<S>): V {
-    return this.fromData([...first.getData(), ...second.getData()]);
+    return this.fromArray([...first.getData(), ...second.getData()]);
   }
 
   private ops(): ScalarOperations<S> {

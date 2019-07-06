@@ -13,7 +13,7 @@ import {
 describe('FiniteDifferences', () => {
   describe('linspace', () => {
     it('creates a vector of evenly spaced numbers', () => {
-      const expected = NumberVector.builder().fromData([
+      const expected = NumberVector.builder().fromArray([
         0,
         0.1,
         0.2,
@@ -40,7 +40,7 @@ describe('FiniteDifferences', () => {
 
   describe('forwardDifferenceMatrix', () => {
     it('constructs a forward difference matrix', () => {
-      const expected = NumberMatrix.builder().fromData([
+      const expected = NumberMatrix.builder().fromArray([
         [-1, 1, 0, 0],
         [0, -1, 1, 0],
         [0, 0, -1, 1],
@@ -53,7 +53,7 @@ describe('FiniteDifferences', () => {
 
   describe('backwardDifferenceMatrix', () => {
     it('constructs a backward difference matrix', () => {
-      const expected = NumberMatrix.builder().fromData([
+      const expected = NumberMatrix.builder().fromArray([
         [1, 0, 0, 0],
         [-1, 1, 0, 0],
         [0, -1, 1, 0],
@@ -66,7 +66,7 @@ describe('FiniteDifferences', () => {
 
   describe('centralDifferenceMatrix', () => {
     it('constructs a central difference matrix', () => {
-      const expected = NumberMatrix.builder().fromData([
+      const expected = NumberMatrix.builder().fromArray([
         [0, 1 / 2, 0, 0],
         [-1 / 2, 0, 1 / 2, 0],
         [0, -1 / 2, 0, 1 / 2],

@@ -18,7 +18,7 @@ configs.forEach(({ testClassName, builder }) => {
   describe(testClassName, () => {
     describe('constructors', () => {
       it('can be constructed from an array', () => {
-        expect(builder.fromData([1, 2, 3]).getData()).to.deep.equal([1, 2, 3]);
+        expect(builder.fromArray([1, 2, 3]).getData()).to.deep.equal([1, 2, 3]);
       });
 
       it('can be constructed from values', () => {
@@ -26,7 +26,7 @@ configs.forEach(({ testClassName, builder }) => {
       });
 
       it('handles the degenerate case', () => {
-        expect(builder.fromData([]).getDimension()).to.equal(0);
+        expect(builder.fromArray([]).getDimension()).to.equal(0);
         expect(builder.fromValues().getDimension()).to.equal(0);
       });
     });
@@ -42,15 +42,15 @@ configs.forEach(({ testClassName, builder }) => {
 
     describe('add', () => {
       it('adds two vectors of equal dimension', () => {
-        const first = builder.fromData([1, 2, 3]);
-        const second = builder.fromData([4, 5, 6]);
+        const first = builder.fromArray([1, 2, 3]);
+        const second = builder.fromArray([4, 5, 6]);
 
         expect(first.add(second).getData()).to.deep.equal([5, 7, 9]);
       });
 
       it('throws an error when the dimensions do not match', () => {
-        const vector2 = builder.fromData([0, 0]);
-        const vector3 = builder.fromData([0, 0, 0]);
+        const vector2 = builder.fromArray([0, 0]);
+        const vector3 = builder.fromArray([0, 0, 0]);
 
         expect(() => vector2.add(vector3)).to.throw();
       });
@@ -67,7 +67,7 @@ configs.forEach(({ testClassName, builder }) => {
 
     describe('scalarMultiply', () => {
       it('multiplies a vector by a scalar', () => {
-        const vector = builder.fromData([1, 2, 3]);
+        const vector = builder.fromArray([1, 2, 3]);
 
         expect(vector.scalarMultiply(2).getData()).to.deep.equal([2, 4, 6]);
       });
@@ -89,8 +89,8 @@ configs.forEach(({ testClassName, builder }) => {
       });
 
       it('throws an error when the dimensions do not match', () => {
-        const vector2 = builder.fromData([0, 0]);
-        const vector3 = builder.fromData([0, 0, 0]);
+        const vector2 = builder.fromArray([0, 0]);
+        const vector3 = builder.fromArray([0, 0, 0]);
 
         expect(() => vector2.innerProduct(vector3)).to.throw();
       });
@@ -122,8 +122,8 @@ configs.forEach(({ testClassName, builder }) => {
 
       configs.forEach(otherConfig => {
         it(`handles ${otherConfig.testClassName} inputs`, () => {
-          const first = builder.fromData([1, 2]);
-          const second = otherConfig.builder.fromData([3, 4, 5]);
+          const first = builder.fromArray([1, 2]);
+          const second = otherConfig.builder.fromArray([3, 4, 5]);
           const expectedData = [[3, 4, 5], [6, 8, 10]];
           expect(first.outerProduct(second).getData()).to.deep.equal(expectedData);
 
@@ -159,9 +159,9 @@ configs.forEach(({ testClassName, builder }) => {
 
       configs.forEach(otherConfig => {
         it(`handles ${otherConfig.testClassName} inputs`, () => {
-          const original = builder.fromData([1, 2, 3]);
-          const equal = otherConfig.builder.fromData([1, 2, 3]);
-          const unequal = otherConfig.builder.fromData([1, 2, 2]);
+          const original = builder.fromArray([1, 2, 3]);
+          const equal = otherConfig.builder.fromArray([1, 2, 3]);
+          const unequal = otherConfig.builder.fromArray([1, 2, 2]);
           expect(original.equals(equal)).to.be.true;
           expect(original.equals(unequal)).to.be.false;
         });
@@ -170,15 +170,15 @@ configs.forEach(({ testClassName, builder }) => {
 
     describe('projectOnto', () => {
       it('calculates the projection of one vector onto another', () => {
-        const v = builder.fromData([3, 2]);
+        const v = builder.fromArray([3, 2]);
         const e1 = builder.elementaryVector(2, 0);
         const e2 = builder.elementaryVector(2, 1);
-        expect(v.projectOnto(e1)).to.deep.equal(builder.fromData([3, 0]));
-        expect(v.projectOnto(e2)).to.deep.equal(builder.fromData([0, 2]));
+        expect(v.projectOnto(e1)).to.deep.equal(builder.fromArray([3, 0]));
+        expect(v.projectOnto(e2)).to.deep.equal(builder.fromArray([0, 2]));
       });
 
       it('rejects the zero-vector', () => {
-        const v = builder.fromData([3, 2]);
+        const v = builder.fromArray([3, 2]);
         const zero = builder.zeros(2);
         expect(() => v.projectOnto(zero)).to.throw();
       });
@@ -192,7 +192,7 @@ configs.forEach(({ testClassName, builder }) => {
 
     describe('getSparseData', () => {
       it('returns a map of the contents of the vector', () => {
-        const v = builder.fromData([0, 0, 1, 0, 2, 0]);
+        const v = builder.fromArray([0, 0, 1, 0, 2, 0]);
         const expected = new Map();
         expected.set(2, 1).set(4, 2);
         expect(v.getSparseData()).to.deep.equal(expected);
