@@ -30,11 +30,11 @@ exist for performing heavy linear algebra computations.
 
 ## Using Vector
 
-See our [Usage Guide](./docs/Usage-Guide.md) for more on how to use **Vector** in your project.
+See our [Usage Guide](./docs/USAGE.md) for more on how to use **Vector** in your project.
 
 ## Contributing to Vector
 
-See our [Contribution Guide](./docs/Contribution-Guide.md) for contribution guidelines and coding standards.
+See our [Contribution Guide](./docs/CONTRIBUTING.md) for contribution guidelines and coding standards.
 
 ## Documentation
 
