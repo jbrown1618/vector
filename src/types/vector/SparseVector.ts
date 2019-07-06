@@ -92,7 +92,7 @@ export abstract class SparseVector<S> implements Vector<S> {
 
     const matrixData: S[][] = [];
     if (this.getDimension() === 0 || other.getDimension() === 0) {
-      return this.matrixBuilder().fromData(matrixData);
+      return this.matrixBuilder().fromArray(matrixData);
     }
 
     this.getData().forEach((thisValue, rowIndex) => {
@@ -102,7 +102,7 @@ export abstract class SparseVector<S> implements Vector<S> {
       });
     });
 
-    return this.matrixBuilder().fromData(matrixData);
+    return this.matrixBuilder().fromArray(matrixData);
   }
 
   /**

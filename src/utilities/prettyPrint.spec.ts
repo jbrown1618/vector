@@ -8,15 +8,15 @@ import { ComplexMatrix } from '../types/matrix/ComplexMatrix';
 
 describe('prettyPrint', () => {
   it('prints a NumberVector', () => {
-    const v = NumberVector.builder().fromData([1, 22, 333]);
+    const v = NumberVector.builder().fromArray([1, 22, 333]);
     expect(prettyPrint(v)).to.equal('[   1 ]\n[  22 ]\n[ 333 ]');
 
-    const u = NumberVector.builder().fromData([1, 0.222, 1 / 3]);
+    const u = NumberVector.builder().fromArray([1, 0.222, 1 / 3]);
     expect(prettyPrint(u)).to.equal('[        1 ]\n[    0.222 ]\n[ 0.333333 ]');
   });
 
   it('prints a ComplexVector', () => {
-    const v = ComplexVector.builder().fromData([
+    const v = ComplexVector.builder().fromArray([
       new ComplexNumber(1, 1),
       new ComplexNumber(2, 22),
       new ComplexNumber(33, 333)
@@ -25,14 +25,14 @@ describe('prettyPrint', () => {
   });
 
   it('prints a NumberMatrix', () => {
-    const v = NumberMatrix.builder().fromData([[1, 22222, 333], [444, 5, 6], [77, 88, 9999]]);
+    const v = NumberMatrix.builder().fromArray([[1, 22222, 333], [444, 5, 6], [77, 88, 9999]]);
     expect(prettyPrint(v)).to.equal(
       '[   1  22222   333 ]\n[ 444      5     6 ]\n[  77     88  9999 ]'
     );
   });
 
   it('prints a ComplexMatrix', () => {
-    const v = ComplexMatrix.builder().fromData([
+    const v = ComplexMatrix.builder().fromArray([
       [new ComplexNumber(1, 1), new ComplexNumber(22, 222), new ComplexNumber(33, 3)],
       [new ComplexNumber(44, 44), new ComplexNumber(5, 5), new ComplexNumber(6, 6)],
       [new ComplexNumber(7, 777), new ComplexNumber(888, 888), new ComplexNumber(9, 99999)]

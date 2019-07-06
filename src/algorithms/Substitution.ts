@@ -56,12 +56,12 @@ export function solveByForwardSubstitution<S>(L: Matrix<S>, b: Vector<S>): Linea
   if (isUnique) {
     return {
       solutionType: SolutionType.UNIQUE,
-      solution: vectorBuilder.fromData(solution)
+      solution: vectorBuilder.fromArray(solution)
     };
   } else {
     return {
       solutionType: SolutionType.UNDERDETERMINED,
-      solution: vectorBuilder.fromData(solution)
+      solution: vectorBuilder.fromArray(solution)
     };
   }
 }
@@ -135,12 +135,12 @@ export function solveByBackwardSubstitution<S>(U: Matrix<S>, b: Vector<S>): Line
   if (isUnique) {
     return {
       solutionType: SolutionType.UNIQUE,
-      solution: vectorBuilder.fromData(solution)
+      solution: vectorBuilder.fromArray(solution)
     };
   } else {
     return {
       solutionType: SolutionType.UNDERDETERMINED,
-      solution: vectorBuilder.fromData(solution)
+      solution: vectorBuilder.fromArray(solution)
     };
   }
 }

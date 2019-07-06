@@ -232,7 +232,7 @@ export abstract class SparseMatrix<S> implements Matrix<S> {
     }
 
     // TODO - can probably be optimized for the case of two sparse matrices
-    return this.builder().fromData(
+    return this.builder().fromArray(
       this.getRowVectors().map(row =>
         other.getColumnVectors().map(column => row.innerProduct(column))
       )

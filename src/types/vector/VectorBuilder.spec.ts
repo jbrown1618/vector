@@ -18,14 +18,14 @@ describe('VectorBuilder', () => {
     });
   });
 
-  describe('fromData', () => {
+  describe('fromArray', () => {
     it('builds a vector from an array of data values', () => {
       const data = [1, 2, 3, 4, 5];
-      expect(builder.fromData(data).getData()).to.deep.equal(data);
+      expect(builder.fromArray(data).getData()).to.deep.equal(data);
     });
 
     it('handles an empty array', () => {
-      expect(builder.fromData([]).getData()).to.deep.equal([]);
+      expect(builder.fromArray([]).getData()).to.deep.equal([]);
     });
   });
 
@@ -37,7 +37,7 @@ describe('VectorBuilder', () => {
 
     it('builds a complex vector from numbers', () => {
       const data = [1, 2, 3];
-      const expected = ComplexVector.builder().fromData([
+      const expected = ComplexVector.builder().fromArray([
         new ComplexNumber(1, 0),
         new ComplexNumber(2, 0),
         new ComplexNumber(3, 0)
@@ -46,7 +46,7 @@ describe('VectorBuilder', () => {
     });
 
     it('handles an empty array', () => {
-      expect(builder.fromData([]).getData()).to.deep.equal([]);
+      expect(builder.fromArray([]).getData()).to.deep.equal([]);
     });
   });
 
@@ -56,7 +56,7 @@ describe('VectorBuilder', () => {
       sparseData.set(3, 1);
       sparseData.set(4, 2);
       const V = builder.fromSparseData(6, sparseData);
-      const expected = builder.fromData([0, 0, 0, 1, 2, 0]);
+      const expected = builder.fromArray([0, 0, 0, 1, 2, 0]);
       expect(V.equals(expected)).to.be.true;
     });
 
@@ -67,7 +67,7 @@ describe('VectorBuilder', () => {
 
   describe('fromIndexFunction', () => {
     it('builds a vector whose values are determined by a function of their index', () => {
-      const expected = builder.fromData([0, 2, 4, 6, 8]);
+      const expected = builder.fromArray([0, 2, 4, 6, 8]);
       expect(builder.fromIndexFunction(5, i => i * 2)).to.deep.equal(expected);
     });
 
@@ -202,15 +202,15 @@ describe('VectorBuilder', () => {
 
   describe('shifted', () => {
     it('returns a new vector with the entries shifted by an offset', () => {
-      const original = builder.fromData([1, 2, 3]);
+      const original = builder.fromArray([1, 2, 3]);
       const rightOne = builder.shift(original);
       const rightTwo = builder.shift(original, 2);
       const rightThree = builder.shift(original, 3);
       const leftOne = builder.shift(original, 1, true);
       const leftTwo = builder.shift(original, 2, true);
 
-      const twoThreeOne = builder.fromData([2, 3, 1]);
-      const threeOneTwo = builder.fromData([3, 1, 2]);
+      const twoThreeOne = builder.fromArray([2, 3, 1]);
+      const threeOneTwo = builder.fromArray([3, 1, 2]);
 
       expect(rightOne).to.deep.equal(twoThreeOne);
       expect(rightTwo).to.deep.equal(threeOneTwo);
@@ -284,17 +284,17 @@ describe('VectorBuilder', () => {
 
   describe('concatenate', () => {
     it('concatenates two non-empty vectors', () => {
-      const first = builder.fromData([1, 2, 3]);
-      const second = builder.fromData([4, 5, 6]);
-      const firstSecond = builder.fromData([1, 2, 3, 4, 5, 6]);
-      const secondFirst = builder.fromData([4, 5, 6, 1, 2, 3]);
+      const first = builder.fromArray([1, 2, 3]);
+      const second = builder.fromArray([4, 5, 6]);
+      const firstSecond = builder.fromArray([1, 2, 3, 4, 5, 6]);
+      const secondFirst = builder.fromArray([4, 5, 6, 1, 2, 3]);
       expect(builder.concatenate(first, second).equals(firstSecond)).to.be.true;
       expect(builder.concatenate(second, first).equals(secondFirst)).to.be.true;
     });
 
     it('handles empty vectors', () => {
       const empty = builder.empty();
-      const nonEmpty = builder.fromData([1, 2, 3]);
+      const nonEmpty = builder.fromArray([1, 2, 3]);
 
       expect(builder.concatenate(empty, empty).equals(empty)).to.be.true;
       expect(builder.concatenate(empty, nonEmpty).equals(nonEmpty)).to.be.true;

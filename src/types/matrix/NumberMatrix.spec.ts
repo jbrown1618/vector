@@ -24,7 +24,7 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
       const data = [[1, 2, 3], [2, 2, 1], [5, 2, 9]];
 
       it('can be constructed from a 2d array', () => {
-        expect(builder.fromData(data).getData()).to.deep.equal(data);
+        expect(builder.fromArray(data).getData()).to.deep.equal(data);
       });
 
       it('can be constructed from column vectors', () => {
@@ -38,9 +38,9 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
       });
 
       it('can be constructed from row vectors', () => {
-        const firstRow = vectorBuilder.fromData(data[0]);
-        const secondRow = vectorBuilder.fromData(data[1]);
-        const thirdRow = vectorBuilder.fromData(data[2]);
+        const firstRow = vectorBuilder.fromArray(data[0]);
+        const secondRow = vectorBuilder.fromArray(data[1]);
+        const thirdRow = vectorBuilder.fromArray(data[2]);
 
         expect(builder.fromRowVectors([firstRow, secondRow, thirdRow]).getData()).to.deep.equal(
           data
@@ -49,9 +49,9 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
 
       it('handles degenerate cases', () => {
         // 0x0
-        expect(builder.fromData([]).getData()).to.deep.equal([]);
+        expect(builder.fromArray([]).getData()).to.deep.equal([]);
         // Nx0
-        expect(builder.fromData([[], [], []]).getData()).to.deep.equal([]);
+        expect(builder.fromArray([[], [], []]).getData()).to.deep.equal([]);
         // 0xM
         expect(builder.fromRowVectors([]).getData()).to.deep.equal([]);
         // Nx0
@@ -60,7 +60,7 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
 
       it('rejects non-rectangular data', () => {
         const badData = [[0], [0, 0], [0, 0, 0]];
-        expect(() => builder.fromData(badData)).to.throw();
+        expect(() => builder.fromArray(badData)).to.throw();
 
         const badVectorData = [
           vectorBuilder.fromValues(0),
@@ -77,21 +77,21 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
         const otherBuilder = otherConfig.builder;
         describe(otherConfig.testClassName, () => {
           it('returns true for matrices with equal entries', () => {
-            const first = builder.fromData([[1, 2], [0, 1]]);
-            const second = otherBuilder.fromData([[1, 2], [0, 1]]);
+            const first = builder.fromArray([[1, 2], [0, 1]]);
+            const second = otherBuilder.fromArray([[1, 2], [0, 1]]);
             expect(first.equals(second)).to.be.true;
           });
 
           it('returns false when the data does not match', () => {
-            const first = builder.fromData([[1, 2], [0, 1]]);
-            const second = otherBuilder.fromData([[1, 2], [0.001, 1]]);
+            const first = builder.fromArray([[1, 2], [0, 1]]);
+            const second = otherBuilder.fromArray([[1, 2], [0.001, 1]]);
             expect(first.equals(second)).to.be.false;
           });
 
           it('returns false when the dimensions do not match', () => {
-            const first = builder.fromData([[1, 2], [0, 1]]);
-            const fewerRows = otherBuilder.fromData([[1, 2]]);
-            const fewerColumns = otherBuilder.fromData([[1], [0]]);
+            const first = builder.fromArray([[1, 2], [0, 1]]);
+            const fewerRows = otherBuilder.fromArray([[1, 2]]);
+            const fewerColumns = otherBuilder.fromArray([[1], [0]]);
             expect(first.equals(fewerRows)).to.be.false;
             expect(first.equals(fewerColumns)).to.be.false;
           });
@@ -100,7 +100,7 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
     });
 
     describe('getters', () => {
-      const testMatrix = builder.fromData([[1, 2, 3], [4, 5, 6]]);
+      const testMatrix = builder.fromArray([[1, 2, 3], [4, 5, 6]]);
 
       describe('getColumnVectors', () => {
         it('returns the column vectors that make up the matrix', () => {
@@ -156,15 +156,15 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
 
       describe('getDiagonal', () => {
         it('returns the diagonal entries of a square matrix', () => {
-          const A = builder.fromData([[1, 2, 3], [4, 5, 6], [7, 8, 9]]);
+          const A = builder.fromArray([[1, 2, 3], [4, 5, 6], [7, 8, 9]]);
           expect(A.getDiagonal().getData()).to.deep.equal([1, 5, 9]);
         });
 
         it('returns the diagonal entries of a non-square matrix', () => {
-          const wide = builder.fromData([[1, 2, 3], [4, 5, 6]]);
+          const wide = builder.fromArray([[1, 2, 3], [4, 5, 6]]);
           expect(wide.getDiagonal().getData()).to.deep.equal([1, 5]);
 
-          const tall = builder.fromData([[1, 2], [3, 4], [5, 6]]);
+          const tall = builder.fromArray([[1, 2], [3, 4], [5, 6]]);
           expect(tall.getDiagonal().getData()).to.deep.equal([1, 4]);
         });
       });
@@ -183,8 +183,8 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
     describe('set', () => {
       it('returns the original matrix with one entry modified', () => {
         const original = builder.zeros(3);
-        const expected = builder.fromData([[0, 0, 0], [0, 4, 0], [0, 0, 0]]);
-        const second = builder.fromData([[0, 0, 0], [0, 4, 5], [0, 0, 0]]);
+        const expected = builder.fromArray([[0, 0, 0], [0, 4, 0], [0, 0, 0]]);
+        const second = builder.fromArray([[0, 0, 0], [0, 4, 5], [0, 0, 0]]);
 
         expect(original.set(1, 1, 4)).to.deep.equal(expected);
         expect(original.set(1, 1, 4).set(1, 2, 5)).to.deep.equal(second);
@@ -199,9 +199,9 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
 
     describe('multiply', () => {
       it('returns the product of two matrices of equal dimension', () => {
-        const I = builder.fromData([[1, 0], [0, 1]]);
-        const A = builder.fromData([[1, 2], [3, 4]]);
-        const B = builder.fromData([[2, 3], [4, 5]]);
+        const I = builder.fromArray([[1, 0], [0, 1]]);
+        const A = builder.fromArray([[1, 2], [3, 4]]);
+        const B = builder.fromArray([[2, 3], [4, 5]]);
 
         expect(A.multiply(A).getData()).to.deep.equal([[7, 10], [15, 22]]);
         expect(A.multiply(B).getData()).to.deep.equal([[10, 13], [22, 29]]);
@@ -215,8 +215,8 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
       });
 
       it('returns the product of two matrices of unequal dimension', () => {
-        const A = builder.fromData([[1, 2, 3, 4]]);
-        const B = builder.fromData([[1], [2], [3], [4]]);
+        const A = builder.fromArray([[1, 2, 3, 4]]);
+        const B = builder.fromArray([[1], [2], [3], [4]]);
 
         expect(A.multiply(B).getData()).to.deep.equal([[30]]);
         expect(B.multiply(A).getData()).to.deep.equal([
@@ -228,8 +228,8 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
       });
 
       it('throws an error when the dimensions are not compatible', () => {
-        const A = builder.fromData([[1, 0], [0, 1]]);
-        const B = builder.fromData([[1, 0, 0], [0, 1, 0], [0, 0, 1]]);
+        const A = builder.fromArray([[1, 0], [0, 1]]);
+        const B = builder.fromArray([[1, 0, 0], [0, 1, 0], [0, 0, 1]]);
         expect(() => A.multiply(B)).to.throw();
       });
 
@@ -253,8 +253,8 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
 
     describe('transpose', () => {
       it('returns the transpose of a matrix', () => {
-        const A = builder.fromData([[1, 2, 3], [4, 5, 6]]);
-        const B = builder.fromData([[1, 4], [2, 5], [3, 6]]);
+        const A = builder.fromArray([[1, 2, 3], [4, 5, 6]]);
+        const B = builder.fromArray([[1, 4], [2, 5], [3, 6]]);
         expect(A.transpose().equals(B)).to.be.true;
         expect(B.transpose().equals(A)).to.be.true;
       });
@@ -267,15 +267,15 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
 
     describe('add', () => {
       it('adds two matrices of equal dimension', () => {
-        const A = builder.fromData([[1, 2, 3], [4, 5, 6]]);
-        const B = builder.fromData([[2, 3, 4], [5, 6, 7]]);
+        const A = builder.fromArray([[1, 2, 3], [4, 5, 6]]);
+        const B = builder.fromArray([[2, 3, 4], [5, 6, 7]]);
 
         expect(A.add(B).getData()).to.deep.equal([[3, 5, 7], [9, 11, 13]]);
       });
 
       it('throws an error when the dimensions do not match', () => {
-        const A = builder.fromData([[1, 2, 3], [4, 5, 6]]);
-        const B = builder.fromData([[2, 3], [5, 6]]);
+        const A = builder.fromArray([[1, 2, 3], [4, 5, 6]]);
+        const B = builder.fromArray([[2, 3], [5, 6]]);
 
         expect(() => A.add(B)).to.throw();
       });
@@ -292,8 +292,8 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
 
     describe('apply', () => {
       it('transforms a vector with the correct dimension', () => {
-        const I = builder.fromData([[1, 0], [0, 1]]);
-        const A = builder.fromData([[1, 2], [3, 4]]);
+        const I = builder.fromArray([[1, 0], [0, 1]]);
+        const A = builder.fromArray([[1, 2], [3, 4]]);
         const x = vectorBuilder.fromValues(1, 2);
 
         expect(I.apply(x).getData()).to.deep.equal(x.getData());
@@ -301,7 +301,7 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
       });
 
       it('throws an error when the dimensions are not compatible', () => {
-        const A = builder.fromData([[1, 2], [3, 4]]);
+        const A = builder.fromArray([[1, 2], [3, 4]]);
         const x = vectorBuilder.fromValues(1, 2, 3);
         expect(() => A.apply(x)).to.throw();
       });
@@ -309,7 +309,7 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
 
     describe('adjoint', () => {
       it('returns the transpose of the original matrix', () => {
-        const M = builder.fromData([[1, 2], [3, 4]]);
+        const M = builder.fromArray([[1, 2], [3, 4]]);
         const mStar = M.adjoint();
         const mTrans = M.transpose();
         expect(mStar.equals(mTrans)).to.be.true;
@@ -318,7 +318,7 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
 
     describe('trace', () => {
       it('computes the trace of a matrix', () => {
-        expect(builder.fromData([[1, 2, 3], [4, 5, 6], [7, 8, 9]]).trace()).to.equal(15);
+        expect(builder.fromArray([[1, 2, 3], [4, 5, 6], [7, 8, 9]]).trace()).to.equal(15);
       });
     });
 

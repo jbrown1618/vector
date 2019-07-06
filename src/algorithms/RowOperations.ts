@@ -61,7 +61,7 @@ export function addScalarMultipleOfRowToRow<S>(
     data[targetRow][j] = ops.add(data[targetRow][j], ops.multiply(scalar, data[rowToAdd][j]));
   }
 
-  return matrix.builder().fromData(data);
+  return matrix.builder().fromArray(data);
 }
 
 /**
@@ -82,7 +82,7 @@ export function exchangeRows<S>(matrix: Matrix<S>, first: number, second: number
   data[second] = dataCopy[first];
   data[first] = dataCopy[second];
 
-  return matrix.builder().fromData(data);
+  return matrix.builder().fromArray(data);
 }
 
 /**

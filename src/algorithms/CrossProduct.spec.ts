@@ -6,18 +6,18 @@ import { crossProduct, tripleProduct } from './CrossProduct';
 describe('CrossProduct', () => {
   describe('crossProduct', () => {
     it('calculates the cross product of two vectors', () => {
-      const v = NumberVector.builder().fromData([1, 2, 3]);
-      const u = NumberVector.builder().fromData([4, 5, 6]);
-      const vCrossU = NumberVector.builder().fromData([-3, 6, -3]);
+      const v = NumberVector.builder().fromArray([1, 2, 3]);
+      const u = NumberVector.builder().fromArray([4, 5, 6]);
+      const vCrossU = NumberVector.builder().fromArray([-3, 6, -3]);
 
       expect(crossProduct(v, u)).to.deep.equal(vCrossU);
       expect(crossProduct(u, v)).to.deep.equal(vCrossU.scalarMultiply(-1));
     });
 
     it('preserves the relationships among the unit vectors in R3', () => {
-      const i = NumberVector.builder().fromData([1, 0, 0]);
-      const j = NumberVector.builder().fromData([0, 1, 0]);
-      const k = NumberVector.builder().fromData([0, 0, 1]);
+      const i = NumberVector.builder().fromArray([1, 0, 0]);
+      const j = NumberVector.builder().fromArray([0, 1, 0]);
+      const k = NumberVector.builder().fromArray([0, 0, 1]);
 
       expect(crossProduct(i, j)).to.deep.equal(k);
       expect(crossProduct(j, k)).to.deep.equal(i);
@@ -25,8 +25,8 @@ describe('CrossProduct', () => {
     });
 
     it('rejects vectors not in R3', () => {
-      const v = NumberVector.builder().fromData([1, 2, 3]);
-      const u = NumberVector.builder().fromData([1, 2]);
+      const v = NumberVector.builder().fromArray([1, 2, 3]);
+      const u = NumberVector.builder().fromArray([1, 2]);
 
       expect(() => crossProduct(v, u)).to.throw();
       expect(() => crossProduct(u, v)).to.throw();
@@ -36,17 +36,17 @@ describe('CrossProduct', () => {
 
   describe('tripleProduct', () => {
     it('caluclates the scalar triple product of two vectors', () => {
-      const v = NumberVector.builder().fromData([-2, 3, 1]);
-      const u = NumberVector.builder().fromData([0, 4, 0]);
-      const w = NumberVector.builder().fromData([-1, 3, 3]);
+      const v = NumberVector.builder().fromArray([-2, 3, 1]);
+      const u = NumberVector.builder().fromArray([0, 4, 0]);
+      const w = NumberVector.builder().fromArray([-1, 3, 3]);
 
       const product = tripleProduct(v, u, w);
       expect(product).to.equal(-20);
     });
 
     it('rejects vectors not in R3', () => {
-      const v = NumberVector.builder().fromData([1, 2, 3]);
-      const u = NumberVector.builder().fromData([1, 2]);
+      const v = NumberVector.builder().fromArray([1, 2, 3]);
+      const u = NumberVector.builder().fromArray([1, 2]);
 
       expect(() => tripleProduct(v, v, u)).to.throw();
       expect(() => tripleProduct(v, u, v)).to.throw();

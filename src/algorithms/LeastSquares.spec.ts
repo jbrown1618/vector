@@ -48,11 +48,14 @@ describe('LeastSquares', () => {
 
   describe('calculateLinearLeastSquaresApproximation', () => {
     it('calculates the coefficients for a simple linear regression', () => {
-      const data = singleVariableTestData.map(pointArray => vectorBuilder.fromData(pointArray));
+      const data = singleVariableTestData.map(pointArray => vectorBuilder.fromArray(pointArray));
       const result = calculateLinearLeastSquaresApproximation(data);
 
       // According to Excel, the trend line equation for this data is y = -5.7147 + 3.2108x
-      const expectedCoefficients = vectorBuilder.fromData([-5.714705882354778, 3.2107843137256964]);
+      const expectedCoefficients = vectorBuilder.fromArray([
+        -5.714705882354778,
+        3.2107843137256964
+      ]);
       expect(result.coefficients).to.deep.equal(expectedCoefficients);
 
       // The approximation function should be a line
@@ -68,10 +71,10 @@ describe('LeastSquares', () => {
     });
 
     it('calculates the coefficients for a multiple linear regression', () => {
-      const data = multiVariableTestData.map(pointArray => vectorBuilder.fromData(pointArray));
+      const data = multiVariableTestData.map(pointArray => vectorBuilder.fromArray(pointArray));
       const result = calculateLinearLeastSquaresApproximation(data);
 
-      const expectedCoefficients = vectorBuilder.fromData([
+      const expectedCoefficients = vectorBuilder.fromArray([
         -0.40833333333329236,
         0.7366666666667359,
         2.5416666666665613
@@ -97,7 +100,7 @@ describe('LeastSquares', () => {
       const result = calculateLinearLeastSquaresApproximation(exactData);
 
       // For the data (0,0), (1,1), the exact solution is y=x
-      const expectedCoefficients = vectorBuilder.fromData([0, 1]);
+      const expectedCoefficients = vectorBuilder.fromArray([0, 1]);
       const expectedApproximator = (x: number) => x;
 
       expect(result.coefficients).to.deep.equal(expectedCoefficients);
@@ -122,7 +125,7 @@ describe('LeastSquares', () => {
 
   describe('calculateGeneralLeastSquaresApproximation', () => {
     it('calculates a quadratic regression', () => {
-      const data = singleVariableTestData.map(pointArray => vectorBuilder.fromData(pointArray));
+      const data = singleVariableTestData.map(pointArray => vectorBuilder.fromArray(pointArray));
       const quadraticTemplate = (coefficients: Vector<number>) => (inputs: Vector<number>) => {
         const x = inputs.getEntry(0);
         const constantTerm = coefficients.getEntry(0);
@@ -133,7 +136,7 @@ describe('LeastSquares', () => {
       const result = calculateGeneralLeastSquaresApproximation(data, quadraticTemplate, 3);
 
       // According to Excel, the trend line equation for this data is y = 3.42 + 0.35x + 0.16x^2
-      const expectedCoefficients = vectorBuilder.fromData([
+      const expectedCoefficients = vectorBuilder.fromArray([
         3.42352941163967,
         0.32502579983316027,
         0.16031991743846064
@@ -172,7 +175,7 @@ describe('LeastSquares', () => {
 
   describe('solveOverdeterminedSystem', () => {
     it('gives an approximate solution to an overdetermined system', () => {
-      const A = matrixBuilder.fromData([
+      const A = matrixBuilder.fromArray([
         [1, 1],
         [1, 2],
         [1, 3],
@@ -192,7 +195,7 @@ describe('LeastSquares', () => {
         [1, 17]
       ]);
 
-      const b = vectorBuilder.fromData([
+      const b = vectorBuilder.fromArray([
         2.2,
         3.5,
         6.1,
@@ -214,20 +217,20 @@ describe('LeastSquares', () => {
 
       const x = solveOverdeterminedSystem(A, b);
 
-      expect(x).to.deep.equal(vectorBuilder.fromData([-5.714705882354778, 3.2107843137256964]));
+      expect(x).to.deep.equal(vectorBuilder.fromArray([-5.714705882354778, 3.2107843137256964]));
     });
 
     it('rejects a system where A is underdetermined', () => {
-      const A = matrixBuilder.fromData([[1, 2, 3], [4, 5, 6]]);
-      const b = vectorBuilder.fromData([1, 2]);
+      const A = matrixBuilder.fromArray([[1, 2, 3], [4, 5, 6]]);
+      const b = vectorBuilder.fromArray([1, 2]);
 
       const solution = solveOverdeterminedSystem(A, b);
       expect(solution).to.not.be.undefined;
     });
 
     it('rejects a system with a dimension mismatch', () => {
-      const A = matrixBuilder.fromData([[1, 2], [3, 4], [5, 6]]);
-      const b = vectorBuilder.fromData([1, 2, 3, 4]);
+      const A = matrixBuilder.fromArray([[1, 2], [3, 4], [5, 6]]);
+      const b = vectorBuilder.fromArray([1, 2, 3, 4]);
 
       expect(() => solveOverdeterminedSystem(A, b)).to.throw();
     });

@@ -16,8 +16,8 @@ describe('Exponential', () => {
     });
 
     it('calculates the exponential of a matrix', () => {
-      const A = matrixBuilder.fromData([[1, 2], [3, 4]]);
-      const expected = matrixBuilder.fromData([
+      const A = matrixBuilder.fromArray([[1, 2], [3, 4]]);
+      const expected = matrixBuilder.fromArray([
         [51.96895679755742, 74.7365654397869],
         [112.1048481596805, 164.073804957238]
       ]);
@@ -26,8 +26,8 @@ describe('Exponential', () => {
     });
 
     it('calculates a more precise exponential', () => {
-      const A = matrixBuilder.fromData([[1, 2], [3, 4]]);
-      const expected = matrixBuilder.fromData([
+      const A = matrixBuilder.fromArray([[1, 2], [3, 4]]);
+      const expected = matrixBuilder.fromArray([
         [51.968956152216535, 74.73656449924971],
         [112.1048467488746, 164.0738029010913]
       ]);
@@ -43,12 +43,12 @@ describe('Exponential', () => {
 
   describe('pow', () => {
     it('calculates a matrix raised to an integral power', () => {
-      const A = matrixBuilder.fromData([[4, 7], [2, 6]]);
-      const aSquared = matrixBuilder.fromData([[30, 70], [20, 50]]);
-      const aCubed = matrixBuilder.fromData([[260, 630], [180, 440]]);
+      const A = matrixBuilder.fromArray([[4, 7], [2, 6]]);
+      const aSquared = matrixBuilder.fromArray([[30, 70], [20, 50]]);
+      const aCubed = matrixBuilder.fromArray([[260, 630], [180, 440]]);
       const I = matrixBuilder.identity(2);
-      const aInv = matrixBuilder.fromData([[0.6, -0.7], [-0.2, 0.4]]);
-      const aNegTwo = matrixBuilder.fromData([[0.5, -0.7], [-0.2, 0.3]]);
+      const aInv = matrixBuilder.fromArray([[0.6, -0.7], [-0.2, 0.4]]);
+      const aNegTwo = matrixBuilder.fromArray([[0.5, -0.7], [-0.2, 0.3]]);
 
       expect(pow(A, 1)).to.deep.equal(A);
       expect(pow(A, 2)).to.deep.equal(aSquared);
@@ -59,7 +59,7 @@ describe('Exponential', () => {
     });
 
     it('throws an error for a negative power of a singular matrix', () => {
-      const S = matrixBuilder.fromData([[1, 1], [1, 1]]);
+      const S = matrixBuilder.fromArray([[1, 1], [1, 1]]);
       expect(() => pow(S, -3)).to.throw();
     });
 

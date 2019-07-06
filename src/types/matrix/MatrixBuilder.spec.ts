@@ -11,23 +11,23 @@ describe('MatrixBuilder', () => {
   const matrixBuilder = new MatrixBuilder(NumberMatrix);
   const vectorBuilder = new VectorBuilder(NumberVector);
 
-  describe('fromData', () => {
+  describe('fromArray', () => {
     it('builds a matrix from a 2D array of values', () => {
       const data = [[1, 2, 3], [4, 5, 6]];
-      expect(matrixBuilder.fromData(data).getData()).to.deep.equal(data);
+      expect(matrixBuilder.fromArray(data).getData()).to.deep.equal(data);
     });
 
     it('handles an empty array', () => {
-      expect(matrixBuilder.fromData([]).getData()).to.deep.equal([]);
+      expect(matrixBuilder.fromArray([]).getData()).to.deep.equal([]);
     });
 
     it('handles an array of empty arrays', () => {
-      expect(matrixBuilder.fromData([[], [], []]).getData()).to.deep.equal([]);
+      expect(matrixBuilder.fromArray([[], [], []]).getData()).to.deep.equal([]);
     });
   });
 
   describe('fromNumberData', () => {
-    it('behaves exactly like fromData for a NumberMatrix', () => {
+    it('behaves exactly like fromArray for a NumberMatrix', () => {
       const data = [[1, 2, 3], [4, 5, 6]];
       expect(matrixBuilder.fromNumberData(data).getData()).to.deep.equal(data);
     });
@@ -35,7 +35,7 @@ describe('MatrixBuilder', () => {
     it('builds a complex matrix from number data', () => {
       const complexMatrixBuilder = ComplexMatrix.builder();
       const data = [[1, 2, 3], [4, 5, 6]];
-      const expected = complexMatrixBuilder.fromData([
+      const expected = complexMatrixBuilder.fromArray([
         [new ComplexNumber(1, 0), new ComplexNumber(2, 0), new ComplexNumber(3, 0)],
         [new ComplexNumber(4, 0), new ComplexNumber(5, 0), new ComplexNumber(6, 0)]
       ]);
@@ -44,11 +44,11 @@ describe('MatrixBuilder', () => {
     });
 
     it('handles an empty array', () => {
-      expect(matrixBuilder.fromData([]).getData()).to.deep.equal([]);
+      expect(matrixBuilder.fromArray([]).getData()).to.deep.equal([]);
     });
 
     it('handles an array of empty arrays', () => {
-      expect(matrixBuilder.fromData([[], [], []]).getData()).to.deep.equal([]);
+      expect(matrixBuilder.fromArray([[], [], []]).getData()).to.deep.equal([]);
     });
   });
 
@@ -56,7 +56,7 @@ describe('MatrixBuilder', () => {
     it('builds a matrix from column vectors', () => {
       const first = vectorBuilder.fromValues(1, 2, 3);
       const second = vectorBuilder.fromValues(4, 5, 6);
-      const expected = matrixBuilder.fromData([[1, 4], [2, 5], [3, 6]]);
+      const expected = matrixBuilder.fromArray([[1, 4], [2, 5], [3, 6]]);
 
       expect(matrixBuilder.fromColumnVectors([first, second])).to.deep.equal(expected);
     });
@@ -71,7 +71,7 @@ describe('MatrixBuilder', () => {
     it('builds a matrix from row vectors', () => {
       const first = vectorBuilder.fromValues(1, 2, 3);
       const second = vectorBuilder.fromValues(4, 5, 6);
-      const expected = matrixBuilder.fromData([[1, 2, 3], [4, 5, 6]]);
+      const expected = matrixBuilder.fromArray([[1, 2, 3], [4, 5, 6]]);
 
       expect(matrixBuilder.fromRowVectors([first, second])).to.deep.equal(expected);
     });
@@ -107,11 +107,11 @@ describe('MatrixBuilder', () => {
 
   describe('map', () => {
     it('builds a matrix by transforming the values of another matrix', () => {
-      const original = matrixBuilder.fromData([[1, 2, 3], [4, 5, 6]]);
+      const original = matrixBuilder.fromArray([[1, 2, 3], [4, 5, 6]]);
 
       const mapped = matrixBuilder.map(original, (entry, i, j) => entry + i - j);
 
-      const expected = matrixBuilder.fromData([[1, 1, 1], [5, 5, 5]]);
+      const expected = matrixBuilder.fromArray([[1, 1, 1], [5, 5, 5]]);
 
       expect(mapped).to.deep.equal(expected);
     });
@@ -247,7 +247,7 @@ describe('MatrixBuilder', () => {
   describe('hilbert', () => {
     it('constructs a Hilbert matrix', () => {
       const hilbert = matrixBuilder.hilbert(3);
-      const expected = matrixBuilder.fromData([
+      const expected = matrixBuilder.fromArray([
         [1, 1 / 2, 1 / 3],
         [1 / 2, 1 / 3, 1 / 4],
         [1 / 3, 1 / 4, 1 / 5]
@@ -266,17 +266,17 @@ describe('MatrixBuilder', () => {
 
   describe('toeplitz', () => {
     it('constructs a toeplitz matrix with the default first row', () => {
-      const toeplitz = matrixBuilder.toeplitz(vectorBuilder.fromData([1, 2, 3]));
-      const expected = matrixBuilder.fromData([[1, 2, 3], [2, 1, 2], [3, 2, 1]]);
+      const toeplitz = matrixBuilder.toeplitz(vectorBuilder.fromArray([1, 2, 3]));
+      const expected = matrixBuilder.fromArray([[1, 2, 3], [2, 1, 2], [3, 2, 1]]);
       expect(toeplitz).to.deep.equal(expected);
     });
 
     it('constructs a toeplitz matrix with a specified first row', () => {
       const toeplitz = matrixBuilder.toeplitz(
-        vectorBuilder.fromData([1, 2, 3]),
-        vectorBuilder.fromData([1, 3, 5, 7])
+        vectorBuilder.fromArray([1, 2, 3]),
+        vectorBuilder.fromArray([1, 3, 5, 7])
       );
-      const expected = matrixBuilder.fromData([[1, 3, 5, 7], [2, 1, 3, 5], [3, 2, 1, 3]]);
+      const expected = matrixBuilder.fromArray([[1, 3, 5, 7], [2, 1, 3, 5], [3, 2, 1, 3]]);
       expect(toeplitz).to.deep.equal(expected);
     });
 
@@ -287,15 +287,15 @@ describe('MatrixBuilder', () => {
 
     it('rejects an entry mismatch', () => {
       expect(() =>
-        matrixBuilder.toeplitz(vectorBuilder.fromData([1, 2]), vectorBuilder.fromData([2, 1]))
+        matrixBuilder.toeplitz(vectorBuilder.fromArray([1, 2]), vectorBuilder.fromArray([2, 1]))
       ).to.throw();
     });
   });
 
   describe('hankel', () => {
     it('constructs a hankel matrix with the default last row', () => {
-      const hankel = matrixBuilder.hankel(vectorBuilder.fromData([2, 4, 6, 8]));
-      const expected = matrixBuilder.fromData([
+      const hankel = matrixBuilder.hankel(vectorBuilder.fromArray([2, 4, 6, 8]));
+      const expected = matrixBuilder.fromArray([
         [2, 4, 6, 8],
         [4, 6, 8, 0],
         [6, 8, 0, 0],
@@ -306,19 +306,19 @@ describe('MatrixBuilder', () => {
 
     it('constructs a "narrow" hankel matrix with a specified last row', () => {
       const hankel = matrixBuilder.hankel(
-        vectorBuilder.fromData([1, 2, 3, 4]),
-        vectorBuilder.fromData([4, 9, 9])
+        vectorBuilder.fromArray([1, 2, 3, 4]),
+        vectorBuilder.fromArray([4, 9, 9])
       );
-      const expected = matrixBuilder.fromData([[1, 2, 3], [2, 3, 4], [3, 4, 9], [4, 9, 9]]);
+      const expected = matrixBuilder.fromArray([[1, 2, 3], [2, 3, 4], [3, 4, 9], [4, 9, 9]]);
       expect(hankel).to.deep.equal(expected);
     });
 
     it('constructs a "wide" hankel matrix with a specified last row', () => {
       const hankel = matrixBuilder.hankel(
-        vectorBuilder.fromData([1, 2, 3]),
-        vectorBuilder.fromData([3, 9, 9, 9])
+        vectorBuilder.fromArray([1, 2, 3]),
+        vectorBuilder.fromArray([3, 9, 9, 9])
       );
-      const expected = matrixBuilder.fromData([[1, 2, 3, 9], [2, 3, 9, 9], [3, 9, 9, 9]]);
+      const expected = matrixBuilder.fromArray([[1, 2, 3, 9], [2, 3, 9, 9], [3, 9, 9, 9]]);
       expect(hankel).to.deep.equal(expected);
     });
 
@@ -333,7 +333,7 @@ describe('MatrixBuilder', () => {
 
     it('rejects an entry mismatch', () => {
       expect(() =>
-        matrixBuilder.hankel(vectorBuilder.fromData([1, 2]), vectorBuilder.fromData([1, 2]))
+        matrixBuilder.hankel(vectorBuilder.fromArray([1, 2]), vectorBuilder.fromArray([1, 2]))
       ).to.throw();
     });
   });
@@ -341,7 +341,7 @@ describe('MatrixBuilder', () => {
   describe('pascal', () => {
     it('constructs a lower-triangular pascal matrix', () => {
       const lower = matrixBuilder.pascal(5);
-      const expected = matrixBuilder.fromData([
+      const expected = matrixBuilder.fromArray([
         [1, 0, 0, 0, 0],
         [1, 1, 0, 0, 0],
         [1, 2, 1, 0, 0],
@@ -353,7 +353,7 @@ describe('MatrixBuilder', () => {
 
     it('constructs a upper-triangular pascal matrix', () => {
       const upper = matrixBuilder.pascal(5, true);
-      const expected = matrixBuilder.fromData([
+      const expected = matrixBuilder.fromArray([
         [1, 1, 1, 1, 1],
         [0, 1, 2, 3, 4],
         [0, 0, 1, 3, 6],
@@ -371,7 +371,7 @@ describe('MatrixBuilder', () => {
   describe('pascalSymmetric', () => {
     it('constructs a symmetric pascal matrix', () => {
       const pascal = matrixBuilder.pascalSymmetric(5);
-      const expected = matrixBuilder.fromData([
+      const expected = matrixBuilder.fromArray([
         [1, 1, 1, 1, 1],
         [1, 2, 3, 4, 5],
         [1, 3, 6, 10, 15],
@@ -388,9 +388,9 @@ describe('MatrixBuilder', () => {
 
   describe('circulant', () => {
     it('constructs a circulant matrix', () => {
-      const entries = vectorBuilder.fromData([1, 2, 3]);
+      const entries = vectorBuilder.fromArray([1, 2, 3]);
       const circulant = matrixBuilder.circulant(entries);
-      const expected = matrixBuilder.fromData([[1, 3, 2], [2, 1, 3], [3, 2, 1]]);
+      const expected = matrixBuilder.fromArray([[1, 3, 2], [2, 1, 3], [3, 2, 1]]);
       expect(circulant).to.deep.equal(expected);
     });
 
@@ -470,8 +470,8 @@ describe('MatrixBuilder', () => {
 
   describe('diagonal', () => {
     it('constructs a diagonal matrix with the given diagonal entries', () => {
-      const diagonalEntries = vectorBuilder.fromData([1, 2, 3]);
-      const expected = matrixBuilder.fromData([[1, 0, 0], [0, 2, 0], [0, 0, 3]]);
+      const diagonalEntries = vectorBuilder.fromArray([1, 2, 3]);
+      const expected = matrixBuilder.fromArray([[1, 0, 0], [0, 2, 0], [0, 0, 3]]);
 
       expect(matrixBuilder.diagonal(diagonalEntries).equals(expected)).to.be.true;
     });
@@ -485,7 +485,7 @@ describe('MatrixBuilder', () => {
 
   describe('tridiagonal', () => {
     it('constructs a tridiagonal matrix based on the primary diagonal and two off-diagonals', () => {
-      const expected = matrixBuilder.fromData([
+      const expected = matrixBuilder.fromArray([
         [2, 3, 0, 0, 0],
         [1, 2, 3, 0, 0],
         [0, 1, 2, 3, 0],
@@ -524,7 +524,7 @@ describe('MatrixBuilder', () => {
       const ones = matrixBuilder.ones(2);
       const twos = matrixBuilder.fill(2, 3);
       const blockDiagonal = matrixBuilder.blockDiagonal([ones, twos, ones]);
-      const expected = matrixBuilder.fromData([
+      const expected = matrixBuilder.fromArray([
         [1, 1, 0, 0, 0, 0, 0],
         [1, 1, 0, 0, 0, 0, 0],
         [0, 0, 2, 2, 2, 0, 0],
@@ -552,7 +552,7 @@ describe('MatrixBuilder', () => {
     it('horizontally concatenates two matrices', () => {
       const first = matrixBuilder.identity(2);
       const second = matrixBuilder.ones(2);
-      const expected = matrixBuilder.fromData([[1, 0, 1, 1], [0, 1, 1, 1]]);
+      const expected = matrixBuilder.fromArray([[1, 0, 1, 1], [0, 1, 1, 1]]);
 
       expect(matrixBuilder.augment(first, second).equals(expected)).to.be.true;
     });
@@ -578,7 +578,7 @@ describe('MatrixBuilder', () => {
 
       const grid = [[A, B], [C, D]];
 
-      const expected = matrixBuilder.fromData([
+      const expected = matrixBuilder.fromArray([
         [1, 0, 1, 1],
         [0, 1, 1, 1],
         [0, 0, 2, 0],
@@ -596,7 +596,7 @@ describe('MatrixBuilder', () => {
 
       const grid = [[A, B], [C, D]];
 
-      const expected = matrixBuilder.fromData([
+      const expected = matrixBuilder.fromArray([
         [1, 0, 0, 0],
         [0, 1, 1, 1],
         [0, 1, 1, 1],
@@ -616,9 +616,9 @@ describe('MatrixBuilder', () => {
 
   describe('repeat', () => {
     it('constructs a matrix by repeating a smaller matrix', () => {
-      const A = matrixBuilder.fromData([[1, 2], [3, 4]]);
+      const A = matrixBuilder.fromArray([[1, 2], [3, 4]]);
 
-      const expected = matrixBuilder.fromData([
+      const expected = matrixBuilder.fromArray([
         [1, 2, 1, 2, 1, 2],
         [3, 4, 3, 4, 3, 4],
         [1, 2, 1, 2, 1, 2],
@@ -630,16 +630,16 @@ describe('MatrixBuilder', () => {
   });
 
   describe('slice', () => {
-    const A = matrixBuilder.fromData([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]);
+    const A = matrixBuilder.fromArray([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]);
 
     it('includes the start indices but excludes the end indices', () => {
-      let expectedSlice = matrixBuilder.fromData([[1, 2], [5, 6]]);
+      let expectedSlice = matrixBuilder.fromArray([[1, 2], [5, 6]]);
       expect(matrixBuilder.slice(A, 0, 0, 2, 2).equals(expectedSlice)).to.be.true;
 
-      expectedSlice = matrixBuilder.fromData([[1, 2, 3]]);
+      expectedSlice = matrixBuilder.fromArray([[1, 2, 3]]);
       expect(matrixBuilder.slice(A, 0, 0, 1, 3).equals(expectedSlice)).to.be.true;
 
-      expectedSlice = matrixBuilder.fromData([[1], [5], [9]]);
+      expectedSlice = matrixBuilder.fromArray([[1], [5], [9]]);
       expect(matrixBuilder.slice(A, 0, 0, 3, 1).equals(expectedSlice)).to.be.true;
     });
 
@@ -648,7 +648,7 @@ describe('MatrixBuilder', () => {
     });
 
     it('defaults to the end of the matrix when no end indices are given', () => {
-      const expectedSlice = matrixBuilder.fromData([[6, 7, 8], [10, 11, 12]]);
+      const expectedSlice = matrixBuilder.fromArray([[6, 7, 8], [10, 11, 12]]);
       expect(matrixBuilder.slice(A, 1, 1).equals(expectedSlice)).to.be.true;
     });
 
@@ -660,9 +660,9 @@ describe('MatrixBuilder', () => {
 
   describe('exclude', () => {
     it('removes a row and column from the original matrix', () => {
-      const original = matrixBuilder.fromData([[1, 2, 3], [4, 5, 6], [7, 8, 9]]);
+      const original = matrixBuilder.fromArray([[1, 2, 3], [4, 5, 6], [7, 8, 9]]);
 
-      const expected = matrixBuilder.fromData([[1, 2], [7, 8]]);
+      const expected = matrixBuilder.fromArray([[1, 2], [7, 8]]);
 
       const removedRow1Col2 = matrixBuilder.exclude(original, 1, 2);
 
@@ -670,7 +670,7 @@ describe('MatrixBuilder', () => {
     });
 
     it('rejects invalid indices', () => {
-      const original = matrixBuilder.fromData([[1, 2, 3], [4, 5, 6], [7, 8, 9]]);
+      const original = matrixBuilder.fromArray([[1, 2, 3], [4, 5, 6], [7, 8, 9]]);
 
       expect(() => matrixBuilder.exclude(original, -1, 1)).to.throw();
       expect(() => matrixBuilder.exclude(original, 1, -1)).to.throw();

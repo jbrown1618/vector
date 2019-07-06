@@ -45,7 +45,7 @@ export abstract class ArrayMatrix<S> implements Matrix<S> {
         adjointData[i][j] = this.ops().conjugate(entry);
       });
     });
-    return this.builder().fromData(adjointData);
+    return this.builder().fromArray(adjointData);
   }
 
   /**
@@ -174,7 +174,7 @@ export abstract class ArrayMatrix<S> implements Matrix<S> {
    * @inheritdoc
    */
   public getRowVectors(): Vector<S>[] {
-    return this._data.map((dataRow: VectorData<S>) => this.vectorBuilder().fromData(dataRow));
+    return this._data.map((dataRow: VectorData<S>) => this.vectorBuilder().fromArray(dataRow));
   }
 
   /**
@@ -185,7 +185,7 @@ export abstract class ArrayMatrix<S> implements Matrix<S> {
       throw new Error('Dimension mismatch');
     }
 
-    return this.builder().fromData(
+    return this.builder().fromArray(
       this.getRowVectors().map(row =>
         other.getColumnVectors().map(column => row.innerProduct(column))
       )
@@ -208,7 +208,7 @@ export abstract class ArrayMatrix<S> implements Matrix<S> {
     assertValidMatrixIndex(this, rowIndex, columnIndex);
     const copy = this.getData();
     copy[rowIndex][columnIndex] = value;
-    return this.builder().fromData(copy);
+    return this.builder().fromArray(copy);
   }
 
   /**
