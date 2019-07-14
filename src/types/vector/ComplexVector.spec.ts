@@ -13,12 +13,12 @@ describe('ComplexVector', () => {
   describe('constructors', () => {
     it('can be constructed from an array', () => {
       const data = [ComplexNumber.ONE, new ComplexNumber(2, 0), new ComplexNumber(3, 0)];
-      expect(builder.fromArray(data).getData()).to.deep.equal(data);
+      expect(builder.fromArray(data).toArray()).to.deep.equal(data);
     });
 
     it('can be constructed from values', () => {
       const data = complexify([1, 2, 3, 4]);
-      expect(builder.fromValues(...data).getData()).to.deep.equal(data);
+      expect(builder.fromValues(...data).toArray()).to.deep.equal(data);
     });
 
     it('handles the degenerate case', () => {
@@ -50,7 +50,7 @@ describe('ComplexVector', () => {
       const first = builder.fromArray(complexify([1, 2, 3]));
       const second = builder.fromArray(complexify([4, 5, 6]));
 
-      expect(first.add(second).getData()).to.deep.equal([
+      expect(first.add(second).toArray()).to.deep.equal([
         new ComplexNumber(5, 0),
         new ComplexNumber(7, 0),
         new ComplexNumber(9, 0)
@@ -74,7 +74,7 @@ describe('ComplexVector', () => {
       const sum = firstEmpty.add(secondEmpty);
 
       expect(sum.getDimension()).to.equal(0);
-      expect(sum.getData()).to.deep.equal([]);
+      expect(sum.toArray()).to.deep.equal([]);
     });
   });
 
@@ -83,14 +83,14 @@ describe('ComplexVector', () => {
       const vector = builder.fromArray(complexify([1, 2, 3]));
       const scalar = new ComplexNumber(2, 0);
 
-      expect(vector.scalarMultiply(scalar).getData()).to.deep.equal(complexify([2, 4, 6]));
+      expect(vector.scalarMultiply(scalar).toArray()).to.deep.equal(complexify([2, 4, 6]));
     });
 
     it('handles the degenerate case', () => {
       const empty = builder.fromValues();
 
       expect(empty.scalarMultiply(new ComplexNumber(2, 0)).getDimension()).to.equal(0);
-      expect(empty.scalarMultiply(new ComplexNumber(2, 0)).getData()).to.deep.equal([]);
+      expect(empty.scalarMultiply(new ComplexNumber(2, 0)).toArray()).to.deep.equal([]);
     });
   });
 
@@ -136,15 +136,15 @@ describe('ComplexVector', () => {
       const second = builder.fromArray(complexify([3, 4, 5]));
       const expectedData = [complexify([3, 4, 5]), complexify([6, 8, 10])];
 
-      expect(first.outerProduct(second).getData()).to.deep.equal(expectedData);
+      expect(first.outerProduct(second).toArray()).to.deep.equal(expectedData);
     });
 
     it('handles the degenerate case', () => {
       const empty = builder.fromArray([]);
       const nonEmpty = builder.fromArray(complexify([1, 2, 3]));
 
-      expect(empty.outerProduct(nonEmpty).getData()).to.deep.equal([]);
-      expect(nonEmpty.outerProduct(empty).getData()).to.deep.equal([]);
+      expect(empty.outerProduct(nonEmpty).toArray()).to.deep.equal([]);
+      expect(nonEmpty.outerProduct(empty).toArray()).to.deep.equal([]);
     });
   });
 

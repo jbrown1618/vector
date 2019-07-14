@@ -22,7 +22,7 @@ export class VectorBuilder<S, V extends Vector<S>> {
     return new this._vectorConstructor(data);
   }
 
-  public fromNumberData(data: VectorData<number>): V {
+  public fromNumberArray(data: VectorData<number>): V {
     const ops = this.ops();
     return this.fromArray(data.map(num => ops.fromNumber(num)));
   }
@@ -76,7 +76,7 @@ export class VectorBuilder<S, V extends Vector<S>> {
    * @returns The new vector
    */
   public map(vector: Vector<S>, valueFromEntry: VectorEntryFunction<S>): V {
-    return this.fromArray(vector.getData().map(valueFromEntry));
+    return this.fromArray(vector.toArray().map(valueFromEntry));
   }
 
   /**
@@ -221,7 +221,7 @@ export class VectorBuilder<S, V extends Vector<S>> {
    * @returns The new vector
    */
   public concatenate(first: Vector<S>, second: Vector<S>): V {
-    return this.fromArray([...first.getData(), ...second.getData()]);
+    return this.fromArray([...first.toArray(), ...second.toArray()]);
   }
 
   private ops(): ScalarOperations<S> {

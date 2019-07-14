@@ -56,7 +56,7 @@ export function addScalarMultipleOfRowToRow<S>(
   assertValidMatrixIndex(matrix, rowToAdd, 0);
 
   const ops = matrix.ops();
-  const data = matrix.getData();
+  const data = matrix.toArray();
   for (let j = 0; j < matrix.getNumberOfColumns(); j++) {
     data[targetRow][j] = ops.add(data[targetRow][j], ops.multiply(scalar, data[rowToAdd][j]));
   }
@@ -76,8 +76,8 @@ export function exchangeRows<S>(matrix: Matrix<S>, first: number, second: number
   assertValidMatrixIndex(matrix, first, 0);
   assertValidMatrixIndex(matrix, second, 0);
 
-  const dataCopy = matrix.getData();
-  const data = matrix.getData();
+  const dataCopy = matrix.toArray();
+  const data = matrix.toArray();
 
   data[second] = dataCopy[first];
   data[first] = dataCopy[second];
@@ -124,7 +124,7 @@ export function pivot<S>(matrix: Matrix<S>): RowOperationResult<S> {
 function getNumberOfLeadingZeros<S>(v: Vector<S>) {
   const ops = v.ops();
   let zeros = 0;
-  for (const item of v.getData()) {
+  for (const item of v.toArray()) {
     if (ops.equals(item, ops.zero())) {
       ++zeros;
     } else {

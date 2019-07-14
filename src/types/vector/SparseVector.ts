@@ -50,7 +50,7 @@ export abstract class SparseVector<S> implements Vector<S> {
   /**
    * @inheritdoc
    */
-  public getData(): S[] {
+  public toArray(): S[] {
     const data: S[] = [];
     for (let i = 0; i < this.getDimension(); i++) {
       data[i] = this.getEntry(i);
@@ -95,9 +95,9 @@ export abstract class SparseVector<S> implements Vector<S> {
       return this.matrixBuilder().fromArray(matrixData);
     }
 
-    this.getData().forEach((thisValue, rowIndex) => {
+    this.toArray().forEach((thisValue, rowIndex) => {
       matrixData[rowIndex] = [];
-      other.getData().forEach((otherValue, columnIndex) => {
+      other.toArray().forEach((otherValue, columnIndex) => {
         matrixData[rowIndex][columnIndex] = this.ops().multiply(thisValue, otherValue);
       });
     });
@@ -136,7 +136,7 @@ export abstract class SparseVector<S> implements Vector<S> {
     }
 
     return other
-      .getData()
+      .toArray()
       .map((entry, i) => this.ops().equals(this.getEntry(i), entry))
       .reduce((all, current) => all && current, true);
   }

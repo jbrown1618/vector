@@ -61,7 +61,7 @@ export function reducedRowEchelonForm<S>(matrix: Matrix<S>): Matrix<S> {
   for (let pivotRow = maxNumberOfPivotEntries - 1; pivotRow >= 0; pivotRow--) {
     const pivotColumn = matrix
       .getRow(pivotRow)
-      .getData()
+      .toArray()
       .indexOf(matrix.ops().one());
     if (pivotColumn === -1) {
       continue;

@@ -10,29 +10,29 @@ describe('VectorBuilder', () => {
   describe('fromValues', () => {
     it('builds a vector whose elements are the provided arguments', () => {
       const data = [1, 2, 3, 4, 5];
-      expect(builder.fromValues(...data).getData()).to.deep.equal(data);
+      expect(builder.fromValues(...data).toArray()).to.deep.equal(data);
     });
 
     it('handles no arguments', () => {
-      expect(builder.fromValues().getData()).to.deep.equal([]);
+      expect(builder.fromValues().toArray()).to.deep.equal([]);
     });
   });
 
   describe('fromArray', () => {
     it('builds a vector from an array of data values', () => {
       const data = [1, 2, 3, 4, 5];
-      expect(builder.fromArray(data).getData()).to.deep.equal(data);
+      expect(builder.fromArray(data).toArray()).to.deep.equal(data);
     });
 
     it('handles an empty array', () => {
-      expect(builder.fromArray([]).getData()).to.deep.equal([]);
+      expect(builder.fromArray([]).toArray()).to.deep.equal([]);
     });
   });
 
-  describe('fromNumberData', () => {
+  describe('fromNumberArray', () => {
     it('builds a vector from an array of numbers', () => {
       const data = [1, 2, 3, 4, 5];
-      expect(builder.fromNumberData(data).getData()).to.deep.equal(data);
+      expect(builder.fromNumberArray(data).toArray()).to.deep.equal(data);
     });
 
     it('builds a complex vector from numbers', () => {
@@ -42,11 +42,11 @@ describe('VectorBuilder', () => {
         new ComplexNumber(2, 0),
         new ComplexNumber(3, 0)
       ]);
-      expect(ComplexVector.builder().fromNumberData(data)).to.deep.equal(expected);
+      expect(ComplexVector.builder().fromNumberArray(data)).to.deep.equal(expected);
     });
 
     it('handles an empty array', () => {
-      expect(builder.fromArray([]).getData()).to.deep.equal([]);
+      expect(builder.fromArray([]).toArray()).to.deep.equal([]);
     });
   });
 
@@ -96,7 +96,7 @@ describe('VectorBuilder', () => {
     it('returns an empty vector', () => {
       const E = builder.empty();
       expect(E.getDimension()).to.equal(0);
-      expect(E.getData()).to.deep.equal([]);
+      expect(E.toArray()).to.deep.equal([]);
     });
   });
 
@@ -106,7 +106,7 @@ describe('VectorBuilder', () => {
         const filled = builder.fill(value, dim);
         expect(filled.getDimension()).to.equal(dim);
         const allCorrectValue = filled
-          .getData()
+          .toArray()
           .map((entry: number) => entry === value)
           .reduce((all: boolean, current: boolean) => all && current, true);
         expect(allCorrectValue).to.be.true;
@@ -130,7 +130,7 @@ describe('VectorBuilder', () => {
         const zeros = builder.zeros(dim);
         expect(zeros.getDimension()).to.equal(dim);
         const allZero = zeros
-          .getData()
+          .toArray()
           .map((entry: number) => entry === 0)
           .reduce((all: boolean, current: boolean) => all && current, true);
         expect(allZero).to.be.true;
@@ -152,7 +152,7 @@ describe('VectorBuilder', () => {
         const ones = builder.ones(dim);
         expect(ones.getDimension()).to.equal(dim);
         const allOne = ones
-          .getData()
+          .toArray()
           .map(entry => entry === 1)
           .reduce((all, current) => all && current, true);
         expect(allOne).to.be.true;
@@ -174,7 +174,7 @@ describe('VectorBuilder', () => {
         const e = builder.elementaryVector(dim, pos);
         expect(e.getDimension()).to.equal(dim);
         const allCorrect = e
-          .getData()
+          .toArray()
           .map((entry, i) => entry === (i === pos ? 1 : 0))
           .reduce((all, current) => all && current, true);
         expect(allCorrect).to.be.true;
@@ -228,7 +228,7 @@ describe('VectorBuilder', () => {
         bounds.forEach(max => {
           if (max > min) {
             const randomVector = builder.random(100, min, max);
-            randomVector.getData().forEach(value => {
+            randomVector.toArray().forEach(value => {
               expect(value).to.be.greaterThan(min);
               expect(value).to.be.lessThan(max);
             });
@@ -239,7 +239,7 @@ describe('VectorBuilder', () => {
 
     it('defaults to min = 0 and max = 1', () => {
       const randomVector = builder.random(50);
-      randomVector.getData().forEach(value => {
+      randomVector.toArray().forEach(value => {
         expect(value).to.be.greaterThan(0);
         expect(value).to.be.lessThan(1);
       });
@@ -260,7 +260,7 @@ describe('VectorBuilder', () => {
       means.forEach(mean => {
         standardDeviations.forEach(standardDeviation => {
           const randomVector = builder.randomNormal(100, mean, standardDeviation);
-          const average = randomVector.getData().reduce((accum, next) => accum + next, 0) / 100;
+          const average = randomVector.toArray().reduce((accum, next) => accum + next, 0) / 100;
 
           const fourSamplingSDFromMean =
             4 * Math.sqrt((standardDeviation * standardDeviation) / 100);
@@ -271,7 +271,7 @@ describe('VectorBuilder', () => {
 
     it('defaults to mean=0 and sd=1', () => {
       const randomVector = builder.randomNormal(100);
-      const average = randomVector.getData().reduce((accum, next) => accum + next, 0) / 100;
+      const average = randomVector.toArray().reduce((accum, next) => accum + next, 0) / 100;
 
       const fourSamplingSDFromMean = 0.4;
       expect(Math.abs(average)).to.be.lessThan(fourSamplingSDFromMean);

@@ -25,14 +25,14 @@ function prettyPrintNumber(num: number): string {
 function prettyPrintVector<S>(vector: Vector<S>): string {
   const ops = vector.ops();
   const width = getPrintWidth(vector);
-  const prettyData = vector.getData().map(val => ops.prettyPrint(val));
+  const prettyData = vector.toArray().map(val => ops.prettyPrint(val));
   return prettyData.map(value => '[ ' + spaces(width - value.length) + value + ' ]').join('\n');
 }
 
 function prettyPrintMatrix<S>(matrix: Matrix<S>): string {
   const ops = matrix.ops();
   const widthByCol = matrix.getColumnVectors().map(col => getPrintWidth(col));
-  const prettyData = matrix.getData().map(rowArr => rowArr.map(val => ops.prettyPrint(val)));
+  const prettyData = matrix.toArray().map(rowArr => rowArr.map(val => ops.prettyPrint(val)));
 
   return prettyData
     .map(
@@ -46,7 +46,7 @@ function prettyPrintMatrix<S>(matrix: Matrix<S>): string {
 
 function getPrintWidth<S>(v: Vector<S>): number {
   return v
-    .getData()
+    .toArray()
     .map(val => v.ops().prettyPrint(val))
     .map(str => str.length)
     .reduce((max, curr) => (curr > max ? curr : max), 0);

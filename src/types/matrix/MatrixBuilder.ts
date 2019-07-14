@@ -24,14 +24,14 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
     return new this._matrixConstructor(data);
   }
 
-  public fromNumberData(numberData: MatrixData<number>): M {
+  public fromNumberArray(numberData: MatrixData<number>): M {
     const ops = this.ops();
     const data = numberData.map(dataRow => dataRow.map(num => ops.fromNumber(num)));
     return this.fromArray(data);
   }
 
   public fromSparseData(numRows: number, numCols: number, sparseData: SparseMatrixData<S>): M {
-    const data: S[][] = this.zeros(numRows, numCols).getData();
+    const data: S[][] = this.zeros(numRows, numCols).toArray();
     sparseData.forEach((sparseRowData, rowIndex) => {
       sparseRowData.forEach((value, colIndex) => {
         data[rowIndex][colIndex] = value;
@@ -641,7 +641,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
       .reduce((accumulator: Matrix<S>, row: Matrix<S>) => {
         return this.stack(accumulator, row);
       })
-      .getData();
+      .toArray();
 
     return this.fromArray(data);
   }

@@ -34,7 +34,7 @@ export interface Vector<S> {
   /**
    * @returns The contents of the vector as an array
    */
-  getData(): S[];
+  toArray(): S[];
 
   /**
    * @returns The contents of the vector as a map of indices to nonzero values

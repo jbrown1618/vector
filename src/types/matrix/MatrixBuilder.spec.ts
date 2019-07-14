@@ -14,22 +14,22 @@ describe('MatrixBuilder', () => {
   describe('fromArray', () => {
     it('builds a matrix from a 2D array of values', () => {
       const data = [[1, 2, 3], [4, 5, 6]];
-      expect(matrixBuilder.fromArray(data).getData()).to.deep.equal(data);
+      expect(matrixBuilder.fromArray(data).toArray()).to.deep.equal(data);
     });
 
     it('handles an empty array', () => {
-      expect(matrixBuilder.fromArray([]).getData()).to.deep.equal([]);
+      expect(matrixBuilder.fromArray([]).toArray()).to.deep.equal([]);
     });
 
     it('handles an array of empty arrays', () => {
-      expect(matrixBuilder.fromArray([[], [], []]).getData()).to.deep.equal([]);
+      expect(matrixBuilder.fromArray([[], [], []]).toArray()).to.deep.equal([]);
     });
   });
 
-  describe('fromNumberData', () => {
+  describe('fromNumberArray', () => {
     it('behaves exactly like fromArray for a NumberMatrix', () => {
       const data = [[1, 2, 3], [4, 5, 6]];
-      expect(matrixBuilder.fromNumberData(data).getData()).to.deep.equal(data);
+      expect(matrixBuilder.fromNumberArray(data).toArray()).to.deep.equal(data);
     });
 
     it('builds a complex matrix from number data', () => {
@@ -40,15 +40,15 @@ describe('MatrixBuilder', () => {
         [new ComplexNumber(4, 0), new ComplexNumber(5, 0), new ComplexNumber(6, 0)]
       ]);
 
-      expect(complexMatrixBuilder.fromNumberData(data)).to.deep.equal(expected);
+      expect(complexMatrixBuilder.fromNumberArray(data)).to.deep.equal(expected);
     });
 
     it('handles an empty array', () => {
-      expect(matrixBuilder.fromArray([]).getData()).to.deep.equal([]);
+      expect(matrixBuilder.fromArray([]).toArray()).to.deep.equal([]);
     });
 
     it('handles an array of empty arrays', () => {
-      expect(matrixBuilder.fromArray([[], [], []]).getData()).to.deep.equal([]);
+      expect(matrixBuilder.fromArray([[], [], []]).toArray()).to.deep.equal([]);
     });
   });
 
@@ -62,8 +62,8 @@ describe('MatrixBuilder', () => {
     });
 
     it('handles an empty array', () => {
-      expect(matrixBuilder.fromColumnVectors([]).getData()).to.deep.equal([]);
-      expect(matrixBuilder.fromColumnVectors([vectorBuilder.empty()]).getData()).to.deep.equal([]);
+      expect(matrixBuilder.fromColumnVectors([]).toArray()).to.deep.equal([]);
+      expect(matrixBuilder.fromColumnVectors([vectorBuilder.empty()]).toArray()).to.deep.equal([]);
     });
   });
 
@@ -77,8 +77,8 @@ describe('MatrixBuilder', () => {
     });
 
     it('handles an empty array', () => {
-      expect(matrixBuilder.fromRowVectors([]).getData()).to.deep.equal([]);
-      expect(matrixBuilder.fromRowVectors([vectorBuilder.empty()]).getData()).to.deep.equal([]);
+      expect(matrixBuilder.fromRowVectors([]).toArray()).to.deep.equal([]);
+      expect(matrixBuilder.fromRowVectors([vectorBuilder.empty()]).toArray()).to.deep.equal([]);
     });
   });
 
@@ -87,14 +87,14 @@ describe('MatrixBuilder', () => {
       const fn: MatrixIndexFunction<number> = (i, j) => i + j;
       const expected = [[0, 1, 2, 3], [1, 2, 3, 4], [2, 3, 4, 5], [3, 4, 5, 6]];
       const result = matrixBuilder.fromIndexFunction(4, 4, fn);
-      expect(result.getData()).to.deep.equal(expected);
+      expect(result.toArray()).to.deep.equal(expected);
     });
 
     it('handles size 0', () => {
       const fn = () => 1;
-      expect(matrixBuilder.fromIndexFunction(0, 0, fn).getData()).to.deep.equal([]);
-      expect(matrixBuilder.fromIndexFunction(1, 0, fn).getData()).to.deep.equal([]);
-      expect(matrixBuilder.fromIndexFunction(0, 1, fn).getData()).to.deep.equal([]);
+      expect(matrixBuilder.fromIndexFunction(0, 0, fn).toArray()).to.deep.equal([]);
+      expect(matrixBuilder.fromIndexFunction(1, 0, fn).toArray()).to.deep.equal([]);
+      expect(matrixBuilder.fromIndexFunction(0, 1, fn).toArray()).to.deep.equal([]);
     });
 
     it('rejects invalid sizes', () => {
@@ -128,7 +128,7 @@ describe('MatrixBuilder', () => {
       const E = matrixBuilder.empty();
       expect(E.getNumberOfRows()).to.equal(0);
       expect(E.getNumberOfColumns()).to.equal(0);
-      expect(E.getData()).to.deep.equal([]);
+      expect(E.toArray()).to.deep.equal([]);
     });
   });
 
@@ -441,7 +441,7 @@ describe('MatrixBuilder', () => {
           const randomVector = matrixBuilder.randomNormal(10, 10, mean, standardDeviation);
           const average =
             randomVector
-              .getData()
+              .toArray()
               .reduce((accum, next) => [...accum, ...next])
               .reduce((accum, next) => accum + next, 0) / 100;
 
@@ -455,7 +455,7 @@ describe('MatrixBuilder', () => {
       const randomVector = matrixBuilder.randomNormal(10, 10);
       const average =
         randomVector
-          .getData()
+          .toArray()
           .reduce((accum, next) => [...accum, ...next])
           .reduce((accum, next) => accum + next, 0) / 100;
 

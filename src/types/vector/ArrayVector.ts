@@ -34,7 +34,7 @@ export abstract class ArrayVector<S> implements Vector<S> {
   public add(other: Vector<S>): Vector<S> {
     assertHomogeneous([this, other]);
 
-    const newData = this.getData().map((entry, index) =>
+    const newData = this.toArray().map((entry, index) =>
       this.ops().add(entry, other.getEntry(index))
     );
 
@@ -77,9 +77,9 @@ export abstract class ArrayVector<S> implements Vector<S> {
       return this.matrixBuilder().fromArray(matrixData);
     }
 
-    this.getData().forEach((thisValue, rowIndex) => {
+    this.toArray().forEach((thisValue, rowIndex) => {
       matrixData[rowIndex] = [];
-      other.getData().forEach((otherValue, columnIndex) => {
+      other.toArray().forEach((otherValue, columnIndex) => {
         matrixData[rowIndex][columnIndex] = this.ops().multiply(thisValue, otherValue);
       });
     });
@@ -106,14 +106,14 @@ export abstract class ArrayVector<S> implements Vector<S> {
    */
   public scalarMultiply(scalar: S): Vector<S> {
     return this.builder().fromArray(
-      this.getData().map(entry => this.ops().multiply(entry, scalar))
+      this.toArray().map(entry => this.ops().multiply(entry, scalar))
     );
   }
 
   /**
    * @inheritdoc
    */
-  public getData(): S[] {
+  public toArray(): S[] {
     return [...this._data];
   }
 
@@ -125,7 +125,7 @@ export abstract class ArrayVector<S> implements Vector<S> {
     const zero = ops.zero();
 
     const sparseData: Map<number, S> = new Map();
-    this.getData().forEach((value, index) => {
+    this.toArray().forEach((value, index) => {
       if (!ops.equals(zero, value)) {
         sparseData.set(index, value);
       }

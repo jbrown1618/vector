@@ -37,7 +37,7 @@ export abstract class ArrayMatrix<S> implements Matrix<S> {
    * @inheritdoc
    */
   public adjoint(): Matrix<S> {
-    const transposedData = this.transpose().getData();
+    const transposedData = this.transpose().toArray();
     const adjointData: S[][] = [];
     transposedData.forEach((row, i) => {
       adjointData[i] = [];
@@ -114,8 +114,8 @@ export abstract class ArrayMatrix<S> implements Matrix<S> {
   /**
    * @inheritdoc
    */
-  public getData(): S[][] {
-    return this.getRowVectors().map(row => [...row.getData()]);
+  public toArray(): S[][] {
+    return this.getRowVectors().map(row => [...row.toArray()]);
   }
 
   public getSparseData(): Map<number, Map<number, S>> {
@@ -206,7 +206,7 @@ export abstract class ArrayMatrix<S> implements Matrix<S> {
    */
   public set(rowIndex: number, columnIndex: number, value: S): Matrix<S> {
     assertValidMatrixIndex(this, rowIndex, columnIndex);
-    const copy = this.getData();
+    const copy = this.toArray();
     copy[rowIndex][columnIndex] = value;
     return this.builder().fromArray(copy);
   }
@@ -223,7 +223,7 @@ export abstract class ArrayMatrix<S> implements Matrix<S> {
    */
   public forEachEntry(cb: MatrixEntryCallback<S>) {
     this.getRowVectors().forEach((row, i) => {
-      row.getData().forEach((entry, j) => {
+      row.toArray().forEach((entry, j) => {
         cb(entry, i, j);
       });
     });
