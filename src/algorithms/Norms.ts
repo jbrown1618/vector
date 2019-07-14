@@ -5,12 +5,14 @@ import { Vector } from '../types/vector/Vector';
 /**
  * Returns a vector with the same direction as the input `v`, but with a Euclidean norm of 1
  *
+ * @example
  * ```
  * const v = vectorBuilder.fromArray(3, 4);
  * const normalized = normalize(v); // [ 0.6, 0.8 ]
  * ```
  *
  * @param v - The vector to normalize
+ * @public
  */
 export function normalize<S>(v: Vector<S>): Vector<S> | undefined {
   const ops = v.ops();
@@ -21,6 +23,7 @@ export function normalize<S>(v: Vector<S>): Vector<S> | undefined {
 /**
  * Calculates the P-Norm of a vector `v`
  *
+ * @example
  * ```
  * const v = vectorBuilder.fromArray([3, 4]);
  * const norm1 = pNorm(v, 1); // 7
@@ -30,6 +33,7 @@ export function normalize<S>(v: Vector<S>): Vector<S> | undefined {
  *
  * @param v - The vector for which to calculate the norm
  * @param p - The power used to calculate the norm
+ * @public
  */
 export function pNorm<S>(v: Vector<S>, p: number): number {
   if (p < 1) {
@@ -53,12 +57,14 @@ export function pNorm<S>(v: Vector<S>, p: number): number {
 /**
  * Calculates the Sum Norm (or 1-Norm) of a vector `v`
  *
+ * @example
  * ```
  * const v = vectorBuilder.fromArray([3, 4]);
  * const norm = sumNorm(v); // 7
  * ```
  *
  * @param v - The vector for which to calculate the norm
+ * @public
  */
 export function sumNorm<S>(v: Vector<S>): number {
   return pNorm(v, 1);
@@ -67,12 +73,14 @@ export function sumNorm<S>(v: Vector<S>): number {
 /**
  * Calculates the Euclidean Norm (or 2-Norm) of a vector `v`
  *
+ * @example
  * ```
  * const v = vectorBuilder.fromArray([3, 4]);
  * const norm = euclideanNorm(v); // 5
  * ```
  *
  * @param v - The vector for which to calculate the norm
+ * @public
  */
 export function euclideanNorm<S>(v: Vector<S>): number {
   return pNorm(v, 2);
@@ -81,12 +89,14 @@ export function euclideanNorm<S>(v: Vector<S>): number {
 /**
  * Calculates the Supremum Norm (or Infinity-Norm) of a vector `v`
  *
+ * @example
  * ```
  * const v = vectorBuilder.fromArray([3, 4]);
  * const norm = supremumNorm(v); // 4
  * ```
  *
  * @param v - The vector for which to calculate the norm
+ * @public
  */
 export function supremumNorm<S>(v: Vector<S>): number {
   if (v.getDimension() === 0) {
@@ -109,12 +119,14 @@ export function supremumNorm<S>(v: Vector<S>): number {
 /**
  * Calculates the Frobenius Norm of a matrix `A`
  *
+ * @example
  * ```
  * const A = matrixBuilder.fromArray([[1, 2], [3, 4]]);
  * const norm = frobeniusNorm(A); // sqrt(30)
  * ```
  *
  * @param A - The matrix for which to calculate the norm
+ * @public
  */
 export function frobeniusNorm<S>(A: Matrix<S>): number {
   const vb = A.vectorBuilder();
@@ -128,12 +140,14 @@ export function frobeniusNorm<S>(A: Matrix<S>): number {
 /**
  * Calculates the 1-Norm of a matrix `A`
  *
+ * @example
  * ```
  * const A = matrixBuilder.fromArray([[1, 2], [3, 4]]);
  * const norm = columnSumSupremumNorm(A); // 6
  * ```
  *
  * @param A - The matrix for which to calculate the norm
+ * @public
  */
 export function columnSumSupremumNorm<S>(A: Matrix<S>): number {
   const columnSums = A.getColumnVectors().map(sumNorm);
@@ -144,12 +158,14 @@ export function columnSumSupremumNorm<S>(A: Matrix<S>): number {
 /**
  * Calculates the Infinity-Norm of a matrix `A`
  *
+ * @example
  * ```
  * const A = matrixBuilder.fromArray([[1, 2], [3, 4]]);
  * const norm = rowSumSupremumNorm(A); // 7
  * ```
  *
  * @param A - The matrix for which to calculate the norm
+ * @public
  */
 export function rowSumSupremumNorm<S>(A: Matrix<S>): number {
   const rowSums = A.getRowVectors().map(sumNorm);

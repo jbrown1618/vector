@@ -5,11 +5,16 @@ import { ScalarOperations } from '../scalar/ScalarOperations';
 import { Vector, VectorData } from './Vector';
 import { VectorBuilder } from './VectorBuilder';
 
+/**
+ * @public
+ */
 export type SparseVectorData<S> = ReadonlyMap<number, S>;
 
 /**
  * A type guard which returns true if the input is an instance of `SparseVector`,
  * and functions as a type check in the compiler.
+ *
+ * @internal
  */
 export function isSparse<S>(vector: Vector<S>): vector is SparseVector<S> {
   return (vector as any)._sparseData !== undefined; // eslint-disable-line @typescript-eslint/no-explicit-any
@@ -18,6 +23,7 @@ export function isSparse<S>(vector: Vector<S>): vector is SparseVector<S> {
 /**
  * For large vectors with many entries equal to 0, some operations are
  * more efficient with a `Vector` implementation that only stores the non-zero values.
+ * @public
  */
 export abstract class SparseVector<S> implements Vector<S> {
   private readonly _dimension: number;
@@ -41,14 +47,14 @@ export abstract class SparseVector<S> implements Vector<S> {
   public abstract matrixBuilder(): MatrixBuilder<S, Vector<S>, Matrix<S>>;
 
   /**
-   * @inheritdoc
+   * {@inheritDoc TODO}
    */
   public getSparseData(): Map<number, S> {
     return new Map(this._sparseData);
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc TODO}
    */
   public toArray(): S[] {
     const data: S[] = [];
@@ -59,7 +65,7 @@ export abstract class SparseVector<S> implements Vector<S> {
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc TODO}
    */
   public getEntry(index: number): S {
     assertValidVectorIndex(this, index);
@@ -67,7 +73,7 @@ export abstract class SparseVector<S> implements Vector<S> {
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc TODO}
    */
   public innerProduct(other: Vector<S>): S {
     assertHomogeneous([this, other]);
@@ -83,7 +89,7 @@ export abstract class SparseVector<S> implements Vector<S> {
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc TODO}
    */
   public outerProduct(other: Vector<S>): Matrix<S> {
     if (isSparse(other)) {
@@ -106,7 +112,7 @@ export abstract class SparseVector<S> implements Vector<S> {
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc TODO}
    */
   public scalarMultiply(scalar: S): Vector<S> {
     const newSparseData = new Map();
@@ -117,7 +123,7 @@ export abstract class SparseVector<S> implements Vector<S> {
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc TODO}
    */
   public add(other: Vector<S>): Vector<S> {
     assertHomogeneous([this, other]);
@@ -128,7 +134,7 @@ export abstract class SparseVector<S> implements Vector<S> {
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc TODO}
    */
   public equals(other: Vector<S>): boolean {
     if (isSparse(other)) {
@@ -142,14 +148,14 @@ export abstract class SparseVector<S> implements Vector<S> {
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc TODO}
    */
   public getDimension(): number {
     return this._dimension;
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc TODO}
    */
   public projectOnto(u: Vector<S>) {
     const oneOverUDotU = this.ops().getMultiplicativeInverse(u.innerProduct(u));

@@ -9,6 +9,7 @@ import { columnSumSupremumNorm } from './Norms';
  *
  * @param A - The matrix to raise to a power `n`
  * @param n - The power to which to raise `A`
+ * @public
  */
 export function pow<S>(A: Matrix<S>, n: number): Matrix<S> {
   // TODO - memoize these results
@@ -31,6 +32,7 @@ export function pow<S>(A: Matrix<S>, n: number): Matrix<S> {
  *
  * @param A - The matrix to exponentiate
  * @param order - The order of the approximation - higher numbers yield more accurate results
+ * @public
  */
 export function exp<S>(A: Matrix<S>, order: number = 6): Matrix<S> {
   assertSquare(A);

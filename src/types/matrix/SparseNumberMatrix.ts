@@ -8,6 +8,7 @@ import { SparseMatrix } from './SparseMatrix';
 
 /**
  * A `Matrix` implemented as a sparse set of JS `number` primitives keyed by their indices.
+ * @public
  */
 @StaticImplements<MatrixConstructor<number, SparseNumberVector, SparseNumberMatrix>>()
 export class SparseNumberMatrix extends SparseMatrix<number> {
@@ -28,21 +29,21 @@ export class SparseNumberMatrix extends SparseMatrix<number> {
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc TODO}
    */
   public ops() {
     return SparseNumberMatrix.ops();
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc TODO}
    */
   public builder(): MatrixBuilder<number, SparseNumberVector, SparseNumberMatrix> {
     return SparseNumberMatrix.builder();
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc TODO}
    */
   public vectorBuilder(): VectorBuilder<number, SparseNumberVector> {
     return SparseNumberMatrix.vectorBuilder();

@@ -5,6 +5,7 @@ import { normalize } from './Norms';
 
 /**
  * The result of a QR decomposition.
+ * @public
  */
 export interface QRDecomposition<S> {
   Q: Matrix<S>;
@@ -17,6 +18,7 @@ export interface QRDecomposition<S> {
  * multiplied by R yields A
  *
  * @param A - The matrix to decompose
+ * @public
  */
 export function calculateQRDecomposition<S>(A: Matrix<S>): QRDecomposition<S> {
   assertSquare(A);

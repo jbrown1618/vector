@@ -7,10 +7,13 @@ import { SolutionType } from './LinearSolution';
 /**
  * The result of a least squares approximation.
  *
+ * @remarks
  * - `coefficiencts`: a vector whose entries correspond to the coefficients which must
  *     be plugged into the function template to yield the best approximation function
  * - `approximationFunction`: a function which takes a vector of the independent variable
  *     values, and returns the predicted value of the dependent variable
+ *
+ * @public
  */
 export interface LeastSquaresApproximation<S> {
   coefficients: Vector<S>;
@@ -20,6 +23,7 @@ export interface LeastSquaresApproximation<S> {
 /**
  * A function that takes a vector of inputs and produces an output.  This must always
  * be a pure function that is linear in its coefficients.
+ * @public
  */
 export type ApproximationFunction<S> = (input: Vector<S>) => S;
 
@@ -27,6 +31,7 @@ export type ApproximationFunction<S> = (input: Vector<S>) => S;
  * A higher-order function which is used to generate an `ApproximationFunction`.  This
  * must be linear in its coefficients, or the result of the linear regression will not
  * be correct.
+ * @public
  */
 export type ApproximationFunctionTemplate<S> = (
   coefficients: Vector<S>
@@ -46,6 +51,7 @@ export type ApproximationFunctionTemplate<S> = (
  *    represents a single data point where the last entry is the variable to be predicted,
  *    and the other entries are the values of the independent variables
  * @returns - the result of the linear regression
+ * @public
  */
 export function calculateLinearLeastSquaresApproximation<S>(
   dataPoints: Vector<S>[]
@@ -78,6 +84,7 @@ export function calculateLinearLeastSquaresApproximation<S>(
  * Calculates a regression model for an arbitrary function.
  * The result is on object which has:
  *
+ * @remarks
  * - `coefficiencts`: a vector whose entries correspond to the coefficients which must
  *     be plugged into the function template to yield the best approximation function
  * - `approximationFunction`: a function which takes a vector of the independent variable
@@ -90,6 +97,7 @@ export function calculateLinearLeastSquaresApproximation<S>(
  * @param numberOfTerms - The number of coefficients needed to produce
  *     the approximation function
  * @returns - the result of the linear regression
+ * @public
  */
 export function calculateGeneralLeastSquaresApproximation<S>(
   dataPoints: Vector<S>[],
@@ -136,6 +144,7 @@ export function calculateGeneralLeastSquaresApproximation<S>(
  * When the system _Ax = b_ is overdetermined, it has no solution.
  * However, the difference Ax-b is minimized when
  *
+ * @example
  * ```
  * A.transpose().multiply(A).apply(x) === A.transpose().apply(b)
  * ```
@@ -145,6 +154,7 @@ export function calculateGeneralLeastSquaresApproximation<S>(
  *
  * @param A - The matrix _A_ in _Ax = b_
  * @param b - The vector _b_ in _Ax = b_
+ * @public
  */
 export function solveOverdeterminedSystem<S>(A: Matrix<S>, b: Vector<S>): Vector<S> | undefined {
   checkDimensionsForOverdeterminedSystem(A, b);

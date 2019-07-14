@@ -1,3 +1,6 @@
+/**
+ * @public
+ */
 export abstract class ScalarOperations<S> {
   public abstract fromNumber(num: number): S;
   /**
@@ -5,6 +8,7 @@ export abstract class ScalarOperations<S> {
    * Implementors should ensure that the operation is reflexive, associative, and transitive.
    *
    * @returns true if `first` is equal to `second`
+   * @public
    */
   public abstract equals(first: S, second: S): boolean;
 
@@ -13,6 +17,7 @@ export abstract class ScalarOperations<S> {
    * Implementors should ensure that this operation is commutative and associative.
    *
    * @returns The sum of `first` and `second`
+   * @public
    */
   public abstract add(first: S, second: S): S;
 
@@ -26,6 +31,7 @@ export abstract class ScalarOperations<S> {
    * and that it distributes over the addition operation.
    *
    * @returns The product of `first` and `second`
+   * @public
    */
   public abstract multiply(first: S, second: S): S;
 
@@ -42,6 +48,7 @@ export abstract class ScalarOperations<S> {
    * For real-valued scalars, this can just be an identity function.
    * @param scalar - The scalar to conjugate
    * @returns The complex conjugate
+   * @public
    */
   public abstract conjugate(scalar: S): S;
 
@@ -51,11 +58,12 @@ export abstract class ScalarOperations<S> {
    * is true for all scalars `x`
    *
    * @returns The additive identity
+   * @public
    */
   public abstract getAdditiveIdentity(): S;
 
   /**
-   * @see getAdditiveIdentity
+   * Alias for {@link ScalarOperations.getAdditiveIdentity}
    */
   public zero(): S {
     return this.getAdditiveIdentity();
@@ -67,6 +75,7 @@ export abstract class ScalarOperations<S> {
    * is true for `scalar`
    *
    * @returns The additive inverse
+   * @public
    */
   public abstract getAdditiveInverse(x: S): S;
 
@@ -76,11 +85,13 @@ export abstract class ScalarOperations<S> {
    * is true for all x
    *
    * @returns The multiplicative identity
+   * @public
    */
   public abstract getMultiplicativeIdentity(): S;
 
   /**
-   * @see getMultiplicativeIdentity
+   * Alias for {@link ScalarOperations.getMultiplicativeIdentity}
+   * @public
    */
   public one(): S {
     return this.getMultiplicativeIdentity();
@@ -88,6 +99,8 @@ export abstract class ScalarOperations<S> {
 
   /**
    * Returns the additive inverse of the multiplicative identity.
+   *
+   * @public
    */
   public negativeOne(): S {
     return this.getAdditiveInverse(this.getMultiplicativeIdentity());
@@ -96,6 +109,7 @@ export abstract class ScalarOperations<S> {
   /**
    * Returns the unique scalar such that
    *
+   * @example
    * ```
    * multiplyScalars(scalar, getMultiplicativeInverse(scalar)) === getMultiplicativeIdentity()
    * ```
@@ -103,6 +117,7 @@ export abstract class ScalarOperations<S> {
    * is true for `scalar`
    *
    * @returns The multiplicative inverse
+   * @public
    */
   public abstract getMultiplicativeInverse(x: S): S | undefined;
 

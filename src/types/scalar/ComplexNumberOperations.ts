@@ -3,6 +3,9 @@ import { ComplexNumber } from './ComplexNumber';
 import { ScalarOperations } from './ScalarOperations';
 import { prettyPrint } from '../../utilities/prettyPrint';
 
+/**
+ * @public
+ */
 export class ComplexNumberOperations extends ScalarOperations<ComplexNumber> {
   public fromNumber(num: number): ComplexNumber {
     return new ComplexNumber(num, 0);

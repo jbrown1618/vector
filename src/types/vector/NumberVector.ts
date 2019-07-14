@@ -7,6 +7,7 @@ import { VectorBuilder } from './VectorBuilder';
 
 /**
  * A `Vector` implemented as an array of JS `number` primitives.
+ * @public
  */
 @StaticImplements<VectorConstructor<number, NumberVector>>()
 export class NumberVector extends ArrayVector<number> {
@@ -23,21 +24,21 @@ export class NumberVector extends ArrayVector<number> {
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc TODO}
    */
   public ops(): NumberOperations {
     return NumberVector.ops();
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc TODO}
    */
   public builder(): VectorBuilder<number, NumberVector> {
     return NumberVector.builder();
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc TODO}
    */
   public matrixBuilder() {
     return NumberMatrix.builder();

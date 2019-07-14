@@ -7,6 +7,7 @@ import { VectorBuilder } from './VectorBuilder';
 
 /**
  * A `Vector` implemented as a sparse set of JS `number` primitives keyed by their indices.
+ * @public
  */
 @StaticImplements<VectorConstructor<number, SparseNumberVector>>()
 export class SparseNumberVector extends SparseVector<number> {
@@ -23,21 +24,21 @@ export class SparseNumberVector extends SparseVector<number> {
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc TODO}
    */
   public ops(): NumberOperations {
     return SparseNumberVector.ops();
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc TODO}
    */
   public builder(): VectorBuilder<number, SparseNumberVector> {
     return SparseNumberVector.builder();
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc TODO}
    */
   public matrixBuilder() {
     return NumberMatrix.builder();

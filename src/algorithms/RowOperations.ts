@@ -5,6 +5,7 @@ import { assertValidMatrixIndex } from '../utilities/ErrorAssertions';
 /**
  * The result of a row operation (`result`), and the matrix that we multiply
  * by the original matrix to yield that result (`operator`)
+ * @public
  */
 export interface RowOperationResult<S> {
   result: Matrix<S>;
@@ -18,6 +19,7 @@ export interface RowOperationResult<S> {
  * @param rowIndex - The index of the row to modify
  * @param scalar - The factor by which to scale the row
  * @returns The matrix with the transformation applied
+ * @public
  */
 export function multiplyRowByScalar<S>(matrix: Matrix<S>, rowIndex: number, scalar: S): Matrix<S> {
   assertValidMatrixIndex(matrix, rowIndex, 0);
@@ -32,6 +34,7 @@ export function multiplyRowByScalar<S>(matrix: Matrix<S>, rowIndex: number, scal
  * @param targetRow - The index of the row to modify
  * @param rowToAdd - The index of the row to add
  * @returns The matrix with the transformation applied
+ * @public
  */
 export function addRowToRow<S>(matrix: Matrix<S>, targetRow: number, rowToAdd: number): Matrix<S> {
   return addScalarMultipleOfRowToRow(matrix, targetRow, rowToAdd, matrix.ops().one());
@@ -45,6 +48,7 @@ export function addRowToRow<S>(matrix: Matrix<S>, targetRow: number, rowToAdd: n
  * @param rowToAdd - The index of the row to be scaled and added
  * @param scalar - The factor by which to scale the row
  * @returns The matrix with the transformation applied
+ * @public
  */
 export function addScalarMultipleOfRowToRow<S>(
   matrix: Matrix<S>,
@@ -71,6 +75,7 @@ export function addScalarMultipleOfRowToRow<S>(
  * @param first - The index of the first row to exchange
  * @param second - The index of the second row to exchange
  * @returns The matrix with the transformation applied
+ * @public
  */
 export function exchangeRows<S>(matrix: Matrix<S>, first: number, second: number): Matrix<S> {
   assertValidMatrixIndex(matrix, first, 0);
@@ -88,6 +93,7 @@ export function exchangeRows<S>(matrix: Matrix<S>, first: number, second: number
 /**
  * Sorts the rows of a matrix according to the number of leading zeros
  * and the magnitude of the first nonzero entry
+ * @public
  */
 export function pivot<S>(matrix: Matrix<S>): RowOperationResult<S> {
   const ops = matrix.ops();

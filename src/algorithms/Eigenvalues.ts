@@ -7,6 +7,9 @@ import { calculateQRDecomposition } from './QRDecomposition';
 
 // TODO - convert to an upper Hessenberg matrix to improve rate of convergence
 
+/**
+ * @public
+ */
 export interface EigenPair<S> {
   eigenvalue: S;
   eigenvector: Vector<S>;
@@ -20,6 +23,7 @@ export interface EigenPair<S> {
  * @param throwOnFailure - If true, an error will be thrown on a failure to converge.
  *     Otherwise, the result of the last iteration will be returned.
  * @returns An array of eigenvalue-eigenvalue pairs
+ * @public
  */
 export function eig<S>(
   A: Matrix<S>,
@@ -41,6 +45,7 @@ export function eig<S>(
  * @param throwOnFailure - If true, an error will be thrown on a failure to converge.
  *     Otherwise, the result of the last iteration will be returned.
  * @returns A vector whose entries are the eigenvalues of `A`
+ * @public
  */
 export function calculateEigenvalues<S>(
   A: Matrix<S>,
@@ -70,6 +75,7 @@ export function calculateEigenvalues<S>(
  *
  * @param A - The matrix with eigenvalue `lambda`
  * @param lambda - The eigenvalue for which to find an eigenvector
+ * @public
  */
 export function getEigenvectorForEigenvalue<S>(A: Matrix<S>, lambda: S): Vector<S> {
   const builder = A.builder();

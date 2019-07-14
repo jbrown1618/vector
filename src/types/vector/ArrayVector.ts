@@ -7,7 +7,11 @@ import { VectorBuilder } from './VectorBuilder';
 
 /**
  * Implements `Vector` with an array of values.
+ *
+ * @remarks
  * Subclasses must specify the usual scalar operations on their contents.
+ *
+ * @public
  */
 export abstract class ArrayVector<S> implements Vector<S> {
   private readonly _data: VectorData<S>;
@@ -21,7 +25,7 @@ export abstract class ArrayVector<S> implements Vector<S> {
   public abstract matrixBuilder(): MatrixBuilder<S, Vector<S>, Matrix<S>>;
 
   /**
-   * @inheritdoc
+   * {@inheritDoc TODO}
    */
   public getEntry(index: number): S {
     assertValidVectorIndex(this, index);
@@ -29,7 +33,7 @@ export abstract class ArrayVector<S> implements Vector<S> {
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc TODO}
    */
   public add(other: Vector<S>): Vector<S> {
     assertHomogeneous([this, other]);
@@ -42,7 +46,7 @@ export abstract class ArrayVector<S> implements Vector<S> {
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc TODO}
    */
   public equals(other: Vector<S>): boolean {
     if (this.getDimension() !== other.getDimension()) {
@@ -55,7 +59,7 @@ export abstract class ArrayVector<S> implements Vector<S> {
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc TODO}
    */
   public innerProduct(other: Vector<S>): S {
     assertHomogeneous([this, other]);
@@ -68,7 +72,7 @@ export abstract class ArrayVector<S> implements Vector<S> {
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc TODO}
    */
   public outerProduct(other: Vector<S>): Matrix<S> {
     const matrixData: S[][] = [];
@@ -88,7 +92,7 @@ export abstract class ArrayVector<S> implements Vector<S> {
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc TODO}
    */
   public projectOnto(u: Vector<S>) {
     const oneOverUDotU = this.ops().getMultiplicativeInverse(u.innerProduct(u));
@@ -102,7 +106,7 @@ export abstract class ArrayVector<S> implements Vector<S> {
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc TODO}
    */
   public scalarMultiply(scalar: S): Vector<S> {
     return this.builder().fromArray(
@@ -111,14 +115,14 @@ export abstract class ArrayVector<S> implements Vector<S> {
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc TODO}
    */
   public toArray(): S[] {
     return [...this._data];
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc TODO}
    */
   public getSparseData(): Map<number, S> {
     const ops = this.ops();
@@ -135,7 +139,7 @@ export abstract class ArrayVector<S> implements Vector<S> {
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc TODO}
    */
   public getDimension(): number {
     return this._data.length;

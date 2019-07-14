@@ -9,6 +9,7 @@ import { MatrixBuilder } from './MatrixBuilder';
 
 /**
  * Implements `Matrix` as a 2-dimensional array of `ComplexNumber`s
+ * @public
  */
 @StaticImplements<MatrixConstructor<ComplexNumber, ComplexVector, ComplexMatrix>>()
 export class ComplexMatrix extends ArrayMatrix<ComplexNumber> {
@@ -29,21 +30,21 @@ export class ComplexMatrix extends ArrayMatrix<ComplexNumber> {
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc TODO}
    */
   public ops() {
     return ComplexMatrix.ops();
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc TODO}
    */
   public builder(): MatrixBuilder<ComplexNumber, ComplexVector, ComplexMatrix> {
     return ComplexMatrix.builder();
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc TODO}
    */
   public vectorBuilder(): VectorBuilder<ComplexNumber, ComplexVector> {
     return ComplexMatrix.vectorBuilder();

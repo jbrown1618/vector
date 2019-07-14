@@ -4,6 +4,7 @@ import { pivot } from './RowOperations';
 
 /**
  * The result of an LU Decomposition
+ * @public
  */
 export interface LUDecomposition<S> {
   L: Matrix<S>;
@@ -13,6 +14,7 @@ export interface LUDecomposition<S> {
 
 /**
  * An intermediate step in the Doolittle algorithm, representing successive approximations of L and U
+ * @public
  */
 interface DoolittleIteration<S> {
   ln: Matrix<S>;
@@ -25,6 +27,7 @@ interface DoolittleIteration<S> {
  * permutation matrix P such that _PA = LU_
  *
  * @param A - The matrix to decompose
+ * @public
  */
 export function calculateLUDecomposition<S>(A: Matrix<S>): LUDecomposition<S> {
   assertSquare(A);

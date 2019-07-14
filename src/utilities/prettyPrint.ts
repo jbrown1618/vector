@@ -1,6 +1,9 @@
 import { Matrix } from '../types/matrix/Matrix';
 import { Vector } from '../types/vector/Vector';
 
+/**
+ * @public
+ */
 export function prettyPrint(num: number): string;
 export function prettyPrint<S>(vector: Vector<S>): string;
 export function prettyPrint<S>(matrix: Matrix<S>): string;

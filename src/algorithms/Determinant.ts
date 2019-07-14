@@ -7,6 +7,7 @@ import { assertSquare } from '../utilities/ErrorAssertions';
  *
  * @param matrix - A square matrix
  * @returns - The determinant
+ * @public
  */
 export function determinant<S>(matrix: Matrix<S>): S {
   assertSquare(matrix);

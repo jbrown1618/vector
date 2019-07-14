@@ -6,6 +6,7 @@ import { VectorIndexFunction } from '../types/vector/VectorBuilder';
  * Builds a vector of `binCount` evenly spaces numbers between `xMin` (inclusive) and `xMax` (exclusive).
  * Throws an error if xMin is greater than or equal to xMax.
  *
+ * @example
  * ```
  * linspace(0, 1, 5); // [ 0, 0.2, 0.4, 0.6, 0.8 ]
  * ```
@@ -14,6 +15,7 @@ import { VectorIndexFunction } from '../types/vector/VectorBuilder';
  * @param xMax - The largest value in the vector
  * @param binCount - The number of entries
  * @returns The evenly-spaced vector
+ * @public
  */
 export function linspace(xMin: number, xMax: number, binCount: number): NumberVector {
   if (xMin >= xMax) {
@@ -37,6 +39,7 @@ export function linspace(xMin: number, xMax: number, binCount: number): NumberVe
  *
  * _f(x + delta) - f(x)_
  *
+ * @example
  * ```
  * forwardDifferenceMatrix(4);
  *
@@ -47,6 +50,7 @@ export function linspace(xMin: number, xMax: number, binCount: number): NumberVe
  * ```
  * @param binCount - The size of the vector to which the output ought to be applied
  * @returns The forward difference matrix
+ * @public
  */
 export function forwardDifferenceMatrix(binCount: number): NumberMatrix {
   return NumberMatrix.builder().tridiagonal(
@@ -64,6 +68,7 @@ export function forwardDifferenceMatrix(binCount: number): NumberMatrix {
  *
  * _f(x) - f(x - delta)_
  *
+ * @example
  * ```
  * backwardDifferenceMatrix(4);
  *
@@ -74,6 +79,7 @@ export function forwardDifferenceMatrix(binCount: number): NumberMatrix {
  * ```
  * @param binCount - The size of the vector to which the output ought to be applied
  * @returns The backward difference matrix
+ * @public
  */
 export function backwardDifferenceMatrix(binCount: number): NumberMatrix {
   return NumberMatrix.builder().tridiagonal(
@@ -93,6 +99,7 @@ export function backwardDifferenceMatrix(binCount: number): NumberMatrix {
  *
  * _= 1/2 * (forwardDifference + backwardDifference)_
  *
+ * @example
  * ```
  * centralDifferenceMatrix(4);
  *
@@ -103,6 +110,7 @@ export function backwardDifferenceMatrix(binCount: number): NumberMatrix {
  * ```
  * @param binCount - The size of the vector to which the output ought to be applied
  * @returns The central difference matrix
+ * @public
  */
 export function centralDifferenceMatrix(binCount: number): NumberMatrix {
   return NumberMatrix.builder().tridiagonal(
@@ -119,6 +127,7 @@ export function centralDifferenceMatrix(binCount: number): NumberMatrix {
 /**
  * Uses finite differences to build a vector containing approximate values of the derivative of `f`.
  *
+ * @example
  * ```
  * // Approximates Math.cos at 100 points between 0 and 2*PI
  * derivative(Math.sin, 0, 2*Math.PI, 100);
@@ -129,6 +138,7 @@ export function centralDifferenceMatrix(binCount: number): NumberMatrix {
  * @param xMax - The maximum (exclusive) value for which the derivative will be approximated
  * @param binCount - The number of approximations
  * @returns A linearly spaced vector whose values represent the values of the derivative
+ * @public
  */
 export function derivative(f: (x: number) => number, xMin: number, xMax: number, binCount: number) {
   const x = linspace(xMin, xMax, binCount);

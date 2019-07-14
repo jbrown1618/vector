@@ -8,6 +8,7 @@ import { VectorBuilder } from './VectorBuilder';
 
 /**
  * Implements `Vector` as an array of `ComplexNumber`s
+ * @public
  */
 @StaticImplements<VectorConstructor<ComplexNumber, ComplexVector>>()
 export class ComplexVector extends ArrayVector<ComplexNumber> {
@@ -24,21 +25,21 @@ export class ComplexVector extends ArrayVector<ComplexNumber> {
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc TODO}
    */
   public ops(): ComplexNumberOperations {
     return ComplexVector.ops();
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc TODO}
    */
   public builder(): VectorBuilder<ComplexNumber, ComplexVector> {
     return ComplexVector.builder();
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc TODO}
    */
   public matrixBuilder() {
     return ComplexMatrix.builder();

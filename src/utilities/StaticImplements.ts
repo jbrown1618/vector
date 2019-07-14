@@ -2,6 +2,7 @@
  * Ensures at compile time that the static part of a class implements a certain interface.
  * Usage:
  *
+ * @example
  * ```
  * interface HasFoo {
  *   foo(): Bar;

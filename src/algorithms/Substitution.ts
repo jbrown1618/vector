@@ -9,6 +9,7 @@ import { LinearSolution, SolutionType } from './LinearSolution';
  * @param L - The lower-triangular matrix `L` in _Lx=b_
  * @param b - The vector `b` in _Lx=b_
  * @returns The vector `x` in _Lx=b_
+ * @public
  */
 export function solveByForwardSubstitution<S>(L: Matrix<S>, b: Vector<S>): LinearSolution<S> {
   const ops = L.ops();
@@ -73,6 +74,7 @@ export function solveByForwardSubstitution<S>(L: Matrix<S>, b: Vector<S>): Linea
  *
  * @param augmented - The augmented matrix `L|b` in _Lx=b_
  * @returns The vector `x` in _Lx=b_
+ * @public
  */
 export function forwardSubstituteAugmentedMatrix<S>(augmented: Matrix<S>): LinearSolution<S> {
   const L = augmented
@@ -89,6 +91,7 @@ export function forwardSubstituteAugmentedMatrix<S>(augmented: Matrix<S>): Linea
  * @param U - The lower-triangular matrix `U` in _Ux=b_
  * @param b - The vector `b` in _Ux=b_
  * @returns The vector `x` in _Ux=b_
+ * @public
  */
 export function solveByBackwardSubstitution<S>(U: Matrix<S>, b: Vector<S>): LinearSolution<S> {
   const ops = U.ops();
@@ -152,6 +155,7 @@ export function solveByBackwardSubstitution<S>(U: Matrix<S>, b: Vector<S>): Line
  *
  * @param augmented - The augmented matrix `U|b` in _Ux=b_
  * @returns The vector `x` in _Ux=b_
+ * @public
  */
 export function backwardSubstituteAugmentedMatrix<S>(augmented: Matrix<S>): LinearSolution<S> {
   const U = augmented
