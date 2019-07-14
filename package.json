@@ -22,8 +22,7 @@
     "format": "prettier --write './*.json' 'src/**/*.{ts,json,md}'",
     "format:check": "prettier --check './*.json' 'src/**/*.{ts,json,md}'",
     "lint": "eslint --fix 'src/**/*.ts'",
-    "lint:check": "eslint 'src/**/*.ts'",
-    "docs": "typedoc --out ./api-docs/ --readme none --theme minimal --exclude '**/+(*.spec.ts|index.ts)' --excludePrivate ./src/"
+    "lint:check": "eslint 'src/**/*.ts'"
   },
   "dependencies": {},
   "devDependencies": {
@@ -41,7 +40,6 @@
     "nyc": "^14.1.1",
     "prettier": "^1.18.2",
     "ts-node": "^8.3.0",
-    "typedoc": "^0.14.2",
     "typescript": "^3.5.2"
   },
   "husky": {
