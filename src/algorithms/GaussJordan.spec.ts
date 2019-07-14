@@ -56,7 +56,7 @@ describe('GaussJordan', () => {
     it('row reduces a "wide" matrix', () => {
       const A = NumberMatrix.builder().fromArray([[1, 2, 3], [4, 5, 6]]);
       const aRef = rowEchelonForm(A);
-      expect(aRef.getData()).to.deep.equal([[1, 1.25, 1.5], [0, 1, 2]]);
+      expect(aRef.toArray()).to.deep.equal([[1, 1.25, 1.5], [0, 1, 2]]);
     });
 
     it('row reduces a "tall" matrix', () => {
@@ -85,7 +85,7 @@ describe('GaussJordan', () => {
       const A = NumberMatrix.builder().fromArray([[1, 1, 1], [0, 0, 2], [0, 0, 1]]);
 
       const aRef = rowEchelonForm(A);
-      expect(aRef.getData()).to.deep.equal([[1, 1, 1], [0, 0, 1], [0, 0, 0]]);
+      expect(aRef.toArray()).to.deep.equal([[1, 1, 1], [0, 0, 1], [0, 0, 0]]);
     });
 
     it('does nothing to an identity matrix', () => {
@@ -95,7 +95,7 @@ describe('GaussJordan', () => {
     });
 
     it('handles the degenerate case', () => {
-      expect(rowEchelonForm(NumberMatrix.builder().empty()).getData()).to.deep.equal([]);
+      expect(rowEchelonForm(NumberMatrix.builder().empty()).toArray()).to.deep.equal([]);
     });
   });
 
@@ -103,27 +103,27 @@ describe('GaussJordan', () => {
     it('row reduces a "wide" matrix', () => {
       const A = NumberMatrix.builder().fromArray([[1, 2, 3], [4, 5, 6]]);
       const aRef = reducedRowEchelonForm(A);
-      expect(aRef.getData()).to.deep.equal([[1, 0, -1], [0, 1, 2]]);
+      expect(aRef.toArray()).to.deep.equal([[1, 0, -1], [0, 1, 2]]);
     });
 
     it('row reduces a "tall" matrix', () => {
       const A = NumberMatrix.builder().fromArray([[0, 1], [0, 0], [5, 9]]);
       const aRef = reducedRowEchelonForm(A);
-      expect(aRef.getData()).to.deep.equal([[1, 0], [0, 1], [0, 0]]);
+      expect(aRef.toArray()).to.deep.equal([[1, 0], [0, 1], [0, 0]]);
     });
 
     it('row reduces a matrix with non-independent rows', () => {
       const A = NumberMatrix.builder().fromArray([[1, 2, 3], [1, 1, 1], [1, 1, 1]]);
 
       const aRef = reducedRowEchelonForm(A);
-      expect(aRef.getData()).to.deep.equal([[1, 0, -1], [0, 1, 2], [0, 0, 0]]);
+      expect(aRef.toArray()).to.deep.equal([[1, 0, -1], [0, 1, 2], [0, 0, 0]]);
     });
 
     it('row reduces a matrix with non-diagonal pivot entries', () => {
       const A = NumberMatrix.builder().fromArray([[1, 1, 1], [0, 0, 2], [0, 0, 1]]);
 
       const aRef = reducedRowEchelonForm(A);
-      expect(aRef.getData()).to.deep.equal([[1, 1, 0], [0, 0, 1], [0, 0, 0]]);
+      expect(aRef.toArray()).to.deep.equal([[1, 1, 0], [0, 0, 1], [0, 0, 0]]);
     });
 
     it('does nothing to an identity matrix', () => {
@@ -133,7 +133,7 @@ describe('GaussJordan', () => {
     });
 
     it('handles the degenerate case', () => {
-      expect(reducedRowEchelonForm(NumberMatrix.builder().empty()).getData()).to.deep.equal([]);
+      expect(reducedRowEchelonForm(NumberMatrix.builder().empty()).toArray()).to.deep.equal([]);
     });
   });
 

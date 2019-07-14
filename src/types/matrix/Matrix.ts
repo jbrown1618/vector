@@ -34,7 +34,7 @@ export interface Matrix<S> extends LinearTransformation<Vector<S>, Vector<S>> {
   /**
    * @returns The contents of the matrix as an array of arrays.
    */
-  getData(): S[][];
+  toArray(): S[][];
 
   /**
    * @returns The contents of the matrix as a nested map of rowIndex to columnIndex to nonzero value

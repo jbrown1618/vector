@@ -143,8 +143,8 @@ export abstract class SparseMatrix<S> implements Matrix<S> {
   /**
    * @inheritdoc
    */
-  public getData(): S[][] {
-    return this.getRowVectors().map(row => [...row.getData()]);
+  public toArray(): S[][] {
+    return this.getRowVectors().map(row => [...row.toArray()]);
   }
 
   /**
@@ -294,7 +294,7 @@ export abstract class SparseMatrix<S> implements Matrix<S> {
    */
   public forEachEntry(cb: MatrixEntryCallback<S>) {
     this.getRowVectors().forEach((row, i) => {
-      row.getData().forEach((entry, j) => {
+      row.toArray().forEach((entry, j) => {
         cb(entry, i, j);
       });
     });

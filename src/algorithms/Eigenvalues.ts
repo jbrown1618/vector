@@ -27,7 +27,7 @@ export function eig<S>(
   throwOnFailure: boolean = true
 ): EigenPair<S>[] {
   const eigenvalues = calculateEigenvalues(A, numIterations, throwOnFailure);
-  return eigenvalues.getData().map(eigenvalue => {
+  return eigenvalues.toArray().map(eigenvalue => {
     const eigenvector = getEigenvectorForEigenvalue(A, eigenvalue);
     return { eigenvalue, eigenvector };
   });

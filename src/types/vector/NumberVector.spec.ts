@@ -18,11 +18,11 @@ configs.forEach(({ testClassName, builder }) => {
   describe(testClassName, () => {
     describe('constructors', () => {
       it('can be constructed from an array', () => {
-        expect(builder.fromArray([1, 2, 3]).getData()).to.deep.equal([1, 2, 3]);
+        expect(builder.fromArray([1, 2, 3]).toArray()).to.deep.equal([1, 2, 3]);
       });
 
       it('can be constructed from values', () => {
-        expect(builder.fromValues(1, 2, 3, 4).getData()).to.deep.equal([1, 2, 3, 4]);
+        expect(builder.fromValues(1, 2, 3, 4).toArray()).to.deep.equal([1, 2, 3, 4]);
       });
 
       it('handles the degenerate case', () => {
@@ -45,7 +45,7 @@ configs.forEach(({ testClassName, builder }) => {
         const first = builder.fromArray([1, 2, 3]);
         const second = builder.fromArray([4, 5, 6]);
 
-        expect(first.add(second).getData()).to.deep.equal([5, 7, 9]);
+        expect(first.add(second).toArray()).to.deep.equal([5, 7, 9]);
       });
 
       it('throws an error when the dimensions do not match', () => {
@@ -61,7 +61,7 @@ configs.forEach(({ testClassName, builder }) => {
         const sum = firstEmpty.add(secondEmpty);
 
         expect(sum.getDimension()).to.equal(0);
-        expect(sum.getData()).to.deep.equal([]);
+        expect(sum.toArray()).to.deep.equal([]);
       });
     });
 
@@ -69,14 +69,14 @@ configs.forEach(({ testClassName, builder }) => {
       it('multiplies a vector by a scalar', () => {
         const vector = builder.fromArray([1, 2, 3]);
 
-        expect(vector.scalarMultiply(2).getData()).to.deep.equal([2, 4, 6]);
+        expect(vector.scalarMultiply(2).toArray()).to.deep.equal([2, 4, 6]);
       });
 
       it('handles the degenerate case', () => {
         const empty = builder.fromValues();
 
         expect(empty.scalarMultiply(2).getDimension()).to.equal(0);
-        expect(empty.scalarMultiply(2).getData()).to.deep.equal([]);
+        expect(empty.scalarMultiply(2).toArray()).to.deep.equal([]);
       });
     });
 
@@ -109,15 +109,15 @@ configs.forEach(({ testClassName, builder }) => {
         const second = builder.fromValues(3, 4, 5);
         const expectedData = [[3, 4, 5], [6, 8, 10]];
 
-        expect(first.outerProduct(second).getData()).to.deep.equal(expectedData);
+        expect(first.outerProduct(second).toArray()).to.deep.equal(expectedData);
       });
 
       it('handles the degenerate case', () => {
         const empty = builder.fromValues();
         const nonEmpty = builder.fromValues(1, 2, 3);
 
-        expect(empty.outerProduct(nonEmpty).getData()).to.deep.equal([]);
-        expect(nonEmpty.outerProduct(empty).getData()).to.deep.equal([]);
+        expect(empty.outerProduct(nonEmpty).toArray()).to.deep.equal([]);
+        expect(nonEmpty.outerProduct(empty).toArray()).to.deep.equal([]);
       });
 
       configs.forEach(otherConfig => {
@@ -125,11 +125,11 @@ configs.forEach(({ testClassName, builder }) => {
           const first = builder.fromArray([1, 2]);
           const second = otherConfig.builder.fromArray([3, 4, 5]);
           const expectedData = [[3, 4, 5], [6, 8, 10]];
-          expect(first.outerProduct(second).getData()).to.deep.equal(expectedData);
+          expect(first.outerProduct(second).toArray()).to.deep.equal(expectedData);
 
           const empty = builder.empty();
           const otherEmpty = otherConfig.builder.empty();
-          expect(empty.outerProduct(otherEmpty).getData()).to.deep.equal([]);
+          expect(empty.outerProduct(otherEmpty).toArray()).to.deep.equal([]);
         });
       });
     });
