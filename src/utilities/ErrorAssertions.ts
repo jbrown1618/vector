@@ -45,7 +45,7 @@ export function assertHomogeneous<T>(vectors: Vector<T>[]): void {
 /**
  * Throws an error if empty
  */
-export function assertNonEmpty<T>(values: T[]) {
+export function assertNonEmpty<T>(values: T[]): void {
   if (values.length > 0) {
     return;
   }

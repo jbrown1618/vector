@@ -6,8 +6,9 @@ import { Vector } from '../types/vector/Vector';
  *
  * @param first - a vector with dimension 3
  * @param second - another vector with dimension 3
+ * @public
  */
-export function crossProduct<S>(first: Vector<S>, second: Vector<S>) {
+export function crossProduct<S>(first: Vector<S>, second: Vector<S>): Vector<S> {
   if (first.getDimension() !== 3 || second.getDimension() !== 3) {
     throw new Error('TODO - operation not defined');
   }
@@ -38,7 +39,8 @@ export function crossProduct<S>(first: Vector<S>, second: Vector<S>) {
  * @param first - a vector with dimension 3
  * @param second - another vector with dimension 3
  * @param third - another vector with dimension 3
+ * @public
  */
-export function tripleProduct<S>(first: Vector<S>, second: Vector<S>, third: Vector<S>) {
+export function tripleProduct<S>(first: Vector<S>, second: Vector<S>, third: Vector<S>): S {
   return first.innerProduct(crossProduct(second, third));
 }

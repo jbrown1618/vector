@@ -1,6 +1,9 @@
 import { Matrix } from '../types/matrix/Matrix';
 import { Vector } from '../types/vector/Vector';
 
+/**
+ * @public
+ */
 export function prettyPrint(num: number): string;
 export function prettyPrint<S>(vector: Vector<S>): string;
 export function prettyPrint<S>(matrix: Matrix<S>): string;
@@ -52,7 +55,7 @@ function getPrintWidth<S>(v: Vector<S>): number {
     .reduce((max, curr) => (curr > max ? curr : max), 0);
 }
 
-function spaces(n: number) {
+function spaces(n: number): string {
   let sp = '';
   for (let i = 0; i < n; i++) {
     sp = sp + ' ';

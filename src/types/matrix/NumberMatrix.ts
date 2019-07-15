@@ -5,13 +5,15 @@ import { VectorBuilder } from '../vector/VectorBuilder';
 import { ArrayMatrix } from './ArrayMatrix';
 import { MatrixConstructor, MatrixData } from './Matrix';
 import { MatrixBuilder } from './MatrixBuilder';
+import { ScalarOperations } from '../scalar/ScalarOperations';
 
 /**
  * A `Matrix` implemented as a 2-dimensional array of JS `number` primitives
+ * @public
  */
 @StaticImplements<MatrixConstructor<number, NumberVector, NumberMatrix>>()
 export class NumberMatrix extends ArrayMatrix<number> {
-  public static ops() {
+  public static ops(): ScalarOperations<number> {
     return new NumberOperations();
   }
 
@@ -23,26 +25,29 @@ export class NumberMatrix extends ArrayMatrix<number> {
     return new VectorBuilder(NumberVector);
   }
 
+  /**
+   * @internal
+   */
   constructor(data: MatrixData<number>) {
     super(data);
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc ArrayMatrix.ops}
    */
-  public ops() {
+  public ops(): ScalarOperations<number> {
     return NumberMatrix.ops();
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc ArrayMatrix.builder}
    */
   public builder(): MatrixBuilder<number, NumberVector, NumberMatrix> {
     return NumberMatrix.builder();
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc ArrayMatrix.vectorBuilder}
    */
   public vectorBuilder(): VectorBuilder<number, NumberVector> {
     return NumberMatrix.vectorBuilder();

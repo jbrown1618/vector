@@ -9,6 +9,7 @@ import { columnSumSupremumNorm } from './Norms';
  *
  * @param A - The matrix to raise to a power `n`
  * @param n - The power to which to raise `A`
+ * @public
  */
 export function pow<S>(A: Matrix<S>, n: number): Matrix<S> {
   // TODO - memoize these results
@@ -31,6 +32,7 @@ export function pow<S>(A: Matrix<S>, n: number): Matrix<S> {
  *
  * @param A - The matrix to exponentiate
  * @param order - The order of the approximation - higher numbers yield more accurate results
+ * @public
  */
 export function exp<S>(A: Matrix<S>, order: number = 6): Matrix<S> {
   assertSquare(A);
@@ -80,7 +82,10 @@ function getScaleFactorExponent<S>(A: Matrix<S>): number {
  * @param exponentialOfScaledMatrix - The calculated exponential of original matrix `A` scaled down
  * @param scaleFactorExponent  - The exponent `k` that was used to scale down the original matrix `A`
  */
-function deScaleSolution<S>(exponentialOfScaledMatrix: Matrix<S>, scaleFactorExponent: number) {
+function deScaleSolution<S>(
+  exponentialOfScaledMatrix: Matrix<S>,
+  scaleFactorExponent: number
+): Matrix<S> {
   let exponentialOfOriginalMatrix = exponentialOfScaledMatrix;
   for (let i = 0; i < scaleFactorExponent; i++) {
     exponentialOfOriginalMatrix = exponentialOfOriginalMatrix.multiply(exponentialOfOriginalMatrix);

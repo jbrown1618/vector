@@ -1,16 +1,19 @@
 import { StaticImplements } from '../../utilities/StaticImplements';
-import { NumberMatrix } from '../matrix/NumberMatrix';
 import { NumberOperations } from '../scalar/NumberOperations';
 import { SparseVector } from './SparseVector';
 import { VectorConstructor, VectorData } from './Vector';
 import { VectorBuilder } from './VectorBuilder';
+import { SparseNumberMatrix } from '../matrix/SparseNumberMatrix';
+import { MatrixBuilder } from '../matrix/MatrixBuilder';
+import { ScalarOperations } from '../scalar/ScalarOperations';
 
 /**
  * A `Vector` implemented as a sparse set of JS `number` primitives keyed by their indices.
+ * @public
  */
 @StaticImplements<VectorConstructor<number, SparseNumberVector>>()
 export class SparseNumberVector extends SparseVector<number> {
-  public static ops(): NumberOperations {
+  public static ops(): ScalarOperations<number> {
     return new NumberOperations();
   }
 
@@ -18,28 +21,31 @@ export class SparseNumberVector extends SparseVector<number> {
     return new VectorBuilder(SparseNumberVector);
   }
 
+  /**
+   * @internal
+   */
   constructor(data: VectorData<number>) {
     super(data);
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc SparseVector.ops}
    */
-  public ops(): NumberOperations {
+  public ops(): ScalarOperations<number> {
     return SparseNumberVector.ops();
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc SparseVector.builder}
    */
   public builder(): VectorBuilder<number, SparseNumberVector> {
     return SparseNumberVector.builder();
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc SparseVector.matrixBuilder}
    */
-  public matrixBuilder() {
-    return NumberMatrix.builder();
+  public matrixBuilder(): MatrixBuilder<number, SparseNumberVector, SparseNumberMatrix> {
+    return SparseNumberMatrix.builder();
   }
 }

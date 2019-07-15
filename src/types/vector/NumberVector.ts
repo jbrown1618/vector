@@ -4,9 +4,11 @@ import { NumberOperations } from '../scalar/NumberOperations';
 import { ArrayVector } from './ArrayVector';
 import { VectorConstructor, VectorData } from './Vector';
 import { VectorBuilder } from './VectorBuilder';
+import { MatrixBuilder } from '../matrix/MatrixBuilder';
 
 /**
  * A `Vector` implemented as an array of JS `number` primitives.
+ * @public
  */
 @StaticImplements<VectorConstructor<number, NumberVector>>()
 export class NumberVector extends ArrayVector<number> {
@@ -18,28 +20,31 @@ export class NumberVector extends ArrayVector<number> {
     return new VectorBuilder(NumberVector);
   }
 
+  /**
+   * @internal
+   */
   constructor(data: VectorData<number>) {
     super(data);
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc ArrayVector.ops}
    */
   public ops(): NumberOperations {
     return NumberVector.ops();
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc ArrayVector.builder}
    */
   public builder(): VectorBuilder<number, NumberVector> {
     return NumberVector.builder();
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc ArrayVector.matrixBuilder}
    */
-  public matrixBuilder() {
+  public matrixBuilder(): MatrixBuilder<number, NumberVector, NumberMatrix> {
     return NumberMatrix.builder();
   }
 }

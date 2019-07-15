@@ -4,12 +4,10 @@ dist/
 # Dependencies
 node_modules/
 
-# Code coverage reports
+# Generated
 coverage/
 .nyc_output/
-
-# Generated documentation
-api-docs/
+temp/
 
 # Local benchmarks
 benchmarks/local

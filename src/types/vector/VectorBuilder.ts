@@ -4,12 +4,25 @@ import { ScalarOperations } from '../scalar/ScalarOperations';
 import { SparseVectorData } from './SparseVector';
 import { Vector, VectorConstructor, VectorData } from './Vector';
 
+/**
+ * @public
+ */
 export type VectorIndexFunction<S> = (index: number) => S;
+
+/**
+ * @public
+ */
 export type VectorEntryFunction<S> = (entry: S, index: number) => S;
 
+/**
+ * @public
+ */
 export class VectorBuilder<S, V extends Vector<S>> {
   private readonly _vectorConstructor: VectorConstructor<S, V>;
 
+  /**
+   * @internal
+   */
   constructor(vectorConstructor: VectorConstructor<S, V>) {
     this._vectorConstructor = vectorConstructor;
   }
@@ -42,6 +55,7 @@ export class VectorBuilder<S, V extends Vector<S>> {
    * Constructs a vector with entries given by _entry = f(i)_ where _f_ is `valueFromIndex`
    * and `i` is the index of the element
    *
+   * @example
    * ```
    * vectorBuilder.fromIndexFunction(4, i => i + 3); // [ 3 4 5 6 ]
    * ```
@@ -61,6 +75,7 @@ export class VectorBuilder<S, V extends Vector<S>> {
   /**
    * Constructs a vector by transforming the values of another vector.
    *
+   * @example
    * ```
    * const original = vectorBuilder.fromValues(1, 2, 3, 4);
    *
@@ -82,6 +97,7 @@ export class VectorBuilder<S, V extends Vector<S>> {
   /**
    * Constructs a Vector of dimension 0
    *
+   * @example
    * ```
    * vectorBuilder.empty(); // []
    * ```
@@ -95,6 +111,7 @@ export class VectorBuilder<S, V extends Vector<S>> {
   /**
    * Constructs a vector whose entries are all equal to the provided value
    *
+   * @example
    * ```
    * vectorBuilder.fill(3, 5); // [ 3 3 3 3 3 ]
    * ```
@@ -111,6 +128,7 @@ export class VectorBuilder<S, V extends Vector<S>> {
   /**
    * Constructs a vector of all zeros
    *
+   * @example
    * ```
    * vectorBuilder.zeros(3); // [ 0 0 0 ]
    * ```
@@ -124,6 +142,7 @@ export class VectorBuilder<S, V extends Vector<S>> {
   /**
    * Constructs a vector of all ones
    *
+   * @example
    * ```
    * vectorBuilder.ones(3); // [ 1 1 1 ]
    * ```
@@ -137,6 +156,7 @@ export class VectorBuilder<S, V extends Vector<S>> {
   /**
    * Constructs a vector that has the value 1 at one index, and 0 at the others
    *
+   * @example
    * ```
    * vectorBuilder.elementaryVector(4, 2); // [ 0 0 1 0 ]
    * vectorBuilder.elementaryVector(3, 0); // [ 1 0 0 ]
@@ -156,6 +176,7 @@ export class VectorBuilder<S, V extends Vector<S>> {
   /**
    * Constructs a vector whose entries match the input vector, but offset by a given amount
    *
+   * @example
    * ```
    * const original = vectorBuilder.fromArray([1, 2, 3]);
    * const rightOne = vectorBuilder.rotate(original); // [2, 3, 1];
@@ -210,6 +231,7 @@ export class VectorBuilder<S, V extends Vector<S>> {
   /**
    * Constructs a vector consisting of two vectors end-to-end
    *
+   * @example
    * ```
    * const first = vectorBuilder.ones(3);
    * const second = vectorBuilder.zeros(2);

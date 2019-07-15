@@ -14,6 +14,7 @@ import { backwardSubstituteAugmentedMatrix } from './Substitution';
  * @param A - The matrix _A_ in _Ax=b_
  * @param b - The vector _b_ in _Ax=b_
  * @returns The vector _x_ in _Ax=b_
+ * @public
  */
 export function solveByGaussianElimination<S>(A: Matrix<S>, b: Vector<S>): LinearSolution<S> {
   const augmented = A.builder().augment(A, A.builder().fromColumnVectors([b]));
@@ -28,6 +29,7 @@ export function solveByGaussianElimination<S>(A: Matrix<S>, b: Vector<S>): Linea
  *
  * @param matrix - A square matrix
  * @returns The inverse matrix
+ * @public
  */
 export function inverse<S>(matrix: Matrix<S>): Matrix<S> | undefined {
   assertSquare(matrix);
@@ -53,6 +55,7 @@ export function inverse<S>(matrix: Matrix<S>): Matrix<S> | undefined {
  *
  * @param matrix - The input matrix
  * @returns The matrix in RREF
+ * @public
  */
 export function reducedRowEchelonForm<S>(matrix: Matrix<S>): Matrix<S> {
   matrix = rowEchelonForm(matrix);
@@ -77,6 +80,7 @@ export function reducedRowEchelonForm<S>(matrix: Matrix<S>): Matrix<S> {
  *
  * @param matrix - The input matrix
  * @returns The matrix in REF
+ * @public
  */
 export function rowEchelonForm<S>(matrix: Matrix<S>): Matrix<S> {
   const ops = matrix.ops();

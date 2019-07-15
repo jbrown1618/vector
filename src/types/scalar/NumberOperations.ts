@@ -2,6 +2,9 @@ import { approximatelyEqual, random, randomNormal } from '../../utilities/Number
 import { ScalarOperations } from './ScalarOperations';
 import { prettyPrint } from '../../utilities/prettyPrint';
 
+/**
+ * @public
+ */
 export class NumberOperations extends ScalarOperations<number> {
   public fromNumber(num: number): number {
     return num;

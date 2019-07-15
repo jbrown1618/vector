@@ -1,4 +1,8 @@
-export function approximatelyEqual(first: number, second: number, epsilon: number = 0.000001) {
+export function approximatelyEqual(
+  first: number,
+  second: number,
+  epsilon: number = 0.000001
+): boolean {
   if (Number.isNaN(first) || Number.isNaN(second)) {
     return false; // NaN should never equal itself
   }
@@ -10,12 +14,12 @@ export function approximatelyEqual(first: number, second: number, epsilon: numbe
   return Math.abs(first - second) < epsilon;
 }
 
-export function mod(num: number, modulus: number) {
+export function mod(num: number, modulus: number): number {
   // Operator % yields negative results for negative numbers.
   return ((num % modulus) + modulus) % modulus;
 }
 
-export function random(min: number = 0, max: number = 1) {
+export function random(min: number = 0, max: number = 1): number {
   return min + Math.random() * (max - min);
 }
 
@@ -23,7 +27,7 @@ export function randomNormal(
   mean: number = 0,
   standardDeviation: number = 1,
   numberOfSamples: number = 10
-) {
+): number {
   let total = 0;
   for (let i = 0; i < numberOfSamples; i++) {
     total += random();

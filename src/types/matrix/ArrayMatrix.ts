@@ -8,10 +8,14 @@ import { MatrixBuilder } from './MatrixBuilder';
 /**
  * Implements `Matrix` with a 2-dimensional array of values.
  * Subclasses must specify the usual scalar operations on their contents.
+ * @public
  */
 export abstract class ArrayMatrix<S> implements Matrix<S> {
   private readonly _data: MatrixData<S>;
 
+  /**
+   * @internal
+   */
   protected constructor(data: MatrixData<S>) {
     assertRectangular(data);
     if (data.length !== 0 && data[0].length === 0) {
@@ -25,7 +29,7 @@ export abstract class ArrayMatrix<S> implements Matrix<S> {
   public abstract vectorBuilder(): VectorBuilder<S, Vector<S>>;
 
   /**
-   * @inheritdoc
+   * {@inheritDoc Matrix.add}
    */
   public add(other: Matrix<S>): Matrix<S> {
     return this.builder().fromColumnVectors(
@@ -34,7 +38,7 @@ export abstract class ArrayMatrix<S> implements Matrix<S> {
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc Matrix.adjoint}
    */
   public adjoint(): Matrix<S> {
     const transposedData = this.transpose().toArray();
@@ -49,7 +53,7 @@ export abstract class ArrayMatrix<S> implements Matrix<S> {
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc Matrix.trace}
    */
   public trace(): S {
     const ops = this.ops();
@@ -62,7 +66,7 @@ export abstract class ArrayMatrix<S> implements Matrix<S> {
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc Matrix.apply}
    */
   public apply(vector: Vector<S>): Vector<S> {
     const vectorAsColumnMatrix = this.builder().fromColumnVectors([vector]);
@@ -70,7 +74,7 @@ export abstract class ArrayMatrix<S> implements Matrix<S> {
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc Matrix.equals}
    */
   public equals(other: Matrix<S>): boolean {
     if (this.getNumberOfColumns() !== other.getNumberOfColumns()) {
@@ -87,7 +91,7 @@ export abstract class ArrayMatrix<S> implements Matrix<S> {
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc Matrix.getColumn}
    */
   public getColumn(columnIndex: number): Vector<S> {
     if (columnIndex > this.getNumberOfColumns() - 1 || columnIndex < 0) {
@@ -97,14 +101,14 @@ export abstract class ArrayMatrix<S> implements Matrix<S> {
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc Matrix.getColumnVectors}
    */
   public getColumnVectors(): Vector<S>[] {
     return this.transpose().getRowVectors();
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc Matrix.getDiagonal}
    */
   public getDiagonal(): Vector<S> {
     const numDiagonalElements = Math.min(this.getNumberOfRows(), this.getNumberOfColumns());
@@ -112,7 +116,7 @@ export abstract class ArrayMatrix<S> implements Matrix<S> {
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc Matrix.toArray}
    */
   public toArray(): S[][] {
     return this.getRowVectors().map(row => [...row.toArray()]);
@@ -139,7 +143,7 @@ export abstract class ArrayMatrix<S> implements Matrix<S> {
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc Matrix.getEntry}
    */
   public getEntry(rowIndex: number, columnIndex: number): S {
     assertValidMatrixIndex(this, rowIndex, columnIndex);
@@ -147,21 +151,21 @@ export abstract class ArrayMatrix<S> implements Matrix<S> {
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc Matrix.getNumberOfColumns}
    */
   public getNumberOfColumns(): number {
     return this.getColumnVectors().length;
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc Matrix.getNumberOfRows}
    */
   public getNumberOfRows(): number {
     return this.getRowVectors().length;
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc Matrix.getRow}
    */
   public getRow(rowIndex: number): Vector<S> {
     if (rowIndex > this.getNumberOfRows() - 1 || rowIndex < 0) {
@@ -171,14 +175,14 @@ export abstract class ArrayMatrix<S> implements Matrix<S> {
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc Matrix.getRowVectors}
    */
   public getRowVectors(): Vector<S>[] {
     return this._data.map((dataRow: VectorData<S>) => this.vectorBuilder().fromArray(dataRow));
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc Matrix.multiply}
    */
   public multiply(other: Matrix<S>): Matrix<S> {
     if (this.getNumberOfColumns() !== other.getNumberOfRows()) {
@@ -193,7 +197,7 @@ export abstract class ArrayMatrix<S> implements Matrix<S> {
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc Matrix.scalarMultiply}
    */
   public scalarMultiply(scalar: S): Matrix<S> {
     return this.builder().fromColumnVectors(
@@ -202,7 +206,7 @@ export abstract class ArrayMatrix<S> implements Matrix<S> {
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc Matrix.set}
    */
   public set(rowIndex: number, columnIndex: number, value: S): Matrix<S> {
     assertValidMatrixIndex(this, rowIndex, columnIndex);
@@ -212,16 +216,16 @@ export abstract class ArrayMatrix<S> implements Matrix<S> {
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc Matrix.transpose}
    */
   public transpose(): Matrix<S> {
     return this.builder().fromColumnVectors(this.getRowVectors());
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc Matrix.forEachEntry}
    */
-  public forEachEntry(cb: MatrixEntryCallback<S>) {
+  public forEachEntry(cb: MatrixEntryCallback<S>): void {
     this.getRowVectors().forEach((row, i) => {
       row.toArray().forEach((entry, j) => {
         cb(entry, i, j);

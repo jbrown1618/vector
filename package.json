@@ -12,7 +12,7 @@
     "url": "https://github.com/jbrown1618/vector/issues"
   },
   "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/vector.d.ts",
   "scripts": {
     "build": "tsc",
     "test": "mocha -r ts-node/register 'src/**/*.spec.ts'",
@@ -23,10 +23,13 @@
     "format:check": "prettier --check './*.json' 'src/**/*.{ts,json,md}'",
     "lint": "eslint --fix 'src/**/*.ts'",
     "lint:check": "eslint 'src/**/*.ts'",
-    "docs": "typedoc --out ./api-docs/ --readme none --theme minimal --exclude '**/+(*.spec.ts|index.ts)' --excludePrivate ./src/"
+    "docs": "api-extractor run --local && api-documenter markdown --input-folder temp/ --output-folder docs/api/",
+    "docs:check": "api-extractor run"
   },
   "dependencies": {},
   "devDependencies": {
+    "@microsoft/api-documenter": "^7.3.8",
+    "@microsoft/api-extractor": "^7.3.2",
     "@types/chai": "^4.1.7",
     "@types/mocha": "^5.2.7",
     "@typescript-eslint/eslint-plugin": "^1.9.0",
@@ -41,7 +44,6 @@
     "nyc": "^14.1.1",
     "prettier": "^1.18.2",
     "ts-node": "^8.3.0",
-    "typedoc": "^0.14.2",
     "typescript": "^3.5.2"
   },
   "husky": {

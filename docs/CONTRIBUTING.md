@@ -86,14 +86,17 @@ npm run coverage:check
 
 ### Documentation
 
-Documentation is generated with [Typedoc](https://typedoc.org/), which uses the standard tsdoc
+Documentation is generated with [API Extractor](https://api-extractor.com/), which uses the standard tsdoc
 format defined by [tsdoc](https://github.com/Microsoft/tsdoc).
+
+If you have changed the public API of the project, you must run `npm run docs`, or CI will fail.
 
 - Document all public functions and methods.
 - Always include a summary, `@param`s, and `@returns`
+- Always include `@public` or `@internal`.
 - Parameters take the form `@param name - Description`. No type annotation is needed.
 - Returns take the form `@returns Description`. Again, no type annotation is needed.
-- When implementing an interface, use `@inheritdoc` to indicate that documentation
+- When implementing an interface, use `{@inheritDoc Parent.method}` to indicate that documentation
   should be pulled from the parent.
 
 #### Example for formatting (not for content!):
@@ -114,9 +117,10 @@ interface Thing {
 /**
  * A Thing which, when done, logs its options to the `console`
  */
-class LoggingThing implements Thing {
+export class LoggingThing implements Thing {
   /**
-   * @inheritdoc
+   * {@inheritDoc Thing.do}
+   * @public
    */
   do(options: string[]): void {
     options.forEach(option => console.log(option));
@@ -130,8 +134,9 @@ class LoggingThing implements Thing {
  * @parameter options - The parameters to be used for every thing
  * @returns The first thing, because I need an example for `@returns`, or undefined if the first
  *     thing is unavailable.
+ * @public
  */
-function doTheThings(things: Thing[], options: string[]): Thing | undefined {
+export function doTheThings(things: Thing[], options: string[]): Thing | undefined {
   things.forEach(thing => thing.do(options));
   return things.length > 0 ? things[0] : undefined;
 }

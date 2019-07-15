@@ -5,13 +5,15 @@ import { VectorBuilder } from '../vector/VectorBuilder';
 import { MatrixConstructor, MatrixData } from './Matrix';
 import { MatrixBuilder } from './MatrixBuilder';
 import { SparseMatrix } from './SparseMatrix';
+import { ScalarOperations } from '../scalar/ScalarOperations';
 
 /**
  * A `Matrix` implemented as a sparse set of JS `number` primitives keyed by their indices.
+ * @public
  */
 @StaticImplements<MatrixConstructor<number, SparseNumberVector, SparseNumberMatrix>>()
 export class SparseNumberMatrix extends SparseMatrix<number> {
-  public static ops() {
+  public static ops(): ScalarOperations<number> {
     return new NumberOperations();
   }
 
@@ -23,26 +25,29 @@ export class SparseNumberMatrix extends SparseMatrix<number> {
     return new VectorBuilder(SparseNumberVector);
   }
 
+  /**
+   * @internal
+   */
   constructor(data: MatrixData<number>) {
     super(data);
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc SparseMatrix.ops}
    */
-  public ops() {
+  public ops(): ScalarOperations<number> {
     return SparseNumberMatrix.ops();
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc SparseMatrix.builder}
    */
   public builder(): MatrixBuilder<number, SparseNumberVector, SparseNumberMatrix> {
     return SparseNumberMatrix.builder();
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc SparseMatrix.vectorBuilder}
    */
   public vectorBuilder(): VectorBuilder<number, SparseNumberVector> {
     return SparseNumberMatrix.vectorBuilder();

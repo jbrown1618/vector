@@ -10,12 +10,25 @@ import { Vector } from '../vector/Vector';
 import { Matrix, MatrixConstructor, MatrixData } from './Matrix';
 import { SparseMatrixData } from './SparseMatrix';
 
+/**
+ * @public
+ */
 export type MatrixIndexFunction<S> = (i: number, j: number) => S;
+
+/**
+ * @public
+ */
 export type MatrixEntryFunction<S> = (entry: S, i: number, j: number) => S;
 
+/**
+ * @public
+ */
 export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
   private readonly _matrixConstructor: MatrixConstructor<S, V, M>;
 
+  /**
+   * @internal
+   */
   constructor(matrixConstructor: MatrixConstructor<S, V, M>) {
     this._matrixConstructor = matrixConstructor;
   }
@@ -43,6 +56,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
   /**
    * Builds a matrix from an array of column vectors
    *
+   * @example
    * ```
    * const firstColumn = vectorBuilder.fromArray([ 1, 2, 3 ]);
    * const secondColumn = vectorBuilder.fromArray([ 4, 5, 6 ]);
@@ -54,6 +68,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * // [ 3 6 ]
    * ```
    * @param columns - The vectors to use as the columns of the new matrix
+   * @public
    */
   public fromColumnVectors(columns: Vector<S>[]): M {
     assertHomogeneous(columns);
@@ -72,6 +87,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
   /**
    * Builds a matrix from an array of row vectors
    *
+   * @example
    * ```
    * const firstRow = vectorBuilder.fromArray([ 1, 2, 3 ]);
    * const secondRow = vectorBuilder.fromArray([ 4, 5, 6 ]);
@@ -84,6 +100,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    *
    * @param rows - The vectors to use as the rows of the new matrix
    * @returns The new matrix
+   * @public
    */
   public fromRowVectors(rows: Vector<S>[]): M {
     assertHomogeneous(rows);
@@ -103,6 +120,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * Builds a matrix with entries given by _entry = f(i, j)_ where _f_ is `indexFunction`
    * and `i` and `j` are the indices of the element
    *
+   * @example
    * ```
    * const matrix = matrixBuilder.fromIndexFunction(3, 4, (i, j) => i + j + 3);
    *
@@ -114,6 +132,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * @param numColumns - The number of columns the new matrix should have
    * @param indexFunction - A function returning the entry for a given `i`, `j`
    * @returns The new matrix
+   * @public
    */
   public fromIndexFunction(
     numRows: number,
@@ -134,6 +153,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
   /**
    * Builds a matrix by transforming the values of another matrix.
    *
+   * @example
    * ```
    * const original = matrixBuilder.fromArray([
    *   [ 1, 2, 3 ]
@@ -154,6 +174,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * @param entryFunction - A function which takes an entry of
    *     the original matrix and its indices, and returns the corresponding entry of the new matrix
    * @returns The new matrix
+   * @public
    */
   public map(matrix: Matrix<S>, entryFunction: MatrixEntryFunction<S>): M {
     return this.fromIndexFunction(matrix.getNumberOfRows(), matrix.getNumberOfColumns(), (i, j) =>
@@ -164,9 +185,12 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
   /**
    * Constructs a 0x0 matrix
    *
+   * @example
    * ```
    * matrixBuilder.empty(); // []
    * ```
+   *
+   * @public
    */
   public empty(): M {
     return new this._matrixConstructor([]);
@@ -175,6 +199,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
   /**
    * Constructs a matrix of the specified dimension, whose entries are all the specified value
    *
+   * @example
    * ```
    * const allTwos = matrixBuilder.fill(2, 3, 4)
    *
@@ -187,6 +212,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * @param numberOfRows - The number of rows the new matrix should have
    * @param numberOfColumns - The number of columns the new matrix should have
    * @returns The new matrix
+   * @public
    */
   public fill(value: S, numberOfRows: number, numberOfColumns: number = numberOfRows): M {
     return this.fromIndexFunction(numberOfRows, numberOfColumns, () => value);
@@ -195,6 +221,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
   /**
    * Constructs a matrix of the specified dimensions, consisting of all zeros
    *
+   * @example
    * ```
    * const allZeros = matrixBuilder.zeros(2, 3);
    *
@@ -204,6 +231,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * @param numberOfRows - The number of rows the new matrix should have
    * @param numberOfColumns - The number of columns the new matrix should have
    * @returns The new matrix
+   * @public
    */
   public zeros(numberOfRows: number, numberOfColumns: number = numberOfRows): M {
     return this.fill(this.ops().zero(), numberOfRows, numberOfColumns);
@@ -212,6 +240,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
   /**
    * Constructs a matrix of the specified dimensions, consisting of all ones
    *
+   * @example
    * ```
    * const allOnes = matrixBuilder.ones(2, 3);
    *
@@ -221,6 +250,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * @param numberOfRows - The number of rows the new matrix should have
    * @param numberOfColumns - The number of columns the new matrix should have
    * @returns The new matrix
+   * @public
    */
   public ones(numberOfRows: number, numberOfColumns: number = numberOfRows): M {
     return this.fill(this.ops().one(), numberOfRows, numberOfColumns);
@@ -229,6 +259,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
   /**
    * Constructs a `size` x `size` identity matrix
    *
+   * @example
    * ```
    * const I3 = matrixBuilder.identity(3);
    *
@@ -238,6 +269,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * ```
    * @param size - The dimension of the vector space for which the new matrix is the identity
    * @returns The new matrix
+   * @public
    */
   public identity(size: number): M {
     return this.fromIndexFunction(size, size, (i, j) =>
@@ -248,6 +280,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
   /**
    * Constructs a Hilbert matrix of the specified size
    *
+   * @example
    * ```
    * const H = matrixBuilder.hilbert(3);
    *
@@ -257,6 +290,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * ```
    *
    * @param size - The size of the Hilbert matrix
+   * @public
    */
   public hilbert(size: number): M {
     return this.fromIndexFunction(size, size, (i, j) => {
@@ -271,6 +305,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * real because the first entry of the first column must equal the first entry
    * of the first row.
    *
+   * @example
    * ```
    * const toeplitz = matrixBuilder.toeplitz(vectorBuilder.fromArray([1, 2, 3]));
    *
@@ -290,8 +325,9 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    *
    * @param firstColumn - The first column of the Toeplitz matrix
    * @param firstRow - The first row of the Toeplitz matrix
+   * @public
    */
-  public toeplitz(firstColumn: Vector<S>, firstRow?: Vector<S>) {
+  public toeplitz(firstColumn: Vector<S>, firstRow?: Vector<S>): M {
     const vb = this._matrixConstructor.vectorBuilder();
     const ops = this.ops();
     firstRow = firstRow || vb.map(firstColumn, value => ops.conjugate(value));
@@ -321,6 +357,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * zero elsewhere is assumed.  The last entry of the first column must equal
    * the first entry of the last row.
    *
+   * @example
    * ```
    * const hankel = matrixBuilder.hankel(vectorBuilder.fromArray([2, 4, 6, 8]));
    *
@@ -342,8 +379,9 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    *
    * @param firstColumn - The first column of the Hankel matrix
    * @param lastRow - The last row of the Hankel matrix
+   * @public
    */
-  public hankel(firstColumn: Vector<S>, lastRow?: Vector<S>) {
+  public hankel(firstColumn: Vector<S>, lastRow?: Vector<S>): M {
     const numRows = firstColumn.getDimension();
     if (numRows === 0) {
       return this.empty();
@@ -379,6 +417,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * Constructs a lower-triangular matrix whose entries are the binomial coefficients (j choose i).
    * Constructs an upper triangular matrix when the second argument is `true`.
    *
+   * @example
    * ```
    * const pascalLower = matrixBuilder.pascal(4);
    *
@@ -397,6 +436,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    *
    * @param size - The size of the Pascal matrix
    * @param upper - Construct an upper-triangular matrix (i choose j)
+   * @public
    */
   public pascal(size: number, upper: boolean = false): M {
     return this.fromIndexFunction(size, size, (i, j) => {
@@ -408,6 +448,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
   /**
    * Constructs a symmatric matrix whose entries are the binomial coefficients (i + j choose i)
    *
+   * @example
    * ```
    * const pascalSymmetric = matrixBuilder.pascalSymmetric(4);
    *
@@ -418,6 +459,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * ```
    *
    * @param size - The size of the Pascal matrix
+   * @public
    */
   public pascalSymmetric(size: number): M {
     return this.fromIndexFunction(size, size, (i, j) => {
@@ -428,6 +470,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
   /**
    * Construct a circulant matrix using entries from the input vector
    *
+   * @example
    * ```
    * const circulant = matrixBuilder.circulant(vectorBuilder.fromArray([1, 2, 3]));
    *
@@ -437,6 +480,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * ```
    *
    * @param vector - The vector whose entries to use in the circulant matrix
+   * @public
    */
   public circulant(vector: Vector<S>): M {
     const vb = this._matrixConstructor.vectorBuilder();
@@ -455,6 +499,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * @param numberOfColumns - The number of columns the new matrix should have
    * @param min - The lower limit of the random numbers to include
    * @param max - The upper limit of the random numbers to include
+   * @public
    */
   public random(
     numberOfRows: number,
@@ -476,6 +521,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * @param numberOfColumns - The number of columns the new matrix should have
    * @param mean - The center of the distribution of random numbers to include
    * @param standardDeviation - The standard deviation of the distribution of random numbers to include
+   * @public
    */
   public randomNormal(
     numberOfRows: number,
@@ -494,6 +540,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
   /**
    * Constructs a square diagonal matrix whose diagonal entries come from `diagonalEntries`
    *
+   * @example
    * ```
    * const diagonalEntries = NumberVector.fromValues(1, 2, 3);
    * matrixBuilder.diagonal(diagonalEntries);
@@ -504,6 +551,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * ```
    * @param diagonalEntries - A vector whose entries will be used as the diagonal entries of the new matrix
    * @returns The new matrix
+   * @public
    */
   public diagonal(diagonalEntries: V): M {
     const size = diagonalEntries.getDimension();
@@ -520,6 +568,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * The off-diagonals must have one fewer entry than the diagonal.
    * Throws an error if the dimensions are not correct.
    *
+   * @example
    * ```
    * const leftEntries = NumberVector.fromEntries(1, 2);
    * const diagonalEntries = NumberVector.fromEntries(3, 4, 5);
@@ -536,6 +585,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * @param diagonalEntries - A vector whose entries will be used in the diagonal
    * @param rightEntries - A vector whose entries will be used in the right off-diagonal
    * @returns The new matrix
+   * @public
    */
   public tridiagonal(
     leftEntries: Vector<S>,
@@ -566,6 +616,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
   /**
    * Creates a block-diagonal matrix.
    *
+   * @example
    * ```
    * const ones = matrixBuilder.ones(2);
    * const twos = matrixBuilder.fill(2, 3);
@@ -582,6 +633,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * ```
    *
    * @param matrices - The matrices to appear along the primary diagonal of the block matrix
+   * @public
    */
   public blockDiagonal(matrices: Matrix<S>[]): M {
     matrices.forEach(matrix => assertSquare(matrix));
@@ -607,6 +659,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * Constructs a single matrix consisting of a grid of matrices combined together.
    * Throws an error if any of the dimensions are incompatible.
    *
+   * @example
    * ```
    * const upperLeft = matrixBuilder.ones(1, 1);
    * const upperRight = matrixBuilder.fill(2, 1, 2);
@@ -626,6 +679,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * ```
    * @param grid - A 2-dimensional array of matrices that will be combined into the new matrix
    * @returns The new matrix
+   * @public
    */
   public block(grid: Matrix<S>[][]): M {
     if (grid.length === 0 || grid[0].length === 0) {
@@ -650,6 +704,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * Constructs a new matrix consisting of `left` and `right` next to one another.
    * Throws an error of `left` and `right` do not have the same number of rows.
    *
+   * @example
    * ```
    * const left = matrixBuilder.ones(2);
    * const right = matrixBuilder.zeros(2, 3);
@@ -662,6 +717,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * @param left - The matrix that will form the left-side of the augmented matrix
    * @param right - The matrix that will form the right-side of the augmented matrix
    * @returns The new augmented matrix
+   * @public
    */
   public augment(left: Matrix<S>, right: Matrix<S>): M {
     if (left.getNumberOfRows() !== right.getNumberOfRows()) {
@@ -674,6 +730,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
   /**
    * Constructs a new matrix consisted of repetitions of a smaller matrix.
    *
+   * @example
    * ```
    * const I = matrixBuilder.identity(2);
    * const repeated = matrixBuilder.repeat(I, 1, 2);
@@ -685,6 +742,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * @param rows - The number of times to repeat the matrix vertically
    * @param columns - The number of times to repeat the matrix horizontally
    * @returns The new matrix
+   * @public
    */
   public repeat(matrix: M, rows: number, columns: number): M {
     const grid: M[][] = [];
@@ -702,6 +760,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
   /**
    * Constructs a new matrix based on a rectangular slice of a larger matrix
    *
+   * @example
    * ```
    * const matrix = matrixBuilder.identity(4);
    * const slice = matrixBuilder.slice(matrix, 2, 2, 3, 4);
@@ -718,6 +777,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * @param rowEndIndex - The (exclusive) last row of the slice
    * @param columnEndIndex - The (exclusive) last column of the slice
    * @returns The new matrix
+   * @public
    */
   public slice(
     matrix: Matrix<S>,
@@ -757,6 +817,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * Constructs a new matrix with all entries in row `rowToExclude` and in
    * column `columnToExclude` removed.
    *
+   * @example
    * ```
    * const I = matrixBuilder.identity(4);
    * const excluded = matrixBuilder.slice(I, 1, 2)
@@ -770,6 +831,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * @param rowToExclude - The index of the row that will be removed
    * @param columnToExclude - The index of the column that will be removed
    * @returns The new matrix
+   * @public
    */
   public exclude(matrix: M, rowToExclude: number, columnToExclude: number): M {
     assertValidMatrixIndex(matrix, rowToExclude, columnToExclude);
@@ -808,6 +870,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * Constructs a new matrix consisting of `top` and `bottom` on top of one another.
    * Throws an error if `top` and `bottom` do not have the same number of columns.
    *
+   * @example
    * ```
    * const top = matrixBuilder.ones(2, 3);
    * const bottom = matrixBuilder.zeros(1,3);
@@ -821,6 +884,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * @param top - The matrix that will be used for the top half of the new matrix
    * @param bottom - The matrix that will be used for the bottom half of the new matrix
    * @returns The new matrix
+   * @public
    */
   private stack(top: Matrix<S>, bottom: Matrix<S>): M {
     if (top.getNumberOfColumns() !== bottom.getNumberOfColumns()) {

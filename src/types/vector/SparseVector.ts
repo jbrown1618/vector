@@ -5,11 +5,16 @@ import { ScalarOperations } from '../scalar/ScalarOperations';
 import { Vector, VectorData } from './Vector';
 import { VectorBuilder } from './VectorBuilder';
 
+/**
+ * @public
+ */
 export type SparseVectorData<S> = ReadonlyMap<number, S>;
 
 /**
  * A type guard which returns true if the input is an instance of `SparseVector`,
  * and functions as a type check in the compiler.
+ *
+ * @internal
  */
 export function isSparse<S>(vector: Vector<S>): vector is SparseVector<S> {
   return (vector as any)._sparseData !== undefined; // eslint-disable-line @typescript-eslint/no-explicit-any
@@ -18,11 +23,15 @@ export function isSparse<S>(vector: Vector<S>): vector is SparseVector<S> {
 /**
  * For large vectors with many entries equal to 0, some operations are
  * more efficient with a `Vector` implementation that only stores the non-zero values.
+ * @public
  */
 export abstract class SparseVector<S> implements Vector<S> {
   private readonly _dimension: number;
   private readonly _sparseData: SparseVectorData<S>;
 
+  /**
+   * @internal
+   */
   protected constructor(data: VectorData<S>) {
     this._dimension = data.length;
     const sparseData: Map<number, S> = new Map();
@@ -41,14 +50,14 @@ export abstract class SparseVector<S> implements Vector<S> {
   public abstract matrixBuilder(): MatrixBuilder<S, Vector<S>, Matrix<S>>;
 
   /**
-   * @inheritdoc
+   * {@inheritDoc Vector.getSparseData}
    */
   public getSparseData(): Map<number, S> {
     return new Map(this._sparseData);
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc Vector.toArray}
    */
   public toArray(): S[] {
     const data: S[] = [];
@@ -59,7 +68,7 @@ export abstract class SparseVector<S> implements Vector<S> {
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc Vector.getEntry}
    */
   public getEntry(index: number): S {
     assertValidVectorIndex(this, index);
@@ -67,7 +76,7 @@ export abstract class SparseVector<S> implements Vector<S> {
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc Vector.innerProduct}
    */
   public innerProduct(other: Vector<S>): S {
     assertHomogeneous([this, other]);
@@ -83,7 +92,7 @@ export abstract class SparseVector<S> implements Vector<S> {
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc Vector.outerProduct}
    */
   public outerProduct(other: Vector<S>): Matrix<S> {
     if (isSparse(other)) {
@@ -106,7 +115,7 @@ export abstract class SparseVector<S> implements Vector<S> {
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc Vector.scalarMultiply}
    */
   public scalarMultiply(scalar: S): Vector<S> {
     const newSparseData = new Map();
@@ -117,7 +126,7 @@ export abstract class SparseVector<S> implements Vector<S> {
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc Vector.add}
    */
   public add(other: Vector<S>): Vector<S> {
     assertHomogeneous([this, other]);
@@ -128,7 +137,7 @@ export abstract class SparseVector<S> implements Vector<S> {
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc Vector.equals}
    */
   public equals(other: Vector<S>): boolean {
     if (isSparse(other)) {
@@ -142,16 +151,16 @@ export abstract class SparseVector<S> implements Vector<S> {
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc Vector.getDimension}
    */
   public getDimension(): number {
     return this._dimension;
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc Vector.projectOnto}
    */
-  public projectOnto(u: Vector<S>) {
+  public projectOnto(u: Vector<S>): Vector<S> {
     const oneOverUDotU = this.ops().getMultiplicativeInverse(u.innerProduct(u));
     if (oneOverUDotU === undefined) {
       throw Error('TODO - cannot project onto the zero vector');

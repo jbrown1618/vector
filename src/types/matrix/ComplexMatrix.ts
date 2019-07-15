@@ -6,13 +6,15 @@ import { VectorBuilder } from '../vector/VectorBuilder';
 import { ArrayMatrix } from './ArrayMatrix';
 import { MatrixConstructor, MatrixData } from './Matrix';
 import { MatrixBuilder } from './MatrixBuilder';
+import { ScalarOperations } from '../scalar/ScalarOperations';
 
 /**
- * Implements `Matrix` as a 2-dimensional array of `ComplexNumber`s
+ * Implements {@link Matrix} as a 2-dimensional array of {@link ComplexNumber}s
+ * @public
  */
 @StaticImplements<MatrixConstructor<ComplexNumber, ComplexVector, ComplexMatrix>>()
 export class ComplexMatrix extends ArrayMatrix<ComplexNumber> {
-  public static ops() {
+  public static ops(): ScalarOperations<ComplexNumber> {
     return new ComplexNumberOperations();
   }
 
@@ -24,26 +26,29 @@ export class ComplexMatrix extends ArrayMatrix<ComplexNumber> {
     return new VectorBuilder(ComplexVector);
   }
 
+  /**
+   * @internal
+   */
   constructor(data: MatrixData<ComplexNumber>) {
     super(data);
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc ArrayMatrix.ops}
    */
-  public ops() {
+  public ops(): ScalarOperations<ComplexNumber> {
     return ComplexMatrix.ops();
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc ArrayMatrix.builder}
    */
   public builder(): MatrixBuilder<ComplexNumber, ComplexVector, ComplexMatrix> {
     return ComplexMatrix.builder();
   }
 
   /**
-   * @inheritdoc
+   * {@inheritDoc ArrayMatrix.vectorBuilder}
    */
   public vectorBuilder(): VectorBuilder<ComplexNumber, ComplexVector> {
     return ComplexMatrix.vectorBuilder();

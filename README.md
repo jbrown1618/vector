@@ -38,9 +38,4 @@ See our [Contribution Guide](./docs/CONTRIBUTING.md) for contribution guidelines
 
 ## Documentation
 
-Since this is still in very preliminary stages, the documentation is not
-published anywhere. You can generate it for yourself as follows:
-
-```bash
-npm run docs
-```
+See the [API Documentation](./docs/api/vector.md)
