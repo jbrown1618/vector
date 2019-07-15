@@ -13,6 +13,9 @@ import { MatrixBuilder } from './MatrixBuilder';
 export abstract class ArrayMatrix<S> implements Matrix<S> {
   private readonly _data: MatrixData<S>;
 
+  /**
+   * @internal
+   */
   protected constructor(data: MatrixData<S>) {
     assertRectangular(data);
     if (data.length !== 0 && data[0].length === 0) {

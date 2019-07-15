@@ -26,6 +26,9 @@ export type MatrixEntryFunction<S> = (entry: S, i: number, j: number) => S;
 export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
   private readonly _matrixConstructor: MatrixConstructor<S, V, M>;
 
+  /**
+   * @internal
+   */
   constructor(matrixConstructor: MatrixConstructor<S, V, M>) {
     this._matrixConstructor = matrixConstructor;
   }

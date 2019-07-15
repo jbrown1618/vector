@@ -21,6 +21,9 @@ export class SparseNumberVector extends SparseVector<number> {
     return new VectorBuilder(SparseNumberVector);
   }
 
+  /**
+   * @internal
+   */
   constructor(data: VectorData<number>) {
     super(data);
   }

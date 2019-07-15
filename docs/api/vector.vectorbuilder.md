@@ -4,18 +4,11 @@
 
 ## VectorBuilder class
 
-
 <b>Signature:</b>
 
 ```typescript
 export declare class VectorBuilder<S, V extends Vector<S>> 
 ```
-
-## Constructors
-
-|  Constructor | Modifiers | Description |
-|  --- | --- | --- |
-|  [(constructor)(vectorConstructor)](./vector.vectorbuilder.(constructor).md) |  | Constructs a new instance of the <code>VectorBuilder</code> class |
 
 ## Methods
 
@@ -36,4 +29,8 @@ export declare class VectorBuilder<S, V extends Vector<S>>
 |  [randomNormal(dimension, mean, standardDeviation)](./vector.vectorbuilder.randomnormal.md) |  | Constructs a vector whose entries are normally distributed, with the specified mean and standard deviation |
 |  [shift(vector, offset, reverse)](./vector.vectorbuilder.shift.md) |  | Constructs a vector whose entries match the input vector, but offset by a given amount |
 |  [zeros(dimension)](./vector.vectorbuilder.zeros.md) |  | Constructs a vector of all zeros |
+
+## Remarks
+
+The constructor for this class is marked as internal. Third-party code should not call the constructor directly or create subclasses that extend the `VectorBuilder` class.
 

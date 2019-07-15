@@ -12,12 +12,6 @@ Implements `Vector` with an array of values.
 export declare abstract class ArrayVector<S> implements Vector<S> 
 ```
 
-## Constructors
-
-|  Constructor | Modifiers | Description |
-|  --- | --- | --- |
-|  [(constructor)(data)](./vector.arrayvector.(constructor).md) |  | Constructs a new instance of the <code>ArrayVector</code> class |
-
 ## Methods
 
 |  Method | Modifiers | Description |
@@ -39,4 +33,6 @@ export declare abstract class ArrayVector<S> implements Vector<S>
 ## Remarks
 
 Subclasses must specify the usual scalar operations on their contents.
+
+The constructor for this class is marked as internal. Third-party code should not call the constructor directly or create subclasses that extend the `ArrayVector` class.
 

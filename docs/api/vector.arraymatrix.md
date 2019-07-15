@@ -12,12 +12,6 @@ Implements `Matrix` with a 2-dimensional array of values. Subclasses must specif
 export declare abstract class ArrayMatrix<S> implements Matrix<S> 
 ```
 
-## Constructors
-
-|  Constructor | Modifiers | Description |
-|  --- | --- | --- |
-|  [(constructor)(data)](./vector.arraymatrix.(constructor).md) |  | Constructs a new instance of the <code>ArrayMatrix</code> class |
-
 ## Methods
 
 |  Method | Modifiers | Description |
@@ -45,4 +39,8 @@ export declare abstract class ArrayMatrix<S> implements Matrix<S>
 |  [trace()](./vector.arraymatrix.trace.md) |  |  |
 |  [transpose()](./vector.arraymatrix.transpose.md) |  |  |
 |  [vectorBuilder()](./vector.arraymatrix.vectorbuilder.md) |  |  |
+
+## Remarks
+
+The constructor for this class is marked as internal. Third-party code should not call the constructor directly or create subclasses that extend the `ArrayMatrix` class.
 

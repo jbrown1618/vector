@@ -26,6 +26,9 @@ export class ComplexMatrix extends ArrayMatrix<ComplexNumber> {
     return new VectorBuilder(ComplexVector);
   }
 
+  /**
+   * @internal
+   */
   constructor(data: MatrixData<ComplexNumber>) {
     super(data);
   }

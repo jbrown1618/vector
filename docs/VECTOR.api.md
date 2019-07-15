@@ -18,6 +18,7 @@ export type ApproximationFunctionTemplate<S> = (coefficients: Vector<S>) => Appr
 
 // @public
 export abstract class ArrayMatrix<S> implements Matrix<S> {
+    // @internal
     protected constructor(data: MatrixData<S>);
     add(other: Matrix<S>): Matrix<S>;
     // (undocumented)
@@ -63,6 +64,7 @@ export abstract class ArrayMatrix<S> implements Matrix<S> {
 
 // @public
 export abstract class ArrayVector<S> implements Vector<S> {
+    // @internal
     protected constructor(data: VectorData<S>);
     add(other: Vector<S>): Vector<S>;
     // (undocumented)
@@ -116,6 +118,7 @@ export function columnSumSupremumNorm<S>(A: Matrix<S>): number;
 
 // @public
 export class ComplexMatrix extends ArrayMatrix<ComplexNumber> {
+    // @internal
     constructor(data: MatrixData<ComplexNumber>);
     // (undocumented)
     static builder(): MatrixBuilder<ComplexNumber, ComplexVector, ComplexMatrix>;
@@ -194,6 +197,7 @@ export class ComplexNumberOperations extends ScalarOperations<ComplexNumber> {
 
 // @public
 export class ComplexVector extends ArrayVector<ComplexNumber> {
+    // @internal
     constructor(data: VectorData<ComplexNumber>);
     // (undocumented)
     static builder(): VectorBuilder<ComplexNumber, ComplexVector>;
@@ -328,6 +332,7 @@ export interface Matrix<S> extends LinearTransformation<Vector<S>, Vector<S>> {
 
 // @public (undocumented)
 export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
+    // @internal
     constructor(matrixConstructor: MatrixConstructor<S, V, M>);
     augment(left: Matrix<S>, right: Matrix<S>): M;
     block(grid: Matrix<S>[][]): M;
@@ -394,6 +399,7 @@ export function normalize<S>(v: Vector<S>): Vector<S> | undefined;
 
 // @public
 export class NumberMatrix extends ArrayMatrix<number> {
+    // @internal
     constructor(data: MatrixData<number>);
     // (undocumented)
     static builder(): MatrixBuilder<number, NumberVector, NumberMatrix>;
@@ -443,6 +449,7 @@ export class NumberOperations extends ScalarOperations<number> {
 
 // @public
 export class NumberVector extends ArrayVector<number> {
+    // @internal
     constructor(data: VectorData<number>);
     // (undocumented)
     static builder(): VectorBuilder<number, NumberVector>;
@@ -540,6 +547,7 @@ export function solveOverdeterminedSystem<S>(A: Matrix<S>, b: Vector<S>): Vector
 
 // @public
 export abstract class SparseMatrix<S> implements Matrix<S> {
+    // @internal
     protected constructor(data: MatrixData<S>);
     add(other: Matrix<S>): Matrix<S>;
     // (undocumented)
@@ -588,6 +596,7 @@ export type SparseMatrixData<S> = ReadonlyMap<number, ReadonlyMap<number, S>>;
 
 // @public
 export class SparseNumberMatrix extends SparseMatrix<number> {
+    // @internal
     constructor(data: MatrixData<number>);
     // (undocumented)
     static builder(): MatrixBuilder<number, SparseNumberVector, SparseNumberMatrix>;
@@ -605,6 +614,7 @@ export class SparseNumberMatrix extends SparseMatrix<number> {
 
 // @public
 export class SparseNumberVector extends SparseVector<number> {
+    // @internal
     constructor(data: VectorData<number>);
     // (undocumented)
     static builder(): VectorBuilder<number, SparseNumberVector>;
@@ -620,6 +630,7 @@ export class SparseNumberVector extends SparseVector<number> {
 
 // @public
 export abstract class SparseVector<S> implements Vector<S> {
+    // @internal
     protected constructor(data: VectorData<S>);
     add(other: Vector<S>): Vector<S>;
     // (undocumented)
@@ -686,6 +697,7 @@ export interface Vector<S> {
 
 // @public (undocumented)
 export class VectorBuilder<S, V extends Vector<S>> {
+    // @internal
     constructor(vectorConstructor: VectorConstructor<S, V>);
     concatenate(first: Vector<S>, second: Vector<S>): V;
     elementaryVector(dimension: number, oneIndex: number): V;

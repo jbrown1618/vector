@@ -12,12 +12,6 @@ A `Vector` implemented as an array of JS `number` primitives.
 export declare class NumberVector extends ArrayVector<number> 
 ```
 
-## Constructors
-
-|  Constructor | Modifiers | Description |
-|  --- | --- | --- |
-|  [(constructor)(data)](./vector.numbervector.(constructor).md) |  | Constructs a new instance of the <code>NumberVector</code> class |
-
 ## Methods
 
 |  Method | Modifiers | Description |
@@ -27,4 +21,8 @@ export declare class NumberVector extends ArrayVector<number>
 |  [matrixBuilder()](./vector.numbervector.matrixbuilder.md) |  |  |
 |  [ops()](./vector.numbervector.ops.md) |  |  |
 |  [ops()](./vector.numbervector.ops.md) | <code>static</code> |  |
+
+## Remarks
+
+The constructor for this class is marked as internal. Third-party code should not call the constructor directly or create subclasses that extend the `NumberVector` class.
 

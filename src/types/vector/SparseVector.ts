@@ -29,6 +29,9 @@ export abstract class SparseVector<S> implements Vector<S> {
   private readonly _dimension: number;
   private readonly _sparseData: SparseVectorData<S>;
 
+  /**
+   * @internal
+   */
   protected constructor(data: VectorData<S>) {
     this._dimension = data.length;
     const sparseData: Map<number, S> = new Map();

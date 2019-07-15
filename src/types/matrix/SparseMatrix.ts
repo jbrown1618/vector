@@ -25,6 +25,9 @@ export abstract class SparseMatrix<S> implements Matrix<S> {
   private readonly _numCols: number;
   private readonly _sparseData: SparseMatrixData<S>;
 
+  /**
+   * @internal
+   */
   protected constructor(data: MatrixData<S>) {
     assertRectangular(data);
     if (data.length === 0 || data[0].length === 0) {

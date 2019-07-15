@@ -20,6 +20,9 @@ export class NumberVector extends ArrayVector<number> {
     return new VectorBuilder(NumberVector);
   }
 
+  /**
+   * @internal
+   */
   constructor(data: VectorData<number>) {
     super(data);
   }

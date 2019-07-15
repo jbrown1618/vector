@@ -16,6 +16,9 @@ import { VectorBuilder } from './VectorBuilder';
 export abstract class ArrayVector<S> implements Vector<S> {
   private readonly _data: VectorData<S>;
 
+  /**
+   * @internal
+   */
   protected constructor(data: VectorData<S>) {
     this._data = Object.freeze(data);
   }

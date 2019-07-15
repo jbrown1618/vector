@@ -12,12 +12,6 @@ Implements [Matrix](./vector.matrix.md) as a 2-dimensional array of [ComplexNumb
 export declare class ComplexMatrix extends ArrayMatrix<ComplexNumber> 
 ```
 
-## Constructors
-
-|  Constructor | Modifiers | Description |
-|  --- | --- | --- |
-|  [(constructor)(data)](./vector.complexmatrix.(constructor).md) |  | Constructs a new instance of the <code>ComplexMatrix</code> class |
-
 ## Methods
 
 |  Method | Modifiers | Description |
@@ -28,4 +22,8 @@ export declare class ComplexMatrix extends ArrayMatrix<ComplexNumber>
 |  [ops()](./vector.complexmatrix.ops.md) | <code>static</code> |  |
 |  [vectorBuilder()](./vector.complexmatrix.vectorbuilder.md) |  |  |
 |  [vectorBuilder()](./vector.complexmatrix.vectorbuilder.md) | <code>static</code> |  |
+
+## Remarks
+
+The constructor for this class is marked as internal. Third-party code should not call the constructor directly or create subclasses that extend the `ComplexMatrix` class.
 

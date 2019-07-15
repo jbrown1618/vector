@@ -20,6 +20,9 @@ export type VectorEntryFunction<S> = (entry: S, index: number) => S;
 export class VectorBuilder<S, V extends Vector<S>> {
   private readonly _vectorConstructor: VectorConstructor<S, V>;
 
+  /**
+   * @internal
+   */
   constructor(vectorConstructor: VectorConstructor<S, V>) {
     this._vectorConstructor = vectorConstructor;
   }

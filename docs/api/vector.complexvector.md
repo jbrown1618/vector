@@ -12,12 +12,6 @@ Implements `Vector` as an array of `ComplexNumber`<!-- -->s
 export declare class ComplexVector extends ArrayVector<ComplexNumber> 
 ```
 
-## Constructors
-
-|  Constructor | Modifiers | Description |
-|  --- | --- | --- |
-|  [(constructor)(data)](./vector.complexvector.(constructor).md) |  | Constructs a new instance of the <code>ComplexVector</code> class |
-
 ## Methods
 
 |  Method | Modifiers | Description |
@@ -27,4 +21,8 @@ export declare class ComplexVector extends ArrayVector<ComplexNumber>
 |  [matrixBuilder()](./vector.complexvector.matrixbuilder.md) |  |  |
 |  [ops()](./vector.complexvector.ops.md) |  |  |
 |  [ops()](./vector.complexvector.ops.md) | <code>static</code> |  |
+
+## Remarks
+
+The constructor for this class is marked as internal. Third-party code should not call the constructor directly or create subclasses that extend the `ComplexVector` class.
 

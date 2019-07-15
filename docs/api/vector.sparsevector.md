@@ -12,12 +12,6 @@ For large vectors with many entries equal to 0, some operations are more efficie
 export declare abstract class SparseVector<S> implements Vector<S> 
 ```
 
-## Constructors
-
-|  Constructor | Modifiers | Description |
-|  --- | --- | --- |
-|  [(constructor)(data)](./vector.sparsevector.(constructor).md) |  | Constructs a new instance of the <code>SparseVector</code> class |
-
 ## Methods
 
 |  Method | Modifiers | Description |
@@ -35,4 +29,8 @@ export declare abstract class SparseVector<S> implements Vector<S>
 |  [projectOnto(u)](./vector.sparsevector.projectonto.md) |  |  |
 |  [scalarMultiply(scalar)](./vector.sparsevector.scalarmultiply.md) |  | Implements vector multiplication by a scalar |
 |  [toArray()](./vector.sparsevector.toarray.md) |  |  |
+
+## Remarks
+
+The constructor for this class is marked as internal. Third-party code should not call the constructor directly or create subclasses that extend the `SparseVector` class.
 

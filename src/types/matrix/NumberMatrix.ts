@@ -25,6 +25,9 @@ export class NumberMatrix extends ArrayMatrix<number> {
     return new VectorBuilder(NumberVector);
   }
 
+  /**
+   * @internal
+   */
   constructor(data: MatrixData<number>) {
     super(data);
   }

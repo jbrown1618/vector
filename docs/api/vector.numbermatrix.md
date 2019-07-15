@@ -12,12 +12,6 @@ A `Matrix` implemented as a 2-dimensional array of JS `number` primitives
 export declare class NumberMatrix extends ArrayMatrix<number> 
 ```
 
-## Constructors
-
-|  Constructor | Modifiers | Description |
-|  --- | --- | --- |
-|  [(constructor)(data)](./vector.numbermatrix.(constructor).md) |  | Constructs a new instance of the <code>NumberMatrix</code> class |
-
 ## Methods
 
 |  Method | Modifiers | Description |
@@ -28,4 +22,8 @@ export declare class NumberMatrix extends ArrayMatrix<number>
 |  [ops()](./vector.numbermatrix.ops.md) | <code>static</code> |  |
 |  [vectorBuilder()](./vector.numbermatrix.vectorbuilder.md) |  |  |
 |  [vectorBuilder()](./vector.numbermatrix.vectorbuilder.md) | <code>static</code> |  |
+
+## Remarks
+
+The constructor for this class is marked as internal. Third-party code should not call the constructor directly or create subclasses that extend the `NumberMatrix` class.
 
