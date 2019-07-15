@@ -110,7 +110,7 @@ export abstract class ScalarOperations<S> {
    * Returns the unique scalar such that
    *
    * @example
-   * ```typescript
+   * ```
    * multiplyScalars(scalar, getMultiplicativeInverse(scalar)) === getMultiplicativeIdentity()
    * ```
    *

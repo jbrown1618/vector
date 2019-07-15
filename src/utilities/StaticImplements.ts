@@ -3,7 +3,7 @@
  * Usage:
  *
  * @example
- * ```typescript
+ * ```
  * interface HasFoo {
  *   foo(): Bar;
  * }
