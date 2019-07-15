@@ -56,7 +56,7 @@ export class VectorBuilder<S, V extends Vector<S>> {
    * and `i` is the index of the element
    *
    * @example
-   * ```
+   * ```typescript
    * vectorBuilder.fromIndexFunction(4, i => i + 3); // [ 3 4 5 6 ]
    * ```
    * @param dimension - The dimension of the vector to generate
@@ -76,7 +76,7 @@ export class VectorBuilder<S, V extends Vector<S>> {
    * Constructs a vector by transforming the values of another vector.
    *
    * @example
-   * ```
+   * ```typescript
    * const original = vectorBuilder.fromValues(1, 2, 3, 4);
    *
    * const originalPlusOne = vectorBuilder.map(original, (value) => value + 1);
@@ -98,7 +98,7 @@ export class VectorBuilder<S, V extends Vector<S>> {
    * Constructs a Vector of dimension 0
    *
    * @example
-   * ```
+   * ```typescript
    * vectorBuilder.empty(); // []
    * ```
    *
@@ -112,7 +112,7 @@ export class VectorBuilder<S, V extends Vector<S>> {
    * Constructs a vector whose entries are all equal to the provided value
    *
    * @example
-   * ```
+   * ```typescript
    * vectorBuilder.fill(3, 5); // [ 3 3 3 3 3 ]
    * ```
    *
@@ -129,7 +129,7 @@ export class VectorBuilder<S, V extends Vector<S>> {
    * Constructs a vector of all zeros
    *
    * @example
-   * ```
+   * ```typescript
    * vectorBuilder.zeros(3); // [ 0 0 0 ]
    * ```
    * @param dimension - The dimension of the vector to construct
@@ -143,7 +143,7 @@ export class VectorBuilder<S, V extends Vector<S>> {
    * Constructs a vector of all ones
    *
    * @example
-   * ```
+   * ```typescript
    * vectorBuilder.ones(3); // [ 1 1 1 ]
    * ```
    * @param dimension - The dimension of the new vector
@@ -157,7 +157,7 @@ export class VectorBuilder<S, V extends Vector<S>> {
    * Constructs a vector that has the value 1 at one index, and 0 at the others
    *
    * @example
-   * ```
+   * ```typescript
    * vectorBuilder.elementaryVector(4, 2); // [ 0 0 1 0 ]
    * vectorBuilder.elementaryVector(3, 0); // [ 1 0 0 ]
    * ```
@@ -177,7 +177,7 @@ export class VectorBuilder<S, V extends Vector<S>> {
    * Constructs a vector whose entries match the input vector, but offset by a given amount
    *
    * @example
-   * ```
+   * ```typescript
    * const original = vectorBuilder.fromArray([1, 2, 3]);
    * const rightOne = vectorBuilder.rotate(original); // [2, 3, 1];
    * const rightTwo = vectorBuilder.rotate(original, 2); // [3, 1, 2];
@@ -232,7 +232,7 @@ export class VectorBuilder<S, V extends Vector<S>> {
    * Constructs a vector consisting of two vectors end-to-end
    *
    * @example
-   * ```
+   * ```typescript
    * const first = vectorBuilder.ones(3);
    * const second = vectorBuilder.zeros(2);
    *

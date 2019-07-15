@@ -8,7 +8,7 @@ import { Vector } from '../types/vector/Vector';
  * Throws an error if xMin is greater than or equal to xMax.
  *
  * @example
- * ```
+ * ```typescript
  * linspace(0, 1, 5); // [ 0, 0.2, 0.4, 0.6, 0.8 ]
  * ```
  *
@@ -41,7 +41,7 @@ export function linspace(xMin: number, xMax: number, binCount: number): NumberVe
  * _f(x + delta) - f(x)_
  *
  * @example
- * ```
+ * ```typescript
  * forwardDifferenceMatrix(4);
  *
  * // [ -1  1  0  0 ]
@@ -70,7 +70,7 @@ export function forwardDifferenceMatrix(binCount: number): NumberMatrix {
  * _f(x) - f(x - delta)_
  *
  * @example
- * ```
+ * ```typescript
  * backwardDifferenceMatrix(4);
  *
  * // [  1  0  0  0 ]
@@ -101,7 +101,7 @@ export function backwardDifferenceMatrix(binCount: number): NumberMatrix {
  * _= 1/2 * (forwardDifference + backwardDifference)_
  *
  * @example
- * ```
+ * ```typescript
  * centralDifferenceMatrix(4);
  *
  * // [   0   1/2   0    0  ]
@@ -129,7 +129,7 @@ export function centralDifferenceMatrix(binCount: number): NumberMatrix {
  * Uses finite differences to build a vector containing approximate values of the derivative of `f`.
  *
  * @example
- * ```
+ * ```typescript
  * // Approximates Math.cos at 100 points between 0 and 2*PI
  * derivative(Math.sin, 0, 2*Math.PI, 100);
  * ```

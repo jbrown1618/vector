@@ -57,7 +57,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * Builds a matrix from an array of column vectors
    *
    * @example
-   * ```
+   * ```typescript
    * const firstColumn = vectorBuilder.fromArray([ 1, 2, 3 ]);
    * const secondColumn = vectorBuilder.fromArray([ 4, 5, 6 ]);
    *
@@ -88,7 +88,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * Builds a matrix from an array of row vectors
    *
    * @example
-   * ```
+   * ```typescript
    * const firstRow = vectorBuilder.fromArray([ 1, 2, 3 ]);
    * const secondRow = vectorBuilder.fromArray([ 4, 5, 6 ]);
    *
@@ -121,7 +121,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * and `i` and `j` are the indices of the element
    *
    * @example
-   * ```
+   * ```typescript
    * const matrix = matrixBuilder.fromIndexFunction(3, 4, (i, j) => i + j + 3);
    *
    * // [ 3 4 5 6 ]
@@ -154,7 +154,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * Builds a matrix by transforming the values of another matrix.
    *
    * @example
-   * ```
+   * ```typescript
    * const original = matrixBuilder.fromArray([
    *   [ 1, 2, 3 ]
    *   [ 4, 5, 6 ]
@@ -186,7 +186,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * Constructs a 0x0 matrix
    *
    * @example
-   * ```
+   * ```typescript
    * matrixBuilder.empty(); // []
    * ```
    *
@@ -200,7 +200,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * Constructs a matrix of the specified dimension, whose entries are all the specified value
    *
    * @example
-   * ```
+   * ```typescript
    * const allTwos = matrixBuilder.fill(2, 3, 4)
    *
    * // [ 2 2 2 2 ]
@@ -222,7 +222,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * Constructs a matrix of the specified dimensions, consisting of all zeros
    *
    * @example
-   * ```
+   * ```typescript
    * const allZeros = matrixBuilder.zeros(2, 3);
    *
    * // [ 0 0 0 ]
@@ -241,7 +241,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * Constructs a matrix of the specified dimensions, consisting of all ones
    *
    * @example
-   * ```
+   * ```typescript
    * const allOnes = matrixBuilder.ones(2, 3);
    *
    * // [ 1 1 1 ]
@@ -260,7 +260,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * Constructs a `size` x `size` identity matrix
    *
    * @example
-   * ```
+   * ```typescript
    * const I3 = matrixBuilder.identity(3);
    *
    * // [ 1 0 0 ]
@@ -281,7 +281,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * Constructs a Hilbert matrix of the specified size
    *
    * @example
-   * ```
+   * ```typescript
    * const H = matrixBuilder.hilbert(3);
    *
    * // [  1   1/2  1/3 ]
@@ -306,7 +306,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * of the first row.
    *
    * @example
-   * ```
+   * ```typescript
    * const toeplitz = matrixBuilder.toeplitz(vectorBuilder.fromArray([1, 2, 3]));
    *
    * // [ 1 2 3 ]
@@ -358,7 +358,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * the first entry of the last row.
    *
    * @example
-   * ```
+   * ```typescript
    * const hankel = matrixBuilder.hankel(vectorBuilder.fromArray([2, 4, 6, 8]));
    *
    * // [ 2 4 6 8 ]
@@ -418,7 +418,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * Constructs an upper triangular matrix when the second argument is `true`.
    *
    * @example
-   * ```
+   * ```typescript
    * const pascalLower = matrixBuilder.pascal(4);
    *
    * // [ 1 0 0 0 ]
@@ -449,7 +449,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * Constructs a symmatric matrix whose entries are the binomial coefficients (i + j choose i)
    *
    * @example
-   * ```
+   * ```typescript
    * const pascalSymmetric = matrixBuilder.pascalSymmetric(4);
    *
    * // [ 1  1  1  1  ]
@@ -471,7 +471,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * Construct a circulant matrix using entries from the input vector
    *
    * @example
-   * ```
+   * ```typescript
    * const circulant = matrixBuilder.circulant(vectorBuilder.fromArray([1, 2, 3]));
    *
    * // [ 1 3 2 ]
@@ -541,7 +541,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * Constructs a square diagonal matrix whose diagonal entries come from `diagonalEntries`
    *
    * @example
-   * ```
+   * ```typescript
    * const diagonalEntries = NumberVector.fromValues(1, 2, 3);
    * matrixBuilder.diagonal(diagonalEntries);
    *
@@ -569,7 +569,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * Throws an error if the dimensions are not correct.
    *
    * @example
-   * ```
+   * ```typescript
    * const leftEntries = NumberVector.fromEntries(1, 2);
    * const diagonalEntries = NumberVector.fromEntries(3, 4, 5);
    * const rightEntries = NumberVector.fromEntries(6, 7);
@@ -617,7 +617,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * Creates a block-diagonal matrix.
    *
    * @example
-   * ```
+   * ```typescript
    * const ones = matrixBuilder.ones(2);
    * const twos = matrixBuilder.fill(2, 3);
    *
@@ -660,7 +660,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * Throws an error if any of the dimensions are incompatible.
    *
    * @example
-   * ```
+   * ```typescript
    * const upperLeft = matrixBuilder.ones(1, 1);
    * const upperRight = matrixBuilder.fill(2, 1, 2);
    * const lowerLeft = matrixBuilder.fill(3, 2, 1);
@@ -705,7 +705,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * Throws an error of `left` and `right` do not have the same number of rows.
    *
    * @example
-   * ```
+   * ```typescript
    * const left = matrixBuilder.ones(2);
    * const right = matrixBuilder.zeros(2, 3);
    *
@@ -731,7 +731,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * Constructs a new matrix consisted of repetitions of a smaller matrix.
    *
    * @example
-   * ```
+   * ```typescript
    * const I = matrixBuilder.identity(2);
    * const repeated = matrixBuilder.repeat(I, 1, 2);
    *
@@ -761,7 +761,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * Constructs a new matrix based on a rectangular slice of a larger matrix
    *
    * @example
-   * ```
+   * ```typescript
    * const matrix = matrixBuilder.identity(4);
    * const slice = matrixBuilder.slice(matrix, 2, 2, 3, 4);
    *
@@ -818,7 +818,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * column `columnToExclude` removed.
    *
    * @example
-   * ```
+   * ```typescript
    * const I = matrixBuilder.identity(4);
    * const excluded = matrixBuilder.slice(I, 1, 2)
    *
@@ -871,7 +871,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * Throws an error if `top` and `bottom` do not have the same number of columns.
    *
    * @example
-   * ```
+   * ```typescript
    * const top = matrixBuilder.ones(2, 3);
    * const bottom = matrixBuilder.zeros(1,3);
    *

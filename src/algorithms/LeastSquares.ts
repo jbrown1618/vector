@@ -148,7 +148,7 @@ export function calculateGeneralLeastSquaresApproximation<S>(
  * However, the difference Ax-b is minimized when
  *
  * @example
- * ```
+ * ```typescript
  * A.transpose().multiply(A).apply(x) === A.transpose().apply(b)
  * ```
  *
