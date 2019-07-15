@@ -14,7 +14,7 @@
  * }
  * ```
  */
-export function StaticImplements<T>() {
+export function StaticImplements<T>(): ClassDecorator {
   // @ts-ignore
   return (constructor: T) => {}; // eslint-disable-line @typescript-eslint/no-unused-vars
 }

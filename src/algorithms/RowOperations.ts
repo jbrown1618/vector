@@ -99,7 +99,7 @@ export function pivot<S>(matrix: Matrix<S>): RowOperationResult<S> {
   const ops = matrix.ops();
   // We will sort the rows of an identity matrix according to the number
   // of leading zeros in the corresponding row of `matrix`
-  const comparator = (iRow1: Vector<S>, iRow2: Vector<S>) => {
+  const comparator: (r1: Vector<S>, r2: Vector<S>) => number = (iRow1, iRow2) => {
     const rowIndex1 = getNumberOfLeadingZeros(iRow1);
     const rowIndex2 = getNumberOfLeadingZeros(iRow2);
     const mRow1 = matrix.getRow(rowIndex1);
@@ -127,7 +127,7 @@ export function pivot<S>(matrix: Matrix<S>): RowOperationResult<S> {
   };
 }
 
-function getNumberOfLeadingZeros<S>(v: Vector<S>) {
+function getNumberOfLeadingZeros<S>(v: Vector<S>): number {
   const ops = v.ops();
   let zeros = 0;
   for (const item of v.toArray()) {

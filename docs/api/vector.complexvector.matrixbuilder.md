@@ -8,9 +8,9 @@
 <b>Signature:</b>
 
 ```typescript
-matrixBuilder(): import("../..").MatrixBuilder<ComplexNumber, ComplexVector, ComplexMatrix>;
+matrixBuilder(): MatrixBuilder<ComplexNumber, ComplexVector, ComplexMatrix>;
 ```
 <b>Returns:</b>
 
-`import("../..").MatrixBuilder<ComplexNumber, ComplexVector, ComplexMatrix>`
+`MatrixBuilder<ComplexNumber, ComplexVector, ComplexMatrix>`
 

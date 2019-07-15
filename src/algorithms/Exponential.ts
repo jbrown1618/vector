@@ -82,7 +82,10 @@ function getScaleFactorExponent<S>(A: Matrix<S>): number {
  * @param exponentialOfScaledMatrix - The calculated exponential of original matrix `A` scaled down
  * @param scaleFactorExponent  - The exponent `k` that was used to scale down the original matrix `A`
  */
-function deScaleSolution<S>(exponentialOfScaledMatrix: Matrix<S>, scaleFactorExponent: number) {
+function deScaleSolution<S>(
+  exponentialOfScaledMatrix: Matrix<S>,
+  scaleFactorExponent: number
+): Matrix<S> {
   let exponentialOfOriginalMatrix = exponentialOfScaledMatrix;
   for (let i = 0; i < scaleFactorExponent; i++) {
     exponentialOfOriginalMatrix = exponentialOfOriginalMatrix.multiply(exponentialOfOriginalMatrix);

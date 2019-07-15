@@ -297,7 +297,7 @@ export abstract class SparseMatrix<S> implements Matrix<S> {
   /**
    * {@inheritDoc TODO}
    */
-  public forEachEntry(cb: MatrixEntryCallback<S>) {
+  public forEachEntry(cb: MatrixEntryCallback<S>): void {
     this.getRowVectors().forEach((row, i) => {
       row.toArray().forEach((entry, j) => {
         cb(entry, i, j);

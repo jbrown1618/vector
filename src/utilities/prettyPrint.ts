@@ -55,7 +55,7 @@ function getPrintWidth<S>(v: Vector<S>): number {
     .reduce((max, curr) => (curr > max ? curr : max), 0);
 }
 
-function spaces(n: number) {
+function spaces(n: number): string {
   let sp = '';
   for (let i = 0; i < n; i++) {
     sp = sp + ' ';

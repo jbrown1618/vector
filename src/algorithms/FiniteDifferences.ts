@@ -1,6 +1,7 @@
 import { NumberMatrix } from '../types/matrix/NumberMatrix';
 import { NumberVector } from '../types/vector/NumberVector';
 import { VectorIndexFunction } from '../types/vector/VectorBuilder';
+import { Vector } from '../types/vector/Vector';
 
 /**
  * Builds a vector of `binCount` evenly spaces numbers between `xMin` (inclusive) and `xMax` (exclusive).
@@ -140,7 +141,12 @@ export function centralDifferenceMatrix(binCount: number): NumberMatrix {
  * @returns A linearly spaced vector whose values represent the values of the derivative
  * @public
  */
-export function derivative(f: (x: number) => number, xMin: number, xMax: number, binCount: number) {
+export function derivative(
+  f: (x: number) => number,
+  xMin: number,
+  xMax: number,
+  binCount: number
+): Vector<number> {
   const x = linspace(xMin, xMax, binCount);
   const y = NumberVector.builder().map(x, f);
   const delta = x.getEntry(1) - x.getEntry(0);

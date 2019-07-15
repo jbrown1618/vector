@@ -5,6 +5,7 @@ import { ComplexNumberOperations } from '../scalar/ComplexNumberOperations';
 import { ArrayVector } from './ArrayVector';
 import { VectorConstructor, VectorData } from './Vector';
 import { VectorBuilder } from './VectorBuilder';
+import { MatrixBuilder } from '../matrix/MatrixBuilder';
 
 /**
  * Implements `Vector` as an array of `ComplexNumber`s
@@ -41,7 +42,7 @@ export class ComplexVector extends ArrayVector<ComplexNumber> {
   /**
    * {@inheritDoc TODO}
    */
-  public matrixBuilder() {
+  public matrixBuilder(): MatrixBuilder<ComplexNumber, ComplexVector, ComplexMatrix> {
     return ComplexMatrix.builder();
   }
 }

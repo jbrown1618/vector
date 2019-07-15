@@ -324,7 +324,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * @param firstRow - The first row of the Toeplitz matrix
    * @public
    */
-  public toeplitz(firstColumn: Vector<S>, firstRow?: Vector<S>) {
+  public toeplitz(firstColumn: Vector<S>, firstRow?: Vector<S>): M {
     const vb = this._matrixConstructor.vectorBuilder();
     const ops = this.ops();
     firstRow = firstRow || vb.map(firstColumn, value => ops.conjugate(value));
@@ -378,7 +378,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * @param lastRow - The last row of the Hankel matrix
    * @public
    */
-  public hankel(firstColumn: Vector<S>, lastRow?: Vector<S>) {
+  public hankel(firstColumn: Vector<S>, lastRow?: Vector<S>): M {
     const numRows = firstColumn.getDimension();
     if (numRows === 0) {
       return this.empty();

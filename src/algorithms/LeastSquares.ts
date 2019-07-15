@@ -62,7 +62,7 @@ export function calculateLinearLeastSquaresApproximation<S>(
   const ops = dataPoints[0].ops();
   const numberOfIndependentVariables = dataPoints[0].getDimension() - 1;
 
-  const linearFunctionTemplate = (coefficients: Vector<S>) => {
+  const linearFunctionTemplate: ApproximationFunctionTemplate<S> = coefficients => {
     return (input: Vector<S>) => {
       let value = coefficients.getEntry(0); // constant term
       for (let i = 1; i < coefficients.getDimension(); i++) {
@@ -113,7 +113,10 @@ export function calculateGeneralLeastSquaresApproximation<S>(
   const numberOfIndependentVariables = dataPoints[0].getDimension() - 1;
   const numberOfDataPoints = dataPoints.length;
 
-  const getEntryInA = (dataPointIndex: number, coefficientIndex: number) => {
+  const getEntryInA: (dataPointIndex: number, coefficientIndex: number) => S = (
+    dataPointIndex,
+    coefficientIndex
+  ) => {
     // Use the output value that would occur at this data point if this
     // were the only nonzero coefficient and it were one
     const elementaryCoefficients = vectorBuilder.elementaryVector(numberOfTerms, coefficientIndex);
@@ -122,7 +125,7 @@ export function calculateGeneralLeastSquaresApproximation<S>(
     return hypotheticalApproximationFunction(inputs);
   };
 
-  const getEntryInOutputVector = (index: number) => {
+  const getEntryInOutputVector: (index: number) => S = index => {
     return dataPoints[index].getEntry(numberOfIndependentVariables); // last entry
   };
 
@@ -173,7 +176,7 @@ export function solveOverdeterminedSystem<S>(A: Matrix<S>, b: Vector<S>): Vector
   }
 }
 
-function checkDimensionsForOverdeterminedSystem<S>(A: Matrix<S>, b: Vector<S>) {
+function checkDimensionsForOverdeterminedSystem<S>(A: Matrix<S>, b: Vector<S>): void {
   if (A.getNumberOfRows() !== b.getDimension()) {
     throw new Error('TODO - message');
   }

@@ -222,7 +222,7 @@ export abstract class ArrayMatrix<S> implements Matrix<S> {
   /**
    * {@inheritDoc Matrix.forEachEntry}
    */
-  public forEachEntry(cb: MatrixEntryCallback<S>) {
+  public forEachEntry(cb: MatrixEntryCallback<S>): void {
     this.getRowVectors().forEach((row, i) => {
       row.toArray().forEach((entry, j) => {
         cb(entry, i, j);

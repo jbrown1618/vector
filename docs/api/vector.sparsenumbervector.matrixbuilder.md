@@ -8,9 +8,9 @@
 <b>Signature:</b>
 
 ```typescript
-matrixBuilder(): import("../..").MatrixBuilder<number, import("./NumberVector").NumberVector, NumberMatrix>;
+matrixBuilder(): MatrixBuilder<number, SparseNumberVector, SparseNumberMatrix>;
 ```
 <b>Returns:</b>
 
-`import("../..").MatrixBuilder<number, import("./NumberVector").NumberVector, NumberMatrix>`
+`MatrixBuilder<number, SparseNumberVector, SparseNumberMatrix>`
 

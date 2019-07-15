@@ -5,6 +5,7 @@ import { VectorBuilder } from '../vector/VectorBuilder';
 import { ArrayMatrix } from './ArrayMatrix';
 import { MatrixConstructor, MatrixData } from './Matrix';
 import { MatrixBuilder } from './MatrixBuilder';
+import { ScalarOperations } from '../scalar/ScalarOperations';
 
 /**
  * A `Matrix` implemented as a 2-dimensional array of JS `number` primitives
@@ -12,7 +13,7 @@ import { MatrixBuilder } from './MatrixBuilder';
  */
 @StaticImplements<MatrixConstructor<number, NumberVector, NumberMatrix>>()
 export class NumberMatrix extends ArrayMatrix<number> {
-  public static ops() {
+  public static ops(): ScalarOperations<number> {
     return new NumberOperations();
   }
 
@@ -31,7 +32,7 @@ export class NumberMatrix extends ArrayMatrix<number> {
   /**
    * {@inheritDoc TODO}
    */
-  public ops() {
+  public ops(): ScalarOperations<number> {
     return NumberMatrix.ops();
   }
 

@@ -235,7 +235,7 @@ export class ComplexVector extends ArrayVector<ComplexNumber> {
     // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
     // 
     // (undocumented)
-    matrixBuilder(): import("../..").MatrixBuilder<ComplexNumber, ComplexVector, ComplexMatrix>;
+    matrixBuilder(): MatrixBuilder<ComplexNumber, ComplexVector, ComplexMatrix>;
     // (undocumented)
     static ops(): ComplexNumberOperations;
     // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
@@ -248,7 +248,7 @@ export class ComplexVector extends ArrayVector<ComplexNumber> {
 export function crossProduct<S>(first: Vector<S>, second: Vector<S>): Vector<S>;
 
 // @public
-export function derivative(f: (x: number) => number, xMin: number, xMax: number, binCount: number): import("..").Vector<number>;
+export function derivative(f: (x: number) => number, xMin: number, xMax: number, binCount: number): Vector<number>;
 
 // @public
 export function determinant<S>(matrix: Matrix<S>): S;
@@ -495,7 +495,7 @@ export class NumberVector extends ArrayVector<number> {
     // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
     // 
     // (undocumented)
-    matrixBuilder(): import("../..").MatrixBuilder<number, NumberVector, NumberMatrix>;
+    matrixBuilder(): MatrixBuilder<number, NumberVector, NumberMatrix>;
     // (undocumented)
     static ops(): NumberOperations;
     // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
@@ -715,7 +715,7 @@ export class SparseNumberVector extends SparseVector<number> {
     // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
     // 
     // (undocumented)
-    matrixBuilder(): import("../..").MatrixBuilder<number, import("./NumberVector").NumberVector, NumberMatrix>;
+    matrixBuilder(): MatrixBuilder<number, SparseNumberVector, SparseNumberMatrix>;
     // (undocumented)
     static ops(): NumberOperations;
     // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"

@@ -9,7 +9,7 @@ Uses finite differences to build a vector containing approximate values of the d
 <b>Signature:</b>
 
 ```typescript
-export declare function derivative(f: (x: number) => number, xMin: number, xMax: number, binCount: number): import("..").Vector<number>;
+export declare function derivative(f: (x: number) => number, xMin: number, xMax: number, binCount: number): Vector<number>;
 ```
 
 ## Parameters
@@ -23,7 +23,7 @@ export declare function derivative(f: (x: number) => number, xMin: number, xMax:
 
 <b>Returns:</b>
 
-`import("..").Vector<number>`
+`Vector<number>`
 
 A linearly spaced vector whose values represent the values of the derivative
 

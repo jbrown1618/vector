@@ -94,7 +94,7 @@ export abstract class ArrayVector<S> implements Vector<S> {
   /**
    * {@inheritDoc TODO}
    */
-  public projectOnto(u: Vector<S>) {
+  public projectOnto(u: Vector<S>): Vector<S> {
     const oneOverUDotU = this.ops().getMultiplicativeInverse(u.innerProduct(u));
     if (oneOverUDotU === undefined) {
       throw Error('TODO - cannot project onto the zero vector');
