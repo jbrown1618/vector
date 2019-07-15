@@ -4,7 +4,6 @@
 
 ## SparseMatrix.adjoint() method
 
-
 <b>Signature:</b>
 
 ```typescript
@@ -13,4 +12,6 @@ adjoint(): Matrix<S>;
 <b>Returns:</b>
 
 `Matrix<S>`
+
+The adjoint of the matrix
 

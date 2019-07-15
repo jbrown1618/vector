@@ -4,7 +4,6 @@
 
 ## ArrayVector.equals() method
 
-
 <b>Signature:</b>
 
 ```typescript
@@ -15,9 +14,11 @@ equals(other: Vector<S>): boolean;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  other | <code>Vector&lt;S&gt;</code> |  |
+|  other | <code>Vector&lt;S&gt;</code> | The vector against which to compare |
 
 <b>Returns:</b>
 
 `boolean`
+
+- `true` if `this` is equal to `other`
 

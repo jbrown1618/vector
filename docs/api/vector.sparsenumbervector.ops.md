@@ -7,9 +7,9 @@
 <b>Signature:</b>
 
 ```typescript
-static ops(): NumberOperations;
+static ops(): ScalarOperations<number>;
 ```
 <b>Returns:</b>
 
-`NumberOperations`
+`ScalarOperations<number>`
 

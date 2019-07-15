@@ -4,7 +4,6 @@
 
 ## SparseMatrix.getRow() method
 
-
 <b>Signature:</b>
 
 ```typescript
@@ -15,9 +14,11 @@ getRow(rowIndex: number): Vector<S>;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  rowIndex | <code>number</code> |  |
+|  rowIndex | <code>number</code> | The index for which to fetch the row |
 
 <b>Returns:</b>
 
 `Vector<S>`
+
+A vector corresponding to the row at index `rowIndex`
 

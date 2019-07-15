@@ -4,6 +4,7 @@
 
 ## SparseMatrix.apply() method
 
+Applies the matrix as a linear transformation to the given vector. Implements matrix-vector multiplication.
 
 <b>Signature:</b>
 
@@ -15,9 +16,11 @@ apply(vector: Vector<S>): Vector<S>;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  vector | <code>Vector&lt;S&gt;</code> |  |
+|  vector | <code>Vector&lt;S&gt;</code> | the vector that should be transformed by the matrix |
 
 <b>Returns:</b>
 
 `Vector<S>`
+
+The transformed vector
 

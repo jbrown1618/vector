@@ -4,7 +4,6 @@
 
 ## SparseMatrix.getColumn() method
 
-
 <b>Signature:</b>
 
 ```typescript
@@ -15,9 +14,11 @@ getColumn(columnIndex: number): Vector<S>;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  columnIndex | <code>number</code> |  |
+|  columnIndex | <code>number</code> | The index for which to fetch the column |
 
 <b>Returns:</b>
 
 `Vector<S>`
+
+A vector corresponding to the column at index `columnIndex`
 

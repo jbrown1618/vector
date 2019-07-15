@@ -26,21 +26,21 @@ export class ComplexVector extends ArrayVector<ComplexNumber> {
   }
 
   /**
-   * {@inheritDoc TODO}
+   * {@inheritDoc ArrayVector.ops}
    */
   public ops(): ComplexNumberOperations {
     return ComplexVector.ops();
   }
 
   /**
-   * {@inheritDoc TODO}
+   * {@inheritDoc ArrayVector.builder}
    */
   public builder(): VectorBuilder<ComplexNumber, ComplexVector> {
     return ComplexVector.builder();
   }
 
   /**
-   * {@inheritDoc TODO}
+   * {@inheritDoc ArrayVector.matrixBuilder}
    */
   public matrixBuilder(): MatrixBuilder<ComplexNumber, ComplexVector, ComplexMatrix> {
     return ComplexMatrix.builder();

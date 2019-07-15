@@ -10,7 +10,7 @@
 |  --- | --- |
 |  [ArrayMatrix](./vector.arraymatrix.md) | Implements <code>Matrix</code> with a 2-dimensional array of values. Subclasses must specify the usual scalar operations on their contents. |
 |  [ArrayVector](./vector.arrayvector.md) | Implements <code>Vector</code> with an array of values. |
-|  [ComplexMatrix](./vector.complexmatrix.md) | Implements <code>Matrix</code> as a 2-dimensional array of <code>ComplexNumber</code>s |
+|  [ComplexMatrix](./vector.complexmatrix.md) | Implements [Matrix](./vector.matrix.md) as a 2-dimensional array of [ComplexNumber](./vector.complexnumber.md)<!-- -->s |
 |  [ComplexNumber](./vector.complexnumber.md) | Numbers of the form \_a + bi\_ where \_i\_ is the imaginary unit. |
 |  [ComplexNumberOperations](./vector.complexnumberoperations.md) |  |
 |  [ComplexVector](./vector.complexvector.md) | Implements <code>Vector</code> as an array of <code>ComplexNumber</code>s |

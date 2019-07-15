@@ -4,7 +4,6 @@
 
 ## SparseMatrix.getEntry() method
 
-
 <b>Signature:</b>
 
 ```typescript
@@ -15,10 +14,12 @@ getEntry(rowIndex: number, columnIndex: number): S;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  rowIndex | <code>number</code> |  |
-|  columnIndex | <code>number</code> |  |
+|  rowIndex | <code>number</code> | The index of the row containing the entry |
+|  columnIndex | <code>number</code> | The index of the column containing the entry |
 
 <b>Returns:</b>
 
 `S`
+
+The entry located at `(rowIndex, columnIndex)`
 

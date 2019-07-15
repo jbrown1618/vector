@@ -22,12 +22,12 @@ export declare abstract class SparseMatrix<S> implements Matrix<S>
 
 |  Method | Modifiers | Description |
 |  --- | --- | --- |
-|  [add(other)](./vector.sparsematrix.add.md) |  |  |
+|  [add(other)](./vector.sparsematrix.add.md) |  | Implements matrix addition |
 |  [adjoint()](./vector.sparsematrix.adjoint.md) |  |  |
-|  [apply(vector)](./vector.sparsematrix.apply.md) |  |  |
+|  [apply(vector)](./vector.sparsematrix.apply.md) |  | Applies the matrix as a linear transformation to the given vector. Implements matrix-vector multiplication. |
 |  [builder()](./vector.sparsematrix.builder.md) |  |  |
 |  [equals(other)](./vector.sparsematrix.equals.md) |  |  |
-|  [forEachEntry(cb)](./vector.sparsematrix.foreachentry.md) |  |  |
+|  [forEachEntry(cb)](./vector.sparsematrix.foreachentry.md) |  | Executes the <code>callback</code> function for each entry in the matrix. |
 |  [getColumn(columnIndex)](./vector.sparsematrix.getcolumn.md) |  |  |
 |  [getColumnVectors()](./vector.sparsematrix.getcolumnvectors.md) |  |  |
 |  [getDiagonal()](./vector.sparsematrix.getdiagonal.md) |  |  |
@@ -37,10 +37,10 @@ export declare abstract class SparseMatrix<S> implements Matrix<S>
 |  [getRow(rowIndex)](./vector.sparsematrix.getrow.md) |  |  |
 |  [getRowVectors()](./vector.sparsematrix.getrowvectors.md) |  |  |
 |  [getSparseData()](./vector.sparsematrix.getsparsedata.md) |  |  |
-|  [multiply(other)](./vector.sparsematrix.multiply.md) |  |  |
+|  [multiply(other)](./vector.sparsematrix.multiply.md) |  | Implements matrix multiplication |
 |  [ops()](./vector.sparsematrix.ops.md) |  |  |
-|  [scalarMultiply(scalar)](./vector.sparsematrix.scalarmultiply.md) |  |  |
-|  [set(rowIndex, columnIndex, value)](./vector.sparsematrix.set.md) |  |  |
+|  [scalarMultiply(scalar)](./vector.sparsematrix.scalarmultiply.md) |  | Implements multiplication of a matrix by a scalar |
+|  [set(rowIndex, columnIndex, value)](./vector.sparsematrix.set.md) |  | Returns a \*new\* matrix equal to the old one, except with the entry at <code>(rowIndex, columnIndex)</code> replaced with <code>value</code> |
 |  [toArray()](./vector.sparsematrix.toarray.md) |  |  |
 |  [trace()](./vector.sparsematrix.trace.md) |  |  |
 |  [transpose()](./vector.sparsematrix.transpose.md) |  |  |

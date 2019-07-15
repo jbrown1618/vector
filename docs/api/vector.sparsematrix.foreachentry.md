@@ -4,6 +4,7 @@
 
 ## SparseMatrix.forEachEntry() method
 
+Executes the `callback` function for each entry in the matrix.
 
 <b>Signature:</b>
 

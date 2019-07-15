@@ -22,7 +22,7 @@ export declare abstract class ArrayVector<S> implements Vector<S>
 
 |  Method | Modifiers | Description |
 |  --- | --- | --- |
-|  [add(other)](./vector.arrayvector.add.md) |  |  |
+|  [add(other)](./vector.arrayvector.add.md) |  | Implements vector addition |
 |  [builder()](./vector.arrayvector.builder.md) |  |  |
 |  [equals(other)](./vector.arrayvector.equals.md) |  |  |
 |  [getDimension()](./vector.arrayvector.getdimension.md) |  |  |
@@ -33,7 +33,7 @@ export declare abstract class ArrayVector<S> implements Vector<S>
 |  [ops()](./vector.arrayvector.ops.md) |  |  |
 |  [outerProduct(other)](./vector.arrayvector.outerproduct.md) |  |  |
 |  [projectOnto(u)](./vector.arrayvector.projectonto.md) |  |  |
-|  [scalarMultiply(scalar)](./vector.arrayvector.scalarmultiply.md) |  |  |
+|  [scalarMultiply(scalar)](./vector.arrayvector.scalarmultiply.md) |  | Implements vector multiplication by a scalar |
 |  [toArray()](./vector.arrayvector.toarray.md) |  |  |
 
 ## Remarks

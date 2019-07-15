@@ -4,7 +4,6 @@
 
 ## SparseMatrix.equals() method
 
-
 <b>Signature:</b>
 
 ```typescript
@@ -15,9 +14,11 @@ equals(other: Matrix<S>): boolean;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  other | <code>Matrix&lt;S&gt;</code> |  |
+|  other | <code>Matrix&lt;S&gt;</code> | The matrix against which to compare |
 
 <b>Returns:</b>
 
 `boolean`
+
+true if `this` is equal to `other`
 

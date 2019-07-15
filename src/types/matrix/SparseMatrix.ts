@@ -60,7 +60,7 @@ export abstract class SparseMatrix<S> implements Matrix<S> {
   public abstract vectorBuilder(): VectorBuilder<S, Vector<S>>;
 
   /**
-   * {@inheritDoc TODO}
+   * {@inheritDoc Matrix.add}
    */
   public add(other: Matrix<S>): Matrix<S> {
     return this.builder().fromColumnVectors(
@@ -69,7 +69,7 @@ export abstract class SparseMatrix<S> implements Matrix<S> {
   }
 
   /**
-   * {@inheritDoc TODO}
+   * {@inheritDoc Matrix.adjoint}
    */
   public adjoint(): Matrix<S> {
     const adjointData = this.transpose().getSparseData();
@@ -82,7 +82,7 @@ export abstract class SparseMatrix<S> implements Matrix<S> {
   }
 
   /**
-   * {@inheritDoc TODO}
+   * {@inheritDoc Matrix.trace}
    */
   public trace(): S {
     const ops = this.ops();
@@ -95,7 +95,7 @@ export abstract class SparseMatrix<S> implements Matrix<S> {
   }
 
   /**
-   * {@inheritDoc TODO}
+   * {@inheritDoc Matrix.apply}
    */
   public apply(vector: Vector<S>): Vector<S> {
     const vectorAsColumnMatrix = this.builder().fromColumnVectors([vector]);
@@ -103,7 +103,7 @@ export abstract class SparseMatrix<S> implements Matrix<S> {
   }
 
   /**
-   * {@inheritDoc TODO}
+   * {@inheritDoc Matrix.equals}
    */
   public equals(other: Matrix<S>): boolean {
     if (this.getNumberOfColumns() !== other.getNumberOfColumns()) {
@@ -121,7 +121,7 @@ export abstract class SparseMatrix<S> implements Matrix<S> {
   }
 
   /**
-   * {@inheritDoc TODO}
+   * {@inheritDoc Matrix.getColumn}
    */
   public getColumn(columnIndex: number): Vector<S> {
     if (columnIndex > this.getNumberOfColumns() - 1 || columnIndex < 0) {
@@ -131,14 +131,14 @@ export abstract class SparseMatrix<S> implements Matrix<S> {
   }
 
   /**
-   * {@inheritDoc TODO}
+   * {@inheritDoc Matrix.getColumnVectors}
    */
   public getColumnVectors(): Vector<S>[] {
     return this.transpose().getRowVectors();
   }
 
   /**
-   * {@inheritDoc TODO}
+   * {@inheritDoc Matrix.getDiagonal}
    */
   public getDiagonal(): Vector<S> {
     const numDiagonalElements = Math.min(this.getNumberOfRows(), this.getNumberOfColumns());
@@ -146,14 +146,14 @@ export abstract class SparseMatrix<S> implements Matrix<S> {
   }
 
   /**
-   * {@inheritDoc TODO}
+   * {@inheritDoc Matrix.toArray}
    */
   public toArray(): S[][] {
     return this.getRowVectors().map(row => [...row.toArray()]);
   }
 
   /**
-   * {@inheritDoc TODO}
+   * {@inheritDoc Matrix.getSparseData}
    */
   public getSparseData(): Map<number, Map<number, S>> {
     const ops = this.ops();
@@ -179,7 +179,7 @@ export abstract class SparseMatrix<S> implements Matrix<S> {
   }
 
   /**
-   * {@inheritDoc TODO}
+   * {@inheritDoc Matrix.getEntry}
    */
   public getEntry(rowIndex: number, columnIndex: number): S {
     assertValidMatrixIndex(this, rowIndex, columnIndex);
@@ -191,21 +191,21 @@ export abstract class SparseMatrix<S> implements Matrix<S> {
   }
 
   /**
-   * {@inheritDoc TODO}
+   * {@inheritDoc Matrix.getNumberOfColumns}
    */
   public getNumberOfColumns(): number {
     return this._numCols;
   }
 
   /**
-   * {@inheritDoc TODO}
+   * {@inheritDoc Matrix.getNumberOfRows}
    */
   public getNumberOfRows(): number {
     return this._numRows;
   }
 
   /**
-   * {@inheritDoc TODO}
+   * {@inheritDoc Matrix.getRow}
    */
   public getRow(rowIndex: number): Vector<S> {
     if (rowIndex > this._numRows - 1 || rowIndex < 0) {
@@ -218,7 +218,7 @@ export abstract class SparseMatrix<S> implements Matrix<S> {
   }
 
   /**
-   * {@inheritDoc TODO}
+   * {@inheritDoc Matrix.getRowVectors}
    */
   public getRowVectors(): Vector<S>[] {
     const rowVectors: Vector<S>[] = [];
@@ -229,7 +229,7 @@ export abstract class SparseMatrix<S> implements Matrix<S> {
   }
 
   /**
-   * {@inheritDoc TODO}
+   * {@inheritDoc Matrix.multiply}
    */
   public multiply(other: Matrix<S>): Matrix<S> {
     if (this.getNumberOfColumns() !== other.getNumberOfRows()) {
@@ -245,7 +245,7 @@ export abstract class SparseMatrix<S> implements Matrix<S> {
   }
 
   /**
-   * {@inheritDoc TODO}
+   * {@inheritDoc Matrix.scalarMultiply}
    */
   public scalarMultiply(scalar: S): Matrix<S> {
     const sd = this.getSparseData();
@@ -258,7 +258,7 @@ export abstract class SparseMatrix<S> implements Matrix<S> {
   }
 
   /**
-   * {@inheritDoc TODO}
+   * {@inheritDoc Matrix.set}
    */
   public set(rowIndex: number, columnIndex: number, value: S): Matrix<S> {
     assertValidMatrixIndex(this, rowIndex, columnIndex);
@@ -275,7 +275,7 @@ export abstract class SparseMatrix<S> implements Matrix<S> {
   }
 
   /**
-   * {@inheritDoc TODO}
+   * {@inheritDoc Matrix.transpose}
    */
   public transpose(): Matrix<S> {
     const transposeData: MutableSparseMatrixData<S> = new Map();
@@ -295,7 +295,7 @@ export abstract class SparseMatrix<S> implements Matrix<S> {
   }
 
   /**
-   * {@inheritDoc TODO}
+   * {@inheritDoc Matrix.forEachEntry}
    */
   public forEachEntry(cb: MatrixEntryCallback<S>): void {
     this.getRowVectors().forEach((row, i) => {

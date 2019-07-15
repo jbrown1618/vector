@@ -129,6 +129,15 @@ export interface Matrix<S> extends LinearTransformation<Vector<S>, Vector<S>> {
   multiply(other: Matrix<S>): Matrix<S>;
 
   /**
+   * Applies the matrix as a linear transformation to the given vector.
+   * Implements matrix-vector multiplication.
+   * @param vector - the vector that should be transformed by the matrix
+   * @returns The transformed vector
+   * @public
+   */
+  apply(vector: Vector<S>): Vector<S>;
+
+  /**
    * @returns The adjoint of the matrix
    * @public
    */

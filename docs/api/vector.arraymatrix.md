@@ -24,7 +24,7 @@ export declare abstract class ArrayMatrix<S> implements Matrix<S>
 |  --- | --- | --- |
 |  [add(other)](./vector.arraymatrix.add.md) |  | Implements matrix addition |
 |  [adjoint()](./vector.arraymatrix.adjoint.md) |  |  |
-|  [apply(vector)](./vector.arraymatrix.apply.md) |  |  |
+|  [apply(vector)](./vector.arraymatrix.apply.md) |  | Applies the matrix as a linear transformation to the given vector. Implements matrix-vector multiplication. |
 |  [builder()](./vector.arraymatrix.builder.md) |  |  |
 |  [equals(other)](./vector.arraymatrix.equals.md) |  |  |
 |  [forEachEntry(cb)](./vector.arraymatrix.foreachentry.md) |  | Executes the <code>callback</code> function for each entry in the matrix. |

@@ -4,7 +4,6 @@
 
 ## SparseVector.projectOnto() method
 
-
 <b>Signature:</b>
 
 ```typescript
@@ -15,9 +14,11 @@ projectOnto(u: Vector<S>): Vector<S>;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  u | <code>Vector&lt;S&gt;</code> |  |
+|  u | <code>Vector&lt;S&gt;</code> | The vector on which to project this |
 
 <b>Returns:</b>
 
 `Vector<S>`
+
+This vector projected onto `u`
 

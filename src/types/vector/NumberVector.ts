@@ -25,21 +25,21 @@ export class NumberVector extends ArrayVector<number> {
   }
 
   /**
-   * {@inheritDoc TODO}
+   * {@inheritDoc ArrayVector.ops}
    */
   public ops(): NumberOperations {
     return NumberVector.ops();
   }
 
   /**
-   * {@inheritDoc TODO}
+   * {@inheritDoc ArrayVector.builder}
    */
   public builder(): VectorBuilder<number, NumberVector> {
     return NumberVector.builder();
   }
 
   /**
-   * {@inheritDoc TODO}
+   * {@inheritDoc ArrayVector.matrixBuilder}
    */
   public matrixBuilder(): MatrixBuilder<number, NumberVector, NumberMatrix> {
     return NumberMatrix.builder();

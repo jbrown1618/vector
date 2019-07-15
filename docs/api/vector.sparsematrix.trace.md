@@ -4,7 +4,6 @@
 
 ## SparseMatrix.trace() method
 
-
 <b>Signature:</b>
 
 ```typescript
@@ -13,4 +12,6 @@ trace(): S;
 <b>Returns:</b>
 
 `S`
+
+The trace of the matrix
 

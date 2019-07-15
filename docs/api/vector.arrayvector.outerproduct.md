@@ -4,7 +4,6 @@
 
 ## ArrayVector.outerProduct() method
 
-
 <b>Signature:</b>
 
 ```typescript
@@ -15,9 +14,11 @@ outerProduct(other: Vector<S>): Matrix<S>;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  other | <code>Vector&lt;S&gt;</code> |  |
+|  other | <code>Vector&lt;S&gt;</code> | The vector with which to calculate an outer product |
 
 <b>Returns:</b>
 
 `Matrix<S>`
+
+The outer product
 

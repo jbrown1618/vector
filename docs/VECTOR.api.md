@@ -22,9 +22,6 @@ export abstract class ArrayMatrix<S> implements Matrix<S> {
     add(other: Matrix<S>): Matrix<S>;
     // (undocumented)
     adjoint(): Matrix<S>;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: No member was found with name "apply"
-    // 
-    // (undocumented)
     apply(vector: Vector<S>): Vector<S>;
     // (undocumented)
     abstract builder(): MatrixBuilder<S, Vector<S>, Matrix<S>>;
@@ -67,50 +64,28 @@ export abstract class ArrayMatrix<S> implements Matrix<S> {
 // @public
 export abstract class ArrayVector<S> implements Vector<S> {
     protected constructor(data: VectorData<S>);
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
-    // (undocumented)
     add(other: Vector<S>): Vector<S>;
     // (undocumented)
     abstract builder(): VectorBuilder<S, Vector<S>>;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
     // (undocumented)
     equals(other: Vector<S>): boolean;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
     // (undocumented)
     getDimension(): number;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
     // (undocumented)
     getEntry(index: number): S;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
     // (undocumented)
     getSparseData(): Map<number, S>;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
     // (undocumented)
     innerProduct(other: Vector<S>): S;
     // (undocumented)
     abstract matrixBuilder(): MatrixBuilder<S, Vector<S>, Matrix<S>>;
     // (undocumented)
     abstract ops(): ScalarOperations<S>;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
     // (undocumented)
     outerProduct(other: Vector<S>): Matrix<S>;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
     // (undocumented)
     projectOnto(u: Vector<S>): Vector<S>;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
-    // (undocumented)
     scalarMultiply(scalar: S): Vector<S>;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
     // (undocumented)
     toArray(): S[];
 }
@@ -144,20 +119,14 @@ export class ComplexMatrix extends ArrayMatrix<ComplexNumber> {
     constructor(data: MatrixData<ComplexNumber>);
     // (undocumented)
     static builder(): MatrixBuilder<ComplexNumber, ComplexVector, ComplexMatrix>;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
     // (undocumented)
     builder(): MatrixBuilder<ComplexNumber, ComplexVector, ComplexMatrix>;
     // (undocumented)
-    static ops(): ComplexNumberOperations;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
+    static ops(): ScalarOperations<ComplexNumber>;
     // (undocumented)
-    ops(): ComplexNumberOperations;
+    ops(): ScalarOperations<ComplexNumber>;
     // (undocumented)
     static vectorBuilder(): VectorBuilder<ComplexNumber, ComplexVector>;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
     // (undocumented)
     vectorBuilder(): VectorBuilder<ComplexNumber, ComplexVector>;
 }
@@ -228,18 +197,12 @@ export class ComplexVector extends ArrayVector<ComplexNumber> {
     constructor(data: VectorData<ComplexNumber>);
     // (undocumented)
     static builder(): VectorBuilder<ComplexNumber, ComplexVector>;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
     // (undocumented)
     builder(): VectorBuilder<ComplexNumber, ComplexVector>;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
     // (undocumented)
     matrixBuilder(): MatrixBuilder<ComplexNumber, ComplexVector, ComplexMatrix>;
     // (undocumented)
     static ops(): ComplexNumberOperations;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
     // (undocumented)
     ops(): ComplexNumberOperations;
 }
@@ -327,6 +290,7 @@ export interface Matrix<S> extends LinearTransformation<Vector<S>, Vector<S>> {
     add(other: Matrix<S>): Matrix<S>;
     // (undocumented)
     adjoint(): Matrix<S>;
+    apply(vector: Vector<S>): Vector<S>;
     builder(): MatrixBuilder<S, Vector<S>, Matrix<S>>;
     // (undocumented)
     equals(other: Matrix<S>): boolean;
@@ -433,20 +397,14 @@ export class NumberMatrix extends ArrayMatrix<number> {
     constructor(data: MatrixData<number>);
     // (undocumented)
     static builder(): MatrixBuilder<number, NumberVector, NumberMatrix>;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
     // (undocumented)
     builder(): MatrixBuilder<number, NumberVector, NumberMatrix>;
     // (undocumented)
-    static ops(): NumberOperations;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
+    static ops(): ScalarOperations<number>;
     // (undocumented)
-    ops(): NumberOperations;
+    ops(): ScalarOperations<number>;
     // (undocumented)
     static vectorBuilder(): VectorBuilder<number, NumberVector>;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
     // (undocumented)
     vectorBuilder(): VectorBuilder<number, NumberVector>;
 }
@@ -488,18 +446,12 @@ export class NumberVector extends ArrayVector<number> {
     constructor(data: VectorData<number>);
     // (undocumented)
     static builder(): VectorBuilder<number, NumberVector>;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
     // (undocumented)
     builder(): VectorBuilder<number, NumberVector>;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
     // (undocumented)
     matrixBuilder(): MatrixBuilder<number, NumberVector, NumberMatrix>;
     // (undocumented)
     static ops(): NumberOperations;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
     // (undocumented)
     ops(): NumberOperations;
 }
@@ -589,88 +541,42 @@ export function solveOverdeterminedSystem<S>(A: Matrix<S>, b: Vector<S>): Vector
 // @public
 export abstract class SparseMatrix<S> implements Matrix<S> {
     protected constructor(data: MatrixData<S>);
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
-    // (undocumented)
     add(other: Matrix<S>): Matrix<S>;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
     // (undocumented)
     adjoint(): Matrix<S>;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
-    // (undocumented)
     apply(vector: Vector<S>): Vector<S>;
     // (undocumented)
     abstract builder(): MatrixBuilder<S, Vector<S>, Matrix<S>>;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
     // (undocumented)
     equals(other: Matrix<S>): boolean;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
-    // (undocumented)
     forEachEntry(cb: MatrixEntryCallback<S>): void;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
     // (undocumented)
     getColumn(columnIndex: number): Vector<S>;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
     // (undocumented)
     getColumnVectors(): Vector<S>[];
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
     // (undocumented)
     getDiagonal(): Vector<S>;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
     // (undocumented)
     getEntry(rowIndex: number, columnIndex: number): S;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
     // (undocumented)
     getNumberOfColumns(): number;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
     // (undocumented)
     getNumberOfRows(): number;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
     // (undocumented)
     getRow(rowIndex: number): Vector<S>;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
     // (undocumented)
     getRowVectors(): Vector<S>[];
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
     // (undocumented)
     getSparseData(): Map<number, Map<number, S>>;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
-    // (undocumented)
     multiply(other: Matrix<S>): Matrix<S>;
     // (undocumented)
     abstract ops(): ScalarOperations<S>;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
-    // (undocumented)
     scalarMultiply(scalar: S): Matrix<S>;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
-    // (undocumented)
     set(rowIndex: number, columnIndex: number, value: S): Matrix<S>;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
     // (undocumented)
     toArray(): S[][];
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
     // (undocumented)
     trace(): S;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
     // (undocumented)
     transpose(): Matrix<S>;
     // (undocumented)
@@ -685,20 +591,14 @@ export class SparseNumberMatrix extends SparseMatrix<number> {
     constructor(data: MatrixData<number>);
     // (undocumented)
     static builder(): MatrixBuilder<number, SparseNumberVector, SparseNumberMatrix>;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
     // (undocumented)
     builder(): MatrixBuilder<number, SparseNumberVector, SparseNumberMatrix>;
     // (undocumented)
-    static ops(): NumberOperations;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
+    static ops(): ScalarOperations<number>;
     // (undocumented)
-    ops(): NumberOperations;
+    ops(): ScalarOperations<number>;
     // (undocumented)
     static vectorBuilder(): VectorBuilder<number, SparseNumberVector>;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
     // (undocumented)
     vectorBuilder(): VectorBuilder<number, SparseNumberVector>;
 }
@@ -708,69 +608,41 @@ export class SparseNumberVector extends SparseVector<number> {
     constructor(data: VectorData<number>);
     // (undocumented)
     static builder(): VectorBuilder<number, SparseNumberVector>;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
     // (undocumented)
     builder(): VectorBuilder<number, SparseNumberVector>;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
     // (undocumented)
     matrixBuilder(): MatrixBuilder<number, SparseNumberVector, SparseNumberMatrix>;
     // (undocumented)
-    static ops(): NumberOperations;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
+    static ops(): ScalarOperations<number>;
     // (undocumented)
-    ops(): NumberOperations;
+    ops(): ScalarOperations<number>;
 }
 
 // @public
 export abstract class SparseVector<S> implements Vector<S> {
     protected constructor(data: VectorData<S>);
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
-    // (undocumented)
     add(other: Vector<S>): Vector<S>;
     // (undocumented)
     abstract builder(): VectorBuilder<S, Vector<S>>;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
     // (undocumented)
     equals(other: Vector<S>): boolean;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
     // (undocumented)
     getDimension(): number;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
     // (undocumented)
     getEntry(index: number): S;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
     // (undocumented)
     getSparseData(): Map<number, S>;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
     // (undocumented)
     innerProduct(other: Vector<S>): S;
     // (undocumented)
     abstract matrixBuilder(): MatrixBuilder<S, Vector<S>, Matrix<S>>;
     // (undocumented)
     abstract ops(): ScalarOperations<S>;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
     // (undocumented)
     outerProduct(other: Vector<S>): Matrix<S>;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
     // (undocumented)
     projectOnto(u: Vector<S>): Vector<S>;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
-    // (undocumented)
     scalarMultiply(scalar: S): Vector<S>;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "TODO"
-    // 
     // (undocumented)
     toArray(): S[];
 }

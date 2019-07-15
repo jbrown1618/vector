@@ -4,6 +4,7 @@
 
 ## SparseMatrix.scalarMultiply() method
 
+Implements multiplication of a matrix by a scalar
 
 <b>Signature:</b>
 
@@ -15,9 +16,11 @@ scalarMultiply(scalar: S): Matrix<S>;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  scalar | <code>S</code> |  |
+|  scalar | <code>S</code> | The scalar by which to multiply |
 
 <b>Returns:</b>
 
 `Matrix<S>`
+
+The product
 

@@ -4,7 +4,6 @@
 
 ## SparseMatrix.getNumberOfRows() method
 
-
 <b>Signature:</b>
 
 ```typescript
@@ -13,4 +12,6 @@ getNumberOfRows(): number;
 <b>Returns:</b>
 
 `number`
+
+The number of rows in the matrix
 

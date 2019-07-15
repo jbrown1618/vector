@@ -4,6 +4,7 @@
 
 ## ArrayVector.scalarMultiply() method
 
+Implements vector multiplication by a scalar
 
 <b>Signature:</b>
 
@@ -15,9 +16,11 @@ scalarMultiply(scalar: S): Vector<S>;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  scalar | <code>S</code> |  |
+|  scalar | <code>S</code> | The scalar by which to multiply |
 
 <b>Returns:</b>
 
 `Vector<S>`
+
+The product
 

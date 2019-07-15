@@ -4,7 +4,6 @@
 
 ## SparseMatrix.getDiagonal() method
 
-
 <b>Signature:</b>
 
 ```typescript
@@ -13,4 +12,6 @@ getDiagonal(): Vector<S>;
 <b>Returns:</b>
 
 `Vector<S>`
+
+A vector containing the diagonal elements of the matrix
 

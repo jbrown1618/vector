@@ -47,14 +47,14 @@ export abstract class SparseVector<S> implements Vector<S> {
   public abstract matrixBuilder(): MatrixBuilder<S, Vector<S>, Matrix<S>>;
 
   /**
-   * {@inheritDoc TODO}
+   * {@inheritDoc Vector.getSparseData}
    */
   public getSparseData(): Map<number, S> {
     return new Map(this._sparseData);
   }
 
   /**
-   * {@inheritDoc TODO}
+   * {@inheritDoc Vector.toArray}
    */
   public toArray(): S[] {
     const data: S[] = [];
@@ -65,7 +65,7 @@ export abstract class SparseVector<S> implements Vector<S> {
   }
 
   /**
-   * {@inheritDoc TODO}
+   * {@inheritDoc Vector.getEntry}
    */
   public getEntry(index: number): S {
     assertValidVectorIndex(this, index);
@@ -73,7 +73,7 @@ export abstract class SparseVector<S> implements Vector<S> {
   }
 
   /**
-   * {@inheritDoc TODO}
+   * {@inheritDoc Vector.innerProduct}
    */
   public innerProduct(other: Vector<S>): S {
     assertHomogeneous([this, other]);
@@ -89,7 +89,7 @@ export abstract class SparseVector<S> implements Vector<S> {
   }
 
   /**
-   * {@inheritDoc TODO}
+   * {@inheritDoc Vector.outerProduct}
    */
   public outerProduct(other: Vector<S>): Matrix<S> {
     if (isSparse(other)) {
@@ -112,7 +112,7 @@ export abstract class SparseVector<S> implements Vector<S> {
   }
 
   /**
-   * {@inheritDoc TODO}
+   * {@inheritDoc Vector.scalarMultiply}
    */
   public scalarMultiply(scalar: S): Vector<S> {
     const newSparseData = new Map();
@@ -123,7 +123,7 @@ export abstract class SparseVector<S> implements Vector<S> {
   }
 
   /**
-   * {@inheritDoc TODO}
+   * {@inheritDoc Vector.add}
    */
   public add(other: Vector<S>): Vector<S> {
     assertHomogeneous([this, other]);
@@ -134,7 +134,7 @@ export abstract class SparseVector<S> implements Vector<S> {
   }
 
   /**
-   * {@inheritDoc TODO}
+   * {@inheritDoc Vector.equals}
    */
   public equals(other: Vector<S>): boolean {
     if (isSparse(other)) {
@@ -148,14 +148,14 @@ export abstract class SparseVector<S> implements Vector<S> {
   }
 
   /**
-   * {@inheritDoc TODO}
+   * {@inheritDoc Vector.getDimension}
    */
   public getDimension(): number {
     return this._dimension;
   }
 
   /**
-   * {@inheritDoc TODO}
+   * {@inheritDoc Vector.projectOnto}
    */
   public projectOnto(u: Vector<S>): Vector<S> {
     const oneOverUDotU = this.ops().getMultiplicativeInverse(u.innerProduct(u));

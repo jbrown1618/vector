@@ -4,7 +4,6 @@
 
 ## SparseVector.innerProduct() method
 
-
 <b>Signature:</b>
 
 ```typescript
@@ -15,9 +14,11 @@ innerProduct(other: Vector<S>): S;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  other | <code>Vector&lt;S&gt;</code> |  |
+|  other | <code>Vector&lt;S&gt;</code> | The vector with which to calculate an inner product |
 
 <b>Returns:</b>
 
 `S`
+
+The inner product
 

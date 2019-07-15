@@ -9,7 +9,7 @@ import { MatrixBuilder } from './MatrixBuilder';
 import { ScalarOperations } from '../scalar/ScalarOperations';
 
 /**
- * Implements `Matrix` as a 2-dimensional array of `ComplexNumber`s
+ * Implements {@link Matrix} as a 2-dimensional array of {@link ComplexNumber}s
  * @public
  */
 @StaticImplements<MatrixConstructor<ComplexNumber, ComplexVector, ComplexMatrix>>()
@@ -31,21 +31,21 @@ export class ComplexMatrix extends ArrayMatrix<ComplexNumber> {
   }
 
   /**
-   * {@inheritDoc TODO}
+   * {@inheritDoc ArrayMatrix.ops}
    */
   public ops(): ScalarOperations<ComplexNumber> {
     return ComplexMatrix.ops();
   }
 
   /**
-   * {@inheritDoc TODO}
+   * {@inheritDoc ArrayMatrix.builder}
    */
   public builder(): MatrixBuilder<ComplexNumber, ComplexVector, ComplexMatrix> {
     return ComplexMatrix.builder();
   }
 
   /**
-   * {@inheritDoc TODO}
+   * {@inheritDoc ArrayMatrix.vectorBuilder}
    */
   public vectorBuilder(): VectorBuilder<ComplexNumber, ComplexVector> {
     return ComplexMatrix.vectorBuilder();

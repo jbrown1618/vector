@@ -4,7 +4,6 @@
 
 ## ArrayVector.getEntry() method
 
-
 <b>Signature:</b>
 
 ```typescript
@@ -15,9 +14,11 @@ getEntry(index: number): S;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  index | <code>number</code> |  |
+|  index | <code>number</code> | The index of the entry to retrieve |
 
 <b>Returns:</b>
 
 `S`
+
+The entry located at `index`
 

@@ -17,6 +17,7 @@ export interface Matrix<S> extends LinearTransformation<Vector<S>, Vector<S>>
 |  --- | --- |
 |  [add(other)](./vector.matrix.add.md) | Implements matrix addition |
 |  [adjoint()](./vector.matrix.adjoint.md) |  |
+|  [apply(vector)](./vector.matrix.apply.md) | Applies the matrix as a linear transformation to the given vector. Implements matrix-vector multiplication. |
 |  [builder()](./vector.matrix.builder.md) | Yields a <code>MatrixBuilder</code> which will build new matrices of the same type |
 |  [equals(other)](./vector.matrix.equals.md) |  |
 |  [forEachEntry(callback)](./vector.matrix.foreachentry.md) | Executes the <code>callback</code> function for each entry in the matrix. |

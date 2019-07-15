@@ -30,21 +30,21 @@ export class SparseNumberMatrix extends SparseMatrix<number> {
   }
 
   /**
-   * {@inheritDoc TODO}
+   * {@inheritDoc SparseMatrix.ops}
    */
   public ops(): ScalarOperations<number> {
     return SparseNumberMatrix.ops();
   }
 
   /**
-   * {@inheritDoc TODO}
+   * {@inheritDoc SparseMatrix.builder}
    */
   public builder(): MatrixBuilder<number, SparseNumberVector, SparseNumberMatrix> {
     return SparseNumberMatrix.builder();
   }
 
   /**
-   * {@inheritDoc TODO}
+   * {@inheritDoc SparseMatrix.vectorBuilder}
    */
   public vectorBuilder(): VectorBuilder<number, SparseNumberVector> {
     return SparseNumberMatrix.vectorBuilder();

@@ -4,6 +4,7 @@
 
 ## SparseMatrix.set() method
 
+Returns a \*new\* matrix equal to the old one, except with the entry at `(rowIndex, columnIndex)` replaced with `value`
 
 <b>Signature:</b>
 
@@ -15,11 +16,13 @@ set(rowIndex: number, columnIndex: number, value: S): Matrix<S>;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  rowIndex | <code>number</code> |  |
-|  columnIndex | <code>number</code> |  |
-|  value | <code>S</code> |  |
+|  rowIndex | <code>number</code> | The row containing the value to replace |
+|  columnIndex | <code>number</code> | The column containing the value to replace |
+|  value | <code>S</code> | The new value |
 
 <b>Returns:</b>
 
 `Matrix<S>`
+
+A new matrix
 

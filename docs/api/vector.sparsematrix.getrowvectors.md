@@ -4,7 +4,6 @@
 
 ## SparseMatrix.getRowVectors() method
 
-
 <b>Signature:</b>
 
 ```typescript
@@ -13,4 +12,6 @@ getRowVectors(): Vector<S>[];
 <b>Returns:</b>
 
 `Vector<S>[]`
+
+An array of vectors corresponding to the rows of the matrix
 

@@ -4,7 +4,6 @@
 
 ## SparseMatrix.getNumberOfColumns() method
 
-
 <b>Signature:</b>
 
 ```typescript
@@ -13,4 +12,6 @@ getNumberOfColumns(): number;
 <b>Returns:</b>
 
 `number`
+
+The number of columns in the matrix
 

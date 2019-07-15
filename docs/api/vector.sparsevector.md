@@ -22,7 +22,7 @@ export declare abstract class SparseVector<S> implements Vector<S>
 
 |  Method | Modifiers | Description |
 |  --- | --- | --- |
-|  [add(other)](./vector.sparsevector.add.md) |  |  |
+|  [add(other)](./vector.sparsevector.add.md) |  | Implements vector addition |
 |  [builder()](./vector.sparsevector.builder.md) |  |  |
 |  [equals(other)](./vector.sparsevector.equals.md) |  |  |
 |  [getDimension()](./vector.sparsevector.getdimension.md) |  |  |
@@ -33,6 +33,6 @@ export declare abstract class SparseVector<S> implements Vector<S>
 |  [ops()](./vector.sparsevector.ops.md) |  |  |
 |  [outerProduct(other)](./vector.sparsevector.outerproduct.md) |  |  |
 |  [projectOnto(u)](./vector.sparsevector.projectonto.md) |  |  |
-|  [scalarMultiply(scalar)](./vector.sparsevector.scalarmultiply.md) |  |  |
+|  [scalarMultiply(scalar)](./vector.sparsevector.scalarmultiply.md) |  | Implements vector multiplication by a scalar |
 |  [toArray()](./vector.sparsevector.toarray.md) |  |  |
 

@@ -4,7 +4,6 @@
 
 ## SparseMatrix.toArray() method
 
-
 <b>Signature:</b>
 
 ```typescript
@@ -13,4 +12,6 @@ toArray(): S[][];
 <b>Returns:</b>
 
 `S[][]`
+
+The contents of the matrix as an array of arrays.
 

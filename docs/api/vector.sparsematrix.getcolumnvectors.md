@@ -4,7 +4,6 @@
 
 ## SparseMatrix.getColumnVectors() method
 
-
 <b>Signature:</b>
 
 ```typescript
@@ -13,4 +12,6 @@ getColumnVectors(): Vector<S>[];
 <b>Returns:</b>
 
 `Vector<S>[]`
+
+An array of vectors corresponding to the columns of the matrix
 

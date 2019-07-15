@@ -4,7 +4,6 @@
 
 ## ArrayVector.getSparseData() method
 
-
 <b>Signature:</b>
 
 ```typescript
@@ -13,4 +12,6 @@ getSparseData(): Map<number, S>;
 <b>Returns:</b>
 
 `Map<number, S>`
+
+The contents of the vector as a map of indices to nonzero values
 

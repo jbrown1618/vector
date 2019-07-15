@@ -30,21 +30,21 @@ export class NumberMatrix extends ArrayMatrix<number> {
   }
 
   /**
-   * {@inheritDoc TODO}
+   * {@inheritDoc ArrayMatrix.ops}
    */
   public ops(): ScalarOperations<number> {
     return NumberMatrix.ops();
   }
 
   /**
-   * {@inheritDoc TODO}
+   * {@inheritDoc ArrayMatrix.builder}
    */
   public builder(): MatrixBuilder<number, NumberVector, NumberMatrix> {
     return NumberMatrix.builder();
   }
 
   /**
-   * {@inheritDoc TODO}
+   * {@inheritDoc ArrayMatrix.vectorBuilder}
    */
   public vectorBuilder(): VectorBuilder<number, NumberVector> {
     return NumberMatrix.vectorBuilder();

@@ -4,7 +4,6 @@
 
 ## SparseMatrix.transpose() method
 
-
 <b>Signature:</b>
 
 ```typescript
@@ -13,4 +12,6 @@ transpose(): Matrix<S>;
 <b>Returns:</b>
 
 `Matrix<S>`
+
+The transpose of the matrix
 

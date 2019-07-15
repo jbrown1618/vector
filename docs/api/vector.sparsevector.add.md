@@ -4,6 +4,7 @@
 
 ## SparseVector.add() method
 
+Implements vector addition
 
 <b>Signature:</b>
 
@@ -15,9 +16,11 @@ add(other: Vector<S>): Vector<S>;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  other | <code>Vector&lt;S&gt;</code> |  |
+|  other | <code>Vector&lt;S&gt;</code> | The vector to add |
 
 <b>Returns:</b>
 
 `Vector<S>`
+
+The vector sum
 
