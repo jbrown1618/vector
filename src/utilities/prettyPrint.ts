@@ -2,11 +2,23 @@ import { Matrix } from '../types/matrix/Matrix';
 import { Vector } from '../types/vector/Vector';
 
 /**
+ * Returns an easy-to-read string representing a `number`
  * @public
  */
 export function prettyPrint(num: number): string;
+
+/**
+ * Returns an easy-to-read string representing the contents of a {@link Vector}
+ * @public
+ */
 export function prettyPrint<S>(vector: Vector<S>): string;
+
+/**
+ * Returns an easy-to-read string representing the contents of a {@link Matrix}
+ * @public
+ */
 export function prettyPrint<S>(matrix: Matrix<S>): string;
+
 export function prettyPrint<S>(input: number | Vector<S> | Matrix<S>): string {
   if (typeof input === 'number') {
     return prettyPrintNumber(input);

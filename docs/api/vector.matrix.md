@@ -4,6 +4,7 @@
 
 ## Matrix interface
 
+A generalized Matrix - one of the core data types
 
 <b>Signature:</b>
 

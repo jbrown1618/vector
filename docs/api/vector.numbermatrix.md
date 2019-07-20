@@ -4,7 +4,7 @@
 
 ## NumberMatrix class
 
-A `Matrix` implemented as a 2-dimensional array of JS `number` primitives
+A dense matrix of JavaScript `number` primitives, implemented as an [ArrayMatrix](./vector.arraymatrix.md)
 
 <b>Signature:</b>
 

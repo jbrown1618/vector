@@ -6,7 +6,7 @@ import { Vector, VectorData } from './Vector';
 import { VectorBuilder } from './VectorBuilder';
 
 /**
- * Implements `Vector` with an array of values.
+ * Implements {@link Vector} with an array of values.
  *
  * @remarks
  * Subclasses must specify the usual scalar operations on their contents.

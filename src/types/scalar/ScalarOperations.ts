@@ -1,4 +1,8 @@
 /**
+ * A class which encapsulates the basic arithmetic operations for an arbitrary scalar type.
+ *
+ * @remarks
+ * This must be implemented for each scalar to be used in a {@link Vector} or {@link Matrix}
  * @public
  */
 export abstract class ScalarOperations<S> {

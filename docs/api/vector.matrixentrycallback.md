@@ -4,6 +4,7 @@
 
 ## MatrixEntryCallback type
 
+A function to execute on an entry in a matrix
 
 <b>Signature:</b>
 

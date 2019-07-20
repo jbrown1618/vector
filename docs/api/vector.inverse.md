@@ -4,7 +4,7 @@
 
 ## inverse() function
 
-Uses Gauss-Jordan elimination with pivoting to calculate the inverse of a matrix. Throws an error if the matrix is not square. Returns `undefined` if the matrix is not invertible.
+Uses Gauss-Jordan elimination with pivoting to calculate the inverse of a matrix.
 
 <b>Signature:</b>
 
@@ -23,4 +23,8 @@ export declare function inverse<S>(matrix: Matrix<S>): Matrix<S> | undefined;
 `Matrix<S> | undefined`
 
 The inverse matrix
+
+## Remarks
+
+Throws an error if the matrix is not square. Returns `undefined` if the matrix is not invertible.
 

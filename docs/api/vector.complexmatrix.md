@@ -4,7 +4,7 @@
 
 ## ComplexMatrix class
 
-Implements [Matrix](./vector.matrix.md) as a 2-dimensional array of [ComplexNumber](./vector.complexnumber.md)<!-- -->s
+A dense [Matrix](./vector.matrix.md) of [ComplexNumber](./vector.complexnumber.md)<!-- -->s, implemented as an [ArrayMatrix](./vector.arraymatrix.md)
 
 <b>Signature:</b>
 

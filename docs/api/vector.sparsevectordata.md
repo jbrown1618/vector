@@ -4,6 +4,7 @@
 
 ## SparseVectorData type
 
+The data stored in a [Vector](./vector.vector.md) represented as a map
 
 <b>Signature:</b>
 

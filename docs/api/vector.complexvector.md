@@ -4,7 +4,7 @@
 
 ## ComplexVector class
 
-Implements `Vector` as an array of `ComplexNumber`<!-- -->s
+A dense [Vector](./vector.vector.md) of [ComplexNumber](./vector.complexnumber.md)<!-- -->s implemented as an [ArrayVector](./vector.arrayvector.md)
 
 <b>Signature:</b>
 

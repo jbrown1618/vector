@@ -6,6 +6,7 @@ import { Vector, VectorData } from './Vector';
 import { VectorBuilder } from './VectorBuilder';
 
 /**
+ * The data stored in a {@link Vector} represented as a map
  * @public
  */
 export type SparseVectorData<S> = ReadonlyMap<number, S>;
@@ -21,8 +22,14 @@ export function isSparse<S>(vector: Vector<S>): vector is SparseVector<S> {
 }
 
 /**
+ * Implements {@link Vector} as a map of indices to nonzero values.
+ *
+ * @remarks
  * For large vectors with many entries equal to 0, some operations are
- * more efficient with a `Vector` implementation that only stores the non-zero values.
+ * more efficient with a {@link Vector} implementation that only stores the non-zero values.
+ *
+ * Subclasses must specify the usual scalar operations on their contents.
+ *
  * @public
  */
 export abstract class SparseVector<S> implements Vector<S> {

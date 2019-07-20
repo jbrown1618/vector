@@ -4,6 +4,7 @@
 
 ## isUpperTriangular() function
 
+Tests if a matrix is upper-triangular.
 
 <b>Signature:</b>
 
@@ -20,4 +21,8 @@ export declare function isUpperTriangular<S>(matrix: Matrix<S>): boolean;
 <b>Returns:</b>
 
 `boolean`
+
+## Remarks
+
+A matrix is upper-triangular if all entries below the primary diagonal (those where `i > j`<!-- -->) are zero.
 

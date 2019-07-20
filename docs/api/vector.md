@@ -8,64 +8,64 @@
 
 |  Class | Description |
 |  --- | --- |
-|  [ArrayMatrix](./vector.arraymatrix.md) | Implements <code>Matrix</code> with a 2-dimensional array of values. Subclasses must specify the usual scalar operations on their contents. |
-|  [ArrayVector](./vector.arrayvector.md) | Implements <code>Vector</code> with an array of values. |
-|  [ComplexMatrix](./vector.complexmatrix.md) | Implements [Matrix](./vector.matrix.md) as a 2-dimensional array of [ComplexNumber](./vector.complexnumber.md)<!-- -->s |
-|  [ComplexNumber](./vector.complexnumber.md) | Numbers of the form \_a + bi\_ where \_i\_ is the imaginary unit. |
-|  [ComplexNumberOperations](./vector.complexnumberoperations.md) |  |
-|  [ComplexVector](./vector.complexvector.md) | Implements <code>Vector</code> as an array of <code>ComplexNumber</code>s |
-|  [MatrixBuilder](./vector.matrixbuilder.md) |  |
-|  [NumberMatrix](./vector.numbermatrix.md) | A <code>Matrix</code> implemented as a 2-dimensional array of JS <code>number</code> primitives |
-|  [NumberOperations](./vector.numberoperations.md) |  |
-|  [NumberVector](./vector.numbervector.md) | A <code>Vector</code> implemented as an array of JS <code>number</code> primitives. |
-|  [ScalarOperations](./vector.scalaroperations.md) |  |
-|  [SparseMatrix](./vector.sparsematrix.md) | Implements <code>Matrix</code> with a map of indices to nonzero values |
-|  [SparseNumberMatrix](./vector.sparsenumbermatrix.md) | A <code>Matrix</code> implemented as a sparse set of JS <code>number</code> primitives keyed by their indices. |
-|  [SparseNumberVector](./vector.sparsenumbervector.md) | A <code>Vector</code> implemented as a sparse set of JS <code>number</code> primitives keyed by their indices. |
-|  [SparseVector](./vector.sparsevector.md) | For large vectors with many entries equal to 0, some operations are more efficient with a <code>Vector</code> implementation that only stores the non-zero values. |
-|  [VectorBuilder](./vector.vectorbuilder.md) |  |
+|  [ArrayMatrix](./vector.arraymatrix.md) | Implements [Matrix](./vector.matrix.md) with a 2-dimensional array of values. |
+|  [ArrayVector](./vector.arrayvector.md) | Implements [Vector](./vector.vector.md) with an array of values. |
+|  [ComplexMatrix](./vector.complexmatrix.md) | A dense [Matrix](./vector.matrix.md) of [ComplexNumber](./vector.complexnumber.md)<!-- -->s, implemented as an [ArrayMatrix](./vector.arraymatrix.md) |
+|  [ComplexNumber](./vector.complexnumber.md) | A number of the form \_a + bi\_ where \_i\_ is the imaginary unit. |
+|  [ComplexNumberOperations](./vector.complexnumberoperations.md) | Implements the basic [ScalarOperations](./vector.scalaroperations.md) on [ComplexNumber](./vector.complexnumber.md)<!-- -->s |
+|  [ComplexVector](./vector.complexvector.md) | A dense [Vector](./vector.vector.md) of [ComplexNumber](./vector.complexnumber.md)<!-- -->s implemented as an [ArrayVector](./vector.arrayvector.md) |
+|  [MatrixBuilder](./vector.matrixbuilder.md) | Provides methods for constructing [Matrices](./vector.matrix.md) of a given type |
+|  [NumberMatrix](./vector.numbermatrix.md) | A dense matrix of JavaScript <code>number</code> primitives, implemented as an [ArrayMatrix](./vector.arraymatrix.md) |
+|  [NumberOperations](./vector.numberoperations.md) | Implements the basic [ScalarOperations](./vector.scalaroperations.md) on <code>number</code>s |
+|  [NumberVector](./vector.numbervector.md) | A dense [Vector](./vector.vector.md) of <code>number</code>s implemented as a [ArrayVector](./vector.arrayvector.md) |
+|  [ScalarOperations](./vector.scalaroperations.md) | A class which encapsulates the basic arithmetic operations for an arbitrary scalar type. |
+|  [SparseMatrix](./vector.sparsematrix.md) | Implements [Matrix](./vector.matrix.md) with a map of indices to nonzero values. |
+|  [SparseNumberMatrix](./vector.sparsenumbermatrix.md) | A [Matrix](./vector.matrix.md) implemented as a sparse set of JS <code>number</code> primitives keyed by their indices. |
+|  [SparseNumberVector](./vector.sparsenumbervector.md) | A [Vector](./vector.vector.md) implemented as a sparse set of JS <code>number</code> primitives keyed by their indices. |
+|  [SparseVector](./vector.sparsevector.md) | Implements [Vector](./vector.vector.md) as a map of indices to nonzero values. |
+|  [VectorBuilder](./vector.vectorbuilder.md) | Provides methods for constructing [Vector](./vector.vector.md)<!-- -->s of a given type |
 
 ## Functions
 
 |  Function | Description |
 |  --- | --- |
-|  [addRowToRow(matrix, targetRow, rowToAdd)](./vector.addrowtorow.md) | Returns a new matrix whose row at <code>targetRow</code> has had the row at <code>rowToAdd</code> added to it. |
-|  [addScalarMultipleOfRowToRow(matrix, targetRow, rowToAdd, scalar)](./vector.addscalarmultipleofrowtorow.md) | Returns a new matrix whose row at <code>targetRow</code> has had a scalar multiple of <code>rowToAdd</code> added to it. |
-|  [backwardDifferenceMatrix(binCount)](./vector.backwarddifferencematrix.md) | Builds a matrix that calculates an approximate derivative scaled by the difference when applied to a vector of function values, using a backward difference:<!-- -->\_f(x) - f(x - delta)\_ |
+|  [addRowToRow(matrix, targetRow, rowToAdd)](./vector.addrowtorow.md) | An elementary row operations which returns a new matrix whose row at <code>targetRow</code> has had the row at <code>rowToAdd</code> added to it. |
+|  [addScalarMultipleOfRowToRow(matrix, targetRow, rowToAdd, scalar)](./vector.addscalarmultipleofrowtorow.md) | An elementary row operations which returns a new matrix whose row at <code>targetRow</code> has had a scalar multiple of <code>rowToAdd</code> added to it. |
+|  [backwardDifferenceMatrix(binCount)](./vector.backwarddifferencematrix.md) | Builds a matrix that transforms a vector to a vector of backward differences |
 |  [calculateEigenvalues(A, numIterations, throwOnFailure)](./vector.calculateeigenvalues.md) | Uses the QR algorithm to compute the eigenvalues of a matrix <code>A</code> |
-|  [calculateGeneralLeastSquaresApproximation(dataPoints, functionTemplate, numberOfTerms)](./vector.calculategeneralleastsquaresapproximation.md) | Calculates a regression model for an arbitrary function. The result is on object which has: |
-|  [calculateLinearLeastSquaresApproximation(dataPoints)](./vector.calculatelinearleastsquaresapproximation.md) | Calculates a linear regression model for the provided <code>dataPoints</code>. The result is an object which has:<!-- -->- <code>coefficiencts</code>: a vector whose first entry is the constant term, and whose following entries are the coefficients for the other independent variables, in the same order they appear in the <code>dataPoints</code> - <code>approximationFunction</code>: a function which takes a vector of the independent variable values, and returns the predicted value of the dependent variable |
-|  [calculateLUDecomposition(A)](./vector.calculateludecomposition.md) | Uses the Doolittle algorithm to calculate the LU Decomposition of a matrix A. That is, a lower-triangular matrix L, an upper-triangular matrix U, and a row permutation matrix P such that \_PA = LU\_ |
-|  [calculateQRDecomposition(A)](./vector.calculateqrdecomposition.md) | Uses the Graham-Schmidt process to calculate the QR decomposition of the matrix A. That is, a unitary matrix Q and upper-triangular matrix R such that Q multiplied by R yields A |
-|  [centralDifferenceMatrix(binCount)](./vector.centraldifferencematrix.md) | Builds a matrix that calculates an approximate derivative scaled by the difference when applied to a vector of function values, using a central difference:<!-- -->\_f(x - delta)/2 - f(x + delta)/2\_<!-- -->\_= 1/2 \* (forwardDifference + backwardDifference)\_ |
+|  [calculateGeneralLeastSquares(dataPoints, functionTemplate, numberOfTerms)](./vector.calculategeneralleastsquares.md) | Calculates a regression model for an arbitrary function. |
+|  [calculateLinearLeastSquares(dataPoints)](./vector.calculatelinearleastsquares.md) | Calculates a linear regression model for the provided <code>dataPoints</code>. |
+|  [calculateLUDecomposition(A)](./vector.calculateludecomposition.md) | Uses the Doolittle algorithm to calculate the LU Decomposition of a matrix A. |
+|  [calculateQRDecomposition(A)](./vector.calculateqrdecomposition.md) | Uses the Graham-Schmidt process to calculate the QR decomposition of the matrix A. |
+|  [centralDifferenceMatrix(binCount)](./vector.centraldifferencematrix.md) | Builds a matrix that transforms a vector to a vector of central differences |
 |  [columnSumSupremumNorm(A)](./vector.columnsumsupremumnorm.md) | Calculates the 1-Norm of a matrix <code>A</code> |
 |  [crossProduct(first, second)](./vector.crossproduct.md) | Calculates the cross-product (vector-product) of two vectors. This is defined only for vectors with three dimensions. |
 |  [derivative(f, xMin, xMax, binCount)](./vector.derivative.md) | Uses finite differences to build a vector containing approximate values of the derivative of <code>f</code>. |
 |  [determinant(matrix)](./vector.determinant.md) | Uses expansion of minors to calculate the determinant of a matrix. Throws an error if the input is not square. |
 |  [eig(A, numIterations, throwOnFailure)](./vector.eig.md) | Uses the QR algorithm to compute the eigenvalues and eigenvectors of a matrix <code>A</code> |
 |  [euclideanNorm(v)](./vector.euclideannorm.md) | Calculates the Euclidean Norm (or 2-Norm) of a vector <code>v</code> |
-|  [exchangeRows(matrix, first, second)](./vector.exchangerows.md) | Returns a new matrix whose row at index <code>first</code> has been exchanged with the row at index <code>second</code> |
+|  [exchangeRows(matrix, first, second)](./vector.exchangerows.md) | An elementary row operations which returns a new matrix whose row at index <code>first</code> has been exchanged with the row at index <code>second</code> |
 |  [exp(A, order)](./vector.exp.md) | Implements the Pade Approximant to compute the exponential of matrix <code>A</code> |
-|  [forwardDifferenceMatrix(binCount)](./vector.forwarddifferencematrix.md) | Builds a matrix that calculates an approximate derivative scaled by the difference when applied to a vector of function values, using a forward difference:<!-- -->\_f(x + delta) - f(x)\_ |
+|  [forwardDifferenceMatrix(binCount)](./vector.forwarddifferencematrix.md) | Builds a matrix that transforms a vector to a vector of forward differences |
 |  [frobeniusNorm(A)](./vector.frobeniusnorm.md) | Calculates the Frobenius Norm of a matrix <code>A</code> |
 |  [getEigenvectorForEigenvalue(A, lambda)](./vector.geteigenvectorforeigenvalue.md) | Given a matrix <code>A</code> and an eigenvalue <code>lambda</code> of that matrix, returns the eigenvector of <code>A</code> corresponding to <code>lambda</code> |
-|  [inverse(matrix)](./vector.inverse.md) | Uses Gauss-Jordan elimination with pivoting to calculate the inverse of a matrix. Throws an error if the matrix is not square. Returns <code>undefined</code> if the matrix is not invertible. |
-|  [isSquare(matrix)](./vector.issquare.md) |  |
-|  [isUpperTriangular(matrix)](./vector.isuppertriangular.md) |  |
-|  [linspace(xMin, xMax, binCount)](./vector.linspace.md) | Builds a vector of <code>binCount</code> evenly spaces numbers between <code>xMin</code> (inclusive) and <code>xMax</code> (exclusive). Throws an error if xMin is greater than or equal to xMax. |
-|  [multiplyRowByScalar(matrix, rowIndex, scalar)](./vector.multiplyrowbyscalar.md) | Returns a new matrix whose row at <code>rowIndex</code> is multipled by <code>scalar</code> |
+|  [inverse(matrix)](./vector.inverse.md) | Uses Gauss-Jordan elimination with pivoting to calculate the inverse of a matrix. |
+|  [isSquare(matrix)](./vector.issquare.md) | Tests if a matrix is square. |
+|  [isUpperTriangular(matrix)](./vector.isuppertriangular.md) | Tests if a matrix is upper-triangular. |
+|  [linspace(xMin, xMax, binCount)](./vector.linspace.md) | Builds a vector of <code>binCount</code> evenly spaced numbers between <code>xMin</code> (inclusive) and <code>xMax</code> (exclusive). |
+|  [multiplyRowByScalar(matrix, rowIndex, scalar)](./vector.multiplyrowbyscalar.md) | An elementary row operations which returns a new matrix whose row at <code>rowIndex</code> is multipled by <code>scalar</code> |
 |  [normalize(v)](./vector.normalize.md) | Returns a vector with the same direction as the input <code>v</code>, but with a Euclidean norm of 1 |
 |  [pivot(matrix)](./vector.pivot.md) | Sorts the rows of a matrix according to the number of leading zeros and the magnitude of the first nonzero entry |
 |  [pNorm(v, p)](./vector.pnorm.md) | Calculates the P-Norm of a vector <code>v</code> |
 |  [pow(A, n)](./vector.pow.md) | Computes \_A^n\_ recursively. |
-|  [prettyPrint(num)](./vector.prettyprint.md) |  |
-|  [prettyPrint(vector)](./vector.prettyprint_1.md) |  |
-|  [prettyPrint(matrix)](./vector.prettyprint_2.md) |  |
+|  [prettyPrint(num)](./vector.prettyprint.md) | Returns an easy-to-read string representing a <code>number</code> |
+|  [prettyPrint(vector)](./vector.prettyprint_1.md) | Returns an easy-to-read string representing the contents of a [Vector](./vector.vector.md) |
+|  [prettyPrint(matrix)](./vector.prettyprint_2.md) | Returns an easy-to-read string representing the contents of a [Matrix](./vector.matrix.md) |
 |  [reducedRowEchelonForm(matrix)](./vector.reducedrowechelonform.md) | Uses Gauss-Jordan elimination with pivoting to convert a matrix to Reduced Row-Echelon Form (RREF) |
 |  [rowEchelonForm(matrix)](./vector.rowechelonform.md) | Uses Gauss-Jordan elimination with pivoting to convert a matrix to Row-Echelon Form (REF) |
 |  [rowSumSupremumNorm(A)](./vector.rowsumsupremumnorm.md) | Calculates the Infinity-Norm of a matrix <code>A</code> |
 |  [solveByGaussianElimination(A, b)](./vector.solvebygaussianelimination.md) | Uses Gauss-Jordan elimination with pivoting and backward substitution to solve the linear equation \_Ax=b\_ |
-|  [solveOverdeterminedSystem(A, b)](./vector.solveoverdeterminedsystem.md) | When the system \_Ax = b\_ is overdetermined, it has no solution. However, the difference Ax-b is minimized when |
+|  [solveOverdeterminedSystem(A, b)](./vector.solveoverdeterminedsystem.md) | Gives an approximate solution to an overdetermined linear system. |
 |  [sumNorm(v)](./vector.sumnorm.md) | Calculates the Sum Norm (or 1-Norm) of a vector <code>v</code> |
 |  [supremumNorm(v)](./vector.supremumnorm.md) | Calculates the Supremum Norm (or Infinity-Norm) of a vector <code>v</code> |
 |  [tripleProduct(first, second, third)](./vector.tripleproduct.md) | Calculates the scalar triple-product of three vectors. This is defined only for vectors with three dimensions. |
@@ -74,16 +74,14 @@
 
 |  Interface | Description |
 |  --- | --- |
-|  [EigenPair](./vector.eigenpair.md) |  |
+|  [EigenPair](./vector.eigenpair.md) | An eigenvector and its corresponding eigenvalue |
 |  [LeastSquaresApproximation](./vector.leastsquaresapproximation.md) | The result of a least squares approximation. |
 |  [LinearTransformation](./vector.lineartransformation.md) | An abstract linear transformation between vectors of type <code>V</code> and vectors of type <code>U</code>. |
 |  [LUDecomposition](./vector.ludecomposition.md) | The result of an LU Decomposition |
-|  [Matrix](./vector.matrix.md) |  |
-|  [MatrixConstructor](./vector.matrixconstructor.md) |  |
+|  [Matrix](./vector.matrix.md) | A generalized Matrix - one of the core data types |
 |  [QRDecomposition](./vector.qrdecomposition.md) | The result of a QR decomposition. |
 |  [RowOperationResult](./vector.rowoperationresult.md) | The result of a row operation (<code>result</code>), and the matrix that we multiply by the original matrix to yield that result (<code>operator</code>) |
-|  [Vector](./vector.vector.md) | An interface for a member of a vector space - specifically a member of an inner product space. |
-|  [VectorConstructor](./vector.vectorconstructor.md) |  |
+|  [Vector](./vector.vector.md) | A generalized Vector - one of the core data types |
 
 ## Type Aliases
 
@@ -91,13 +89,13 @@
 |  --- | --- |
 |  [ApproximationFunction](./vector.approximationfunction.md) | A function that takes a vector of inputs and produces an output. This must always be a pure function that is linear in its coefficients. |
 |  [ApproximationFunctionTemplate](./vector.approximationfunctiontemplate.md) | A higher-order function which is used to generate an <code>ApproximationFunction</code>. This must be linear in its coefficients, or the result of the linear regression will not be correct. |
-|  [MatrixData](./vector.matrixdata.md) |  |
-|  [MatrixEntryCallback](./vector.matrixentrycallback.md) |  |
-|  [MatrixEntryFunction](./vector.matrixentryfunction.md) |  |
-|  [MatrixIndexFunction](./vector.matrixindexfunction.md) |  |
-|  [SparseMatrixData](./vector.sparsematrixdata.md) |  |
-|  [SparseVectorData](./vector.sparsevectordata.md) |  |
-|  [VectorData](./vector.vectordata.md) |  |
-|  [VectorEntryFunction](./vector.vectorentryfunction.md) |  |
-|  [VectorIndexFunction](./vector.vectorindexfunction.md) |  |
+|  [MatrixData](./vector.matrixdata.md) | The data stored in a [Matrix](./vector.matrix.md) represented as a 2-D array |
+|  [MatrixEntryCallback](./vector.matrixentrycallback.md) | A function to execute on an entry in a matrix |
+|  [MatrixEntryFunction](./vector.matrixentryfunction.md) | A function that generates a matrix entry based on an existing entry <code>entry</code>, its row index <code>i</code>, and its column index <code>j</code> |
+|  [MatrixIndexFunction](./vector.matrixindexfunction.md) | A function that generates a matrix entry based on its row index <code>i</code> and column index <code>j</code> |
+|  [SparseMatrixData](./vector.sparsematrixdata.md) | The data stored in a [Matrix](./vector.matrix.md) represented as a map |
+|  [SparseVectorData](./vector.sparsevectordata.md) | The data stored in a [Vector](./vector.vector.md) represented as a map |
+|  [VectorData](./vector.vectordata.md) | The data stored in a [Vector](./vector.vector.md) represented as a map |
+|  [VectorEntryFunction](./vector.vectorentryfunction.md) | A function that generates a vector entry based on an existing entry and its index |
+|  [VectorIndexFunction](./vector.vectorindexfunction.md) | A function that generates a vector entry based on its index |
 

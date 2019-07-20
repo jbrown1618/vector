@@ -4,9 +4,15 @@
 
 ## VectorEntryFunction type
 
+A function that generates a vector entry based on an existing entry and its index
 
 <b>Signature:</b>
 
 ```typescript
 export declare type VectorEntryFunction<S> = (entry: S, index: number) => S;
 ```
+
+## Remarks
+
+This should be a pure function
+

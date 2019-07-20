@@ -4,7 +4,7 @@
 
 ## SparseVector class
 
-For large vectors with many entries equal to 0, some operations are more efficient with a `Vector` implementation that only stores the non-zero values.
+Implements [Vector](./vector.vector.md) as a map of indices to nonzero values.
 
 <b>Signature:</b>
 
@@ -31,6 +31,10 @@ export declare abstract class SparseVector<S> implements Vector<S>
 |  [toArray()](./vector.sparsevector.toarray.md) |  |  |
 
 ## Remarks
+
+For large vectors with many entries equal to 0, some operations are more efficient with a [Vector](./vector.vector.md) implementation that only stores the non-zero values.
+
+Subclasses must specify the usual scalar operations on their contents.
 
 The constructor for this class is marked as internal. Third-party code should not call the constructor directly or create subclasses that extend the `SparseVector` class.
 

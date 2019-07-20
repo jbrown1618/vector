@@ -13,7 +13,8 @@ export interface RowOperationResult<S> {
 }
 
 /**
- * Returns a new matrix whose row at `rowIndex` is multipled by `scalar`
+ * An elementary row operations which returns a new matrix whose row
+ * at `rowIndex` is multipled by `scalar`
  *
  * @param matrix - The original matrix
  * @param rowIndex - The index of the row to modify
@@ -28,7 +29,8 @@ export function multiplyRowByScalar<S>(matrix: Matrix<S>, rowIndex: number, scal
 }
 
 /**
- * Returns a new matrix whose row at `targetRow` has had the row at `rowToAdd` added to it.
+ * An elementary row operations which returns a new matrix whose row at `targetRow` has
+ * had the row at `rowToAdd` added to it.
  *
  * @param matrix - The original matrix
  * @param targetRow - The index of the row to modify
@@ -41,7 +43,8 @@ export function addRowToRow<S>(matrix: Matrix<S>, targetRow: number, rowToAdd: n
 }
 
 /**
- * Returns a new matrix whose row at `targetRow` has had a scalar multiple of `rowToAdd` added to it.
+ * An elementary row operations which returns a new matrix whose row at `targetRow` has
+ * had a scalar multiple of `rowToAdd` added to it.
  *
  * @param matrix - The original matrix
  * @param targetRow - The index of the row to modify
@@ -69,7 +72,8 @@ export function addScalarMultipleOfRowToRow<S>(
 }
 
 /**
- * Returns a new matrix whose row at index `first` has been exchanged with the row at index `second`
+ * An elementary row operations which returns a new matrix whose row at index `first` has
+ * been exchanged with the row at index `second`
  *
  * @param matrix - The original matrix
  * @param first - The index of the first row to exchange

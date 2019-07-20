@@ -4,7 +4,7 @@
 
 ## Vector interface
 
-An interface for a member of a vector space - specifically a member of an inner product space.
+A generalized Vector - one of the core data types
 
 <b>Signature:</b>
 

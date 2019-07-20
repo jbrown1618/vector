@@ -4,9 +4,15 @@
 
 ## VectorIndexFunction type
 
+A function that generates a vector entry based on its index
 
 <b>Signature:</b>
 
 ```typescript
 export declare type VectorIndexFunction<S> = (index: number) => S;
 ```
+
+## Remarks
+
+This should be a pure function
+

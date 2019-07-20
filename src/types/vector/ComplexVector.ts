@@ -8,7 +8,7 @@ import { VectorBuilder } from './VectorBuilder';
 import { MatrixBuilder } from '../matrix/MatrixBuilder';
 
 /**
- * Implements `Vector` as an array of `ComplexNumber`s
+ * A dense {@link Vector} of {@link ComplexNumber}s implemented as an {@link ArrayVector}
  * @public
  */
 @StaticImplements<VectorConstructor<ComplexNumber, ComplexVector>>()

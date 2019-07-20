@@ -4,6 +4,7 @@
 
 ## SparseMatrixData type
 
+The data stored in a [Matrix](./vector.matrix.md) represented as a map
 
 <b>Signature:</b>
 

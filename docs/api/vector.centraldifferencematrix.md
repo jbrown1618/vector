@@ -4,11 +4,7 @@
 
 ## centralDifferenceMatrix() function
 
-Builds a matrix that calculates an approximate derivative scaled by the difference when applied to a vector of function values, using a central difference:
-
-\_f(x - delta)/2 - f(x + delta)/2\_
-
-\_= 1/2 \* (forwardDifference + backwardDifference)\_
+Builds a matrix that transforms a vector to a vector of central differences
 
 <b>Signature:</b>
 
@@ -27,6 +23,12 @@ export declare function centralDifferenceMatrix(binCount: number): NumberMatrix;
 `NumberMatrix`
 
 The central difference matrix
+
+## Remarks
+
+A backward difference matrix calculates an approximate derivative scaled by the difference when applied to a vector of function values, using a central difference \_f(x - delta)/2 - f(x + delta)/2\_
+
+The central difference is equal to the average of the forward and backward differences \_1/2 \* (forwardDifference + backwardDifference)\_
 
 ## Example
 

@@ -4,6 +4,8 @@
 
 ## isSquare() function
 
+Tests if a matrix is square.
+
 <b>Signature:</b>
 
 ```typescript
@@ -21,4 +23,8 @@ export declare function isSquare(matrix: Matrix<any>): boolean;
 `boolean`
 
 `true` if `matrix` is square
+
+## Remarks
+
+A matrix is square if it has the same number of rows as columns.
 

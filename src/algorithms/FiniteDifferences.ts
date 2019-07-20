@@ -4,8 +4,10 @@ import { VectorIndexFunction } from '../types/vector/VectorBuilder';
 import { Vector } from '../types/vector/Vector';
 
 /**
- * Builds a vector of `binCount` evenly spaces numbers between `xMin` (inclusive) and `xMax` (exclusive).
- * Throws an error if xMin is greater than or equal to xMax.
+ * Builds a vector of `binCount` evenly spaced numbers between `xMin` (inclusive) and `xMax` (exclusive).
+ *
+ * @remarks
+ * Throws an error if `xMin` is greater than or equal to `xMax` or if `binCount` is negative
  *
  * @example
  * ```
@@ -35,10 +37,11 @@ export function linspace(xMin: number, xMax: number, binCount: number): NumberVe
 }
 
 /**
- * Builds a matrix that calculates an approximate derivative scaled by the difference
- * when applied to a vector of function values, using a forward difference:
+ * Builds a matrix that transforms a vector to a vector of forward differences
  *
- * _f(x + delta) - f(x)_
+ * @remarks
+ * A forward difference matrix calculates an approximate derivative scaled by the difference
+ * when applied to a vector of function values, using a forward difference _f(x + delta) - f(x)_
  *
  * @example
  * ```
@@ -64,10 +67,11 @@ export function forwardDifferenceMatrix(binCount: number): NumberMatrix {
 }
 
 /**
- * Builds a matrix that calculates an approximate derivative scaled by the difference
- * when applied to a vector of function values, using a backward difference:
+ * Builds a matrix that transforms a vector to a vector of backward differences
  *
- * _f(x) - f(x - delta)_
+ * @remarks
+ * A backward difference matrix calculates an approximate derivative scaled by the difference
+ * when applied to a vector of function values, using a backward difference _f(x) - f(x - delta)_
  *
  * @example
  * ```
@@ -93,12 +97,15 @@ export function backwardDifferenceMatrix(binCount: number): NumberMatrix {
 }
 
 /**
- * Builds a matrix that calculates an approximate derivative scaled by the difference
- * when applied to a vector of function values, using a central difference:
+ * Builds a matrix that transforms a vector to a vector of central differences
  *
- * _f(x - delta)/2 - f(x + delta)/2_
+ * @remarks
+ * A backward difference matrix calculates an approximate derivative scaled by the difference
+ * when applied to a vector of function values, using a central
+ * difference _f(x - delta)/2 - f(x + delta)/2_
  *
- * _= 1/2 * (forwardDifference + backwardDifference)_
+ * The central difference is equal to the average of the forward and backward differences
+ * _1/2 * (forwardDifference + backwardDifference)_
  *
  * @example
  * ```

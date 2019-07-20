@@ -39,8 +39,9 @@ export type ApproximationFunctionTemplate<S> = (
 
 /**
  * Calculates a linear regression model for the provided `dataPoints`.
- * The result is an object which has:
  *
+ * @remarks
+ * The result is an object which has:
  * - `coefficiencts`: a vector whose first entry is the constant term, and whose
  *     following entries are the coefficients for the other independent variables, in
  *     the same order they appear in the `dataPoints`
@@ -53,7 +54,7 @@ export type ApproximationFunctionTemplate<S> = (
  * @returns - the result of the linear regression
  * @public
  */
-export function calculateLinearLeastSquaresApproximation<S>(
+export function calculateLinearLeastSquares<S>(
   dataPoints: Vector<S>[]
 ): LeastSquaresApproximation<S> {
   assertNonEmpty(dataPoints);
@@ -73,7 +74,7 @@ export function calculateLinearLeastSquaresApproximation<S>(
     };
   };
 
-  return calculateGeneralLeastSquaresApproximation(
+  return calculateGeneralLeastSquares(
     dataPoints,
     linearFunctionTemplate,
     numberOfIndependentVariables + 1
@@ -82,9 +83,9 @@ export function calculateLinearLeastSquaresApproximation<S>(
 
 /**
  * Calculates a regression model for an arbitrary function.
- * The result is on object which has:
  *
  * @remarks
+ * The result is on object which has:
  * - `coefficiencts`: a vector whose entries correspond to the coefficients which must
  *     be plugged into the function template to yield the best approximation function
  * - `approximationFunction`: a function which takes a vector of the independent variable
@@ -99,7 +100,7 @@ export function calculateLinearLeastSquaresApproximation<S>(
  * @returns - the result of the linear regression
  * @public
  */
-export function calculateGeneralLeastSquaresApproximation<S>(
+export function calculateGeneralLeastSquares<S>(
   dataPoints: Vector<S>[],
   functionTemplate: ApproximationFunctionTemplate<S>,
   numberOfTerms: number
@@ -144,13 +145,12 @@ export function calculateGeneralLeastSquaresApproximation<S>(
 }
 
 /**
- * When the system _Ax = b_ is overdetermined, it has no solution.
- * However, the difference Ax-b is minimized when
+ * Gives an approximate solution to an overdetermined linear system.
  *
- * @example
- * ```
- * A.transpose().multiply(A).apply(x) === A.transpose().apply(b)
- * ```
+ * @remarks
+ * When the system _Ax = b_ is overdetermined, it has no solution.
+ * However, there exists a unique vector _x_ which minimizes the  difference Ax-b,
+ * which solves `A.transpose().multiply(A).apply(x) === A.transpose().apply(b)`
  *
  * This function returns the approximate solution _x_, or `undefined`
  * if _x_ does not exist

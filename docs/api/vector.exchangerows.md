@@ -4,7 +4,7 @@
 
 ## exchangeRows() function
 
-Returns a new matrix whose row at index `first` has been exchanged with the row at index `second`
+An elementary row operations which returns a new matrix whose row at index `first` has been exchanged with the row at index `second`
 
 <b>Signature:</b>
 

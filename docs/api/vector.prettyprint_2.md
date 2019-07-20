@@ -4,6 +4,8 @@
 
 ## prettyPrint() function
 
+Returns an easy-to-read string representing the contents of a [Matrix](./vector.matrix.md)
+
 <b>Signature:</b>
 
 ```typescript

@@ -24,6 +24,8 @@ export function solveByGaussianElimination<S>(A: Matrix<S>, b: Vector<S>): Linea
 
 /**
  * Uses Gauss-Jordan elimination with pivoting to calculate the inverse of a matrix.
+ *
+ * @remarks
  * Throws an error if the matrix is not square.
  * Returns `undefined` if the matrix is not invertible.
  *

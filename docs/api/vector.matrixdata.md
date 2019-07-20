@@ -4,6 +4,7 @@
 
 ## MatrixData type
 
+The data stored in a [Matrix](./vector.matrix.md) represented as a 2-D array
 
 <b>Signature:</b>
 

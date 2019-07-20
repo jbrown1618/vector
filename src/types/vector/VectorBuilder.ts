@@ -5,16 +5,27 @@ import { SparseVectorData } from './SparseVector';
 import { Vector, VectorConstructor, VectorData } from './Vector';
 
 /**
+ * A function that generates a vector entry based on its index
+ *
+ * @remarks
+ * This should be a pure function
+ *
  * @public
  */
 export type VectorIndexFunction<S> = (index: number) => S;
 
 /**
+ * A function that generates a vector entry based on an existing entry and its index
+ *
+ * @remarks
+ * This should be a pure function
+ *
  * @public
  */
 export type VectorEntryFunction<S> = (entry: S, index: number) => S;
 
 /**
+ * Provides methods for constructing {@link Vector}s of a given type
  * @public
  */
 export class VectorBuilder<S, V extends Vector<S>> {

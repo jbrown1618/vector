@@ -4,7 +4,7 @@
 
 ## ComplexNumber class
 
-Numbers of the form \_a + bi\_ where \_i\_ is the imaginary unit.
+A number of the form \_a + bi\_ where \_i\_ is the imaginary unit.
 
 <b>Signature:</b>
 

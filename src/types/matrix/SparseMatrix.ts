@@ -6,6 +6,7 @@ import { Matrix, MatrixData, MatrixEntryCallback } from './Matrix';
 import { MatrixBuilder } from './MatrixBuilder';
 
 /**
+ * The data stored in a {@link Matrix} represented as a map
  * @public
  */
 export type SparseMatrixData<S> = ReadonlyMap<number, ReadonlyMap<number, S>>;
@@ -17,7 +18,11 @@ type MutableSparseMatrixData<S> = Map<number, Map<number, S>>;
 // [number, number, S][]
 
 /**
- * Implements `Matrix` with a map of indices to nonzero values
+ * Implements {@link Matrix} with a map of indices to nonzero values.
+ *
+ * @remarks
+ * Subclasses must specify the usual scalar operations on their contents.
+ *
  * @public
  */
 export abstract class SparseMatrix<S> implements Matrix<S> {

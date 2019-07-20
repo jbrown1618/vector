@@ -6,8 +6,11 @@ import { Matrix, MatrixData, MatrixEntryCallback } from './Matrix';
 import { MatrixBuilder } from './MatrixBuilder';
 
 /**
- * Implements `Matrix` with a 2-dimensional array of values.
+ * Implements {@link Matrix} with a 2-dimensional array of values.
+ *
+ * @remarks
  * Subclasses must specify the usual scalar operations on their contents.
+ *
  * @public
  */
 export abstract class ArrayMatrix<S> implements Matrix<S> {

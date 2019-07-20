@@ -4,6 +4,8 @@
 
 ## MatrixBuilder class
 
+Provides methods for constructing [Matrices](./vector.matrix.md) of a given type
+
 <b>Signature:</b>
 
 ```typescript

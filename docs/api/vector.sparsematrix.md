@@ -4,7 +4,7 @@
 
 ## SparseMatrix class
 
-Implements `Matrix` with a map of indices to nonzero values
+Implements [Matrix](./vector.matrix.md) with a map of indices to nonzero values.
 
 <b>Signature:</b>
 
@@ -41,6 +41,8 @@ export declare abstract class SparseMatrix<S> implements Matrix<S>
 |  [vectorBuilder()](./vector.sparsematrix.vectorbuilder.md) |  |  |
 
 ## Remarks
+
+Subclasses must specify the usual scalar operations on their contents.
 
 The constructor for this class is marked as internal. Third-party code should not call the constructor directly or create subclasses that extend the `SparseMatrix` class.
 

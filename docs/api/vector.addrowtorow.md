@@ -4,7 +4,7 @@
 
 ## addRowToRow() function
 
-Returns a new matrix whose row at `targetRow` has had the row at `rowToAdd` added to it.
+An elementary row operations which returns a new matrix whose row at `targetRow` has had the row at `rowToAdd` added to it.
 
 <b>Signature:</b>
 

@@ -4,6 +4,7 @@
 
 ## ScalarOperations class
 
+A class which encapsulates the basic arithmetic operations for an arbitrary scalar type.
 
 <b>Signature:</b>
 
@@ -34,4 +35,8 @@ export declare abstract class ScalarOperations<S>
 |  [randomNormal(mean, standardDeviation)](./vector.scalaroperations.randomnormal.md) |  |  |
 |  [subtract(first, second)](./vector.scalaroperations.subtract.md) |  |  |
 |  [zero()](./vector.scalaroperations.zero.md) |  | Alias for [ScalarOperations.getAdditiveIdentity()](./vector.scalaroperations.getadditiveidentity.md) |
+
+## Remarks
+
+This must be implemented for each scalar to be used in a [Vector](./vector.vector.md) or [Matrix](./vector.matrix.md)
 

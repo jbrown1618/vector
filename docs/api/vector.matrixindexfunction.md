@@ -4,9 +4,15 @@
 
 ## MatrixIndexFunction type
 
+A function that generates a matrix entry based on its row index `i` and column index `j`
 
 <b>Signature:</b>
 
 ```typescript
 export declare type MatrixIndexFunction<S> = (i: number, j: number) => S;
 ```
+
+## Remarks
+
+This should be a pure function
+

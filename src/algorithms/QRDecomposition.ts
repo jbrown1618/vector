@@ -14,8 +14,10 @@ export interface QRDecomposition<S> {
 
 /**
  * Uses the Graham-Schmidt process to calculate the QR decomposition of the matrix A.
- * That is, a unitary matrix Q and upper-triangular matrix R such that Q
- * multiplied by R yields A
+ *
+ * @remarks
+ * A QR Decomposition of a matrix A is a unitary matrix Q and upper-triangular
+ * matrix R such that Q multiplied by R yields A
  *
  * @param A - The matrix to decompose
  * @public

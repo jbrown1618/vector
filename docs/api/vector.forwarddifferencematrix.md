@@ -4,9 +4,7 @@
 
 ## forwardDifferenceMatrix() function
 
-Builds a matrix that calculates an approximate derivative scaled by the difference when applied to a vector of function values, using a forward difference:
-
-\_f(x + delta) - f(x)\_
+Builds a matrix that transforms a vector to a vector of forward differences
 
 <b>Signature:</b>
 
@@ -25,6 +23,10 @@ export declare function forwardDifferenceMatrix(binCount: number): NumberMatrix;
 `NumberMatrix`
 
 The forward difference matrix
+
+## Remarks
+
+A forward difference matrix calculates an approximate derivative scaled by the difference when applied to a vector of function values, using a forward difference \_f(x + delta) - f(x)\_
 
 ## Example
 

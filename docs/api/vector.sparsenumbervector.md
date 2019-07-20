@@ -4,7 +4,7 @@
 
 ## SparseNumberVector class
 
-A `Vector` implemented as a sparse set of JS `number` primitives keyed by their indices.
+A [Vector](./vector.vector.md) implemented as a sparse set of JS `number` primitives keyed by their indices.
 
 <b>Signature:</b>
 

@@ -5,17 +5,19 @@ import { LinearTransformation } from './LinearTransformation';
 import { MatrixBuilder } from './MatrixBuilder';
 
 /**
+ * The data stored in a {@link Matrix} represented as a 2-D array
  * @public
  */
 export type MatrixData<S> = readonly VectorData<S>[];
 
 /**
+ * A function to execute on an entry in a matrix
  * @public
  */
 export type MatrixEntryCallback<S> = (entry: S, rowIndex: number, columnIndex: number) => void;
 
 /**
- * @public
+ * @internal
  */
 export interface MatrixConstructor<S, V extends Vector<S>, M extends Matrix<S>> {
   new (data: MatrixData<S>): M;
@@ -25,6 +27,7 @@ export interface MatrixConstructor<S, V extends Vector<S>, M extends Matrix<S>> 
 }
 
 /**
+ * A generalized Matrix - one of the core data types
  * @public
  */
 export interface Matrix<S> extends LinearTransformation<Vector<S>, Vector<S>> {

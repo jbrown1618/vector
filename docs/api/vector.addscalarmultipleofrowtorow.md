@@ -4,7 +4,7 @@
 
 ## addScalarMultipleOfRowToRow() function
 
-Returns a new matrix whose row at `targetRow` has had a scalar multiple of `rowToAdd` added to it.
+An elementary row operations which returns a new matrix whose row at `targetRow` has had a scalar multiple of `rowToAdd` added to it.
 
 <b>Signature:</b>
 

@@ -4,7 +4,7 @@
 
 ## calculateQRDecomposition() function
 
-Uses the Graham-Schmidt process to calculate the QR decomposition of the matrix A. That is, a unitary matrix Q and upper-triangular matrix R such that Q multiplied by R yields A
+Uses the Graham-Schmidt process to calculate the QR decomposition of the matrix A.
 
 <b>Signature:</b>
 
@@ -21,4 +21,8 @@ export declare function calculateQRDecomposition<S>(A: Matrix<S>): QRDecompositi
 <b>Returns:</b>
 
 `QRDecomposition<S>`
+
+## Remarks
+
+A QR Decomposition of a matrix A is a unitary matrix Q and upper-triangular matrix R such that Q multiplied by R yields A
 

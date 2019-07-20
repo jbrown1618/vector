@@ -99,10 +99,10 @@ export function backwardDifferenceMatrix(binCount: number): NumberMatrix;
 export function calculateEigenvalues<S>(A: Matrix<S>, numIterations?: number, throwOnFailure?: boolean): Vector<S>;
 
 // @public
-export function calculateGeneralLeastSquaresApproximation<S>(dataPoints: Vector<S>[], functionTemplate: ApproximationFunctionTemplate<S>, numberOfTerms: number): LeastSquaresApproximation<S>;
+export function calculateGeneralLeastSquares<S>(dataPoints: Vector<S>[], functionTemplate: ApproximationFunctionTemplate<S>, numberOfTerms: number): LeastSquaresApproximation<S>;
 
 // @public
-export function calculateLinearLeastSquaresApproximation<S>(dataPoints: Vector<S>[]): LeastSquaresApproximation<S>;
+export function calculateLinearLeastSquares<S>(dataPoints: Vector<S>[]): LeastSquaresApproximation<S>;
 
 // @public
 export function calculateLUDecomposition<S>(A: Matrix<S>): LUDecomposition<S>;
@@ -163,7 +163,7 @@ export class ComplexNumber {
     static readonly ZERO: ComplexNumber;
 }
 
-// @public (undocumented)
+// @public
 export class ComplexNumberOperations extends ScalarOperations<ComplexNumber> {
     // (undocumented)
     add(first: ComplexNumber, second: ComplexNumber): ComplexNumber;
@@ -223,7 +223,7 @@ export function determinant<S>(matrix: Matrix<S>): S;
 // @public
 export function eig<S>(A: Matrix<S>, numIterations?: number, throwOnFailure?: boolean): EigenPair<S>[];
 
-// @public (undocumented)
+// @public
 export interface EigenPair<S> {
     // (undocumented)
     eigenvalue: S;
@@ -257,10 +257,10 @@ export function inverse<S>(matrix: Matrix<S>): Matrix<S> | undefined;
 // @internal
 export function isSparse<S>(vector: Vector<S>): vector is SparseVector<S>;
 
-// @public (undocumented)
+// @public
 export function isSquare(matrix: Matrix<any>): boolean;
 
-// @public (undocumented)
+// @public
 export function isUpperTriangular<S>(matrix: Matrix<S>): boolean;
 
 // @public
@@ -289,7 +289,7 @@ export interface LUDecomposition<S> {
     U: Matrix<S>;
 }
 
-// @public (undocumented)
+// @public
 export interface Matrix<S> extends LinearTransformation<Vector<S>, Vector<S>> {
     add(other: Matrix<S>): Matrix<S>;
     // (undocumented)
@@ -330,7 +330,7 @@ export interface Matrix<S> extends LinearTransformation<Vector<S>, Vector<S>> {
     vectorBuilder(): VectorBuilder<S, Vector<S>>;
 }
 
-// @public (undocumented)
+// @public
 export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
     // @internal
     constructor(matrixConstructor: MatrixConstructor<S, V, M>);
@@ -367,7 +367,9 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
     zeros(numberOfRows: number, numberOfColumns?: number): M;
 }
 
-// @public (undocumented)
+// Warning: (ae-internal-missing-underscore) The name "MatrixConstructor" should be prefixed with an underscore because the declaration is marked as @internal
+// 
+// @internal (undocumented)
 export interface MatrixConstructor<S, V extends Vector<S>, M extends Matrix<S>> {
     // (undocumented)
     new (data: MatrixData<S>): M;
@@ -379,16 +381,16 @@ export interface MatrixConstructor<S, V extends Vector<S>, M extends Matrix<S>> 
     vectorBuilder(): VectorBuilder<S, V>;
 }
 
-// @public (undocumented)
+// @public
 export type MatrixData<S> = readonly VectorData<S>[];
 
-// @public (undocumented)
+// @public
 export type MatrixEntryCallback<S> = (entry: S, rowIndex: number, columnIndex: number) => void;
 
-// @public (undocumented)
+// @public
 export type MatrixEntryFunction<S> = (entry: S, i: number, j: number) => S;
 
-// @public (undocumented)
+// @public
 export type MatrixIndexFunction<S> = (i: number, j: number) => S;
 
 // @public
@@ -415,7 +417,7 @@ export class NumberMatrix extends ArrayMatrix<number> {
     vectorBuilder(): VectorBuilder<number, NumberVector>;
 }
 
-// @public (undocumented)
+// @public
 export class NumberOperations extends ScalarOperations<number> {
     // (undocumented)
     add(first: number, second: number): number;
@@ -472,13 +474,13 @@ export function pNorm<S>(v: Vector<S>, p: number): number;
 // @public
 export function pow<S>(A: Matrix<S>, n: number): Matrix<S>;
 
-// @public (undocumented)
+// @public
 export function prettyPrint(num: number): string;
 
-// @public (undocumented)
+// @public
 export function prettyPrint<S>(vector: Vector<S>): string;
 
-// @public (undocumented)
+// @public
 export function prettyPrint<S>(matrix: Matrix<S>): string;
 
 // @public
@@ -506,7 +508,7 @@ export interface RowOperationResult<S> {
 // @public
 export function rowSumSupremumNorm<S>(A: Matrix<S>): number;
 
-// @public (undocumented)
+// @public
 export abstract class ScalarOperations<S> {
     abstract add(first: S, second: S): S;
     abstract conjugate(scalar: S): S;
@@ -591,7 +593,7 @@ export abstract class SparseMatrix<S> implements Matrix<S> {
     abstract vectorBuilder(): VectorBuilder<S, Vector<S>>;
 }
 
-// @public (undocumented)
+// @public
 export type SparseMatrixData<S> = ReadonlyMap<number, ReadonlyMap<number, S>>;
 
 // @public
@@ -658,7 +660,7 @@ export abstract class SparseVector<S> implements Vector<S> {
     toArray(): S[];
 }
 
-// @public (undocumented)
+// @public
 export type SparseVectorData<S> = ReadonlyMap<number, S>;
 
 // @public
@@ -695,7 +697,7 @@ export interface Vector<S> {
     toArray(): S[];
 }
 
-// @public (undocumented)
+// @public
 export class VectorBuilder<S, V extends Vector<S>> {
     // @internal
     constructor(vectorConstructor: VectorConstructor<S, V>);
@@ -720,7 +722,9 @@ export class VectorBuilder<S, V extends Vector<S>> {
     zeros(dimension: number): V;
 }
 
-// @public (undocumented)
+// Warning: (ae-internal-missing-underscore) The name "VectorConstructor" should be prefixed with an underscore because the declaration is marked as @internal
+// 
+// @internal (undocumented)
 export interface VectorConstructor<S, V extends Vector<S>> {
     // (undocumented)
     new (data: VectorData<S>): V;
@@ -730,13 +734,13 @@ export interface VectorConstructor<S, V extends Vector<S>> {
     ops(): ScalarOperations<S>;
 }
 
-// @public (undocumented)
+// @public
 export type VectorData<S> = readonly S[];
 
-// @public (undocumented)
+// @public
 export type VectorEntryFunction<S> = (entry: S, index: number) => S;
 
-// @public (undocumented)
+// @public
 export type VectorIndexFunction<S> = (index: number) => S;
 
 

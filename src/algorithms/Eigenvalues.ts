@@ -8,6 +8,7 @@ import { calculateQRDecomposition } from './QRDecomposition';
 // TODO - convert to an upper Hessenberg matrix to improve rate of convergence
 
 /**
+ * An eigenvector and its corresponding eigenvalue
  * @public
  */
 export interface EigenPair<S> {

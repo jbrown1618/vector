@@ -4,7 +4,7 @@
 
 ## linspace() function
 
-Builds a vector of `binCount` evenly spaces numbers between `xMin` (inclusive) and `xMax` (exclusive). Throws an error if xMin is greater than or equal to xMax.
+Builds a vector of `binCount` evenly spaced numbers between `xMin` (inclusive) and `xMax` (exclusive).
 
 <b>Signature:</b>
 
@@ -25,6 +25,10 @@ export declare function linspace(xMin: number, xMax: number, binCount: number): 
 `NumberVector`
 
 The evenly-spaced vector
+
+## Remarks
+
+Throws an error if `xMin` is greater than or equal to `xMax` or if `binCount` is negative
 
 ## Example
 

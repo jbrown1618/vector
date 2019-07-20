@@ -4,6 +4,7 @@
 
 ## ComplexNumberOperations class
 
+Implements the basic [ScalarOperations](./vector.scalaroperations.md) on [ComplexNumber](./vector.complexnumber.md)<!-- -->s
 
 <b>Signature:</b>
 

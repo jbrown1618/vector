@@ -4,6 +4,7 @@
 
 ## NumberOperations class
 
+Implements the basic [ScalarOperations](./vector.scalaroperations.md) on `number`<!-- -->s
 
 <b>Signature:</b>
 

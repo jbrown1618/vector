@@ -7,7 +7,7 @@ import { VectorBuilder } from './VectorBuilder';
 import { MatrixBuilder } from '../matrix/MatrixBuilder';
 
 /**
- * A `Vector` implemented as an array of JS `number` primitives.
+ * A dense {@link Vector} of `number`s implemented as a {@link ArrayVector}
  * @public
  */
 @StaticImplements<VectorConstructor<number, NumberVector>>()

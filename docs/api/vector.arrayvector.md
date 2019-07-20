@@ -4,7 +4,7 @@
 
 ## ArrayVector class
 
-Implements `Vector` with an array of values.
+Implements [Vector](./vector.vector.md) with an array of values.
 
 <b>Signature:</b>
 

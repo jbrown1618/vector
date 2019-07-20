@@ -4,6 +4,7 @@
 
 ## EigenPair interface
 
+An eigenvector and its corresponding eigenvalue
 
 <b>Signature:</b>
 

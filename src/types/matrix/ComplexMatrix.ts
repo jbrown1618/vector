@@ -9,7 +9,7 @@ import { MatrixBuilder } from './MatrixBuilder';
 import { ScalarOperations } from '../scalar/ScalarOperations';
 
 /**
- * Implements {@link Matrix} as a 2-dimensional array of {@link ComplexNumber}s
+ * A dense {@link Matrix} of {@link ComplexNumber}s, implemented as an {@link ArrayMatrix}
  * @public
  */
 @StaticImplements<MatrixConstructor<ComplexNumber, ComplexVector, ComplexMatrix>>()

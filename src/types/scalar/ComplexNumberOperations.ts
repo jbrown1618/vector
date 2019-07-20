@@ -4,6 +4,7 @@ import { ScalarOperations } from './ScalarOperations';
 import { prettyPrint } from '../../utilities/prettyPrint';
 
 /**
+ * Implements the basic {@link ScalarOperations} on {@link ComplexNumber}s
  * @public
  */
 export class ComplexNumberOperations extends ScalarOperations<ComplexNumber> {

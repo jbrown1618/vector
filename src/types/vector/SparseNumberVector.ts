@@ -8,7 +8,7 @@ import { MatrixBuilder } from '../matrix/MatrixBuilder';
 import { ScalarOperations } from '../scalar/ScalarOperations';
 
 /**
- * A `Vector` implemented as a sparse set of JS `number` primitives keyed by their indices.
+ * A {@link Vector} implemented as a sparse set of JS `number` primitives keyed by their indices.
  * @public
  */
 @StaticImplements<VectorConstructor<number, SparseNumberVector>>()

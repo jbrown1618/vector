@@ -4,9 +4,7 @@
 
 ## backwardDifferenceMatrix() function
 
-Builds a matrix that calculates an approximate derivative scaled by the difference when applied to a vector of function values, using a backward difference:
-
-\_f(x) - f(x - delta)\_
+Builds a matrix that transforms a vector to a vector of backward differences
 
 <b>Signature:</b>
 
@@ -25,6 +23,10 @@ export declare function backwardDifferenceMatrix(binCount: number): NumberMatrix
 `NumberMatrix`
 
 The backward difference matrix
+
+## Remarks
+
+A backward difference matrix calculates an approximate derivative scaled by the difference when applied to a vector of function values, using a backward difference \_f(x) - f(x - delta)\_
 
 ## Example
 

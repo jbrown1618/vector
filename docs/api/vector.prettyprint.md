@@ -4,6 +4,7 @@
 
 ## prettyPrint() function
 
+Returns an easy-to-read string representing a `number`
 
 <b>Signature:</b>
 

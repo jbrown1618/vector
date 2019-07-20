@@ -4,7 +4,7 @@
 
 ## calculateLUDecomposition() function
 
-Uses the Doolittle algorithm to calculate the LU Decomposition of a matrix A. That is, a lower-triangular matrix L, an upper-triangular matrix U, and a row permutation matrix P such that \_PA = LU\_
+Uses the Doolittle algorithm to calculate the LU Decomposition of a matrix A.
 
 <b>Signature:</b>
 
@@ -21,4 +21,8 @@ export declare function calculateLUDecomposition<S>(A: Matrix<S>): LUDecompositi
 <b>Returns:</b>
 
 `LUDecomposition<S>`
+
+## Remarks
+
+An LU Decomposition of a matrix A is a lower-triangular matrix L, an upper-triangular matrix U, and a row permutation matrix P such that \_PA = LU\_
 

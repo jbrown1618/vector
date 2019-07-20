@@ -23,8 +23,10 @@ interface DoolittleIteration<S> {
 
 /**
  * Uses the Doolittle algorithm to calculate the LU Decomposition of a matrix A.
- * That is, a lower-triangular matrix L, an upper-triangular matrix U, and a row
- * permutation matrix P such that _PA = LU_
+ *
+ * @remarks
+ * An LU Decomposition of a matrix A is a lower-triangular matrix L, an upper-triangular
+ * matrix U, and a row permutation matrix P such that _PA = LU_
  *
  * @param A - The matrix to decompose
  * @public

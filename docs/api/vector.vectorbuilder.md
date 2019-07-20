@@ -4,6 +4,8 @@
 
 ## VectorBuilder class
 
+Provides methods for constructing [Vector](./vector.vector.md)<!-- -->s of a given type
+
 <b>Signature:</b>
 
 ```typescript

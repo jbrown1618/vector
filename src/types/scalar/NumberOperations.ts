@@ -3,6 +3,7 @@ import { ScalarOperations } from './ScalarOperations';
 import { prettyPrint } from '../../utilities/prettyPrint';
 
 /**
+ * Implements the basic {@link ScalarOperations} on `number`s
  * @public
  */
 export class NumberOperations extends ScalarOperations<number> {

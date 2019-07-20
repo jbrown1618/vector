@@ -8,7 +8,7 @@ import { MatrixBuilder } from './MatrixBuilder';
 import { ScalarOperations } from '../scalar/ScalarOperations';
 
 /**
- * A `Matrix` implemented as a 2-dimensional array of JS `number` primitives
+ * A dense matrix of JavaScript `number` primitives, implemented as an {@link ArrayMatrix}
  * @public
  */
 @StaticImplements<MatrixConstructor<number, NumberVector, NumberMatrix>>()

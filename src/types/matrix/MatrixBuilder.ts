@@ -11,16 +11,28 @@ import { Matrix, MatrixConstructor, MatrixData } from './Matrix';
 import { SparseMatrixData } from './SparseMatrix';
 
 /**
+ * A function that generates a matrix entry based on its row index `i` and column index `j`
+ *
+ * @remarks
+ * This should be a pure function
+ *
  * @public
  */
 export type MatrixIndexFunction<S> = (i: number, j: number) => S;
 
 /**
+ * A function that generates a matrix entry based on an existing entry `entry`,
+ * its row index `i`, and its column index `j`
+ *
+ * @remarks
+ * This should be a pure function
+ *
  * @public
  */
 export type MatrixEntryFunction<S> = (entry: S, i: number, j: number) => S;
 
 /**
+ * Provides methods for constructing {@link Matrix | Matrices} of a given type
  * @public
  */
 export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {

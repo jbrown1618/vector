@@ -4,7 +4,7 @@
 
 ## SparseNumberMatrix class
 
-A `Matrix` implemented as a sparse set of JS `number` primitives keyed by their indices.
+A [Matrix](./vector.matrix.md) implemented as a sparse set of JS `number` primitives keyed by their indices.
 
 <b>Signature:</b>
 

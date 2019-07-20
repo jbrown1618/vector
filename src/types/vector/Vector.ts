@@ -4,12 +4,13 @@ import { ScalarOperations } from '../scalar/ScalarOperations';
 import { VectorBuilder } from './VectorBuilder';
 
 /**
+ * The data stored in a {@link Vector} represented as a map
  * @public
  */
 export type VectorData<S> = readonly S[];
 
 /**
- * @public
+ * @internal
  */
 export interface VectorConstructor<S, V extends Vector<S>> {
   new (data: VectorData<S>): V;
@@ -18,7 +19,7 @@ export interface VectorConstructor<S, V extends Vector<S>> {
 }
 
 /**
- * An interface for a member of a vector space - specifically a member of an inner product space.
+ * A generalized Vector - one of the core data types
  * @public
  */
 export interface Vector<S> {

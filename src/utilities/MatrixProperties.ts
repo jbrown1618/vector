@@ -1,6 +1,11 @@
 import { Matrix } from '../types/matrix/Matrix';
 
 /**
+ * Tests if a matrix is square.
+ *
+ * @remarks
+ * A matrix is square if it has the same number of rows as columns.
+ *
  * @param matrix - The matrix to check
  * @returns `true` if `matrix` is square
  * @public
@@ -10,6 +15,12 @@ export function isSquare(matrix: Matrix<any>): boolean {
 }
 
 /**
+ * Tests if a matrix is upper-triangular.
+ *
+ * @remarks
+ * A matrix is upper-triangular if all entries below the primary diagonal
+ * (those where `i > j`) are zero.
+ *
  * @public
  */
 export function isUpperTriangular<S>(matrix: Matrix<S>): boolean {

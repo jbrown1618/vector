@@ -4,7 +4,7 @@
 
 ## multiplyRowByScalar() function
 
-Returns a new matrix whose row at `rowIndex` is multipled by `scalar`
+An elementary row operations which returns a new matrix whose row at `rowIndex` is multipled by `scalar`
 
 <b>Signature:</b>
 

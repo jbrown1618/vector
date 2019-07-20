@@ -4,7 +4,7 @@
 
 ## NumberVector class
 
-A `Vector` implemented as an array of JS `number` primitives.
+A dense [Vector](./vector.vector.md) of `number`<!-- -->s implemented as a [ArrayVector](./vector.arrayvector.md)
 
 <b>Signature:</b>
 
