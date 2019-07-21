@@ -16,10 +16,10 @@ export declare class ComplexVector extends ArrayVector<ComplexNumber>
 
 |  Method | Modifiers | Description |
 |  --- | --- | --- |
-|  [builder()](./vector.complexvector.builder.md) |  |  |
+|  [builder()](./vector.complexvector.builder.md) |  | Returns a [VectorBuilder](./vector.vectorbuilder.md) which will build new vectors of the same type |
 |  [builder()](./vector.complexvector.builder.md) | <code>static</code> |  |
-|  [matrixBuilder()](./vector.complexvector.matrixbuilder.md) |  |  |
-|  [ops()](./vector.complexvector.ops.md) |  |  |
+|  [matrixBuilder()](./vector.complexvector.matrixbuilder.md) |  | Returns a [MatrixBuilder](./vector.matrixbuilder.md) which will build new matrices of a compatible type |
+|  [ops()](./vector.complexvector.ops.md) |  | Returns a [ScalarOperations](./vector.scalaroperations.md) object which will allow consumers to work generically with the scalars contained in the vector. |
 |  [ops()](./vector.complexvector.ops.md) | <code>static</code> |  |
 
 ## Remarks

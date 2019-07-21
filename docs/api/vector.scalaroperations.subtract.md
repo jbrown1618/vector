@@ -4,6 +4,8 @@
 
 ## ScalarOperations.subtract() method
 
+Returns the difference of two scalars.
+
 <b>Signature:</b>
 
 ```typescript
@@ -20,4 +22,6 @@ subtract(first: S, second: S): S;
 <b>Returns:</b>
 
 `S`
+
+The difference
 

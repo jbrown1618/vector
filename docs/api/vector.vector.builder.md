@@ -4,7 +4,7 @@
 
 ## Vector.builder() method
 
-Yields a `VectorBuilder` which will build new vectors of the same type
+Returns a [VectorBuilder](./vector.vectorbuilder.md) which will build new vectors of the same type
 
 <b>Signature:</b>
 

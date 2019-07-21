@@ -4,6 +4,8 @@
 
 ## LeastSquaresApproximation.approximationFunction property
 
+A function which takes a vector of the independent variable values, and returns the predicted value of the dependent variable
+
 <b>Signature:</b>
 
 ```typescript

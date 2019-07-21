@@ -23,8 +23,19 @@ export abstract class ArrayVector<S> implements Vector<S> {
     this._data = Object.freeze(data);
   }
 
+  /**
+   * {@inheritdoc Vector.ops}
+   */
   public abstract ops(): ScalarOperations<S>;
+
+  /**
+   * {@inheritdoc Vector.builder}
+   */
   public abstract builder(): VectorBuilder<S, Vector<S>>;
+
+  /**
+   * {@inheritdoc Vector.matrixBuilder}
+   */
   public abstract matrixBuilder(): MatrixBuilder<S, Vector<S>, Matrix<S>>;
 
   /**

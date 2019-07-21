@@ -4,6 +4,8 @@
 
 ## ArrayVector.equals() method
 
+Tests if two vectors are equal
+
 <b>Signature:</b>
 
 ```typescript

@@ -4,6 +4,8 @@
 
 ## NumberOperations.getAdditiveIdentity() method
 
+Returns the unique scalar that, when added to another scalar, returns that scalar
+
 <b>Signature:</b>
 
 ```typescript
@@ -12,4 +14,10 @@ getAdditiveIdentity(): number;
 <b>Returns:</b>
 
 `number`
+
+The additive identity
+
+## Remarks
+
+In other words, `addScalars(x, getAdditiveIdentity()) === x` is true for all scalars `x`
 

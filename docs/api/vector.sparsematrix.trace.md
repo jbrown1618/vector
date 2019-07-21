@@ -4,6 +4,8 @@
 
 ## SparseMatrix.trace() method
 
+Returns the trace of the matrix
+
 <b>Signature:</b>
 
 ```typescript
@@ -13,5 +15,9 @@ trace(): S;
 
 `S`
 
-The trace of the matrix
+The trace
+
+## Remarks
+
+The trace of a matrix is the sum of the entries along the main diagonal
 

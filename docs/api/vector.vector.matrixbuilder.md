@@ -4,7 +4,7 @@
 
 ## Vector.matrixBuilder() method
 
-Yields a `MatrixBuilder` which will build new matrices of a compatible type
+Returns a [MatrixBuilder](./vector.matrixbuilder.md) which will build new matrices of a compatible type
 
 <b>Signature:</b>
 

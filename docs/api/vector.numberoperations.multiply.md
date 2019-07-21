@@ -4,6 +4,8 @@
 
 ## NumberOperations.multiply() method
 
+Returns the product of two scalars `first` and `second`<!-- -->.
+
 <b>Signature:</b>
 
 ```typescript
@@ -20,4 +22,10 @@ multiply(first: number, second: number): number;
 <b>Returns:</b>
 
 `number`
+
+The product of `first` and `second`
+
+## Remarks
+
+Implementors should ensure that this operation is commutative and associative, and that it distributes over the addition operation.
 

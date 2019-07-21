@@ -16,24 +16,24 @@ export declare abstract class ScalarOperations<S>
 
 |  Method | Modifiers | Description |
 |  --- | --- | --- |
-|  [add(first, second)](./vector.scalaroperations.add.md) |  | Returns the sum of two scalars. Implementors should ensure that this operation is commutative and associative. |
-|  [conjugate(scalar)](./vector.scalaroperations.conjugate.md) |  | Returns the complex conjugate of a scalar. For real-valued scalars, this can just be an identity function. |
-|  [divide(numerator, denominator)](./vector.scalaroperations.divide.md) |  |  |
-|  [equals(first, second)](./vector.scalaroperations.equals.md) |  | Returns true if the scalars are equal. Implementors should ensure that the operation is reflexive, associative, and transitive. |
-|  [fromNumber(num)](./vector.scalaroperations.fromnumber.md) |  |  |
-|  [getAdditiveIdentity()](./vector.scalaroperations.getadditiveidentity.md) |  | Returns the unique scalar such that <code>addScalars(x, getAdditiveIdentity()) === x</code> is true for all scalars <code>x</code> |
-|  [getAdditiveInverse(x)](./vector.scalaroperations.getadditiveinverse.md) |  | Returns the unique scalar such that <code>addScalars(scalar, getAdditiveInverse(scalar)) === getAdditiveIdentity()</code> is true for <code>scalar</code> |
-|  [getMultiplicativeIdentity()](./vector.scalaroperations.getmultiplicativeidentity.md) |  | Returns the unique scalar such that <code>multiplyScalars(x, getMultiplicativeIdentity()) === x</code> is true for all x |
-|  [getMultiplicativeInverse(x)](./vector.scalaroperations.getmultiplicativeinverse.md) |  | Returns the unique scalar such that |
-|  [getPrincipalSquareRoot(x)](./vector.scalaroperations.getprincipalsquareroot.md) |  |  |
-|  [multiply(first, second)](./vector.scalaroperations.multiply.md) |  | Returns the product of two scalars. Implementors should ensure that this operation is commutative and associative, and that it distributes over the addition operation. |
+|  [add(first, second)](./vector.scalaroperations.add.md) |  | Returns the sum of two scalars <code>first</code> and <code>second</code>. |
+|  [conjugate(scalar)](./vector.scalaroperations.conjugate.md) |  | Returns the complex conjugate of a scalar. |
+|  [divide(numerator, denominator)](./vector.scalaroperations.divide.md) |  | Returns the quotient of two scalars <code>numerator</code> and <code>denominator</code>, or <code>undefined</code> if the quotient does not exist. |
+|  [equals(first, second)](./vector.scalaroperations.equals.md) |  | Tests if the scalars are equal. Implementors should ensure that the operation is reflexive, associative, and transitive. |
+|  [fromNumber(num)](./vector.scalaroperations.fromnumber.md) |  | Returns an instance of the scalar type which most accurately corresponds to the value of <code>num</code> |
+|  [getAdditiveIdentity()](./vector.scalaroperations.getadditiveidentity.md) |  | Returns the unique scalar that, when added to another scalar, returns that scalar |
+|  [getAdditiveInverse(x)](./vector.scalaroperations.getadditiveinverse.md) |  | Returns the unique value that, when added to <code>x</code>, returns the additive identity |
+|  [getMultiplicativeIdentity()](./vector.scalaroperations.getmultiplicativeidentity.md) |  | Returns the unique scalar that, when multiplied by another scalar, returns that scalar |
+|  [getMultiplicativeInverse(x)](./vector.scalaroperations.getmultiplicativeinverse.md) |  | Returns the unique scalar that, when multiplied by <code>scalar</code>, returns the multiplicative identity |
+|  [getPrincipalSquareRoot(x)](./vector.scalaroperations.getprincipalsquareroot.md) |  | Returns the principal square root of a scalar. |
+|  [multiply(first, second)](./vector.scalaroperations.multiply.md) |  | Returns the product of two scalars <code>first</code> and <code>second</code>. |
 |  [negativeOne()](./vector.scalaroperations.negativeone.md) |  | Returns the additive inverse of the multiplicative identity. |
-|  [norm(x)](./vector.scalaroperations.norm.md) |  |  |
+|  [norm(x)](./vector.scalaroperations.norm.md) |  | Returns the norm (absolute value or magnitude) of a scalar |
 |  [one()](./vector.scalaroperations.one.md) |  | Alias for [ScalarOperations.getMultiplicativeIdentity()](./vector.scalaroperations.getmultiplicativeidentity.md) |
-|  [prettyPrint(x)](./vector.scalaroperations.prettyprint.md) |  |  |
-|  [random(min, max)](./vector.scalaroperations.random.md) |  |  |
-|  [randomNormal(mean, standardDeviation)](./vector.scalaroperations.randomnormal.md) |  |  |
-|  [subtract(first, second)](./vector.scalaroperations.subtract.md) |  |  |
+|  [prettyPrint(x)](./vector.scalaroperations.prettyprint.md) |  | Returns a readable string that represents the value of the scalar |
+|  [random(min, max)](./vector.scalaroperations.random.md) |  | Returns a random scalar value between <code>min</code> and <code>max</code> |
+|  [randomNormal(mean, standardDeviation)](./vector.scalaroperations.randomnormal.md) |  | Returns a random scalar value from a normal distribution centered on <code>mean</code> with standard deviation <code>standardDeviation</code> |
+|  [subtract(first, second)](./vector.scalaroperations.subtract.md) |  | Returns the difference of two scalars. |
 |  [zero()](./vector.scalaroperations.zero.md) |  | Alias for [ScalarOperations.getAdditiveIdentity()](./vector.scalaroperations.getadditiveidentity.md) |
 
 ## Remarks

@@ -16,11 +16,11 @@ export declare class NumberMatrix extends ArrayMatrix<number>
 
 |  Method | Modifiers | Description |
 |  --- | --- | --- |
-|  [builder()](./vector.numbermatrix.builder.md) |  |  |
+|  [builder()](./vector.numbermatrix.builder.md) |  | Returns a [MatrixBuilder](./vector.matrixbuilder.md) which will build new matrices of the same type |
 |  [builder()](./vector.numbermatrix.builder.md) | <code>static</code> |  |
-|  [ops()](./vector.numbermatrix.ops.md) |  |  |
+|  [ops()](./vector.numbermatrix.ops.md) |  | Returns a [ScalarOperations](./vector.scalaroperations.md) object which will allow consumers to work generically with the scalars contained in the vector. |
 |  [ops()](./vector.numbermatrix.ops.md) | <code>static</code> |  |
-|  [vectorBuilder()](./vector.numbermatrix.vectorbuilder.md) |  |  |
+|  [vectorBuilder()](./vector.numbermatrix.vectorbuilder.md) |  | Returns a [VectorBuilder](./vector.vectorbuilder.md) which will build new vectors of a compatible type |
 |  [vectorBuilder()](./vector.numbermatrix.vectorbuilder.md) | <code>static</code> |  |
 
 ## Remarks

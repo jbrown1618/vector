@@ -4,7 +4,7 @@
 
 ## Matrix.builder() method
 
-Yields a `MatrixBuilder` which will build new matrices of the same type
+Returns a [MatrixBuilder](./vector.matrixbuilder.md) which will build new matrices of the same type
 
 <b>Signature:</b>
 

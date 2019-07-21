@@ -4,6 +4,8 @@
 
 ## Vector.projectOnto() method
 
+Returns a new vector in the direction of `u` but with magnitude equal to the amount of the original vector that lies in that direction
+
 <b>Signature:</b>
 
 ```typescript

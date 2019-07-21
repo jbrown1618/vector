@@ -4,6 +4,8 @@
 
 ## SparseMatrix.transpose() method
 
+Returns the transpose of the matrix
+
 <b>Signature:</b>
 
 ```typescript
@@ -13,5 +15,9 @@ transpose(): Matrix<S>;
 
 `Matrix<S>`
 
-The transpose of the matrix
+The transpose
+
+## Remarks
+
+The transpose of a matrix A is the unique matrix for which the entry at `(i,j)` is equal to the entry in A at `(j, i)`
 

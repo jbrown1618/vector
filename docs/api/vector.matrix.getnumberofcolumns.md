@@ -4,6 +4,8 @@
 
 ## Matrix.getNumberOfColumns() method
 
+Returns the number of columns in the matrix
+
 <b>Signature:</b>
 
 ```typescript
@@ -13,5 +15,5 @@ getNumberOfColumns(): number;
 
 `number`
 
-The number of columns in the matrix
+The number of columns
 

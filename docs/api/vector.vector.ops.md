@@ -4,7 +4,7 @@
 
 ## Vector.ops() method
 
-Yields a `ScalarOperations` object which will allow consumers to work generically with the scalars contained in the vector.
+Returns a [ScalarOperations](./vector.scalaroperations.md) object which will allow consumers to work generically with the scalars contained in the vector.
 
 <b>Signature:</b>
 

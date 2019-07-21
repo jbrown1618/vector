@@ -4,6 +4,8 @@
 
 ## Matrix.toArray() method
 
+Returns the contents of the matrix as a 2-D array.
+
 <b>Signature:</b>
 
 ```typescript
@@ -13,5 +15,5 @@ toArray(): S[][];
 
 `S[][]`
 
-The contents of the matrix as an array of arrays.
+The contents of the matrix
 

@@ -63,8 +63,19 @@ export abstract class SparseMatrix<S> implements Matrix<S> {
     this._sparseData = sparseData;
   }
 
+  /**
+   * {@inheritdoc Matrix.ops}
+   */
   public abstract ops(): ScalarOperations<S>;
+
+  /**
+   * {@inheritdoc Matrix.builder}
+   */
   public abstract builder(): MatrixBuilder<S, Vector<S>, Matrix<S>>;
+
+  /**
+   * {@inheritdoc Matrix.vectorBuilder}
+   */
   public abstract vectorBuilder(): VectorBuilder<S, Vector<S>>;
 
   /**
@@ -131,11 +142,11 @@ export abstract class SparseMatrix<S> implements Matrix<S> {
   /**
    * {@inheritDoc Matrix.getColumn}
    */
-  public getColumn(columnIndex: number): Vector<S> {
-    if (columnIndex > this.getNumberOfColumns() - 1 || columnIndex < 0) {
+  public getColumn(j: number): Vector<S> {
+    if (j > this.getNumberOfColumns() - 1 || j < 0) {
       throw new Error('TODO - Index out of bounds');
     }
-    return this.getColumnVectors()[columnIndex];
+    return this.getColumnVectors()[j];
   }
 
   /**
@@ -189,13 +200,13 @@ export abstract class SparseMatrix<S> implements Matrix<S> {
   /**
    * {@inheritDoc Matrix.getEntry}
    */
-  public getEntry(rowIndex: number, columnIndex: number): S {
-    assertValidMatrixIndex(this, rowIndex, columnIndex);
-    const rowData = this._sparseData.get(rowIndex);
+  public getEntry(i: number, j: number): S {
+    assertValidMatrixIndex(this, i, j);
+    const rowData = this._sparseData.get(i);
     if (!rowData) {
       return this.ops().zero();
     }
-    return rowData.get(columnIndex) || this.ops().zero();
+    return rowData.get(j) || this.ops().zero();
   }
 
   /**
@@ -215,14 +226,11 @@ export abstract class SparseMatrix<S> implements Matrix<S> {
   /**
    * {@inheritDoc Matrix.getRow}
    */
-  public getRow(rowIndex: number): Vector<S> {
-    if (rowIndex > this._numRows - 1 || rowIndex < 0) {
+  public getRow(i: number): Vector<S> {
+    if (i > this._numRows - 1 || i < 0) {
       throw new Error('TODO - Index out of bounds');
     }
-    return this.vectorBuilder().fromSparseData(
-      this._numCols,
-      this._sparseData.get(rowIndex) || new Map()
-    );
+    return this.vectorBuilder().fromSparseData(this._numCols, this._sparseData.get(i) || new Map());
   }
 
   /**
@@ -268,16 +276,16 @@ export abstract class SparseMatrix<S> implements Matrix<S> {
   /**
    * {@inheritDoc Matrix.set}
    */
-  public set(rowIndex: number, columnIndex: number, value: S): Matrix<S> {
-    assertValidMatrixIndex(this, rowIndex, columnIndex);
+  public set(i: number, j: number, value: S): Matrix<S> {
+    assertValidMatrixIndex(this, i, j);
     const copy = this.getSparseData();
-    const row = copy.get(rowIndex);
+    const row = copy.get(i);
     if (row) {
-      row.set(columnIndex, value);
+      row.set(j, value);
     } else {
       const newRow = new Map();
-      newRow.set(columnIndex, value);
-      copy.set(rowIndex, newRow);
+      newRow.set(j, value);
+      copy.set(i, newRow);
     }
     return this.builder().fromSparseData(this._numRows, this._numCols, copy);
   }

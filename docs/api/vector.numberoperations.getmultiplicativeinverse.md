@@ -4,6 +4,8 @@
 
 ## NumberOperations.getMultiplicativeInverse() method
 
+Returns the unique scalar that, when multiplied by `scalar`<!-- -->, returns the multiplicative identity
+
 <b>Signature:</b>
 
 ```typescript
@@ -19,4 +21,6 @@ getMultiplicativeInverse(x: number): number | undefined;
 <b>Returns:</b>
 
 `number | undefined`
+
+The multiplicative inverse
 

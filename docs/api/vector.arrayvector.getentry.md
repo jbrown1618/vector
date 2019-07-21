@@ -4,6 +4,8 @@
 
 ## ArrayVector.getEntry() method
 
+Returns the entry of the matrix located at the provided index (`index`<!-- -->)
+
 <b>Signature:</b>
 
 ```typescript
@@ -20,5 +22,5 @@ getEntry(index: number): S;
 
 `S`
 
-The entry located at `index`
+The entry
 

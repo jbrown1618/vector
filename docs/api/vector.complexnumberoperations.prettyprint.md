@@ -4,6 +4,8 @@
 
 ## ComplexNumberOperations.prettyPrint() method
 
+Returns a readable string that represents the value of the scalar
+
 <b>Signature:</b>
 
 ```typescript
@@ -19,4 +21,6 @@ prettyPrint(x: ComplexNumber): string;
 <b>Returns:</b>
 
 `string`
+
+The readable string
 

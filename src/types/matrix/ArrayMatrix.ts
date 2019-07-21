@@ -27,8 +27,19 @@ export abstract class ArrayMatrix<S> implements Matrix<S> {
     this._data = Object.freeze(data);
   }
 
+  /**
+   * {@inheritdoc Matrix.ops}
+   */
   public abstract ops(): ScalarOperations<S>;
+
+  /**
+   * {@inheritdoc Matrix.builder}
+   */
   public abstract builder(): MatrixBuilder<S, Vector<S>, Matrix<S>>;
+
+  /**
+   * {@inheritdoc Matrix.vectorBuilder}
+   */
   public abstract vectorBuilder(): VectorBuilder<S, Vector<S>>;
 
   /**
@@ -96,11 +107,11 @@ export abstract class ArrayMatrix<S> implements Matrix<S> {
   /**
    * {@inheritDoc Matrix.getColumn}
    */
-  public getColumn(columnIndex: number): Vector<S> {
-    if (columnIndex > this.getNumberOfColumns() - 1 || columnIndex < 0) {
+  public getColumn(j: number): Vector<S> {
+    if (j > this.getNumberOfColumns() - 1 || j < 0) {
       throw new Error('Index out of bounds');
     }
-    return this.getColumnVectors()[columnIndex];
+    return this.getColumnVectors()[j];
   }
 
   /**
@@ -125,6 +136,9 @@ export abstract class ArrayMatrix<S> implements Matrix<S> {
     return this.getRowVectors().map(row => [...row.toArray()]);
   }
 
+  /**
+   * {@inheritdoc Matrix.getSparseData}
+   */
   public getSparseData(): Map<number, Map<number, S>> {
     const ops = this.ops();
     const zero = ops.zero();
@@ -148,9 +162,9 @@ export abstract class ArrayMatrix<S> implements Matrix<S> {
   /**
    * {@inheritDoc Matrix.getEntry}
    */
-  public getEntry(rowIndex: number, columnIndex: number): S {
-    assertValidMatrixIndex(this, rowIndex, columnIndex);
-    return this.getRow(rowIndex).getEntry(columnIndex);
+  public getEntry(i: number, j: number): S {
+    assertValidMatrixIndex(this, i, j);
+    return this.getRow(i).getEntry(j);
   }
 
   /**
@@ -170,11 +184,11 @@ export abstract class ArrayMatrix<S> implements Matrix<S> {
   /**
    * {@inheritDoc Matrix.getRow}
    */
-  public getRow(rowIndex: number): Vector<S> {
-    if (rowIndex > this.getNumberOfRows() - 1 || rowIndex < 0) {
+  public getRow(i: number): Vector<S> {
+    if (i > this.getNumberOfRows() - 1 || i < 0) {
       throw new Error('Index out of bounds');
     }
-    return this.getRowVectors()[rowIndex];
+    return this.getRowVectors()[i];
   }
 
   /**
@@ -211,10 +225,10 @@ export abstract class ArrayMatrix<S> implements Matrix<S> {
   /**
    * {@inheritDoc Matrix.set}
    */
-  public set(rowIndex: number, columnIndex: number, value: S): Matrix<S> {
-    assertValidMatrixIndex(this, rowIndex, columnIndex);
+  public set(i: number, j: number, value: S): Matrix<S> {
+    assertValidMatrixIndex(this, i, j);
     const copy = this.toArray();
-    copy[rowIndex][columnIndex] = value;
+    copy[i][j] = value;
     return this.builder().fromArray(copy);
   }
 

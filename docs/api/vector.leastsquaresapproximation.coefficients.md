@@ -4,6 +4,8 @@
 
 ## LeastSquaresApproximation.coefficients property
 
+A vector whose entries correspond to the coefficients which must be plugged into the function template to yield the best approximation function
+
 <b>Signature:</b>
 
 ```typescript

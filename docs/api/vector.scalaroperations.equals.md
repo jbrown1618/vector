@@ -4,7 +4,7 @@
 
 ## ScalarOperations.equals() method
 
-Returns true if the scalars are equal. Implementors should ensure that the operation is reflexive, associative, and transitive.
+Tests if the scalars are equal. Implementors should ensure that the operation is reflexive, associative, and transitive.
 
 <b>Signature:</b>
 

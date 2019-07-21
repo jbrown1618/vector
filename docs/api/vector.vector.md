@@ -17,16 +17,16 @@ export interface Vector<S>
 |  Method | Description |
 |  --- | --- |
 |  [add(other)](./vector.vector.add.md) | Implements vector addition |
-|  [builder()](./vector.vector.builder.md) | Yields a <code>VectorBuilder</code> which will build new vectors of the same type |
-|  [equals(other)](./vector.vector.equals.md) |  |
-|  [getDimension()](./vector.vector.getdimension.md) |  |
-|  [getEntry(index)](./vector.vector.getentry.md) |  |
-|  [getSparseData()](./vector.vector.getsparsedata.md) |  |
-|  [innerProduct(other)](./vector.vector.innerproduct.md) |  |
-|  [matrixBuilder()](./vector.vector.matrixbuilder.md) | Yields a <code>MatrixBuilder</code> which will build new matrices of a compatible type |
-|  [ops()](./vector.vector.ops.md) | Yields a <code>ScalarOperations</code> object which will allow consumers to work generically with the scalars contained in the vector. |
-|  [outerProduct(other)](./vector.vector.outerproduct.md) |  |
-|  [projectOnto(u)](./vector.vector.projectonto.md) |  |
+|  [builder()](./vector.vector.builder.md) | Returns a [VectorBuilder](./vector.vectorbuilder.md) which will build new vectors of the same type |
+|  [equals(other)](./vector.vector.equals.md) | Tests if two vectors are equal |
+|  [getDimension()](./vector.vector.getdimension.md) | Returns the dimension of the vector |
+|  [getEntry(index)](./vector.vector.getentry.md) | Returns the entry of the matrix located at the provided index (<code>index</code>) |
+|  [getSparseData()](./vector.vector.getsparsedata.md) | Returns the contents of the vector as a map of indices to nonzero values |
+|  [innerProduct(other)](./vector.vector.innerproduct.md) | Implements the inner product (scalar product or dot product) of two vectors |
+|  [matrixBuilder()](./vector.vector.matrixbuilder.md) | Returns a [MatrixBuilder](./vector.matrixbuilder.md) which will build new matrices of a compatible type |
+|  [ops()](./vector.vector.ops.md) | Returns a [ScalarOperations](./vector.scalaroperations.md) object which will allow consumers to work generically with the scalars contained in the vector. |
+|  [outerProduct(other)](./vector.vector.outerproduct.md) | Implements the outer product (matrix product) of two vectors |
+|  [projectOnto(u)](./vector.vector.projectonto.md) | Returns a new vector in the direction of <code>u</code> but with magnitude equal to the amount of the original vector that lies in that direction |
 |  [scalarMultiply(scalar)](./vector.vector.scalarmultiply.md) | Implements vector multiplication by a scalar |
-|  [toArray()](./vector.vector.toarray.md) |  |
+|  [toArray()](./vector.vector.toarray.md) | Returns the contents of the vector as an array |
 

@@ -4,22 +4,24 @@
 
 ## SparseMatrix.getEntry() method
 
+Returns the entry of the matrix at the specified indices `i` and `j`
+
 <b>Signature:</b>
 
 ```typescript
-getEntry(rowIndex: number, columnIndex: number): S;
+getEntry(i: number, j: number): S;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  rowIndex | <code>number</code> | The index of the row containing the entry |
-|  columnIndex | <code>number</code> | The index of the column containing the entry |
+|  i | <code>number</code> |  |
+|  j | <code>number</code> |  |
 
 <b>Returns:</b>
 
 `S`
 
-The entry located at `(rowIndex, columnIndex)`
+The entry
 

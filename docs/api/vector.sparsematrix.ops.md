@@ -4,6 +4,8 @@
 
 ## SparseMatrix.ops() method
 
+Returns a [ScalarOperations](./vector.scalaroperations.md) object which will allow consumers to work generically with the scalars contained in the vector.
+
 <b>Signature:</b>
 
 ```typescript

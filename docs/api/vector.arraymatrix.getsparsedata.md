@@ -4,6 +4,8 @@
 
 ## ArrayMatrix.getSparseData() method
 
+Returns the contents of the matrix as a nested map of rowIndex to columnIndex to nonzero value
+
 <b>Signature:</b>
 
 ```typescript
@@ -12,4 +14,6 @@ getSparseData(): Map<number, Map<number, S>>;
 <b>Returns:</b>
 
 `Map<number, Map<number, S>>`
+
+The contents of the matrix
 

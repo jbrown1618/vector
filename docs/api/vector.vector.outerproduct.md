@@ -4,6 +4,8 @@
 
 ## Vector.outerProduct() method
 
+Implements the outer product (matrix product) of two vectors
+
 <b>Signature:</b>
 
 ```typescript

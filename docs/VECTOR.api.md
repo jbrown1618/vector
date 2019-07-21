@@ -21,44 +21,27 @@ export abstract class ArrayMatrix<S> implements Matrix<S> {
     // @internal
     protected constructor(data: MatrixData<S>);
     add(other: Matrix<S>): Matrix<S>;
-    // (undocumented)
     adjoint(): Matrix<S>;
     apply(vector: Vector<S>): Vector<S>;
-    // (undocumented)
     abstract builder(): MatrixBuilder<S, Vector<S>, Matrix<S>>;
-    // (undocumented)
     equals(other: Matrix<S>): boolean;
     forEachEntry(cb: MatrixEntryCallback<S>): void;
-    // (undocumented)
-    getColumn(columnIndex: number): Vector<S>;
-    // (undocumented)
+    getColumn(j: number): Vector<S>;
     getColumnVectors(): Vector<S>[];
-    // (undocumented)
     getDiagonal(): Vector<S>;
-    // (undocumented)
-    getEntry(rowIndex: number, columnIndex: number): S;
-    // (undocumented)
+    getEntry(i: number, j: number): S;
     getNumberOfColumns(): number;
-    // (undocumented)
     getNumberOfRows(): number;
-    // (undocumented)
-    getRow(rowIndex: number): Vector<S>;
-    // (undocumented)
+    getRow(i: number): Vector<S>;
     getRowVectors(): Vector<S>[];
-    // (undocumented)
     getSparseData(): Map<number, Map<number, S>>;
     multiply(other: Matrix<S>): Matrix<S>;
-    // (undocumented)
     abstract ops(): ScalarOperations<S>;
     scalarMultiply(scalar: S): Matrix<S>;
-    set(rowIndex: number, columnIndex: number, value: S): Matrix<S>;
-    // (undocumented)
+    set(i: number, j: number, value: S): Matrix<S>;
     toArray(): S[][];
-    // (undocumented)
     trace(): S;
-    // (undocumented)
     transpose(): Matrix<S>;
-    // (undocumented)
     abstract vectorBuilder(): VectorBuilder<S, Vector<S>>;
 }
 
@@ -67,28 +50,17 @@ export abstract class ArrayVector<S> implements Vector<S> {
     // @internal
     protected constructor(data: VectorData<S>);
     add(other: Vector<S>): Vector<S>;
-    // (undocumented)
     abstract builder(): VectorBuilder<S, Vector<S>>;
-    // (undocumented)
     equals(other: Vector<S>): boolean;
-    // (undocumented)
     getDimension(): number;
-    // (undocumented)
     getEntry(index: number): S;
-    // (undocumented)
     getSparseData(): Map<number, S>;
-    // (undocumented)
     innerProduct(other: Vector<S>): S;
-    // (undocumented)
     abstract matrixBuilder(): MatrixBuilder<S, Vector<S>, Matrix<S>>;
-    // (undocumented)
     abstract ops(): ScalarOperations<S>;
-    // (undocumented)
     outerProduct(other: Vector<S>): Matrix<S>;
-    // (undocumented)
     projectOnto(u: Vector<S>): Vector<S>;
     scalarMultiply(scalar: S): Vector<S>;
-    // (undocumented)
     toArray(): S[];
 }
 
@@ -122,15 +94,12 @@ export class ComplexMatrix extends ArrayMatrix<ComplexNumber> {
     constructor(data: MatrixData<ComplexNumber>);
     // (undocumented)
     static builder(): MatrixBuilder<ComplexNumber, ComplexVector, ComplexMatrix>;
-    // (undocumented)
     builder(): MatrixBuilder<ComplexNumber, ComplexVector, ComplexMatrix>;
     // (undocumented)
     static ops(): ScalarOperations<ComplexNumber>;
-    // (undocumented)
     ops(): ScalarOperations<ComplexNumber>;
     // (undocumented)
     static vectorBuilder(): VectorBuilder<ComplexNumber, ComplexVector>;
-    // (undocumented)
     vectorBuilder(): VectorBuilder<ComplexNumber, ComplexVector>;
 }
 
@@ -165,33 +134,19 @@ export class ComplexNumber {
 
 // @public
 export class ComplexNumberOperations extends ScalarOperations<ComplexNumber> {
-    // (undocumented)
     add(first: ComplexNumber, second: ComplexNumber): ComplexNumber;
-    // (undocumented)
     conjugate(scalar: ComplexNumber): ComplexNumber;
-    // (undocumented)
     equals(first: ComplexNumber, second: ComplexNumber): boolean;
-    // (undocumented)
     fromNumber(num: number): ComplexNumber;
-    // (undocumented)
     getAdditiveIdentity(): ComplexNumber;
-    // (undocumented)
     getAdditiveInverse(scalar: ComplexNumber): ComplexNumber;
-    // (undocumented)
     getMultiplicativeIdentity(): ComplexNumber;
-    // (undocumented)
     getMultiplicativeInverse(scalar: ComplexNumber): ComplexNumber | undefined;
-    // (undocumented)
     getPrincipalSquareRoot(x: ComplexNumber): ComplexNumber;
-    // (undocumented)
     multiply(first: ComplexNumber, second: ComplexNumber): ComplexNumber;
-    // (undocumented)
     norm(x: ComplexNumber): number;
-    // (undocumented)
     prettyPrint(x: ComplexNumber): string;
-    // (undocumented)
     random(min?: number, max?: number): ComplexNumber;
-    // (undocumented)
     randomNormal(mean?: number, standardDeviation?: number): ComplexNumber;
 }
 
@@ -201,13 +156,10 @@ export class ComplexVector extends ArrayVector<ComplexNumber> {
     constructor(data: VectorData<ComplexNumber>);
     // (undocumented)
     static builder(): VectorBuilder<ComplexNumber, ComplexVector>;
-    // (undocumented)
     builder(): VectorBuilder<ComplexNumber, ComplexVector>;
-    // (undocumented)
     matrixBuilder(): MatrixBuilder<ComplexNumber, ComplexVector, ComplexMatrix>;
     // (undocumented)
     static ops(): ComplexNumberOperations;
-    // (undocumented)
     ops(): ComplexNumberOperations;
 }
 
@@ -265,9 +217,7 @@ export function isUpperTriangular<S>(matrix: Matrix<S>): boolean;
 
 // @public
 export interface LeastSquaresApproximation<S> {
-    // (undocumented)
     approximationFunction: ApproximationFunction<S>;
-    // (undocumented)
     coefficients: Vector<S>;
 }
 
@@ -292,40 +242,26 @@ export interface LUDecomposition<S> {
 // @public
 export interface Matrix<S> extends LinearTransformation<Vector<S>, Vector<S>> {
     add(other: Matrix<S>): Matrix<S>;
-    // (undocumented)
     adjoint(): Matrix<S>;
     apply(vector: Vector<S>): Vector<S>;
     builder(): MatrixBuilder<S, Vector<S>, Matrix<S>>;
-    // (undocumented)
     equals(other: Matrix<S>): boolean;
     forEachEntry(callback: MatrixEntryCallback<S>): void;
-    // (undocumented)
-    getColumn(columnIndex: number): Vector<S>;
-    // (undocumented)
+    getColumn(j: number): Vector<S>;
     getColumnVectors(): Vector<S>[];
-    // (undocumented)
     getDiagonal(): Vector<S>;
-    // (undocumented)
-    getEntry(rowIndex: number, columnIndex: number): S;
-    // (undocumented)
+    getEntry(i: number, j: number): S;
     getNumberOfColumns(): number;
-    // (undocumented)
     getNumberOfRows(): number;
-    // (undocumented)
-    getRow(rowIndex: number): Vector<S>;
-    // (undocumented)
+    getRow(i: number): Vector<S>;
     getRowVectors(): Vector<S>[];
-    // (undocumented)
     getSparseData(): Map<number, Map<number, S>>;
     multiply(other: Matrix<S>): Matrix<S>;
     ops(): ScalarOperations<S>;
     scalarMultiply(scalar: S): Matrix<S>;
-    set(rowIndex: number, columnIndex: number, value: S): Matrix<S>;
-    // (undocumented)
+    set(i: number, j: number, value: S): Matrix<S>;
     toArray(): S[][];
-    // (undocumented)
     trace(): S;
-    // (undocumented)
     transpose(): Matrix<S>;
     vectorBuilder(): VectorBuilder<S, Vector<S>>;
 }
@@ -405,47 +341,30 @@ export class NumberMatrix extends ArrayMatrix<number> {
     constructor(data: MatrixData<number>);
     // (undocumented)
     static builder(): MatrixBuilder<number, NumberVector, NumberMatrix>;
-    // (undocumented)
     builder(): MatrixBuilder<number, NumberVector, NumberMatrix>;
     // (undocumented)
     static ops(): ScalarOperations<number>;
-    // (undocumented)
     ops(): ScalarOperations<number>;
     // (undocumented)
     static vectorBuilder(): VectorBuilder<number, NumberVector>;
-    // (undocumented)
     vectorBuilder(): VectorBuilder<number, NumberVector>;
 }
 
 // @public
 export class NumberOperations extends ScalarOperations<number> {
-    // (undocumented)
     add(first: number, second: number): number;
-    // (undocumented)
     conjugate(scalar: number): number;
-    // (undocumented)
     equals(first: number, second: number): boolean;
-    // (undocumented)
     fromNumber(num: number): number;
-    // (undocumented)
     getAdditiveIdentity(): number;
-    // (undocumented)
     getAdditiveInverse(x: number): number;
-    // (undocumented)
     getMultiplicativeIdentity(): number;
-    // (undocumented)
     getMultiplicativeInverse(x: number): number | undefined;
-    // (undocumented)
     getPrincipalSquareRoot(x: number): number;
-    // (undocumented)
     multiply(first: number, second: number): number;
-    // (undocumented)
     norm(x: number): number;
-    // (undocumented)
     prettyPrint(x: number): string;
-    // (undocumented)
     random(min?: number, max?: number): number;
-    // (undocumented)
     randomNormal(mean?: number, standardDeviation?: number): number;
 }
 
@@ -455,13 +374,10 @@ export class NumberVector extends ArrayVector<number> {
     constructor(data: VectorData<number>);
     // (undocumented)
     static builder(): VectorBuilder<number, NumberVector>;
-    // (undocumented)
     builder(): VectorBuilder<number, NumberVector>;
-    // (undocumented)
     matrixBuilder(): MatrixBuilder<number, NumberVector, NumberMatrix>;
     // (undocumented)
     static ops(): NumberOperations;
-    // (undocumented)
     ops(): NumberOperations;
 }
 
@@ -512,29 +428,21 @@ export function rowSumSupremumNorm<S>(A: Matrix<S>): number;
 export abstract class ScalarOperations<S> {
     abstract add(first: S, second: S): S;
     abstract conjugate(scalar: S): S;
-    // (undocumented)
     divide(numerator: S, denominator: S): S | undefined;
     abstract equals(first: S, second: S): boolean;
-    // (undocumented)
     abstract fromNumber(num: number): S;
     abstract getAdditiveIdentity(): S;
     abstract getAdditiveInverse(x: S): S;
     abstract getMultiplicativeIdentity(): S;
     abstract getMultiplicativeInverse(x: S): S | undefined;
-    // (undocumented)
     abstract getPrincipalSquareRoot(x: S): S;
     abstract multiply(first: S, second: S): S;
     negativeOne(): S;
-    // (undocumented)
     abstract norm(x: S): number;
     one(): S;
-    // (undocumented)
     abstract prettyPrint(x: S): string;
-    // (undocumented)
     abstract random(min: number, max: number): S;
-    // (undocumented)
     abstract randomNormal(mean: number, standardDeviation: number): S;
-    // (undocumented)
     subtract(first: S, second: S): S;
     zero(): S;
 }
@@ -552,44 +460,27 @@ export abstract class SparseMatrix<S> implements Matrix<S> {
     // @internal
     protected constructor(data: MatrixData<S>);
     add(other: Matrix<S>): Matrix<S>;
-    // (undocumented)
     adjoint(): Matrix<S>;
     apply(vector: Vector<S>): Vector<S>;
-    // (undocumented)
     abstract builder(): MatrixBuilder<S, Vector<S>, Matrix<S>>;
-    // (undocumented)
     equals(other: Matrix<S>): boolean;
     forEachEntry(cb: MatrixEntryCallback<S>): void;
-    // (undocumented)
-    getColumn(columnIndex: number): Vector<S>;
-    // (undocumented)
+    getColumn(j: number): Vector<S>;
     getColumnVectors(): Vector<S>[];
-    // (undocumented)
     getDiagonal(): Vector<S>;
-    // (undocumented)
-    getEntry(rowIndex: number, columnIndex: number): S;
-    // (undocumented)
+    getEntry(i: number, j: number): S;
     getNumberOfColumns(): number;
-    // (undocumented)
     getNumberOfRows(): number;
-    // (undocumented)
-    getRow(rowIndex: number): Vector<S>;
-    // (undocumented)
+    getRow(i: number): Vector<S>;
     getRowVectors(): Vector<S>[];
-    // (undocumented)
     getSparseData(): Map<number, Map<number, S>>;
     multiply(other: Matrix<S>): Matrix<S>;
-    // (undocumented)
     abstract ops(): ScalarOperations<S>;
     scalarMultiply(scalar: S): Matrix<S>;
-    set(rowIndex: number, columnIndex: number, value: S): Matrix<S>;
-    // (undocumented)
+    set(i: number, j: number, value: S): Matrix<S>;
     toArray(): S[][];
-    // (undocumented)
     trace(): S;
-    // (undocumented)
     transpose(): Matrix<S>;
-    // (undocumented)
     abstract vectorBuilder(): VectorBuilder<S, Vector<S>>;
 }
 
@@ -602,15 +493,12 @@ export class SparseNumberMatrix extends SparseMatrix<number> {
     constructor(data: MatrixData<number>);
     // (undocumented)
     static builder(): MatrixBuilder<number, SparseNumberVector, SparseNumberMatrix>;
-    // (undocumented)
     builder(): MatrixBuilder<number, SparseNumberVector, SparseNumberMatrix>;
     // (undocumented)
     static ops(): ScalarOperations<number>;
-    // (undocumented)
     ops(): ScalarOperations<number>;
     // (undocumented)
     static vectorBuilder(): VectorBuilder<number, SparseNumberVector>;
-    // (undocumented)
     vectorBuilder(): VectorBuilder<number, SparseNumberVector>;
 }
 
@@ -637,26 +525,18 @@ export abstract class SparseVector<S> implements Vector<S> {
     add(other: Vector<S>): Vector<S>;
     // (undocumented)
     abstract builder(): VectorBuilder<S, Vector<S>>;
-    // (undocumented)
     equals(other: Vector<S>): boolean;
-    // (undocumented)
     getDimension(): number;
-    // (undocumented)
     getEntry(index: number): S;
-    // (undocumented)
     getSparseData(): Map<number, S>;
-    // (undocumented)
     innerProduct(other: Vector<S>): S;
     // (undocumented)
     abstract matrixBuilder(): MatrixBuilder<S, Vector<S>, Matrix<S>>;
     // (undocumented)
     abstract ops(): ScalarOperations<S>;
-    // (undocumented)
     outerProduct(other: Vector<S>): Matrix<S>;
-    // (undocumented)
     projectOnto(u: Vector<S>): Vector<S>;
     scalarMultiply(scalar: S): Vector<S>;
-    // (undocumented)
     toArray(): S[];
 }
 
@@ -676,24 +556,16 @@ export function tripleProduct<S>(first: Vector<S>, second: Vector<S>, third: Vec
 export interface Vector<S> {
     add(other: Vector<S>): Vector<S>;
     builder(): VectorBuilder<S, Vector<S>>;
-    // (undocumented)
     equals(other: Vector<S>): boolean;
-    // (undocumented)
     getDimension(): number;
-    // (undocumented)
     getEntry(index: number): S;
-    // (undocumented)
     getSparseData(): Map<number, S>;
-    // (undocumented)
     innerProduct(other: Vector<S>): S;
     matrixBuilder(): MatrixBuilder<S, Vector<S>, Matrix<S>>;
     ops(): ScalarOperations<S>;
-    // (undocumented)
     outerProduct(other: Vector<S>): Matrix<S>;
-    // (undocumented)
     projectOnto(u: Vector<S>): Vector<S>;
     scalarMultiply(scalar: S): Vector<S>;
-    // (undocumented)
     toArray(): S[];
 }
 

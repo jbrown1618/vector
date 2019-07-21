@@ -4,7 +4,7 @@
 
 ## ScalarOperations.getAdditiveIdentity() method
 
-Returns the unique scalar such that `addScalars(x, getAdditiveIdentity()) === x` is true for all scalars `x`
+Returns the unique scalar that, when added to another scalar, returns that scalar
 
 <b>Signature:</b>
 
@@ -16,4 +16,8 @@ abstract getAdditiveIdentity(): S;
 `S`
 
 The additive identity
+
+## Remarks
+
+In other words, `addScalars(x, getAdditiveIdentity()) === x` is true for all scalars `x`
 

@@ -16,10 +16,10 @@ export declare class NumberVector extends ArrayVector<number>
 
 |  Method | Modifiers | Description |
 |  --- | --- | --- |
-|  [builder()](./vector.numbervector.builder.md) |  |  |
+|  [builder()](./vector.numbervector.builder.md) |  | Returns a [VectorBuilder](./vector.vectorbuilder.md) which will build new vectors of the same type |
 |  [builder()](./vector.numbervector.builder.md) | <code>static</code> |  |
-|  [matrixBuilder()](./vector.numbervector.matrixbuilder.md) |  |  |
-|  [ops()](./vector.numbervector.ops.md) |  |  |
+|  [matrixBuilder()](./vector.numbervector.matrixbuilder.md) |  | Returns a [MatrixBuilder](./vector.matrixbuilder.md) which will build new matrices of a compatible type |
+|  [ops()](./vector.numbervector.ops.md) |  | Returns a [ScalarOperations](./vector.scalaroperations.md) object which will allow consumers to work generically with the scalars contained in the vector. |
 |  [ops()](./vector.numbervector.ops.md) | <code>static</code> |  |
 
 ## Remarks

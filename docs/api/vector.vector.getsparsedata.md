@@ -4,6 +4,8 @@
 
 ## Vector.getSparseData() method
 
+Returns the contents of the vector as a map of indices to nonzero values
+
 <b>Signature:</b>
 
 ```typescript
@@ -13,5 +15,5 @@ getSparseData(): Map<number, S>;
 
 `Map<number, S>`
 
-The contents of the vector as a map of indices to nonzero values
+The contents of the vector
 

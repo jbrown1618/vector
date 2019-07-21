@@ -4,6 +4,8 @@
 
 ## ComplexNumberOperations.conjugate() method
 
+Returns the complex conjugate of a scalar.
+
 <b>Signature:</b>
 
 ```typescript
@@ -14,9 +16,15 @@ conjugate(scalar: ComplexNumber): ComplexNumber;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  scalar | <code>ComplexNumber</code> |  |
+|  scalar | <code>ComplexNumber</code> | The scalar to conjugate |
 
 <b>Returns:</b>
 
 `ComplexNumber`
+
+The complex conjugate
+
+## Remarks
+
+For real-valued scalars, this can just be an identity function.
 

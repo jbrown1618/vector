@@ -4,6 +4,8 @@
 
 ## ScalarOperations.divide() method
 
+Returns the quotient of two scalars `numerator` and `denominator`<!-- -->, or `undefined` if the quotient does not exist.
+
 <b>Signature:</b>
 
 ```typescript
@@ -20,4 +22,6 @@ divide(numerator: S, denominator: S): S | undefined;
 <b>Returns:</b>
 
 `S | undefined`
+
+The quotient
 

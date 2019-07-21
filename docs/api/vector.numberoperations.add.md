@@ -4,6 +4,8 @@
 
 ## NumberOperations.add() method
 
+Returns the sum of two scalars `first` and `second`<!-- -->.
+
 <b>Signature:</b>
 
 ```typescript
@@ -20,4 +22,10 @@ add(first: number, second: number): number;
 <b>Returns:</b>
 
 `number`
+
+The sum
+
+## Remarks
+
+Implementors should ensure that this operation is commutative and associative.
 

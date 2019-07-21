@@ -4,7 +4,7 @@
 
 ## ScalarOperations.getAdditiveInverse() method
 
-Returns the unique scalar such that `addScalars(scalar, getAdditiveInverse(scalar)) === getAdditiveIdentity()` is true for `scalar`
+Returns the unique value that, when added to `x`<!-- -->, returns the additive identity
 
 <b>Signature:</b>
 
@@ -23,4 +23,8 @@ abstract getAdditiveInverse(x: S): S;
 `S`
 
 The additive inverse
+
+## Remarks
+
+In other words, `addScalars(scalar, getAdditiveInverse(scalar)) === getAdditiveIdentity()` is true for `x`
 

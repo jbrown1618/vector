@@ -4,21 +4,23 @@
 
 ## Matrix.getRow() method
 
+Returns a vector corresponding to the row at index `rowIndex`
+
 <b>Signature:</b>
 
 ```typescript
-getRow(rowIndex: number): Vector<S>;
+getRow(i: number): Vector<S>;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  rowIndex | <code>number</code> | The index for which to fetch the row |
+|  i | <code>number</code> | The index for which to fetch the row |
 
 <b>Returns:</b>
 
 `Vector<S>`
 
-A vector corresponding to the row at index `rowIndex`
+The row vector
 

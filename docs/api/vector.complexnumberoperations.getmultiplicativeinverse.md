@@ -4,6 +4,8 @@
 
 ## ComplexNumberOperations.getMultiplicativeInverse() method
 
+Returns the unique scalar that, when multiplied by `scalar`<!-- -->, returns the multiplicative identity
+
 <b>Signature:</b>
 
 ```typescript
@@ -19,4 +21,6 @@ getMultiplicativeInverse(scalar: ComplexNumber): ComplexNumber | undefined;
 <b>Returns:</b>
 
 `ComplexNumber | undefined`
+
+The multiplicative inverse
 

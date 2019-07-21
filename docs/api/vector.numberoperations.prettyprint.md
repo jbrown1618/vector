@@ -4,6 +4,8 @@
 
 ## NumberOperations.prettyPrint() method
 
+Returns a readable string that represents the value of the scalar
+
 <b>Signature:</b>
 
 ```typescript
@@ -19,4 +21,6 @@ prettyPrint(x: number): string;
 <b>Returns:</b>
 
 `string`
+
+The readable string
 

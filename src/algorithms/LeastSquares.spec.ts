@@ -4,8 +4,8 @@ import { NumberMatrix } from '../types/matrix/NumberMatrix';
 import { NumberVector } from '../types/vector/NumberVector';
 import { Vector } from '../types/vector/Vector';
 import {
-  calculateGeneralLeastSquaresApproximation,
-  calculateLinearLeastSquaresApproximation,
+  calculateGeneralLeastSquares,
+  calculateLinearLeastSquares,
   solveOverdeterminedSystem
 } from './LeastSquares';
 
@@ -49,7 +49,7 @@ describe('LeastSquares', () => {
   describe('calculateLinearLeastSquaresApproximation', () => {
     it('calculates the coefficients for a simple linear regression', () => {
       const data = singleVariableTestData.map(pointArray => vectorBuilder.fromArray(pointArray));
-      const result = calculateLinearLeastSquaresApproximation(data);
+      const result = calculateLinearLeastSquares(data);
 
       // According to Excel, the trend line equation for this data is y = -5.7147 + 3.2108x
       const expectedCoefficients = vectorBuilder.fromArray([
@@ -72,7 +72,7 @@ describe('LeastSquares', () => {
 
     it('calculates the coefficients for a multiple linear regression', () => {
       const data = multiVariableTestData.map(pointArray => vectorBuilder.fromArray(pointArray));
-      const result = calculateLinearLeastSquaresApproximation(data);
+      const result = calculateLinearLeastSquares(data);
 
       const expectedCoefficients = vectorBuilder.fromArray([
         -0.40833333333329236,
@@ -97,7 +97,7 @@ describe('LeastSquares', () => {
 
     it('yields an exact solution when there are two data points', () => {
       const exactData = [vectorBuilder.zeros(2), vectorBuilder.ones(2)];
-      const result = calculateLinearLeastSquaresApproximation(exactData);
+      const result = calculateLinearLeastSquares(exactData);
 
       // For the data (0,0), (1,1), the exact solution is y=x
       const expectedCoefficients = vectorBuilder.fromArray([0, 1]);
@@ -115,11 +115,11 @@ describe('LeastSquares', () => {
 
     it('rejects non-homogeneous data', () => {
       const nonHomogeneousData = [vectorBuilder.ones(2), vectorBuilder.ones(3)];
-      expect(() => calculateLinearLeastSquaresApproximation(nonHomogeneousData)).to.throw();
+      expect(() => calculateLinearLeastSquares(nonHomogeneousData)).to.throw();
     });
 
     it('rejects empty data', () => {
-      expect(() => calculateLinearLeastSquaresApproximation([])).to.throw();
+      expect(() => calculateLinearLeastSquares([])).to.throw();
     });
   });
 
@@ -133,7 +133,7 @@ describe('LeastSquares', () => {
         const quadraticTerm = coefficients.getEntry(2) * Math.pow(x, 2);
         return constantTerm + linearTerm + quadraticTerm;
       };
-      const result = calculateGeneralLeastSquaresApproximation(data, quadraticTemplate, 3);
+      const result = calculateGeneralLeastSquares(data, quadraticTemplate, 3);
 
       // According to Excel, the trend line equation for this data is y = 3.42 + 0.35x + 0.16x^2
       const expectedCoefficients = vectorBuilder.fromArray([
@@ -162,14 +162,12 @@ describe('LeastSquares', () => {
     it('rejects non-homogeneous data', () => {
       const nonHomogeneousData = [vectorBuilder.ones(2), vectorBuilder.ones(3)];
       expect(() =>
-        calculateGeneralLeastSquaresApproximation(nonHomogeneousData, uselessFunctionTemplate, 0)
+        calculateGeneralLeastSquares(nonHomogeneousData, uselessFunctionTemplate, 0)
       ).to.throw();
     });
 
     it('rejects empty data', () => {
-      expect(() =>
-        calculateGeneralLeastSquaresApproximation([], uselessFunctionTemplate, 0)
-      ).to.throw();
+      expect(() => calculateGeneralLeastSquares([], uselessFunctionTemplate, 0)).to.throw();
     });
   });
 

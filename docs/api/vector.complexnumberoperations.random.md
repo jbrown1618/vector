@@ -4,6 +4,8 @@
 
 ## ComplexNumberOperations.random() method
 
+Returns a random scalar value between `min` and `max`
+
 <b>Signature:</b>
 
 ```typescript
@@ -20,4 +22,10 @@ random(min?: number, max?: number): ComplexNumber;
 <b>Returns:</b>
 
 `ComplexNumber`
+
+The random scalar
+
+## Remarks
+
+This might not be a meaningful value for non-real-values scalar types
 

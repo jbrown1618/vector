@@ -4,6 +4,8 @@
 
 ## ScalarOperations.randomNormal() method
 
+Returns a random scalar value from a normal distribution centered on `mean` with standard deviation `standardDeviation`
+
 <b>Signature:</b>
 
 ```typescript
@@ -20,4 +22,10 @@ abstract randomNormal(mean: number, standardDeviation: number): S;
 <b>Returns:</b>
 
 `S`
+
+The random scalar
+
+## Remarks
+
+This might not be a meaningful value for non-real-values scalar types
 

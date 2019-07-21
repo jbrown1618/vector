@@ -4,6 +4,8 @@
 
 ## ComplexNumberOperations.getMultiplicativeIdentity() method
 
+Returns the unique scalar that, when multiplied by another scalar, returns that scalar
+
 <b>Signature:</b>
 
 ```typescript
@@ -12,4 +14,10 @@ getMultiplicativeIdentity(): ComplexNumber;
 <b>Returns:</b>
 
 `ComplexNumber`
+
+The multiplicative identity
+
+## Remarks
+
+In other words, `multiplyScalars(x, getMultiplicativeIdentity()) === x` is true for all x
 

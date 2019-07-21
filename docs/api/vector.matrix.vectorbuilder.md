@@ -4,7 +4,7 @@
 
 ## Matrix.vectorBuilder() method
 
-Yields a `VectorBuilder` which will build new vectors of a compatible type
+Returns a [VectorBuilder](./vector.vectorbuilder.md) which will build new vectors of a compatible type
 
 <b>Signature:</b>
 

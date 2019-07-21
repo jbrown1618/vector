@@ -8,34 +8,58 @@ import { prettyPrint } from '../../utilities/prettyPrint';
  * @public
  */
 export class ComplexNumberOperations extends ScalarOperations<ComplexNumber> {
+  /**
+   * {@inheritdoc ScalarOperations.fromNumber}
+   */
   public fromNumber(num: number): ComplexNumber {
     return new ComplexNumber(num, 0);
   }
 
+  /**
+   * {@inheritdoc ScalarOperations.conjugate}
+   */
   public conjugate(scalar: ComplexNumber): ComplexNumber {
     return scalar.conjugate();
   }
 
+  /**
+   * {@inheritdoc ScalarOperations.getAdditiveIdentity}
+   */
   public getAdditiveIdentity(): ComplexNumber {
     return ComplexNumber.ZERO;
   }
 
+  /**
+   * {@inheritdoc ScalarOperations.getAdditiveInverse}
+   */
   public getAdditiveInverse(scalar: ComplexNumber): ComplexNumber {
     return scalar.getAdditiveInverse();
   }
 
+  /**
+   * {@inheritdoc ScalarOperations.getMultiplicativeIdentity}
+   */
   public getMultiplicativeIdentity(): ComplexNumber {
     return ComplexNumber.ONE;
   }
 
+  /**
+   * {@inheritdoc ScalarOperations.getMultiplicativeInverse}
+   */
   public getMultiplicativeInverse(scalar: ComplexNumber): ComplexNumber | undefined {
     return scalar.getMultiplicativeInverse();
   }
 
+  /**
+   * {@inheritdoc ScalarOperations.multiply}
+   */
   public multiply(first: ComplexNumber, second: ComplexNumber): ComplexNumber {
     return first.multiply(second);
   }
 
+  /**
+   * {@inheritdoc ScalarOperations.getPrincipalSquareRoot}
+   */
   public getPrincipalSquareRoot(x: ComplexNumber): ComplexNumber {
     if (x.equals(ComplexNumber.ZERO)) {
       return ComplexNumber.ZERO;
@@ -63,24 +87,39 @@ export class ComplexNumberOperations extends ScalarOperations<ComplexNumber> {
     }
   }
 
+  /**
+   * {@inheritdoc ScalarOperations.norm}
+   */
   public norm(x: ComplexNumber): number {
     const r = x.getRealPart();
     const i = x.getImaginaryPart();
     return Math.sqrt(r * r + i * i);
   }
 
+  /**
+   * {@inheritdoc ScalarOperations.equals}
+   */
   public equals(first: ComplexNumber, second: ComplexNumber): boolean {
     return first.equals(second);
   }
 
+  /**
+   * {@inheritdoc ScalarOperations.add}
+   */
   public add(first: ComplexNumber, second: ComplexNumber): ComplexNumber {
     return first.add(second);
   }
 
+  /**
+   * {@inheritdoc ScalarOperations.random}
+   */
   public random(min: number = 0, max: number = 1): ComplexNumber {
     return new ComplexNumber(random(min, max), random(min, max));
   }
 
+  /**
+   * {@inheritdoc ScalarOperations.randomNormal}
+   */
   public randomNormal(mean: number = 0, standardDeviation: number = 1): ComplexNumber {
     return new ComplexNumber(
       randomNormal(mean, standardDeviation),
@@ -88,6 +127,9 @@ export class ComplexNumberOperations extends ScalarOperations<ComplexNumber> {
     );
   }
 
+  /**
+   * {@inheritdoc ScalarOperations.prettyPrint}
+   */
   public prettyPrint(x: ComplexNumber): string {
     return `${prettyPrint(x.getRealPart())} + ${prettyPrint(x.getImaginaryPart())}i`;
   }

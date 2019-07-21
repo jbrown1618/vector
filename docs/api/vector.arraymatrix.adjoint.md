@@ -4,6 +4,8 @@
 
 ## ArrayMatrix.adjoint() method
 
+Returns the adjoint of the matrix
+
 <b>Signature:</b>
 
 ```typescript
@@ -13,5 +15,9 @@ adjoint(): Matrix<S>;
 
 `Matrix<S>`
 
-The adjoint of the matrix
+The adjoint
+
+## Remarks
+
+The adjoint of a matrix A is the conjugate of the transpose of A
 

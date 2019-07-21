@@ -4,6 +4,8 @@
 
 ## ComplexNumberOperations.getAdditiveInverse() method
 
+Returns the unique value that, when added to `x`<!-- -->, returns the additive identity
+
 <b>Signature:</b>
 
 ```typescript
@@ -19,4 +21,10 @@ getAdditiveInverse(scalar: ComplexNumber): ComplexNumber;
 <b>Returns:</b>
 
 `ComplexNumber`
+
+The additive inverse
+
+## Remarks
+
+In other words, `addScalars(scalar, getAdditiveInverse(scalar)) === getAdditiveIdentity()` is true for `x`
 

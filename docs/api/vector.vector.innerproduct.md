@@ -4,6 +4,8 @@
 
 ## Vector.innerProduct() method
 
+Implements the inner product (scalar product or dot product) of two vectors
+
 <b>Signature:</b>
 
 ```typescript

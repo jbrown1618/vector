@@ -4,25 +4,25 @@
 
 ## Matrix.set() method
 
-Returns a \*new\* matrix equal to the old one, except with the entry at `(rowIndex, columnIndex)` replaced with `value`
+Returns a new matrix equal to the old one, except with the entry at `(i, j)` replaced with `value`
 
 <b>Signature:</b>
 
 ```typescript
-set(rowIndex: number, columnIndex: number, value: S): Matrix<S>;
+set(i: number, j: number, value: S): Matrix<S>;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  rowIndex | <code>number</code> | The row containing the value to replace |
-|  columnIndex | <code>number</code> | The column containing the value to replace |
+|  i | <code>number</code> |  |
+|  j | <code>number</code> |  |
 |  value | <code>S</code> | The new value |
 
 <b>Returns:</b>
 
 `Matrix<S>`
 
-A new matrix
+The new matrix
 

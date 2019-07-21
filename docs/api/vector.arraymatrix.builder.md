@@ -4,6 +4,8 @@
 
 ## ArrayMatrix.builder() method
 
+Returns a [MatrixBuilder](./vector.matrixbuilder.md) which will build new matrices of the same type
+
 <b>Signature:</b>
 
 ```typescript

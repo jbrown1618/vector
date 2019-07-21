@@ -4,6 +4,8 @@
 
 ## SparseMatrix.vectorBuilder() method
 
+Returns a [VectorBuilder](./vector.vectorbuilder.md) which will build new vectors of a compatible type
+
 <b>Signature:</b>
 
 ```typescript

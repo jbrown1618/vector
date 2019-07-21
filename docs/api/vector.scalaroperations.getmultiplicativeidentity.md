@@ -4,7 +4,7 @@
 
 ## ScalarOperations.getMultiplicativeIdentity() method
 
-Returns the unique scalar such that `multiplyScalars(x, getMultiplicativeIdentity()) === x` is true for all x
+Returns the unique scalar that, when multiplied by another scalar, returns that scalar
 
 <b>Signature:</b>
 
@@ -16,4 +16,8 @@ abstract getMultiplicativeIdentity(): S;
 `S`
 
 The multiplicative identity
+
+## Remarks
+
+In other words, `multiplyScalars(x, getMultiplicativeIdentity()) === x` is true for all x
 

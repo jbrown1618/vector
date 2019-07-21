@@ -4,6 +4,8 @@
 
 ## ArrayMatrix.getDiagonal() method
 
+Returns a vector containing the elements of the main diagonal of the matrix
+
 <b>Signature:</b>
 
 ```typescript
@@ -13,5 +15,5 @@ getDiagonal(): Vector<S>;
 
 `Vector<S>`
 
-A vector containing the diagonal elements of the matrix
+The vector of diagonal entries
 

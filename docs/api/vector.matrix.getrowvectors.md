@@ -4,6 +4,8 @@
 
 ## Matrix.getRowVectors() method
 
+Returns an array of vectors corresponding to the rows of the matrix
+
 <b>Signature:</b>
 
 ```typescript
@@ -13,5 +15,5 @@ getRowVectors(): Vector<S>[];
 
 `Vector<S>[]`
 
-An array of vectors corresponding to the rows of the matrix
+The row vectors
 

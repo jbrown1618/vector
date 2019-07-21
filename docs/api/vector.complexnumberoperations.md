@@ -16,18 +16,18 @@ export declare class ComplexNumberOperations extends ScalarOperations<ComplexNum
 
 |  Method | Modifiers | Description |
 |  --- | --- | --- |
-|  [add(first, second)](./vector.complexnumberoperations.add.md) |  |  |
-|  [conjugate(scalar)](./vector.complexnumberoperations.conjugate.md) |  |  |
-|  [equals(first, second)](./vector.complexnumberoperations.equals.md) |  |  |
-|  [fromNumber(num)](./vector.complexnumberoperations.fromnumber.md) |  |  |
-|  [getAdditiveIdentity()](./vector.complexnumberoperations.getadditiveidentity.md) |  |  |
-|  [getAdditiveInverse(scalar)](./vector.complexnumberoperations.getadditiveinverse.md) |  |  |
-|  [getMultiplicativeIdentity()](./vector.complexnumberoperations.getmultiplicativeidentity.md) |  |  |
-|  [getMultiplicativeInverse(scalar)](./vector.complexnumberoperations.getmultiplicativeinverse.md) |  |  |
-|  [getPrincipalSquareRoot(x)](./vector.complexnumberoperations.getprincipalsquareroot.md) |  |  |
-|  [multiply(first, second)](./vector.complexnumberoperations.multiply.md) |  |  |
-|  [norm(x)](./vector.complexnumberoperations.norm.md) |  |  |
-|  [prettyPrint(x)](./vector.complexnumberoperations.prettyprint.md) |  |  |
-|  [random(min, max)](./vector.complexnumberoperations.random.md) |  |  |
-|  [randomNormal(mean, standardDeviation)](./vector.complexnumberoperations.randomnormal.md) |  |  |
+|  [add(first, second)](./vector.complexnumberoperations.add.md) |  | Returns the sum of two scalars <code>first</code> and <code>second</code>. |
+|  [conjugate(scalar)](./vector.complexnumberoperations.conjugate.md) |  | Returns the complex conjugate of a scalar. |
+|  [equals(first, second)](./vector.complexnumberoperations.equals.md) |  | Tests if the scalars are equal. Implementors should ensure that the operation is reflexive, associative, and transitive. |
+|  [fromNumber(num)](./vector.complexnumberoperations.fromnumber.md) |  | Returns an instance of the scalar type which most accurately corresponds to the value of <code>num</code> |
+|  [getAdditiveIdentity()](./vector.complexnumberoperations.getadditiveidentity.md) |  | Returns the unique scalar that, when added to another scalar, returns that scalar |
+|  [getAdditiveInverse(scalar)](./vector.complexnumberoperations.getadditiveinverse.md) |  | Returns the unique value that, when added to <code>x</code>, returns the additive identity |
+|  [getMultiplicativeIdentity()](./vector.complexnumberoperations.getmultiplicativeidentity.md) |  | Returns the unique scalar that, when multiplied by another scalar, returns that scalar |
+|  [getMultiplicativeInverse(scalar)](./vector.complexnumberoperations.getmultiplicativeinverse.md) |  | Returns the unique scalar that, when multiplied by <code>scalar</code>, returns the multiplicative identity |
+|  [getPrincipalSquareRoot(x)](./vector.complexnumberoperations.getprincipalsquareroot.md) |  | Returns the principal square root of a scalar. |
+|  [multiply(first, second)](./vector.complexnumberoperations.multiply.md) |  | Returns the product of two scalars <code>first</code> and <code>second</code>. |
+|  [norm(x)](./vector.complexnumberoperations.norm.md) |  | Returns the norm (absolute value or magnitude) of a scalar |
+|  [prettyPrint(x)](./vector.complexnumberoperations.prettyprint.md) |  | Returns a readable string that represents the value of the scalar |
+|  [random(min, max)](./vector.complexnumberoperations.random.md) |  | Returns a random scalar value between <code>min</code> and <code>max</code> |
+|  [randomNormal(mean, standardDeviation)](./vector.complexnumberoperations.randomnormal.md) |  | Returns a random scalar value from a normal distribution centered on <code>mean</code> with standard deviation <code>standardDeviation</code> |
 

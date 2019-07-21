@@ -4,6 +4,8 @@
 
 ## ScalarOperations.fromNumber() method
 
+Returns an instance of the scalar type which most accurately corresponds to the value of `num`
+
 <b>Signature:</b>
 
 ```typescript
@@ -19,4 +21,6 @@ abstract fromNumber(num: number): S;
 <b>Returns:</b>
 
 `S`
+
+The scalar
 

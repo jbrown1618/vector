@@ -4,6 +4,8 @@
 
 ## SparseMatrix.equals() method
 
+Tests if two matrices are equal
+
 <b>Signature:</b>
 
 ```typescript

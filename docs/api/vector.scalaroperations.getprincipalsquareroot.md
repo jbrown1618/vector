@@ -4,6 +4,8 @@
 
 ## ScalarOperations.getPrincipalSquareRoot() method
 
+Returns the principal square root of a scalar.
+
 <b>Signature:</b>
 
 ```typescript
@@ -19,4 +21,10 @@ abstract getPrincipalSquareRoot(x: S): S;
 <b>Returns:</b>
 
 `S`
+
+The square root
+
+## Remarks
+
+For real-valued scalar types, this should be the positive square root. For complex-values scalar types, this should be the root with a positive real part.
 

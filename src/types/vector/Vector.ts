@@ -24,39 +24,42 @@ export interface VectorConstructor<S, V extends Vector<S>> {
  */
 export interface Vector<S> {
   /**
-   * Yields a `ScalarOperations` object which will allow consumers to work generically
+   * Returns a {@link ScalarOperations} object which will allow consumers to work generically
    * with the scalars contained in the vector.
    * @public
    */
   ops(): ScalarOperations<S>;
 
   /**
-   * Yields a `VectorBuilder` which will build new vectors of the same type
+   * Returns a {@link VectorBuilder} which will build new vectors of the same type
    * @public
    */
   builder(): VectorBuilder<S, Vector<S>>;
 
   /**
-   * Yields a `MatrixBuilder` which will build new matrices of a compatible type
+   * Returns a {@link MatrixBuilder} which will build new matrices of a compatible type
    * @public
    */
   matrixBuilder(): MatrixBuilder<S, Vector<S>, Matrix<S>>;
 
   /**
-   * @returns The contents of the vector as an array
+   * Returns the contents of the vector as an array
+   * @returns The contents of the vector
    * @public
    */
   toArray(): S[];
 
   /**
-   * @returns The contents of the vector as a map of indices to nonzero values
+   * Returns the contents of the vector as a map of indices to nonzero values
+   * @returns The contents of the vector
    * @public
    */
   getSparseData(): Map<number, S>;
 
   /**
+   * Returns the entry of the matrix located at the provided index (`index`)
    * @param index - The index of the entry to retrieve
-   * @returns The entry located at `index`
+   * @returns The entry
    * @public
    */
   getEntry(index: number): S;
@@ -80,6 +83,7 @@ export interface Vector<S> {
   scalarMultiply(scalar: S): Vector<S>;
 
   /**
+   * Implements the inner product (scalar product or dot product) of two vectors
    * @param other - The vector with which to calculate an inner product
    * @returns The inner product
    * @public
@@ -87,6 +91,8 @@ export interface Vector<S> {
   innerProduct(other: Vector<S>): S;
 
   /**
+   * Returns a new vector in the direction of `u` but with magnitude equal to the
+   * amount of the original vector that lies in that direction
    * @param u - The vector on which to project this
    * @returns This vector projected onto `u`
    * @public
@@ -94,6 +100,7 @@ export interface Vector<S> {
   projectOnto(u: Vector<S>): Vector<S>;
 
   /**
+   * Implements the outer product (matrix product) of two vectors
    * @param other - The vector with which to calculate an outer product
    * @returns The outer product
    * @public
@@ -101,12 +108,14 @@ export interface Vector<S> {
   outerProduct(other: Vector<S>): Matrix<S>;
 
   /**
-   * @returns The dimension of the vector
+   * Returns the dimension of the vector
+   * @returns The dimension
    * @public
    */
   getDimension(): number;
 
   /**
+   * Tests if two vectors are equal
    * @param other - The vector against which to compare
    * @returns - `true` if `this` is equal to `other`
    * @public

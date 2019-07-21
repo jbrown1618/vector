@@ -4,6 +4,8 @@
 
 ## SparseVector.toArray() method
 
+Returns the contents of the vector as an array
+
 <b>Signature:</b>
 
 ```typescript
@@ -13,5 +15,5 @@ toArray(): S[];
 
 `S[]`
 
-The contents of the vector as an array
+The contents of the vector
 

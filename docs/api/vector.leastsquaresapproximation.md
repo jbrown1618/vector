@@ -16,10 +16,6 @@ export interface LeastSquaresApproximation<S>
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [approximationFunction](./vector.leastsquaresapproximation.approximationfunction.md) | <code>ApproximationFunction&lt;S&gt;</code> |  |
-|  [coefficients](./vector.leastsquaresapproximation.coefficients.md) | <code>Vector&lt;S&gt;</code> |  |
-
-## Remarks
-
-- `coefficiencts`<!-- -->: a vector whose entries correspond to the coefficients which must be plugged into the function template to yield the best approximation function - `approximationFunction`<!-- -->: a function which takes a vector of the independent variable values, and returns the predicted value of the dependent variable
+|  [approximationFunction](./vector.leastsquaresapproximation.approximationfunction.md) | <code>ApproximationFunction&lt;S&gt;</code> | A function which takes a vector of the independent variable values, and returns the predicted value of the dependent variable |
+|  [coefficients](./vector.leastsquaresapproximation.coefficients.md) | <code>Vector&lt;S&gt;</code> | A vector whose entries correspond to the coefficients which must be plugged into the function template to yield the best approximation function |
 

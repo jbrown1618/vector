@@ -16,11 +16,11 @@ export declare class SparseNumberMatrix extends SparseMatrix<number>
 
 |  Method | Modifiers | Description |
 |  --- | --- | --- |
-|  [builder()](./vector.sparsenumbermatrix.builder.md) |  |  |
+|  [builder()](./vector.sparsenumbermatrix.builder.md) |  | Returns a [MatrixBuilder](./vector.matrixbuilder.md) which will build new matrices of the same type |
 |  [builder()](./vector.sparsenumbermatrix.builder.md) | <code>static</code> |  |
-|  [ops()](./vector.sparsenumbermatrix.ops.md) |  |  |
+|  [ops()](./vector.sparsenumbermatrix.ops.md) |  | Returns a [ScalarOperations](./vector.scalaroperations.md) object which will allow consumers to work generically with the scalars contained in the vector. |
 |  [ops()](./vector.sparsenumbermatrix.ops.md) | <code>static</code> |  |
-|  [vectorBuilder()](./vector.sparsenumbermatrix.vectorbuilder.md) |  |  |
+|  [vectorBuilder()](./vector.sparsenumbermatrix.vectorbuilder.md) |  | Returns a [VectorBuilder](./vector.vectorbuilder.md) which will build new vectors of a compatible type |
 |  [vectorBuilder()](./vector.sparsenumbermatrix.vectorbuilder.md) | <code>static</code> |  |
 
 ## Remarks

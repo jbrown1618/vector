@@ -32,96 +32,109 @@ export interface MatrixConstructor<S, V extends Vector<S>, M extends Matrix<S>> 
  */
 export interface Matrix<S> extends LinearTransformation<Vector<S>, Vector<S>> {
   /**
-   * Yields a `ScalarOperations` object which will allow consumers to work generically
+   * Returns a {@link ScalarOperations} object which will allow consumers to work generically
    * with the scalars contained in the vector.
+   * @public
    */
   ops(): ScalarOperations<S>;
 
   /**
-   * Yields a `MatrixBuilder` which will build new matrices of the same type
+   * Returns a {@link MatrixBuilder} which will build new matrices of the same type
+   * @public
    */
   builder(): MatrixBuilder<S, Vector<S>, Matrix<S>>;
 
   /**
-   * Yields a `VectorBuilder` which will build new vectors of a compatible type
+   * Returns a {@link VectorBuilder} which will build new vectors of a compatible type
+   * @public
    */
   vectorBuilder(): VectorBuilder<S, Vector<S>>;
 
   /**
-   * @returns The contents of the matrix as an array of arrays.
+   * Returns the contents of the matrix as a 2-D array.
+   * @returns The contents of the matrix
    * @public
    */
   toArray(): S[][];
 
   /**
-   * @returns The contents of the matrix as a nested map of rowIndex to columnIndex to nonzero value
+   * Returns the contents of the matrix as a nested map of rowIndex to columnIndex to nonzero value
+   * @returns The contents of the matrix
    * @public
    */
   getSparseData(): Map<number, Map<number, S>>;
 
   /**
-   * @returns The number of rows in the matrix
+   * Returns the number of rows in the matrix
+   * @returns The number of rows
    * @public
    */
   getNumberOfRows(): number;
 
   /**
-   * @returns The number of columns in the matrix
+   * Returns the number of columns in the matrix
+   * @returns The number of columns
    * @public
    */
   getNumberOfColumns(): number;
 
   /**
-   * @returns An array of vectors corresponding to the rows of the matrix
+   * Returns an array of vectors corresponding to the rows of the matrix
+   * @returns The row vectors
    * @public
    */
   getRowVectors(): Vector<S>[];
 
   /**
-   * @param rowIndex - The index for which to fetch the row
-   * @returns A vector corresponding to the row at index `rowIndex`
+   * Returns a vector corresponding to the row at index `rowIndex`
+   * @param i - The index for which to fetch the row
+   * @returns The row vector
    * @public
    */
-  getRow(rowIndex: number): Vector<S>;
+  getRow(i: number): Vector<S>;
 
   /**
-   * @returns An array of vectors corresponding to the columns of the matrix
+   * An array of vectors corresponding to the columns of the matrix
+   * @returns The column vectors
    * @public
    */
   getColumnVectors(): Vector<S>[];
 
   /**
-   * @param columnIndex - The index for which to fetch the column
-   * @returns A vector corresponding to the column at index `columnIndex`
+   * Returns a vector corresponding to the column at index `columnIndex`
+   * @param j - The index for which to fetch the column
+   * @returns The column vector
    * @public
    */
-  getColumn(columnIndex: number): Vector<S>;
+  getColumn(j: number): Vector<S>;
 
   /**
-   * @returns A vector containing the diagonal elements of the matrix
+   * Returns a vector containing the elements of the main diagonal of the matrix
+   * @returns The vector of diagonal entries
    * @public
    */
   getDiagonal(): Vector<S>;
 
   /**
+   * Returns the entry of the matrix at the specified indices `i` and `j`
    * @param rowIndex - The index of the row containing the entry
    * @param columnIndex - The index of the column containing the entry
-   * @returns The entry located at `(rowIndex, columnIndex)`
+   * @returns The entry
    * @public
    */
-  getEntry(rowIndex: number, columnIndex: number): S;
+  getEntry(i: number, j: number): S;
 
   /**
-   * Returns a *new* matrix equal to the old one, except with the entry at
-   * `(rowIndex, columnIndex)` replaced with `value`
+   * Returns a new matrix equal to the old one, except with the entry at
+   * `(i, j)` replaced with `value`
    *
    * @param rowIndex - The row containing the value to replace
    * @param columnIndex - The column containing the value to replace
    * @param value - The new value
-   * @returns A new matrix
+   * @returns The new matrix
    * @public
    */
-  set(rowIndex: number, columnIndex: number, value: S): Matrix<S>;
+  set(i: number, j: number, value: S): Matrix<S>;
 
   /**
    * Implements matrix multiplication
@@ -141,19 +154,35 @@ export interface Matrix<S> extends LinearTransformation<Vector<S>, Vector<S>> {
   apply(vector: Vector<S>): Vector<S>;
 
   /**
-   * @returns The adjoint of the matrix
+   * Returns the adjoint of the matrix
+   *
+   * @remarks
+   * The adjoint of a matrix A is the conjugate of the transpose of A
+   *
+   * @returns The adjoint
    * @public
    */
   adjoint(): Matrix<S>;
 
   /**
-   * @returns The transpose of the matrix
+   * Returns the transpose of the matrix
+   *
+   * @remarks
+   * The transpose of a matrix A is the unique matrix for which the entry
+   * at `(i,j)` is equal to the entry in A at `(j, i)`
+   *
+   * @returns The transpose
    * @public
    */
   transpose(): Matrix<S>;
 
   /**
-   * @returns The trace of the matrix
+   * Returns the trace of the matrix
+   *
+   * @remarks
+   * The trace of a matrix is the sum of the entries along the main diagonal
+   *
+   * @returns The trace
    * @public
    */
   trace(): S;
@@ -175,6 +204,7 @@ export interface Matrix<S> extends LinearTransformation<Vector<S>, Vector<S>> {
   scalarMultiply(scalar: S): Matrix<S>;
 
   /**
+   * Tests if two matrices are equal
    * @param other - The matrix against which to compare
    * @returns true if `this` is equal to `other`
    * @public

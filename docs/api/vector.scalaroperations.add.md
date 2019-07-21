@@ -4,7 +4,7 @@
 
 ## ScalarOperations.add() method
 
-Returns the sum of two scalars. Implementors should ensure that this operation is commutative and associative.
+Returns the sum of two scalars `first` and `second`<!-- -->.
 
 <b>Signature:</b>
 
@@ -23,5 +23,9 @@ abstract add(first: S, second: S): S;
 
 `S`
 
-The sum of `first` and `second`
+The sum
+
+## Remarks
+
+Implementors should ensure that this operation is commutative and associative.
 

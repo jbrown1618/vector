@@ -4,6 +4,8 @@
 
 ## ArrayMatrix.getColumnVectors() method
 
+An array of vectors corresponding to the columns of the matrix
+
 <b>Signature:</b>
 
 ```typescript
@@ -13,5 +15,5 @@ getColumnVectors(): Vector<S>[];
 
 `Vector<S>[]`
 
-An array of vectors corresponding to the columns of the matrix
+The column vectors
 

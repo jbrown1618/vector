@@ -4,21 +4,23 @@
 
 ## ArrayMatrix.getColumn() method
 
+Returns a vector corresponding to the column at index `columnIndex`
+
 <b>Signature:</b>
 
 ```typescript
-getColumn(columnIndex: number): Vector<S>;
+getColumn(j: number): Vector<S>;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  columnIndex | <code>number</code> | The index for which to fetch the column |
+|  j | <code>number</code> | The index for which to fetch the column |
 
 <b>Returns:</b>
 
 `Vector<S>`
 
-A vector corresponding to the column at index `columnIndex`
+The column vector
 

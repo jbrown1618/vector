@@ -4,6 +4,8 @@
 
 ## Matrix.getNumberOfRows() method
 
+Returns the number of rows in the matrix
+
 <b>Signature:</b>
 
 ```typescript
@@ -13,5 +15,5 @@ getNumberOfRows(): number;
 
 `number`
 
-The number of rows in the matrix
+The number of rows
 

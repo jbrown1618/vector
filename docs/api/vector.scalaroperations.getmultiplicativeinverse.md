@@ -4,7 +4,7 @@
 
 ## ScalarOperations.getMultiplicativeInverse() method
 
-Returns the unique scalar such that
+Returns the unique scalar that, when multiplied by `scalar`<!-- -->, returns the multiplicative identity
 
 <b>Signature:</b>
 

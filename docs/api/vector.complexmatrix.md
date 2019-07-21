@@ -16,11 +16,11 @@ export declare class ComplexMatrix extends ArrayMatrix<ComplexNumber>
 
 |  Method | Modifiers | Description |
 |  --- | --- | --- |
-|  [builder()](./vector.complexmatrix.builder.md) |  |  |
+|  [builder()](./vector.complexmatrix.builder.md) |  | Returns a [MatrixBuilder](./vector.matrixbuilder.md) which will build new matrices of the same type |
 |  [builder()](./vector.complexmatrix.builder.md) | <code>static</code> |  |
-|  [ops()](./vector.complexmatrix.ops.md) |  |  |
+|  [ops()](./vector.complexmatrix.ops.md) |  | Returns a [ScalarOperations](./vector.scalaroperations.md) object which will allow consumers to work generically with the scalars contained in the vector. |
 |  [ops()](./vector.complexmatrix.ops.md) | <code>static</code> |  |
-|  [vectorBuilder()](./vector.complexmatrix.vectorbuilder.md) |  |  |
+|  [vectorBuilder()](./vector.complexmatrix.vectorbuilder.md) |  | Returns a [VectorBuilder](./vector.vectorbuilder.md) which will build new vectors of a compatible type |
 |  [vectorBuilder()](./vector.complexmatrix.vectorbuilder.md) | <code>static</code> |  |
 
 ## Remarks

@@ -4,6 +4,8 @@
 
 ## SparseVector.getDimension() method
 
+Returns the dimension of the vector
+
 <b>Signature:</b>
 
 ```typescript
@@ -13,5 +15,5 @@ getDimension(): number;
 
 `number`
 
-The dimension of the vector
+The dimension
 

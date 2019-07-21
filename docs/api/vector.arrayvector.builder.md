@@ -4,6 +4,8 @@
 
 ## ArrayVector.builder() method
 
+Returns a [VectorBuilder](./vector.vectorbuilder.md) which will build new vectors of the same type
+
 <b>Signature:</b>
 
 ```typescript

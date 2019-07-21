@@ -18,17 +18,17 @@ export declare abstract class SparseVector<S> implements Vector<S>
 |  --- | --- | --- |
 |  [add(other)](./vector.sparsevector.add.md) |  | Implements vector addition |
 |  [builder()](./vector.sparsevector.builder.md) |  |  |
-|  [equals(other)](./vector.sparsevector.equals.md) |  |  |
-|  [getDimension()](./vector.sparsevector.getdimension.md) |  |  |
-|  [getEntry(index)](./vector.sparsevector.getentry.md) |  |  |
-|  [getSparseData()](./vector.sparsevector.getsparsedata.md) |  |  |
-|  [innerProduct(other)](./vector.sparsevector.innerproduct.md) |  |  |
+|  [equals(other)](./vector.sparsevector.equals.md) |  | Tests if two vectors are equal |
+|  [getDimension()](./vector.sparsevector.getdimension.md) |  | Returns the dimension of the vector |
+|  [getEntry(index)](./vector.sparsevector.getentry.md) |  | Returns the entry of the matrix located at the provided index (<code>index</code>) |
+|  [getSparseData()](./vector.sparsevector.getsparsedata.md) |  | Returns the contents of the vector as a map of indices to nonzero values |
+|  [innerProduct(other)](./vector.sparsevector.innerproduct.md) |  | Implements the inner product (scalar product or dot product) of two vectors |
 |  [matrixBuilder()](./vector.sparsevector.matrixbuilder.md) |  |  |
 |  [ops()](./vector.sparsevector.ops.md) |  |  |
-|  [outerProduct(other)](./vector.sparsevector.outerproduct.md) |  |  |
-|  [projectOnto(u)](./vector.sparsevector.projectonto.md) |  |  |
+|  [outerProduct(other)](./vector.sparsevector.outerproduct.md) |  | Implements the outer product (matrix product) of two vectors |
+|  [projectOnto(u)](./vector.sparsevector.projectonto.md) |  | Returns a new vector in the direction of <code>u</code> but with magnitude equal to the amount of the original vector that lies in that direction |
 |  [scalarMultiply(scalar)](./vector.sparsevector.scalarmultiply.md) |  | Implements vector multiplication by a scalar |
-|  [toArray()](./vector.sparsevector.toarray.md) |  |  |
+|  [toArray()](./vector.sparsevector.toarray.md) |  | Returns the contents of the vector as an array |
 
 ## Remarks
 

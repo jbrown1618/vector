@@ -4,7 +4,7 @@
 
 ## ScalarOperations.conjugate() method
 
-Returns the complex conjugate of a scalar. For real-valued scalars, this can just be an identity function.
+Returns the complex conjugate of a scalar.
 
 <b>Signature:</b>
 
@@ -23,4 +23,8 @@ abstract conjugate(scalar: S): S;
 `S`
 
 The complex conjugate
+
+## Remarks
+
+For real-valued scalars, this can just be an identity function.
 

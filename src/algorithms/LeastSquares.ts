@@ -6,17 +6,18 @@ import { SolutionType } from './LinearSolution';
 
 /**
  * The result of a least squares approximation.
- *
- * @remarks
- * - `coefficiencts`: a vector whose entries correspond to the coefficients which must
- *     be plugged into the function template to yield the best approximation function
- * - `approximationFunction`: a function which takes a vector of the independent variable
- *     values, and returns the predicted value of the dependent variable
- *
  * @public
  */
 export interface LeastSquaresApproximation<S> {
+  /**
+   * A vector whose entries correspond to the coefficients which must
+   * be plugged into the function template to yield the best approximation function
+   */
   coefficients: Vector<S>;
+  /**
+   * A function which takes a vector of the independent variable
+   * values, and returns the predicted value of the dependent variable
+   */
   approximationFunction: ApproximationFunction<S>;
 }
 

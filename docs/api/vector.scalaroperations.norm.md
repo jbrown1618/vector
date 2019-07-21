@@ -4,6 +4,8 @@
 
 ## ScalarOperations.norm() method
 
+Returns the norm (absolute value or magnitude) of a scalar
+
 <b>Signature:</b>
 
 ```typescript
@@ -19,4 +21,6 @@ abstract norm(x: S): number;
 <b>Returns:</b>
 
 `number`
+
+The norm
 
