@@ -50,7 +50,13 @@
 |  [frobeniusNorm(A)](./vector.frobeniusnorm.md) | Calculates the Frobenius Norm of a matrix <code>A</code> |
 |  [getEigenvectorForEigenvalue(A, lambda)](./vector.geteigenvectorforeigenvalue.md) | Given a matrix <code>A</code> and an eigenvalue <code>lambda</code> of that matrix, returns the eigenvector of <code>A</code> corresponding to <code>lambda</code> |
 |  [inverse(matrix)](./vector.inverse.md) | Uses Gauss-Jordan elimination with pivoting to calculate the inverse of a matrix. |
+|  [isHermitian(matrix)](./vector.ishermitian.md) | Tests if a matrix is Hermitian. |
+|  [isIdentity(matrix)](./vector.isidentity.md) | Tests if a matrix is an identity matrix |
+|  [isLowerTriangular(matrix)](./vector.islowertriangular.md) | Tests if a matrix is lower-triangular. |
+|  [isOrthogonal(matrix)](./vector.isorthogonal.md) | Tests if a matrix is orthogonal |
+|  [isOrthonormal(matrix)](./vector.isorthonormal.md) | Tests if a matrix is orthonormal |
 |  [isSquare(matrix)](./vector.issquare.md) | Tests if a matrix is square. |
+|  [isSymmetric(matrix)](./vector.issymmetric.md) | Tests if a matrix is symmetrix. |
 |  [isUpperTriangular(matrix)](./vector.isuppertriangular.md) | Tests if a matrix is upper-triangular. |
 |  [linspace(xMin, xMax, binCount)](./vector.linspace.md) | Builds a vector of <code>binCount</code> evenly spaced numbers between <code>xMin</code> (inclusive) and <code>xMax</code> (exclusive). |
 |  [multiplyRowByScalar(matrix, rowIndex, scalar)](./vector.multiplyrowbyscalar.md) | An elementary row operations which returns a new matrix whose row at <code>rowIndex</code> is multipled by <code>scalar</code> |
