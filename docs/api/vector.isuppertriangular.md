@@ -22,6 +22,8 @@ export declare function isUpperTriangular<S>(matrix: Matrix<S>): boolean;
 
 `boolean`
 
+`true` if the matrix is upper-triangular
+
 ## Remarks
 
 A matrix is upper-triangular if all entries below the primary diagonal (those where `i > j`<!-- -->) are zero.

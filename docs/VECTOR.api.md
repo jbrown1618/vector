@@ -204,6 +204,21 @@ export function getEigenvectorForEigenvalue<S>(A: Matrix<S>, lambda: S): Vector<
 // @public
 export function inverse<S>(matrix: Matrix<S>): Matrix<S> | undefined;
 
+// @public
+export function isHermitian<S>(matrix: Matrix<S>): boolean;
+
+// @public
+export function isIdentity<S>(matrix: Matrix<S>): boolean;
+
+// @public
+export function isLowerTriangular<S>(matrix: Matrix<S>): boolean;
+
+// @public
+export function isOrthogonal<S>(matrix: Matrix<S>): boolean;
+
+// @public
+export function isOrthonormal<S>(matrix: Matrix<S>): boolean;
+
 // Warning: (ae-internal-missing-underscore) The name "isSparse" should be prefixed with an underscore because the declaration is marked as @internal
 // 
 // @internal
@@ -211,6 +226,9 @@ export function isSparse<S>(vector: Vector<S>): vector is SparseVector<S>;
 
 // @public
 export function isSquare(matrix: Matrix<any>): boolean;
+
+// @public
+export function isSymmetric<S>(matrix: Matrix<S>): boolean;
 
 // @public
 export function isUpperTriangular<S>(matrix: Matrix<S>): boolean;
