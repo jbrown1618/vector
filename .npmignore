@@ -1,6 +1,7 @@
-# Code coverage reports
-coverage/
 .nyc_output/
+benchmarks/
+coverage/
+temp/
 
-# IDE Configuration
 .idea/
+.vscode/
