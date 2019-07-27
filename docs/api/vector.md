@@ -32,11 +32,13 @@
 |  [addRowToRow(matrix, targetRow, rowToAdd)](./vector.addrowtorow.md) | An elementary row operations which returns a new matrix whose row at <code>targetRow</code> has had the row at <code>rowToAdd</code> added to it. |
 |  [addScalarMultipleOfRowToRow(matrix, targetRow, rowToAdd, scalar)](./vector.addscalarmultipleofrowtorow.md) | An elementary row operations which returns a new matrix whose row at <code>targetRow</code> has had a scalar multiple of <code>rowToAdd</code> added to it. |
 |  [backwardDifferenceMatrix(binCount)](./vector.backwarddifferencematrix.md) | Builds a matrix that transforms a vector to a vector of backward differences |
+|  [calculateCholeskyDecomposition(A)](./vector.calculatecholeskydecomposition.md) | Uses the serial version of the Cholesky algorith to calculate the Cholesky decomposition of a matrix <code>A</code>. |
 |  [calculateEigenvalues(A, numIterations, throwOnFailure)](./vector.calculateeigenvalues.md) | Uses the QR algorithm to compute the eigenvalues of a matrix <code>A</code> |
 |  [calculateGeneralLeastSquares(dataPoints, functionTemplate, numberOfTerms)](./vector.calculategeneralleastsquares.md) | Calculates a regression model for an arbitrary function. |
 |  [calculateLinearLeastSquares(dataPoints)](./vector.calculatelinearleastsquares.md) | Calculates a linear regression model for the provided <code>dataPoints</code>. |
 |  [calculateLUDecomposition(A)](./vector.calculateludecomposition.md) | Uses the Doolittle algorithm to calculate the LU Decomposition of a matrix A. |
 |  [calculateQRDecomposition(A)](./vector.calculateqrdecomposition.md) | Uses the Graham-Schmidt process to calculate the QR decomposition of the matrix A. |
+|  [calculateSingularValueDecomposition(A)](./vector.calculatesingularvaluedecomposition.md) | Uses the Power Method to calculate the Singular Value Decomposition of a matrix <code>A</code> |
 |  [centralDifferenceMatrix(binCount)](./vector.centraldifferencematrix.md) | Builds a matrix that transforms a vector to a vector of central differences |
 |  [columnSumSupremumNorm(A)](./vector.columnsumsupremumnorm.md) | Calculates the 1-Norm of a matrix <code>A</code> |
 |  [crossProduct(first, second)](./vector.crossproduct.md) | Calculates the cross-product (vector-product) of two vectors. This is defined only for vectors with three dimensions. |
@@ -67,6 +69,7 @@
 |  [prettyPrint(num)](./vector.prettyprint.md) | Returns an easy-to-read string representing a <code>number</code> |
 |  [prettyPrint(vector)](./vector.prettyprint_1.md) | Returns an easy-to-read string representing the contents of a [Vector](./vector.vector.md) |
 |  [prettyPrint(matrix)](./vector.prettyprint_2.md) | Returns an easy-to-read string representing the contents of a [Matrix](./vector.matrix.md) |
+|  [rank(matrix)](./vector.rank.md) | Calculates the rank of a matrix |
 |  [reducedRowEchelonForm(matrix)](./vector.reducedrowechelonform.md) | Uses Gauss-Jordan elimination with pivoting to convert a matrix to Reduced Row-Echelon Form (RREF) |
 |  [rowEchelonForm(matrix)](./vector.rowechelonform.md) | Uses Gauss-Jordan elimination with pivoting to convert a matrix to Row-Echelon Form (REF) |
 |  [rowSumSupremumNorm(A)](./vector.rowsumsupremumnorm.md) | Calculates the Infinity-Norm of a matrix <code>A</code> |
@@ -80,6 +83,7 @@
 
 |  Interface | Description |
 |  --- | --- |
+|  [CholeskyDecomposition](./vector.choleskydecomposition.md) | The result of a Cholesky Decomposition |
 |  [EigenPair](./vector.eigenpair.md) | An eigenvector and its corresponding eigenvalue |
 |  [LeastSquaresApproximation](./vector.leastsquaresapproximation.md) | The result of a least squares approximation. |
 |  [LinearTransformation](./vector.lineartransformation.md) | An abstract linear transformation between vectors of type <code>V</code> and vectors of type <code>U</code>. |
@@ -87,6 +91,7 @@
 |  [Matrix](./vector.matrix.md) | A generalized Matrix - one of the core data types |
 |  [QRDecomposition](./vector.qrdecomposition.md) | The result of a QR decomposition. |
 |  [RowOperationResult](./vector.rowoperationresult.md) | The result of a row operation (<code>result</code>), and the matrix that we multiply by the original matrix to yield that result (<code>operator</code>) |
+|  [SingularValueDecomposition](./vector.singularvaluedecomposition.md) | The result of a Singular Value Decomposition |
 |  [Vector](./vector.vector.md) | A generalized Vector - one of the core data types |
 
 ## Type Aliases

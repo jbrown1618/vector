@@ -1,7 +1,8 @@
 /* tslint:disable:no-console */
 import * as fs from 'fs';
 import {
-  calculateLinearLeastSquaresApproximation,
+  calculateLinearLeastSquares,
+  calculateSingularValueDecomposition,
   inverse,
   linspace,
   NumberMatrix,
@@ -9,7 +10,7 @@ import {
   solveByGaussianElimination
 } from '../src';
 
-const repetitions: number = 5;
+const repetitions = 5;
 
 interface Benchmark {
   description: string;
@@ -25,7 +26,7 @@ interface BenchmarkEntry {
 
 generateBenchmarks();
 
-function generateBenchmarks() {
+function generateBenchmarks(): void {
   generateBenchmark(
     'matrix-plus-matrix',
     1,
@@ -91,7 +92,17 @@ function generateBenchmarks() {
         .fromColumnVectors([xs, ys])
         .getRowVectors();
     },
-    dataPoints => calculateLinearLeastSquaresApproximation(dataPoints)
+    dataPoints => calculateLinearLeastSquares(dataPoints)
+  );
+
+  generateBenchmark(
+    'singular-value-decomposition',
+    1,
+    32,
+    N => ({
+      A: NumberMatrix.builder().random(N)
+    }),
+    ({ A }) => calculateSingularValueDecomposition(A)
   );
 }
 
@@ -101,7 +112,7 @@ function generateBenchmark<T>(
   maxSize: number,
   prepare: (N: number) => T,
   runProcess: (data: T) => void
-) {
+): void {
   console.log(`Benchmarking ${description}...`);
 
   const benchmark: Benchmark = {
@@ -127,7 +138,7 @@ function generateBenchmark<T>(
   writeBenchmarkToFile(benchmark);
 }
 
-function generateEntry(size: number, timings: number[]) {
+function generateEntry(size: number, timings: number[]): BenchmarkEntry {
   let minTime = Number.MAX_VALUE;
   let maxTime = -Number.MAX_VALUE;
   let total = 0;
@@ -147,7 +158,7 @@ function generateEntry(size: number, timings: number[]) {
   return { size, minTime, maxTime, meanTime };
 }
 
-function writeBenchmarkToFile(benchmark: Benchmark) {
+function writeBenchmarkToFile(benchmark: Benchmark): void {
   const csvHeader = `Size,Min Time,Max Time,Mean Time\n`;
   const csvBody = benchmark.entries
     .map(entry => `${entry.size},${entry.minTime},${entry.maxTime},${entry.meanTime}`)

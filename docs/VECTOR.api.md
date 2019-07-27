@@ -68,6 +68,9 @@ export abstract class ArrayVector<S> implements Vector<S> {
 export function backwardDifferenceMatrix(binCount: number): NumberMatrix;
 
 // @public
+export function calculateCholeskyDecomposition<S>(A: Matrix<S>): CholeskyDecomposition<S> | undefined;
+
+// @public
 export function calculateEigenvalues<S>(A: Matrix<S>, numIterations?: number, throwOnFailure?: boolean): Vector<S>;
 
 // @public
@@ -83,7 +86,16 @@ export function calculateLUDecomposition<S>(A: Matrix<S>): LUDecomposition<S>;
 export function calculateQRDecomposition<S>(A: Matrix<S>): QRDecomposition<S>;
 
 // @public
+export function calculateSingularValueDecomposition<S>(A: Matrix<S>): SingularValueDecomposition<S>;
+
+// @public
 export function centralDifferenceMatrix(binCount: number): NumberMatrix;
+
+// @public
+export interface CholeskyDecomposition<S> {
+    // (undocumented)
+    L: Matrix<S>;
+}
 
 // @public
 export function columnSumSupremumNorm<S>(A: Matrix<S>): number;
@@ -426,6 +438,9 @@ export interface QRDecomposition<S> {
 }
 
 // @public
+export function rank<S>(matrix: Matrix<S>): number;
+
+// @public
 export function reducedRowEchelonForm<S>(matrix: Matrix<S>): Matrix<S>;
 
 // @public
@@ -463,6 +478,16 @@ export abstract class ScalarOperations<S> {
     abstract randomNormal(mean: number, standardDeviation: number): S;
     subtract(first: S, second: S): S;
     zero(): S;
+}
+
+// @public
+export interface SingularValueDecomposition<S> {
+    // (undocumented)
+    Sigma: Matrix<S>;
+    // (undocumented)
+    U: Matrix<S>;
+    // (undocumented)
+    V: Matrix<S>;
 }
 
 // Warning: (ae-forgotten-export) The symbol "LinearSolution" needs to be exported by the entry point index.d.ts
