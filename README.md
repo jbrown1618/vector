@@ -11,10 +11,13 @@ A linear algebra library written in TypeScript that focuses on generality, exten
 - Matrix exponentials
 - Elementary row operations
 - Gauss-Jordan elimination
+- Matrix Factorizations:
+  - Cholesky Decomposition
+  - LU Decomposition
+  - QR Decomposition
+  - Singular Value Decomposition
 - Differentiation via finite differences
 - Least-Squares Regression for arbitrary model functions
-- LU Decomposition
-- QR Decomposition
 - Eigenvalue / Eigenvector finding
 - And more to come!
 

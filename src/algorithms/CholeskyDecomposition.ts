@@ -1,6 +1,10 @@
 import { Matrix } from '../types/matrix/Matrix';
 import { isHermitian } from '../utilities/MatrixProperties';
 
+/**
+ * The result of a Cholesky Decomposition
+ * @public
+ */
 export interface CholeskyDecomposition<S> {
   L: Matrix<S>;
 }
@@ -15,6 +19,7 @@ export interface CholeskyDecomposition<S> {
  *
  * A Cholesky decomposition only exists if `A` is symmetrix and positive-definite.
  * @param A - The matrix to decompose
+ * @public
  */
 export function calculateCholeskyDecomposition<S>(
   A: Matrix<S>

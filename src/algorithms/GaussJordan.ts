@@ -53,6 +53,24 @@ export function inverse<S>(matrix: Matrix<S>): Matrix<S> | undefined {
 }
 
 /**
+ * Calculates the rank of a matrix
+ *
+ * @remarks
+ * The rank of a matrix A is the dimension of the vector space spanned by the columns of A.
+ * Equivalently, it is the number of pivot entries in the row-echelon form of A, or the number
+ * of nonzero rows in the row echelon form of A.
+ *
+ * @param matrix - the matrix for which to determine the rank
+ * @public
+ */
+export function rank<S>(matrix: Matrix<S>): number {
+  const zeroRow = matrix.vectorBuilder().zeros(matrix.getNumberOfColumns());
+  const ref = rowEchelonForm(matrix);
+  const nonZeroRows = ref.getRowVectors().filter(v => !v.equals(zeroRow));
+  return nonZeroRows.length;
+}
+
+/**
  * Uses Gauss-Jordan elimination with pivoting to convert a matrix to Reduced Row-Echelon Form (RREF)
  *
  * @param matrix - The input matrix
