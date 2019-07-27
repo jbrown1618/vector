@@ -170,7 +170,7 @@ export abstract class ScalarOperations<S> {
    * @returns The square root
    * @public
    */
-  public abstract getPrincipalSquareRoot(x: S): S;
+  public abstract getPrincipalSquareRoot(x: S): S | undefined;
 
   /**
    * Returns the norm (absolute value or magnitude) of a scalar

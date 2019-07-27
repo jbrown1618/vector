@@ -378,7 +378,7 @@ export class NumberOperations extends ScalarOperations<number> {
     getAdditiveInverse(x: number): number;
     getMultiplicativeIdentity(): number;
     getMultiplicativeInverse(x: number): number | undefined;
-    getPrincipalSquareRoot(x: number): number;
+    getPrincipalSquareRoot(x: number): number | undefined;
     multiply(first: number, second: number): number;
     norm(x: number): number;
     prettyPrint(x: number): string;
@@ -453,7 +453,7 @@ export abstract class ScalarOperations<S> {
     abstract getAdditiveInverse(x: S): S;
     abstract getMultiplicativeIdentity(): S;
     abstract getMultiplicativeInverse(x: S): S | undefined;
-    abstract getPrincipalSquareRoot(x: S): S;
+    abstract getPrincipalSquareRoot(x: S): S | undefined;
     abstract multiply(first: S, second: S): S;
     negativeOne(): S;
     abstract norm(x: S): number;
