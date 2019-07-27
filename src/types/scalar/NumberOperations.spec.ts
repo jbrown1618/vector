@@ -100,7 +100,7 @@ describe('NumberOperations', () => {
     it('returns the positive square root', () => {
       testNumbers(n => {
         if (n < 0) {
-          expect(ops.getPrincipalSquareRoot(n)).to.be.NaN;
+          expect(ops.getPrincipalSquareRoot(n)).to.be.undefined;
         } else {
           expect(ops.getPrincipalSquareRoot(n)).to.equal(Math.sqrt(n));
         }

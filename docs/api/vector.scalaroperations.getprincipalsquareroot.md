@@ -9,7 +9,7 @@ Returns the principal square root of a scalar.
 <b>Signature:</b>
 
 ```typescript
-abstract getPrincipalSquareRoot(x: S): S;
+abstract getPrincipalSquareRoot(x: S): S | undefined;
 ```
 
 ## Parameters
@@ -20,7 +20,7 @@ abstract getPrincipalSquareRoot(x: S): S;
 
 <b>Returns:</b>
 
-`S`
+`S | undefined`
 
 The square root
 

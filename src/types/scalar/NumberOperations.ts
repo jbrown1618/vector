@@ -62,7 +62,8 @@ export class NumberOperations extends ScalarOperations<number> {
   /**
    * {@inheritdoc ScalarOperations.getPrincipalSquareRoot}
    */
-  public getPrincipalSquareRoot(x: number): number {
+  public getPrincipalSquareRoot(x: number): number | undefined {
+    if (x < 0) return undefined;
     return Math.sqrt(x);
   }
 
