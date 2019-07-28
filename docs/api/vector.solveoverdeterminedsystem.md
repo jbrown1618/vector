@@ -9,7 +9,7 @@ Gives an approximate solution to an overdetermined linear system.
 <b>Signature:</b>
 
 ```typescript
-export declare function solveOverdeterminedSystem<S>(A: Matrix<S>, b: Vector<S>): Vector<S> | undefined;
+export declare function solveOverdeterminedSystem<S>(A: Matrix<S>, b: Vector<S>): Vector<S>;
 ```
 
 ## Parameters
@@ -21,11 +21,9 @@ export declare function solveOverdeterminedSystem<S>(A: Matrix<S>, b: Vector<S>)
 
 <b>Returns:</b>
 
-`Vector<S> | undefined`
+`Vector<S>`
 
 ## Remarks
 
 When the system \_Ax = b\_ is overdetermined, it has no solution. However, there exists a unique vector \_x\_ which minimizes the difference Ax-b, which solves `A.transpose().multiply(A).apply(x) === A.transpose().apply(b)`
-
-This function returns the approximate solution \_x\_, or `undefined` if \_x\_ does not exist
 

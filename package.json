@@ -1,9 +1,9 @@
 {
   "name": "@josh-brown/vector",
   "author": "Joshua Brown <jbrown1.618@gmail.com>",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "A linear algebra library written in TypeScript that focuses on generality, extensibility, and ease of use.",
-  "license": "ISC",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git@github.com:jbrown1618/vector.git"

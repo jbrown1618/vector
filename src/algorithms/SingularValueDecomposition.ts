@@ -68,12 +68,12 @@ function getFirstSingularValue<S>(A: Matrix<S>): SingularValueAndVectors<S> {
   const x = applyBToTheK(A, x0, 15); // TODO - what should k be?
 
   const v = normalize(x);
-  if (v === undefined) throw new Error('TODO - Error');
+  if (v === undefined) throw new Error('Unexpectedly encountered 0-vector');
 
   const Av = A.apply(v);
   const sigma = ops.fromNumber(euclideanNorm(Av));
   const sigmaInverse = ops.getMultiplicativeInverse(sigma);
-  if (sigmaInverse === undefined) throw new Error('TODO - Error');
+  if (sigmaInverse === undefined) throw new Error('Unexpectedly encountered singular value of 0');
   const u = Av.scalarMultiply(sigmaInverse);
 
   return { u, sigma, v };

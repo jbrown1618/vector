@@ -496,7 +496,7 @@ export interface SingularValueDecomposition<S> {
 export function solveByGaussianElimination<S>(A: Matrix<S>, b: Vector<S>): LinearSolution<S>;
 
 // @public
-export function solveOverdeterminedSystem<S>(A: Matrix<S>, b: Vector<S>): Vector<S> | undefined;
+export function solveOverdeterminedSystem<S>(A: Matrix<S>, b: Vector<S>): Vector<S>;
 
 // @public
 export abstract class SparseMatrix<S> implements Matrix<S> {

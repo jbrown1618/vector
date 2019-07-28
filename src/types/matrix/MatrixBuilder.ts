@@ -349,7 +349,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
     }
 
     if (!this.ops().equals(firstRow.getEntry(0), firstColumn.getEntry(0))) {
-      throw Error('TODO - first entry of first column must equal first entry of first row');
+      throw Error(`The first enntry of firstColumn must equal the first entry of firstRow`);
     }
 
     return this.fromIndexFunction(firstColumn.getDimension(), firstRow.getDimension(), (i, j) => {
@@ -411,7 +411,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
       numColumns === 0 ||
       !this.ops().equals(lastRow.getEntry(0), firstColumn.getEntry(numRows - 1))
     ) {
-      throw Error('TODO - last entry of first column must equal first entry of last row');
+      throw Error(`The last entry of firstColumn must equal the first entry of lastRow`);
     }
 
     return this.fromIndexFunction(numRows, numColumns, (i, j) => {
@@ -520,7 +520,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
     max: number = 1
   ): M {
     if (min >= max) {
-      throw Error('TODO - message');
+      throw Error(`Expected min < max; got ${min} and ${max}`);
     }
     return this.fromIndexFunction(numberOfRows, numberOfColumns, () => this.ops().random(min, max));
   }
@@ -542,7 +542,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
     standardDeviation: number = 1
   ): M {
     if (standardDeviation <= 0) {
-      throw Error('TODO - message');
+      throw Error(`Expected standardDeviation > 0; got ${standardDeviation}`);
     }
     return this.fromIndexFunction(numberOfRows, numberOfColumns, () =>
       this.ops().randomNormal(mean, standardDeviation)

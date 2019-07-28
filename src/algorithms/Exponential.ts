@@ -16,7 +16,7 @@ export function pow<S>(A: Matrix<S>, n: number): Matrix<S> {
   if (n < 0) {
     const invA = inverse(A);
     if (invA === undefined) {
-      throw Error('TODO - undefined');
+      throw Error('Cannot raise a non-invertable matrix to a negative power');
     }
     return pow(invA, -n);
   }
@@ -106,7 +106,7 @@ function computeR<S>(A: Matrix<S>, p: number, q: number): Matrix<S> {
   const D = computeD(A.scalarMultiply(A.ops().negativeOne()), p, q);
   const dInverse = inverse(D);
   if (dInverse === undefined) {
-    throw Error('TODO');
+    throw Error('Encountered an unexpected non-invertable matrix in the exponential calculation');
   }
   return dInverse.multiply(N);
 }
