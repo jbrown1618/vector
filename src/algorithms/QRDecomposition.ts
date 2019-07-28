@@ -52,7 +52,7 @@ export function calculateQRDecomposition<S>(A: Matrix<S>): QRDecomposition<S> {
   for (let i = 0; i < dim; i++) {
     const qi = normalize(uColumns[i]);
     if (qi === undefined) {
-      throw Error('TODO - the columns of A are not linearly independent');
+      throw Error('A is singular; no QR decomposition exists');
     }
     qColumns.push(qi);
   }

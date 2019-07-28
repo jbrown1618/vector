@@ -217,7 +217,7 @@ export class VectorBuilder<S, V extends Vector<S>> {
    */
   public random(dimension: number, min: number = 0, max: number = 1): V {
     if (min >= max) {
-      throw Error('TODO - message');
+      throw Error(`Expected min < max; got ${min} and ${max}`);
     }
     return this.fromIndexFunction(dimension, () => this.ops().random(min, max));
   }
@@ -232,7 +232,7 @@ export class VectorBuilder<S, V extends Vector<S>> {
    */
   public randomNormal(dimension: number, mean: number = 0, standardDeviation: number = 1): V {
     if (standardDeviation <= 0) {
-      throw Error('TODO - message');
+      throw Error(`Expected standardDeviation > 0; got ${standardDeviation}`);
     }
     return this.fromIndexFunction(dimension, () =>
       this.ops().randomNormal(mean, standardDeviation)

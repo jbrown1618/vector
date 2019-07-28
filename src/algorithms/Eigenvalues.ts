@@ -64,7 +64,7 @@ export function calculateEigenvalues<S>(
   }
 
   if (throwOnFailure && !isUpperTriangular(nthA)) {
-    throw Error('TODO - failed to converge');
+    throw Error(`Failed to converge to a set of eigenvalues in ${numIterations} iterations`);
   }
 
   return nthA.getDiagonal();
@@ -97,6 +97,8 @@ export function getEigenvectorForEigenvalue<S>(A: Matrix<S>, lambda: S): Vector<
     return eigenvectorSolution.solution;
   } else {
     // If lambda is an eigenvalue of A, then it must correspond to at least one eigenvector.
-    throw Error('TODO - lambda is not an eigenvalue of A');
+    throw Error(
+      `Cannot find an eigenvector; ${lambda} is not an eigenvalue of the provided matrix`
+    );
   }
 }

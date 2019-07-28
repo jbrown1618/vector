@@ -108,7 +108,7 @@ function getNthLowerTriangularMatrix<S>(columnIndex: number, previousU: Matrix<S
         const denominator = previousU.getEntry(columnIndex, columnIndex);
         const quotient = ops.divide(numerator, denominator);
         if (quotient === undefined) {
-          throw Error('TODO - One of the diagonal entries was 0!');
+          throw Error('Unexpected division by 0');
         }
         return ops.multiply(quotient, ops.negativeOne());
       } else {

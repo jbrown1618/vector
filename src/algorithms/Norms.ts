@@ -37,7 +37,7 @@ export function normalize<S>(v: Vector<S>): Vector<S> | undefined {
  */
 export function pNorm<S>(v: Vector<S>, p: number): number {
   if (p < 1) {
-    throw Error('TODO - nonsense');
+    throw Error(`The p-norm is only defined for p >= 1; got ${p}`);
   }
 
   if (v.getDimension() === 0) {

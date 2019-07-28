@@ -10,7 +10,7 @@ import { Vector } from '../types/vector/Vector';
  */
 export function crossProduct<S>(first: Vector<S>, second: Vector<S>): Vector<S> {
   if (first.getDimension() !== 3 || second.getDimension() !== 3) {
-    throw new Error('TODO - operation not defined');
+    throw new Error('The cross product is only defined for vectors of dimension 3');
   }
 
   const ops = first.ops();
@@ -42,5 +42,8 @@ export function crossProduct<S>(first: Vector<S>, second: Vector<S>): Vector<S> 
  * @public
  */
 export function tripleProduct<S>(first: Vector<S>, second: Vector<S>, third: Vector<S>): S {
+  if (first.getDimension() !== 3 || second.getDimension() !== 3 || third.getDimension() !== 3) {
+    throw new Error('The triple product is only defined for vectors of dimension 3');
+  }
   return first.innerProduct(crossProduct(second, third));
 }

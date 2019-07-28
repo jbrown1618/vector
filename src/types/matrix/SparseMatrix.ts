@@ -1,4 +1,8 @@
-import { assertRectangular, assertValidMatrixIndex } from '../../utilities/ErrorAssertions';
+import {
+  assertRectangular,
+  assertValidMatrixIndex,
+  assertValidIndex
+} from '../../utilities/ErrorAssertions';
 import { ScalarOperations } from '../scalar/ScalarOperations';
 import { Vector } from '../vector/Vector';
 import { VectorBuilder } from '../vector/VectorBuilder';
@@ -143,9 +147,7 @@ export abstract class SparseMatrix<S> implements Matrix<S> {
    * {@inheritDoc Matrix.getColumn}
    */
   public getColumn(j: number): Vector<S> {
-    if (j > this.getNumberOfColumns() - 1 || j < 0) {
-      throw new Error('TODO - Index out of bounds');
-    }
+    assertValidIndex(j, this.getNumberOfColumns());
     return this.getColumnVectors()[j];
   }
 
@@ -227,9 +229,7 @@ export abstract class SparseMatrix<S> implements Matrix<S> {
    * {@inheritDoc Matrix.getRow}
    */
   public getRow(i: number): Vector<S> {
-    if (i > this._numRows - 1 || i < 0) {
-      throw new Error('TODO - Index out of bounds');
-    }
+    assertValidIndex(i, this.getNumberOfRows());
     return this.vectorBuilder().fromSparseData(this._numCols, this._sparseData.get(i) || new Map());
   }
 

@@ -132,16 +132,10 @@ export function calculateGeneralLeastSquares<S>(
   };
 
   const A = matrixBuilder.fromIndexFunction(numberOfDataPoints, numberOfTerms, getEntryInA);
-
   const outputVector = vectorBuilder.fromIndexFunction(numberOfDataPoints, getEntryInOutputVector);
 
   const coefficients = solveOverdeterminedSystem(A, outputVector);
-  if (!coefficients) {
-    throw Error('TODO - message');
-  }
-
   const approximationFunction = functionTemplate(coefficients);
-
   return { coefficients, approximationFunction };
 }
 
@@ -153,14 +147,11 @@ export function calculateGeneralLeastSquares<S>(
  * However, there exists a unique vector _x_ which minimizes the  difference Ax-b,
  * which solves `A.transpose().multiply(A).apply(x) === A.transpose().apply(b)`
  *
- * This function returns the approximate solution _x_, or `undefined`
- * if _x_ does not exist
- *
  * @param A - The matrix _A_ in _Ax = b_
  * @param b - The vector _b_ in _Ax = b_
  * @public
  */
-export function solveOverdeterminedSystem<S>(A: Matrix<S>, b: Vector<S>): Vector<S> | undefined {
+export function solveOverdeterminedSystem<S>(A: Matrix<S>, b: Vector<S>): Vector<S> {
   checkDimensionsForOverdeterminedSystem(A, b);
 
   const aTrans = A.adjoint();
@@ -173,12 +164,12 @@ export function solveOverdeterminedSystem<S>(A: Matrix<S>, b: Vector<S>): Vector
   } else if (leastSquaresSolution.solutionType === SolutionType.UNDERDETERMINED) {
     return leastSquaresSolution.solution;
   } else {
-    return undefined;
+    throw Error('Unexpectedly encountered overdeterminec system');
   }
 }
 
 function checkDimensionsForOverdeterminedSystem<S>(A: Matrix<S>, b: Vector<S>): void {
   if (A.getNumberOfRows() !== b.getDimension()) {
-    throw new Error('TODO - message');
+    throw new Error('Dimension mismatch');
   }
 }

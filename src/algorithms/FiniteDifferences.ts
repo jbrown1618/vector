@@ -22,11 +22,11 @@ import { Vector } from '../types/vector/Vector';
  */
 export function linspace(xMin: number, xMax: number, binCount: number): NumberVector {
   if (xMin >= xMax) {
-    throw Error('TODO - message');
+    throw Error(`Expected xMin to be less than xMax; got ${xMin} and ${xMax}`);
   }
 
   if (binCount < 0) {
-    throw Error('TODO - message');
+    throw Error(`Expected binCount to be nonnegative; got ${binCount}`);
   }
 
   const indexToX: VectorIndexFunction<number> = index => {
