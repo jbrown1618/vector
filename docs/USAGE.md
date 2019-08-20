@@ -10,6 +10,8 @@ npm i --save @josh-brown/vector
 
 ## Examples
 
+Check out [the `vector-examples` repository](https://github.com/jbrown1618/vector-examples) for more!
+
 ### TypeScript - perform a linear regression over randomized data
 
 ```typescript
