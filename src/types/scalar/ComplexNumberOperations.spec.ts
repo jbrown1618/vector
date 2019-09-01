@@ -15,6 +15,12 @@ describe('ComplexNumberOperations', () => {
     });
   });
 
+  describe('fromComplex', () => {
+    it('returns a complex number with the correct components', () => {
+      expect(ops.fromComplex(2, 3)).to.deep.equal(new ComplexNumber(2, 3));
+    });
+  });
+
   describe('conjugate', () => {
     it('returns the complex conjugate of a number', () => {
       testComplexNumbers((r, i) => {
@@ -125,6 +131,10 @@ describe('ComplexNumberOperations', () => {
       expect(ops.getPrincipalSquareRoot(new ComplexNumber(1, -0.2))).to.deep.equal(
         new ComplexNumber(1.0049387799061584, -0.09950854917683442)
       );
+    });
+
+    it('returns the square root of a negative number', () => {
+      expect(ops.getPrincipalSquareRoot(ComplexNumber.NEG_ONE)).to.deep.equal(ComplexNumber.I);
     });
   });
 

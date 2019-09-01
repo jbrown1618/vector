@@ -56,13 +56,13 @@ describe('GaussJordan', () => {
     it('row reduces a "wide" matrix', () => {
       const A = NumberMatrix.builder().fromArray([[1, 2, 3], [4, 5, 6]]);
       const aRef = rowEchelonForm(A);
-      expect(aRef.toArray()).to.deep.equal([[1, 1.25, 1.5], [0, 1, 2]]);
+      expect(aRef.toArray()).to.deep.equal([[4, 5, 6], [0, 0.75, 1.5]]);
     });
 
     it('row reduces a "tall" matrix', () => {
       const A = NumberMatrix.builder().fromArray([[0, 1], [0, 0], [5, 9]]);
       const aRef = rowEchelonForm(A);
-      const expected = NumberMatrix.builder().fromArray([[1, 1.8], [0, 1], [0, 0]]);
+      const expected = NumberMatrix.builder().fromArray([[5, 9], [0, 1], [0, 0]]);
       expect(aRef.equals(expected)).to.be.true;
     });
 
@@ -70,14 +70,14 @@ describe('GaussJordan', () => {
       const A = NumberMatrix.builder().fromArray([[1, 2, 3], [1, 1, 1], [1, 1, 1]]);
       const aRef = rowEchelonForm(A);
       expect(aRef).to.deep.equal(
-        NumberMatrix.builder().fromArray([[1, 2, 3], [0, 1, 2], [0, 0, 0]])
+        NumberMatrix.builder().fromArray([[1, 2, 3], [0, -1, -2], [0, 0, 0]])
       );
 
       // Matrix B has an unexpected row of zeros occur, necessitating an extra swap
       const B = NumberMatrix.builder().fromArray([[1, 2, 2, 0], [-1, -2, -2, 0], [-3, 9, 9, 0]]);
       const bRef = rowEchelonForm(B);
       expect(bRef).to.deep.equal(
-        NumberMatrix.builder().fromArray([[1, -3, -3, 0], [0, 1, 1, 0], [0, 0, 0, 0]])
+        NumberMatrix.builder().fromArray([[-3, 9, 9, 0], [0, 5, 5, 0], [0, 0, 0, 0]])
       );
     });
 
@@ -85,7 +85,7 @@ describe('GaussJordan', () => {
       const A = NumberMatrix.builder().fromArray([[1, 1, 1], [0, 0, 2], [0, 0, 1]]);
 
       const aRef = rowEchelonForm(A);
-      expect(aRef.toArray()).to.deep.equal([[1, 1, 1], [0, 0, 1], [0, 0, 0]]);
+      expect(aRef.toArray()).to.deep.equal([[1, 1, 1], [0, 0, 2], [0, 0, 0]]);
     });
 
     it('does nothing to an identity matrix', () => {

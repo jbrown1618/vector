@@ -53,8 +53,8 @@ describe('LeastSquares', () => {
 
       // According to Excel, the trend line equation for this data is y = -5.7147 + 3.2108x
       const expectedCoefficients = vectorBuilder.fromArray([
-        -5.714705882354778,
-        3.2107843137256964
+        -5.7147058823529315,
+        3.210784313725489
       ]);
       expect(result.coefficients).to.deep.equal(expectedCoefficients);
 
@@ -75,9 +75,9 @@ describe('LeastSquares', () => {
       const result = calculateLinearLeastSquares(data);
 
       const expectedCoefficients = vectorBuilder.fromArray([
-        -0.40833333333329236,
-        0.7366666666667359,
-        2.5416666666665613
+        -0.40833333333332367,
+        0.7366666666666807,
+        2.5416666666666448
       ]);
       expect(result.coefficients).to.deep.equal(expectedCoefficients);
 
@@ -137,9 +137,9 @@ describe('LeastSquares', () => {
 
       // According to Excel, the trend line equation for this data is y = 3.42 + 0.35x + 0.16x^2
       const expectedCoefficients = vectorBuilder.fromArray([
-        3.42352941163967,
-        0.32502579983316027,
-        0.16031991743846064
+        3.4235294117647626,
+        0.3250257997935815,
+        0.1603199174406616
       ]);
       expect(result.coefficients).to.deep.equal(expectedCoefficients);
 
@@ -215,7 +215,7 @@ describe('LeastSquares', () => {
 
       const x = solveOverdeterminedSystem(A, b);
 
-      expect(x).to.deep.equal(vectorBuilder.fromArray([-5.714705882354778, 3.2107843137256964]));
+      expect(x).to.deep.equal(vectorBuilder.fromArray([-5.7147058823529315, 3.210784313725489]));
     });
 
     it('rejects a system where A is underdetermined', () => {

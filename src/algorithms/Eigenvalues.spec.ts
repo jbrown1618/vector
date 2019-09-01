@@ -3,12 +3,14 @@ import { describe, it } from 'mocha';
 import { NumberVector } from '..';
 import { NumberMatrix } from '../types/matrix/NumberMatrix';
 import { calculateEigenvalues, eig, getEigenvectorForEigenvalue } from './Eigenvalues';
+import { ComplexMatrix } from '../types/matrix/ComplexMatrix';
+import { ComplexNumber } from '../types/scalar/ComplexNumber';
 
 describe('Eigenvalues', () => {
   describe('eig', () => {
     it('calculates the eigenvalue-eigenvector pairs', () => {
       const A = NumberMatrix.builder().fromArray([[-1, 2, 2], [-1, -4, -2], [-3, 9, 7]]);
-      const pairs = eig(A, 40);
+      const pairs = eig(A);
 
       const expectedValues = [3, -2, 1];
       const expectedVectors = [
@@ -36,7 +38,7 @@ describe('Eigenvalues', () => {
 
     it('calculates the eigenvalues of a 3x3 matrix', () => {
       const A = NumberMatrix.builder().fromArray([[-1, 2, 2], [-1, -4, -2], [-3, 9, 7]]);
-      const eigenvalues = calculateEigenvalues(A, 30, false);
+      const eigenvalues = calculateEigenvalues(A, 30);
       const expected = NumberVector.builder().fromArray([3, -2, 1]);
 
       expect(eigenvalues.getEntry(0)).to.be.approximately(expected.getEntry(0), 0.00001);
@@ -44,15 +46,16 @@ describe('Eigenvalues', () => {
       expect(eigenvalues.getEntry(2)).to.be.approximately(expected.getEntry(2), 0.00001);
     });
 
-    it('throws an error when it fails to converge', () => {
-      const A = NumberMatrix.builder().fromArray([[-1, 2, 2], [-1, -4, -2], [-3, 9, 7]]);
-      expect(() => calculateEigenvalues(A, 1)).to.throw();
+    it('throws an error when eigenvalues are complex for a real-valued scalar type', () => {
+      const A = NumberMatrix.builder().fromArray([[0, -1], [1, 0]]);
+      expect(() => calculateEigenvalues(A, 20)).to.throw();
     });
 
-    it('does not throw when instructed to return the non-converged result', () => {
-      const A = NumberMatrix.builder().fromArray([[-1, 2, 2], [-1, -4, -2], [-3, 9, 7]]);
-      const eigenvalues = calculateEigenvalues(A, 30, false);
-      expect(eigenvalues.getDimension()).to.equal(3);
+    it('calculates the complex eigenvalues of a complex matrix', () => {
+      const A = ComplexMatrix.builder().fromNumberArray([[0, -1], [1, 0]]);
+      const eigenvalues = calculateEigenvalues(A);
+      expect(eigenvalues.getEntry(0)).to.deep.equal(ComplexNumber.I);
+      expect(eigenvalues.getEntry(1)).to.deep.equal(new ComplexNumber(0, -1));
     });
   });
 

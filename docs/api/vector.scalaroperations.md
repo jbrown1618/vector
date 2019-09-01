@@ -20,6 +20,7 @@ export declare abstract class ScalarOperations<S>
 |  [conjugate(scalar)](./vector.scalaroperations.conjugate.md) |  | Returns the complex conjugate of a scalar. |
 |  [divide(numerator, denominator)](./vector.scalaroperations.divide.md) |  | Returns the quotient of two scalars <code>numerator</code> and <code>denominator</code>, or <code>undefined</code> if the quotient does not exist. |
 |  [equals(first, second)](./vector.scalaroperations.equals.md) |  | Tests if the scalars are equal. Implementors should ensure that the operation is reflexive, associative, and transitive. |
+|  [fromComplex(real, imaginary)](./vector.scalaroperations.fromcomplex.md) |  | Returns an instance of the scalar type from its real and imaginary parts. If the scalar type does not support complex numbers, then an error will be thrown. |
 |  [fromNumber(num)](./vector.scalaroperations.fromnumber.md) |  | Returns an instance of the scalar type which most accurately corresponds to the value of <code>num</code> |
 |  [getAdditiveIdentity()](./vector.scalaroperations.getadditiveidentity.md) |  | Returns the unique scalar that, when added to another scalar, returns that scalar |
 |  [getAdditiveInverse(x)](./vector.scalaroperations.getadditiveinverse.md) |  | Returns the unique value that, when added to <code>x</code>, returns the additive identity |

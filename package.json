@@ -47,8 +47,6 @@
     "typescript": "^3.5.3"
   },
   "files": [
-    "README.md",
-    "LICENSE",
     "docs/*.md",
     "dist/vector.d.ts",
     "dist/**/*.js",

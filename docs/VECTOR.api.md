@@ -71,7 +71,7 @@ export function backwardDifferenceMatrix(binCount: number): NumberMatrix;
 export function calculateCholeskyDecomposition<S>(A: Matrix<S>): CholeskyDecomposition<S> | undefined;
 
 // @public
-export function calculateEigenvalues<S>(A: Matrix<S>, numIterations?: number, throwOnFailure?: boolean): Vector<S>;
+export function calculateEigenvalues<S>(A: Matrix<S>, numIterations?: number): Vector<S>;
 
 // @public
 export function calculateGeneralLeastSquares<S>(dataPoints: Vector<S>[], functionTemplate: ApproximationFunctionTemplate<S>, numberOfTerms: number): LeastSquaresApproximation<S>;
@@ -149,6 +149,7 @@ export class ComplexNumberOperations extends ScalarOperations<ComplexNumber> {
     add(first: ComplexNumber, second: ComplexNumber): ComplexNumber;
     conjugate(scalar: ComplexNumber): ComplexNumber;
     equals(first: ComplexNumber, second: ComplexNumber): boolean;
+    fromComplex(real: number, imag: number): ComplexNumber;
     fromNumber(num: number): ComplexNumber;
     getAdditiveIdentity(): ComplexNumber;
     getAdditiveInverse(scalar: ComplexNumber): ComplexNumber;
@@ -185,7 +186,7 @@ export function derivative(f: (x: number) => number, xMin: number, xMax: number,
 export function determinant<S>(matrix: Matrix<S>): S;
 
 // @public
-export function eig<S>(A: Matrix<S>, numIterations?: number, throwOnFailure?: boolean): EigenPair<S>[];
+export function eig<S>(A: Matrix<S>, numIterations?: number): EigenPair<S>[];
 
 // @public
 export interface EigenPair<S> {
@@ -463,6 +464,7 @@ export abstract class ScalarOperations<S> {
     abstract conjugate(scalar: S): S;
     divide(numerator: S, denominator: S): S | undefined;
     abstract equals(first: S, second: S): boolean;
+    fromComplex(real: number, imaginary: number): S;
     abstract fromNumber(num: number): S;
     abstract getAdditiveIdentity(): S;
     abstract getAdditiveInverse(x: S): S;
