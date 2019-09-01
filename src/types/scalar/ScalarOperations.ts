@@ -19,7 +19,6 @@ export abstract class ScalarOperations<S> {
    * @returns The scalar
    * @public
    */
-  //@ts-ignore unused real, imaginary
   public fromComplex(real: number, imaginary: number): S {
     if (imaginary === 0) {
       return this.fromNumber(real);

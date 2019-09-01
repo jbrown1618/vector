@@ -33,7 +33,7 @@
 |  [addScalarMultipleOfRowToRow(matrix, targetRow, rowToAdd, scalar)](./vector.addscalarmultipleofrowtorow.md) | An elementary row operations which returns a new matrix whose row at <code>targetRow</code> has had a scalar multiple of <code>rowToAdd</code> added to it. |
 |  [backwardDifferenceMatrix(binCount)](./vector.backwarddifferencematrix.md) | Builds a matrix that transforms a vector to a vector of backward differences |
 |  [calculateCholeskyDecomposition(A)](./vector.calculatecholeskydecomposition.md) | Uses the serial version of the Cholesky algorith to calculate the Cholesky decomposition of a matrix <code>A</code>. |
-|  [calculateEigenvalues(A, numIterations, throwOnFailure)](./vector.calculateeigenvalues.md) | Uses the QR algorithm to compute the eigenvalues of a matrix <code>A</code> |
+|  [calculateEigenvalues(A, numIterations)](./vector.calculateeigenvalues.md) | Uses the QR algorithm to compute the eigenvalues of a matrix <code>A</code> |
 |  [calculateGeneralLeastSquares(dataPoints, functionTemplate, numberOfTerms)](./vector.calculategeneralleastsquares.md) | Calculates a regression model for an arbitrary function. |
 |  [calculateLinearLeastSquares(dataPoints)](./vector.calculatelinearleastsquares.md) | Calculates a linear regression model for the provided <code>dataPoints</code>. |
 |  [calculateLUDecomposition(A)](./vector.calculateludecomposition.md) | Uses the Doolittle algorithm to calculate the LU Decomposition of a matrix A. |
@@ -44,7 +44,7 @@
 |  [crossProduct(first, second)](./vector.crossproduct.md) | Calculates the cross-product (vector-product) of two vectors. This is defined only for vectors with three dimensions. |
 |  [derivative(f, xMin, xMax, binCount)](./vector.derivative.md) | Uses finite differences to build a vector containing approximate values of the derivative of <code>f</code>. |
 |  [determinant(matrix)](./vector.determinant.md) | Uses expansion of minors to calculate the determinant of a matrix. Throws an error if the input is not square. |
-|  [eig(A, numIterations, throwOnFailure)](./vector.eig.md) | Uses the QR algorithm to compute the eigenvalues and eigenvectors of a matrix <code>A</code> |
+|  [eig(A, numIterations)](./vector.eig.md) | Uses the QR algorithm to compute the eigenvalues and eigenvectors of a matrix <code>A</code> |
 |  [euclideanNorm(v)](./vector.euclideannorm.md) | Calculates the Euclidean Norm (or 2-Norm) of a vector <code>v</code> |
 |  [exchangeRows(matrix, first, second)](./vector.exchangerows.md) | An elementary row operations which returns a new matrix whose row at index <code>first</code> has been exchanged with the row at index <code>second</code> |
 |  [exp(A, order)](./vector.exp.md) | Implements the Pade Approximant to compute the exponential of matrix <code>A</code> |

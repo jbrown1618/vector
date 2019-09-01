@@ -19,6 +19,7 @@ export declare class ComplexNumberOperations extends ScalarOperations<ComplexNum
 |  [add(first, second)](./vector.complexnumberoperations.add.md) |  | Returns the sum of two scalars <code>first</code> and <code>second</code>. |
 |  [conjugate(scalar)](./vector.complexnumberoperations.conjugate.md) |  | Returns the complex conjugate of a scalar. |
 |  [equals(first, second)](./vector.complexnumberoperations.equals.md) |  | Tests if the scalars are equal. Implementors should ensure that the operation is reflexive, associative, and transitive. |
+|  [fromComplex(real, imag)](./vector.complexnumberoperations.fromcomplex.md) |  | Returns an instance of the scalar type from its real and imaginary parts. If the scalar type does not support complex numbers, then an error will be thrown. |
 |  [fromNumber(num)](./vector.complexnumberoperations.fromnumber.md) |  | Returns an instance of the scalar type which most accurately corresponds to the value of <code>num</code> |
 |  [getAdditiveIdentity()](./vector.complexnumberoperations.getadditiveidentity.md) |  | Returns the unique scalar that, when added to another scalar, returns that scalar |
 |  [getAdditiveInverse(scalar)](./vector.complexnumberoperations.getadditiveinverse.md) |  | Returns the unique value that, when added to <code>x</code>, returns the additive identity |

@@ -9,7 +9,7 @@ Uses the QR algorithm to compute the eigenvalues and eigenvectors of a matrix `A
 <b>Signature:</b>
 
 ```typescript
-export declare function eig<S>(A: Matrix<S>, numIterations?: number, throwOnFailure?: boolean): EigenPair<S>[];
+export declare function eig<S>(A: Matrix<S>, numIterations?: number): EigenPair<S>[];
 ```
 
 ## Parameters
@@ -18,7 +18,6 @@ export declare function eig<S>(A: Matrix<S>, numIterations?: number, throwOnFail
 |  --- | --- | --- |
 |  A | <code>Matrix&lt;S&gt;</code> | The matrix for which to compute eigenvalues |
 |  numIterations | <code>number</code> | The number of iterations to take |
-|  throwOnFailure | <code>boolean</code> | If true, an error will be thrown on a failure to converge. Otherwise, the result of the last iteration will be returned. |
 
 <b>Returns:</b>
 
