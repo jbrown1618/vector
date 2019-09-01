@@ -16,6 +16,13 @@ export class ComplexNumberOperations extends ScalarOperations<ComplexNumber> {
   }
 
   /**
+   * {@inheritdoc ScalarOperations.fromComplex}
+   */
+  public fromComplex(real: number, imag: number): ComplexNumber {
+    return new ComplexNumber(real, imag);
+  }
+
+  /**
    * {@inheritdoc ScalarOperations.conjugate}
    */
   public conjugate(scalar: ComplexNumber): ComplexNumber {
@@ -65,8 +72,17 @@ export class ComplexNumberOperations extends ScalarOperations<ComplexNumber> {
       return ComplexNumber.ZERO;
     }
 
-    const r = Math.sqrt(Math.pow(x.getRealPart(), 2) + Math.pow(x.getImaginaryPart(), 2));
-    let theta = Math.atan(x.getImaginaryPart() / x.getRealPart());
+    const im = x.getImaginaryPart();
+    const re = x.getRealPart();
+
+    if (im === 0 && re >= 0) {
+      return new ComplexNumber(Math.sqrt(re), 0);
+    } else if (im === 0 && re < 0) {
+      return new ComplexNumber(0, Math.sqrt(-re));
+    }
+
+    const r = Math.sqrt(Math.pow(re, 2) + Math.pow(im, 2));
+    let theta = Math.atan(im / re);
     if (theta < 0) {
       theta = 2 * Math.PI + theta;
     }

@@ -1,6 +1,6 @@
 import { Matrix } from '../types/matrix/Matrix';
 import { Vector } from '../types/vector/Vector';
-import { isUpperTriangular } from '../utilities/MatrixProperties';
+import { isSquare } from '../utilities/MatrixProperties';
 import { solveByGaussianElimination } from './GaussJordan';
 import { SolutionType } from './LinearSolution';
 import { calculateQRDecomposition } from './QRDecomposition';
@@ -21,17 +21,11 @@ export interface EigenPair<S> {
  *
  * @param A - The matrix for which to compute eigenvalues
  * @param numIterations - The number of iterations to take
- * @param throwOnFailure - If true, an error will be thrown on a failure to converge.
- *     Otherwise, the result of the last iteration will be returned.
  * @returns An array of eigenvalue-eigenvalue pairs
  * @public
  */
-export function eig<S>(
-  A: Matrix<S>,
-  numIterations: number = 30,
-  throwOnFailure: boolean = true
-): EigenPair<S>[] {
-  const eigenvalues = calculateEigenvalues(A, numIterations, throwOnFailure);
+export function eig<S>(A: Matrix<S>, numIterations: number = 100): EigenPair<S>[] {
+  const eigenvalues = calculateEigenvalues(A, numIterations);
   return eigenvalues.toArray().map(eigenvalue => {
     const eigenvector = getEigenvectorForEigenvalue(A, eigenvalue);
     return { eigenvalue, eigenvector };
@@ -43,31 +37,77 @@ export function eig<S>(
  *
  * @param A - The matrix for which to compute eigenvalues
  * @param numIterations - The number of iterations to take
- * @param throwOnFailure - If true, an error will be thrown on a failure to converge.
- *     Otherwise, the result of the last iteration will be returned.
- * @returns A vector whose entries are the eigenvalues of `A`
  * @public
  */
-export function calculateEigenvalues<S>(
-  A: Matrix<S>,
-  numIterations: number = 30,
-  throwOnFailure: boolean = true
-): Vector<S> {
+export function calculateEigenvalues<S>(A: Matrix<S>, numIterations: number = 100): Vector<S> {
+  if (!isSquare(A)) throw Error('Eigenvalues are only defined for square matrices');
+  const ops = A.ops();
+  const m = A.getNumberOfRows();
+  if (m === 1) return A.getColumnVectors()[0];
+  if (m === 2) return getTwoByTwoEigenvalues(A);
+
   let n = 0;
   let nthA = A;
 
-  // TODO - check for earlier convergence
   while (n < numIterations) {
     const { Q, R } = calculateQRDecomposition(nthA);
     n++;
     nthA = R.multiply(Q);
+
+    // TODO - this early return causes us to have worse accuracy than we otherwise
+    // would.  If we want to be able to return early, we need to be able to pass
+    // equality tolerances around.
+    // if (isUpperTriangular(nthA)) {
+    //   return nthA.getDiagonal();
+    // }
   }
 
-  if (throwOnFailure && !isUpperTriangular(nthA)) {
-    throw Error(`Failed to converge to a set of eigenvalues in ${numIterations} iterations`);
-  }
+  const eigenvalues: S[] = [];
+  for (let i = 0; i < m; i++) {
+    const diagonalEntry = nthA.getEntry(i, i);
 
-  return nthA.getDiagonal();
+    if (i === m - 1) {
+      eigenvalues.push(diagonalEntry);
+      continue;
+    }
+
+    const subdiagonalEntry = nthA.getEntry(i + 1, i);
+    if (ops.equals(ops.zero(), subdiagonalEntry)) {
+      eigenvalues.push(diagonalEntry);
+      continue;
+    }
+
+    // If we're here, then either we failed to converge, or we are looking at a pair of complex eigenvalues
+    const subMatrix = A.builder().slice(nthA, i, i, i + 2, i + 2);
+    const subEigenvalues = getTwoByTwoEigenvalues(subMatrix);
+    eigenvalues.push(subEigenvalues.getEntry(0));
+    eigenvalues.push(subEigenvalues.getEntry(1));
+    i++; // We covered two eigenvalues, so jump ahead
+  }
+  return A.vectorBuilder().fromArray(eigenvalues);
+}
+
+function getTwoByTwoEigenvalues<S>(A: Matrix<S>): Vector<S> {
+  const ops = A.ops();
+  const data = A.toArray();
+  const [a00, a01] = data[0];
+  const [a10, a11] = data[1];
+
+  // b, and c are the parameters of the quadratic formula.  a is one.
+  const minusb = ops.add(a00, a11);
+  const c = ops.subtract(ops.multiply(a00, a11), ops.multiply(a10, a01));
+
+  const overTwoA = ops.fromNumber(1 / 2);
+  const fourac = ops.multiply(c, ops.fromNumber(4));
+  const bSquaredMinusFourAC = ops.subtract(ops.multiply(minusb, minusb), fourac);
+  const rootPart = ops.getPrincipalSquareRoot(bSquaredMinusFourAC);
+
+  if (rootPart === undefined) throw Error('This scalar type does not support complex values');
+
+  const firstEigenvalue = ops.multiply(ops.add(minusb, rootPart), overTwoA);
+  const secondEigenvalue = ops.multiply(ops.subtract(minusb, rootPart), overTwoA);
+
+  return A.vectorBuilder().fromValues(firstEigenvalue, secondEigenvalue);
 }
 
 /**

@@ -5,8 +5,6 @@ import { LinearSolution } from './LinearSolution';
 import { addScalarMultipleOfRowToRow, multiplyRowByScalar, pivot } from './RowOperations';
 import { backwardSubstituteAugmentedMatrix } from './Substitution';
 
-// TODO - use pivoting to improve numerical stability
-
 /**
  * Uses Gauss-Jordan elimination with pivoting and backward substitution
  * to solve the linear equation _Ax=b_
@@ -78,14 +76,31 @@ export function rank<S>(matrix: Matrix<S>): number {
  * @public
  */
 export function reducedRowEchelonForm<S>(matrix: Matrix<S>): Matrix<S> {
+  const ops = matrix.ops();
   matrix = rowEchelonForm(matrix);
 
+  // Scale the rows
+  for (let rowIndex = 0; rowIndex < matrix.getNumberOfRows(); rowIndex++) {
+    let firstNonzeroEntry: S | undefined = undefined;
+    for (const entry of matrix.getRow(rowIndex).toArray()) {
+      if (!ops.equals(ops.zero(), entry)) {
+        firstNonzeroEntry = entry;
+        break;
+      }
+    }
+    if (firstNonzeroEntry) {
+      const inverse = ops.getMultiplicativeInverse(firstNonzeroEntry) as S;
+      matrix = multiplyRowByScalar(matrix, rowIndex, inverse);
+    }
+  }
+
+  // Clear above the pivot entries
   const maxNumberOfPivotEntries = Math.min(matrix.getNumberOfColumns(), matrix.getNumberOfRows());
   for (let pivotRow = maxNumberOfPivotEntries - 1; pivotRow >= 0; pivotRow--) {
     const pivotColumn = matrix
       .getRow(pivotRow)
       .toArray()
-      .indexOf(matrix.ops().one());
+      .indexOf(ops.one());
     if (pivotColumn === -1) {
       continue;
     }
@@ -119,12 +134,6 @@ export function rowEchelonForm<S>(matrix: Matrix<S>): Matrix<S> {
       continue;
     }
 
-    if (!ops.equals(pivotEntry, ops.zero())) {
-      // cast from S|undefined to S, since pivotEntry is not 0
-      const pivotInverse = ops.getMultiplicativeInverse(pivotEntry) as S;
-      matrix = multiplyRowByScalar(matrix, pivotRow, pivotInverse);
-    }
-
     matrix = clearEntriesBelow(matrix, pivotRow, pivotColumn);
   }
 
@@ -133,12 +142,13 @@ export function rowEchelonForm<S>(matrix: Matrix<S>): Matrix<S> {
 
 /**
  * Uses elementary row operations to clear all entries below the given pivot entry.
- * Throws an error of the necessary preconditions are not met - i.e. if the pivot entry
- * is not 1, or the pivot row is not cleared to the left.
+ * Throws an error of the necessary preconditions are not met - i.e. if the pivot
+ * row is not cleared to the left.
  */
 function clearEntriesBelow<S>(matrix: Matrix<S>, pivotRow: number, pivotColumn: number): Matrix<S> {
   checkPreconditionsForClearingBelow(matrix, pivotRow, pivotColumn);
   const ops = matrix.ops();
+  const pivotEntry = matrix.getEntry(pivotRow, pivotColumn);
 
   for (let rowIndex = pivotRow + 1; rowIndex < matrix.getNumberOfRows(); rowIndex++) {
     const entry = matrix.getEntry(rowIndex, pivotColumn);
@@ -146,7 +156,9 @@ function clearEntriesBelow<S>(matrix: Matrix<S>, pivotRow: number, pivotColumn: 
       continue;
     }
 
-    matrix = addScalarMultipleOfRowToRow(matrix, rowIndex, pivotRow, ops.getAdditiveInverse(entry));
+    // not undefined because pivotEntry is not 0
+    const coefficient = ops.divide(ops.getAdditiveInverse(entry), pivotEntry) as S;
+    matrix = addScalarMultipleOfRowToRow(matrix, rowIndex, pivotRow, coefficient);
   }
 
   return matrix;
@@ -162,10 +174,6 @@ function checkPreconditionsForClearingBelow<S>(
   pivotColumn: number
 ): void {
   const ops = matrix.ops();
-  // The pivot entry should be 1
-  if (!ops.equals(matrix.getEntry(pivotRow, pivotColumn), ops.one())) {
-    throw Error('Not ready yet!');
-  }
 
   // Values to the left of the pivot should be 0
   for (let i = 0; i < pivotColumn - 1; i++) {

@@ -14,6 +14,16 @@ describe('NumberOperations', () => {
     });
   });
 
+  describe('fromComplex', () => {
+    it('throws if there is an imaginary component', () => {
+      expect(() => ops.fromComplex(1, 1)).to.throw();
+    });
+
+    it('returns a number for real-valued arguments', () => {
+      expect(ops.fromComplex(1, 0)).to.equal(1);
+    });
+  });
+
   describe('conjugate', () => {
     it('returns the original number, since real numbers are their own conjugate', () => {
       testNumbers(n => {

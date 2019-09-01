@@ -14,6 +14,20 @@ export abstract class ScalarOperations<S> {
   public abstract fromNumber(num: number): S;
 
   /**
+   * Returns an instance of the scalar type from its real and imaginary parts.  If the scalar
+   * type does not support complex numbers, then an error will be thrown.
+   * @returns The scalar
+   * @public
+   */
+  //@ts-ignore unused real, imaginary
+  public fromComplex(real: number, imaginary: number): S {
+    if (imaginary === 0) {
+      return this.fromNumber(real);
+    }
+    throw new Error('This scalar type does not support creation of complex numbers');
+  }
+
+  /**
    * Tests if the scalars are equal.
    * Implementors should ensure that the operation is reflexive, associative, and transitive.
    *
