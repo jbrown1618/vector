@@ -1,4 +1,4 @@
-import { Matrix } from '..';
+import { Matrix } from '../types/matrix/Matrix';
 import { Vector } from '../types/vector/Vector';
 
 export enum SolutionType {

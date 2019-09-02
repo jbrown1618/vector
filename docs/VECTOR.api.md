@@ -89,6 +89,12 @@ export function calculateQRDecomposition<S>(A: Matrix<S>): QRDecomposition<S>;
 export function calculateSingularValueDecomposition<S>(A: Matrix<S>): SingularValueDecomposition<S>;
 
 // @public
+export function center<S>(x: Vector<S>): Vector<S>;
+
+// @public
+export function center<S>(A: Matrix<S>): Matrix<S>;
+
+// @public
 export function centralDifferenceMatrix(binCount: number): NumberMatrix;
 
 // @public
@@ -175,6 +181,18 @@ export class ComplexVector extends ArrayVector<ComplexNumber> {
     static ops(): ComplexNumberOperations;
     ops(): ComplexNumberOperations;
 }
+
+// @public
+export function correlation<S>(first: Vector<S>, second: Vector<S>): S;
+
+// @public
+export function correlation<S>(A: Matrix<S>): Matrix<S>;
+
+// @public
+export function covariance<S>(first: Vector<S>, second: Vector<S>): S;
+
+// @public
+export function covariance<S>(A: Matrix<S>): Matrix<S>;
 
 // @public
 export function crossProduct<S>(first: Vector<S>, second: Vector<S>): Vector<S>;
@@ -359,6 +377,12 @@ export type MatrixEntryFunction<S> = (entry: S, i: number, j: number) => S;
 
 // @public
 export type MatrixIndexFunction<S> = (i: number, j: number) => S;
+
+// @public
+export function mean<S>(x: Vector<S>): S;
+
+// @public
+export function mean<S>(A: Matrix<S>): Vector<S>;
 
 // @public
 export function multiplyRowByScalar<S>(matrix: Matrix<S>, rowIndex: number, scalar: S): Matrix<S>;
@@ -589,6 +613,18 @@ export abstract class SparseVector<S> implements Vector<S> {
 export type SparseVectorData<S> = ReadonlyMap<number, S>;
 
 // @public
+export function standardDeviation<S>(x: Vector<S>): S;
+
+// @public
+export function standardDeviation<S>(A: Matrix<S>): Vector<S>;
+
+// @public
+export function standardize<S>(x: Vector<S>): Vector<S>;
+
+// @public
+export function standardize<S>(A: Matrix<S>): Matrix<S>;
+
+// @public
 export function sumNorm<S>(v: Vector<S>): number;
 
 // @public
@@ -596,6 +632,12 @@ export function supremumNorm<S>(v: Vector<S>): number;
 
 // @public
 export function tripleProduct<S>(first: Vector<S>, second: Vector<S>, third: Vector<S>): S;
+
+// @public
+export function variance<S>(x: Vector<S>): S;
+
+// @public
+export function variance<S>(A: Matrix<S>): Vector<S>;
 
 // @public
 export interface Vector<S> {
