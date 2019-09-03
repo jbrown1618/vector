@@ -27,7 +27,7 @@ export declare function pNorm<S>(v: Vector<S>, p: number): number;
 
 
 ```
-const v = vectorBuilder.fromArray([3, 4]);
+const v = vec([3, 4]);
 const norm1 = pNorm(v, 1); // 7
 const norm2 = pNorm(v, 2); // 5
 const norm3 = pNorm(v, 3); // 4.49794...

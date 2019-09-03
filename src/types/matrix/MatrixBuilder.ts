@@ -565,7 +565,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * @returns The new matrix
    * @public
    */
-  public diagonal(diagonalEntries: V): M {
+  public diagonal(diagonalEntries: Vector<S>): M {
     const size = diagonalEntries.getDimension();
     return this.fromIndexFunction(size, size, (i, j) =>
       i === j ? diagonalEntries.getEntry(i) : this.ops().zero()
@@ -756,8 +756,8 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * @returns The new matrix
    * @public
    */
-  public repeat(matrix: M, rows: number, columns: number): M {
-    const grid: M[][] = [];
+  public repeat(matrix: Matrix<S>, rows: number, columns: number): M {
+    const grid: Matrix<S>[][] = [];
 
     for (let i = 0; i < rows; i++) {
       grid[i] = [];
@@ -845,7 +845,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * @returns The new matrix
    * @public
    */
-  public exclude(matrix: M, rowToExclude: number, columnToExclude: number): M {
+  public exclude(matrix: Matrix<S>, rowToExclude: number, columnToExclude: number): M {
     assertValidMatrixIndex(matrix, rowToExclude, columnToExclude);
 
     const data: S[][] = [];

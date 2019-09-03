@@ -26,7 +26,7 @@ export declare function normalize<S>(v: Vector<S>): Vector<S> | undefined;
 
 
 ```
-const v = vectorBuilder.fromArray(3, 4);
+const v = vec(3, 4);
 const normalized = normalize(v); // [ 0.6, 0.8 ]
 
 ```

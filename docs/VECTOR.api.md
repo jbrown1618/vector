@@ -204,6 +204,9 @@ export function derivative(f: (x: number) => number, xMin: number, xMax: number,
 export function determinant<S>(matrix: Matrix<S>): S;
 
 // @public
+export function diag(elements: number[]): Matrix<number>;
+
+// @public
 export function eig<S>(A: Matrix<S>, numIterations?: number): EigenPair<S>[];
 
 // @public
@@ -222,6 +225,9 @@ export function exchangeRows<S>(matrix: Matrix<S>, first: number, second: number
 
 // @public
 export function exp<S>(A: Matrix<S>, order?: number): Matrix<S>;
+
+// @public
+export function eye(size: number): Matrix<number>;
 
 // @public
 export function forwardDifferenceMatrix(binCount: number): NumberMatrix;
@@ -289,6 +295,9 @@ export interface LUDecomposition<S> {
 }
 
 // @public
+export function mat(data: number[][]): Matrix<number>;
+
+// @public
 export interface Matrix<S> extends LinearTransformation<Vector<S>, Vector<S>> {
     add(other: Matrix<S>): Matrix<S>;
     adjoint(): Matrix<S>;
@@ -323,9 +332,9 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
     block(grid: Matrix<S>[][]): M;
     blockDiagonal(matrices: Matrix<S>[]): M;
     circulant(vector: Vector<S>): M;
-    diagonal(diagonalEntries: V): M;
+    diagonal(diagonalEntries: Vector<S>): M;
     empty(): M;
-    exclude(matrix: M, rowToExclude: number, columnToExclude: number): M;
+    exclude(matrix: Matrix<S>, rowToExclude: number, columnToExclude: number): M;
     fill(value: S, numberOfRows: number, numberOfColumns?: number): M;
     // (undocumented)
     fromArray(data: MatrixData<S>): M;
@@ -345,7 +354,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
     pascalSymmetric(size: number): M;
     random(numberOfRows: number, numberOfColumns?: number, min?: number, max?: number): M;
     randomNormal(numberOfRows: number, numberOfColumns?: number, mean?: number, standardDeviation?: number): M;
-    repeat(matrix: M, rows: number, columns: number): M;
+    repeat(matrix: Matrix<S>, rows: number, columns: number): M;
     slice(matrix: Matrix<S>, rowStartIndex?: number, columnStartIndex?: number, rowEndIndex?: number, columnEndIndex?: number): M;
     toeplitz(firstColumn: Vector<S>, firstRow?: Vector<S>): M;
     tridiagonal(leftEntries: Vector<S>, diagonalEntries: Vector<S>, rightEntries: Vector<S>): M;
@@ -435,6 +444,12 @@ export class NumberVector extends ArrayVector<number> {
     static ops(): NumberOperations;
     ops(): NumberOperations;
 }
+
+// @public
+export function ones(entries: number): Vector<number>;
+
+// @public
+export function ones(rows: number, columns: number): Matrix<number>;
 
 // @public
 export function pivot<S>(matrix: Matrix<S>): RowOperationResult<S>;
@@ -640,6 +655,9 @@ export function variance<S>(x: Vector<S>): S;
 export function variance<S>(A: Matrix<S>): Vector<S>;
 
 // @public
+export function vec(data: number[]): Vector<number>;
+
+// @public
 export interface Vector<S> {
     add(other: Vector<S>): Vector<S>;
     builder(): VectorBuilder<S, Vector<S>>;
@@ -701,6 +719,12 @@ export type VectorEntryFunction<S> = (entry: S, index: number) => S;
 
 // @public
 export type VectorIndexFunction<S> = (index: number) => S;
+
+// @public
+export function zeros(entries: number): Vector<number>;
+
+// @public
+export function zeros(rows: number, columns: number): Matrix<number>;
 
 
 // (No @packageDocumentation comment for this package)

@@ -26,7 +26,7 @@ export declare function frobeniusNorm<S>(A: Matrix<S>): number;
 
 
 ```
-const A = matrixBuilder.fromArray([[1, 2], [3, 4]]);
+const A = mat([[1, 2], [3, 4]]);
 const norm = frobeniusNorm(A); // sqrt(30)
 
 ```

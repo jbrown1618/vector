@@ -1,15 +1,13 @@
 import { expect } from 'chai';
 import { describe, it } from 'mocha';
-import { ComplexNumber } from '../..';
-import { NumberVector } from '../vector/NumberVector';
-import { VectorBuilder } from '../vector/VectorBuilder';
+import { vec, zeros, diag, ones, eye, mat } from '../../utilities/aliases';
+import { ComplexNumber } from '../scalar/ComplexNumber';
 import { ComplexMatrix } from './ComplexMatrix';
 import { MatrixBuilder, MatrixIndexFunction } from './MatrixBuilder';
 import { NumberMatrix } from './NumberMatrix';
 
 describe('MatrixBuilder', () => {
   const matrixBuilder = new MatrixBuilder(NumberMatrix);
-  const vectorBuilder = new VectorBuilder(NumberVector);
 
   describe('fromArray', () => {
     it('builds a matrix from a 2D array of values', () => {
@@ -54,31 +52,31 @@ describe('MatrixBuilder', () => {
 
   describe('fromColumnVectors', () => {
     it('builds a matrix from column vectors', () => {
-      const first = vectorBuilder.fromValues(1, 2, 3);
-      const second = vectorBuilder.fromValues(4, 5, 6);
-      const expected = matrixBuilder.fromArray([[1, 4], [2, 5], [3, 6]]);
+      const first = vec([1, 2, 3]);
+      const second = vec([4, 5, 6]);
+      const expected = mat([[1, 4], [2, 5], [3, 6]]);
 
       expect(matrixBuilder.fromColumnVectors([first, second])).to.deep.equal(expected);
     });
 
     it('handles an empty array', () => {
       expect(matrixBuilder.fromColumnVectors([]).toArray()).to.deep.equal([]);
-      expect(matrixBuilder.fromColumnVectors([vectorBuilder.empty()]).toArray()).to.deep.equal([]);
+      expect(matrixBuilder.fromColumnVectors([vec([])]).toArray()).to.deep.equal([]);
     });
   });
 
   describe('fromRowVectors', () => {
     it('builds a matrix from row vectors', () => {
-      const first = vectorBuilder.fromValues(1, 2, 3);
-      const second = vectorBuilder.fromValues(4, 5, 6);
-      const expected = matrixBuilder.fromArray([[1, 2, 3], [4, 5, 6]]);
+      const first = vec([1, 2, 3]);
+      const second = vec([4, 5, 6]);
+      const expected = mat([[1, 2, 3], [4, 5, 6]]);
 
       expect(matrixBuilder.fromRowVectors([first, second])).to.deep.equal(expected);
     });
 
     it('handles an empty array', () => {
       expect(matrixBuilder.fromRowVectors([]).toArray()).to.deep.equal([]);
-      expect(matrixBuilder.fromRowVectors([vectorBuilder.empty()]).toArray()).to.deep.equal([]);
+      expect(matrixBuilder.fromRowVectors([vec([])]).toArray()).to.deep.equal([]);
     });
   });
 
@@ -107,11 +105,9 @@ describe('MatrixBuilder', () => {
 
   describe('map', () => {
     it('builds a matrix by transforming the values of another matrix', () => {
-      const original = matrixBuilder.fromArray([[1, 2, 3], [4, 5, 6]]);
-
+      const original = mat([[1, 2, 3], [4, 5, 6]]);
       const mapped = matrixBuilder.map(original, (entry, i, j) => entry + i - j);
-
-      const expected = matrixBuilder.fromArray([[1, 1, 1], [5, 5, 5]]);
+      const expected = mat([[1, 1, 1], [5, 5, 5]]);
 
       expect(mapped).to.deep.equal(expected);
     });
@@ -177,11 +173,11 @@ describe('MatrixBuilder', () => {
   describe('zeros', () => {
     it('builds a square matrix of zeros', () => {
       for (let n = 0; n < 10; n++) {
-        const zeros = matrixBuilder.zeros(n);
-        expect(zeros.getNumberOfRows()).to.equal(n);
-        expect(zeros.getNumberOfColumns()).to.equal(n);
+        const zero = zeros(n, n);
+        expect(zero.getNumberOfRows()).to.equal(n);
+        expect(zero.getNumberOfColumns()).to.equal(n);
 
-        zeros.forEachEntry((entry: number) => {
+        zero.forEachEntry((entry: number) => {
           expect(entry).to.equal(0);
         });
       }
@@ -190,11 +186,11 @@ describe('MatrixBuilder', () => {
     it('builds a rectangular matrix of zeros', () => {
       for (let r = 1; r < 5; r++) {
         for (let c = 1; c < 5; c++) {
-          const zeros = matrixBuilder.zeros(r, c);
-          expect(zeros.getNumberOfRows()).to.equal(r);
-          expect(zeros.getNumberOfColumns()).to.equal(c);
+          const zero = zeros(r, c);
+          expect(zero.getNumberOfRows()).to.equal(r);
+          expect(zero.getNumberOfColumns()).to.equal(c);
 
-          zeros.forEachEntry((entry: number) => {
+          zero.forEachEntry((entry: number) => {
             expect(entry).to.equal(0);
           });
         }
@@ -266,82 +262,64 @@ describe('MatrixBuilder', () => {
 
   describe('toeplitz', () => {
     it('constructs a toeplitz matrix with the default first row', () => {
-      const toeplitz = matrixBuilder.toeplitz(vectorBuilder.fromArray([1, 2, 3]));
+      const toeplitz = matrixBuilder.toeplitz(vec([1, 2, 3]));
       const expected = matrixBuilder.fromArray([[1, 2, 3], [2, 1, 2], [3, 2, 1]]);
       expect(toeplitz).to.deep.equal(expected);
     });
 
     it('constructs a toeplitz matrix with a specified first row', () => {
-      const toeplitz = matrixBuilder.toeplitz(
-        vectorBuilder.fromArray([1, 2, 3]),
-        vectorBuilder.fromArray([1, 3, 5, 7])
-      );
+      const toeplitz = matrixBuilder.toeplitz(vec([1, 2, 3]), vec([1, 3, 5, 7]));
       const expected = matrixBuilder.fromArray([[1, 3, 5, 7], [2, 1, 3, 5], [3, 2, 1, 3]]);
       expect(toeplitz).to.deep.equal(expected);
     });
 
     it('handles an empty first column', () => {
-      const toeplitz = matrixBuilder.toeplitz(vectorBuilder.empty());
+      const toeplitz = matrixBuilder.toeplitz(vec([]));
       expect(toeplitz).to.deep.equal(matrixBuilder.empty());
     });
 
     it('rejects an entry mismatch', () => {
-      expect(() =>
-        matrixBuilder.toeplitz(vectorBuilder.fromArray([1, 2]), vectorBuilder.fromArray([2, 1]))
-      ).to.throw();
+      expect(() => matrixBuilder.toeplitz(vec([1, 2]), vec([2, 1]))).to.throw();
     });
   });
 
   describe('hankel', () => {
     it('constructs a hankel matrix with the default last row', () => {
-      const hankel = matrixBuilder.hankel(vectorBuilder.fromArray([2, 4, 6, 8]));
-      const expected = matrixBuilder.fromArray([
-        [2, 4, 6, 8],
-        [4, 6, 8, 0],
-        [6, 8, 0, 0],
-        [8, 0, 0, 0]
-      ]);
+      const hankel = matrixBuilder.hankel(vec([2, 4, 6, 8]));
+      const expected = mat([[2, 4, 6, 8], [4, 6, 8, 0], [6, 8, 0, 0], [8, 0, 0, 0]]);
       expect(hankel).to.deep.equal(expected);
     });
 
     it('constructs a "narrow" hankel matrix with a specified last row', () => {
-      const hankel = matrixBuilder.hankel(
-        vectorBuilder.fromArray([1, 2, 3, 4]),
-        vectorBuilder.fromArray([4, 9, 9])
-      );
+      const hankel = matrixBuilder.hankel(vec([1, 2, 3, 4]), vec([4, 9, 9]));
       const expected = matrixBuilder.fromArray([[1, 2, 3], [2, 3, 4], [3, 4, 9], [4, 9, 9]]);
       expect(hankel).to.deep.equal(expected);
     });
 
     it('constructs a "wide" hankel matrix with a specified last row', () => {
-      const hankel = matrixBuilder.hankel(
-        vectorBuilder.fromArray([1, 2, 3]),
-        vectorBuilder.fromArray([3, 9, 9, 9])
-      );
+      const hankel = matrixBuilder.hankel(vec([1, 2, 3]), vec([3, 9, 9, 9]));
       const expected = matrixBuilder.fromArray([[1, 2, 3, 9], [2, 3, 9, 9], [3, 9, 9, 9]]);
       expect(hankel).to.deep.equal(expected);
     });
 
     it('handles an empty first column', () => {
-      const hankel = matrixBuilder.hankel(vectorBuilder.empty());
+      const hankel = matrixBuilder.hankel(vec([]));
       expect(hankel).to.deep.equal(matrixBuilder.empty());
     });
 
     it('rejects an empty last row', () => {
-      expect(() => matrixBuilder.hankel(vectorBuilder.ones(4), vectorBuilder.empty())).to.throw();
+      expect(() => matrixBuilder.hankel(vec([1, 1, 1, 1]), vec([]))).to.throw();
     });
 
     it('rejects an entry mismatch', () => {
-      expect(() =>
-        matrixBuilder.hankel(vectorBuilder.fromArray([1, 2]), vectorBuilder.fromArray([1, 2]))
-      ).to.throw();
+      expect(() => matrixBuilder.hankel(vec([1, 2]), vec([1, 2]))).to.throw();
     });
   });
 
   describe('pascal', () => {
     it('constructs a lower-triangular pascal matrix', () => {
       const lower = matrixBuilder.pascal(5);
-      const expected = matrixBuilder.fromArray([
+      const expected = mat([
         [1, 0, 0, 0, 0],
         [1, 1, 0, 0, 0],
         [1, 2, 1, 0, 0],
@@ -353,7 +331,7 @@ describe('MatrixBuilder', () => {
 
     it('constructs a upper-triangular pascal matrix', () => {
       const upper = matrixBuilder.pascal(5, true);
-      const expected = matrixBuilder.fromArray([
+      const expected = mat([
         [1, 1, 1, 1, 1],
         [0, 1, 2, 3, 4],
         [0, 0, 1, 3, 6],
@@ -371,7 +349,7 @@ describe('MatrixBuilder', () => {
   describe('pascalSymmetric', () => {
     it('constructs a symmetric pascal matrix', () => {
       const pascal = matrixBuilder.pascalSymmetric(5);
-      const expected = matrixBuilder.fromArray([
+      const expected = mat([
         [1, 1, 1, 1, 1],
         [1, 2, 3, 4, 5],
         [1, 3, 6, 10, 15],
@@ -388,14 +366,14 @@ describe('MatrixBuilder', () => {
 
   describe('circulant', () => {
     it('constructs a circulant matrix', () => {
-      const entries = vectorBuilder.fromArray([1, 2, 3]);
+      const entries = vec([1, 2, 3]);
       const circulant = matrixBuilder.circulant(entries);
       const expected = matrixBuilder.fromArray([[1, 3, 2], [2, 1, 3], [3, 2, 1]]);
       expect(circulant).to.deep.equal(expected);
     });
 
     it('handles an empty vector', () => {
-      expect(matrixBuilder.circulant(vectorBuilder.empty())).to.deep.equal(matrixBuilder.empty());
+      expect(matrixBuilder.circulant(vec([]))).to.deep.equal(matrixBuilder.empty());
     });
   });
 
@@ -470,14 +448,14 @@ describe('MatrixBuilder', () => {
 
   describe('diagonal', () => {
     it('constructs a diagonal matrix with the given diagonal entries', () => {
-      const diagonalEntries = vectorBuilder.fromArray([1, 2, 3]);
+      const diagonalEntries = vec([1, 2, 3]);
       const expected = matrixBuilder.fromArray([[1, 0, 0], [0, 2, 0], [0, 0, 3]]);
 
       expect(matrixBuilder.diagonal(diagonalEntries).equals(expected)).to.be.true;
     });
 
     it('handles the degenerate case', () => {
-      const diagonalEntries = vectorBuilder.empty();
+      const diagonalEntries = vec([]);
       const expected = matrixBuilder.empty();
       expect(matrixBuilder.diagonal(diagonalEntries).equals(expected)).to.be.true;
     });
@@ -485,7 +463,7 @@ describe('MatrixBuilder', () => {
 
   describe('tridiagonal', () => {
     it('constructs a tridiagonal matrix based on the primary diagonal and two off-diagonals', () => {
-      const expected = matrixBuilder.fromArray([
+      const expected = mat([
         [2, 3, 0, 0, 0],
         [1, 2, 3, 0, 0],
         [0, 1, 2, 3, 0],
@@ -493,28 +471,28 @@ describe('MatrixBuilder', () => {
         [0, 0, 0, 1, 2]
       ]);
 
-      const left = vectorBuilder.fill(1, 4);
-      const center = vectorBuilder.fill(2, 5);
-      const right = vectorBuilder.fill(3, 4);
+      const left = vec([1, 1, 1, 1]);
+      const center = vec([2, 2, 2, 2, 2]);
+      const right = vec([3, 3, 3, 3]);
 
       const tridiagonal = matrixBuilder.tridiagonal(left, center, right);
       expect(tridiagonal).to.deep.equal(expected);
     });
 
     it('rejects a dimension mismatch', () => {
-      let left = vectorBuilder.fill(1, 5);
-      let center = vectorBuilder.fill(2, 5);
-      let right = vectorBuilder.fill(3, 4);
+      let left = vec([1, 1, 1, 1, 1]);
+      let center = vec([2, 2, 2, 2, 2]);
+      let right = vec([3, 3, 3, 3]);
       expect(() => matrixBuilder.tridiagonal(left, center, right)).to.throw();
 
-      left = vectorBuilder.fill(1, 4);
-      center = vectorBuilder.fill(2, 5);
-      right = vectorBuilder.fill(3, 5);
+      left = vec([1, 1, 1, 1]);
+      center = vec([2, 2, 2, 2, 2]);
+      right = vec([3, 3, 3, 3, 3]);
       expect(() => matrixBuilder.tridiagonal(left, center, right)).to.throw();
 
-      left = vectorBuilder.fill(1, 5);
-      center = vectorBuilder.fill(2, 5);
-      right = vectorBuilder.fill(3, 5);
+      left = vec([1, 1, 1, 1]);
+      center = vec([2, 2, 2, 2]);
+      right = vec([3, 3, 3, 3]);
       expect(() => matrixBuilder.tridiagonal(left, center, right)).to.throw();
     });
   });
@@ -524,7 +502,7 @@ describe('MatrixBuilder', () => {
       const ones = matrixBuilder.ones(2);
       const twos = matrixBuilder.fill(2, 3);
       const blockDiagonal = matrixBuilder.blockDiagonal([ones, twos, ones]);
-      const expected = matrixBuilder.fromArray([
+      const expected = mat([
         [1, 1, 0, 0, 0, 0, 0],
         [1, 1, 0, 0, 0, 0, 0],
         [0, 0, 2, 2, 2, 0, 0],
@@ -550,9 +528,9 @@ describe('MatrixBuilder', () => {
 
   describe('augment', () => {
     it('horizontally concatenates two matrices', () => {
-      const first = matrixBuilder.identity(2);
-      const second = matrixBuilder.ones(2);
-      const expected = matrixBuilder.fromArray([[1, 0, 1, 1], [0, 1, 1, 1]]);
+      const first = eye(2);
+      const second = ones(2, 2);
+      const expected = mat([[1, 0, 1, 1], [0, 1, 1, 1]]);
 
       expect(matrixBuilder.augment(first, second).equals(expected)).to.be.true;
     });
@@ -563,46 +541,35 @@ describe('MatrixBuilder', () => {
     });
 
     it('throws an error when the input dimensions are not compatible', () => {
-      const first = matrixBuilder.identity(2);
-      const second = matrixBuilder.ones(3);
+      const first = eye(2);
+      const second = ones(3, 3);
       expect(() => matrixBuilder.augment(first, second)).to.throw();
     });
   });
 
   describe('block', () => {
     it('flattens a grid of matrices into a single matrix', () => {
-      const A = matrixBuilder.identity(2);
-      const B = matrixBuilder.ones(2);
-      const C = matrixBuilder.zeros(2);
-      const D = matrixBuilder.diagonal(vectorBuilder.fromValues(2, 4));
+      const A = eye(2);
+      const B = ones(2, 2);
+      const C = zeros(2, 2);
+      const D = diag([2, 4]);
 
       const grid = [[A, B], [C, D]];
 
-      const expected = matrixBuilder.fromArray([
-        [1, 0, 1, 1],
-        [0, 1, 1, 1],
-        [0, 0, 2, 0],
-        [0, 0, 0, 4]
-      ]);
+      const expected = mat([[1, 0, 1, 1], [0, 1, 1, 1], [0, 0, 2, 0], [0, 0, 0, 4]]);
 
       expect(matrixBuilder.block(grid).equals(expected)).to.be.true;
     });
 
     it('handles unequal dimensions', () => {
-      const A = matrixBuilder.ones(1);
-      const B = matrixBuilder.zeros(1, 3);
-      const C = matrixBuilder.zeros(4, 1);
-      const D = matrixBuilder.ones(4, 3);
+      const A = ones(1, 1);
+      const B = zeros(1, 3);
+      const C = zeros(4, 1);
+      const D = ones(4, 3);
 
       const grid = [[A, B], [C, D]];
 
-      const expected = matrixBuilder.fromArray([
-        [1, 0, 0, 0],
-        [0, 1, 1, 1],
-        [0, 1, 1, 1],
-        [0, 1, 1, 1],
-        [0, 1, 1, 1]
-      ]);
+      const expected = mat([[1, 0, 0, 0], [0, 1, 1, 1], [0, 1, 1, 1], [0, 1, 1, 1], [0, 1, 1, 1]]);
 
       expect(matrixBuilder.block(grid).equals(expected)).to.be.true;
     });
@@ -616,9 +583,9 @@ describe('MatrixBuilder', () => {
 
   describe('repeat', () => {
     it('constructs a matrix by repeating a smaller matrix', () => {
-      const A = matrixBuilder.fromArray([[1, 2], [3, 4]]);
+      const A = mat([[1, 2], [3, 4]]);
 
-      const expected = matrixBuilder.fromArray([
+      const expected = mat([
         [1, 2, 1, 2, 1, 2],
         [3, 4, 3, 4, 3, 4],
         [1, 2, 1, 2, 1, 2],
@@ -630,16 +597,16 @@ describe('MatrixBuilder', () => {
   });
 
   describe('slice', () => {
-    const A = matrixBuilder.fromArray([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]);
+    const A = mat([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]);
 
     it('includes the start indices but excludes the end indices', () => {
-      let expectedSlice = matrixBuilder.fromArray([[1, 2], [5, 6]]);
+      let expectedSlice = mat([[1, 2], [5, 6]]);
       expect(matrixBuilder.slice(A, 0, 0, 2, 2).equals(expectedSlice)).to.be.true;
 
-      expectedSlice = matrixBuilder.fromArray([[1, 2, 3]]);
+      expectedSlice = mat([[1, 2, 3]]);
       expect(matrixBuilder.slice(A, 0, 0, 1, 3).equals(expectedSlice)).to.be.true;
 
-      expectedSlice = matrixBuilder.fromArray([[1], [5], [9]]);
+      expectedSlice = mat([[1], [5], [9]]);
       expect(matrixBuilder.slice(A, 0, 0, 3, 1).equals(expectedSlice)).to.be.true;
     });
 
@@ -648,7 +615,7 @@ describe('MatrixBuilder', () => {
     });
 
     it('defaults to the end of the matrix when no end indices are given', () => {
-      const expectedSlice = matrixBuilder.fromArray([[6, 7, 8], [10, 11, 12]]);
+      const expectedSlice = mat([[6, 7, 8], [10, 11, 12]]);
       expect(matrixBuilder.slice(A, 1, 1).equals(expectedSlice)).to.be.true;
     });
 
@@ -660,9 +627,8 @@ describe('MatrixBuilder', () => {
 
   describe('exclude', () => {
     it('removes a row and column from the original matrix', () => {
-      const original = matrixBuilder.fromArray([[1, 2, 3], [4, 5, 6], [7, 8, 9]]);
-
-      const expected = matrixBuilder.fromArray([[1, 2], [7, 8]]);
+      const original = mat([[1, 2, 3], [4, 5, 6], [7, 8, 9]]);
+      const expected = mat([[1, 2], [7, 8]]);
 
       const removedRow1Col2 = matrixBuilder.exclude(original, 1, 2);
 
@@ -670,7 +636,7 @@ describe('MatrixBuilder', () => {
     });
 
     it('rejects invalid indices', () => {
-      const original = matrixBuilder.fromArray([[1, 2, 3], [4, 5, 6], [7, 8, 9]]);
+      const original = mat([[1, 2, 3], [4, 5, 6], [7, 8, 9]]);
 
       expect(() => matrixBuilder.exclude(original, -1, 1)).to.throw();
       expect(() => matrixBuilder.exclude(original, 1, -1)).to.throw();
