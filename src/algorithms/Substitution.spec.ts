@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { describe, it } from 'mocha';
-import { NumberMatrix } from '..';
+import { NumberMatrix } from '../types/matrix/NumberMatrix';
 import { SolutionType, UnderdeterminedSolution, UniqueSolution } from './LinearSolution';
 import {
   backwardSubstituteAugmentedMatrix,

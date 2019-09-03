@@ -11,6 +11,7 @@ export * from './algorithms/Norms';
 export * from './algorithms/QRDecomposition';
 export * from './algorithms/RowOperations';
 export * from './algorithms/SingularValueDecomposition';
+export * from './algorithms/Statistics';
 export * from './types/matrix/ArrayMatrix';
 export * from './types/matrix/ComplexMatrix';
 export * from './types/matrix/LinearTransformation';

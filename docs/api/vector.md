@@ -39,8 +39,14 @@
 |  [calculateLUDecomposition(A)](./vector.calculateludecomposition.md) | Uses the Doolittle algorithm to calculate the LU Decomposition of a matrix A. |
 |  [calculateQRDecomposition(A)](./vector.calculateqrdecomposition.md) | Uses the Graham-Schmidt process to calculate the QR decomposition of the matrix A. |
 |  [calculateSingularValueDecomposition(A)](./vector.calculatesingularvaluedecomposition.md) | Uses the Power Method to calculate the Singular Value Decomposition of a matrix <code>A</code> |
+|  [center(x)](./vector.center.md) | Returns the vector <code>x</code>, shifted so that its mean is at 0 |
+|  [center(A)](./vector.center_1.md) | Returns the matrix <code>A</code> with each column shifted so that its mean is at 0 |
 |  [centralDifferenceMatrix(binCount)](./vector.centraldifferencematrix.md) | Builds a matrix that transforms a vector to a vector of central differences |
 |  [columnSumSupremumNorm(A)](./vector.columnsumsupremumnorm.md) | Calculates the 1-Norm of a matrix <code>A</code> |
+|  [correlation(first, second)](./vector.correlation.md) | Calculates the correlation coefficient r of two vectors |
+|  [correlation(A)](./vector.correlation_1.md) | Calculates the correlation matrix of a matrix <code>A</code> |
+|  [covariance(first, second)](./vector.covariance.md) | Calculates the covariance of two vectors |
+|  [covariance(A)](./vector.covariance_1.md) | Calculates the covariance matrix of a matrix <code>A</code> |
 |  [crossProduct(first, second)](./vector.crossproduct.md) | Calculates the cross-product (vector-product) of two vectors. This is defined only for vectors with three dimensions. |
 |  [derivative(f, xMin, xMax, binCount)](./vector.derivative.md) | Uses finite differences to build a vector containing approximate values of the derivative of <code>f</code>. |
 |  [determinant(matrix)](./vector.determinant.md) | Uses expansion of minors to calculate the determinant of a matrix. Throws an error if the input is not square. |
@@ -61,6 +67,8 @@
 |  [isSymmetric(matrix)](./vector.issymmetric.md) | Tests if a matrix is symmetrix. |
 |  [isUpperTriangular(matrix)](./vector.isuppertriangular.md) | Tests if a matrix is upper-triangular. |
 |  [linspace(xMin, xMax, binCount)](./vector.linspace.md) | Builds a vector of <code>binCount</code> evenly spaced numbers between <code>xMin</code> (inclusive) and <code>xMax</code> (exclusive). |
+|  [mean(x)](./vector.mean.md) | Calcualtes the mean of the values in the vector <code>x</code> |
+|  [mean(A)](./vector.mean_1.md) | Calculates the mean vector of the matrix <code>A</code> |
 |  [multiplyRowByScalar(matrix, rowIndex, scalar)](./vector.multiplyrowbyscalar.md) | An elementary row operations which returns a new matrix whose row at <code>rowIndex</code> is multipled by <code>scalar</code> |
 |  [normalize(v)](./vector.normalize.md) | Returns a vector with the same direction as the input <code>v</code>, but with a Euclidean norm of 1 |
 |  [pivot(matrix)](./vector.pivot.md) | Sorts the rows of a matrix according to the number of leading zeros and the magnitude of the first nonzero entry |
@@ -75,9 +83,15 @@
 |  [rowSumSupremumNorm(A)](./vector.rowsumsupremumnorm.md) | Calculates the Infinity-Norm of a matrix <code>A</code> |
 |  [solveByGaussianElimination(A, b)](./vector.solvebygaussianelimination.md) | Uses Gauss-Jordan elimination with pivoting and backward substitution to solve the linear equation \_Ax=b\_ |
 |  [solveOverdeterminedSystem(A, b)](./vector.solveoverdeterminedsystem.md) | Gives an approximate solution to an overdetermined linear system. |
+|  [standardDeviation(x)](./vector.standarddeviation.md) | Caclulates the standard deviation of a vector |
+|  [standardDeviation(A)](./vector.standarddeviation_1.md) | Calculates the standard deviation of each column of the matrix <code>A</code> |
+|  [standardize(x)](./vector.standardize.md) | Returns the vector <code>x</code> shifted and scaled to have a mean of 0 and standard deviation of 1 |
+|  [standardize(A)](./vector.standardize_1.md) | Returns the matrix <code>A</code> with each column shifted and scaled to have a mean of 0 and standard deviation of 1 |
 |  [sumNorm(v)](./vector.sumnorm.md) | Calculates the Sum Norm (or 1-Norm) of a vector <code>v</code> |
 |  [supremumNorm(v)](./vector.supremumnorm.md) | Calculates the Supremum Norm (or Infinity-Norm) of a vector <code>v</code> |
 |  [tripleProduct(first, second, third)](./vector.tripleproduct.md) | Calculates the scalar triple-product of three vectors. This is defined only for vectors with three dimensions. |
+|  [variance(x)](./vector.variance.md) | Caclulates the variance of a vector |
+|  [variance(A)](./vector.variance_1.md) | Calculates the variance of each column of the matrix <code>A</code> |
 
 ## Interfaces
 

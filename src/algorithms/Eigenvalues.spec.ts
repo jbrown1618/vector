@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { describe, it } from 'mocha';
-import { NumberVector } from '..';
+import { NumberVector } from '../types/vector/NumberVector';
 import { NumberMatrix } from '../types/matrix/NumberMatrix';
 import { calculateEigenvalues, eig, getEigenvectorForEigenvalue } from './Eigenvalues';
 import { ComplexMatrix } from '../types/matrix/ComplexMatrix';
