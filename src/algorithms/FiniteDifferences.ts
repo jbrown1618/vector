@@ -2,6 +2,7 @@ import { NumberMatrix } from '../types/matrix/NumberMatrix';
 import { NumberVector } from '../types/vector/NumberVector';
 import { VectorIndexFunction } from '../types/vector/VectorBuilder';
 import { Vector } from '../types/vector/Vector';
+import { ones, zeros } from '../utilities/aliases';
 
 /**
  * Builds a vector of `binCount` evenly spaced numbers between `xMin` (inclusive) and `xMax` (exclusive).
@@ -58,11 +59,9 @@ export function linspace(xMin: number, xMax: number, binCount: number): NumberVe
  */
 export function forwardDifferenceMatrix(binCount: number): NumberMatrix {
   return NumberMatrix.builder().tridiagonal(
-    NumberVector.builder().zeros(binCount - 1),
-    NumberVector.builder()
-      .ones(binCount)
-      .scalarMultiply(-1),
-    NumberVector.builder().ones(binCount - 1)
+    zeros(binCount - 1),
+    ones(binCount).scalarMultiply(-1),
+    ones(binCount - 1)
   );
 }
 
@@ -88,11 +87,9 @@ export function forwardDifferenceMatrix(binCount: number): NumberMatrix {
  */
 export function backwardDifferenceMatrix(binCount: number): NumberMatrix {
   return NumberMatrix.builder().tridiagonal(
-    NumberVector.builder()
-      .ones(binCount - 1)
-      .scalarMultiply(-1),
-    NumberVector.builder().ones(binCount),
-    NumberVector.builder().zeros(binCount - 1)
+    ones(binCount - 1).scalarMultiply(-1),
+    ones(binCount),
+    zeros(binCount - 1)
   );
 }
 
@@ -122,13 +119,9 @@ export function backwardDifferenceMatrix(binCount: number): NumberMatrix {
  */
 export function centralDifferenceMatrix(binCount: number): NumberMatrix {
   return NumberMatrix.builder().tridiagonal(
-    NumberVector.builder()
-      .ones(binCount - 1)
-      .scalarMultiply(-1 / 2),
-    NumberVector.builder().zeros(binCount),
-    NumberVector.builder()
-      .ones(binCount - 1)
-      .scalarMultiply(1 / 2)
+    ones(binCount - 1).scalarMultiply(-1 / 2),
+    zeros(binCount),
+    ones(binCount - 1).scalarMultiply(1 / 2)
   );
 }
 

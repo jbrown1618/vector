@@ -50,10 +50,12 @@
 |  [crossProduct(first, second)](./vector.crossproduct.md) | Calculates the cross-product (vector-product) of two vectors. This is defined only for vectors with three dimensions. |
 |  [derivative(f, xMin, xMax, binCount)](./vector.derivative.md) | Uses finite differences to build a vector containing approximate values of the derivative of <code>f</code>. |
 |  [determinant(matrix)](./vector.determinant.md) | Uses expansion of minors to calculate the determinant of a matrix. Throws an error if the input is not square. |
+|  [diag(elements)](./vector.diag.md) | Creates a new matrix with the specified entries on the diagonal. See [MatrixBuilder.diagonal()](./vector.matrixbuilder.diagonal.md) |
 |  [eig(A, numIterations)](./vector.eig.md) | Uses the QR algorithm to compute the eigenvalues and eigenvectors of a matrix <code>A</code> |
 |  [euclideanNorm(v)](./vector.euclideannorm.md) | Calculates the Euclidean Norm (or 2-Norm) of a vector <code>v</code> |
 |  [exchangeRows(matrix, first, second)](./vector.exchangerows.md) | An elementary row operations which returns a new matrix whose row at index <code>first</code> has been exchanged with the row at index <code>second</code> |
 |  [exp(A, order)](./vector.exp.md) | Implements the Pade Approximant to compute the exponential of matrix <code>A</code> |
+|  [eye(size)](./vector.eye.md) | Creates a new identity matrix of size <code>size</code>. See [MatrixBuilder.identity()](./vector.matrixbuilder.identity.md) |
 |  [forwardDifferenceMatrix(binCount)](./vector.forwarddifferencematrix.md) | Builds a matrix that transforms a vector to a vector of forward differences |
 |  [frobeniusNorm(A)](./vector.frobeniusnorm.md) | Calculates the Frobenius Norm of a matrix <code>A</code> |
 |  [getEigenvectorForEigenvalue(A, lambda)](./vector.geteigenvectorforeigenvalue.md) | Given a matrix <code>A</code> and an eigenvalue <code>lambda</code> of that matrix, returns the eigenvector of <code>A</code> corresponding to <code>lambda</code> |
@@ -67,10 +69,13 @@
 |  [isSymmetric(matrix)](./vector.issymmetric.md) | Tests if a matrix is symmetrix. |
 |  [isUpperTriangular(matrix)](./vector.isuppertriangular.md) | Tests if a matrix is upper-triangular. |
 |  [linspace(xMin, xMax, binCount)](./vector.linspace.md) | Builds a vector of <code>binCount</code> evenly spaced numbers between <code>xMin</code> (inclusive) and <code>xMax</code> (exclusive). |
+|  [mat(data)](./vector.mat.md) | Creates a new [Matrix](./vector.matrix.md) of numbers. See [MatrixBuilder.fromArray()](./vector.matrixbuilder.fromarray.md) |
 |  [mean(x)](./vector.mean.md) | Calcualtes the mean of the values in the vector <code>x</code> |
 |  [mean(A)](./vector.mean_1.md) | Calculates the mean vector of the matrix <code>A</code> |
 |  [multiplyRowByScalar(matrix, rowIndex, scalar)](./vector.multiplyrowbyscalar.md) | An elementary row operations which returns a new matrix whose row at <code>rowIndex</code> is multipled by <code>scalar</code> |
 |  [normalize(v)](./vector.normalize.md) | Returns a vector with the same direction as the input <code>v</code>, but with a Euclidean norm of 1 |
+|  [ones(entries)](./vector.ones.md) | Creates a new vector of all 1s. See [VectorBuilder.ones()](./vector.vectorbuilder.ones.md) |
+|  [ones(rows, columns)](./vector.ones_1.md) | Creates a new matrix of all 1s. See [MatrixBuilder.ones()](./vector.matrixbuilder.ones.md) |
 |  [pivot(matrix)](./vector.pivot.md) | Sorts the rows of a matrix according to the number of leading zeros and the magnitude of the first nonzero entry |
 |  [pNorm(v, p)](./vector.pnorm.md) | Calculates the P-Norm of a vector <code>v</code> |
 |  [pow(A, n)](./vector.pow.md) | Computes \_A^n\_ recursively. |
@@ -92,6 +97,9 @@
 |  [tripleProduct(first, second, third)](./vector.tripleproduct.md) | Calculates the scalar triple-product of three vectors. This is defined only for vectors with three dimensions. |
 |  [variance(x)](./vector.variance.md) | Caclulates the variance of a vector |
 |  [variance(A)](./vector.variance_1.md) | Calculates the variance of each column of the matrix <code>A</code> |
+|  [vec(data)](./vector.vec.md) | Creates a new [Vector](./vector.vector.md) of numbers. See [VectorBuilder.fromArray()](./vector.vectorbuilder.fromarray.md) |
+|  [zeros(entries)](./vector.zeros.md) | Creates a new vector of all 0s. See [VectorBuilder.zeros()](./vector.vectorbuilder.zeros.md) |
+|  [zeros(rows, columns)](./vector.zeros_1.md) | Creates a new matrix of all 0s. See [MatrixBuilder.zeros()](./vector.matrixbuilder.zeros.md) |
 
 ## Interfaces
 

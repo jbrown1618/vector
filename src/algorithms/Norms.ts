@@ -1,5 +1,5 @@
+import { vec } from '../utilities/aliases';
 import { Matrix } from '../types/matrix/Matrix';
-import { NumberVector } from '../types/vector/NumberVector';
 import { Vector } from '../types/vector/Vector';
 
 /**
@@ -7,7 +7,7 @@ import { Vector } from '../types/vector/Vector';
  *
  * @example
  * ```
- * const v = vectorBuilder.fromArray(3, 4);
+ * const v = vec(3, 4);
  * const normalized = normalize(v); // [ 0.6, 0.8 ]
  * ```
  *
@@ -25,7 +25,7 @@ export function normalize<S>(v: Vector<S>): Vector<S> | undefined {
  *
  * @example
  * ```
- * const v = vectorBuilder.fromArray([3, 4]);
+ * const v = vec([3, 4]);
  * const norm1 = pNorm(v, 1); // 7
  * const norm2 = pNorm(v, 2); // 5
  * const norm3 = pNorm(v, 3); // 4.49794...
@@ -59,7 +59,7 @@ export function pNorm<S>(v: Vector<S>, p: number): number {
  *
  * @example
  * ```
- * const v = vectorBuilder.fromArray([3, 4]);
+ * const v = vec([3, 4]);
  * const norm = sumNorm(v); // 7
  * ```
  *
@@ -75,7 +75,7 @@ export function sumNorm<S>(v: Vector<S>): number {
  *
  * @example
  * ```
- * const v = vectorBuilder.fromArray([3, 4]);
+ * const v = vec([3, 4]);
  * const norm = euclideanNorm(v); // 5
  * ```
  *
@@ -91,7 +91,7 @@ export function euclideanNorm<S>(v: Vector<S>): number {
  *
  * @example
  * ```
- * const v = vectorBuilder.fromArray([3, 4]);
+ * const v = vec([3, 4]);
  * const norm = supremumNorm(v); // 4
  * ```
  *
@@ -121,7 +121,7 @@ export function supremumNorm<S>(v: Vector<S>): number {
  *
  * @example
  * ```
- * const A = matrixBuilder.fromArray([[1, 2], [3, 4]]);
+ * const A = mat([[1, 2], [3, 4]]);
  * const norm = frobeniusNorm(A); // sqrt(30)
  * ```
  *
@@ -142,7 +142,7 @@ export function frobeniusNorm<S>(A: Matrix<S>): number {
  *
  * @example
  * ```
- * const A = matrixBuilder.fromArray([[1, 2], [3, 4]]);
+ * const A = mat([[1, 2], [3, 4]]);
  * const norm = columnSumSupremumNorm(A); // 6
  * ```
  *
@@ -151,7 +151,7 @@ export function frobeniusNorm<S>(A: Matrix<S>): number {
  */
 export function columnSumSupremumNorm<S>(A: Matrix<S>): number {
   const columnSums = A.getColumnVectors().map(sumNorm);
-  const columnSumVector = NumberVector.builder().fromArray(columnSums);
+  const columnSumVector = vec(columnSums);
   return supremumNorm(columnSumVector);
 }
 
@@ -160,7 +160,7 @@ export function columnSumSupremumNorm<S>(A: Matrix<S>): number {
  *
  * @example
  * ```
- * const A = matrixBuilder.fromArray([[1, 2], [3, 4]]);
+ * const A = mat([[1, 2], [3, 4]]);
  * const norm = rowSumSupremumNorm(A); // 7
  * ```
  *
@@ -169,6 +169,6 @@ export function columnSumSupremumNorm<S>(A: Matrix<S>): number {
  */
 export function rowSumSupremumNorm<S>(A: Matrix<S>): number {
   const rowSums = A.getRowVectors().map(sumNorm);
-  const rowSumVector = NumberVector.builder().fromArray(rowSums);
+  const rowSumVector = vec(rowSums);
   return supremumNorm(rowSumVector);
 }

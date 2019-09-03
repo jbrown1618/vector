@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { describe, it } from 'mocha';
-import { NumberMatrix } from '../types/matrix/NumberMatrix';
+import { mat, vec } from '../utilities/aliases';
 import { NumberVector } from '../types/vector/NumberVector';
 import {
   backwardDifferenceMatrix,
@@ -13,18 +13,7 @@ import {
 describe('FiniteDifferences', () => {
   describe('linspace', () => {
     it('creates a vector of evenly spaced numbers', () => {
-      const expected = NumberVector.builder().fromArray([
-        0,
-        0.1,
-        0.2,
-        0.3,
-        0.4,
-        0.5,
-        0.6,
-        0.7,
-        0.8,
-        0.9
-      ]);
+      const expected = vec([0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]);
       const spaces = linspace(0, 1, 10);
       expect(spaces.equals(expected)).to.be.true;
     });
@@ -40,12 +29,7 @@ describe('FiniteDifferences', () => {
 
   describe('forwardDifferenceMatrix', () => {
     it('constructs a forward difference matrix', () => {
-      const expected = NumberMatrix.builder().fromArray([
-        [-1, 1, 0, 0],
-        [0, -1, 1, 0],
-        [0, 0, -1, 1],
-        [0, 0, 0, -1]
-      ]);
+      const expected = mat([[-1, 1, 0, 0], [0, -1, 1, 0], [0, 0, -1, 1], [0, 0, 0, -1]]);
       const forwardDifference = forwardDifferenceMatrix(4);
       expect(forwardDifference.equals(expected)).to.be.true;
     });
@@ -53,12 +37,7 @@ describe('FiniteDifferences', () => {
 
   describe('backwardDifferenceMatrix', () => {
     it('constructs a backward difference matrix', () => {
-      const expected = NumberMatrix.builder().fromArray([
-        [1, 0, 0, 0],
-        [-1, 1, 0, 0],
-        [0, -1, 1, 0],
-        [0, 0, -1, 1]
-      ]);
+      const expected = mat([[1, 0, 0, 0], [-1, 1, 0, 0], [0, -1, 1, 0], [0, 0, -1, 1]]);
       const backwardDifference = backwardDifferenceMatrix(4);
       expect(backwardDifference.equals(expected)).to.be.true;
     });
@@ -66,7 +45,7 @@ describe('FiniteDifferences', () => {
 
   describe('centralDifferenceMatrix', () => {
     it('constructs a central difference matrix', () => {
-      const expected = NumberMatrix.builder().fromArray([
+      const expected = mat([
         [0, 1 / 2, 0, 0],
         [-1 / 2, 0, 1 / 2, 0],
         [0, -1 / 2, 0, 1 / 2],

@@ -1,5 +1,6 @@
 import { expect } from 'chai';
 import { describe, it } from 'mocha';
+import { mat, vec, eye } from '../utilities/aliases';
 import { Matrix } from '../types/matrix/Matrix';
 import { NumberMatrix } from '../types/matrix/NumberMatrix';
 import {
@@ -13,10 +14,10 @@ import { SolutionType, UnderdeterminedSolution, UniqueSolution } from './LinearS
 describe('GaussJordan', () => {
   describe('solveByGaussianElimination', () => {
     it('solves a system with a unique solution', () => {
-      const A = NumberMatrix.builder().fromArray([[0, 2, 1], [1, -2, -3], [-1, 1, 2]]);
-      const b = NumberMatrix.vectorBuilder().fromArray([-8, 0, 3]);
+      const A = mat([[0, 2, 1], [1, -2, -3], [-1, 1, 2]]);
+      const b = vec([-8, 0, 3]);
       const solution = solveByGaussianElimination(A, b);
-      const expected = NumberMatrix.vectorBuilder().fromArray([-4, -5, 2]);
+      const expected = vec([-4, -5, 2]);
 
       expect(solution.solutionType).to.equal(SolutionType.UNIQUE);
       expect((solution as UniqueSolution<number>).solution).to.deep.equal(expected);
@@ -34,18 +35,18 @@ describe('GaussJordan', () => {
     });
 
     it('solves an underdetermined system', () => {
-      const A = NumberMatrix.builder().fromArray([[0, 2, 1], [1, -2, -3], [-3, 6, 9]]);
-      const b = NumberMatrix.vectorBuilder().fromArray([-4, 1, -3]);
+      const A = mat([[0, 2, 1], [1, -2, -3], [-3, 6, 9]]);
+      const b = vec([-4, 1, -3]);
       const solution = solveByGaussianElimination(A, b);
-      const expected = NumberMatrix.vectorBuilder().fromArray([-1, -5 / 2, 1]);
+      const expected = vec([-1, -5 / 2, 1]);
 
       expect(solution.solutionType).to.equal(SolutionType.UNDERDETERMINED);
       expect((solution as UnderdeterminedSolution<number>).solution).to.deep.equal(expected);
     });
 
     it('determines when a system is overdetermined', () => {
-      const A = NumberMatrix.builder().fromArray([[1, -2, -6], [2, 4, 12], [1, -4, -12]]);
-      const b = NumberMatrix.vectorBuilder().fromArray([12, -17, 22]);
+      const A = mat([[1, -2, -6], [2, 4, 12], [1, -4, -12]]);
+      const b = vec([12, -17, 22]);
       const solution = solveByGaussianElimination(A, b);
 
       expect(solution.solutionType).to.equal(SolutionType.OVERDETERMINED);
@@ -54,42 +55,38 @@ describe('GaussJordan', () => {
 
   describe('rowEchelonForm', () => {
     it('row reduces a "wide" matrix', () => {
-      const A = NumberMatrix.builder().fromArray([[1, 2, 3], [4, 5, 6]]);
+      const A = mat([[1, 2, 3], [4, 5, 6]]);
       const aRef = rowEchelonForm(A);
       expect(aRef.toArray()).to.deep.equal([[4, 5, 6], [0, 0.75, 1.5]]);
     });
 
     it('row reduces a "tall" matrix', () => {
-      const A = NumberMatrix.builder().fromArray([[0, 1], [0, 0], [5, 9]]);
+      const A = mat([[0, 1], [0, 0], [5, 9]]);
       const aRef = rowEchelonForm(A);
-      const expected = NumberMatrix.builder().fromArray([[5, 9], [0, 1], [0, 0]]);
+      const expected = mat([[5, 9], [0, 1], [0, 0]]);
       expect(aRef.equals(expected)).to.be.true;
     });
 
     it('row reduces a matrix with non-independent rows', () => {
-      const A = NumberMatrix.builder().fromArray([[1, 2, 3], [1, 1, 1], [1, 1, 1]]);
+      const A = mat([[1, 2, 3], [1, 1, 1], [1, 1, 1]]);
       const aRef = rowEchelonForm(A);
-      expect(aRef).to.deep.equal(
-        NumberMatrix.builder().fromArray([[1, 2, 3], [0, -1, -2], [0, 0, 0]])
-      );
+      expect(aRef).to.deep.equal(mat([[1, 2, 3], [0, -1, -2], [0, 0, 0]]));
 
       // Matrix B has an unexpected row of zeros occur, necessitating an extra swap
-      const B = NumberMatrix.builder().fromArray([[1, 2, 2, 0], [-1, -2, -2, 0], [-3, 9, 9, 0]]);
+      const B = mat([[1, 2, 2, 0], [-1, -2, -2, 0], [-3, 9, 9, 0]]);
       const bRef = rowEchelonForm(B);
-      expect(bRef).to.deep.equal(
-        NumberMatrix.builder().fromArray([[-3, 9, 9, 0], [0, 5, 5, 0], [0, 0, 0, 0]])
-      );
+      expect(bRef).to.deep.equal(mat([[-3, 9, 9, 0], [0, 5, 5, 0], [0, 0, 0, 0]]));
     });
 
     it('row reduces a matrix with non-diagonal pivot entries', () => {
-      const A = NumberMatrix.builder().fromArray([[1, 1, 1], [0, 0, 2], [0, 0, 1]]);
+      const A = mat([[1, 1, 1], [0, 0, 2], [0, 0, 1]]);
 
       const aRef = rowEchelonForm(A);
       expect(aRef.toArray()).to.deep.equal([[1, 1, 1], [0, 0, 2], [0, 0, 0]]);
     });
 
     it('does nothing to an identity matrix', () => {
-      const I = NumberMatrix.builder().identity(3);
+      const I = eye(3);
       const ref = rowEchelonForm(I);
       expect(ref.equals(I)).to.be.true;
     });
@@ -101,65 +98,65 @@ describe('GaussJordan', () => {
 
   describe('reducedRowEchelonForm', () => {
     it('row reduces a "wide" matrix', () => {
-      const A = NumberMatrix.builder().fromArray([[1, 2, 3], [4, 5, 6]]);
+      const A = mat([[1, 2, 3], [4, 5, 6]]);
       const aRef = reducedRowEchelonForm(A);
       expect(aRef.toArray()).to.deep.equal([[1, 0, -1], [0, 1, 2]]);
     });
 
     it('row reduces a "tall" matrix', () => {
-      const A = NumberMatrix.builder().fromArray([[0, 1], [0, 0], [5, 9]]);
+      const A = mat([[0, 1], [0, 0], [5, 9]]);
       const aRef = reducedRowEchelonForm(A);
       expect(aRef.toArray()).to.deep.equal([[1, 0], [0, 1], [0, 0]]);
     });
 
     it('row reduces a matrix with non-independent rows', () => {
-      const A = NumberMatrix.builder().fromArray([[1, 2, 3], [1, 1, 1], [1, 1, 1]]);
+      const A = mat([[1, 2, 3], [1, 1, 1], [1, 1, 1]]);
 
       const aRef = reducedRowEchelonForm(A);
       expect(aRef.toArray()).to.deep.equal([[1, 0, -1], [0, 1, 2], [0, 0, 0]]);
     });
 
     it('row reduces a matrix with non-diagonal pivot entries', () => {
-      const A = NumberMatrix.builder().fromArray([[1, 1, 1], [0, 0, 2], [0, 0, 1]]);
+      const A = mat([[1, 1, 1], [0, 0, 2], [0, 0, 1]]);
 
       const aRef = reducedRowEchelonForm(A);
       expect(aRef.toArray()).to.deep.equal([[1, 1, 0], [0, 0, 1], [0, 0, 0]]);
     });
 
     it('does nothing to an identity matrix', () => {
-      const I = NumberMatrix.builder().identity(3);
+      const I = eye(3);
       const ref = reducedRowEchelonForm(I);
       expect(ref.equals(I)).to.be.true;
     });
 
     it('handles the degenerate case', () => {
-      expect(reducedRowEchelonForm(NumberMatrix.builder().empty()).toArray()).to.deep.equal([]);
+      expect(reducedRowEchelonForm(mat([])).toArray()).to.deep.equal([]);
     });
   });
 
   describe('inverse', () => {
     it('does not affect an identity matrix', () => {
-      const I = NumberMatrix.builder().identity(3);
+      const I = eye(3);
       const iInv = inverse(I);
       expect(iInv).to.not.be.undefined;
       expect((iInv as Matrix<number>).equals(I)).to.be.true;
     });
 
     it('calculates the inverse of a square matrix', () => {
-      const A = NumberMatrix.builder().fromArray([[4, 7], [2, 6]]);
-      const expectedInverse = NumberMatrix.builder().fromArray([[0.6, -0.7], [-0.2, 0.4]]);
+      const A = mat([[4, 7], [2, 6]]);
+      const expectedInverse = mat([[0.6, -0.7], [-0.2, 0.4]]);
       const aInv = inverse(A) as Matrix<number>;
       expect(aInv).to.not.be.undefined;
       expect(aInv.equals(expectedInverse)).to.be.true;
     });
 
     it('rejects a non-square matrix', () => {
-      const nonSquare = NumberMatrix.builder().fromArray([[0, 1]]);
+      const nonSquare = mat([[0, 1]]);
       expect(() => inverse(nonSquare)).to.throw();
     });
 
     it('returns undefined for a singular matrix', () => {
-      const S = NumberMatrix.builder().fromArray([[0, 0], [0, 0]]);
+      const S = mat([[0, 0], [0, 0]]);
       const sInv = inverse(S);
       expect(sInv).to.be.undefined;
     });

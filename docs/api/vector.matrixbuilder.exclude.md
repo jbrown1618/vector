@@ -9,14 +9,14 @@ Constructs a new matrix with all entries in row `rowToExclude` and in column `co
 <b>Signature:</b>
 
 ```typescript
-exclude(matrix: M, rowToExclude: number, columnToExclude: number): M;
+exclude(matrix: Matrix<S>, rowToExclude: number, columnToExclude: number): M;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  matrix | <code>M</code> | The input matrix |
+|  matrix | <code>Matrix&lt;S&gt;</code> | The input matrix |
 |  rowToExclude | <code>number</code> | The index of the row that will be removed |
 |  columnToExclude | <code>number</code> | The index of the column that will be removed |
 

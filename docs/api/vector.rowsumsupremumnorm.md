@@ -26,7 +26,7 @@ export declare function rowSumSupremumNorm<S>(A: Matrix<S>): number;
 
 
 ```
-const A = matrixBuilder.fromArray([[1, 2], [3, 4]]);
+const A = mat([[1, 2], [3, 4]]);
 const norm = rowSumSupremumNorm(A); // 7
 
 ```

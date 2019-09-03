@@ -9,14 +9,14 @@ Constructs a square diagonal matrix whose diagonal entries come from `diagonalEn
 <b>Signature:</b>
 
 ```typescript
-diagonal(diagonalEntries: V): M;
+diagonal(diagonalEntries: Vector<S>): M;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  diagonalEntries | <code>V</code> | A vector whose entries will be used as the diagonal entries of the new matrix |
+|  diagonalEntries | <code>Vector&lt;S&gt;</code> | A vector whose entries will be used as the diagonal entries of the new matrix |
 
 <b>Returns:</b>
 

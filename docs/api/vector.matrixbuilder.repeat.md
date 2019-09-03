@@ -9,14 +9,14 @@ Constructs a new matrix consisted of repetitions of a smaller matrix.
 <b>Signature:</b>
 
 ```typescript
-repeat(matrix: M, rows: number, columns: number): M;
+repeat(matrix: Matrix<S>, rows: number, columns: number): M;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  matrix | <code>M</code> | The matrix to be repeated |
+|  matrix | <code>Matrix&lt;S&gt;</code> | The matrix to be repeated |
 |  rows | <code>number</code> | The number of times to repeat the matrix vertically |
 |  columns | <code>number</code> | The number of times to repeat the matrix horizontally |
 

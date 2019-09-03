@@ -1,5 +1,6 @@
 import { Matrix } from '../types/matrix/Matrix';
 import { Vector } from '../types/vector/Vector';
+import { isVector } from '../utilities/typeGuards';
 
 /**
  * Calcualtes the mean of the values in the vector `x`
@@ -220,8 +221,4 @@ export function correlation<S>(xOrA: Matrix<S> | Vector<S>, s?: Vector<S>): S | 
       .multiply(centered)
       .scalarMultiply(dimInverse);
   }
-}
-
-function isVector<S>(xOrA: Matrix<S> | Vector<S>): xOrA is Vector<S> {
-  return !(xOrA as any).vectorBuilder;
 }

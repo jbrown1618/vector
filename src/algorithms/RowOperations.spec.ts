@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { describe, it } from 'mocha';
-import { NumberMatrix } from '../types/matrix/NumberMatrix';
+import { mat } from '../utilities/aliases';
 import {
   addRowToRow,
   addScalarMultipleOfRowToRow,
@@ -10,7 +10,7 @@ import {
 } from './RowOperations';
 
 describe('RowOperations', () => {
-  const original = NumberMatrix.builder().fromArray([[1, 2, 3], [4, 5, 6], [7, 8, 9]]);
+  const original = mat([[1, 2, 3], [4, 5, 6], [7, 8, 9]]);
 
   describe('multiplyRowByScalar', () => {
     it('returns a new matrix with the correct transformation applied', () => {
@@ -42,9 +42,9 @@ describe('RowOperations', () => {
 
   describe('pivot', () => {
     it('sorts a matrix by the number of leading zeros', () => {
-      const unsorted = NumberMatrix.builder().fromArray([[0, 5, 5], [5, 5, 5], [0, 0, 5]]);
-      const sorted = NumberMatrix.builder().fromArray([[5, 5, 5], [0, 5, 5], [0, 0, 5]]);
-      const permutation = NumberMatrix.builder().fromArray([[0, 1, 0], [1, 0, 0], [0, 0, 1]]);
+      const unsorted = mat([[0, 5, 5], [5, 5, 5], [0, 0, 5]]);
+      const sorted = mat([[5, 5, 5], [0, 5, 5], [0, 0, 5]]);
+      const permutation = mat([[0, 1, 0], [1, 0, 0], [0, 0, 1]]);
 
       const result = pivot(unsorted);
       expect(result.result).to.deep.equal(sorted);

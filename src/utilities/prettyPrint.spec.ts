@@ -1,17 +1,16 @@
 import { expect } from 'chai';
-import { NumberVector } from '../types/vector/NumberVector';
+import { vec, mat } from './aliases';
 import { prettyPrint } from './prettyPrint';
-import { NumberMatrix } from '../types/matrix/NumberMatrix';
 import { ComplexVector } from '../types/vector/ComplexVector';
 import { ComplexNumber } from '../types/scalar/ComplexNumber';
 import { ComplexMatrix } from '../types/matrix/ComplexMatrix';
 
 describe('prettyPrint', () => {
   it('prints a NumberVector', () => {
-    const v = NumberVector.builder().fromArray([1, 22, 333]);
+    const v = vec([1, 22, 333]);
     expect(prettyPrint(v)).to.equal('[   1 ]\n[  22 ]\n[ 333 ]');
 
-    const u = NumberVector.builder().fromArray([1, 0.222, 1 / 3]);
+    const u = vec([1, 0.222, 1 / 3]);
     expect(prettyPrint(u)).to.equal('[        1 ]\n[    0.222 ]\n[ 0.333333 ]');
   });
 
@@ -25,7 +24,7 @@ describe('prettyPrint', () => {
   });
 
   it('prints a NumberMatrix', () => {
-    const v = NumberMatrix.builder().fromArray([[1, 22222, 333], [444, 5, 6], [77, 88, 9999]]);
+    const v = mat([[1, 22222, 333], [444, 5, 6], [77, 88, 9999]]);
     expect(prettyPrint(v)).to.equal(
       '[   1  22222   333 ]\n[ 444      5     6 ]\n[  77     88  9999 ]'
     );

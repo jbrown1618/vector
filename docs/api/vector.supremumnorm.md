@@ -26,7 +26,7 @@ export declare function supremumNorm<S>(v: Vector<S>): number;
 
 
 ```
-const v = vectorBuilder.fromArray([3, 4]);
+const v = vec([3, 4]);
 const norm = supremumNorm(v); // 4
 
 ```

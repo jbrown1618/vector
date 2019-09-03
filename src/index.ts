@@ -31,5 +31,6 @@ export * from './types/vector/SparseNumberVector';
 export * from './types/vector/SparseVector';
 export * from './types/vector/Vector';
 export * from './types/vector/VectorBuilder';
+export * from './utilities/aliases';
 export * from './utilities/MatrixProperties';
 export * from './utilities/prettyPrint';
