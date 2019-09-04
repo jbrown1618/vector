@@ -18,6 +18,7 @@
 |  [NumberMatrix](./vector.numbermatrix.md) | A dense matrix of JavaScript <code>number</code> primitives, implemented as an [ArrayMatrix](./vector.arraymatrix.md) |
 |  [NumberOperations](./vector.numberoperations.md) | Implements the basic [ScalarOperations](./vector.scalaroperations.md) on <code>number</code>s |
 |  [NumberVector](./vector.numbervector.md) | A dense [Vector](./vector.vector.md) of <code>number</code>s implemented as a [ArrayVector](./vector.arrayvector.md) |
+|  [RowOperations](./vector.rowoperations.md) | A wrapper for static methods representing the elementary row operations |
 |  [ScalarOperations](./vector.scalaroperations.md) | A class which encapsulates the basic arithmetic operations for an arbitrary scalar type. |
 |  [SparseMatrix](./vector.sparsematrix.md) | Implements [Matrix](./vector.matrix.md) with a map of indices to nonzero values. |
 |  [SparseNumberMatrix](./vector.sparsenumbermatrix.md) | A [Matrix](./vector.matrix.md) implemented as a sparse set of JS <code>number</code> primitives keyed by their indices. |
@@ -29,8 +30,6 @@
 
 |  Function | Description |
 |  --- | --- |
-|  [addRowToRow(matrix, targetRow, rowToAdd)](./vector.addrowtorow.md) | An elementary row operations which returns a new matrix whose row at <code>targetRow</code> has had the row at <code>rowToAdd</code> added to it. |
-|  [addScalarMultipleOfRowToRow(matrix, targetRow, rowToAdd, scalar)](./vector.addscalarmultipleofrowtorow.md) | An elementary row operations which returns a new matrix whose row at <code>targetRow</code> has had a scalar multiple of <code>rowToAdd</code> added to it. |
 |  [backwardDifferenceMatrix(binCount)](./vector.backwarddifferencematrix.md) | Builds a matrix that transforms a vector to a vector of backward differences |
 |  [calculateCholeskyDecomposition(A)](./vector.calculatecholeskydecomposition.md) | Uses the serial version of the Cholesky algorith to calculate the Cholesky decomposition of a matrix <code>A</code>. |
 |  [calculateEigenvalues(A, numIterations)](./vector.calculateeigenvalues.md) | Uses the QR algorithm to compute the eigenvalues of a matrix <code>A</code> |
@@ -53,7 +52,6 @@
 |  [diag(elements)](./vector.diag.md) | Creates a new matrix with the specified entries on the diagonal. See [MatrixBuilder.diagonal()](./vector.matrixbuilder.diagonal.md) |
 |  [eig(A, numIterations)](./vector.eig.md) | Uses the QR algorithm to compute the eigenvalues and eigenvectors of a matrix <code>A</code> |
 |  [euclideanNorm(v)](./vector.euclideannorm.md) | Calculates the Euclidean Norm (or 2-Norm) of a vector <code>v</code> |
-|  [exchangeRows(matrix, first, second)](./vector.exchangerows.md) | An elementary row operations which returns a new matrix whose row at index <code>first</code> has been exchanged with the row at index <code>second</code> |
 |  [exp(A, order)](./vector.exp.md) | Implements the Pade Approximant to compute the exponential of matrix <code>A</code> |
 |  [eye(size)](./vector.eye.md) | Creates a new identity matrix of size <code>size</code>. See [MatrixBuilder.identity()](./vector.matrixbuilder.identity.md) |
 |  [forwardDifferenceMatrix(binCount)](./vector.forwarddifferencematrix.md) | Builds a matrix that transforms a vector to a vector of forward differences |
@@ -72,11 +70,9 @@
 |  [mat(data)](./vector.mat.md) | Creates a new [Matrix](./vector.matrix.md) of numbers. See [MatrixBuilder.fromArray()](./vector.matrixbuilder.fromarray.md) |
 |  [mean(x)](./vector.mean.md) | Calcualtes the mean of the values in the vector <code>x</code> |
 |  [mean(A)](./vector.mean_1.md) | Calculates the mean vector of the matrix <code>A</code> |
-|  [multiplyRowByScalar(matrix, rowIndex, scalar)](./vector.multiplyrowbyscalar.md) | An elementary row operations which returns a new matrix whose row at <code>rowIndex</code> is multipled by <code>scalar</code> |
 |  [normalize(v)](./vector.normalize.md) | Returns a vector with the same direction as the input <code>v</code>, but with a Euclidean norm of 1 |
 |  [ones(entries)](./vector.ones.md) | Creates a new vector of all 1s. See [VectorBuilder.ones()](./vector.vectorbuilder.ones.md) |
 |  [ones(rows, columns)](./vector.ones_1.md) | Creates a new matrix of all 1s. See [MatrixBuilder.ones()](./vector.matrixbuilder.ones.md) |
-|  [pivot(matrix)](./vector.pivot.md) | Sorts the rows of a matrix according to the number of leading zeros and the magnitude of the first nonzero entry |
 |  [pNorm(v, p)](./vector.pnorm.md) | Calculates the P-Norm of a vector <code>v</code> |
 |  [pow(A, n)](./vector.pow.md) | Computes \_A^n\_ recursively. |
 |  [prettyPrint(num)](./vector.prettyprint.md) | Returns an easy-to-read string representing a <code>number</code> |
