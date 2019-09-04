@@ -5,12 +5,6 @@
 ```ts
 
 // @public
-export function addRowToRow<S>(matrix: Matrix<S>, targetRow: number, rowToAdd: number): Matrix<S>;
-
-// @public
-export function addScalarMultipleOfRowToRow<S>(matrix: Matrix<S>, targetRow: number, rowToAdd: number, scalar: S): Matrix<S>;
-
-// @public
 export type ApproximationFunction<S> = (input: Vector<S>) => S;
 
 // @public
@@ -221,9 +215,6 @@ export interface EigenPair<S> {
 export function euclideanNorm<S>(v: Vector<S>): number;
 
 // @public
-export function exchangeRows<S>(matrix: Matrix<S>, first: number, second: number): Matrix<S>;
-
-// @public
 export function exp<S>(A: Matrix<S>, order?: number): Matrix<S>;
 
 // @public
@@ -394,9 +385,6 @@ export function mean<S>(x: Vector<S>): S;
 export function mean<S>(A: Matrix<S>): Vector<S>;
 
 // @public
-export function multiplyRowByScalar<S>(matrix: Matrix<S>, rowIndex: number, scalar: S): Matrix<S>;
-
-// @public
 export function normalize<S>(v: Vector<S>): Vector<S> | undefined;
 
 // @public
@@ -452,9 +440,6 @@ export function ones(entries: number): Vector<number>;
 export function ones(rows: number, columns: number): Matrix<number>;
 
 // @public
-export function pivot<S>(matrix: Matrix<S>): RowOperationResult<S>;
-
-// @public
 export function pNorm<S>(v: Vector<S>, p: number): number;
 
 // @public
@@ -492,6 +477,15 @@ export interface RowOperationResult<S> {
     operator: Matrix<S>;
     // (undocumented)
     result: Matrix<S>;
+}
+
+// @public
+export class RowOperations {
+    static addRowToRow<S>(matrix: Matrix<S>, targetRow: number, rowToAdd: number): Matrix<S>;
+    static addScalarMultipleOfRowToRow<S>(matrix: Matrix<S>, targetRow: number, rowToAdd: number, scalar: S): Matrix<S>;
+    static exchangeRows<S>(matrix: Matrix<S>, first: number, second: number): Matrix<S>;
+    static multiplyRowByScalar<S>(matrix: Matrix<S>, rowIndex: number, scalar: S): Matrix<S>;
+    static pivot<S>(matrix: Matrix<S>): RowOperationResult<S>;
 }
 
 // @public

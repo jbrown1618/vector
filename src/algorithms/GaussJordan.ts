@@ -2,7 +2,7 @@ import { Matrix } from '../types/matrix/Matrix';
 import { Vector } from '../types/vector/Vector';
 import { assertSquare } from '../utilities/ErrorAssertions';
 import { LinearSolution } from './LinearSolution';
-import { addScalarMultipleOfRowToRow, multiplyRowByScalar, pivot } from './RowOperations';
+import { RowOperations } from './RowOperations';
 import { backwardSubstituteAugmentedMatrix } from './Substitution';
 
 /**
@@ -90,7 +90,7 @@ export function reducedRowEchelonForm<S>(matrix: Matrix<S>): Matrix<S> {
     }
     if (firstNonzeroEntry) {
       const inverse = ops.getMultiplicativeInverse(firstNonzeroEntry) as S;
-      matrix = multiplyRowByScalar(matrix, rowIndex, inverse);
+      matrix = RowOperations.multiplyRowByScalar(matrix, rowIndex, inverse);
     }
   }
 
@@ -122,7 +122,7 @@ export function rowEchelonForm<S>(matrix: Matrix<S>): Matrix<S> {
   const maxNumberOfPivotEntries = Math.min(matrix.getNumberOfRows(), matrix.getNumberOfColumns());
 
   for (let pivotRow = 0; pivotRow < maxNumberOfPivotEntries; pivotRow++) {
-    matrix = pivot(matrix).result;
+    matrix = RowOperations.pivot(matrix).result;
     let pivotColumn = pivotRow;
     let pivotEntry = matrix.getEntry(pivotRow, pivotColumn);
 
@@ -158,7 +158,7 @@ function clearEntriesBelow<S>(matrix: Matrix<S>, pivotRow: number, pivotColumn: 
 
     // not undefined because pivotEntry is not 0
     const coefficient = ops.divide(ops.getAdditiveInverse(entry), pivotEntry) as S;
-    matrix = addScalarMultipleOfRowToRow(matrix, rowIndex, pivotRow, coefficient);
+    matrix = RowOperations.addScalarMultipleOfRowToRow(matrix, rowIndex, pivotRow, coefficient);
   }
 
   return matrix;
@@ -198,7 +198,12 @@ function clearEntriesAbove<S>(matrix: Matrix<S>, pivotRow: number, pivotColumn: 
       continue;
     }
 
-    matrix = addScalarMultipleOfRowToRow(matrix, rowIndex, pivotRow, ops.getAdditiveInverse(entry));
+    matrix = RowOperations.addScalarMultipleOfRowToRow(
+      matrix,
+      rowIndex,
+      pivotRow,
+      ops.getAdditiveInverse(entry)
+    );
   }
   return matrix;
 }
