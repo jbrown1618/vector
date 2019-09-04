@@ -19,6 +19,7 @@ A linear algebra library written in TypeScript that focuses on generality, exten
 - Differentiation via finite differences
 - Least-Squares Regression for arbitrary model functions
 - Eigenvalue / Eigenvector finding
+- Principal component analysis
 - And more to come!
 
 ## Design Priorities

@@ -73,12 +73,14 @@
 |  [normalize(v)](./vector.normalize.md) | Returns a vector with the same direction as the input <code>v</code>, but with a Euclidean norm of 1 |
 |  [ones(entries)](./vector.ones.md) | Creates a new vector of all 1s. See [VectorBuilder.ones()](./vector.vectorbuilder.ones.md) |
 |  [ones(rows, columns)](./vector.ones_1.md) | Creates a new matrix of all 1s. See [MatrixBuilder.ones()](./vector.matrixbuilder.ones.md) |
+|  [pca(A, useCorrelation)](./vector.pca.md) | Conducts a principal component analysis of a matrix <code>A</code>, and returns <code>A</code> in a new basis corresponding to the principal components. |
 |  [pNorm(v, p)](./vector.pnorm.md) | Calculates the P-Norm of a vector <code>v</code> |
 |  [pow(A, n)](./vector.pow.md) | Computes \_A^n\_ recursively. |
 |  [prettyPrint(num)](./vector.prettyprint.md) | Returns an easy-to-read string representing a <code>number</code> |
 |  [prettyPrint(vector)](./vector.prettyprint_1.md) | Returns an easy-to-read string representing the contents of a [Vector](./vector.vector.md) |
 |  [prettyPrint(matrix)](./vector.prettyprint_2.md) | Returns an easy-to-read string representing the contents of a [Matrix](./vector.matrix.md) |
 |  [rank(matrix)](./vector.rank.md) | Calculates the rank of a matrix |
+|  [reduceDimensions(A, options)](./vector.reducedimensions.md) | Reduce the number of dimensions of a data matrix <code>A</code> while losing as little information as possible. |
 |  [reducedRowEchelonForm(matrix)](./vector.reducedrowechelonform.md) | Uses Gauss-Jordan elimination with pivoting to convert a matrix to Reduced Row-Echelon Form (RREF) |
 |  [rowEchelonForm(matrix)](./vector.rowechelonform.md) | Uses Gauss-Jordan elimination with pivoting to convert a matrix to Row-Echelon Form (REF) |
 |  [rowSumSupremumNorm(A)](./vector.rowsumsupremumnorm.md) | Calculates the Infinity-Norm of a matrix <code>A</code> |
@@ -107,6 +109,7 @@
 |  [LinearTransformation](./vector.lineartransformation.md) | An abstract linear transformation between vectors of type <code>V</code> and vectors of type <code>U</code>. |
 |  [LUDecomposition](./vector.ludecomposition.md) | The result of an LU Decomposition |
 |  [Matrix](./vector.matrix.md) | A generalized Matrix - one of the core data types |
+|  [PrincipalComponentAnalysis](./vector.principalcomponentanalysis.md) | The result of a principal component analysis. |
 |  [QRDecomposition](./vector.qrdecomposition.md) | The result of a QR decomposition. |
 |  [RowOperationResult](./vector.rowoperationresult.md) | The result of a row operation (<code>result</code>), and the matrix that we multiply by the original matrix to yield that result (<code>operator</code>) |
 |  [SingularValueDecomposition](./vector.singularvaluedecomposition.md) | The result of a Singular Value Decomposition |
@@ -118,6 +121,7 @@
 |  --- | --- |
 |  [ApproximationFunction](./vector.approximationfunction.md) | A function that takes a vector of inputs and produces an output. This must always be a pure function that is linear in its coefficients. |
 |  [ApproximationFunctionTemplate](./vector.approximationfunctiontemplate.md) | A higher-order function which is used to generate an <code>ApproximationFunction</code>. This must be linear in its coefficients, or the result of the linear regression will not be correct. |
+|  [DimensionReductionOptions](./vector.dimensionreductionoptions.md) | Specify how dimension reduction ought to be done. |
 |  [MatrixData](./vector.matrixdata.md) | The data stored in a [Matrix](./vector.matrix.md) represented as a 2-D array |
 |  [MatrixEntryCallback](./vector.matrixentrycallback.md) | A function to execute on an entry in a matrix |
 |  [MatrixEntryFunction](./vector.matrixentryfunction.md) | A function that generates a matrix entry based on an existing entry <code>entry</code>, its row index <code>i</code>, and its column index <code>j</code> |

@@ -200,6 +200,13 @@ export function determinant<S>(matrix: Matrix<S>): S;
 // @public
 export function diag(elements: number[]): Matrix<number>;
 
+// Warning: (ae-forgotten-export) The symbol "DimensionReductionType" needs to be exported by the entry point index.d.ts
+// 
+// @public
+export type DimensionReductionOptions = DimensionReductionType & {
+    useCorrelation?: boolean;
+};
+
 // @public
 export function eig<S>(A: Matrix<S>, numIterations?: number): EigenPair<S>[];
 
@@ -440,6 +447,9 @@ export function ones(entries: number): Vector<number>;
 export function ones(rows: number, columns: number): Matrix<number>;
 
 // @public
+export function pca<S>(A: Matrix<S>, useCorrelation?: boolean): PrincipalComponentAnalysis<S>;
+
+// @public
 export function pNorm<S>(v: Vector<S>, p: number): number;
 
 // @public
@@ -455,6 +465,15 @@ export function prettyPrint<S>(vector: Vector<S>): string;
 export function prettyPrint<S>(matrix: Matrix<S>): string;
 
 // @public
+export interface PrincipalComponentAnalysis<S> {
+    coordinates: Matrix<S>;
+    cumulativeProportions: S[];
+    principalComponents: Vector<S>[];
+    proportions: S[];
+    variances: S[];
+}
+
+// @public
 export interface QRDecomposition<S> {
     // (undocumented)
     Q: Matrix<S>;
@@ -464,6 +483,9 @@ export interface QRDecomposition<S> {
 
 // @public
 export function rank<S>(matrix: Matrix<S>): number;
+
+// @public
+export function reduceDimensions(A: Matrix<number>, options: DimensionReductionOptions): Matrix<number>;
 
 // @public
 export function reducedRowEchelonForm<S>(matrix: Matrix<S>): Matrix<S>;
