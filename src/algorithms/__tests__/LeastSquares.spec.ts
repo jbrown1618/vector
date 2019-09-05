@@ -5,44 +5,15 @@ import {
   calculateLinearLeastSquares,
   solveOverdeterminedSystem
 } from '../LeastSquares';
+import { loadData } from '@test-utils/loadData';
 
 describe('LeastSquares', () => {
-  const singleVariableTestData = [
-    [1, 2.2],
-    [2, 3.5],
-    [3, 6.1],
-    [4, 6],
-    [5, 14],
-    [6, 12],
-    [7, 15],
-    [8, 15.3],
-    [9, 19],
-    [10, 25],
-    [11, 27],
-    [12, 30],
-    [13, 32],
-    [14, 32],
-    [15, 46],
-    [16, 49],
-    [17, 60]
-  ];
-
-  const multiVariableTestData = [
-    [1, 1, 3.2],
-    [2, 3, 8.5],
-    [3, 2, 6.6],
-    [4, 4, 12.1],
-    [5, 3, 12],
-    [6, 5, 16.7],
-    [7, 4, 14.3],
-    [8, 6, 21.3],
-    [9, 5, 18.4],
-    [10, 7, 25]
-  ];
+  const singleVariableTestData = loadData('least-squares-1d');
+  const multiVariableTestData = loadData('least-squares-2d');
 
   describe('calculateLinearLeastSquaresApproximation', () => {
     test('calculates the coefficients for a simple linear regression', () => {
-      const data = singleVariableTestData.map(pointArray => vec(pointArray));
+      const data = singleVariableTestData.getRowVectors();
       const result = calculateLinearLeastSquares(data);
 
       // According to Excel, the trend line equation for this data is y = -5.7147 + 3.2108x
@@ -62,7 +33,7 @@ describe('LeastSquares', () => {
     });
 
     test('calculates the coefficients for a multiple linear regression', () => {
-      const data = multiVariableTestData.map(pointArray => vec(pointArray));
+      const data = multiVariableTestData.getRowVectors();
       const result = calculateLinearLeastSquares(data);
 
       const expectedCoefficients = vec([
@@ -116,7 +87,7 @@ describe('LeastSquares', () => {
 
   describe('calculateGeneralLeastSquaresApproximation', () => {
     test('calculates a quadratic regression', () => {
-      const data = singleVariableTestData.map(pointArray => vec(pointArray));
+      const data = singleVariableTestData.getRowVectors();
       const quadraticTemplate = (coefficients: Vector<number>) => (inputs: Vector<number>) => {
         const x = inputs.getEntry(0);
         const constantTerm = coefficients.getEntry(0);

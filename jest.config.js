@@ -12,5 +12,9 @@ module.exports = {
       lines: 98,
       statements: 98
     }
+  },
+  moduleNameMapper: {
+    '^@test-utils/(.*)$': '<rootDir>/test/utils/$1',
+    '^@src/(.*)$': '<rootDir>/src/$1'
   }
 };
