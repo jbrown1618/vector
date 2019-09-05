@@ -6,7 +6,7 @@ script:
   - npm run build
   - npm run format:check
   - npm run lint:check
-  - npm run coverage:check
+  - npm run coverage
   - npm run docs:check
 
 deploy:

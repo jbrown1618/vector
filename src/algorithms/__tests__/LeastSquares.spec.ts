@@ -1,12 +1,10 @@
-import { expect } from 'chai';
-import { describe, it } from 'mocha';
-import { vec, mat } from '../utilities/aliases';
-import { Vector } from '../types/vector/Vector';
+import { vec, mat } from '../../utilities/aliases';
+import { Vector } from '../../types/vector/Vector';
 import {
   calculateGeneralLeastSquares,
   calculateLinearLeastSquares,
   solveOverdeterminedSystem
-} from './LeastSquares';
+} from '../LeastSquares';
 
 describe('LeastSquares', () => {
   const singleVariableTestData = [
@@ -43,13 +41,13 @@ describe('LeastSquares', () => {
   ];
 
   describe('calculateLinearLeastSquaresApproximation', () => {
-    it('calculates the coefficients for a simple linear regression', () => {
+    test('calculates the coefficients for a simple linear regression', () => {
       const data = singleVariableTestData.map(pointArray => vec(pointArray));
       const result = calculateLinearLeastSquares(data);
 
       // According to Excel, the trend line equation for this data is y = -5.7147 + 3.2108x
       const expectedCoefficients = vec([-5.7147058823529315, 3.210784313725489]);
-      expect(result.coefficients).to.deep.equal(expectedCoefficients);
+      expect(result.coefficients).toStrictEqual(expectedCoefficients);
 
       // The approximation function should be a line
       const expectedApproximator = (input: number) =>
@@ -59,11 +57,11 @@ describe('LeastSquares', () => {
       inputValuesToCheck.forEach(value => {
         const approximated = result.approximationFunction(vec([value]));
         const expected = expectedApproximator(value);
-        expect(approximated).to.equal(expected);
+        expect(approximated).toEqual(expected);
       });
     });
 
-    it('calculates the coefficients for a multiple linear regression', () => {
+    test('calculates the coefficients for a multiple linear regression', () => {
       const data = multiVariableTestData.map(pointArray => vec(pointArray));
       const result = calculateLinearLeastSquares(data);
 
@@ -72,7 +70,7 @@ describe('LeastSquares', () => {
         0.7366666666666807,
         2.5416666666666448
       ]);
-      expect(result.coefficients).to.deep.equal(expectedCoefficients);
+      expect(result.coefficients).toStrictEqual(expectedCoefficients);
 
       // The approximation function should be a plane
       const expectedApproximator = (x1: number, x2: number) =>
@@ -84,11 +82,11 @@ describe('LeastSquares', () => {
       inputValuesToCheck.forEach(value => {
         const approximated = result.approximationFunction(vec([value, value]));
         const expected = expectedApproximator(value, value);
-        expect(approximated).to.equal(expected);
+        expect(approximated).toEqual(expected);
       });
     });
 
-    it('yields an exact solution when there are two data points', () => {
+    test('yields an exact solution when there are two data points', () => {
       const exactData = [vec([0, 0]), vec([1, 1])];
       const result = calculateLinearLeastSquares(exactData);
 
@@ -96,28 +94,28 @@ describe('LeastSquares', () => {
       const expectedCoefficients = vec([0, 1]);
       const expectedApproximator = (x: number) => x;
 
-      expect(result.coefficients).to.deep.equal(expectedCoefficients);
+      expect(result.coefficients).toStrictEqual(expectedCoefficients);
 
       const inputValuesToCheck = [-1, 0, 1, 20];
       inputValuesToCheck.forEach(value => {
         const approximated = result.approximationFunction(vec([value]));
         const expected = expectedApproximator(value);
-        expect(approximated).to.equal(expected);
+        expect(approximated).toEqual(expected);
       });
     });
 
-    it('rejects non-homogeneous data', () => {
+    test('rejects non-homogeneous data', () => {
       const nonHomogeneousData = [vec([1, 1]), vec([1, 1, 1])];
-      expect(() => calculateLinearLeastSquares(nonHomogeneousData)).to.throw();
+      expect(() => calculateLinearLeastSquares(nonHomogeneousData)).toThrow();
     });
 
-    it('rejects empty data', () => {
-      expect(() => calculateLinearLeastSquares([])).to.throw();
+    test('rejects empty data', () => {
+      expect(() => calculateLinearLeastSquares([])).toThrow();
     });
   });
 
   describe('calculateGeneralLeastSquaresApproximation', () => {
-    it('calculates a quadratic regression', () => {
+    test('calculates a quadratic regression', () => {
       const data = singleVariableTestData.map(pointArray => vec(pointArray));
       const quadraticTemplate = (coefficients: Vector<number>) => (inputs: Vector<number>) => {
         const x = inputs.getEntry(0);
@@ -134,7 +132,7 @@ describe('LeastSquares', () => {
         0.3250257997935815,
         0.1603199174406616
       ]);
-      expect(result.coefficients).to.deep.equal(expectedCoefficients);
+      expect(result.coefficients).toStrictEqual(expectedCoefficients);
 
       // The approximation function should be a parabola
       const expectedApproximator = (input: number) =>
@@ -146,26 +144,26 @@ describe('LeastSquares', () => {
       inputValuesToCheck.forEach(value => {
         const approximated = result.approximationFunction(vec([value]));
         const expected = expectedApproximator(value);
-        expect(approximated).to.equal(expected);
+        expect(approximated).toEqual(expected);
       });
     });
 
     const uselessFunctionTemplate = () => () => 0;
 
-    it('rejects non-homogeneous data', () => {
+    test('rejects non-homogeneous data', () => {
       const nonHomogeneousData = [vec([1, 1]), vec([1, 1, 1])];
       expect(() =>
         calculateGeneralLeastSquares(nonHomogeneousData, uselessFunctionTemplate, 0)
-      ).to.throw();
+      ).toThrow();
     });
 
-    it('rejects empty data', () => {
-      expect(() => calculateGeneralLeastSquares([], uselessFunctionTemplate, 0)).to.throw();
+    test('rejects empty data', () => {
+      expect(() => calculateGeneralLeastSquares([], uselessFunctionTemplate, 0)).toThrow();
     });
   });
 
   describe('solveOverdeterminedSystem', () => {
-    it('gives an approximate solution to an overdetermined system', () => {
+    test('gives an approximate solution to an overdetermined system', () => {
       const A = mat([
         [1, 1],
         [1, 2],
@@ -190,22 +188,22 @@ describe('LeastSquares', () => {
 
       const x = solveOverdeterminedSystem(A, b);
 
-      expect(x).to.deep.equal(vec([-5.7147058823529315, 3.210784313725489]));
+      expect(x).toStrictEqual(vec([-5.7147058823529315, 3.210784313725489]));
     });
 
-    it('rejects a system where A is underdetermined', () => {
+    test('rejects a system where A is underdetermined', () => {
       const A = mat([[1, 2, 3], [4, 5, 6]]);
       const b = vec([1, 2]);
 
       const solution = solveOverdeterminedSystem(A, b);
-      expect(solution).to.not.be.undefined;
+      expect(solution).not.toBeUndefined;
     });
 
-    it('rejects a system with a dimension mismatch', () => {
+    test('rejects a system with a dimension mismatch', () => {
       const A = mat([[1, 2], [3, 4], [5, 6]]);
       const b = vec([1, 2, 3, 4]);
 
-      expect(() => solveOverdeterminedSystem(A, b)).to.throw();
+      expect(() => solveOverdeterminedSystem(A, b)).toThrow();
     });
   });
 });

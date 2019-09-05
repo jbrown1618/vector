@@ -1,115 +1,113 @@
-import { expect } from 'chai';
-import { describe, it } from 'mocha';
-import { ComplexNumber } from '../..';
-import { ComplexVector } from './ComplexVector';
-import { NumberVector } from './NumberVector';
+import { ComplexNumber } from '../../..';
+import { ComplexVector } from '../ComplexVector';
+import { NumberVector } from '../NumberVector';
 
 describe('VectorBuilder', () => {
   const builder = NumberVector.builder();
 
   describe('fromValues', () => {
-    it('builds a vector whose elements are the provided arguments', () => {
+    test('builds a vector whose elements are the provided arguments', () => {
       const data = [1, 2, 3, 4, 5];
-      expect(builder.fromValues(...data).toArray()).to.deep.equal(data);
+      expect(builder.fromValues(...data).toArray()).toStrictEqual(data);
     });
 
-    it('handles no arguments', () => {
-      expect(builder.fromValues().toArray()).to.deep.equal([]);
+    test('handles no arguments', () => {
+      expect(builder.fromValues().toArray()).toStrictEqual([]);
     });
   });
 
   describe('fromArray', () => {
-    it('builds a vector from an array of data values', () => {
+    test('builds a vector from an array of data values', () => {
       const data = [1, 2, 3, 4, 5];
-      expect(builder.fromArray(data).toArray()).to.deep.equal(data);
+      expect(builder.fromArray(data).toArray()).toStrictEqual(data);
     });
 
-    it('handles an empty array', () => {
-      expect(builder.fromArray([]).toArray()).to.deep.equal([]);
+    test('handles an empty array', () => {
+      expect(builder.fromArray([]).toArray()).toStrictEqual([]);
     });
   });
 
   describe('fromNumberArray', () => {
-    it('builds a vector from an array of numbers', () => {
+    test('builds a vector from an array of numbers', () => {
       const data = [1, 2, 3, 4, 5];
-      expect(builder.fromNumberArray(data).toArray()).to.deep.equal(data);
+      expect(builder.fromNumberArray(data).toArray()).toStrictEqual(data);
     });
 
-    it('builds a complex vector from numbers', () => {
+    test('builds a complex vector from numbers', () => {
       const data = [1, 2, 3];
       const expected = ComplexVector.builder().fromArray([
         new ComplexNumber(1, 0),
         new ComplexNumber(2, 0),
         new ComplexNumber(3, 0)
       ]);
-      expect(ComplexVector.builder().fromNumberArray(data)).to.deep.equal(expected);
+      expect(ComplexVector.builder().fromNumberArray(data)).toStrictEqual(expected);
     });
 
-    it('handles an empty array', () => {
-      expect(builder.fromArray([]).toArray()).to.deep.equal([]);
+    test('handles an empty array', () => {
+      expect(builder.fromArray([]).toArray()).toStrictEqual([]);
     });
   });
 
   describe('fromSparseData', () => {
-    it('builds a vector of all 0s except for the specified entries', () => {
+    test('builds a vector of all 0s except for the specified entries', () => {
       const sparseData: Map<number, number> = new Map();
       sparseData.set(3, 1);
       sparseData.set(4, 2);
       const V = builder.fromSparseData(6, sparseData);
       const expected = builder.fromArray([0, 0, 0, 1, 2, 0]);
-      expect(V.equals(expected)).to.be.true;
+      expect(V.equals(expected)).toBe(true);
     });
 
-    it('handles an empty map', () => {
-      expect(builder.fromSparseData(5, new Map())).to.deep.equal(builder.zeros(5));
+    test('handles an empty map', () => {
+      expect(builder.fromSparseData(5, new Map())).toStrictEqual(builder.zeros(5));
     });
   });
 
   describe('fromIndexFunction', () => {
-    it('builds a vector whose values are determined by a function of their index', () => {
+    test('builds a vector whose values are determined by a function of their index', () => {
       const expected = builder.fromArray([0, 2, 4, 6, 8]);
-      expect(builder.fromIndexFunction(5, i => i * 2)).to.deep.equal(expected);
+      expect(builder.fromIndexFunction(5, i => i * 2)).toStrictEqual(expected);
     });
 
-    it('handles size 0', () => {
-      expect(builder.fromIndexFunction(0, i => i)).to.deep.equal(builder.empty());
+    test('handles size 0', () => {
+      expect(builder.fromIndexFunction(0, i => i)).toStrictEqual(builder.empty());
     });
 
-    it('rejects a negative size', () => {
-      expect(() => builder.fromIndexFunction(-1, i => i)).to.throw();
+    test('rejects a negative size', () => {
+      expect(() => builder.fromIndexFunction(-1, i => i)).toThrow();
     });
   });
 
   describe('map', () => {
-    it('builds a vector by transforming the values of another vector', () => {
+    test('builds a vector by transforming the values of another vector', () => {
       const original = builder.fromValues(1, 2, 3, 4);
       const expected = builder.fromValues(1, 3, 5, 7);
-      expect(builder.map(original, (value, index) => value + index)).to.deep.equal(expected);
+      expect(builder.map(original, (value, index) => value + index)).toStrictEqual(expected);
     });
 
-    it('handles an empty vector', () => {
-      expect(builder.map(builder.empty(), value => value + 1)).to.deep.equal(builder.empty());
+    test('handles an empty vector', () => {
+      expect(builder.map(builder.empty(), value => value + 1)).toStrictEqual(builder.empty());
     });
   });
 
   describe('empty', () => {
-    it('returns an empty vector', () => {
+    test('returns an empty vector', () => {
       const E = builder.empty();
-      expect(E.getDimension()).to.equal(0);
-      expect(E.toArray()).to.deep.equal([]);
+      expect(E.getDimension()).toEqual(0);
+      expect(E.toArray()).toStrictEqual([]);
     });
   });
 
   describe('fill', () => {
-    it('builds a vector whose entries are all equal to the provided value', () => {
+    test('builds a vector whose entries are all equal to the provided value', () => {
       const testForDimension = (dim: number, value: number) => {
         const filled = builder.fill(value, dim);
-        expect(filled.getDimension()).to.equal(dim);
+        expect(filled.getDimension()).toEqual(dim);
         const allCorrectValue = filled
           .toArray()
           .map((entry: number) => entry === value)
           .reduce((all: boolean, current: boolean) => all && current, true);
-        expect(allCorrectValue).to.be.true;
+        expect(allCorrectValue).toBe(true);
       };
 
       for (let dim = 0; dim < 10; dim++) {
@@ -119,21 +117,21 @@ describe('VectorBuilder', () => {
       }
     });
 
-    it('rejects a negative size', () => {
-      expect(() => builder.fill(2, -1)).to.throw();
+    test('rejects a negative size', () => {
+      expect(() => builder.fill(2, -1)).toThrow();
     });
   });
 
   describe('zeros', () => {
-    it('constructs an all-zero vector', () => {
+    test('constructs an all-zero vector', () => {
       const testForDimension = (dim: number) => {
         const zeros = builder.zeros(dim);
-        expect(zeros.getDimension()).to.equal(dim);
+        expect(zeros.getDimension()).toEqual(dim);
         const allZero = zeros
           .toArray()
           .map((entry: number) => entry === 0)
           .reduce((all: boolean, current: boolean) => all && current, true);
-        expect(allZero).to.be.true;
+        expect(allZero).toBe(true);
       };
 
       for (let dim = 0; dim < 100; dim++) {
@@ -141,21 +139,21 @@ describe('VectorBuilder', () => {
       }
     });
 
-    it('rejects a negative size', () => {
-      expect(() => builder.zeros(-1)).to.throw();
+    test('rejects a negative size', () => {
+      expect(() => builder.zeros(-1)).toThrow();
     });
   });
 
   describe('ones', () => {
-    it('constructs an all-one vector', () => {
+    test('constructs an all-one vector', () => {
       const testForDimension = (dim: number) => {
         const ones = builder.ones(dim);
-        expect(ones.getDimension()).to.equal(dim);
+        expect(ones.getDimension()).toEqual(dim);
         const allOne = ones
           .toArray()
           .map(entry => entry === 1)
           .reduce((all, current) => all && current, true);
-        expect(allOne).to.be.true;
+        expect(allOne).toBe(true);
       };
 
       for (let dim = 0; dim < 100; dim++) {
@@ -163,21 +161,21 @@ describe('VectorBuilder', () => {
       }
     });
 
-    it('rejects a negative size', () => {
-      expect(() => builder.ones(-1)).to.throw();
+    test('rejects a negative size', () => {
+      expect(() => builder.ones(-1)).toThrow();
     });
   });
 
   describe('elementaryVector', () => {
-    it('constructs a vector with all zeros, but a one in a particular position', () => {
+    test('constructs a vector with all zeros, but a one in a particular position', () => {
       const testForDimensionAndPosition = (dim: number, pos: number) => {
         const e = builder.elementaryVector(dim, pos);
-        expect(e.getDimension()).to.equal(dim);
+        expect(e.getDimension()).toEqual(dim);
         const allCorrect = e
           .toArray()
           .map((entry, i) => entry === (i === pos ? 1 : 0))
           .reduce((all, current) => all && current, true);
-        expect(allCorrect).to.be.true;
+        expect(allCorrect).toBe(true);
       };
 
       for (let dim = 0; dim < 25; dim++) {
@@ -187,21 +185,21 @@ describe('VectorBuilder', () => {
       }
     });
 
-    it('throws an error when the index is out of bounds', () => {
+    test('throws an error when the index is out of bounds', () => {
       for (let dim = 0; dim < 100; dim++) {
-        expect(() => builder.elementaryVector(dim, -1)).to.throw();
+        expect(() => builder.elementaryVector(dim, -1)).toThrow();
         if (dim > 0) {
-          expect(() => builder.elementaryVector(dim, 0)).not.to.throw();
-          expect(() => builder.elementaryVector(dim, dim - 1)).not.to.throw();
+          expect(() => builder.elementaryVector(dim, 0)).not.toThrow();
+          expect(() => builder.elementaryVector(dim, dim - 1)).not.toThrow();
         }
-        expect(() => builder.elementaryVector(dim, dim)).to.throw();
-        expect(() => builder.elementaryVector(dim, dim + 1)).to.throw();
+        expect(() => builder.elementaryVector(dim, dim)).toThrow();
+        expect(() => builder.elementaryVector(dim, dim + 1)).toThrow();
       }
     });
   });
 
   describe('shifted', () => {
-    it('returns a new vector with the entries shifted by an offset', () => {
+    test('returns a new vector with the entries shifted by an offset', () => {
       const original = builder.fromArray([1, 2, 3]);
       const rightOne = builder.shift(original);
       const rightTwo = builder.shift(original, 2);
@@ -212,16 +210,16 @@ describe('VectorBuilder', () => {
       const twoThreeOne = builder.fromArray([2, 3, 1]);
       const threeOneTwo = builder.fromArray([3, 1, 2]);
 
-      expect(rightOne).to.deep.equal(twoThreeOne);
-      expect(rightTwo).to.deep.equal(threeOneTwo);
-      expect(rightThree).to.deep.equal(original);
-      expect(leftOne).to.deep.equal(threeOneTwo);
-      expect(leftTwo).to.deep.equal(twoThreeOne);
+      expect(rightOne).toStrictEqual(twoThreeOne);
+      expect(rightTwo).toStrictEqual(threeOneTwo);
+      expect(rightThree).toStrictEqual(original);
+      expect(leftOne).toStrictEqual(threeOneTwo);
+      expect(leftTwo).toStrictEqual(twoThreeOne);
     });
   });
 
   describe('random', () => {
-    it('constructs a vector of random numbers between min and max', () => {
+    test('constructs a vector of random numbers between min and max', () => {
       const bounds = [-1, 0, 1, 2];
 
       bounds.forEach(min => {
@@ -229,24 +227,24 @@ describe('VectorBuilder', () => {
           if (max > min) {
             const randomVector = builder.random(100, min, max);
             randomVector.toArray().forEach(value => {
-              expect(value).to.be.greaterThan(min);
-              expect(value).to.be.lessThan(max);
+              expect(value).toBeGreaterThan(min);
+              expect(value).toBeLessThan(max);
             });
           }
         });
       });
     });
 
-    it('defaults to min = 0 and max = 1', () => {
+    test('defaults to min = 0 and max = 1', () => {
       const randomVector = builder.random(50);
       randomVector.toArray().forEach(value => {
-        expect(value).to.be.greaterThan(0);
-        expect(value).to.be.lessThan(1);
+        expect(value).toBeGreaterThan(0);
+        expect(value).toBeLessThan(1);
       });
     });
 
-    it('throws an error when min > max', () => {
-      expect(() => builder.random(10, 1, 0)).to.throw();
+    test('throws an error when min > max', () => {
+      expect(() => builder.random(10, 1, 0)).toThrow();
     });
   });
 
@@ -254,7 +252,7 @@ describe('VectorBuilder', () => {
     // Technically this test is non-deterministic and will fail in about 0.006% of cases
     // Ideally we would seed the RNG, but there doesn't seem to be a good way to do that
 
-    it('constructs a vector of numbers randomly drawn from a normal distribution', () => {
+    test('constructs a vector of numbers randomly drawn from a normal distribution', () => {
       const means = [-1, 0, 1];
       const standardDeviations = [1, 2, 10];
       means.forEach(mean => {
@@ -264,41 +262,41 @@ describe('VectorBuilder', () => {
 
           const fourSamplingSDFromMean =
             4 * Math.sqrt((standardDeviation * standardDeviation) / 100);
-          expect(Math.abs(average - mean)).to.be.lessThan(fourSamplingSDFromMean);
+          expect(Math.abs(average - mean)).toBeLessThan(fourSamplingSDFromMean);
         });
       });
     });
 
-    it('defaults to mean=0 and sd=1', () => {
+    test('defaults to mean=0 and sd=1', () => {
       const randomVector = builder.randomNormal(100);
       const average = randomVector.toArray().reduce((accum, next) => accum + next, 0) / 100;
 
       const fourSamplingSDFromMean = 0.4;
-      expect(Math.abs(average)).to.be.lessThan(fourSamplingSDFromMean);
+      expect(Math.abs(average)).toBeLessThan(fourSamplingSDFromMean);
     });
 
-    it('rejects a negative standard deviation', () => {
-      expect(() => builder.randomNormal(1, 0, -1)).to.throw();
+    test('rejects a negative standard deviation', () => {
+      expect(() => builder.randomNormal(1, 0, -1)).toThrow();
     });
   });
 
   describe('concatenate', () => {
-    it('concatenates two non-empty vectors', () => {
+    test('concatenates two non-empty vectors', () => {
       const first = builder.fromArray([1, 2, 3]);
       const second = builder.fromArray([4, 5, 6]);
       const firstSecond = builder.fromArray([1, 2, 3, 4, 5, 6]);
       const secondFirst = builder.fromArray([4, 5, 6, 1, 2, 3]);
-      expect(builder.concatenate(first, second).equals(firstSecond)).to.be.true;
-      expect(builder.concatenate(second, first).equals(secondFirst)).to.be.true;
+      expect(builder.concatenate(first, second).equals(firstSecond)).toBe(true);
+      expect(builder.concatenate(second, first).equals(secondFirst)).toBe(true);
     });
 
-    it('handles empty vectors', () => {
+    test('handles empty vectors', () => {
       const empty = builder.empty();
       const nonEmpty = builder.fromArray([1, 2, 3]);
 
-      expect(builder.concatenate(empty, empty).equals(empty)).to.be.true;
-      expect(builder.concatenate(empty, nonEmpty).equals(nonEmpty)).to.be.true;
-      expect(builder.concatenate(nonEmpty, empty).equals(nonEmpty)).to.be.true;
+      expect(builder.concatenate(empty, empty).equals(empty)).toBe(true);
+      expect(builder.concatenate(empty, nonEmpty).equals(nonEmpty)).toBe(true);
+      expect(builder.concatenate(nonEmpty, empty).equals(nonEmpty)).toBe(true);
     });
   });
 });

@@ -44,25 +44,24 @@ You can run the unit tests with:
 npm run test
 ```
 
-We test with a combination of [Mocha](https://mochajs.org/) and [Chai](https://www.chaijs.com/).
+Our tests are written in [Jest](https://jestjs.io/).
 
 - The test file for `MyModule.ts` must be named `MyModule.spec.ts`.
 - `describe` blocks should be named according to the name of a module, class, or function.
 - Nesting describe blocks is encouraged; it makes the testing results easier to read.
-- `it` blocks should form complete sentences.
 
 ```javascript
 describe('MyModule', () => {
   describe('MyClass', () => {
     describe('someUsefulMethod', () => {
-      it('does a useful thing', () => {
+      test('does a useful thing', () => {
         // Test the useful thing
       });
     });
   });
 
   describe('helperFunction', () => {
-    it('does something which helps consumers work with this module', () => {
+    test('does something which helps consumers work with this module', () => {
       // Test the useful thing
     });
   });
