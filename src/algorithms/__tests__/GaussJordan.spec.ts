@@ -8,6 +8,7 @@ import {
   solveByGaussianElimination
 } from '../GaussJordan';
 import { SolutionType, UnderdeterminedSolution, UniqueSolution } from '../LinearSolution';
+import { loadTestData } from '@test-utils/testData';
 
 describe('GaussJordan', () => {
   describe('solveByGaussianElimination', () => {
@@ -22,12 +23,13 @@ describe('GaussJordan', () => {
     });
 
     test('solves a random 20x20 system', () => {
-      const A = NumberMatrix.builder().random(20, 20);
-      const b = NumberMatrix.vectorBuilder().random(20);
+      const A = loadTestData('random-20x20');
+      const b = loadTestData('random-20x1').getColumn(0);
+
       const solution = solveByGaussianElimination(A, b);
 
-      // Technically this could fail, but it's astronomically unlikely
-      expect(solution.solutionType).toEqual(SolutionType.UNIQUE);
+      expect(solution).toMatchSnapshot();
+      expect(solution.solutionType).toBe(SolutionType.UNIQUE);
       const x = (solution as UniqueSolution<number>).solution;
       expect(A.apply(x).equals(b)).toBe(true);
     });

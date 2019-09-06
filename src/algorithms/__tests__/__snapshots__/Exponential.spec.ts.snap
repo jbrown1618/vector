@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Exponential exp calculates a more precise exponential 1`] = `
+NumberMatrix {
+  "_data": Array [
+    Array [
+      51.968956152216535,
+      74.73656449924971,
+    ],
+    Array [
+      112.1048467488746,
+      164.0738029010913,
+    ],
+  ],
+}
+`;
+
+exports[`Exponential exp calculates the exponential of a matrix 1`] = `
+NumberMatrix {
+  "_data": Array [
+    Array [
+      51.968956797557425,
+      74.73656543978697,
+    ],
+    Array [
+      112.1048481596805,
+      164.073804957238,
+    ],
+  ],
+}
+`;

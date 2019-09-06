@@ -1,6 +1,6 @@
-import { NumberMatrix } from '../../types/matrix/NumberMatrix';
 import { calculateSingularValueDecomposition } from '../SingularValueDecomposition';
 import { diag, mat } from '../../utilities/aliases';
+import { loadTestData } from '@test-utils/testData';
 
 describe('SingularValueDecomposition', () => {
   describe('calculateSingularValueDecomposition', () => {
@@ -33,10 +33,11 @@ describe('SingularValueDecomposition', () => {
     });
 
     test('calculates the SVD for a random 20x20 matrix', () => {
-      const A = NumberMatrix.builder().random(20);
-      const { U, Sigma, V } = calculateSingularValueDecomposition(A);
+      const A = loadTestData('random-20x20');
+      const svd = calculateSingularValueDecomposition(A);
+      expect(svd).toMatchSnapshot();
       // Check that USigmaV* equals A
-      const USigmaVStar = U.multiply(Sigma.multiply(V.adjoint()));
+      const USigmaVStar = svd.U.multiply(svd.Sigma.multiply(svd.V.adjoint()));
       expect(USigmaVStar.equals(A)).toBe(true);
     });
   });

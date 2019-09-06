@@ -20,8 +20,8 @@
     "benchmark": "ts-node --project './tsconfig.benchmark.json' './benchmarks/benchmark.ts'",
     "format": "prettier --write './*.json' 'src/**/*.{ts,json,md}'",
     "format:check": "prettier --check './*.json' 'src/**/*.{ts,json,md}'",
-    "lint": "eslint --fix 'src/**/*.ts'",
-    "lint:check": "eslint 'src/**/*.ts'",
+    "lint": "eslint --fix '**/*.ts'",
+    "lint:check": "eslint '**/*.ts'",
     "docs": "api-extractor run --local && api-documenter markdown --input-folder temp/ --output-folder docs/api/",
     "docs:check": "api-extractor run"
   },
@@ -35,6 +35,7 @@
     "@typescript-eslint/eslint-plugin": "^1.9.0",
     "@typescript-eslint/parser": "^1.9.0",
     "csv-parse": "^4.4.5",
+    "csv-stringify": "^5.3.3",
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^4.3.0",
     "eslint-plugin-prettier": "^3.1.0",

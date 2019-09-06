@@ -13,22 +13,14 @@ describe('Exponential', () => {
 
     test('calculates the exponential of a matrix', () => {
       const A = mat([[1, 2], [3, 4]]);
-      const expected = mat([
-        [51.96895679755742, 74.7365654397869],
-        [112.1048481596805, 164.073804957238]
-      ]);
       const expA = exp(A);
-      expect(expA.equals(expected)).toBe(true);
+      expect(expA).toMatchSnapshot();
     });
 
     test('calculates a more precise exponential', () => {
       const A = mat([[1, 2], [3, 4]]);
-      const expected = mat([
-        [51.968956152216535, 74.73656449924971],
-        [112.1048467488746, 164.0738029010913]
-      ]);
       const expA = exp(A, 7);
-      expect(expA.equals(expected)).toBe(true);
+      expect(expA).toMatchSnapshot();
     });
 
     test('handles the degenerate case', () => {

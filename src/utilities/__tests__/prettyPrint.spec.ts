@@ -7,10 +7,10 @@ import { ComplexMatrix } from '../../types/matrix/ComplexMatrix';
 describe('prettyPrint', () => {
   test('prints a NumberVector', () => {
     const v = vec([1, 22, 333]);
-    expect(prettyPrint(v)).toEqual('[   1 ]\n[  22 ]\n[ 333 ]');
+    expect(prettyPrint(v)).toMatchSnapshot();
 
     const u = vec([1, 0.222, 1 / 3]);
-    expect(prettyPrint(u)).toEqual('[        1 ]\n[    0.222 ]\n[ 0.333333 ]');
+    expect(prettyPrint(u)).toMatchSnapshot();
   });
 
   test('prints a ComplexVector', () => {
@@ -19,14 +19,12 @@ describe('prettyPrint', () => {
       new ComplexNumber(2, 22),
       new ComplexNumber(33, 333)
     ]);
-    expect(prettyPrint(v)).toEqual('[    1 + 1i ]\n[   2 + 22i ]\n[ 33 + 333i ]');
+    expect(prettyPrint(v)).toMatchSnapshot();
   });
 
   test('prints a NumberMatrix', () => {
     const v = mat([[1, 22222, 333], [444, 5, 6], [77, 88, 9999]]);
-    expect(prettyPrint(v)).toEqual(
-      '[   1  22222   333 ]\n[ 444      5     6 ]\n[  77     88  9999 ]'
-    );
+    expect(prettyPrint(v)).toMatchSnapshot();
   });
 
   test('prints a ComplexMatrix', () => {
@@ -35,8 +33,6 @@ describe('prettyPrint', () => {
       [new ComplexNumber(44, 44), new ComplexNumber(5, 5), new ComplexNumber(6, 6)],
       [new ComplexNumber(7, 777), new ComplexNumber(888, 888), new ComplexNumber(9, 99999)]
     ]);
-    expect(prettyPrint(v)).toEqual(
-      '[   1 + 1i   22 + 222i     33 + 3i ]\n[ 44 + 44i      5 + 5i      6 + 6i ]\n[ 7 + 777i  888 + 888i  9 + 99999i ]'
-    );
+    expect(prettyPrint(v)).toMatchSnapshot();
   });
 });

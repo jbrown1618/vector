@@ -46,27 +46,11 @@ describe('Statistics', () => {
 
   describe('standardize', () => {
     test('centers and scales a vector', () => {
-      expect(standardize(sample.getColumn(0))).toStrictEqual(
-        vec([
-          1.0690449676496976,
-          1.0690449676496976,
-          -0.2672612419124244,
-          -0.2672612419124244,
-          -1.6035674514745464
-        ])
-      );
+      expect(standardize(sample.getColumn(0))).toMatchSnapshot();
     });
 
     test('centers and standardizes the columns of a matrix', () => {
-      expect(standardize(sample)).toStrictEqual(
-        mat([
-          [1.0690449676496976, 0, 1.118033988749895],
-          [1.0690449676496976, 1.5811388300841895, -1.118033988749895],
-          [-0.2672612419124244, 0, 0],
-          [-0.2672612419124244, 0, 1.118033988749895],
-          [-1.6035674514745464, -1.5811388300841895, -1.118033988749895]
-        ])
-      );
+      expect(standardize(sample)).toMatchSnapshot();
     });
 
     test('handles empty data', () => {
@@ -142,17 +126,11 @@ describe('Statistics', () => {
 
   describe('correlation', () => {
     test('calculates the correlation coefficient between two vectors', () => {
-      expect(correlation(sample.getColumn(0), sample.getColumn(1))).toEqual(0.8451542547285167);
+      expect(correlation(sample.getColumn(0), sample.getColumn(1))).toMatchSnapshot();
     });
 
     test('calculates the correlation matrix for a set of data', () => {
-      expect(correlation(sample)).toStrictEqual(
-        mat([
-          [1.0000000000000002, 0.8451542547285167, 0.29880715233359845],
-          [0.8451542547285167, 0.9999999999999999, 0],
-          [0.29880715233359845, 0, 1.0000000000000002]
-        ])
-      );
+      expect(correlation(sample)).toMatchSnapshot();
     });
 
     test('handles empty data', () => {
