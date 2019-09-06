@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Statistics correlation calculates the correlation coefficient between two vectors 1`] = `0.8451542547285167`;
+
+exports[`Statistics correlation calculates the correlation matrix for a set of data 1`] = `
+NumberMatrix {
+  "_data": Array [
+    Array [
+      1.0000000000000002,
+      0.8451542547285167,
+      0.29880715233359845,
+    ],
+    Array [
+      0.8451542547285167,
+      0.9999999999999999,
+      0,
+    ],
+    Array [
+      0.29880715233359845,
+      0,
+      1.0000000000000002,
+    ],
+  ],
+}
+`;
+
+exports[`Statistics standardize centers and scales a vector 1`] = `
+NumberVector {
+  "_data": Array [
+    1.0690449676496976,
+    1.0690449676496976,
+    -0.2672612419124244,
+    -0.2672612419124244,
+    -1.6035674514745464,
+  ],
+}
+`;
+
+exports[`Statistics standardize centers and standardizes the columns of a matrix 1`] = `
+NumberMatrix {
+  "_data": Array [
+    Array [
+      1.0690449676496976,
+      0,
+      1.118033988749895,
+    ],
+    Array [
+      1.0690449676496976,
+      1.5811388300841895,
+      -1.118033988749895,
+    ],
+    Array [
+      -0.2672612419124244,
+      0,
+      0,
+    ],
+    Array [
+      -0.2672612419124244,
+      0,
+      1.118033988749895,
+    ],
+    Array [
+      -1.6035674514745464,
+      -1.5811388300841895,
+      -1.118033988749895,
+    ],
+  ],
+}
+`;

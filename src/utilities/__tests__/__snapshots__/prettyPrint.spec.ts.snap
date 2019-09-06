@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`prettyPrint prints a ComplexMatrix 1`] = `
+"[   1 + 1i   22 + 222i     33 + 3i ]
+[ 44 + 44i      5 + 5i      6 + 6i ]
+[ 7 + 777i  888 + 888i  9 + 99999i ]"
+`;
+
+exports[`prettyPrint prints a ComplexVector 1`] = `
+"[    1 + 1i ]
+[   2 + 22i ]
+[ 33 + 333i ]"
+`;
+
+exports[`prettyPrint prints a NumberMatrix 1`] = `
+"[   1  22222   333 ]
+[ 444      5     6 ]
+[  77     88  9999 ]"
+`;
+
+exports[`prettyPrint prints a NumberVector 1`] = `
+"[   1 ]
+[  22 ]
+[ 333 ]"
+`;
+
+exports[`prettyPrint prints a NumberVector 2`] = `
+"[        1 ]
+[    0.222 ]
+[ 0.333333 ]"
+`;

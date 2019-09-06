@@ -6,7 +6,6 @@ node_modules/
 
 # Generated
 coverage/
-.nyc_output/
 temp/
 
 # Local benchmarks
