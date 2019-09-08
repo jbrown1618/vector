@@ -112,26 +112,27 @@ export function reduceDimensions(
   A: Matrix<number>,
   options: DimensionReductionOptions
 ): Matrix<number> {
+  let keep = A.getNumberOfColumns();
+  if (hasKeep(options) && (options.keep > keep || options.keep < 0)) {
+    throw Error(`Cannot keep ${options.keep} dimensions of a matrix with ${keep} columns`);
+  } else if (hasRemove(options) && (options.remove > keep || options.remove < 0)) {
+    throw Error(`Cannot remove ${options.remove} dimensions of a matrix with ${keep} columns`);
+  } else if (
+    hasPropVar(options) &&
+    (options.proportionOfVariance < 0 || options.proportionOfVariance > 1)
+  ) {
+    throw Error(
+      `${options.proportionOfVariance} is not a valid proportion - expected between 0 and 1`
+    );
+  }
+
   const analysis = pca(A, options.useCorrelation || false);
 
-  let keep = A.getNumberOfColumns();
-
   if (hasKeep(options)) {
-    if (options.keep > keep || options.keep < 0) {
-      throw Error(`Cannot keep ${options.keep} dimensions of a matrix with ${keep} columns`);
-    }
     keep = options.keep;
   } else if (hasRemove(options)) {
-    if (options.remove > keep || options.remove < 0) {
-      throw Error(`Cannot remove ${options.remove} dimensions of a matrix with ${keep} columns`);
-    }
     keep = A.getNumberOfColumns() - options.remove;
   } else if (hasPropVar(options)) {
-    if (options.proportionOfVariance < 0 || options.proportionOfVariance > 1) {
-      throw Error(
-        `${options.proportionOfVariance} is not a valid proportion - expected between 0 and 1`
-      );
-    }
     for (const prop of analysis.cumulativeProportions) {
       // TODO - it is currently this line that keeps this from working on general
       // scalar types. Even though the eigenvalues are definitely real in this
