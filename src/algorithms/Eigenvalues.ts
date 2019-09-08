@@ -7,6 +7,8 @@ import { calculateQRDecomposition } from './QRDecomposition';
 
 // TODO - convert to an upper Hessenberg matrix to improve rate of convergence
 
+const defaultIterations = 100;
+
 /**
  * An eigenvector and its corresponding eigenvalue
  * @public
@@ -24,7 +26,7 @@ export interface EigenPair<S> {
  * @returns An array of eigenvalue-eigenvalue pairs
  * @public
  */
-export function eig<S>(A: Matrix<S>, numIterations: number = 100): EigenPair<S>[] {
+export function eig<S>(A: Matrix<S>, numIterations: number = defaultIterations): EigenPair<S>[] {
   const eigenvalues = calculateEigenvalues(A, numIterations);
   return eigenvalues.toArray().map(eigenvalue => {
     const eigenvector = getEigenvectorForEigenvalue(A, eigenvalue);
@@ -39,7 +41,10 @@ export function eig<S>(A: Matrix<S>, numIterations: number = 100): EigenPair<S>[
  * @param numIterations - The number of iterations to take
  * @public
  */
-export function calculateEigenvalues<S>(A: Matrix<S>, numIterations: number = 100): Vector<S> {
+export function calculateEigenvalues<S>(
+  A: Matrix<S>,
+  numIterations: number = defaultIterations
+): Vector<S> {
   if (!isSquare(A)) throw Error('Eigenvalues are only defined for square matrices');
   const ops = A.ops();
   const m = A.getNumberOfRows();

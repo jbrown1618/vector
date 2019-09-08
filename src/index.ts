@@ -8,6 +8,7 @@ export * from './algorithms/GaussJordan';
 export * from './algorithms/LeastSquares';
 export * from './algorithms/LUDecomposition';
 export * from './algorithms/Norms';
+export * from './algorithms/PrincipalComponentAnalysis';
 export * from './algorithms/QRDecomposition';
 export * from './algorithms/RowOperations';
 export * from './algorithms/SingularValueDecomposition';
