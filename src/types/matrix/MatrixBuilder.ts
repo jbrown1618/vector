@@ -798,16 +798,18 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
     rowEndIndex: number = matrix.getNumberOfRows(),
     columnEndIndex: number = matrix.getNumberOfColumns()
   ): M {
-    if (rowStartIndex > rowEndIndex || columnStartIndex > columnEndIndex) {
-      throw Error('start index must be less than end index');
-    }
-
-    if (rowStartIndex < 0 || columnStartIndex < 0) {
+    if (rowStartIndex < 0 || columnStartIndex < 0 || rowEndIndex < 0 || columnEndIndex < 0) {
       throw Error('indices must be positive');
     }
 
-    if (rowEndIndex > matrix.getNumberOfRows() || columnEndIndex > matrix.getNumberOfColumns()) {
+    const m = matrix.getNumberOfRows();
+    const n = matrix.getNumberOfColumns();
+    if (rowStartIndex > m || rowEndIndex > m || columnStartIndex > n || columnEndIndex > n) {
       throw Error('index out of bounds');
+    }
+
+    if (rowStartIndex > rowEndIndex || columnStartIndex > columnEndIndex) {
+      throw Error('start index must be less than end index');
     }
 
     const data: S[][] = [];

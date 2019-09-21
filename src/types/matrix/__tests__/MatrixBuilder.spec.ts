@@ -599,27 +599,42 @@ describe('MatrixBuilder', () => {
 
     test('includes the start indices but excludes the end indices', () => {
       let expectedSlice = mat([[1, 2], [5, 6]]);
-      expect(matrixBuilder.slice(A, 0, 0, 2, 2).equals(expectedSlice)).toBe(true);
+      expect(matrixBuilder.slice(A, 0, 0, 2, 2)).toStrictEqual(expectedSlice);
 
       expectedSlice = mat([[1, 2, 3]]);
-      expect(matrixBuilder.slice(A, 0, 0, 1, 3).equals(expectedSlice)).toBe(true);
+      expect(matrixBuilder.slice(A, 0, 0, 1, 3)).toStrictEqual(expectedSlice);
 
       expectedSlice = mat([[1], [5], [9]]);
-      expect(matrixBuilder.slice(A, 0, 0, 3, 1).equals(expectedSlice)).toBe(true);
+      expect(matrixBuilder.slice(A, 0, 0, 3, 1)).toStrictEqual(expectedSlice);
     });
 
     test('defaults to the entire matrix when no indices are given', () => {
-      expect(matrixBuilder.slice(A).equals(A)).toBe(true);
+      expect(matrixBuilder.slice(A)).toStrictEqual(A);
     });
 
     test('defaults to the end of the matrix when no end indices are given', () => {
       const expectedSlice = mat([[6, 7, 8], [10, 11, 12]]);
-      expect(matrixBuilder.slice(A, 1, 1).equals(expectedSlice)).toBe(true);
+      expect(matrixBuilder.slice(A, 1, 1)).toStrictEqual(expectedSlice);
     });
 
     test('returns an empty matrix when a start index matches the end index', () => {
-      expect(matrixBuilder.slice(A, 1, 1, 1, 2).equals(matrixBuilder.empty())).toBe(true);
-      expect(matrixBuilder.slice(A, 1, 1, 2, 1).equals(matrixBuilder.empty())).toBe(true);
+      expect(matrixBuilder.slice(A, 1, 1, 1, 2)).toStrictEqual(matrixBuilder.empty());
+      expect(matrixBuilder.slice(A, 1, 1, 2, 1)).toStrictEqual(matrixBuilder.empty());
+      expect(matrixBuilder.slice(A, 2, 2, 2, 2)).toStrictEqual(matrixBuilder.empty());
+    });
+
+    test('rejects invalid indices', () => {
+      expect(() => matrixBuilder.slice(A, -1, 0, 0, 0)).toThrow();
+      expect(() => matrixBuilder.slice(A, 0, -1, 0, 0)).toThrow();
+      expect(() => matrixBuilder.slice(A, 0, 0, -1, 0)).toThrow();
+      expect(() => matrixBuilder.slice(A, 0, 0, 0, -1)).toThrow();
+      expect(() => matrixBuilder.slice(A, 4, 0, 0, 0)).toThrow();
+      expect(() => matrixBuilder.slice(A, 0, 4, 0, 0)).toThrow();
+      expect(() => matrixBuilder.slice(A, 0, 0, 5, 0)).toThrow();
+      expect(() => matrixBuilder.slice(A, 0, 0, 0, 5)).toThrow();
+      expect(() => matrixBuilder.slice(A, 0, 4, 0, 0)).toThrow();
+      expect(() => matrixBuilder.slice(A, 2, 4, 3, 3)).toThrow();
+      expect(() => matrixBuilder.slice(A, 4, 2, 3, 3)).toThrow();
     });
   });
 
