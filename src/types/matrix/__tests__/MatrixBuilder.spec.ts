@@ -392,6 +392,12 @@ describe('MatrixBuilder', () => {
       });
     });
 
+    test('defaults to a square matrix', () => {
+      const R = matrixBuilder.random(5);
+      expect(R.getNumberOfRows()).toBe(5);
+      expect(R.getNumberOfColumns()).toBe(5);
+    });
+
     test('defaults to min = 0 and max = 1', () => {
       const randomMatrix = matrixBuilder.random(10, 10);
       randomMatrix.forEachEntry(value => {
@@ -425,6 +431,12 @@ describe('MatrixBuilder', () => {
           expect(Math.abs(average - mean)).toBeLessThan(fourSamplingSDFromMean);
         });
       });
+    });
+
+    test('defaults to a square matrix', () => {
+      const R = matrixBuilder.randomNormal(5);
+      expect(R.getNumberOfRows()).toBe(5);
+      expect(R.getNumberOfColumns()).toBe(5);
     });
 
     test('defaults to mean=0 and sd=1', () => {
@@ -640,10 +652,10 @@ describe('MatrixBuilder', () => {
 
   describe('exclude', () => {
     test('removes a row and column from the original matrix', () => {
-      const original = mat([[1, 2, 3], [4, 5, 6], [7, 8, 9]]);
-      const expected = mat([[1, 2], [7, 8]]);
+      const original = mat([[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]]);
+      const expected = mat([[1, 3], [4, 6], [10, 12]]);
 
-      const removedRow1Col2 = matrixBuilder.exclude(original, 1, 2);
+      const removedRow1Col2 = matrixBuilder.exclude(original, 2, 1);
 
       expect(removedRow1Col2).toStrictEqual(expected);
     });
