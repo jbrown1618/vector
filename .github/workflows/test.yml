@@ -18,17 +18,32 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: npm install, build, and test
+
+      - name: Install
         run: |
           npm install
+        env:
+          CI: true
+
+      - name: Build
+        run: |
           npm run build
+
+      - name: Check
+        run: |
           npm run format:check
           npm run lint:check
           npm run docs:check
+
+      - name: Test
+        run: |
           npm run coverage
         env:
           CI: true
