@@ -392,6 +392,12 @@ describe('MatrixBuilder', () => {
       });
     });
 
+    test('defaults to a square matrix', () => {
+      const R = matrixBuilder.random(5);
+      expect(R.getNumberOfRows()).toBe(5);
+      expect(R.getNumberOfColumns()).toBe(5);
+    });
+
     test('defaults to min = 0 and max = 1', () => {
       const randomMatrix = matrixBuilder.random(10, 10);
       randomMatrix.forEachEntry(value => {
@@ -425,6 +431,12 @@ describe('MatrixBuilder', () => {
           expect(Math.abs(average - mean)).toBeLessThan(fourSamplingSDFromMean);
         });
       });
+    });
+
+    test('defaults to a square matrix', () => {
+      const R = matrixBuilder.randomNormal(5);
+      expect(R.getNumberOfRows()).toBe(5);
+      expect(R.getNumberOfColumns()).toBe(5);
     });
 
     test('defaults to mean=0 and sd=1', () => {
@@ -599,36 +611,51 @@ describe('MatrixBuilder', () => {
 
     test('includes the start indices but excludes the end indices', () => {
       let expectedSlice = mat([[1, 2], [5, 6]]);
-      expect(matrixBuilder.slice(A, 0, 0, 2, 2).equals(expectedSlice)).toBe(true);
+      expect(matrixBuilder.slice(A, 0, 0, 2, 2)).toStrictEqual(expectedSlice);
 
       expectedSlice = mat([[1, 2, 3]]);
-      expect(matrixBuilder.slice(A, 0, 0, 1, 3).equals(expectedSlice)).toBe(true);
+      expect(matrixBuilder.slice(A, 0, 0, 1, 3)).toStrictEqual(expectedSlice);
 
       expectedSlice = mat([[1], [5], [9]]);
-      expect(matrixBuilder.slice(A, 0, 0, 3, 1).equals(expectedSlice)).toBe(true);
+      expect(matrixBuilder.slice(A, 0, 0, 3, 1)).toStrictEqual(expectedSlice);
     });
 
     test('defaults to the entire matrix when no indices are given', () => {
-      expect(matrixBuilder.slice(A).equals(A)).toBe(true);
+      expect(matrixBuilder.slice(A)).toStrictEqual(A);
     });
 
     test('defaults to the end of the matrix when no end indices are given', () => {
       const expectedSlice = mat([[6, 7, 8], [10, 11, 12]]);
-      expect(matrixBuilder.slice(A, 1, 1).equals(expectedSlice)).toBe(true);
+      expect(matrixBuilder.slice(A, 1, 1)).toStrictEqual(expectedSlice);
     });
 
     test('returns an empty matrix when a start index matches the end index', () => {
-      expect(matrixBuilder.slice(A, 1, 1, 1, 2).equals(matrixBuilder.empty())).toBe(true);
-      expect(matrixBuilder.slice(A, 1, 1, 2, 1).equals(matrixBuilder.empty())).toBe(true);
+      expect(matrixBuilder.slice(A, 1, 1, 1, 2)).toStrictEqual(matrixBuilder.empty());
+      expect(matrixBuilder.slice(A, 1, 1, 2, 1)).toStrictEqual(matrixBuilder.empty());
+      expect(matrixBuilder.slice(A, 2, 2, 2, 2)).toStrictEqual(matrixBuilder.empty());
+    });
+
+    test('rejects invalid indices', () => {
+      expect(() => matrixBuilder.slice(A, -1, 0, 0, 0)).toThrow();
+      expect(() => matrixBuilder.slice(A, 0, -1, 0, 0)).toThrow();
+      expect(() => matrixBuilder.slice(A, 0, 0, -1, 0)).toThrow();
+      expect(() => matrixBuilder.slice(A, 0, 0, 0, -1)).toThrow();
+      expect(() => matrixBuilder.slice(A, 4, 0, 0, 0)).toThrow();
+      expect(() => matrixBuilder.slice(A, 0, 4, 0, 0)).toThrow();
+      expect(() => matrixBuilder.slice(A, 0, 0, 5, 0)).toThrow();
+      expect(() => matrixBuilder.slice(A, 0, 0, 0, 5)).toThrow();
+      expect(() => matrixBuilder.slice(A, 0, 4, 0, 0)).toThrow();
+      expect(() => matrixBuilder.slice(A, 2, 4, 3, 3)).toThrow();
+      expect(() => matrixBuilder.slice(A, 4, 2, 3, 3)).toThrow();
     });
   });
 
   describe('exclude', () => {
     test('removes a row and column from the original matrix', () => {
-      const original = mat([[1, 2, 3], [4, 5, 6], [7, 8, 9]]);
-      const expected = mat([[1, 2], [7, 8]]);
+      const original = mat([[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]]);
+      const expected = mat([[1, 3], [4, 6], [10, 12]]);
 
-      const removedRow1Col2 = matrixBuilder.exclude(original, 1, 2);
+      const removedRow1Col2 = matrixBuilder.exclude(original, 2, 1);
 
       expect(removedRow1Col2).toStrictEqual(expected);
     });
