@@ -40,6 +40,8 @@ jobs:
           npm run build
         env:
           CI: true
-      - run: npm publish
+      - run: |
+          npm config set //registry.npmjs.org/:_authToken=$NPM_TOKEN
+          npm publish
         env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+          NPM_TOKEN: ${{secrets.NPM_TOKEN}}
