@@ -1,5 +1,5 @@
-import { mat, vec } from '../../utilities/aliases';
-import { NumberVector } from '../../types/vector/NumberVector';
+import { mat, vec } from '../../../utilities/aliases';
+import { NumberVector } from '../../../types/vector/NumberVector';
 import {
   backwardDifferenceMatrix,
   centralDifferenceMatrix,

@@ -17,7 +17,6 @@
     "build": "tsc --project tsconfig.build.json",
     "test": "jest",
     "coverage": "jest --coverage",
-    "benchmark": "ts-node --project './tsconfig.benchmark.json' './benchmarks/benchmark.ts'",
     "format": "prettier --write './*.json' 'src/**/*.{ts,json,md}'",
     "format:check": "prettier --check './*.json' 'src/**/*.{ts,json,md}'",
     "lint": "eslint --fix '**/*.ts'",

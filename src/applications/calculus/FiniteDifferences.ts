@@ -1,8 +1,8 @@
-import { NumberMatrix } from '../types/matrix/NumberMatrix';
-import { NumberVector } from '../types/vector/NumberVector';
-import { VectorIndexFunction } from '../types/vector/VectorBuilder';
-import { Vector } from '../types/vector/Vector';
-import { ones, zeros } from '../utilities/aliases';
+import { NumberMatrix } from '../../types/matrix/NumberMatrix';
+import { NumberVector } from '../../types/vector/NumberVector';
+import { VectorIndexFunction } from '../../types/vector/VectorBuilder';
+import { Vector } from '../../types/vector/Vector';
+import { ones, zeros } from '../../utilities/aliases';
 
 /**
  * Builds a vector of `binCount` evenly spaced numbers between `xMin` (inclusive) and `xMax` (exclusive).

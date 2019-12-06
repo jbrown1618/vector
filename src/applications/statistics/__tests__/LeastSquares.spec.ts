@@ -1,5 +1,5 @@
-import { vec, mat } from '../../utilities/aliases';
-import { Vector } from '../../types/vector/Vector';
+import { vec, mat } from '../../../utilities/aliases';
+import { Vector } from '../../../types/vector/Vector';
 import {
   calculateGeneralLeastSquares,
   calculateLinearLeastSquares,

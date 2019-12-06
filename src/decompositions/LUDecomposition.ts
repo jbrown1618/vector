@@ -1,6 +1,6 @@
 import { Matrix } from '../types/matrix/Matrix';
 import { assertSquare } from '../utilities/ErrorAssertions';
-import { RowOperations } from './RowOperations';
+import { RowOperations } from '../operations/RowOperations';
 
 /**
  * The result of an LU Decomposition

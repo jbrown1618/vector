@@ -7,7 +7,11 @@ import {
   rowEchelonForm,
   solveByGaussianElimination
 } from '../GaussJordan';
-import { SolutionType, UnderdeterminedSolution, UniqueSolution } from '../LinearSolution';
+import {
+  SolutionType,
+  UnderdeterminedSolution,
+  UniqueSolution
+} from '../../solvers/LinearSolution';
 import { loadTestData } from '@test-utils/testData';
 
 describe('GaussJordan', () => {
