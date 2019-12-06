@@ -4,7 +4,7 @@
 
 ## variance() function
 
-Caclulates the variance of a vector
+Calculates the variance of a vector
 
 <b>Signature:</b>
 

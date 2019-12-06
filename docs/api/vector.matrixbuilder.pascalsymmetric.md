@@ -4,7 +4,7 @@
 
 ## MatrixBuilder.pascalSymmetric() method
 
-Constructs a symmatric matrix whose entries are the binomial coefficients (i + j choose i)
+Constructs a symmetric matrix whose entries are the binomial coefficients (i + j choose i)
 
 <b>Signature:</b>
 

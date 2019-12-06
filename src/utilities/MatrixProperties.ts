@@ -57,12 +57,12 @@ export function isLowerTriangular<S>(matrix: Matrix<S>): boolean {
 }
 
 /**
- * Tests if a matrix is symmetrix.
+ * Tests if a matrix is symmetric.
  *
  * @remarks
- * A matrix A is symmetric if it is suqare and if A[i,j] = A[j,i] for all i and j
+ * A matrix A is symmetric if it is square and if A[i,j] = A[j,i] for all i and j
  *
- * @returns `true` if the matrix is symmetricx
+ * @returns `true` if the matrix is symmetric
  * @public
  */
 export function isSymmetric<S>(matrix: Matrix<S>): boolean {

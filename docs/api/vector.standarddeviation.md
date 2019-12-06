@@ -4,7 +4,7 @@
 
 ## standardDeviation() function
 
-Caclulates the standard deviation of a vector
+Calculates the standard deviation of a vector
 
 <b>Signature:</b>
 

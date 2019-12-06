@@ -36,7 +36,7 @@ export declare class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>>
 |  [map(matrix, entryFunction)](./vector.matrixbuilder.map.md) |  | Builds a matrix by transforming the values of another matrix. |
 |  [ones(numberOfRows, numberOfColumns)](./vector.matrixbuilder.ones.md) |  | Constructs a matrix of the specified dimensions, consisting of all ones |
 |  [pascal(size, upper)](./vector.matrixbuilder.pascal.md) |  | Constructs a lower-triangular matrix whose entries are the binomial coefficients (j choose i). Constructs an upper triangular matrix when the second argument is <code>true</code>. |
-|  [pascalSymmetric(size)](./vector.matrixbuilder.pascalsymmetric.md) |  | Constructs a symmatric matrix whose entries are the binomial coefficients (i + j choose i) |
+|  [pascalSymmetric(size)](./vector.matrixbuilder.pascalsymmetric.md) |  | Constructs a symmetric matrix whose entries are the binomial coefficients (i + j choose i) |
 |  [random(numberOfRows, numberOfColumns, min, max)](./vector.matrixbuilder.random.md) |  | Constructs a matrix of the specified size whose entries are (uniformly-distributed) random numbers between <code>min</code> and <code>max</code> |
 |  [randomNormal(numberOfRows, numberOfColumns, mean, standardDeviation)](./vector.matrixbuilder.randomnormal.md) |  | Constructs a matrix of the specified size whose entries are normally distributed with the specified mean and standard deviation. |
 |  [repeat(matrix, rows, columns)](./vector.matrixbuilder.repeat.md) |  | Constructs a new matrix consisted of repetitions of a smaller matrix. |

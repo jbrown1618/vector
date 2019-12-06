@@ -4,7 +4,7 @@
 
 ## RowOperations.multiplyRowByScalar() method
 
-An elementary row operations which returns a new matrix whose row at `rowIndex` is multipled by `scalar`
+An elementary row operations which returns a new matrix whose row at `rowIndex` is multiplied by `scalar`
 
 <b>Signature:</b>
 
