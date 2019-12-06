@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Statistics correlation calculates the correlation coefficient between two vectors 1`] = `0.8451542547285167`;
+exports[`DescriptiveStatistics correlation calculates the correlation coefficient between two vectors 1`] = `0.8451542547285167`;
 
-exports[`Statistics correlation calculates the correlation matrix for a set of data 1`] = `
+exports[`DescriptiveStatistics correlation calculates the correlation matrix for a set of data 1`] = `
 NumberMatrix {
   "_data": Array [
     Array [
@@ -24,7 +24,7 @@ NumberMatrix {
 }
 `;
 
-exports[`Statistics standardize centers and scales a vector 1`] = `
+exports[`DescriptiveStatistics standardize centers and scales a vector 1`] = `
 NumberVector {
   "_data": Array [
     1.0690449676496976,
@@ -36,7 +36,7 @@ NumberVector {
 }
 `;
 
-exports[`Statistics standardize centers and standardizes the columns of a matrix 1`] = `
+exports[`DescriptiveStatistics standardize centers and standardizes the columns of a matrix 1`] = `
 NumberMatrix {
   "_data": Array [
     Array [

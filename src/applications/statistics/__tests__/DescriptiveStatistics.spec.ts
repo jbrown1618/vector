@@ -9,7 +9,7 @@ import {
   standardize
 } from '../DescriptiveStatistics';
 
-describe('Statistics', () => {
+describe('DescriptiveStatistics', () => {
   const sample = mat([[90, 60, 90], [90, 90, 30], [60, 60, 60], [60, 60, 90], [30, 30, 30]]);
 
   describe('mean', () => {
