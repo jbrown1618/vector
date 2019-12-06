@@ -64,11 +64,11 @@
 |  [isOrthogonal(matrix)](./vector.isorthogonal.md) | Tests if a matrix is orthogonal |
 |  [isOrthonormal(matrix)](./vector.isorthonormal.md) | Tests if a matrix is orthonormal |
 |  [isSquare(matrix)](./vector.issquare.md) | Tests if a matrix is square. |
-|  [isSymmetric(matrix)](./vector.issymmetric.md) | Tests if a matrix is symmetrix. |
+|  [isSymmetric(matrix)](./vector.issymmetric.md) | Tests if a matrix is symmetric. |
 |  [isUpperTriangular(matrix)](./vector.isuppertriangular.md) | Tests if a matrix is upper-triangular. |
 |  [linspace(xMin, xMax, binCount)](./vector.linspace.md) | Builds a vector of <code>binCount</code> evenly spaced numbers between <code>xMin</code> (inclusive) and <code>xMax</code> (exclusive). |
 |  [mat(data)](./vector.mat.md) | Creates a new [Matrix](./vector.matrix.md) of numbers. See [MatrixBuilder.fromArray()](./vector.matrixbuilder.fromarray.md) |
-|  [mean(x)](./vector.mean.md) | Calcualtes the mean of the values in the vector <code>x</code> |
+|  [mean(x)](./vector.mean.md) | Calculates the mean of the values in the vector <code>x</code> |
 |  [mean(A)](./vector.mean_1.md) | Calculates the mean vector of the matrix <code>A</code> |
 |  [normalize(v)](./vector.normalize.md) | Returns a vector with the same direction as the input <code>v</code>, but with a Euclidean norm of 1 |
 |  [ones(entries)](./vector.ones.md) | Creates a new vector of all 1s. See [VectorBuilder.ones()](./vector.vectorbuilder.ones.md) |
@@ -86,14 +86,14 @@
 |  [rowSumSupremumNorm(A)](./vector.rowsumsupremumnorm.md) | Calculates the Infinity-Norm of a matrix <code>A</code> |
 |  [solveByGaussianElimination(A, b)](./vector.solvebygaussianelimination.md) | Uses Gauss-Jordan elimination with pivoting and backward substitution to solve the linear equation \_Ax=b\_ |
 |  [solveOverdeterminedSystem(A, b)](./vector.solveoverdeterminedsystem.md) | Gives an approximate solution to an overdetermined linear system. |
-|  [standardDeviation(x)](./vector.standarddeviation.md) | Caclulates the standard deviation of a vector |
+|  [standardDeviation(x)](./vector.standarddeviation.md) | Calculates the standard deviation of a vector |
 |  [standardDeviation(A)](./vector.standarddeviation_1.md) | Calculates the standard deviation of each column of the matrix <code>A</code> |
 |  [standardize(x)](./vector.standardize.md) | Returns the vector <code>x</code> shifted and scaled to have a mean of 0 and standard deviation of 1 |
 |  [standardize(A)](./vector.standardize_1.md) | Returns the matrix <code>A</code> with each column shifted and scaled to have a mean of 0 and standard deviation of 1 |
 |  [sumNorm(v)](./vector.sumnorm.md) | Calculates the Sum Norm (or 1-Norm) of a vector <code>v</code> |
 |  [supremumNorm(v)](./vector.supremumnorm.md) | Calculates the Supremum Norm (or Infinity-Norm) of a vector <code>v</code> |
 |  [tripleProduct(first, second, third)](./vector.tripleproduct.md) | Calculates the scalar triple-product of three vectors. This is defined only for vectors with three dimensions. |
-|  [variance(x)](./vector.variance.md) | Caclulates the variance of a vector |
+|  [variance(x)](./vector.variance.md) | Calculates the variance of a vector |
 |  [variance(A)](./vector.variance_1.md) | Calculates the variance of each column of the matrix <code>A</code> |
 |  [vec(data)](./vector.vec.md) | Creates a new [Vector](./vector.vector.md) of numbers. See [VectorBuilder.fromArray()](./vector.vectorbuilder.fromarray.md) |
 |  [zeros(entries)](./vector.zeros.md) | Creates a new vector of all 0s. See [VectorBuilder.zeros()](./vector.vectorbuilder.zeros.md) |

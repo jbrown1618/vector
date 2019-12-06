@@ -70,14 +70,14 @@ describe('MatrixProperties', () => {
     });
   });
 
-  describe('isSymmetrix', () => {
-    test('returns true for a symmetrix matrix', () => {
+  describe('isSymmetric', () => {
+    test('returns true for a symmetric matrix', () => {
       const S = mat([[1, 2, 3, 4], [2, 1, 5, 6], [3, 5, 1, 7], [4, 6, 7, 1]]);
 
       expect(isSymmetric(S)).toBe(true);
     });
 
-    test('returns false for a non-symmetrix matrix', () => {
+    test('returns false for a non-symmetric matrix', () => {
       const A = mat([[1, 2, 3, 4], [2, 1, 5, 6], [3, 5, 1, 7], [4, 3, 7, 1]]);
 
       expect(isSymmetric(A)).toBe(false);

@@ -4,7 +4,7 @@
 
 ## mean() function
 
-Calcualtes the mean of the values in the vector `x`
+Calculates the mean of the values in the vector `x`
 
 <b>Signature:</b>
 

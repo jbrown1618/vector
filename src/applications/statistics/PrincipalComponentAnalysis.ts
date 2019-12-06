@@ -101,7 +101,7 @@ export type DimensionReductionOptions = DimensionReductionType & {
  * Reduce the number of dimensions of a data matrix `A` while losing as little information as possible.
  * @param A - The data matrix
  * @param options - Specify how the dimension reduction should be done.
- *     `useCorrelation: boolean` - use the correlation rather than covariance matric when conducting the PCA;
+ *     `useCorrelation: boolean` - use the correlation rather than covariance matrix when conducting the PCA;
  *     `keep: number` - the desired number of dimensions;
  *     `remove: number` - the number of dimensions to remove;
  *     `proportionOfVariance: number` - the desired proportion of the total variance in the data that should

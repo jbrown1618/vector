@@ -4,7 +4,7 @@
 
 ## isSymmetric() function
 
-Tests if a matrix is symmetrix.
+Tests if a matrix is symmetric.
 
 <b>Signature:</b>
 
@@ -22,9 +22,9 @@ export declare function isSymmetric<S>(matrix: Matrix<S>): boolean;
 
 `boolean`
 
-`true` if the matrix is symmetricx
+`true` if the matrix is symmetric
 
 ## Remarks
 
-A matrix A is symmetric if it is suqare and if A\[i,j\] = A\[j,i\] for all i and j
+A matrix A is symmetric if it is square and if A\[i,j\] = A\[j,i\] for all i and j
 

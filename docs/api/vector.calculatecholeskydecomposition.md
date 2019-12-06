@@ -26,5 +26,5 @@ export declare function calculateCholeskyDecomposition<S>(A: Matrix<S>): Cholesk
 
 A Cholesky decomposition of a matrix `A` consists of a lower-triangular matrix `L` such that \_LL\* = A\_.
 
-A Cholesky decomposition only exists if `A` is symmetrix and positive-definite.
+A Cholesky decomposition only exists if `A` is symmetric and positive-definite.
 

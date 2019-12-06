@@ -33,7 +33,7 @@ describe('CrossProduct', () => {
   });
 
   describe('tripleProduct', () => {
-    test('caluclates the scalar triple product of two vectors', () => {
+    test('calculates the scalar triple product of two vectors', () => {
       const v = vec([-2, 3, 1]);
       const u = vec([0, 4, 0]);
       const w = vec([-1, 3, 3]);

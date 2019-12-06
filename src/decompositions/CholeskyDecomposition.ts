@@ -17,7 +17,7 @@ export interface CholeskyDecomposition<S> {
  * A Cholesky decomposition of a matrix `A` consists of a lower-triangular
  * matrix `L` such that _LL* = A_.
  *
- * A Cholesky decomposition only exists if `A` is symmetrix and positive-definite.
+ * A Cholesky decomposition only exists if `A` is symmetric and positive-definite.
  * @param A - The matrix to decompose
  * @public
  */

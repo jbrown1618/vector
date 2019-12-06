@@ -19,7 +19,7 @@ export interface RowOperationResult<S> {
 export class RowOperations {
   /**
    * An elementary row operations which returns a new matrix whose row
-   * at `rowIndex` is multipled by `scalar`
+   * at `rowIndex` is multiplied by `scalar`
    *
    * @param matrix - The original matrix
    * @param rowIndex - The index of the row to modify

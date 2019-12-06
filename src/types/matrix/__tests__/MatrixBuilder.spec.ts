@@ -259,13 +259,13 @@ describe('MatrixBuilder', () => {
   });
 
   describe('toeplitz', () => {
-    test('constructs a toeplitz matrix with the default first row', () => {
+    test('constructs a Toeplitz matrix with the default first row', () => {
       const toeplitz = matrixBuilder.toeplitz(vec([1, 2, 3]));
       const expected = matrixBuilder.fromArray([[1, 2, 3], [2, 1, 2], [3, 2, 1]]);
       expect(toeplitz).toStrictEqual(expected);
     });
 
-    test('constructs a toeplitz matrix with a specified first row', () => {
+    test('constructs a Toeplitz matrix with a specified first row', () => {
       const toeplitz = matrixBuilder.toeplitz(vec([1, 2, 3]), vec([1, 3, 5, 7]));
       const expected = matrixBuilder.fromArray([[1, 3, 5, 7], [2, 1, 3, 5], [3, 2, 1, 3]]);
       expect(toeplitz).toStrictEqual(expected);
@@ -282,19 +282,19 @@ describe('MatrixBuilder', () => {
   });
 
   describe('hankel', () => {
-    test('constructs a hankel matrix with the default last row', () => {
+    test('constructs a Hankel matrix with the default last row', () => {
       const hankel = matrixBuilder.hankel(vec([2, 4, 6, 8]));
       const expected = mat([[2, 4, 6, 8], [4, 6, 8, 0], [6, 8, 0, 0], [8, 0, 0, 0]]);
       expect(hankel).toStrictEqual(expected);
     });
 
-    test('constructs a "narrow" hankel matrix with a specified last row', () => {
+    test('constructs a "narrow" Hankel matrix with a specified last row', () => {
       const hankel = matrixBuilder.hankel(vec([1, 2, 3, 4]), vec([4, 9, 9]));
       const expected = matrixBuilder.fromArray([[1, 2, 3], [2, 3, 4], [3, 4, 9], [4, 9, 9]]);
       expect(hankel).toStrictEqual(expected);
     });
 
-    test('constructs a "wide" hankel matrix with a specified last row', () => {
+    test('constructs a "wide" Hankel matrix with a specified last row', () => {
       const hankel = matrixBuilder.hankel(vec([1, 2, 3]), vec([3, 9, 9, 9]));
       const expected = matrixBuilder.fromArray([[1, 2, 3, 9], [2, 3, 9, 9], [3, 9, 9, 9]]);
       expect(hankel).toStrictEqual(expected);

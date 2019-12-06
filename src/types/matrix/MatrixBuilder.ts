@@ -349,7 +349,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
     }
 
     if (!this.ops().equals(firstRow.getEntry(0), firstColumn.getEntry(0))) {
-      throw Error(`The first enntry of firstColumn must equal the first entry of firstRow`);
+      throw Error(`The first entry of firstColumn must equal the first entry of firstRow`);
     }
 
     return this.fromIndexFunction(firstColumn.getDimension(), firstRow.getDimension(), (i, j) => {
@@ -458,7 +458,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
   }
 
   /**
-   * Constructs a symmatric matrix whose entries are the binomial coefficients (i + j choose i)
+   * Constructs a symmetric matrix whose entries are the binomial coefficients (i + j choose i)
    *
    * @example
    * ```

@@ -70,7 +70,7 @@ export function calculateLUDecomposition<S>(A: Matrix<S>): LUDecomposition<S> {
 
 /**
  * Given the current approximation of the upper-triangular matrix U, return
- * the next approcimation (`un`) and the matrix by which we multiplied to
+ * the next approximation (`un`) and the matrix by which we multiplied to
  * arrive at this new approximation (`ln`)
  *
  * @param columnIndex - The index of the column from which we are trying

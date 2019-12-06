@@ -3,7 +3,7 @@ import { Vector } from '../../types/vector/Vector';
 import { isVector } from '../../utilities/typeGuards';
 
 /**
- * Calcualtes the mean of the values in the vector `x`
+ * Calculates the mean of the values in the vector `x`
  * @param x - The vector for which to find the mean
  * @public
  */
@@ -97,7 +97,7 @@ export function standardize<S>(xOrA: Matrix<S> | Vector<S>): Matrix<S> | Vector<
 }
 
 /**
- * Caclulates the variance of a vector
+ * Calculates the variance of a vector
  * @param x - The vector
  * @public
  */
@@ -118,7 +118,7 @@ export function variance<S>(xOrA: Matrix<S> | Vector<S>): Vector<S> | S {
 }
 
 /**
- * Caclulates the standard deviation of a vector
+ * Calculates the standard deviation of a vector
  * @param x - The vector
  * @public
  */
