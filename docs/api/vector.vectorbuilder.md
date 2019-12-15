@@ -16,6 +16,7 @@ export declare class VectorBuilder<S, V extends Vector<S>>
 
 |  Method | Modifiers | Description |
 |  --- | --- | --- |
+|  [combine(first, second, combineEntries)](./vector.vectorbuilder.combine.md) |  | Constructs a vector by combining the values of two other vectors |
 |  [concatenate(first, second)](./vector.vectorbuilder.concatenate.md) |  | Constructs a vector consisting of two vectors end-to-end |
 |  [elementaryVector(dimension, oneIndex)](./vector.vectorbuilder.elementaryvector.md) |  | Constructs a vector that has the value 1 at one index, and 0 at the others |
 |  [empty()](./vector.vectorbuilder.empty.md) |  | Constructs a Vector of dimension 0 |

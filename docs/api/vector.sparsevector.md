@@ -28,6 +28,7 @@ export declare abstract class SparseVector<S> implements Vector<S>
 |  [outerProduct(other)](./vector.sparsevector.outerproduct.md) |  | Implements the outer product (matrix product) of two vectors |
 |  [projectOnto(u)](./vector.sparsevector.projectonto.md) |  | Returns a new vector in the direction of <code>u</code> but with magnitude equal to the amount of the original vector that lies in that direction |
 |  [scalarMultiply(scalar)](./vector.sparsevector.scalarmultiply.md) |  | Implements vector multiplication by a scalar |
+|  [set(index, value)](./vector.sparsevector.set.md) |  | Returns a new vector equal to the old one, except with the entry at <code>index</code> replaced with <code>value</code> |
 |  [toArray()](./vector.sparsevector.toarray.md) |  | Returns the contents of the vector as an array |
 
 ## Remarks
