@@ -1,4 +1,4 @@
-import { ComplexNumber } from '../../scalar/ComplexNumber';
+import { ComplexNumber } from '@lib/types/scalar/ComplexNumber';
 import { ComplexVector } from '../ComplexVector';
 
 describe('ComplexVector', () => {

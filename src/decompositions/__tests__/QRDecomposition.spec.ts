@@ -1,4 +1,4 @@
-import { mat } from '../../utilities/aliases';
+import { mat } from '@lib/utilities/aliases';
 import { calculateQRDecomposition } from '../QRDecomposition';
 
 describe('QRDecomposition', () => {

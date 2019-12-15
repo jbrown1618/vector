@@ -1,4 +1,4 @@
-import { approximatelyEqual } from '../../../utilities/NumberUtilities';
+import { approximatelyEqual } from '@lib/utilities/NumberUtilities';
 import { ComplexNumber } from '../ComplexNumber';
 
 describe('ComplexNumber', () => {

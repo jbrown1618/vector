@@ -1,6 +1,6 @@
-import { Matrix } from '../types/matrix/Matrix';
-import { assertSquare } from '../utilities/ErrorAssertions';
-import { factorial } from '../utilities/NumberUtilities';
+import { Matrix } from '@lib/types/matrix/Matrix';
+import { assertSquare } from '@lib/utilities/ErrorAssertions';
+import { factorial } from '@lib/utilities/NumberUtilities';
 import { inverse } from './GaussJordan';
 import { columnSumSupremumNorm } from './Norms';
 

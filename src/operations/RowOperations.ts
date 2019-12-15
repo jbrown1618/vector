@@ -1,6 +1,6 @@
-import { Matrix } from '../types/matrix/Matrix';
-import { Vector } from '../types/vector/Vector';
-import { assertValidMatrixIndex } from '../utilities/ErrorAssertions';
+import { Matrix } from '@lib/types/matrix/Matrix';
+import { Vector } from '@lib/types/vector/Vector';
+import { assertValidMatrixIndex } from '@lib/utilities/ErrorAssertions';
 
 /**
  * The result of a row operation (`result`), and the matrix that we multiply

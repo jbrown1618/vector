@@ -1,4 +1,4 @@
-import { Vector } from '../types/vector/Vector';
+import { Vector } from '@lib/types/vector/Vector';
 
 /**
  * Calculates the cross-product (vector-product) of two vectors.

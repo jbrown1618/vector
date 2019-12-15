@@ -1,7 +1,7 @@
-import { vec, zeros, diag, ones, eye, mat } from '../../../utilities/aliases';
-import { ComplexNumber } from '../../scalar/ComplexNumber';
+import { vec, zeros, diag, ones, eye, mat } from '@lib/utilities/aliases';
+import { ComplexNumber } from '@lib/types/scalar/ComplexNumber';
 import { ComplexMatrix } from '../ComplexMatrix';
-import { MatrixBuilder, MatrixIndexFunction } from '../MatrixBuilder';
+import { MatrixBuilder, MatrixIndexFunction } from '@lib/types/matrix/MatrixBuilder';
 import { NumberMatrix } from '../NumberMatrix';
 
 describe('MatrixBuilder', () => {

@@ -1,5 +1,5 @@
-import { Matrix, MatrixData } from '../types/matrix/Matrix';
-import { Vector } from '../types/vector/Vector';
+import { Matrix, MatrixData } from '@lib/types/matrix/Matrix';
+import { Vector } from '@lib/types/vector/Vector';
 
 /**
  * Throws an error of the 2d array `data` is not rectangular - i.e. if

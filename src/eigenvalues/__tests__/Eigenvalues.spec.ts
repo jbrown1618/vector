@@ -1,6 +1,6 @@
-import { mat, vec } from '../../utilities/aliases';
-import { ComplexMatrix } from '../../types/matrix/ComplexMatrix';
-import { ComplexNumber } from '../../types/scalar/ComplexNumber';
+import { mat, vec } from '@lib/utilities/aliases';
+import { ComplexMatrix } from '@lib/types/matrix/ComplexMatrix';
+import { ComplexNumber } from '@lib/types/scalar/ComplexNumber';
 import { calculateEigenvalues, eig, getEigenvectorForEigenvalue } from '../Eigenvalues';
 
 describe('Eigenvalues', () => {

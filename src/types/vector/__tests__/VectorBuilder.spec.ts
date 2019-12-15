@@ -1,4 +1,4 @@
-import { ComplexNumber } from '../../..';
+import { ComplexNumber } from '@lib/types/scalar/ComplexNumber';
 import { ComplexVector } from '../ComplexVector';
 import { NumberVector } from '../NumberVector';
 

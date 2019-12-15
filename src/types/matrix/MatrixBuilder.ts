@@ -3,10 +3,10 @@ import {
   assertSquare,
   assertValidDimensions,
   assertValidMatrixIndex
-} from '../../utilities/ErrorAssertions';
-import { binomial } from '../../utilities/NumberUtilities';
-import { ScalarOperations } from '../scalar/ScalarOperations';
-import { Vector } from '../vector/Vector';
+} from '@lib/utilities/ErrorAssertions';
+import { binomial } from '@lib/utilities/NumberUtilities';
+import { ScalarOperations } from '@lib/types/scalar/ScalarOperations';
+import { Vector } from '@lib/types/vector/Vector';
 import { Matrix, MatrixConstructor, MatrixData } from './Matrix';
 import { SparseMatrixData } from './SparseMatrix';
 

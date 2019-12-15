@@ -1,5 +1,5 @@
 import { determinant } from '../Determinant';
-import { mat } from '../../utilities/aliases';
+import { mat } from '@lib/utilities/aliases';
 
 describe('Determinant', () => {
   describe('determinant', () => {

@@ -1,6 +1,6 @@
-import { ScalarOperations } from '../scalar/ScalarOperations';
-import { Vector, VectorData } from '../vector/Vector';
-import { VectorBuilder } from '../vector/VectorBuilder';
+import { ScalarOperations } from '@lib/types/scalar/ScalarOperations';
+import { Vector, VectorData } from '@lib/types/vector/Vector';
+import { VectorBuilder } from '@lib/types/vector/VectorBuilder';
 import { LinearTransformation } from './LinearTransformation';
 import { MatrixBuilder } from './MatrixBuilder';
 

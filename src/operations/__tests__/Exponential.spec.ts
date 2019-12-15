@@ -1,4 +1,4 @@
-import { mat, eye } from '../../utilities/aliases';
+import { mat, eye } from '@lib/utilities/aliases';
 import { exp, pow } from '../Exponential';
 
 describe('Exponential', () => {

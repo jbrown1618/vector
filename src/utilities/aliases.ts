@@ -1,7 +1,7 @@
-import { Vector } from '../types/vector/Vector';
-import { Matrix } from '../types/matrix/Matrix';
-import { NumberVector } from '../types/vector/NumberVector';
-import { NumberMatrix } from '../types/matrix/NumberMatrix';
+import { Vector } from '@lib/types/vector/Vector';
+import { Matrix } from '@lib/types/matrix/Matrix';
+import { NumberVector } from '@lib/types/vector/NumberVector';
+import { NumberMatrix } from '@lib/types/matrix/NumberMatrix';
 
 const vb = NumberVector.builder();
 const mb = NumberMatrix.builder();

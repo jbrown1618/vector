@@ -1,6 +1,6 @@
-import { approximatelyEqual, random, randomNormal } from '../../utilities/NumberUtilities';
+import { approximatelyEqual, random, randomNormal } from '@lib/utilities/NumberUtilities';
 import { ScalarOperations } from './ScalarOperations';
-import { prettyPrint } from '../../utilities/prettyPrint';
+import { prettyPrint } from '@lib/utilities/prettyPrint';
 
 /**
  * Implements the basic {@link ScalarOperations} on `number`s

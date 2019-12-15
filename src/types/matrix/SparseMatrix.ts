@@ -2,10 +2,10 @@ import {
   assertRectangular,
   assertValidMatrixIndex,
   assertValidIndex
-} from '../../utilities/ErrorAssertions';
-import { ScalarOperations } from '../scalar/ScalarOperations';
-import { Vector } from '../vector/Vector';
-import { VectorBuilder } from '../vector/VectorBuilder';
+} from '@lib/utilities/ErrorAssertions';
+import { ScalarOperations } from '@lib/types/scalar/ScalarOperations';
+import { Vector } from '@lib/types/vector/Vector';
+import { VectorBuilder } from '@lib/types/vector/VectorBuilder';
 import { Matrix, MatrixData, MatrixEntryCallback } from './Matrix';
 import { MatrixBuilder } from './MatrixBuilder';
 

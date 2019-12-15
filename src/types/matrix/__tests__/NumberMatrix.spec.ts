@@ -1,5 +1,5 @@
-import { NumberVector } from '../../vector/NumberVector';
-import { SparseNumberVector } from '../../vector/SparseNumberVector';
+import { NumberVector } from '@lib/types/vector/NumberVector';
+import { SparseNumberVector } from '@lib/types/vector/SparseNumberVector';
 import { NumberMatrix } from '../NumberMatrix';
 import { SparseNumberMatrix } from '../SparseNumberMatrix';
 

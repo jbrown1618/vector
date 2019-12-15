@@ -1,4 +1,4 @@
-import { mat, vec } from '../../utilities/aliases';
+import { mat, vec } from '@lib/utilities/aliases';
 import { SolutionType, UnderdeterminedSolution, UniqueSolution } from '../LinearSolution';
 import {
   backwardSubstituteAugmentedMatrix,
