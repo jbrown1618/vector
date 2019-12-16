@@ -3,9 +3,9 @@ import { ComplexNumber } from '@lib/types/scalar/ComplexNumber';
 import { ComplexNumberOperations } from '@lib/types/scalar/ComplexNumberOperations';
 import { ComplexVector } from '@lib/types/vector/ComplexVector';
 import { VectorBuilder } from '@lib/types/vector/VectorBuilder';
-import { ArrayMatrix } from './ArrayMatrix';
-import { MatrixConstructor, MatrixData } from './Matrix';
-import { MatrixBuilder } from './MatrixBuilder';
+import { ArrayMatrix } from '@lib/types/matrix/ArrayMatrix';
+import { MatrixConstructor, MatrixData } from '@lib/types/matrix/Matrix';
+import { MatrixBuilder } from '@lib/types/matrix/MatrixBuilder';
 import { ScalarOperations } from '@lib/types/scalar/ScalarOperations';
 
 /**

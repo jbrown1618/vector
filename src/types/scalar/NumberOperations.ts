@@ -1,5 +1,5 @@
 import { approximatelyEqual, random, randomNormal } from '@lib/utilities/NumberUtilities';
-import { ScalarOperations } from './ScalarOperations';
+import { ScalarOperations } from '@lib/types/scalar/ScalarOperations';
 import { prettyPrint } from '@lib/utilities/prettyPrint';
 
 /**

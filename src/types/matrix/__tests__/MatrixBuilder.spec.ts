@@ -1,8 +1,8 @@
 import { vec, zeros, diag, ones, eye, mat } from '@lib/utilities/aliases';
 import { ComplexNumber } from '@lib/types/scalar/ComplexNumber';
-import { ComplexMatrix } from '../ComplexMatrix';
+import { ComplexMatrix } from '@lib/types/matrix/ComplexMatrix';
 import { MatrixBuilder, MatrixIndexFunction } from '@lib/types/matrix/MatrixBuilder';
-import { NumberMatrix } from '../NumberMatrix';
+import { NumberMatrix } from '@lib/types/matrix/NumberMatrix';
 
 describe('MatrixBuilder', () => {
   const matrixBuilder = new MatrixBuilder(NumberMatrix);

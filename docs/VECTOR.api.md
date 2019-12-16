@@ -4,21 +4,32 @@
 
 ```ts
 
+import { ArrayMatrix as ArrayMatrix_2 } from '@lib/types/matrix/ArrayMatrix';
+import { ArrayVector as ArrayVector_2 } from '@lib/types/vector/ArrayVector';
 import { ComplexMatrix as ComplexMatrix_2 } from '@lib/types/matrix/ComplexMatrix';
 import { ComplexNumber as ComplexNumber_2 } from '@lib/types/scalar/ComplexNumber';
 import { ComplexNumberOperations as ComplexNumberOperations_2 } from '@lib/types/scalar/ComplexNumberOperations';
 import { ComplexVector as ComplexVector_2 } from '@lib/types/vector/ComplexVector';
 import { LinearSolution } from '@lib/solvers/LinearSolution';
+import { LinearTransformation as LinearTransformation_2 } from '@lib/types/matrix/LinearTransformation';
 import { Matrix as Matrix_2 } from '@lib/types/matrix/Matrix';
 import { MatrixBuilder as MatrixBuilder_2 } from '@lib/types/matrix/MatrixBuilder';
+import { MatrixConstructor as MatrixConstructor_2 } from '@lib/types/matrix/Matrix';
+import { MatrixData as MatrixData_2 } from '@lib/types/matrix/Matrix';
+import { MatrixEntryCallback as MatrixEntryCallback_2 } from '@lib/types/matrix/Matrix';
 import { NumberMatrix as NumberMatrix_2 } from '@lib/types/matrix/NumberMatrix';
 import { NumberOperations as NumberOperations_2 } from '@lib/types/scalar/NumberOperations';
 import { NumberVector as NumberVector_2 } from '@lib/types/vector/NumberVector';
 import { ScalarOperations as ScalarOperations_2 } from '@lib/types/scalar/ScalarOperations';
+import { SparseMatrix as SparseMatrix_2 } from '@lib/types/matrix/SparseMatrix';
+import { SparseMatrixData as SparseMatrixData_2 } from '@lib/types/matrix/SparseMatrix';
 import { SparseNumberMatrix as SparseNumberMatrix_2 } from '@lib/types/matrix/SparseNumberMatrix';
 import { SparseNumberVector as SparseNumberVector_2 } from '@lib/types/vector/SparseNumberVector';
+import { SparseVector as SparseVector_2 } from '@lib/types/vector/SparseVector';
+import { SparseVectorData as SparseVectorData_2 } from '@lib/types/vector/SparseVector';
 import { Vector as Vector_2 } from '@lib/types/vector/Vector';
 import { VectorBuilder as VectorBuilder_2 } from '@lib/types/vector/VectorBuilder';
+import { VectorConstructor as VectorConstructor_2 } from '@lib/types/vector/Vector';
 import { VectorData as VectorData_2 } from '@lib/types/vector/Vector';
 
 // @public
@@ -28,15 +39,15 @@ export type ApproximationFunction<S> = (input: Vector_2<S>) => S;
 export type ApproximationFunctionTemplate<S> = (coefficients: Vector_2<S>) => ApproximationFunction<S>;
 
 // @public
-export abstract class ArrayMatrix<S> implements Matrix<S> {
+export abstract class ArrayMatrix<S> implements Matrix_2<S> {
     // @internal
-    protected constructor(data: MatrixData<S>);
-    add(other: Matrix<S>): Matrix<S>;
-    adjoint(): Matrix<S>;
+    protected constructor(data: MatrixData_2<S>);
+    add(other: Matrix_2<S>): Matrix_2<S>;
+    adjoint(): Matrix_2<S>;
     apply(vector: Vector_2<S>): Vector_2<S>;
-    abstract builder(): MatrixBuilder<S, Vector_2<S>, Matrix<S>>;
-    equals(other: Matrix<S>): boolean;
-    forEachEntry(cb: MatrixEntryCallback<S>): void;
+    abstract builder(): MatrixBuilder_2<S, Vector_2<S>, Matrix_2<S>>;
+    equals(other: Matrix_2<S>): boolean;
+    forEachEntry(cb: MatrixEntryCallback_2<S>): void;
     getColumn(j: number): Vector_2<S>;
     getColumnVectors(): Vector_2<S>[];
     getDiagonal(): Vector_2<S>;
@@ -46,33 +57,33 @@ export abstract class ArrayMatrix<S> implements Matrix<S> {
     getRow(i: number): Vector_2<S>;
     getRowVectors(): Vector_2<S>[];
     getSparseData(): Map<number, Map<number, S>>;
-    multiply(other: Matrix<S>): Matrix<S>;
+    multiply(other: Matrix_2<S>): Matrix_2<S>;
     abstract ops(): ScalarOperations_2<S>;
-    scalarMultiply(scalar: S): Matrix<S>;
-    set(i: number, j: number, value: S): Matrix<S>;
+    scalarMultiply(scalar: S): Matrix_2<S>;
+    set(i: number, j: number, value: S): Matrix_2<S>;
     toArray(): S[][];
     trace(): S;
-    transpose(): Matrix<S>;
+    transpose(): Matrix_2<S>;
     abstract vectorBuilder(): VectorBuilder_2<S, Vector_2<S>>;
 }
 
 // @public
-export abstract class ArrayVector<S> implements Vector<S> {
+export abstract class ArrayVector<S> implements Vector_2<S> {
     // @internal
-    protected constructor(data: VectorData<S>);
-    add(other: Vector<S>): Vector<S>;
-    abstract builder(): VectorBuilder<S, Vector<S>>;
-    equals(other: Vector<S>): boolean;
+    protected constructor(data: VectorData_2<S>);
+    add(other: Vector_2<S>): Vector_2<S>;
+    abstract builder(): VectorBuilder_2<S, Vector_2<S>>;
+    equals(other: Vector_2<S>): boolean;
     getDimension(): number;
     getEntry(index: number): S;
     getSparseData(): Map<number, S>;
-    innerProduct(other: Vector<S>): S;
-    abstract matrixBuilder(): MatrixBuilder_2<S, Vector<S>, Matrix_2<S>>;
+    innerProduct(other: Vector_2<S>): S;
+    abstract matrixBuilder(): MatrixBuilder_2<S, Vector_2<S>, Matrix_2<S>>;
     abstract ops(): ScalarOperations_2<S>;
-    outerProduct(other: Vector<S>): Matrix_2<S>;
-    projectOnto(u: Vector<S>): Vector<S>;
-    scalarMultiply(scalar: S): Vector<S>;
-    set(index: number, value: S): Vector<S>;
+    outerProduct(other: Vector_2<S>): Matrix_2<S>;
+    projectOnto(u: Vector_2<S>): Vector_2<S>;
+    scalarMultiply(scalar: S): Vector_2<S>;
+    set(index: number, value: S): Vector_2<S>;
     toArray(): S[];
 }
 
@@ -119,12 +130,12 @@ export interface CholeskyDecomposition<S> {
 export function columnSumSupremumNorm<S>(A: Matrix_2<S>): number;
 
 // @public
-export class ComplexMatrix extends ArrayMatrix<ComplexNumber_2> {
+export class ComplexMatrix extends ArrayMatrix_2<ComplexNumber_2> {
     // @internal
-    constructor(data: MatrixData<ComplexNumber_2>);
+    constructor(data: MatrixData_2<ComplexNumber_2>);
     // (undocumented)
-    static builder(): MatrixBuilder<ComplexNumber_2, ComplexVector_2, ComplexMatrix>;
-    builder(): MatrixBuilder<ComplexNumber_2, ComplexVector_2, ComplexMatrix>;
+    static builder(): MatrixBuilder_2<ComplexNumber_2, ComplexVector_2, ComplexMatrix>;
+    builder(): MatrixBuilder_2<ComplexNumber_2, ComplexVector_2, ComplexMatrix>;
     // (undocumented)
     static ops(): ScalarOperations_2<ComplexNumber_2>;
     ops(): ScalarOperations_2<ComplexNumber_2>;
@@ -163,31 +174,31 @@ export class ComplexNumber {
 }
 
 // @public
-export class ComplexNumberOperations extends ScalarOperations<ComplexNumber> {
-    add(first: ComplexNumber, second: ComplexNumber): ComplexNumber;
-    conjugate(scalar: ComplexNumber): ComplexNumber;
-    equals(first: ComplexNumber, second: ComplexNumber): boolean;
-    fromComplex(real: number, imag: number): ComplexNumber;
-    fromNumber(num: number): ComplexNumber;
-    getAdditiveIdentity(): ComplexNumber;
-    getAdditiveInverse(scalar: ComplexNumber): ComplexNumber;
-    getMultiplicativeIdentity(): ComplexNumber;
-    getMultiplicativeInverse(scalar: ComplexNumber): ComplexNumber | undefined;
-    getPrincipalSquareRoot(x: ComplexNumber): ComplexNumber;
-    multiply(first: ComplexNumber, second: ComplexNumber): ComplexNumber;
-    norm(x: ComplexNumber): number;
-    prettyPrint(x: ComplexNumber): string;
-    random(min?: number, max?: number): ComplexNumber;
-    randomNormal(mean?: number, standardDeviation?: number): ComplexNumber;
+export class ComplexNumberOperations extends ScalarOperations_2<ComplexNumber_2> {
+    add(first: ComplexNumber_2, second: ComplexNumber_2): ComplexNumber_2;
+    conjugate(scalar: ComplexNumber_2): ComplexNumber_2;
+    equals(first: ComplexNumber_2, second: ComplexNumber_2): boolean;
+    fromComplex(real: number, imag: number): ComplexNumber_2;
+    fromNumber(num: number): ComplexNumber_2;
+    getAdditiveIdentity(): ComplexNumber_2;
+    getAdditiveInverse(scalar: ComplexNumber_2): ComplexNumber_2;
+    getMultiplicativeIdentity(): ComplexNumber_2;
+    getMultiplicativeInverse(scalar: ComplexNumber_2): ComplexNumber_2 | undefined;
+    getPrincipalSquareRoot(x: ComplexNumber_2): ComplexNumber_2;
+    multiply(first: ComplexNumber_2, second: ComplexNumber_2): ComplexNumber_2;
+    norm(x: ComplexNumber_2): number;
+    prettyPrint(x: ComplexNumber_2): string;
+    random(min?: number, max?: number): ComplexNumber_2;
+    randomNormal(mean?: number, standardDeviation?: number): ComplexNumber_2;
 }
 
 // @public
-export class ComplexVector extends ArrayVector<ComplexNumber_2> {
+export class ComplexVector extends ArrayVector_2<ComplexNumber_2> {
     // @internal
-    constructor(data: VectorData<ComplexNumber_2>);
+    constructor(data: VectorData_2<ComplexNumber_2>);
     // (undocumented)
-    static builder(): VectorBuilder<ComplexNumber_2, ComplexVector>;
-    builder(): VectorBuilder<ComplexNumber_2, ComplexVector>;
+    static builder(): VectorBuilder_2<ComplexNumber_2, ComplexVector>;
+    builder(): VectorBuilder_2<ComplexNumber_2, ComplexVector>;
     matrixBuilder(): MatrixBuilder_2<ComplexNumber_2, ComplexVector, ComplexMatrix_2>;
     // (undocumented)
     static ops(): ComplexNumberOperations_2;
@@ -275,7 +286,7 @@ export function isOrthonormal<S>(matrix: Matrix_2<S>): boolean;
 // Warning: (ae-internal-missing-underscore) The name "isSparse" should be prefixed with an underscore because the declaration is marked as @internal
 // 
 // @internal
-export function isSparse<S>(vector: Vector<S>): vector is SparseVector<S>;
+export function isSparse<S>(vector: Vector_2<S>): vector is SparseVector<S>;
 
 // @public
 export function isSquare(matrix: Matrix_2<any>): boolean;
@@ -314,11 +325,11 @@ export interface LUDecomposition<S> {
 export function mat(data: number[][]): Matrix_2<number>;
 
 // @public
-export interface Matrix<S> extends LinearTransformation<Vector_2<S>, Vector_2<S>> {
+export interface Matrix<S> extends LinearTransformation_2<Vector_2<S>, Vector_2<S>> {
     add(other: Matrix<S>): Matrix<S>;
     adjoint(): Matrix<S>;
     apply(vector: Vector_2<S>): Vector_2<S>;
-    builder(): MatrixBuilder<S, Vector_2<S>, Matrix<S>>;
+    builder(): MatrixBuilder_2<S, Vector_2<S>, Matrix<S>>;
     equals(other: Matrix<S>): boolean;
     forEachEntry(callback: MatrixEntryCallback<S>): void;
     getColumn(j: number): Vector_2<S>;
@@ -341,37 +352,37 @@ export interface Matrix<S> extends LinearTransformation<Vector_2<S>, Vector_2<S>
 }
 
 // @public
-export class MatrixBuilder<S, V extends Vector_2<S>, M extends Matrix<S>> {
+export class MatrixBuilder<S, V extends Vector_2<S>, M extends Matrix_2<S>> {
     // @internal
-    constructor(matrixConstructor: MatrixConstructor<S, V, M>);
-    augment(left: Matrix<S>, right: Matrix<S>): M;
-    block(grid: Matrix<S>[][]): M;
-    blockDiagonal(matrices: Matrix<S>[]): M;
+    constructor(matrixConstructor: MatrixConstructor_2<S, V, M>);
+    augment(left: Matrix_2<S>, right: Matrix_2<S>): M;
+    block(grid: Matrix_2<S>[][]): M;
+    blockDiagonal(matrices: Matrix_2<S>[]): M;
     circulant(vector: Vector_2<S>): M;
     diagonal(diagonalEntries: Vector_2<S>): M;
     empty(): M;
-    exclude(matrix: Matrix<S>, rowToExclude: number, columnToExclude: number): M;
+    exclude(matrix: Matrix_2<S>, rowToExclude: number, columnToExclude: number): M;
     fill(value: S, numberOfRows: number, numberOfColumns?: number): M;
     // (undocumented)
-    fromArray(data: MatrixData<S>): M;
+    fromArray(data: MatrixData_2<S>): M;
     fromColumnVectors(columns: Vector_2<S>[]): M;
     fromIndexFunction(numRows: number, numColumns: number, indexFunction: MatrixIndexFunction<S>): M;
     // (undocumented)
-    fromNumberArray(numberData: MatrixData<number>): M;
+    fromNumberArray(numberData: MatrixData_2<number>): M;
     fromRowVectors(rows: Vector_2<S>[]): M;
     // (undocumented)
-    fromSparseData(numRows: number, numCols: number, sparseData: SparseMatrixData<S>): M;
+    fromSparseData(numRows: number, numCols: number, sparseData: SparseMatrixData_2<S>): M;
     hankel(firstColumn: Vector_2<S>, lastRow?: Vector_2<S>): M;
     hilbert(size: number): M;
     identity(size: number): M;
-    map(matrix: Matrix<S>, entryFunction: MatrixEntryFunction<S>): M;
+    map(matrix: Matrix_2<S>, entryFunction: MatrixEntryFunction<S>): M;
     ones(numberOfRows: number, numberOfColumns?: number): M;
     pascal(size: number, upper?: boolean): M;
     pascalSymmetric(size: number): M;
     random(numberOfRows: number, numberOfColumns?: number, min?: number, max?: number): M;
     randomNormal(numberOfRows: number, numberOfColumns?: number, mean?: number, standardDeviation?: number): M;
-    repeat(matrix: Matrix<S>, rows: number, columns: number): M;
-    slice(matrix: Matrix<S>, rowStartIndex?: number, columnStartIndex?: number, rowEndIndex?: number, columnEndIndex?: number): M;
+    repeat(matrix: Matrix_2<S>, rows: number, columns: number): M;
+    slice(matrix: Matrix_2<S>, rowStartIndex?: number, columnStartIndex?: number, rowEndIndex?: number, columnEndIndex?: number): M;
     toeplitz(firstColumn: Vector_2<S>, firstRow?: Vector_2<S>): M;
     tridiagonal(leftEntries: Vector_2<S>, diagonalEntries: Vector_2<S>, rightEntries: Vector_2<S>): M;
     zeros(numberOfRows: number, numberOfColumns?: number): M;
@@ -384,7 +395,7 @@ export interface MatrixConstructor<S, V extends Vector_2<S>, M extends Matrix<S>
     // (undocumented)
     new (data: MatrixData<S>): M;
     // (undocumented)
-    builder(): MatrixBuilder<S, V, M>;
+    builder(): MatrixBuilder_2<S, V, M>;
     // (undocumented)
     ops(): ScalarOperations_2<S>;
     // (undocumented)
@@ -413,12 +424,12 @@ export function mean<S>(A: Matrix_2<S>): Vector_2<S>;
 export function normalize<S>(v: Vector_2<S>): Vector_2<S> | undefined;
 
 // @public
-export class NumberMatrix extends ArrayMatrix<number> {
+export class NumberMatrix extends ArrayMatrix_2<number> {
     // @internal
-    constructor(data: MatrixData<number>);
+    constructor(data: MatrixData_2<number>);
     // (undocumented)
-    static builder(): MatrixBuilder<number, NumberVector_2, NumberMatrix>;
-    builder(): MatrixBuilder<number, NumberVector_2, NumberMatrix>;
+    static builder(): MatrixBuilder_2<number, NumberVector_2, NumberMatrix>;
+    builder(): MatrixBuilder_2<number, NumberVector_2, NumberMatrix>;
     // (undocumented)
     static ops(): ScalarOperations_2<number>;
     ops(): ScalarOperations_2<number>;
@@ -428,7 +439,7 @@ export class NumberMatrix extends ArrayMatrix<number> {
 }
 
 // @public
-export class NumberOperations extends ScalarOperations<number> {
+export class NumberOperations extends ScalarOperations_2<number> {
     add(first: number, second: number): number;
     conjugate(scalar: number): number;
     equals(first: number, second: number): boolean;
@@ -446,12 +457,12 @@ export class NumberOperations extends ScalarOperations<number> {
 }
 
 // @public
-export class NumberVector extends ArrayVector<number> {
+export class NumberVector extends ArrayVector_2<number> {
     // @internal
-    constructor(data: VectorData<number>);
+    constructor(data: VectorData_2<number>);
     // (undocumented)
-    static builder(): VectorBuilder<number, NumberVector>;
-    builder(): VectorBuilder<number, NumberVector>;
+    static builder(): VectorBuilder_2<number, NumberVector>;
+    builder(): VectorBuilder_2<number, NumberVector>;
     matrixBuilder(): MatrixBuilder_2<number, NumberVector, NumberMatrix_2>;
     // (undocumented)
     static ops(): NumberOperations_2;
@@ -572,15 +583,15 @@ export function solveByGaussianElimination<S>(A: Matrix_2<S>, b: Vector_2<S>): L
 export function solveOverdeterminedSystem<S>(A: Matrix_2<S>, b: Vector_2<S>): Vector_2<S>;
 
 // @public
-export abstract class SparseMatrix<S> implements Matrix<S> {
+export abstract class SparseMatrix<S> implements Matrix_2<S> {
     // @internal
-    protected constructor(data: MatrixData<S>);
-    add(other: Matrix<S>): Matrix<S>;
-    adjoint(): Matrix<S>;
+    protected constructor(data: MatrixData_2<S>);
+    add(other: Matrix_2<S>): Matrix_2<S>;
+    adjoint(): Matrix_2<S>;
     apply(vector: Vector_2<S>): Vector_2<S>;
-    abstract builder(): MatrixBuilder<S, Vector_2<S>, Matrix<S>>;
-    equals(other: Matrix<S>): boolean;
-    forEachEntry(cb: MatrixEntryCallback<S>): void;
+    abstract builder(): MatrixBuilder_2<S, Vector_2<S>, Matrix_2<S>>;
+    equals(other: Matrix_2<S>): boolean;
+    forEachEntry(cb: MatrixEntryCallback_2<S>): void;
     getColumn(j: number): Vector_2<S>;
     getColumnVectors(): Vector_2<S>[];
     getDiagonal(): Vector_2<S>;
@@ -590,13 +601,13 @@ export abstract class SparseMatrix<S> implements Matrix<S> {
     getRow(i: number): Vector_2<S>;
     getRowVectors(): Vector_2<S>[];
     getSparseData(): Map<number, Map<number, S>>;
-    multiply(other: Matrix<S>): Matrix<S>;
+    multiply(other: Matrix_2<S>): Matrix_2<S>;
     abstract ops(): ScalarOperations_2<S>;
-    scalarMultiply(scalar: S): Matrix<S>;
-    set(i: number, j: number, value: S): Matrix<S>;
+    scalarMultiply(scalar: S): Matrix_2<S>;
+    set(i: number, j: number, value: S): Matrix_2<S>;
     toArray(): S[][];
     trace(): S;
-    transpose(): Matrix<S>;
+    transpose(): Matrix_2<S>;
     abstract vectorBuilder(): VectorBuilder_2<S, Vector_2<S>>;
 }
 
@@ -604,12 +615,12 @@ export abstract class SparseMatrix<S> implements Matrix<S> {
 export type SparseMatrixData<S> = ReadonlyMap<number, ReadonlyMap<number, S>>;
 
 // @public
-export class SparseNumberMatrix extends SparseMatrix<number> {
+export class SparseNumberMatrix extends SparseMatrix_2<number> {
     // @internal
-    constructor(data: MatrixData<number>);
+    constructor(data: MatrixData_2<number>);
     // (undocumented)
-    static builder(): MatrixBuilder<number, SparseNumberVector_2, SparseNumberMatrix>;
-    builder(): MatrixBuilder<number, SparseNumberVector_2, SparseNumberMatrix>;
+    static builder(): MatrixBuilder_2<number, SparseNumberVector_2, SparseNumberMatrix>;
+    builder(): MatrixBuilder_2<number, SparseNumberVector_2, SparseNumberMatrix>;
     // (undocumented)
     static ops(): ScalarOperations_2<number>;
     ops(): ScalarOperations_2<number>;
@@ -619,13 +630,13 @@ export class SparseNumberMatrix extends SparseMatrix<number> {
 }
 
 // @public
-export class SparseNumberVector extends SparseVector<number> {
+export class SparseNumberVector extends SparseVector_2<number> {
     // @internal
-    constructor(data: VectorData<number>);
+    constructor(data: VectorData_2<number>);
     // (undocumented)
-    static builder(): VectorBuilder<number, SparseNumberVector>;
+    static builder(): VectorBuilder_2<number, SparseNumberVector>;
     // (undocumented)
-    builder(): VectorBuilder<number, SparseNumberVector>;
+    builder(): VectorBuilder_2<number, SparseNumberVector>;
     // (undocumented)
     matrixBuilder(): MatrixBuilder_2<number, SparseNumberVector, SparseNumberMatrix_2>;
     // (undocumented)
@@ -635,25 +646,25 @@ export class SparseNumberVector extends SparseVector<number> {
 }
 
 // @public
-export abstract class SparseVector<S> implements Vector<S> {
+export abstract class SparseVector<S> implements Vector_2<S> {
     // @internal
-    protected constructor(data: VectorData<S>);
-    add(other: Vector<S>): Vector<S>;
+    protected constructor(data: VectorData_2<S>);
+    add(other: Vector_2<S>): Vector_2<S>;
     // (undocumented)
-    abstract builder(): VectorBuilder<S, Vector<S>>;
-    equals(other: Vector<S>): boolean;
+    abstract builder(): VectorBuilder_2<S, Vector_2<S>>;
+    equals(other: Vector_2<S>): boolean;
     getDimension(): number;
     getEntry(index: number): S;
     getSparseData(): Map<number, S>;
-    innerProduct(other: Vector<S>): S;
+    innerProduct(other: Vector_2<S>): S;
     // (undocumented)
-    abstract matrixBuilder(): MatrixBuilder_2<S, Vector<S>, Matrix_2<S>>;
+    abstract matrixBuilder(): MatrixBuilder_2<S, Vector_2<S>, Matrix_2<S>>;
     // (undocumented)
     abstract ops(): ScalarOperations_2<S>;
-    outerProduct(other: Vector<S>): Matrix_2<S>;
-    projectOnto(u: Vector<S>): Vector<S>;
-    scalarMultiply(scalar: S): Vector<S>;
-    set(index: number, value: S): Vector<S>;
+    outerProduct(other: Vector_2<S>): Matrix_2<S>;
+    projectOnto(u: Vector_2<S>): Vector_2<S>;
+    scalarMultiply(scalar: S): Vector_2<S>;
+    set(index: number, value: S): Vector_2<S>;
     toArray(): S[];
 }
 
@@ -693,7 +704,7 @@ export function vec(data: number[]): Vector_2<number>;
 // @public
 export interface Vector<S> {
     add(other: Vector<S>): Vector<S>;
-    builder(): VectorBuilder<S, Vector<S>>;
+    builder(): VectorBuilder_2<S, Vector<S>>;
     equals(other: Vector<S>): boolean;
     getDimension(): number;
     getEntry(index: number): S;
@@ -709,28 +720,28 @@ export interface Vector<S> {
 }
 
 // @public
-export class VectorBuilder<S, V extends Vector<S>> {
+export class VectorBuilder<S, V extends Vector_2<S>> {
     // @internal
-    constructor(vectorConstructor: VectorConstructor<S, V>);
-    combine(first: Vector<S>, second: Vector<S>, combineEntries: (a: S, b: S) => S): Vector<S>;
-    concatenate(first: Vector<S>, second: Vector<S>): V;
+    constructor(vectorConstructor: VectorConstructor_2<S, V>);
+    combine(first: Vector_2<S>, second: Vector_2<S>, combineEntries: (a: S, b: S) => S): Vector_2<S>;
+    concatenate(first: Vector_2<S>, second: Vector_2<S>): V;
     elementaryVector(dimension: number, oneIndex: number): V;
     empty(): V;
     fill(value: S, dimension: number): V;
     // (undocumented)
-    fromArray(data: VectorData<S>): V;
+    fromArray(data: VectorData_2<S>): V;
     fromIndexFunction(dimension: number, valueFromIndex: VectorIndexFunction<S>): V;
     // (undocumented)
-    fromNumberArray(data: VectorData<number>): V;
+    fromNumberArray(data: VectorData_2<number>): V;
     // (undocumented)
-    fromSparseData(dimension: number, sparseData: SparseVectorData<S>): V;
+    fromSparseData(dimension: number, sparseData: SparseVectorData_2<S>): V;
     // (undocumented)
-    fromValues(...data: VectorData<S>): V;
-    map(vector: Vector<S>, valueFromEntry: VectorEntryFunction<S>): V;
+    fromValues(...data: VectorData_2<S>): V;
+    map(vector: Vector_2<S>, valueFromEntry: VectorEntryFunction<S>): V;
     ones(dimension: number): V;
     random(dimension: number, min?: number, max?: number): V;
     randomNormal(dimension: number, mean?: number, standardDeviation?: number): V;
-    shift(vector: Vector<S>, offset?: number, reverse?: boolean): V;
+    shift(vector: Vector_2<S>, offset?: number, reverse?: boolean): V;
     zeros(dimension: number): V;
 }
 
@@ -741,7 +752,7 @@ export interface VectorConstructor<S, V extends Vector<S>> {
     // (undocumented)
     new (data: VectorData<S>): V;
     // (undocumented)
-    builder(): VectorBuilder<S, V>;
+    builder(): VectorBuilder_2<S, V>;
     // (undocumented)
     ops(): ScalarOperations_2<S>;
 }

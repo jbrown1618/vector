@@ -1,6 +1,6 @@
 import { ComplexNumber } from '@lib/types/scalar/ComplexNumber';
-import { ComplexVector } from '../ComplexVector';
-import { NumberVector } from '../NumberVector';
+import { ComplexVector } from '@lib/types/vector/ComplexVector';
+import { NumberVector } from '@lib/types/vector/NumberVector';
 
 describe('VectorBuilder', () => {
   const builder = NumberVector.builder();

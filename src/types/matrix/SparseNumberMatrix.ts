@@ -2,9 +2,9 @@ import { StaticImplements } from '@lib/utilities/StaticImplements';
 import { NumberOperations } from '@lib/types/scalar/NumberOperations';
 import { SparseNumberVector } from '@lib/types/vector/SparseNumberVector';
 import { VectorBuilder } from '@lib/types/vector/VectorBuilder';
-import { MatrixConstructor, MatrixData } from './Matrix';
-import { MatrixBuilder } from './MatrixBuilder';
-import { SparseMatrix } from './SparseMatrix';
+import { MatrixConstructor, MatrixData } from '@lib/types/matrix/Matrix';
+import { MatrixBuilder } from '@lib/types/matrix/MatrixBuilder';
+import { SparseMatrix } from '@lib/types/matrix/SparseMatrix';
 import { ScalarOperations } from '@lib/types/scalar/ScalarOperations';
 
 /**

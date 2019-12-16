@@ -1,7 +1,11 @@
 import { mat, vec } from '@lib/utilities/aliases';
 import { ComplexMatrix } from '@lib/types/matrix/ComplexMatrix';
 import { ComplexNumber } from '@lib/types/scalar/ComplexNumber';
-import { calculateEigenvalues, eig, getEigenvectorForEigenvalue } from '../Eigenvalues';
+import {
+  calculateEigenvalues,
+  eig,
+  getEigenvectorForEigenvalue
+} from '@lib/eigenvalues/Eigenvalues';
 
 describe('Eigenvalues', () => {
   describe('eig', () => {

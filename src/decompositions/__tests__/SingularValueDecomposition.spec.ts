@@ -1,4 +1,4 @@
-import { calculateSingularValueDecomposition } from '../SingularValueDecomposition';
+import { calculateSingularValueDecomposition } from '@lib/decompositions/SingularValueDecomposition';
 import { diag, mat } from '@lib/utilities/aliases';
 import { loadTestData } from '@test-utils/testData';
 

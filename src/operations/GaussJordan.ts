@@ -2,7 +2,7 @@ import { Matrix } from '@lib/types/matrix/Matrix';
 import { Vector } from '@lib/types/vector/Vector';
 import { assertSquare } from '@lib/utilities/ErrorAssertions';
 import { LinearSolution } from '@lib/solvers/LinearSolution';
-import { RowOperations } from './RowOperations';
+import { RowOperations } from '@lib/operations/RowOperations';
 import { backwardSubstituteAugmentedMatrix } from '@lib/solvers/Substitution';
 
 /**

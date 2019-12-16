@@ -1,6 +1,6 @@
 import { random, randomNormal } from '@lib/utilities/NumberUtilities';
-import { ComplexNumber } from './ComplexNumber';
-import { ScalarOperations } from './ScalarOperations';
+import { ComplexNumber } from '@lib/types/scalar/ComplexNumber';
+import { ScalarOperations } from '@lib/types/scalar/ScalarOperations';
 import { prettyPrint } from '@lib/utilities/prettyPrint';
 
 /**

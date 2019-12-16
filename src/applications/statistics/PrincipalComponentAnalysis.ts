@@ -1,6 +1,6 @@
 import { Matrix } from '@lib/types/matrix/Matrix';
 import { Vector } from '@lib/types/vector/Vector';
-import { covariance, correlation } from './DescriptiveStatistics';
+import { covariance, correlation } from '@lib/applications/statistics/DescriptiveStatistics';
 import { eig } from '@lib/eigenvalues/Eigenvalues';
 
 /**

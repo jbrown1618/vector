@@ -2,9 +2,9 @@ import { StaticImplements } from '@lib/utilities/StaticImplements';
 import { ComplexMatrix } from '@lib/types/matrix/ComplexMatrix';
 import { ComplexNumber } from '@lib/types/scalar/ComplexNumber';
 import { ComplexNumberOperations } from '@lib/types/scalar/ComplexNumberOperations';
-import { ArrayVector } from './ArrayVector';
-import { VectorConstructor, VectorData } from './Vector';
-import { VectorBuilder } from './VectorBuilder';
+import { ArrayVector } from '@lib/types/vector/ArrayVector';
+import { VectorConstructor, VectorData } from '@lib/types/vector/Vector';
+import { VectorBuilder } from '@lib/types/vector/VectorBuilder';
 import { MatrixBuilder } from '@lib/types/matrix/MatrixBuilder';
 
 /**

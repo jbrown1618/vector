@@ -1,4 +1,4 @@
-import { GradientDescentRegressor } from './GradientDescentRegressor';
+import { GradientDescentRegressor } from '@lib/applications/machine-learning/models/GradientDescentRegressor';
 import { Matrix } from '@lib/types/matrix/Matrix';
 import { Vector } from '@lib/types/vector/Vector';
 

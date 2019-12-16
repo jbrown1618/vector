@@ -7,7 +7,7 @@ import {
   isOrthogonal,
   isOrthonormal,
   isHermitian
-} from '../MatrixProperties';
+} from '@lib/utilities/MatrixProperties';
 import { ComplexMatrix } from '@lib/types/matrix/ComplexMatrix';
 import { ComplexNumber } from '@lib/types/scalar/ComplexNumber';
 import { mat, eye } from '@lib/utilities/aliases';

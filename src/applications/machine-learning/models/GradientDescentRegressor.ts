@@ -1,9 +1,12 @@
-import { Regressor } from './Regressor';
+import { Regressor } from '@lib/applications/machine-learning/models/Regressor';
 import { Matrix } from '@lib/types/matrix/Matrix';
 import { Vector } from '@lib/types/vector/Vector';
 import { NumberVector } from '@lib/types/vector/NumberVector';
-import { gradientDescent, GradientDescentParameters } from '../GradientDescent';
-import { CostFunction } from '../LearningAlgorithm';
+import {
+  gradientDescent,
+  GradientDescentParameters
+} from '@lib/applications/machine-learning/GradientDescent';
+import { CostFunction } from '@lib/applications/machine-learning//LearningAlgorithm';
 
 export abstract class GradientDescentRegressor<H extends object> implements Regressor {
   protected readonly _hyperParameters: Readonly<H & GradientDescentParameters>;

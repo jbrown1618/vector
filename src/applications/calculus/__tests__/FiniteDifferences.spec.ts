@@ -6,7 +6,7 @@ import {
   derivative,
   forwardDifferenceMatrix,
   linspace
-} from '../FiniteDifferences';
+} from '@lib/applications/calculus/FiniteDifferences';
 
 describe('FiniteDifferences', () => {
   describe('linspace', () => {

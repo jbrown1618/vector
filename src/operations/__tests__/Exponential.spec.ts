@@ -1,5 +1,5 @@
 import { mat, eye } from '@lib/utilities/aliases';
-import { exp, pow } from '../Exponential';
+import { exp, pow } from '@lib/operations/Exponential';
 
 describe('Exponential', () => {
   describe('exp', () => {

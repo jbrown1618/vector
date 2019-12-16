@@ -1,8 +1,8 @@
 import { ScalarOperations } from '@lib/types/scalar/ScalarOperations';
 import { Vector, VectorData } from '@lib/types/vector/Vector';
 import { VectorBuilder } from '@lib/types/vector/VectorBuilder';
-import { LinearTransformation } from './LinearTransformation';
-import { MatrixBuilder } from './MatrixBuilder';
+import { LinearTransformation } from '@lib/types/matrix/LinearTransformation';
+import { MatrixBuilder } from '@lib/types/matrix/MatrixBuilder';
 
 /**
  * The data stored in a {@link Matrix} represented as a 2-D array

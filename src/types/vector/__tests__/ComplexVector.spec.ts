@@ -1,5 +1,5 @@
 import { ComplexNumber } from '@lib/types/scalar/ComplexNumber';
-import { ComplexVector } from '../ComplexVector';
+import { ComplexVector } from '@lib/types/vector/ComplexVector';
 
 describe('ComplexVector', () => {
   const builder = ComplexVector.builder();

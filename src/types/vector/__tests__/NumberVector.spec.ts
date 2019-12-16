@@ -1,5 +1,5 @@
-import { NumberVector } from '../NumberVector';
-import { SparseNumberVector } from '../SparseNumberVector';
+import { NumberVector } from '@lib/types/vector/NumberVector';
+import { SparseNumberVector } from '@lib/types/vector/SparseNumberVector';
 
 const configs = [
   {

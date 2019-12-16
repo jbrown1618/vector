@@ -1,5 +1,8 @@
 import { Vector } from '@lib/types/vector/Vector';
-import { CostFunction, LearningAlgorithm } from './LearningAlgorithm';
+import {
+  CostFunction,
+  LearningAlgorithm
+} from '@lib/applications/machine-learning/LearningAlgorithm';
 
 export interface GradientDescentParameters {
   alpha: number;

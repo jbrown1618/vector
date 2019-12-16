@@ -1,7 +1,7 @@
 import { Matrix } from '@lib/types/matrix/Matrix';
 import { MatrixBuilder } from '@lib/types/matrix/MatrixBuilder';
 import { ScalarOperations } from '@lib/types/scalar/ScalarOperations';
-import { VectorBuilder } from './VectorBuilder';
+import { VectorBuilder } from '@lib/types/vector/VectorBuilder';
 
 /**
  * The data stored in a {@link Vector} represented as a map

@@ -1,8 +1,8 @@
 import { Matrix } from '@lib/types/matrix/Matrix';
 import { assertSquare } from '@lib/utilities/ErrorAssertions';
 import { factorial } from '@lib/utilities/NumberUtilities';
-import { inverse } from './GaussJordan';
-import { columnSumSupremumNorm } from './Norms';
+import { inverse } from '@lib/operations/GaussJordan';
+import { columnSumSupremumNorm } from '@lib/operations/Norms';
 
 /**
  * Computes _A^n_ recursively.

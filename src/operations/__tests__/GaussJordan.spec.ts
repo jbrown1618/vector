@@ -6,7 +6,7 @@ import {
   reducedRowEchelonForm,
   rowEchelonForm,
   solveByGaussianElimination
-} from '../GaussJordan';
+} from '@lib/operations/GaussJordan';
 import { SolutionType, UnderdeterminedSolution, UniqueSolution } from '@lib/solvers/LinearSolution';
 import { loadTestData } from '@test-utils/testData';
 

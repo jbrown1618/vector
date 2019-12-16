@@ -7,7 +7,7 @@ import {
   standardDeviation,
   correlation,
   standardize
-} from '../DescriptiveStatistics';
+} from '@lib/applications/statistics/DescriptiveStatistics';
 
 describe('DescriptiveStatistics', () => {
   const sample = mat([[90, 60, 90], [90, 90, 30], [60, 60, 60], [60, 60, 90], [30, 30, 30]]);

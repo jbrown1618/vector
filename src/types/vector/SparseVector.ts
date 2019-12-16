@@ -2,8 +2,8 @@ import { assertHomogeneous, assertValidVectorIndex } from '@lib/utilities/ErrorA
 import { Matrix } from '@lib/types/matrix/Matrix';
 import { MatrixBuilder } from '@lib/types/matrix/MatrixBuilder';
 import { ScalarOperations } from '@lib/types/scalar/ScalarOperations';
-import { Vector, VectorData } from './Vector';
-import { VectorBuilder } from './VectorBuilder';
+import { Vector, VectorData } from '@lib/types/vector/Vector';
+import { VectorBuilder } from '@lib/types/vector/VectorBuilder';
 
 /**
  * The data stored in a {@link Vector} represented as a map

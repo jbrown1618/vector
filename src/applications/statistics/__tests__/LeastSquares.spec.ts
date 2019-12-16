@@ -4,7 +4,7 @@ import {
   calculateGeneralLeastSquares,
   calculateLinearLeastSquares,
   solveOverdeterminedSystem
-} from '../LeastSquares';
+} from '@lib/applications/statistics/LeastSquares';
 import { loadTestData } from '@test-utils/testData';
 
 describe('LeastSquares', () => {

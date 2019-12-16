@@ -7,8 +7,8 @@ import {
 import { binomial } from '@lib/utilities/NumberUtilities';
 import { ScalarOperations } from '@lib/types/scalar/ScalarOperations';
 import { Vector } from '@lib/types/vector/Vector';
-import { Matrix, MatrixConstructor, MatrixData } from './Matrix';
-import { SparseMatrixData } from './SparseMatrix';
+import { Matrix, MatrixConstructor, MatrixData } from '@lib/types/matrix/Matrix';
+import { SparseMatrixData } from '@lib/types/matrix/SparseMatrix';
 
 /**
  * A function that generates a matrix entry based on its row index `i` and column index `j`

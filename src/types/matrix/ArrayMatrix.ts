@@ -2,8 +2,8 @@ import { assertRectangular, assertValidMatrixIndex } from '@lib/utilities/ErrorA
 import { ScalarOperations } from '@lib/types/scalar/ScalarOperations';
 import { Vector, VectorData } from '@lib/types/vector/Vector';
 import { VectorBuilder } from '@lib/types/vector/VectorBuilder';
-import { Matrix, MatrixData, MatrixEntryCallback } from './Matrix';
-import { MatrixBuilder } from './MatrixBuilder';
+import { Matrix, MatrixData, MatrixEntryCallback } from '@lib/types/matrix/Matrix';
+import { MatrixBuilder } from '@lib/types/matrix/MatrixBuilder';
 
 /**
  * Implements {@link Matrix} with a 2-dimensional array of values.

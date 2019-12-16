@@ -1,5 +1,5 @@
 import { loadTestData } from '@test-utils/testData';
-import { LinearRegressor } from '../LinearRegressor';
+import { LinearRegressor } from '@lib/applications/machine-learning/models/LinearRegressor';
 import { mat, vec } from '@lib/utilities/aliases';
 
 describe('LinearRegressor', () => {
