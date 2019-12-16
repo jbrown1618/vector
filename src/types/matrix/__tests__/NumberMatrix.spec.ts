@@ -1,30 +1,36 @@
-import { NumberVector } from '@lib/types/vector/NumberVector';
-import { SparseNumberVector } from '@lib/types/vector/SparseNumberVector';
 import { NumberMatrix } from '@lib/types/matrix/NumberMatrix';
 import { SparseNumberMatrix } from '@lib/types/matrix/SparseNumberMatrix';
 import { FloatMatrix } from '@lib/types/matrix/FloatMatrix';
-import { FloatVector } from '@lib/types/vector/FloatVector';
 
 const configs = [
   {
     testClassName: 'NumberMatrix',
     builder: NumberMatrix.builder(),
-    vectorBuilder: NumberVector.builder()
+    vectorBuilder: NumberMatrix.vectorBuilder()
   },
   {
     testClassName: 'SparseNumberMatrix',
     builder: SparseNumberMatrix.builder(),
-    vectorBuilder: SparseNumberVector.builder()
+    vectorBuilder: SparseNumberMatrix.vectorBuilder()
   },
   {
     testClassName: 'FloatMatrix',
     builder: FloatMatrix.builder(),
-    vectorBuilder: FloatVector.builder()
+    vectorBuilder: FloatMatrix.vectorBuilder()
   }
 ];
 
 configs.forEach(({ testClassName, builder, vectorBuilder }) => {
   describe(testClassName, () => {
+    describe('builders and ops', () => {
+      test('can be created from an instance', () => {
+        const instance = builder.empty();
+        expect(instance.builder()).toBeTruthy();
+        expect(instance.vectorBuilder()).toBeTruthy();
+        expect(instance.ops()).toBeTruthy();
+      });
+    });
+
     describe('constructors', () => {
       const data = [[1, 2, 3], [2, 2, 1], [5, 2, 9]];
 
