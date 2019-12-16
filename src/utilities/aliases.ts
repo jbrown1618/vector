@@ -1,11 +1,10 @@
 import { Vector } from '@lib/types/vector/Vector';
 import { Matrix } from '@lib/types/matrix/Matrix';
-import { NumberVector } from '@lib/types/vector/NumberVector';
-import { NumberMatrix } from '@lib/types/matrix/NumberMatrix';
+import { FloatVector } from '@lib/types/vector/FloatVector';
+import { FloatMatrix } from '@lib/types/matrix/FloatMatrix';
 
-// TODO: use FloatVector and FloatMatrix as the default implementations
-const vb = NumberVector.builder();
-const mb = NumberMatrix.builder();
+const vb = FloatVector.builder();
+const mb = FloatMatrix.builder();
 
 /**
  * Creates a new {@link Vector} of numbers.  See {@link VectorBuilder.fromArray}

@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`LeastSquares calculateGeneralLeastSquaresApproximation calculates a quadratic regression 1`] = `
-NumberVector {
-  "_data": Array [
+FloatVector {
+  "_data": Float64Array [
     3.4235294117647626,
     0.3250257997935815,
     0.1603199174406616,
@@ -11,8 +11,8 @@ NumberVector {
 `;
 
 exports[`LeastSquares calculateLinearLeastSquaresApproximation calculates the coefficients for a multiple linear regression 1`] = `
-NumberVector {
-  "_data": Array [
+FloatVector {
+  "_data": Float64Array [
     -0.40833333333332367,
     0.7366666666666807,
     2.5416666666666448,
@@ -21,8 +21,8 @@ NumberVector {
 `;
 
 exports[`LeastSquares calculateLinearLeastSquaresApproximation calculates the coefficients for a simple linear regression 1`] = `
-NumberVector {
-  "_data": Array [
+FloatVector {
+  "_data": Float64Array [
     -5.7147058823529315,
     3.210784313725489,
   ],
@@ -30,8 +30,8 @@ NumberVector {
 `;
 
 exports[`LeastSquares solveOverdeterminedSystem gives an approximate solution to an overdetermined system 1`] = `
-NumberVector {
-  "_data": Array [
+FloatVector {
+  "_data": Float64Array [
     0.07864000371772194,
     -0.10783427997814247,
     -0.0254725919314209,

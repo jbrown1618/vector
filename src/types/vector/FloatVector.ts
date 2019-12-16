@@ -69,7 +69,7 @@ export class FloatVector implements Vector<number> {
   public set(index: number, value: number): Vector<number> {
     assertValidVectorIndex(this, index);
 
-    const newData = this.toArray();
+    const newData = Float64Array.from(this._data);
     newData[index] = value;
 
     return new FloatVector(newData);
