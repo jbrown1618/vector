@@ -1,4 +1,8 @@
-import { assertRectangular, assertValidMatrixIndex } from '@lib/utilities/ErrorAssertions';
+import {
+  assertRectangular,
+  assertValidMatrixIndex,
+  assertDimensionMatch
+} from '@lib/utilities/ErrorAssertions';
 import { ScalarOperations } from '@lib/types/scalar/ScalarOperations';
 import { Vector, VectorData } from '@lib/types/vector/Vector';
 import { VectorBuilder } from '@lib/types/vector/VectorBuilder';
@@ -46,6 +50,7 @@ export abstract class ArrayMatrix<S> implements Matrix<S> {
    * {@inheritDoc Matrix.add}
    */
   public add(other: Matrix<S>): Matrix<S> {
+    assertDimensionMatch(this, other);
     return this.builder().fromColumnVectors(
       this.getColumnVectors().map((column, columnIndex) => column.add(other.getColumn(columnIndex)))
     );

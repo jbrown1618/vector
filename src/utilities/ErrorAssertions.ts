@@ -35,7 +35,9 @@ export function assertSquare<T>(matrix: Matrix<T>, message?: string): void {
  * from any other member.
  */
 export function assertHomogeneous<T>(vectors: Vector<T>[], message?: string): void {
-  message = message || `Expected vectors all to have the same dimension; got ${vectors}`;
+  message =
+    message ||
+    `Expected vectors all to have the same dimension; got ${vectors.map(v => v.getDimension())}`;
   if (vectors.length === 0) {
     return;
   }
@@ -113,6 +115,21 @@ export function assertValidIndex(index: number, size: number, message?: string):
   message = message || `Expected an index between 0 and ${size - 1}; got ${index}`;
 
   if (index < 0 || index >= size) {
+    throw Error(message);
+  }
+}
+
+export function assertDimensionMatch(
+  first: Matrix<any>,
+  second: Matrix<any>,
+  message?: string
+): void {
+  const m1 = first.getNumberOfRows();
+  const n1 = first.getNumberOfColumns();
+  const m2 = second.getNumberOfRows();
+  const n2 = second.getNumberOfColumns();
+  message = message || `Expected matching dimensions; got (${m1}x${n1}) and (${m2}x${n2})`;
+  if (m1 !== m2 || n1 !== n2) {
     throw Error(message);
   }
 }

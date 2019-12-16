@@ -3,6 +3,7 @@ import { Matrix } from '@lib/types/matrix/Matrix';
 import { NumberVector } from '@lib/types/vector/NumberVector';
 import { NumberMatrix } from '@lib/types/matrix/NumberMatrix';
 
+// TODO: use FloatVector and FloatMatrix as the default implementations
 const vb = NumberVector.builder();
 const mb = NumberMatrix.builder();
 

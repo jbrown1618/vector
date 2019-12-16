@@ -1,5 +1,6 @@
 import { NumberVector } from '@lib/types/vector/NumberVector';
 import { SparseNumberVector } from '@lib/types/vector/SparseNumberVector';
+import { FloatVector } from '@lib/types/vector/FloatVector';
 
 const configs = [
   {
@@ -9,6 +10,10 @@ const configs = [
   {
     testClassName: 'SparseNumberVector',
     builder: SparseNumberVector.builder()
+  },
+  {
+    testClassName: 'FloatVector',
+    builder: FloatVector.builder()
   }
 ];
 

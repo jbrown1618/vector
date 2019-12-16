@@ -2,6 +2,8 @@ import { NumberVector } from '@lib/types/vector/NumberVector';
 import { SparseNumberVector } from '@lib/types/vector/SparseNumberVector';
 import { NumberMatrix } from '@lib/types/matrix/NumberMatrix';
 import { SparseNumberMatrix } from '@lib/types/matrix/SparseNumberMatrix';
+import { FloatMatrix } from '@lib/types/matrix/FloatMatrix';
+import { FloatVector } from '@lib/types/vector/FloatVector';
 
 const configs = [
   {
@@ -13,6 +15,11 @@ const configs = [
     testClassName: 'SparseNumberMatrix',
     builder: SparseNumberMatrix.builder(),
     vectorBuilder: SparseNumberVector.builder()
+  },
+  {
+    testClassName: 'FloatMatrix',
+    builder: FloatMatrix.builder(),
+    vectorBuilder: FloatVector.builder()
   }
 ];
 

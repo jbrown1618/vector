@@ -16,6 +16,7 @@ export type MatrixData<S> = readonly VectorData<S>[];
  */
 export type MatrixEntryCallback<S> = (entry: S, rowIndex: number, columnIndex: number) => void;
 
+// TODO - the matrix constructor should be able to take data in any format.  Maybe we just need conversion functions for each of the data formats
 /**
  * @internal
  */

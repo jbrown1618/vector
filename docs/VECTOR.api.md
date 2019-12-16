@@ -10,6 +10,8 @@ import { ComplexMatrix as ComplexMatrix_2 } from '@lib/types/matrix/ComplexMatri
 import { ComplexNumber as ComplexNumber_2 } from '@lib/types/scalar/ComplexNumber';
 import { ComplexNumberOperations as ComplexNumberOperations_2 } from '@lib/types/scalar/ComplexNumberOperations';
 import { ComplexVector as ComplexVector_2 } from '@lib/types/vector/ComplexVector';
+import { FloatMatrix as FloatMatrix_2 } from '@lib/types/matrix/FloatMatrix';
+import { FloatVector as FloatVector_2 } from '@lib/types/vector/FloatVector';
 import { GradientDescentRegressor } from '@lib/applications/machine-learning/models/GradientDescentRegressor';
 import { LearningAlgorithm as LearningAlgorithm_2 } from '@lib/applications/machine-learning/LearningAlgorithm';
 import { LinearSolution } from '@lib/solvers/LinearSolution';
@@ -268,6 +270,67 @@ export function exp<S>(A: Matrix_2<S>, order?: number): Matrix_2<S>;
 
 // @public
 export function eye(size: number): Matrix_2<number>;
+
+// @public
+export class FloatMatrix implements Matrix_2<number> {
+    // @internal
+    constructor(data: MatrixData_2<number>);
+    // @internal
+    constructor(data: Float64Array, numRows: number, numCols: number);
+    add(other: Matrix_2<number>): Matrix_2<number>;
+    adjoint(): Matrix_2<number>;
+    apply(vector: Vector_2<number>): Vector_2<number>;
+    // (undocumented)
+    static builder(): MatrixBuilder_2<number, FloatVector_2, FloatMatrix>;
+    builder(): MatrixBuilder_2<number, FloatVector_2, FloatMatrix>;
+    equals(other: Matrix_2<number>): boolean;
+    forEachEntry(cb: MatrixEntryCallback_2<number>): void;
+    getColumn(j: number): Vector_2<number>;
+    getColumnVectors(): Vector_2<number>[];
+    getDiagonal(): Vector_2<number>;
+    getEntry(i: number, j: number): number;
+    getNumberOfColumns(): number;
+    getNumberOfRows(): number;
+    getRow(i: number): Vector_2<number>;
+    getRowVectors(): Vector_2<number>[];
+    getSparseData(): Map<number, Map<number, number>>;
+    multiply(other: Matrix_2<number>): Matrix_2<number>;
+    // (undocumented)
+    static ops(): ScalarOperations_2<number>;
+    ops(): ScalarOperations_2<number>;
+    scalarMultiply(scalar: number): Matrix_2<number>;
+    set(i: number, j: number, value: number): Matrix_2<number>;
+    toArray(): number[][];
+    trace(): number;
+    transpose(): Matrix_2<number>;
+    // (undocumented)
+    static vectorBuilder(): VectorBuilder_2<number, FloatVector_2>;
+    vectorBuilder(): VectorBuilder_2<number, FloatVector_2>;
+}
+
+// @public
+export class FloatVector implements Vector_2<number> {
+    // @internal
+    constructor(data: VectorData_2<number> | Float64Array);
+    add(other: Vector_2<number>): Vector_2<number>;
+    // (undocumented)
+    static builder(): VectorBuilder_2<number, FloatVector>;
+    builder(): VectorBuilder_2<number, FloatVector>;
+    equals(other: Vector_2<number>): boolean;
+    getDimension(): number;
+    getEntry(index: number): number;
+    getSparseData(): Map<number, number>;
+    innerProduct(other: Vector_2<number>): number;
+    matrixBuilder(): MatrixBuilder_2<number, FloatVector, FloatMatrix_2>;
+    // (undocumented)
+    static ops(): NumberOperations_2;
+    ops(): NumberOperations_2;
+    outerProduct(other: Vector_2<number>): Matrix_2<number>;
+    projectOnto(u: Vector_2<number>): Vector_2<number>;
+    scalarMultiply(scalar: number): Vector_2<number>;
+    set(index: number, value: number): Vector_2<number>;
+    toArray(): number[];
+}
 
 // @public
 export function forwardDifferenceMatrix(binCount: number): NumberMatrix_2;

@@ -14,6 +14,8 @@
 |  [ComplexNumber](./vector.complexnumber.md) | A number of the form \_a + bi\_ where \_i\_ is the imaginary unit. |
 |  [ComplexNumberOperations](./vector.complexnumberoperations.md) | Implements the basic [ScalarOperations](./vector.scalaroperations.md) on [ComplexNumber](./vector.complexnumber.md)<!-- -->s |
 |  [ComplexVector](./vector.complexvector.md) | A dense [Vector](./vector.vector.md) of [ComplexNumber](./vector.complexnumber.md)<!-- -->s implemented as an [ArrayVector](./vector.arrayvector.md) |
+|  [FloatMatrix](./vector.floatmatrix.md) | A dense matrix of JavaScript <code>number</code> primitives, implemented as a column-major <code>Float64Array</code> |
+|  [FloatVector](./vector.floatvector.md) | A dense [Vector](./vector.vector.md) of <code>number</code>s implemented as a <code>Float64Array</code> |
 |  [LinearRegressor](./vector.linearregressor.md) | A [Regressor](./vector.regressor.md) model which uses an ordinary least squares model with regularization to predict a continuous target. The optimal set of parameters is computed with gradient descent. |
 |  [MatrixBuilder](./vector.matrixbuilder.md) | Provides methods for constructing [Matrices](./vector.matrix.md) of a given type |
 |  [NumberMatrix](./vector.numbermatrix.md) | A dense matrix of JavaScript <code>number</code> primitives, implemented as an [ArrayMatrix](./vector.arraymatrix.md) |
