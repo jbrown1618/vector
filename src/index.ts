@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 export * from './applications/calculus/FiniteDifferences';
 export * from './applications/machine-learning/GradientDescent';
 export * from './applications/machine-learning/LearningAlgorithm';

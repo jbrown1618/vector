@@ -43,6 +43,23 @@ describe('ComplexVector', () => {
     });
   });
 
+  describe('set', () => {
+    test('returns a new vector with a value changed', () => {
+      const original = builder.zeros(5);
+      const updated = original.set(2, new ComplexNumber(1, 1));
+      expect(updated).not.toBe(original);
+      expect(updated).toStrictEqual(
+        builder.fromValues(
+          ComplexNumber.ZERO,
+          ComplexNumber.ZERO,
+          new ComplexNumber(1, 1),
+          ComplexNumber.ZERO,
+          ComplexNumber.ZERO
+        )
+      );
+    });
+  });
+
   describe('add', () => {
     test('adds two vectors of equal dimension', () => {
       const first = builder.fromArray(complexify([1, 2, 3]));

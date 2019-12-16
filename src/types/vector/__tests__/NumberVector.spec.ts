@@ -38,6 +38,21 @@ configs.forEach(({ testClassName, builder }) => {
       });
     });
 
+    describe('set', () => {
+      test('returns a new vector with a value changed', () => {
+        const original = builder.zeros(5);
+        const updated = original.set(2, 1);
+        expect(updated).not.toBe(original);
+        expect(updated).toStrictEqual(builder.fromValues(0, 0, 1, 0, 0));
+      });
+
+      test('rejects an invalid index', () => {
+        const original = builder.zeros(5);
+        expect(() => original.set(5, 1)).toThrow();
+        expect(() => original.set(-1, 1)).toThrow();
+      });
+    });
+
     describe('add', () => {
       test('adds two vectors of equal dimension', () => {
         const first = builder.fromArray([1, 2, 3]);
