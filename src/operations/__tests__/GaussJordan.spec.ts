@@ -1,17 +1,13 @@
-import { mat, vec, eye } from '../../utilities/aliases';
-import { Matrix } from '../../types/matrix/Matrix';
-import { NumberMatrix } from '../../types/matrix/NumberMatrix';
+import { mat, vec, eye } from '@lib/utilities/aliases';
+import { Matrix } from '@lib/types/matrix/Matrix';
+import { NumberMatrix } from '@lib/types/matrix/NumberMatrix';
 import {
   inverse,
   reducedRowEchelonForm,
   rowEchelonForm,
   solveByGaussianElimination
-} from '../GaussJordan';
-import {
-  SolutionType,
-  UnderdeterminedSolution,
-  UniqueSolution
-} from '../../solvers/LinearSolution';
+} from '@lib/operations/GaussJordan';
+import { SolutionType, UnderdeterminedSolution, UniqueSolution } from '@lib/solvers/LinearSolution';
 import { loadTestData } from '@test-utils/testData';
 
 describe('GaussJordan', () => {

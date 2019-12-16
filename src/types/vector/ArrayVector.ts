@@ -1,9 +1,9 @@
-import { assertHomogeneous, assertValidVectorIndex } from '../../utilities/ErrorAssertions';
-import { Matrix } from '../matrix/Matrix';
-import { MatrixBuilder } from '../matrix/MatrixBuilder';
-import { ScalarOperations } from '../scalar/ScalarOperations';
-import { Vector, VectorData } from './Vector';
-import { VectorBuilder } from './VectorBuilder';
+import { assertHomogeneous, assertValidVectorIndex } from '@lib/utilities/ErrorAssertions';
+import { Matrix } from '@lib/types/matrix/Matrix';
+import { MatrixBuilder } from '@lib/types/matrix/MatrixBuilder';
+import { ScalarOperations } from '@lib/types/scalar/ScalarOperations';
+import { Vector, VectorData } from '@lib/types/vector/Vector';
+import { VectorBuilder } from '@lib/types/vector/VectorBuilder';
 
 /**
  * Implements {@link Vector} with an array of values.
@@ -44,6 +44,18 @@ export abstract class ArrayVector<S> implements Vector<S> {
   public getEntry(index: number): S {
     assertValidVectorIndex(this, index);
     return this._data[index];
+  }
+
+  /**
+   * {@inheritDoc Vector.set}
+   */
+  public set(index: number, value: S): Vector<S> {
+    assertValidVectorIndex(this, index);
+
+    const newData = this.toArray();
+    newData[index] = value;
+
+    return this.builder().fromArray(newData);
   }
 
   /**

@@ -1,10 +1,10 @@
-import { vec, mat } from '../../../utilities/aliases';
-import { Vector } from '../../../types/vector/Vector';
+import { vec, mat } from '@lib/utilities/aliases';
+import { Vector } from '@lib/types/vector/Vector';
 import {
   calculateGeneralLeastSquares,
   calculateLinearLeastSquares,
   solveOverdeterminedSystem
-} from '../LeastSquares';
+} from '@lib/applications/statistics/LeastSquares';
 import { loadTestData } from '@test-utils/testData';
 
 describe('LeastSquares', () => {

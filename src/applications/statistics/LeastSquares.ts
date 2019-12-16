@@ -1,8 +1,8 @@
-import { Matrix } from '../../types/matrix/Matrix';
-import { Vector } from '../../types/vector/Vector';
-import { assertHomogeneous, assertNonEmpty } from '../../utilities/ErrorAssertions';
-import { solveByGaussianElimination } from '../../operations/GaussJordan';
-import { SolutionType } from '../../solvers/LinearSolution';
+import { Matrix } from '@lib/types/matrix/Matrix';
+import { Vector } from '@lib/types/vector/Vector';
+import { assertHomogeneous, assertNonEmpty } from '@lib/utilities/ErrorAssertions';
+import { solveByGaussianElimination } from '@lib/operations/GaussJordan';
+import { SolutionType } from '@lib/solvers/LinearSolution';
 
 /**
  * The result of a least squares approximation.

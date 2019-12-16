@@ -1,7 +1,7 @@
-import { NumberVector } from '../../vector/NumberVector';
-import { SparseNumberVector } from '../../vector/SparseNumberVector';
-import { NumberMatrix } from '../NumberMatrix';
-import { SparseNumberMatrix } from '../SparseNumberMatrix';
+import { NumberVector } from '@lib/types/vector/NumberVector';
+import { SparseNumberVector } from '@lib/types/vector/SparseNumberVector';
+import { NumberMatrix } from '@lib/types/matrix/NumberMatrix';
+import { SparseNumberMatrix } from '@lib/types/matrix/SparseNumberMatrix';
 
 const configs = [
   {

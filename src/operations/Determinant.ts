@@ -1,5 +1,5 @@
-import { Matrix } from '../types/matrix/Matrix';
-import { assertSquare } from '../utilities/ErrorAssertions';
+import { Matrix } from '@lib/types/matrix/Matrix';
+import { assertSquare } from '@lib/utilities/ErrorAssertions';
 
 /**
  * Uses expansion of minors to calculate the determinant of a matrix.

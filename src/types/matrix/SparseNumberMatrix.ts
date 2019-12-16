@@ -1,11 +1,11 @@
-import { StaticImplements } from '../../utilities/StaticImplements';
-import { NumberOperations } from '../scalar/NumberOperations';
-import { SparseNumberVector } from '../vector/SparseNumberVector';
-import { VectorBuilder } from '../vector/VectorBuilder';
-import { MatrixConstructor, MatrixData } from './Matrix';
-import { MatrixBuilder } from './MatrixBuilder';
-import { SparseMatrix } from './SparseMatrix';
-import { ScalarOperations } from '../scalar/ScalarOperations';
+import { StaticImplements } from '@lib/utilities/StaticImplements';
+import { NumberOperations } from '@lib/types/scalar/NumberOperations';
+import { SparseNumberVector } from '@lib/types/vector/SparseNumberVector';
+import { VectorBuilder } from '@lib/types/vector/VectorBuilder';
+import { MatrixConstructor, MatrixData } from '@lib/types/matrix/Matrix';
+import { MatrixBuilder } from '@lib/types/matrix/MatrixBuilder';
+import { SparseMatrix } from '@lib/types/matrix/SparseMatrix';
+import { ScalarOperations } from '@lib/types/scalar/ScalarOperations';
 
 /**
  * A {@link Matrix} implemented as a sparse set of JS `number` primitives keyed by their indices.

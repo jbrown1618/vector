@@ -1,7 +1,7 @@
-import { Matrix } from '../types/matrix/Matrix';
-import { Vector } from '../types/vector/Vector';
-import { normalize, euclideanNorm } from '../operations/Norms';
-import { rank } from '../operations/GaussJordan';
+import { Matrix } from '@lib/types/matrix/Matrix';
+import { Vector } from '@lib/types/vector/Vector';
+import { normalize, euclideanNorm } from '@lib/operations/Norms';
+import { rank } from '@lib/operations/GaussJordan';
 
 /**
  * The result of a Singular Value Decomposition

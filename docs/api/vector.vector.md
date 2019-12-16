@@ -28,5 +28,6 @@ export interface Vector<S>
 |  [outerProduct(other)](./vector.vector.outerproduct.md) | Implements the outer product (matrix product) of two vectors |
 |  [projectOnto(u)](./vector.vector.projectonto.md) | Returns a new vector in the direction of <code>u</code> but with magnitude equal to the amount of the original vector that lies in that direction |
 |  [scalarMultiply(scalar)](./vector.vector.scalarmultiply.md) | Implements vector multiplication by a scalar |
+|  [set(index, value)](./vector.vector.set.md) | Returns a new vector equal to the old one, except with the entry at <code>index</code> replaced with <code>value</code> |
 |  [toArray()](./vector.vector.toarray.md) | Returns the contents of the vector as an array |
 

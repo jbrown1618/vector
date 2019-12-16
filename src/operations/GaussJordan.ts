@@ -1,9 +1,9 @@
-import { Matrix } from '../types/matrix/Matrix';
-import { Vector } from '../types/vector/Vector';
-import { assertSquare } from '../utilities/ErrorAssertions';
-import { LinearSolution } from '../solvers/LinearSolution';
-import { RowOperations } from './RowOperations';
-import { backwardSubstituteAugmentedMatrix } from '../solvers/Substitution';
+import { Matrix } from '@lib/types/matrix/Matrix';
+import { Vector } from '@lib/types/vector/Vector';
+import { assertSquare } from '@lib/utilities/ErrorAssertions';
+import { LinearSolution } from '@lib/solvers/LinearSolution';
+import { RowOperations } from '@lib/operations/RowOperations';
+import { backwardSubstituteAugmentedMatrix } from '@lib/solvers/Substitution';
 
 /**
  * Uses Gauss-Jordan elimination with pivoting and backward substitution

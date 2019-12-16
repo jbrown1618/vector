@@ -1,4 +1,4 @@
-import { mat, vec } from '../../../utilities/aliases';
+import { mat, vec } from '@lib/utilities/aliases';
 import {
   covariance,
   variance,
@@ -7,9 +7,9 @@ import {
   standardDeviation,
   correlation,
   standardize
-} from '../DescriptiveStatistics';
+} from '@lib/applications/statistics/DescriptiveStatistics';
 
-describe('Statistics', () => {
+describe('DescriptiveStatistics', () => {
   const sample = mat([[90, 60, 90], [90, 90, 30], [60, 60, 60], [60, 60, 90], [30, 30, 30]]);
 
   describe('mean', () => {

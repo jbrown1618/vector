@@ -1,12 +1,12 @@
-import { mat, vec } from '../../../utilities/aliases';
-import { NumberVector } from '../../../types/vector/NumberVector';
+import { mat, vec } from '@lib/utilities/aliases';
+import { NumberVector } from '@lib/types/vector/NumberVector';
 import {
   backwardDifferenceMatrix,
   centralDifferenceMatrix,
   derivative,
   forwardDifferenceMatrix,
   linspace
-} from '../FiniteDifferences';
+} from '@lib/applications/calculus/FiniteDifferences';
 
 describe('FiniteDifferences', () => {
   describe('linspace', () => {

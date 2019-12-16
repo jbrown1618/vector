@@ -1,11 +1,11 @@
-import { StaticImplements } from '../../utilities/StaticImplements';
-import { NumberOperations } from '../scalar/NumberOperations';
-import { NumberVector } from '../vector/NumberVector';
-import { VectorBuilder } from '../vector/VectorBuilder';
-import { ArrayMatrix } from './ArrayMatrix';
-import { MatrixConstructor, MatrixData } from './Matrix';
-import { MatrixBuilder } from './MatrixBuilder';
-import { ScalarOperations } from '../scalar/ScalarOperations';
+import { StaticImplements } from '@lib/utilities/StaticImplements';
+import { NumberOperations } from '@lib/types/scalar/NumberOperations';
+import { NumberVector } from '@lib/types/vector/NumberVector';
+import { VectorBuilder } from '@lib/types/vector/VectorBuilder';
+import { ArrayMatrix } from '@lib/types/matrix/ArrayMatrix';
+import { MatrixConstructor, MatrixData } from '@lib/types/matrix/Matrix';
+import { MatrixBuilder } from '@lib/types/matrix/MatrixBuilder';
+import { ScalarOperations } from '@lib/types/scalar/ScalarOperations';
 
 /**
  * A dense matrix of JavaScript `number` primitives, implemented as an {@link ArrayMatrix}

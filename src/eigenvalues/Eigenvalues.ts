@@ -1,9 +1,9 @@
-import { Matrix } from '../types/matrix/Matrix';
-import { Vector } from '../types/vector/Vector';
-import { isSquare } from '../utilities/MatrixProperties';
-import { solveByGaussianElimination } from '../operations/GaussJordan';
-import { SolutionType } from '../solvers/LinearSolution';
-import { calculateQRDecomposition } from '../decompositions/QRDecomposition';
+import { Matrix } from '@lib/types/matrix/Matrix';
+import { Vector } from '@lib/types/vector/Vector';
+import { isSquare } from '@lib/utilities/MatrixProperties';
+import { solveByGaussianElimination } from '@lib/operations/GaussJordan';
+import { SolutionType } from '@lib/solvers/LinearSolution';
+import { calculateQRDecomposition } from '@lib/decompositions/QRDecomposition';
 
 // TODO - convert to an upper Hessenberg matrix to improve rate of convergence
 

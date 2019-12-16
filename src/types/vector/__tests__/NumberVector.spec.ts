@@ -1,5 +1,5 @@
-import { NumberVector } from '../NumberVector';
-import { SparseNumberVector } from '../SparseNumberVector';
+import { NumberVector } from '@lib/types/vector/NumberVector';
+import { SparseNumberVector } from '@lib/types/vector/SparseNumberVector';
 
 const configs = [
   {
@@ -35,6 +35,21 @@ configs.forEach(({ testClassName, builder }) => {
         expect(builder.fromValues(0).getDimension()).toEqual(1);
         expect(builder.fromValues(0, 0).getDimension()).toEqual(2);
         expect(builder.fromValues(0, 0, 0).getDimension()).toEqual(3);
+      });
+    });
+
+    describe('set', () => {
+      test('returns a new vector with a value changed', () => {
+        const original = builder.zeros(5);
+        const updated = original.set(2, 1);
+        expect(updated).not.toBe(original);
+        expect(updated).toStrictEqual(builder.fromValues(0, 0, 1, 0, 0));
+      });
+
+      test('rejects an invalid index', () => {
+        const original = builder.zeros(5);
+        expect(() => original.set(5, 1)).toThrow();
+        expect(() => original.set(-1, 1)).toThrow();
       });
     });
 

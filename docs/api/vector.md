@@ -14,6 +14,7 @@
 |  [ComplexNumber](./vector.complexnumber.md) | A number of the form \_a + bi\_ where \_i\_ is the imaginary unit. |
 |  [ComplexNumberOperations](./vector.complexnumberoperations.md) | Implements the basic [ScalarOperations](./vector.scalaroperations.md) on [ComplexNumber](./vector.complexnumber.md)<!-- -->s |
 |  [ComplexVector](./vector.complexvector.md) | A dense [Vector](./vector.vector.md) of [ComplexNumber](./vector.complexnumber.md)<!-- -->s implemented as an [ArrayVector](./vector.arrayvector.md) |
+|  [LinearRegressor](./vector.linearregressor.md) | A [Regressor](./vector.regressor.md) model which uses an ordinary least squares model with regularization to predict a continuous target. The optimal set of parameters is computed with gradient descent. |
 |  [MatrixBuilder](./vector.matrixbuilder.md) | Provides methods for constructing [Matrices](./vector.matrix.md) of a given type |
 |  [NumberMatrix](./vector.numbermatrix.md) | A dense matrix of JavaScript <code>number</code> primitives, implemented as an [ArrayMatrix](./vector.arraymatrix.md) |
 |  [NumberOperations](./vector.numberoperations.md) | Implements the basic [ScalarOperations](./vector.scalaroperations.md) on <code>number</code>s |
@@ -57,6 +58,7 @@
 |  [forwardDifferenceMatrix(binCount)](./vector.forwarddifferencematrix.md) | Builds a matrix that transforms a vector to a vector of forward differences |
 |  [frobeniusNorm(A)](./vector.frobeniusnorm.md) | Calculates the Frobenius Norm of a matrix <code>A</code> |
 |  [getEigenvectorForEigenvalue(A, lambda)](./vector.geteigenvectorforeigenvalue.md) | Given a matrix <code>A</code> and an eigenvalue <code>lambda</code> of that matrix, returns the eigenvector of <code>A</code> corresponding to <code>lambda</code> |
+|  [gradientDescent(parameters)](./vector.gradientdescent.md) | Learns an optimal set of parameters <code>theta</code> using gradient descent |
 |  [inverse(matrix)](./vector.inverse.md) | Uses Gauss-Jordan elimination with pivoting to calculate the inverse of a matrix. |
 |  [isHermitian(matrix)](./vector.ishermitian.md) | Tests if a matrix is Hermitian. |
 |  [isIdentity(matrix)](./vector.isidentity.md) | Tests if a matrix is an identity matrix |
@@ -104,13 +106,17 @@
 |  Interface | Description |
 |  --- | --- |
 |  [CholeskyDecomposition](./vector.choleskydecomposition.md) | The result of a Cholesky Decomposition |
+|  [Cost](./vector.cost.md) | The output of a cost function |
 |  [EigenPair](./vector.eigenpair.md) | An eigenvector and its corresponding eigenvalue |
+|  [GradientDescentParameters](./vector.gradientdescentparameters.md) | The parameters for [gradientDescent()](./vector.gradientdescent.md) |
 |  [LeastSquaresApproximation](./vector.leastsquaresapproximation.md) | The result of a least squares approximation. |
+|  [LinearRegressorHyperparams](./vector.linearregressorhyperparams.md) | The set of hyperparameters for a [LinearRegressor](./vector.linearregressor.md) |
 |  [LinearTransformation](./vector.lineartransformation.md) | An abstract linear transformation between vectors of type <code>V</code> and vectors of type <code>U</code>. |
 |  [LUDecomposition](./vector.ludecomposition.md) | The result of an LU Decomposition |
 |  [Matrix](./vector.matrix.md) | A generalized Matrix - one of the core data types |
 |  [PrincipalComponentAnalysis](./vector.principalcomponentanalysis.md) | The result of a principal component analysis. |
 |  [QRDecomposition](./vector.qrdecomposition.md) | The result of a QR decomposition. |
+|  [Regressor](./vector.regressor.md) | A machine learning model with a continuous numeric target |
 |  [RowOperationResult](./vector.rowoperationresult.md) | The result of a row operation (<code>result</code>), and the matrix that we multiply by the original matrix to yield that result (<code>operator</code>) |
 |  [SingularValueDecomposition](./vector.singularvaluedecomposition.md) | The result of a Singular Value Decomposition |
 |  [Vector](./vector.vector.md) | A generalized Vector - one of the core data types |
@@ -121,7 +127,9 @@
 |  --- | --- |
 |  [ApproximationFunction](./vector.approximationfunction.md) | A function that takes a vector of inputs and produces an output. This must always be a pure function that is linear in its coefficients. |
 |  [ApproximationFunctionTemplate](./vector.approximationfunctiontemplate.md) | A higher-order function which is used to generate an <code>ApproximationFunction</code>. This must be linear in its coefficients, or the result of the linear regression will not be correct. |
+|  [CostFunction](./vector.costfunction.md) | A function that evaluates the cost of a set of parameters <code>theta</code> |
 |  [DimensionReductionOptions](./vector.dimensionreductionoptions.md) | Specify how dimension reduction ought to be done. |
+|  [LearningAlgorithm](./vector.learningalgorithm.md) | An function which, given an initial value of <code>theta</code> and a CostFunction, will compute the optimal value of <code>theta</code> |
 |  [MatrixData](./vector.matrixdata.md) | The data stored in a [Matrix](./vector.matrix.md) represented as a 2-D array |
 |  [MatrixEntryCallback](./vector.matrixentrycallback.md) | A function to execute on an entry in a matrix |
 |  [MatrixEntryFunction](./vector.matrixentryfunction.md) | A function that generates a matrix entry based on an existing entry <code>entry</code>, its row index <code>i</code>, and its column index <code>j</code> |

@@ -1,5 +1,5 @@
-import { Matrix } from '../types/matrix/Matrix';
-import { isHermitian } from '../utilities/MatrixProperties';
+import { Matrix } from '@lib/types/matrix/Matrix';
+import { isHermitian } from '@lib/utilities/MatrixProperties';
 
 /**
  * The result of a Cholesky Decomposition

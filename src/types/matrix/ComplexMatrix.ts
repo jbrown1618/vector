@@ -1,12 +1,12 @@
-import { StaticImplements } from '../../utilities/StaticImplements';
-import { ComplexNumber } from '../scalar/ComplexNumber';
-import { ComplexNumberOperations } from '../scalar/ComplexNumberOperations';
-import { ComplexVector } from '../vector/ComplexVector';
-import { VectorBuilder } from '../vector/VectorBuilder';
-import { ArrayMatrix } from './ArrayMatrix';
-import { MatrixConstructor, MatrixData } from './Matrix';
-import { MatrixBuilder } from './MatrixBuilder';
-import { ScalarOperations } from '../scalar/ScalarOperations';
+import { StaticImplements } from '@lib/utilities/StaticImplements';
+import { ComplexNumber } from '@lib/types/scalar/ComplexNumber';
+import { ComplexNumberOperations } from '@lib/types/scalar/ComplexNumberOperations';
+import { ComplexVector } from '@lib/types/vector/ComplexVector';
+import { VectorBuilder } from '@lib/types/vector/VectorBuilder';
+import { ArrayMatrix } from '@lib/types/matrix/ArrayMatrix';
+import { MatrixConstructor, MatrixData } from '@lib/types/matrix/Matrix';
+import { MatrixBuilder } from '@lib/types/matrix/MatrixBuilder';
+import { ScalarOperations } from '@lib/types/scalar/ScalarOperations';
 
 /**
  * A dense {@link Matrix} of {@link ComplexNumber}s, implemented as an {@link ArrayMatrix}

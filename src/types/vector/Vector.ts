@@ -1,7 +1,7 @@
-import { Matrix } from '../matrix/Matrix';
-import { MatrixBuilder } from '../matrix/MatrixBuilder';
-import { ScalarOperations } from '../scalar/ScalarOperations';
-import { VectorBuilder } from './VectorBuilder';
+import { Matrix } from '@lib/types/matrix/Matrix';
+import { MatrixBuilder } from '@lib/types/matrix/MatrixBuilder';
+import { ScalarOperations } from '@lib/types/scalar/ScalarOperations';
+import { VectorBuilder } from '@lib/types/vector/VectorBuilder';
 
 /**
  * The data stored in a {@link Vector} represented as a map
@@ -63,6 +63,17 @@ export interface Vector<S> {
    * @public
    */
   getEntry(index: number): S;
+
+  /**
+   * Returns a new vector equal to the old one, except with the entry at
+   * `index` replaced with `value`
+   *
+   * @param index - The index of the value to replace
+   * @param value - The new value
+   * @returns The new vector
+   * @public
+   */
+  set(index: number, value: S): Vector<S>;
 
   /**
    * Implements vector addition

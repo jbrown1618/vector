@@ -1,8 +1,8 @@
-import { assertValidDimension, assertValidIndex } from '../../utilities/ErrorAssertions';
-import { mod } from '../../utilities/NumberUtilities';
-import { ScalarOperations } from '../scalar/ScalarOperations';
-import { SparseVectorData } from './SparseVector';
-import { Vector, VectorConstructor, VectorData } from './Vector';
+import { assertValidDimension, assertValidIndex } from '@lib/utilities/ErrorAssertions';
+import { mod } from '@lib/utilities/NumberUtilities';
+import { ScalarOperations } from '@lib/types/scalar/ScalarOperations';
+import { SparseVectorData } from '@lib/types/vector/SparseVector';
+import { Vector, VectorConstructor, VectorData } from '@lib/types/vector/Vector';
 
 /**
  * A function that generates a vector entry based on its index
@@ -103,6 +103,37 @@ export class VectorBuilder<S, V extends Vector<S>> {
    */
   public map(vector: Vector<S>, valueFromEntry: VectorEntryFunction<S>): V {
     return this.fromArray(vector.toArray().map(valueFromEntry));
+  }
+
+  /**
+   * Constructs a vector by combining the values of two other vectors
+   *
+   * @example
+   * ```
+   * const first = vec([1, 2, 3]);
+   * const second = vec([2, 3, 4]);
+   *
+   * const combined = combine(first, second, (a,b) => a * b);
+   * // [2, 6, 12]
+   * ```
+   * @param first - The first vector to combine
+   * @param second - The second vector to combine
+   * @param combineEntries - A function which takes an entry from each vector and returns a new entry
+   * @returns The new vector
+   */
+  public combine(
+    first: Vector<S>,
+    second: Vector<S>,
+    combineEntries: (a: S, b: S) => S
+  ): Vector<S> {
+    if (first.getDimension() != second.getDimension()) {
+      throw new Error(
+        `Expected equal dimensions; get ${first.getDimension()} and ${second.getDimension()}`
+      );
+    }
+    return this.map(first, (a, index) => {
+      return combineEntries(a, second.getEntry(index));
+    });
   }
 
   /**

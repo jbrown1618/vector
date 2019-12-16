@@ -1,7 +1,7 @@
-import { random, randomNormal } from '../../utilities/NumberUtilities';
-import { ComplexNumber } from './ComplexNumber';
-import { ScalarOperations } from './ScalarOperations';
-import { prettyPrint } from '../../utilities/prettyPrint';
+import { random, randomNormal } from '@lib/utilities/NumberUtilities';
+import { ComplexNumber } from '@lib/types/scalar/ComplexNumber';
+import { ScalarOperations } from '@lib/types/scalar/ScalarOperations';
+import { prettyPrint } from '@lib/utilities/prettyPrint';
 
 /**
  * Implements the basic {@link ScalarOperations} on {@link ComplexNumber}s

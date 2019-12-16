@@ -1,5 +1,5 @@
-import { ComplexNumber } from '../../scalar/ComplexNumber';
-import { ComplexVector } from '../ComplexVector';
+import { ComplexNumber } from '@lib/types/scalar/ComplexNumber';
+import { ComplexVector } from '@lib/types/vector/ComplexVector';
 
 describe('ComplexVector', () => {
   const builder = ComplexVector.builder();
@@ -40,6 +40,23 @@ describe('ComplexVector', () => {
       expect(vector1.getDimension()).toEqual(1);
       expect(vector2.getDimension()).toEqual(2);
       expect(vector3.getDimension()).toEqual(3);
+    });
+  });
+
+  describe('set', () => {
+    test('returns a new vector with a value changed', () => {
+      const original = builder.zeros(5);
+      const updated = original.set(2, new ComplexNumber(1, 1));
+      expect(updated).not.toBe(original);
+      expect(updated).toStrictEqual(
+        builder.fromValues(
+          ComplexNumber.ZERO,
+          ComplexNumber.ZERO,
+          new ComplexNumber(1, 1),
+          ComplexNumber.ZERO,
+          ComplexNumber.ZERO
+        )
+      );
     });
   });
 

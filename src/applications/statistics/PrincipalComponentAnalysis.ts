@@ -1,7 +1,7 @@
-import { Matrix } from '../../types/matrix/Matrix';
-import { Vector } from '../../types/vector/Vector';
-import { covariance, correlation } from './DescriptiveStatistics';
-import { eig } from '../../eigenvalues/Eigenvalues';
+import { Matrix } from '@lib/types/matrix/Matrix';
+import { Vector } from '@lib/types/vector/Vector';
+import { covariance, correlation } from '@lib/applications/statistics/DescriptiveStatistics';
+import { eig } from '@lib/eigenvalues/Eigenvalues';
 
 /**
  * The result of a principal component analysis.

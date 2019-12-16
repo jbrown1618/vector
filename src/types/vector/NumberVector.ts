@@ -1,10 +1,10 @@
-import { StaticImplements } from '../../utilities/StaticImplements';
-import { NumberMatrix } from '../matrix/NumberMatrix';
-import { NumberOperations } from '../scalar/NumberOperations';
-import { ArrayVector } from './ArrayVector';
-import { VectorConstructor, VectorData } from './Vector';
-import { VectorBuilder } from './VectorBuilder';
-import { MatrixBuilder } from '../matrix/MatrixBuilder';
+import { StaticImplements } from '@lib/utilities/StaticImplements';
+import { NumberMatrix } from '@lib/types/matrix/NumberMatrix';
+import { NumberOperations } from '@lib/types/scalar/NumberOperations';
+import { ArrayVector } from '@lib/types/vector/ArrayVector';
+import { VectorConstructor, VectorData } from '@lib/types/vector/Vector';
+import { VectorBuilder } from '@lib/types/vector/VectorBuilder';
+import { MatrixBuilder } from '@lib/types/matrix/MatrixBuilder';
 
 /**
  * A dense {@link Vector} of `number`s implemented as a {@link ArrayVector}

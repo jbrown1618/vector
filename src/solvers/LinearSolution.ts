@@ -1,5 +1,5 @@
-import { Matrix } from '../types/matrix/Matrix';
-import { Vector } from '../types/vector/Vector';
+import { Matrix } from '@lib/types/matrix/Matrix';
+import { Vector } from '@lib/types/vector/Vector';
 
 export enum SolutionType {
   UNIQUE = 'Unique',

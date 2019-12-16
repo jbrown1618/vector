@@ -1,5 +1,5 @@
-import { approximatelyEqual } from '../../../utilities/NumberUtilities';
-import { ComplexNumber } from '../ComplexNumber';
+import { approximatelyEqual } from '@lib/utilities/NumberUtilities';
+import { ComplexNumber } from '@lib/types/scalar/ComplexNumber';
 
 describe('ComplexNumber', () => {
   describe('getRealPart', () => {

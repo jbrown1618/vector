@@ -1,5 +1,5 @@
-import { mat } from '../../utilities/aliases';
-import { calculateLUDecomposition } from '../LUDecomposition';
+import { mat } from '@lib/utilities/aliases';
+import { calculateLUDecomposition } from '@lib/decompositions/LUDecomposition';
 
 describe('LUDecomposition', () => {
   describe('calculateLUDecomposition', () => {
