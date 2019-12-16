@@ -10,6 +10,8 @@ import { ComplexMatrix as ComplexMatrix_2 } from '@lib/types/matrix/ComplexMatri
 import { ComplexNumber as ComplexNumber_2 } from '@lib/types/scalar/ComplexNumber';
 import { ComplexNumberOperations as ComplexNumberOperations_2 } from '@lib/types/scalar/ComplexNumberOperations';
 import { ComplexVector as ComplexVector_2 } from '@lib/types/vector/ComplexVector';
+import { GradientDescentRegressor } from '@lib/applications/machine-learning/models/GradientDescentRegressor';
+import { LearningAlgorithm as LearningAlgorithm_2 } from '@lib/applications/machine-learning/LearningAlgorithm';
 import { LinearSolution } from '@lib/solvers/LinearSolution';
 import { LinearTransformation as LinearTransformation_2 } from '@lib/types/matrix/LinearTransformation';
 import { Matrix as Matrix_2 } from '@lib/types/matrix/Matrix';
@@ -212,6 +214,17 @@ export function correlation<S>(first: Vector_2<S>, second: Vector_2<S>): S;
 export function correlation<S>(A: Matrix_2<S>): Matrix_2<S>;
 
 // @public
+export interface Cost {
+    // (undocumented)
+    cost: number;
+    // (undocumented)
+    gradient: Vector_2<number>;
+}
+
+// @public
+export type CostFunction = (theta: Vector_2<number>) => Cost;
+
+// @public
 export function covariance<S>(first: Vector_2<S>, second: Vector_2<S>): S;
 
 // @public
@@ -266,6 +279,17 @@ export function frobeniusNorm<S>(A: Matrix_2<S>): number;
 export function getEigenvectorForEigenvalue<S>(A: Matrix_2<S>, lambda: S): Vector_2<S>;
 
 // @public
+export function gradientDescent(parameters: GradientDescentParameters): LearningAlgorithm_2;
+
+// @public
+export interface GradientDescentParameters {
+    // (undocumented)
+    alpha: number;
+    // (undocumented)
+    maxIterations?: number;
+}
+
+// @public
 export function inverse<S>(matrix: Matrix_2<S>): Matrix_2<S> | undefined;
 
 // @public
@@ -298,9 +322,27 @@ export function isSymmetric<S>(matrix: Matrix_2<S>): boolean;
 export function isUpperTriangular<S>(matrix: Matrix_2<S>): boolean;
 
 // @public
+export type LearningAlgorithm = (initialTheta: Vector_2<number>, costFn: CostFunction) => Vector_2<number>;
+
+// @public
 export interface LeastSquaresApproximation<S> {
     approximationFunction: ApproximationFunction<S>;
     coefficients: Vector_2<S>;
+}
+
+// @public
+export class LinearRegressor extends GradientDescentRegressor<LinearRegressorHyperparams> {
+    // @internal
+    protected calculateCost(data: Matrix_2<number>, target: Vector_2<number>, theta: Vector_2<number>): number;
+    // @internal
+    protected calculateGradient(data: Matrix_2<number>, target: Vector_2<number>, theta: Vector_2<number>): Vector_2<number>;
+    // @internal
+    protected makePredictions(data: Matrix_2<number>, theta: Vector_2<number>): Vector_2<number>;
+}
+
+// @public
+export interface LinearRegressorHyperparams {
+    lambda: number;
 }
 
 // @public
@@ -518,6 +560,12 @@ export function reduceDimensions(A: Matrix_2<number>, options: DimensionReductio
 
 // @public
 export function reducedRowEchelonForm<S>(matrix: Matrix_2<S>): Matrix_2<S>;
+
+// @public
+export interface Regressor {
+    predict(data: Matrix_2<number>): Vector_2<number>;
+    train(data: Matrix_2<number>, target: Vector_2<number>): void;
+}
 
 // @public
 export function rowEchelonForm<S>(matrix: Matrix_2<S>): Matrix_2<S>;

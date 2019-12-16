@@ -4,11 +4,22 @@ import {
   LearningAlgorithm
 } from '@lib/applications/machine-learning/LearningAlgorithm';
 
+/**
+ * The parameters for {@link gradientDescent}
+ * @public
+ */
 export interface GradientDescentParameters {
   alpha: number;
   maxIterations?: number;
 }
 
+/**
+ * Learns an optimal set of parameters `theta` using gradient descent
+ *
+ * @param parameters - The {@link GradientDescentParameters} which determine how the learning will run
+ *
+ * @public
+ */
 export function gradientDescent(parameters: GradientDescentParameters): LearningAlgorithm {
   const { alpha, maxIterations = 10000 } = parameters;
 

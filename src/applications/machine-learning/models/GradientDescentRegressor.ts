@@ -8,6 +8,11 @@ import {
 } from '@lib/applications/machine-learning/GradientDescent';
 import { CostFunction } from '@lib/applications/machine-learning//LearningAlgorithm';
 
+/**
+ * An abstract class which implements {@link Regressor} for any model which can use gradient descent.
+ * Only the calculation of the cost function and gradient is left to subclasses.
+ * @internal
+ */
 export abstract class GradientDescentRegressor<H extends object> implements Regressor {
   protected readonly _hyperParameters: Readonly<H & GradientDescentParameters>;
   protected _theta: Vector<number> | undefined;
