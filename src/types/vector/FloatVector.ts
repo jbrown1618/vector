@@ -7,8 +7,6 @@ import { assertValidVectorIndex, assertHomogeneous } from '@lib/utilities/ErrorA
 import { Matrix } from '@lib/types/matrix/Matrix';
 import { FloatMatrix } from '@lib/types/matrix/FloatMatrix';
 
-// TODO: some of this is inefficient.
-
 /**
  * A dense {@link Vector} of `number`s implemented as a `Float64Array`
  * @public
@@ -29,7 +27,11 @@ export class FloatVector implements Vector<number> {
    * @internal
    */
   constructor(data: VectorData<number> | Float64Array) {
-    this._data = Float64Array.from(data);
+    if (data instanceof Float64Array) {
+      this._data = data;
+    } else {
+      this._data = Float64Array.from(data);
+    }
   }
 
   /**
@@ -70,7 +72,7 @@ export class FloatVector implements Vector<number> {
     const newData = this.toArray();
     newData[index] = value;
 
-    return this.builder().fromArray(newData);
+    return new FloatVector(newData);
   }
 
   /**
@@ -79,11 +81,12 @@ export class FloatVector implements Vector<number> {
   public add(other: Vector<number>): Vector<number> {
     assertHomogeneous([this, other]);
 
-    const newData = this.toArray().map((entry, index) =>
-      this.ops().add(entry, other.getEntry(index))
-    );
+    const newData = new Float64Array(this._data);
+    for (let i = 0; i < this.getDimension(); i++) {
+      newData[i] = this._data[i] + other.getEntry(i);
+    }
 
-    return this.builder().fromArray(newData);
+    return new FloatVector(newData);
   }
 
   /**
@@ -94,9 +97,12 @@ export class FloatVector implements Vector<number> {
       return false;
     }
 
-    return Array.from(this._data)
-      .map((entry, i) => this.ops().equals(entry, other.getEntry(i)))
-      .reduce((all, current) => all && current, true);
+    const ops = this.ops();
+    for (let i = 0; i < this.getDimension(); i++) {
+      if (!ops.equals(this._data[i], other.getEntry(i))) return false;
+    }
+
+    return true;
   }
 
   /**
@@ -105,44 +111,43 @@ export class FloatVector implements Vector<number> {
   public innerProduct(other: Vector<number>): number {
     assertHomogeneous([this, other]);
 
-    return this._data
-      .map((entry, index) =>
-        this.ops().multiply(entry, this.ops().conjugate(other.getEntry(index)))
-      )
-      .reduce(this.ops().add, this.ops().zero());
+    let sum = 0;
+    for (let i = 0; i < this.getDimension(); i++) {
+      sum += this._data[i] * other.getEntry(i);
+    }
+
+    return sum;
   }
 
   /**
    * {@inheritDoc Vector.outerProduct}
    */
   public outerProduct(other: Vector<number>): Matrix<number> {
-    const matrixData: number[][] = [];
+    const m = this.getDimension();
+    const n = other.getDimension();
 
-    if (this.getDimension() === 0 || other.getDimension() === 0) {
-      return this.matrixBuilder().fromArray(matrixData);
+    if (!m || !n) return new FloatMatrix(new Float64Array(0), 0, 0);
+
+    const matrixData = new Float64Array(m * n);
+    for (let j = 0; j < n; j++) {
+      for (let i = 0; i < m; i++) {
+        matrixData[j * m + i] = this._data[i] * other.getEntry(j);
+      }
     }
 
-    this.toArray().forEach((thisValue, rowIndex) => {
-      matrixData[rowIndex] = [];
-      other.toArray().forEach((otherValue, columnIndex) => {
-        matrixData[rowIndex][columnIndex] = this.ops().multiply(thisValue, otherValue);
-      });
-    });
-
-    return this.matrixBuilder().fromArray(matrixData);
+    return new FloatMatrix(matrixData, m, n);
   }
 
   /**
    * {@inheritDoc Vector.projectOnto}
    */
   public projectOnto(u: Vector<number>): Vector<number> {
-    const oneOverUDotU = this.ops().getMultiplicativeInverse(u.innerProduct(u));
-    if (oneOverUDotU === undefined) {
-      throw Error(`Cannot project onto the 0-vector`);
-    }
+    const uDotU = u.innerProduct(u);
+    if (uDotU === 0) throw new Error(`Cannot project onto the 0-vector`);
+    const oneOverUDotU = 1 / uDotU;
 
     const uDotV = u.innerProduct(this);
-    const magnitudeOfProjection = this.ops().multiply(uDotV, oneOverUDotU);
+    const magnitudeOfProjection = uDotV * oneOverUDotU;
     return u.scalarMultiply(magnitudeOfProjection);
   }
 
@@ -150,9 +155,7 @@ export class FloatVector implements Vector<number> {
    * {@inheritDoc Vector.scalarMultiply}
    */
   public scalarMultiply(scalar: number): Vector<number> {
-    return this.builder().fromArray(
-      this.toArray().map(entry => this.ops().multiply(entry, scalar))
-    );
+    return new FloatVector(this._data.map(v => v * scalar));
   }
 
   /**
@@ -166,16 +169,12 @@ export class FloatVector implements Vector<number> {
    * {@inheritDoc Vector.getSparseData}
    */
   public getSparseData(): Map<number, number> {
-    const ops = this.ops();
-    const zero = ops.zero();
-
     const sparseData: Map<number, number> = new Map();
-    this.toArray().forEach((value, index) => {
-      if (!ops.equals(zero, value)) {
+    this._data.forEach((value, index) => {
+      if (value !== 0) {
         sparseData.set(index, value);
       }
     });
-
     return sparseData;
   }
 
