@@ -60,7 +60,7 @@ export function center<S>(xOrA: Matrix<S> | Vector<S>): Matrix<S> | Vector<S> {
     const dimInverse = ops.getMultiplicativeInverse(dim) as S;
 
     const offsets = A.builder()
-      .fill(dimInverse, rows)
+      .fill(dimInverse, [rows, rows])
       .multiply(A);
     return A.add(offsets.scalarMultiply(ops.negativeOne()));
   }

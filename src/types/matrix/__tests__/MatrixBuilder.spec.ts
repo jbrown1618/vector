@@ -82,22 +82,22 @@ describe('MatrixBuilder', () => {
     test('builds a matrix whose entries are determined by a function of their indices', () => {
       const fn: MatrixIndexFunction<number> = (i, j) => i + j;
       const expected = [[0, 1, 2, 3], [1, 2, 3, 4], [2, 3, 4, 5], [3, 4, 5, 6]];
-      const result = matrixBuilder.fromIndexFunction(4, 4, fn);
+      const result = matrixBuilder.fromIndexFunction([4, 4], fn);
       expect(result.toArray()).toStrictEqual(expected);
     });
 
     test('handles size 0', () => {
       const fn = () => 1;
-      expect(matrixBuilder.fromIndexFunction(0, 0, fn).toArray()).toStrictEqual([]);
-      expect(matrixBuilder.fromIndexFunction(1, 0, fn).toArray()).toStrictEqual([]);
-      expect(matrixBuilder.fromIndexFunction(0, 1, fn).toArray()).toStrictEqual([]);
+      expect(matrixBuilder.fromIndexFunction([0, 0], fn).toArray()).toStrictEqual([]);
     });
 
     test('rejects invalid sizes', () => {
       const fn = () => 1;
-      expect(() => matrixBuilder.fromIndexFunction(-1, -1, fn)).toThrow();
-      expect(() => matrixBuilder.fromIndexFunction(-1, 1, fn)).toThrow();
-      expect(() => matrixBuilder.fromIndexFunction(1, -1, fn)).toThrow();
+      expect(() => matrixBuilder.fromIndexFunction([-1, -1], fn)).toThrow();
+      expect(() => matrixBuilder.fromIndexFunction([-1, 1], fn)).toThrow();
+      expect(() => matrixBuilder.fromIndexFunction([1, -1], fn)).toThrow();
+      expect(() => matrixBuilder.fromIndexFunction([1, 0], fn)).toThrow();
+      expect(() => matrixBuilder.fromIndexFunction([0, 1], fn)).toThrow();
     });
   });
 
@@ -133,7 +133,7 @@ describe('MatrixBuilder', () => {
 
       sizes.forEach(size => {
         values.forEach(value => {
-          const filled = matrixBuilder.fill(value, size);
+          const filled = matrixBuilder.fill(value, [size, size]);
           expect(filled.getNumberOfRows()).toEqual(size);
           expect(filled.getNumberOfColumns()).toEqual(size);
           filled.forEachEntry(entry => {
@@ -150,7 +150,7 @@ describe('MatrixBuilder', () => {
       sizes.forEach(m => {
         sizes.forEach(n => {
           values.forEach(value => {
-            const filled = matrixBuilder.fill(value, m, n);
+            const filled = matrixBuilder.fill(value, [m, n]);
             expect(filled.getNumberOfRows()).toEqual(m);
             expect(filled.getNumberOfColumns()).toEqual(n);
             filled.forEachEntry(entry => {
@@ -162,16 +162,16 @@ describe('MatrixBuilder', () => {
     });
 
     test('rejects invalid sizes', () => {
-      expect(() => matrixBuilder.fill(2, -1, -1)).toThrow();
-      expect(() => matrixBuilder.fill(2, -1, 1)).toThrow();
-      expect(() => matrixBuilder.fill(2, 1, -1)).toThrow();
+      expect(() => matrixBuilder.fill(2, [-1, -1])).toThrow();
+      expect(() => matrixBuilder.fill(2, [-1, 1])).toThrow();
+      expect(() => matrixBuilder.fill(2, [1, -1])).toThrow();
     });
   });
 
   describe('zeros', () => {
     test('builds a square matrix of zeros', () => {
       for (let n = 0; n < 10; n++) {
-        const zero = zeros(n, n);
+        const zero = zeros([n, n]);
         expect(zero.getNumberOfRows()).toEqual(n);
         expect(zero.getNumberOfColumns()).toEqual(n);
 
@@ -184,7 +184,7 @@ describe('MatrixBuilder', () => {
     test('builds a rectangular matrix of zeros', () => {
       for (let r = 1; r < 5; r++) {
         for (let c = 1; c < 5; c++) {
-          const zero = zeros(r, c);
+          const zero = zeros([r, c]);
           expect(zero.getNumberOfRows()).toEqual(r);
           expect(zero.getNumberOfColumns()).toEqual(c);
 
@@ -199,7 +199,7 @@ describe('MatrixBuilder', () => {
   describe('ones', () => {
     test('builds a square matrix of ones', () => {
       for (let n = 0; n < 10; n++) {
-        const ones = matrixBuilder.ones(n);
+        const ones = matrixBuilder.ones([n, n]);
         expect(ones.getNumberOfRows()).toEqual(n);
         expect(ones.getNumberOfColumns()).toEqual(n);
 
@@ -212,7 +212,7 @@ describe('MatrixBuilder', () => {
     test('builds a rectangular matrix of ones', () => {
       for (let r = 1; r < 5; r++) {
         for (let c = 1; c < 5; c++) {
-          const ones = matrixBuilder.ones(r, c);
+          const ones = matrixBuilder.ones([r, c]);
           expect(ones.getNumberOfRows()).toEqual(r);
           expect(ones.getNumberOfColumns()).toEqual(c);
 
@@ -387,7 +387,7 @@ describe('MatrixBuilder', () => {
       bounds.forEach(min => {
         bounds.forEach(max => {
           if (max > min) {
-            const randomMatrix = matrixBuilder.random(10, 10, min, max);
+            const randomMatrix = matrixBuilder.random([10, 10], min, max);
             randomMatrix.forEachEntry(value => {
               expect(value).toBeGreaterThan(min);
               expect(value).toBeLessThan(max);
@@ -398,13 +398,13 @@ describe('MatrixBuilder', () => {
     });
 
     test('defaults to a square matrix', () => {
-      const R = matrixBuilder.random(5);
+      const R = matrixBuilder.random([5, 5]);
       expect(R.getNumberOfRows()).toBe(5);
       expect(R.getNumberOfColumns()).toBe(5);
     });
 
     test('defaults to min = 0 and max = 1', () => {
-      const randomMatrix = matrixBuilder.random(10, 10);
+      const randomMatrix = matrixBuilder.random([10, 10]);
       randomMatrix.forEachEntry(value => {
         expect(value).toBeGreaterThan(0);
         expect(value).toBeLessThan(1);
@@ -412,7 +412,7 @@ describe('MatrixBuilder', () => {
     });
 
     test('throws an error when min > max', () => {
-      expect(() => matrixBuilder.random(5, 5, 1, 0)).toThrow();
+      expect(() => matrixBuilder.random([5, 5], 1, 0)).toThrow();
     });
   });
 
@@ -425,7 +425,7 @@ describe('MatrixBuilder', () => {
       const standardDeviations = [1, 2, 10];
       means.forEach(mean => {
         standardDeviations.forEach(standardDeviation => {
-          const randomVector = matrixBuilder.randomNormal(10, 10, mean, standardDeviation);
+          const randomVector = matrixBuilder.randomNormal([10, 10], mean, standardDeviation);
           const average =
             randomVector
               .toArray()
@@ -439,13 +439,13 @@ describe('MatrixBuilder', () => {
     });
 
     test('defaults to a square matrix', () => {
-      const R = matrixBuilder.randomNormal(5);
+      const R = matrixBuilder.randomNormal([5, 5]);
       expect(R.getNumberOfRows()).toBe(5);
       expect(R.getNumberOfColumns()).toBe(5);
     });
 
     test('defaults to mean=0 and sd=1', () => {
-      const randomVector = matrixBuilder.randomNormal(10, 10);
+      const randomVector = matrixBuilder.randomNormal([10, 10]);
       const average =
         randomVector
           .toArray()
@@ -457,7 +457,7 @@ describe('MatrixBuilder', () => {
     });
 
     test('rejects a negative standard deviation', () => {
-      expect(() => matrixBuilder.randomNormal(1, 1, 0, -1)).toThrow();
+      expect(() => matrixBuilder.randomNormal([1, 1], 0, -1)).toThrow();
     });
   });
 
@@ -514,8 +514,8 @@ describe('MatrixBuilder', () => {
 
   describe('blockDiagonal', () => {
     test('constructs a block matrix with the provided matrices along the diagonal', () => {
-      const ones = matrixBuilder.ones(2);
-      const twos = matrixBuilder.fill(2, 3);
+      const ones = matrixBuilder.ones([2, 2]);
+      const twos = matrixBuilder.fill(2, [3, 3]);
       const blockDiagonal = matrixBuilder.blockDiagonal([ones, twos, ones]);
       const expected = matrixBuilder.fromArray([
         [1, 1, 0, 0, 0, 0, 0],
@@ -531,8 +531,8 @@ describe('MatrixBuilder', () => {
     });
 
     test('rejects an array with any non-square matrices', () => {
-      const ones = matrixBuilder.ones(2);
-      const twos = matrixBuilder.fill(2, 3, 2);
+      const ones = matrixBuilder.ones([2, 2]);
+      const twos = matrixBuilder.fill(2, [3, 2]);
       expect(() => matrixBuilder.blockDiagonal([ones, twos, ones])).toThrow();
     });
 
@@ -544,7 +544,7 @@ describe('MatrixBuilder', () => {
   describe('augment', () => {
     test('horizontally concatenates two matrices', () => {
       const first = eye(2);
-      const second = ones(2, 2);
+      const second = ones([2, 2]);
       const expected = matrixBuilder.fromArray([[1, 0, 1, 1], [0, 1, 1, 1]]);
 
       expect(matrixBuilder.augment(first, second).equals(expected)).toBe(true);
@@ -557,7 +557,7 @@ describe('MatrixBuilder', () => {
 
     test('throws an error when the input dimensions are not compatible', () => {
       const first = eye(2);
-      const second = ones(3, 3);
+      const second = ones([3, 3]);
       expect(() => matrixBuilder.augment(first, second)).toThrow();
     });
   });
@@ -565,8 +565,8 @@ describe('MatrixBuilder', () => {
   describe('block', () => {
     test('flattens a grid of matrices into a single matrix', () => {
       const A = eye(2);
-      const B = ones(2, 2);
-      const C = zeros(2, 2);
+      const B = ones([2, 2]);
+      const C = zeros([2, 2]);
       const D = diag([2, 4]);
 
       const grid = [[A, B], [C, D]];
@@ -582,10 +582,10 @@ describe('MatrixBuilder', () => {
     });
 
     test('handles unequal dimensions', () => {
-      const A = ones(1, 1);
-      const B = zeros(1, 3);
-      const C = zeros(4, 1);
-      const D = ones(4, 3);
+      const A = ones([1, 1]);
+      const B = zeros([1, 3]);
+      const C = zeros([4, 1]);
+      const D = ones([4, 3]);
 
       const grid = [[A, B], [C, D]];
 
@@ -601,8 +601,8 @@ describe('MatrixBuilder', () => {
     });
 
     test('rejects mismatched dimensions', () => {
-      const top = matrixBuilder.ones(1, 2);
-      const bottom = matrixBuilder.zeros(1, 3);
+      const top = matrixBuilder.ones([1, 2]);
+      const bottom = matrixBuilder.zeros([1, 3]);
       expect(() => matrixBuilder.block([[top], [bottom]])).toThrow();
     });
   });

@@ -55,7 +55,7 @@ export function calculateLUDecomposition<S>(A: Matrix<S>): LUDecomposition<S> {
   // For the particular form of L_n, we can take the shortcut of keeping everything
   // above the diagonal and using the negative of the entries below the diagonal.
   // This saves us from performing lots of inverses and multiplications.
-  const L = A.builder().fromIndexFunction(A.getNumberOfRows(), A.getNumberOfColumns(), (i, j) => {
+  const L = A.builder().fromIndexFunction(A.getShape(), (i, j) => {
     if (i === j) {
       return ops.one();
     } else if (i < j) {
@@ -98,21 +98,19 @@ function getNextDoolittleIteration<S>(
 function getNthLowerTriangularMatrix<S>(columnIndex: number, previousU: Matrix<S>): Matrix<S> {
   const ops = previousU.ops();
 
-  return previousU
-    .builder()
-    .fromIndexFunction(previousU.getNumberOfRows(), previousU.getNumberOfColumns(), (i, j) => {
-      if (i === j) {
-        return ops.one();
-      } else if (i > j && j === columnIndex) {
-        const numerator = previousU.getEntry(i, columnIndex);
-        const denominator = previousU.getEntry(columnIndex, columnIndex);
-        const quotient = ops.divide(numerator, denominator);
-        if (quotient === undefined) {
-          throw Error('Unexpected division by 0');
-        }
-        return ops.multiply(quotient, ops.negativeOne());
-      } else {
-        return ops.zero();
+  return previousU.builder().fromIndexFunction(previousU.getShape(), (i, j) => {
+    if (i === j) {
+      return ops.one();
+    } else if (i > j && j === columnIndex) {
+      const numerator = previousU.getEntry(i, columnIndex);
+      const denominator = previousU.getEntry(columnIndex, columnIndex);
+      const quotient = ops.divide(numerator, denominator);
+      if (quotient === undefined) {
+        throw Error('Unexpected division by 0');
       }
-    });
+      return ops.multiply(quotient, ops.negativeOne());
+    } else {
+      return ops.zero();
+    }
+  });
 }

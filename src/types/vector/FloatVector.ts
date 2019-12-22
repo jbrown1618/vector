@@ -126,7 +126,7 @@ export class FloatVector implements Vector<number> {
     const m = this.getDimension();
     const n = other.getDimension();
 
-    if (!m || !n) return new FloatMatrix(new Float64Array(0), 0, 0);
+    if (!m || !n) return new FloatMatrix(new Float64Array(0), [0, 0]);
 
     const matrixData = new Float64Array(m * n);
     for (let j = 0; j < n; j++) {
@@ -135,7 +135,7 @@ export class FloatVector implements Vector<number> {
       }
     }
 
-    return new FloatMatrix(matrixData, m, n);
+    return new FloatMatrix(matrixData, [m, n]);
   }
 
   /**

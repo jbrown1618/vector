@@ -1,4 +1,4 @@
-import { Matrix, MatrixData } from '@lib/types/matrix/Matrix';
+import { Matrix, MatrixData, MatrixShape } from '@lib/types/matrix/Matrix';
 import { Vector } from '@lib/types/vector/Vector';
 
 /**
@@ -22,8 +22,7 @@ export function assertRectangular<T>(data: MatrixData<T>, message?: string): voi
  * Throws an error if `matrix` is not square
  */
 export function assertSquare<T>(matrix: Matrix<T>, message?: string): void {
-  const rows = matrix.getNumberOfRows();
-  const cols = matrix.getNumberOfColumns();
+  const [rows, cols] = matrix.getShape();
   message = message || `Expected a square matrix; got ${rows}x${cols}`;
   if (rows !== cols) {
     throw new Error(message);
@@ -71,11 +70,16 @@ export function assertValidDimension(dimension: number, message?: string): void 
 }
 
 /**
- * Throws an error if `numberOfRows` or `numberOfColumns` is negative
+ * Throws an error if either dimension is negative, or if only one dimension is nonzero.
  */
-export function assertValidDimensions(numberOfRows: number, numberOfColumns: number): void {
-  assertValidDimension(numberOfRows);
-  assertValidDimension(numberOfColumns);
+export function assertValidShape(shape: MatrixShape, message?: string): void {
+  const [m, n] = shape;
+  message = message || `Expected valid matrix dimensions; got ${m}x${n}`;
+  assertValidDimension(m, message);
+  assertValidDimension(n, message);
+  if ((m !== 0 && n === 0) || (m === 0 && n !== 0)) {
+    throw Error(message);
+  }
 }
 
 /**
@@ -98,8 +102,7 @@ export function assertValidMatrixIndex<T>(
   colIndex: number,
   message?: string
 ): void {
-  const rows = matrix.getNumberOfRows();
-  const cols = matrix.getNumberOfColumns();
+  const [rows, cols] = matrix.getShape();
   message =
     message ||
     `Expected indices between (0, 0) and (${rows - 1}, ${cols -
@@ -124,10 +127,8 @@ export function assertDimensionMatch(
   second: Matrix<any>,
   message?: string
 ): void {
-  const m1 = first.getNumberOfRows();
-  const n1 = first.getNumberOfColumns();
-  const m2 = second.getNumberOfRows();
-  const n2 = second.getNumberOfColumns();
+  const [m1, n1] = first.getShape();
+  const [m2, n2] = second.getShape();
   message = message || `Expected matching dimensions; got (${m1}x${n1}) and (${m2}x${n2})`;
   if (m1 !== m2 || n1 !== n2) {
     throw Error(message);

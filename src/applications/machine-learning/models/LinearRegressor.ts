@@ -94,7 +94,7 @@ export class LinearRegressor extends GradientDescentRegressor<LinearRegressorHyp
 
   private augmentData(data: Matrix<number>): Matrix<number> {
     const m = data.getNumberOfRows();
-    const ones = data.builder().ones(m, 1);
+    const ones = data.builder().ones([m, 1]);
     return data.builder().augment(ones, data);
   }
 }

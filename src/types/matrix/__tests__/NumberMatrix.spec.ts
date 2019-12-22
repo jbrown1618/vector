@@ -193,7 +193,7 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
 
     describe('set', () => {
       test('returns the original matrix with one entry modified', () => {
-        const original = builder.zeros(3);
+        const original = builder.zeros([3, 3]);
         const expected = builder.fromArray([[0, 0, 0], [0, 4, 0], [0, 0, 0]]);
         const second = builder.fromArray([[0, 0, 0], [0, 4, 5], [0, 0, 0]]);
 
@@ -202,7 +202,7 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
       });
 
       test('throws an error for invalid indices', () => {
-        const original = builder.zeros(3);
+        const original = builder.zeros([3, 3]);
         expect(() => original.set(3, 1, 4)).toThrow();
         expect(() => original.set(1, 3, 4)).toThrow();
       });
@@ -256,8 +256,8 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
 
     describe('scalarMultiply', () => {
       test('returns the original matrix with each entry multiplied by a constant', () => {
-        const original = builder.ones(4, 5);
-        const expected = builder.fill(2, 4, 5);
+        const original = builder.ones([4, 5]);
+        const expected = builder.fill(2, [4, 5]);
         expect(original.scalarMultiply(2)).toStrictEqual(expected);
       });
     });
@@ -336,7 +336,7 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
     describe('forEachEntry', () => {
       test('runs a function for each entry in the matrix', () => {
         let numCalls = 0;
-        const A = builder.zeros(6, 7);
+        const A = builder.zeros([6, 7]);
         A.forEachEntry(() => ++numCalls);
         expect(numCalls).toEqual(6 * 7);
       });

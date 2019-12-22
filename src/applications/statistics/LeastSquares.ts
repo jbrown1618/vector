@@ -43,7 +43,7 @@ export type ApproximationFunctionTemplate<S> = (
  *
  * @remarks
  * The result is an object which has:
- * - `coefficiencts`: a vector whose first entry is the constant term, and whose
+ * - `coefficients`: a vector whose first entry is the constant term, and whose
  *     following entries are the coefficients for the other independent variables, in
  *     the same order they appear in the `dataPoints`
  * - `approximationFunction`: a function which takes a vector of the independent variable
@@ -87,7 +87,7 @@ export function calculateLinearLeastSquares<S>(
  *
  * @remarks
  * The result is on object which has:
- * - `coefficiencts`: a vector whose entries correspond to the coefficients which must
+ * - `coefficients`: a vector whose entries correspond to the coefficients which must
  *     be plugged into the function template to yield the best approximation function
  * - `approximationFunction`: a function which takes a vector of the independent variable
  *     values, and returns the predicted value of the dependent variable
@@ -131,7 +131,7 @@ export function calculateGeneralLeastSquares<S>(
     return dataPoints[index].getEntry(numberOfIndependentVariables); // last entry
   };
 
-  const A = matrixBuilder.fromIndexFunction(numberOfDataPoints, numberOfTerms, getEntryInA);
+  const A = matrixBuilder.fromIndexFunction([numberOfDataPoints, numberOfTerms], getEntryInA);
   const outputVector = vectorBuilder.fromIndexFunction(numberOfDataPoints, getEntryInOutputVector);
 
   const coefficients = solveOverdeterminedSystem(A, outputVector);
@@ -164,7 +164,7 @@ export function solveOverdeterminedSystem<S>(A: Matrix<S>, b: Vector<S>): Vector
   } else if (leastSquaresSolution.solutionType === SolutionType.UNDERDETERMINED) {
     return leastSquaresSolution.solution;
   } else {
-    throw Error('Unexpectedly encountered overdeterminec system');
+    throw Error('Unexpectedly encountered overdetermined system');
   }
 }
 

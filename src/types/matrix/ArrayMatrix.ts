@@ -6,7 +6,7 @@ import {
 import { ScalarOperations } from '@lib/types/scalar/ScalarOperations';
 import { Vector, VectorData } from '@lib/types/vector/Vector';
 import { VectorBuilder } from '@lib/types/vector/VectorBuilder';
-import { Matrix, MatrixData, MatrixEntryCallback } from '@lib/types/matrix/Matrix';
+import { Matrix, MatrixData, MatrixShape, MatrixEntryCallback } from '@lib/types/matrix/Matrix';
 import { MatrixBuilder } from '@lib/types/matrix/MatrixBuilder';
 
 /**
@@ -77,7 +77,7 @@ export abstract class ArrayMatrix<S> implements Matrix<S> {
   public trace(): S {
     const ops = this.ops();
     let trace = ops.zero();
-    const n = Math.min(this.getNumberOfColumns(), this.getNumberOfRows());
+    const n = Math.min(...this.getShape());
     for (let i = 0; i < n; i++) {
       trace = ops.add(trace, this.getEntry(i, i));
     }
@@ -130,7 +130,7 @@ export abstract class ArrayMatrix<S> implements Matrix<S> {
    * {@inheritDoc Matrix.getDiagonal}
    */
   public getDiagonal(): Vector<S> {
-    const numDiagonalElements = Math.min(this.getNumberOfRows(), this.getNumberOfColumns());
+    const numDiagonalElements = Math.min(...this.getShape());
     return this.vectorBuilder().fromIndexFunction(numDiagonalElements, i => this.getEntry(i, i));
   }
 
@@ -173,17 +173,24 @@ export abstract class ArrayMatrix<S> implements Matrix<S> {
   }
 
   /**
+   * {@inheritDoc Matrix.getShape}
+   */
+  public getShape(): MatrixShape {
+    return [this.getNumberOfRows(), this.getNumberOfColumns()];
+  }
+
+  /**
    * {@inheritDoc Matrix.getNumberOfColumns}
    */
   public getNumberOfColumns(): number {
-    return this.getColumnVectors().length;
+    return (this._data[0] && this._data[0].length) || 0;
   }
 
   /**
    * {@inheritDoc Matrix.getNumberOfRows}
    */
   public getNumberOfRows(): number {
-    return this.getRowVectors().length;
+    return this._data.length;
   }
 
   /**

@@ -2,7 +2,7 @@ import { StaticImplements } from '@lib/utilities/StaticImplements';
 import { NumberOperations } from '@lib/types/scalar/NumberOperations';
 import { FloatVector } from '@lib/types/vector/FloatVector';
 import { VectorBuilder } from '@lib/types/vector/VectorBuilder';
-import { Matrix, MatrixEntryCallback } from '@lib/types/matrix/Matrix';
+import { Matrix, MatrixEntryCallback, MatrixShape } from '@lib/types/matrix/Matrix';
 import { MatrixConstructor, MatrixData } from '@lib/types/matrix/Matrix';
 import { MatrixBuilder } from '@lib/types/matrix/MatrixBuilder';
 import { ScalarOperations } from '@lib/types/scalar/ScalarOperations';
@@ -32,22 +32,18 @@ export class FloatMatrix implements Matrix<number> {
   }
 
   private _data: Float64Array;
-  private _shape: [number, number];
+  private _shape: MatrixShape;
 
   /**
    * @internal
    */
   constructor(data: MatrixData<number>);
-  constructor(data: Float64Array, numRows: number, numCols: number);
-  constructor(data: MatrixData<number> | Float64Array, numRows?: number, numCols?: number) {
-    if (
-      data instanceof Float64Array &&
-      typeof numRows === 'number' &&
-      typeof numCols === 'number'
-    ) {
-      if (data.length !== numRows * numCols) throw new Error(`Dimension mismatch`);
+  constructor(data: Float64Array, shape: MatrixShape);
+  constructor(data: MatrixData<number> | Float64Array, shape?: MatrixShape) {
+    if (data instanceof Float64Array && Array.isArray(shape)) {
+      if (data.length !== shape[0] * shape[1]) throw new Error(`Dimension mismatch`);
       this._data = data;
-      this._shape = [numRows, numCols];
+      this._shape = shape;
       return this;
     }
 
@@ -102,7 +98,7 @@ export class FloatMatrix implements Matrix<number> {
     for (let i = 0; i < this._data.length; i++) {
       dataCopy[i] = this._data[i] + other.getEntry(...this.getIndices(i));
     }
-    return new FloatMatrix(dataCopy, ...this._shape);
+    return new FloatMatrix(dataCopy, this._shape);
   }
 
   /**
@@ -129,11 +125,8 @@ export class FloatMatrix implements Matrix<number> {
    * {@inheritDoc Matrix.apply}
    */
   public apply(vector: Vector<number>): Vector<number> {
-    const vectorAsColumnMatrix = new FloatMatrix(
-      Float64Array.from(vector.toArray()),
-      vector.getDimension(),
-      1
-    );
+    const colShape = [vector.getDimension(), 1] as MatrixShape;
+    const vectorAsColumnMatrix = new FloatMatrix(Float64Array.from(vector.toArray()), colShape);
     return this.multiply(vectorAsColumnMatrix).getColumn(0);
   }
 
@@ -255,6 +248,13 @@ export class FloatMatrix implements Matrix<number> {
   }
 
   /**
+   * {@inheritDoc Matrix.getShape}
+   */
+  public getShape(): MatrixShape {
+    return [...this._shape] as MatrixShape;
+  }
+
+  /**
    * {@inheritDoc Matrix.getNumberOfColumns}
    */
   public getNumberOfColumns(): number {
@@ -318,7 +318,7 @@ export class FloatMatrix implements Matrix<number> {
       }
     }
 
-    return new FloatMatrix(newData, this.getNumberOfRows(), other.getNumberOfColumns());
+    return new FloatMatrix(newData, [this.getNumberOfRows(), other.getNumberOfColumns()]);
   }
 
   /**
@@ -326,7 +326,7 @@ export class FloatMatrix implements Matrix<number> {
    */
   public scalarMultiply(scalar: number): Matrix<number> {
     const newData = new Float64Array(this._data).map(entry => entry * scalar);
-    return new FloatMatrix(newData, ...this._shape);
+    return new FloatMatrix(newData, this._shape);
   }
 
   /**
@@ -336,7 +336,7 @@ export class FloatMatrix implements Matrix<number> {
     assertValidMatrixIndex(this, i, j);
     const dataCopy = new Float64Array(this._data);
     dataCopy[this.getArrayIndex(i, j)] = value;
-    return new FloatMatrix(dataCopy, ...this._shape);
+    return new FloatMatrix(dataCopy, this._shape);
   }
 
   /**
@@ -350,7 +350,7 @@ export class FloatMatrix implements Matrix<number> {
       const [i, j] = this.getIndices(index);
       copy[i * n + j] = this.getEntry(i, j);
     }
-    return new FloatMatrix(copy, n, m);
+    return new FloatMatrix(copy, [n, m]);
   }
 
   /**
@@ -368,7 +368,7 @@ export class FloatMatrix implements Matrix<number> {
     return j * m + i;
   }
 
-  private getIndices(arrayIndex: number): [number, number] {
+  private getIndices(arrayIndex: number): MatrixShape {
     const [m] = this._shape;
     const i = arrayIndex % m;
     const j = Math.floor(arrayIndex / m);
