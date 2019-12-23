@@ -4,8 +4,16 @@ import { calculateCholeskyDecomposition } from '@lib/decompositions/CholeskyDeco
 describe('CholeskyDecomposition', () => {
   describe('calculateCholeskyDecomposition', () => {
     test('calculates the Cholesky Decomposition of a matrix A', () => {
-      const A = mat([[4, 12, -16], [12, 37, -43], [-16, -43, 98]]);
-      const expectedL = mat([[2, 0, 0], [6, 1, 0], [-8, 5, 3]]);
+      const A = mat([
+        [4, 12, -16],
+        [12, 37, -43],
+        [-16, -43, 98]
+      ]);
+      const expectedL = mat([
+        [2, 0, 0],
+        [6, 1, 0],
+        [-8, 5, 3]
+      ]);
 
       const decomposition = calculateCholeskyDecomposition(A);
       expect(decomposition).not.toBeUndefined;
@@ -23,7 +31,11 @@ describe('CholeskyDecomposition', () => {
     });
 
     test('returns undefined for a non-symmetric matrix', () => {
-      const A = mat([[4, 12, -16], [12, 37, -43], [-16, -46, 98]]);
+      const A = mat([
+        [4, 12, -16],
+        [12, 37, -43],
+        [-16, -46, 98]
+      ]);
       expect(calculateCholeskyDecomposition(A)).toBeUndefined;
     });
 

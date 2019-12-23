@@ -91,14 +91,14 @@ export class NumberOperations extends ScalarOperations<number> {
   /**
    * {@inheritdoc ScalarOperations.random}
    */
-  public random(min: number = 0, max: number = 1): number {
+  public random(min = 0, max = 1): number {
     return random(min, max);
   }
 
   /**
    * {@inheritdoc ScalarOperations.randomNormal}
    */
-  public randomNormal(mean: number = 0, standardDeviation: number = 1): number {
+  public randomNormal(mean = 0, standardDeviation = 1): number {
     return randomNormal(mean, standardDeviation);
   }
 

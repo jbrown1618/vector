@@ -23,7 +23,11 @@ describe('prettyPrint', () => {
   });
 
   test('prints a NumberMatrix', () => {
-    const v = mat([[1, 22222, 333], [444, 5, 6], [77, 88, 9999]]);
+    const v = mat([
+      [1, 22222, 333],
+      [444, 5, 6],
+      [77, 88, 9999]
+    ]);
     expect(prettyPrint(v)).toMatchSnapshot();
   });
 

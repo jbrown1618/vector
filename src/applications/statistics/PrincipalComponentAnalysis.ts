@@ -40,10 +40,7 @@ export interface PrincipalComponentAnalysis<S> {
  *     different scales.
  * @public
  */
-export function pca<S>(
-  A: Matrix<S>,
-  useCorrelation: boolean = false
-): PrincipalComponentAnalysis<S> {
+export function pca<S>(A: Matrix<S>, useCorrelation = false): PrincipalComponentAnalysis<S> {
   const ops = A.ops();
   const C = useCorrelation ? correlation(A) : covariance(A);
   const pairs = eig(C);

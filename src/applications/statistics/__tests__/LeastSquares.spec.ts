@@ -131,7 +131,10 @@ describe('LeastSquares', () => {
     });
 
     test('rejects a system where A is underdetermined', () => {
-      const A = mat([[1, 2, 3], [4, 5, 6]]);
+      const A = mat([
+        [1, 2, 3],
+        [4, 5, 6]
+      ]);
       const b = vec([1, 2]);
 
       const solution = solveOverdeterminedSystem(A, b);
@@ -139,7 +142,11 @@ describe('LeastSquares', () => {
     });
 
     test('rejects a system with a dimension mismatch', () => {
-      const A = mat([[1, 2], [3, 4], [5, 6]]);
+      const A = mat([
+        [1, 2],
+        [3, 4],
+        [5, 6]
+      ]);
       const b = vec([1, 2, 3, 4]);
 
       expect(() => solveOverdeterminedSystem(A, b)).toThrow();

@@ -230,7 +230,7 @@ export class VectorBuilder<S, V extends Vector<S>> {
    * @param offset - The amount by which to shift the indices
    * @param reverse - Shift entries backward rather than forward
    */
-  public shift(vector: Vector<S>, offset: number = 1, reverse: boolean = false): V {
+  public shift(vector: Vector<S>, offset = 1, reverse = false): V {
     const dim = vector.getDimension();
     return this.fromIndexFunction(dim, i => {
       const indexToUse = mod(reverse ? i - offset : i + offset, dim);
@@ -246,7 +246,7 @@ export class VectorBuilder<S, V extends Vector<S>> {
    * @param min - The lower limit of the random numbers to include
    * @param max - The upper limit of the random numbers to include
    */
-  public random(dimension: number, min: number = 0, max: number = 1): V {
+  public random(dimension: number, min = 0, max = 1): V {
     if (min >= max) {
       throw Error(`Expected min < max; got ${min} and ${max}`);
     }
@@ -261,7 +261,7 @@ export class VectorBuilder<S, V extends Vector<S>> {
    * @param mean - The center of the distribution of random numbers to include
    * @param standardDeviation - The standard deviation of the distribution of random numbers to include
    */
-  public randomNormal(dimension: number, mean: number = 0, standardDeviation: number = 1): V {
+  public randomNormal(dimension: number, mean = 0, standardDeviation = 1): V {
     if (standardDeviation <= 0) {
       throw Error(`Expected standardDeviation > 0; got ${standardDeviation}`);
     }

@@ -10,10 +10,7 @@ module.exports = {
     sourceType: 'module'
   },
   rules: {
-    'interface-name': [true, 'never-prefix'],
-    'no-implicit-dependencies': [true, 'dev'],
-    'object-literal-sort-keys': false,
-    'variable-name': [true, 'ban-keywords', 'check-format', 'allow-leading-underscore'],
+    'object-literal-sort-keys': 0,
 
     '@typescript-eslint/explicit-function-return-type': [
       'error',
@@ -23,13 +20,17 @@ module.exports = {
         allowHigherOrderFunctions: true
       }
     ],
-    '@typescript-eslint/no-unused-vars': ['error', { varsIgnorePattern: '_' }],
-    '@typescript-eslint/no-use-before-define': 'off',
-    '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/explicit-member-accessibility': [
       'error',
       { accessibility: 'explicit', overrides: { constructors: 'no-public' } }
-    ]
+    ],
+    '@typescript-eslint/no-unused-vars': ['error', { varsIgnorePattern: '_' }],
+    '@typescript-eslint/interface-name-prefix': [2, { prefixWithI: 'never' }],
+    '@typescript-eslint/ban-ts-ignore': 'off',
+    '@typescript-eslint/no-empty-function': 'off',
+    '@typescript-eslint/no-use-before-define': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
+    
   },
   overrides: [
     {

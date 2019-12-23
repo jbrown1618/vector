@@ -10,7 +10,13 @@ import {
 } from '@lib/applications/statistics/DescriptiveStatistics';
 
 describe('DescriptiveStatistics', () => {
-  const sample = mat([[90, 60, 90], [90, 90, 30], [60, 60, 60], [60, 60, 90], [30, 30, 30]]);
+  const sample = mat([
+    [90, 60, 90],
+    [90, 90, 30],
+    [60, 60, 60],
+    [60, 60, 90],
+    [30, 30, 30]
+  ]);
 
   describe('mean', () => {
     test('calculates the mean of a vector', () => {
@@ -34,7 +40,13 @@ describe('DescriptiveStatistics', () => {
 
     test('centers the columns of a matrix', () => {
       expect(center(sample)).toStrictEqual(
-        mat([[24, 0, 30], [24, 30, -30], [-6, 0, 0], [-6, 0, 30], [-36, -30, -30]])
+        mat([
+          [24, 0, 30],
+          [24, 30, -30],
+          [-6, 0, 0],
+          [-6, 0, 30],
+          [-36, -30, -30]
+        ])
       );
     });
 
@@ -110,7 +122,11 @@ describe('DescriptiveStatistics', () => {
 
     test('calculates the covariance matrix for a set of data', () => {
       expect(covariance(sample)).toStrictEqual(
-        mat([[504, 360, 180], [360, 360, 0], [180, 0, 720]])
+        mat([
+          [504, 360, 180],
+          [360, 360, 0],
+          [180, 0, 720]
+        ])
       );
     });
 

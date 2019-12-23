@@ -1,8 +1,4 @@
-export function approximatelyEqual(
-  first: number,
-  second: number,
-  epsilon: number = 0.000001
-): boolean {
+export function approximatelyEqual(first: number, second: number, epsilon = 0.000001): boolean {
   if (Number.isNaN(first) || Number.isNaN(second)) {
     return false; // NaN should never equal itself
   }
@@ -19,15 +15,11 @@ export function mod(num: number, modulus: number): number {
   return ((num % modulus) + modulus) % modulus;
 }
 
-export function random(min: number = 0, max: number = 1): number {
+export function random(min = 0, max = 1): number {
   return min + Math.random() * (max - min);
 }
 
-export function randomNormal(
-  mean: number = 0,
-  standardDeviation: number = 1,
-  numberOfSamples: number = 10
-): number {
+export function randomNormal(mean = 0, standardDeviation = 1, numberOfSamples = 10): number {
   let total = 0;
   for (let i = 0; i < numberOfSamples; i++) {
     total += random();

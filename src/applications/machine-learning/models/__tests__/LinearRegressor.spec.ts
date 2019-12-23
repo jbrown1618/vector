@@ -28,7 +28,11 @@ describe('LinearRegressor', () => {
       expect(pred - yTrain.getEntry(i)).toBeLessThan(1);
     });
 
-    const xVal = mat([[1, 1], [1, 2], [4, 8]]);
+    const xVal = mat([
+      [1, 1],
+      [1, 2],
+      [4, 8]
+    ]);
     const yVal = vec([2.87, 5.41, 22.87]);
     predictions = reg.predict(xVal);
     predictions.toArray().forEach((pred, i) => {

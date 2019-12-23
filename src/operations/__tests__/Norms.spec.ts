@@ -119,7 +119,10 @@ describe('Norms', () => {
   describe('Matrix norms', () => {
     describe('frobeniusNorm', () => {
       test('calculates the Frobenius Norm of a matrix', () => {
-        const A = mat([[1, 2], [3, 4]]);
+        const A = mat([
+          [1, 2],
+          [3, 4]
+        ]);
         const norm = frobeniusNorm(A);
         expect(norm).toEqual(5.477225575051661);
       });
@@ -137,7 +140,10 @@ describe('Norms', () => {
 
     describe('columnSumSupremumNorm', () => {
       test('calculates the 1-norm of a matrix', () => {
-        const A = mat([[1, 2], [3, 4]]);
+        const A = mat([
+          [1, 2],
+          [3, 4]
+        ]);
         const norm = columnSumSupremumNorm(A);
         expect(norm).toEqual(6);
       });
@@ -155,7 +161,10 @@ describe('Norms', () => {
 
     describe('rowSumSupremumNorm', () => {
       test('calculates the infinity-norm of a matrix', () => {
-        const A = mat([[1, 2], [3, 4]]);
+        const A = mat([
+          [1, 2],
+          [3, 4]
+        ]);
         const norm = rowSumSupremumNorm(A);
         expect(norm).toEqual(7);
       });
