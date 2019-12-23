@@ -9,15 +9,14 @@ Constructs a matrix of the specified dimensions, consisting of all ones
 <b>Signature:</b>
 
 ```typescript
-ones(numberOfRows: number, numberOfColumns?: number): M;
+ones(shape: MatrixShape): M;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  numberOfRows | <code>number</code> | The number of rows the new matrix should have |
-|  numberOfColumns | <code>number</code> | The number of columns the new matrix should have |
+|  shape | <code>MatrixShape</code> | the shape of the matrix as a tuple |
 
 <b>Returns:</b>
 

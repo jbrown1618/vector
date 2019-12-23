@@ -26,5 +26,5 @@ export declare function calculateLinearLeastSquares<S>(dataPoints: Vector<S>[]):
 
 ## Remarks
 
-The result is an object which has: - `coefficiencts`<!-- -->: a vector whose first entry is the constant term, and whose following entries are the coefficients for the other independent variables, in the same order they appear in the `dataPoints` - `approximationFunction`<!-- -->: a function which takes a vector of the independent variable values, and returns the predicted value of the dependent variable
+The result is an object which has: - `coefficients`<!-- -->: a vector whose first entry is the constant term, and whose following entries are the coefficients for the other independent variables, in the same order they appear in the `dataPoints` - `approximationFunction`<!-- -->: a function which takes a vector of the independent variable values, and returns the predicted value of the dependent variable
 

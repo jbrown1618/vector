@@ -30,6 +30,7 @@ export declare abstract class SparseMatrix<S> implements Matrix<S>
 |  [getNumberOfRows()](./vector.sparsematrix.getnumberofrows.md) |  | Returns the number of rows in the matrix |
 |  [getRow(i)](./vector.sparsematrix.getrow.md) |  | Returns a vector corresponding to the row at index <code>rowIndex</code> |
 |  [getRowVectors()](./vector.sparsematrix.getrowvectors.md) |  | Returns an array of vectors corresponding to the rows of the matrix |
+|  [getShape()](./vector.sparsematrix.getshape.md) |  | Returns a tuple representing the dimensions of the matrix. The first entry is the number of rows, and the second entry is the number of columns. |
 |  [getSparseData()](./vector.sparsematrix.getsparsedata.md) |  | Returns the contents of the matrix as a nested map of rowIndex to columnIndex to nonzero value |
 |  [multiply(other)](./vector.sparsematrix.multiply.md) |  | Implements matrix multiplication |
 |  [ops()](./vector.sparsematrix.ops.md) |  | Returns a [ScalarOperations](./vector.scalaroperations.md) object which will allow consumers to work generically with the scalars contained in the vector. |

@@ -9,7 +9,7 @@ Constructs a matrix of the specified dimension, whose entries are all the specif
 <b>Signature:</b>
 
 ```typescript
-fill(value: S, numberOfRows: number, numberOfColumns?: number): M;
+fill(value: S, shape: MatrixShape): M;
 ```
 
 ## Parameters
@@ -17,8 +17,7 @@ fill(value: S, numberOfRows: number, numberOfColumns?: number): M;
 |  Parameter | Type | Description |
 |  --- | --- | --- |
 |  value | <code>S</code> | The value that should be used for every entry in the new matrix |
-|  numberOfRows | <code>number</code> | The number of rows the new matrix should have |
-|  numberOfColumns | <code>number</code> | The number of columns the new matrix should have |
+|  shape | <code>MatrixShape</code> | The shape of the matrix as a tuple |
 
 <b>Returns:</b>
 

@@ -9,15 +9,14 @@ Constructs a matrix of the specified size whose entries are (uniformly-distribut
 <b>Signature:</b>
 
 ```typescript
-random(numberOfRows: number, numberOfColumns?: number, min?: number, max?: number): M;
+random(shape: MatrixShape, min?: number, max?: number): M;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  numberOfRows | <code>number</code> | The number of rows the new matrix should have |
-|  numberOfColumns | <code>number</code> | The number of columns the new matrix should have |
+|  shape | <code>MatrixShape</code> | The shape of the matrix as a tuple |
 |  min | <code>number</code> | The lower limit of the random numbers to include |
 |  max | <code>number</code> | The upper limit of the random numbers to include |
 

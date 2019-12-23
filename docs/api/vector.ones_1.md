@@ -9,15 +9,14 @@ Creates a new matrix of all 1s. See [MatrixBuilder.ones()](./vector.matrixbuilde
 <b>Signature:</b>
 
 ```typescript
-export declare function ones(rows: number, columns: number): Matrix<number>;
+export declare function ones(shape: MatrixShape): Matrix<number>;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  rows | <code>number</code> |  |
-|  columns | <code>number</code> |  |
+|  shape | <code>MatrixShape</code> |  |
 
 <b>Returns:</b>
 

@@ -28,5 +28,5 @@ export declare function calculateGeneralLeastSquares<S>(dataPoints: Vector<S>[],
 
 ## Remarks
 
-The result is on object which has: - `coefficiencts`<!-- -->: a vector whose entries correspond to the coefficients which must be plugged into the function template to yield the best approximation function - `approximationFunction`<!-- -->: a function which takes a vector of the independent variable values, and returns the predicted value of the dependent variable
+The result is on object which has: - `coefficients`<!-- -->: a vector whose entries correspond to the coefficients which must be plugged into the function template to yield the best approximation function - `approximationFunction`<!-- -->: a function which takes a vector of the independent variable values, and returns the predicted value of the dependent variable
 

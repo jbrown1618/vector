@@ -30,6 +30,7 @@ export declare abstract class ArrayMatrix<S> implements Matrix<S>
 |  [getNumberOfRows()](./vector.arraymatrix.getnumberofrows.md) |  | Returns the number of rows in the matrix |
 |  [getRow(i)](./vector.arraymatrix.getrow.md) |  | Returns a vector corresponding to the row at index <code>rowIndex</code> |
 |  [getRowVectors()](./vector.arraymatrix.getrowvectors.md) |  | Returns an array of vectors corresponding to the rows of the matrix |
+|  [getShape()](./vector.arraymatrix.getshape.md) |  | Returns a tuple representing the dimensions of the matrix. The first entry is the number of rows, and the second entry is the number of columns. |
 |  [getSparseData()](./vector.arraymatrix.getsparsedata.md) |  | Returns the contents of the matrix as a nested map of rowIndex to columnIndex to nonzero value |
 |  [multiply(other)](./vector.arraymatrix.multiply.md) |  | Implements matrix multiplication |
 |  [ops()](./vector.arraymatrix.ops.md) |  | Returns a [ScalarOperations](./vector.scalaroperations.md) object which will allow consumers to work generically with the scalars contained in the vector. |

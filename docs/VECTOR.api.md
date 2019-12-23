@@ -21,6 +21,7 @@ import { MatrixBuilder as MatrixBuilder_2 } from '@lib/types/matrix/MatrixBuilde
 import { MatrixConstructor as MatrixConstructor_2 } from '@lib/types/matrix/Matrix';
 import { MatrixData as MatrixData_2 } from '@lib/types/matrix/Matrix';
 import { MatrixEntryCallback as MatrixEntryCallback_2 } from '@lib/types/matrix/Matrix';
+import { MatrixShape as MatrixShape_2 } from '@lib/types/matrix/Matrix';
 import { NumberMatrix as NumberMatrix_2 } from '@lib/types/matrix/NumberMatrix';
 import { NumberOperations as NumberOperations_2 } from '@lib/types/scalar/NumberOperations';
 import { NumberVector as NumberVector_2 } from '@lib/types/vector/NumberVector';
@@ -60,6 +61,7 @@ export abstract class ArrayMatrix<S> implements Matrix_2<S> {
     getNumberOfRows(): number;
     getRow(i: number): Vector_2<S>;
     getRowVectors(): Vector_2<S>[];
+    getShape(): MatrixShape_2;
     getSparseData(): Map<number, Map<number, S>>;
     multiply(other: Matrix_2<S>): Matrix_2<S>;
     abstract ops(): ScalarOperations_2<S>;
@@ -276,7 +278,7 @@ export class FloatMatrix implements Matrix_2<number> {
     // @internal
     constructor(data: MatrixData_2<number>);
     // @internal
-    constructor(data: Float64Array, numRows: number, numCols: number);
+    constructor(data: Float64Array, shape: MatrixShape_2);
     add(other: Matrix_2<number>): Matrix_2<number>;
     adjoint(): Matrix_2<number>;
     apply(vector: Vector_2<number>): Vector_2<number>;
@@ -293,6 +295,7 @@ export class FloatMatrix implements Matrix_2<number> {
     getNumberOfRows(): number;
     getRow(i: number): Vector_2<number>;
     getRowVectors(): Vector_2<number>[];
+    getShape(): MatrixShape_2;
     getSparseData(): Map<number, Map<number, number>>;
     multiply(other: Matrix_2<number>): Matrix_2<number>;
     // (undocumented)
@@ -445,6 +448,7 @@ export interface Matrix<S> extends LinearTransformation_2<Vector_2<S>, Vector_2<
     getNumberOfRows(): number;
     getRow(i: number): Vector_2<S>;
     getRowVectors(): Vector_2<S>[];
+    getShape(): MatrixShape;
     getSparseData(): Map<number, Map<number, S>>;
     multiply(other: Matrix<S>): Matrix<S>;
     ops(): ScalarOperations_2<S>;
@@ -467,30 +471,30 @@ export class MatrixBuilder<S, V extends Vector_2<S>, M extends Matrix_2<S>> {
     diagonal(diagonalEntries: Vector_2<S>): M;
     empty(): M;
     exclude(matrix: Matrix_2<S>, rowToExclude: number, columnToExclude: number): M;
-    fill(value: S, numberOfRows: number, numberOfColumns?: number): M;
+    fill(value: S, shape: MatrixShape_2): M;
     // (undocumented)
     fromArray(data: MatrixData_2<S>): M;
     fromColumnVectors(columns: Vector_2<S>[]): M;
-    fromIndexFunction(numRows: number, numColumns: number, indexFunction: MatrixIndexFunction<S>): M;
+    fromIndexFunction(shape: MatrixShape_2, indexFunction: MatrixIndexFunction<S>): M;
     // (undocumented)
     fromNumberArray(numberData: MatrixData_2<number>): M;
     fromRowVectors(rows: Vector_2<S>[]): M;
     // (undocumented)
-    fromSparseData(numRows: number, numCols: number, sparseData: SparseMatrixData_2<S>): M;
+    fromSparseData(shape: MatrixShape_2, sparseData: SparseMatrixData_2<S>): M;
     hankel(firstColumn: Vector_2<S>, lastRow?: Vector_2<S>): M;
     hilbert(size: number): M;
     identity(size: number): M;
     map(matrix: Matrix_2<S>, entryFunction: MatrixEntryFunction<S>): M;
-    ones(numberOfRows: number, numberOfColumns?: number): M;
+    ones(shape: MatrixShape_2): M;
     pascal(size: number, upper?: boolean): M;
     pascalSymmetric(size: number): M;
-    random(numberOfRows: number, numberOfColumns?: number, min?: number, max?: number): M;
-    randomNormal(numberOfRows: number, numberOfColumns?: number, mean?: number, standardDeviation?: number): M;
+    random(shape: MatrixShape_2, min?: number, max?: number): M;
+    randomNormal(shape: MatrixShape_2, mean?: number, standardDeviation?: number): M;
     repeat(matrix: Matrix_2<S>, rows: number, columns: number): M;
     slice(matrix: Matrix_2<S>, rowStartIndex?: number, columnStartIndex?: number, rowEndIndex?: number, columnEndIndex?: number): M;
     toeplitz(firstColumn: Vector_2<S>, firstRow?: Vector_2<S>): M;
     tridiagonal(leftEntries: Vector_2<S>, diagonalEntries: Vector_2<S>, rightEntries: Vector_2<S>): M;
-    zeros(numberOfRows: number, numberOfColumns?: number): M;
+    zeros(shape: MatrixShape_2): M;
 }
 
 // Warning: (ae-internal-missing-underscore) The name "MatrixConstructor" should be prefixed with an underscore because the declaration is marked as @internal
@@ -518,6 +522,9 @@ export type MatrixEntryFunction<S> = (entry: S, i: number, j: number) => S;
 
 // @public
 export type MatrixIndexFunction<S> = (i: number, j: number) => S;
+
+// @public
+export type MatrixShape = [number, number];
 
 // @public
 export function mean<S>(x: Vector_2<S>): S;
@@ -578,7 +585,7 @@ export class NumberVector extends ArrayVector_2<number> {
 export function ones(entries: number): Vector_2<number>;
 
 // @public
-export function ones(rows: number, columns: number): Matrix_2<number>;
+export function ones(shape: MatrixShape_2): Matrix_2<number>;
 
 // @public
 export function pca<S>(A: Matrix_2<S>, useCorrelation?: boolean): PrincipalComponentAnalysis<S>;
@@ -711,6 +718,7 @@ export abstract class SparseMatrix<S> implements Matrix_2<S> {
     getNumberOfRows(): number;
     getRow(i: number): Vector_2<S>;
     getRowVectors(): Vector_2<S>[];
+    getShape(): MatrixShape_2;
     getSparseData(): Map<number, Map<number, S>>;
     multiply(other: Matrix_2<S>): Matrix_2<S>;
     abstract ops(): ScalarOperations_2<S>;
@@ -881,7 +889,7 @@ export type VectorIndexFunction<S> = (index: number) => S;
 export function zeros(entries: number): Vector_2<number>;
 
 // @public
-export function zeros(rows: number, columns: number): Matrix_2<number>;
+export function zeros(shape: MatrixShape_2): Matrix_2<number>;
 
 
 // (No @packageDocumentation comment for this package)

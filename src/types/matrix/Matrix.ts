@@ -13,6 +13,7 @@ export type MatrixData<S> = readonly VectorData<S>[];
 /**
  * A tuple representing the shape of a {@link Matrix}.
  * The first entry is the number of rows, and the second entry is the number of columns.
+ * @public
  */
 export type MatrixShape = [number, number];
 

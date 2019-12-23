@@ -9,15 +9,14 @@ Constructs a matrix of the specified size whose entries are normally distributed
 <b>Signature:</b>
 
 ```typescript
-randomNormal(numberOfRows: number, numberOfColumns?: number, mean?: number, standardDeviation?: number): M;
+randomNormal(shape: MatrixShape, mean?: number, standardDeviation?: number): M;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  numberOfRows | <code>number</code> | The number of rows the new matrix should have |
-|  numberOfColumns | <code>number</code> | The number of columns the new matrix should have |
+|  shape | <code>MatrixShape</code> | The shape of the matrix as a tuple |
 |  mean | <code>number</code> | The center of the distribution of random numbers to include |
 |  standardDeviation | <code>number</code> | The standard deviation of the distribution of random numbers to include |
 
