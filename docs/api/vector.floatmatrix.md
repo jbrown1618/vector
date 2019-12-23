@@ -12,6 +12,16 @@ A dense matrix of JavaScript `number` primitives, implemented as a column-major 
 export declare class FloatMatrix implements Matrix<number> 
 ```
 
+## Remarks
+
+The constructor for this class is marked as internal. Third-party code should not call the constructor directly or create subclasses that extend the `FloatMatrix` class.
+
+## Constructors
+
+|  Constructor | Modifiers | Description |
+|  --- | --- | --- |
+|  [(constructor)(data, shape)](./vector.floatmatrix._constructor__1.md) |  | Constructs a new instance of the <code>FloatMatrix</code> class |
+
 ## Methods
 
 |  Method | Modifiers | Description |
@@ -43,10 +53,4 @@ export declare class FloatMatrix implements Matrix<number>
 |  [transpose()](./vector.floatmatrix.transpose.md) |  | Returns the transpose of the matrix |
 |  [vectorBuilder()](./vector.floatmatrix.vectorbuilder.md) |  | Returns a [VectorBuilder](./vector.vectorbuilder.md) which will build new vectors of a compatible type |
 |  [vectorBuilder()](./vector.floatmatrix.vectorbuilder.md) | <code>static</code> |  |
-
-## Remarks
-
-The constructor for this class is marked as internal. Third-party code should not call the constructor directly or create subclasses that extend the `FloatMatrix` class.
-
-The constructor for this class is marked as internal. Third-party code should not call the constructor directly or create subclasses that extend the `FloatMatrix` class.
 

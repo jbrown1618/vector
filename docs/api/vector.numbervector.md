@@ -12,6 +12,10 @@ A dense [Vector](./vector.vector.md) of `number`<!-- -->s implemented as a [Arra
 export declare class NumberVector extends ArrayVector<number> 
 ```
 
+## Remarks
+
+The constructor for this class is marked as internal. Third-party code should not call the constructor directly or create subclasses that extend the `NumberVector` class.
+
 ## Methods
 
 |  Method | Modifiers | Description |
@@ -21,8 +25,4 @@ export declare class NumberVector extends ArrayVector<number>
 |  [matrixBuilder()](./vector.numbervector.matrixbuilder.md) |  | Returns a [MatrixBuilder](./vector.matrixbuilder.md) which will build new matrices of a compatible type |
 |  [ops()](./vector.numbervector.ops.md) |  | Returns a [ScalarOperations](./vector.scalaroperations.md) object which will allow consumers to work generically with the scalars contained in the vector. |
 |  [ops()](./vector.numbervector.ops.md) | <code>static</code> |  |
-
-## Remarks
-
-The constructor for this class is marked as internal. Third-party code should not call the constructor directly or create subclasses that extend the `NumberVector` class.
 

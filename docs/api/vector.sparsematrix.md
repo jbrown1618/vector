@@ -12,6 +12,12 @@ Implements [Matrix](./vector.matrix.md) with a map of indices to nonzero values.
 export declare abstract class SparseMatrix<S> implements Matrix<S> 
 ```
 
+## Remarks
+
+Subclasses must specify the usual scalar operations on their contents.
+
+The constructor for this class is marked as internal. Third-party code should not call the constructor directly or create subclasses that extend the `SparseMatrix` class.
+
 ## Methods
 
 |  Method | Modifiers | Description |
@@ -40,10 +46,4 @@ export declare abstract class SparseMatrix<S> implements Matrix<S>
 |  [trace()](./vector.sparsematrix.trace.md) |  | Returns the trace of the matrix |
 |  [transpose()](./vector.sparsematrix.transpose.md) |  | Returns the transpose of the matrix |
 |  [vectorBuilder()](./vector.sparsematrix.vectorbuilder.md) |  | Returns a [VectorBuilder](./vector.vectorbuilder.md) which will build new vectors of a compatible type |
-
-## Remarks
-
-Subclasses must specify the usual scalar operations on their contents.
-
-The constructor for this class is marked as internal. Third-party code should not call the constructor directly or create subclasses that extend the `SparseMatrix` class.
 

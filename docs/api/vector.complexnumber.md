@@ -16,7 +16,7 @@ export declare class ComplexNumber
 
 |  Constructor | Modifiers | Description |
 |  --- | --- | --- |
-|  [(constructor)(real, imaginary)](./vector.complexnumber.(constructor).md) |  | Constructs a new instance of the <code>ComplexNumber</code> class |
+|  [(constructor)(real, imaginary)](./vector.complexnumber._constructor_.md) |  | Constructs a new instance of the <code>ComplexNumber</code> class |
 
 ## Properties
 

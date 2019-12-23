@@ -12,6 +12,10 @@ Provides methods for constructing [Matrices](./vector.matrix.md) of a given type
 export declare class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> 
 ```
 
+## Remarks
+
+The constructor for this class is marked as internal. Third-party code should not call the constructor directly or create subclasses that extend the `MatrixBuilder` class.
+
 ## Methods
 
 |  Method | Modifiers | Description |
@@ -44,8 +48,4 @@ export declare class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>>
 |  [toeplitz(firstColumn, firstRow)](./vector.matrixbuilder.toeplitz.md) |  | Constructs a Toeplitz matrix from the specified first column and first row. A Toeplitz matrix has constant diagonals. If <code>firstRow</code> is not given, then the complex conjugate of <code>firstColumn</code> is assumed. The first entry must be real because the first entry of the first column must equal the first entry of the first row. |
 |  [tridiagonal(leftEntries, diagonalEntries, rightEntries)](./vector.matrixbuilder.tridiagonal.md) |  | Constructs a square tridiagonal matrix whose diagonal entries correspond to the entries of <code>diagonalEntries</code>, whose entries in the left-off-diagonal correspond to the entries of <code>leftEntries</code>, and whose entries in the right-off-diagonal correspond fo the entries of <code>rightEntries</code>. The off-diagonals must have one fewer entry than the diagonal. Throws an error if the dimensions are not correct. |
 |  [zeros(shape)](./vector.matrixbuilder.zeros.md) |  | Constructs a matrix of the specified dimensions, consisting of all zeros |
-
-## Remarks
-
-The constructor for this class is marked as internal. Third-party code should not call the constructor directly or create subclasses that extend the `MatrixBuilder` class.
 

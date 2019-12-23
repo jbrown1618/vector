@@ -12,6 +12,14 @@ Implements [Vector](./vector.vector.md) as a map of indices to nonzero values.
 export declare abstract class SparseVector<S> implements Vector<S> 
 ```
 
+## Remarks
+
+For large vectors with many entries equal to 0, some operations are more efficient with a [Vector](./vector.vector.md) implementation that only stores the non-zero values.
+
+Subclasses must specify the usual scalar operations on their contents.
+
+The constructor for this class is marked as internal. Third-party code should not call the constructor directly or create subclasses that extend the `SparseVector` class.
+
 ## Methods
 
 |  Method | Modifiers | Description |
@@ -30,12 +38,4 @@ export declare abstract class SparseVector<S> implements Vector<S>
 |  [scalarMultiply(scalar)](./vector.sparsevector.scalarmultiply.md) |  | Implements vector multiplication by a scalar |
 |  [set(index, value)](./vector.sparsevector.set.md) |  | Returns a new vector equal to the old one, except with the entry at <code>index</code> replaced with <code>value</code> |
 |  [toArray()](./vector.sparsevector.toarray.md) |  | Returns the contents of the vector as an array |
-
-## Remarks
-
-For large vectors with many entries equal to 0, some operations are more efficient with a [Vector](./vector.vector.md) implementation that only stores the non-zero values.
-
-Subclasses must specify the usual scalar operations on their contents.
-
-The constructor for this class is marked as internal. Third-party code should not call the constructor directly or create subclasses that extend the `SparseVector` class.
 

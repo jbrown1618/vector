@@ -12,6 +12,10 @@ A dense [Vector](./vector.vector.md) of `number`<!-- -->s implemented as a `Floa
 export declare class FloatVector implements Vector<number> 
 ```
 
+## Remarks
+
+The constructor for this class is marked as internal. Third-party code should not call the constructor directly or create subclasses that extend the `FloatVector` class.
+
 ## Methods
 
 |  Method | Modifiers | Description |
@@ -32,8 +36,4 @@ export declare class FloatVector implements Vector<number>
 |  [scalarMultiply(scalar)](./vector.floatvector.scalarmultiply.md) |  | Implements vector multiplication by a scalar |
 |  [set(index, value)](./vector.floatvector.set.md) |  | Returns a new vector equal to the old one, except with the entry at <code>index</code> replaced with <code>value</code> |
 |  [toArray()](./vector.floatvector.toarray.md) |  | Returns the contents of the vector as an array |
-
-## Remarks
-
-The constructor for this class is marked as internal. Third-party code should not call the constructor directly or create subclasses that extend the `FloatVector` class.
 

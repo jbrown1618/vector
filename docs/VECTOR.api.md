@@ -247,7 +247,7 @@ export function determinant<S>(matrix: Matrix_2<S>): S;
 export function diag(elements: number[]): Matrix_2<number>;
 
 // Warning: (ae-forgotten-export) The symbol "DimensionReductionType" needs to be exported by the entry point index.d.ts
-// 
+//
 // @public
 export type DimensionReductionOptions = DimensionReductionType & {
     useCorrelation?: boolean;
@@ -277,7 +277,6 @@ export function eye(size: number): Matrix_2<number>;
 export class FloatMatrix implements Matrix_2<number> {
     // @internal
     constructor(data: MatrixData_2<number>);
-    // @internal
     constructor(data: Float64Array, shape: MatrixShape_2);
     add(other: Matrix_2<number>): Matrix_2<number>;
     adjoint(): Matrix_2<number>;
@@ -374,7 +373,7 @@ export function isOrthogonal<S>(matrix: Matrix_2<S>): boolean;
 export function isOrthonormal<S>(matrix: Matrix_2<S>): boolean;
 
 // Warning: (ae-internal-missing-underscore) The name "isSparse" should be prefixed with an underscore because the declaration is marked as @internal
-// 
+//
 // @internal
 export function isSparse<S>(vector: Vector_2<S>): vector is SparseVector<S>;
 
@@ -498,7 +497,7 @@ export class MatrixBuilder<S, V extends Vector_2<S>, M extends Matrix_2<S>> {
 }
 
 // Warning: (ae-internal-missing-underscore) The name "MatrixConstructor" should be prefixed with an underscore because the declaration is marked as @internal
-// 
+//
 // @internal (undocumented)
 export interface MatrixConstructor<S, V extends Vector_2<S>, M extends Matrix<S>> {
     // (undocumented)
@@ -865,7 +864,7 @@ export class VectorBuilder<S, V extends Vector_2<S>> {
 }
 
 // Warning: (ae-internal-missing-underscore) The name "VectorConstructor" should be prefixed with an underscore because the declaration is marked as @internal
-// 
+//
 // @internal (undocumented)
 export interface VectorConstructor<S, V extends Vector<S>> {
     // (undocumented)

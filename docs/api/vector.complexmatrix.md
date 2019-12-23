@@ -12,6 +12,10 @@ A dense [Matrix](./vector.matrix.md) of [ComplexNumber](./vector.complexnumber.m
 export declare class ComplexMatrix extends ArrayMatrix<ComplexNumber> 
 ```
 
+## Remarks
+
+The constructor for this class is marked as internal. Third-party code should not call the constructor directly or create subclasses that extend the `ComplexMatrix` class.
+
 ## Methods
 
 |  Method | Modifiers | Description |
@@ -22,8 +26,4 @@ export declare class ComplexMatrix extends ArrayMatrix<ComplexNumber>
 |  [ops()](./vector.complexmatrix.ops.md) | <code>static</code> |  |
 |  [vectorBuilder()](./vector.complexmatrix.vectorbuilder.md) |  | Returns a [VectorBuilder](./vector.vectorbuilder.md) which will build new vectors of a compatible type |
 |  [vectorBuilder()](./vector.complexmatrix.vectorbuilder.md) | <code>static</code> |  |
-
-## Remarks
-
-The constructor for this class is marked as internal. Third-party code should not call the constructor directly or create subclasses that extend the `ComplexMatrix` class.
 
