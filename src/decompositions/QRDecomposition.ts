@@ -60,7 +60,7 @@ export function calculateQRDecomposition<S>(A: Matrix<S>): QRDecomposition<S> {
 
   // The upper-triangular matrix R is formed by computing inner
   // products of our new basis vectors with the columns of A.
-  const R = matrixBuilder.fromIndexFunction(dim, dim, (i: number, j: number) => {
+  const R = matrixBuilder.fromIndexFunction([dim, dim], (i: number, j: number) => {
     if (i > j) {
       return ops.zero();
     }

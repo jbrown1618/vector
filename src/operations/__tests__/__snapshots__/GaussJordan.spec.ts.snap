@@ -2,8 +2,8 @@
 
 exports[`GaussJordan solveByGaussianElimination solves a random 20x20 system 1`] = `
 Object {
-  "solution": NumberVector {
-    "_data": Array [
+  "solution": FloatVector {
+    "_data": Float64Array [
       0.9136263277500446,
       0.346696713406094,
       0.3111557882953938,

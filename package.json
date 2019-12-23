@@ -1,7 +1,7 @@
 {
   "name": "@josh-brown/vector",
   "author": "Joshua Brown <jbrown1.618@gmail.com>",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "A linear algebra library written in TypeScript that focuses on generality, extensibility, and ease of use.",
   "license": "MIT",
   "repository": {
@@ -26,8 +26,8 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@microsoft/api-documenter": "^7.3.8",
-    "@microsoft/api-extractor": "^7.3.2",
+    "@microsoft/api-documenter": "^7.7.0",
+    "@microsoft/api-extractor": "^7.7.0",
     "@types/csv-parse": "^1.2.2",
     "@types/jest": "^24.0.18",
     "@types/node": "^12.7.4",

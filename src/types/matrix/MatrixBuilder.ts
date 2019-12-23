@@ -1,13 +1,13 @@
 import {
   assertHomogeneous,
   assertSquare,
-  assertValidDimensions,
-  assertValidMatrixIndex
+  assertValidMatrixIndex,
+  assertValidShape
 } from '@lib/utilities/ErrorAssertions';
 import { binomial } from '@lib/utilities/NumberUtilities';
 import { ScalarOperations } from '@lib/types/scalar/ScalarOperations';
 import { Vector } from '@lib/types/vector/Vector';
-import { Matrix, MatrixConstructor, MatrixData } from '@lib/types/matrix/Matrix';
+import { Matrix, MatrixConstructor, MatrixShape, MatrixData } from '@lib/types/matrix/Matrix';
 import { SparseMatrixData } from '@lib/types/matrix/SparseMatrix';
 
 /**
@@ -55,8 +55,10 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
     return this.fromArray(data);
   }
 
-  public fromSparseData(numRows: number, numCols: number, sparseData: SparseMatrixData<S>): M {
-    const data: S[][] = this.zeros(numRows, numCols).toArray();
+  public fromSparseData(shape: MatrixShape, sparseData: SparseMatrixData<S>): M {
+    assertValidShape(shape);
+    const [m, n] = shape;
+    const data: S[][] = this.zeros([m, n]).toArray();
     sparseData.forEach((sparseRowData, rowIndex) => {
       sparseRowData.forEach((value, colIndex) => {
         data[rowIndex][colIndex] = value;
@@ -93,7 +95,9 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
       return this.empty();
     }
 
-    return this.fromIndexFunction(numberOfRows, numberOfColumns, (i, j) => columns[j].getEntry(i));
+    return this.fromIndexFunction([numberOfRows, numberOfColumns], (i, j) =>
+      columns[j].getEntry(i)
+    );
   }
 
   /**
@@ -125,7 +129,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
       return this.empty();
     }
 
-    return this.fromIndexFunction(numberOfRows, numberOfColumns, (i, j) => rows[i].getEntry(j));
+    return this.fromIndexFunction([numberOfRows, numberOfColumns], (i, j) => rows[i].getEntry(j));
   }
 
   /**
@@ -140,22 +144,18 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * // [ 4 5 6 7 ]
    * // [ 5 6 7 8 ]
    * ```
-   * @param numRows - The number of columns the new matrix should have
-   * @param numColumns - The number of columns the new matrix should have
+   * @param shape - The shape of the matrix as a tuple
    * @param indexFunction - A function returning the entry for a given `i`, `j`
    * @returns The new matrix
    * @public
    */
-  public fromIndexFunction(
-    numRows: number,
-    numColumns: number,
-    indexFunction: MatrixIndexFunction<S>
-  ): M {
-    assertValidDimensions(numRows, numColumns);
+  public fromIndexFunction(shape: MatrixShape, indexFunction: MatrixIndexFunction<S>): M {
+    assertValidShape(shape);
+    const [m, n] = shape;
     const data: S[][] = [];
-    for (let i = 0; i < numRows; i++) {
+    for (let i = 0; i < m; i++) {
       data[i] = [];
-      for (let j = 0; j < numColumns; j++) {
+      for (let j = 0; j < n; j++) {
         data[i][j] = indexFunction(i, j);
       }
     }
@@ -189,7 +189,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * @public
    */
   public map(matrix: Matrix<S>, entryFunction: MatrixEntryFunction<S>): M {
-    return this.fromIndexFunction(matrix.getNumberOfRows(), matrix.getNumberOfColumns(), (i, j) =>
+    return this.fromIndexFunction(matrix.getShape(), (i, j) =>
       entryFunction(matrix.getEntry(i, j), i, j)
     );
   }
@@ -221,13 +221,12 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * ```
    *
    * @param value - The value that should be used for every entry in the new matrix
-   * @param numberOfRows - The number of rows the new matrix should have
-   * @param numberOfColumns - The number of columns the new matrix should have
+   * @param shape - The shape of the matrix as a tuple
    * @returns The new matrix
    * @public
    */
-  public fill(value: S, numberOfRows: number, numberOfColumns: number = numberOfRows): M {
-    return this.fromIndexFunction(numberOfRows, numberOfColumns, () => value);
+  public fill(value: S, shape: MatrixShape): M {
+    return this.fromIndexFunction(shape, () => value);
   }
 
   /**
@@ -235,18 +234,17 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    *
    * @example
    * ```
-   * const allZeros = matrixBuilder.zeros(2, 3);
+   * const allZeros = matrixBuilder.zeros([2, 3]);
    *
    * // [ 0 0 0 ]
    * // [ 0 0 0 ]
    * ```
-   * @param numberOfRows - The number of rows the new matrix should have
-   * @param numberOfColumns - The number of columns the new matrix should have
+   * @param shape - the shape of the matrix as a tuple
    * @returns The new matrix
    * @public
    */
-  public zeros(numberOfRows: number, numberOfColumns: number = numberOfRows): M {
-    return this.fill(this.ops().zero(), numberOfRows, numberOfColumns);
+  public zeros(shape: MatrixShape): M {
+    return this.fill(this.ops().zero(), shape);
   }
 
   /**
@@ -259,13 +257,12 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * // [ 1 1 1 ]
    * // [ 1 1 1 ]
    * ```
-   * @param numberOfRows - The number of rows the new matrix should have
-   * @param numberOfColumns - The number of columns the new matrix should have
+   * @param shape - the shape of the matrix as a tuple
    * @returns The new matrix
    * @public
    */
-  public ones(numberOfRows: number, numberOfColumns: number = numberOfRows): M {
-    return this.fill(this.ops().one(), numberOfRows, numberOfColumns);
+  public ones(shape: MatrixShape): M {
+    return this.fill(this.ops().one(), shape);
   }
 
   /**
@@ -284,7 +281,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * @public
    */
   public identity(size: number): M {
-    return this.fromIndexFunction(size, size, (i, j) =>
+    return this.fromIndexFunction([size, size], (i, j) =>
       i === j ? this.ops().one() : this.ops().zero()
     );
   }
@@ -305,7 +302,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * @public
    */
   public hilbert(size: number): M {
-    return this.fromIndexFunction(size, size, (i, j) => {
+    return this.fromIndexFunction([size, size], (i, j) => {
       return this.ops().fromNumber(1 / (i + j + 1));
     });
   }
@@ -352,7 +349,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
       throw Error(`The first entry of firstColumn must equal the first entry of firstRow`);
     }
 
-    return this.fromIndexFunction(firstColumn.getDimension(), firstRow.getDimension(), (i, j) => {
+    return this.fromIndexFunction([firstColumn.getDimension(), firstRow.getDimension()], (i, j) => {
       if (i >= j) {
         return firstColumn.getEntry(i - j);
       } else {
@@ -414,7 +411,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
       throw Error(`The last entry of firstColumn must equal the first entry of lastRow`);
     }
 
-    return this.fromIndexFunction(numRows, numColumns, (i, j) => {
+    return this.fromIndexFunction([numRows, numColumns], (i, j) => {
       const index = i + j;
       if (index < numRows) {
         return firstColumn.getEntry(index);
@@ -451,7 +448,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * @public
    */
   public pascal(size: number, upper: boolean = false): M {
-    return this.fromIndexFunction(size, size, (i, j) => {
+    return this.fromIndexFunction([size, size], (i, j) => {
       const entry = upper ? binomial(j, i) : binomial(i, j);
       return this.ops().fromNumber(entry);
     });
@@ -474,7 +471,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * @public
    */
   public pascalSymmetric(size: number): M {
-    return this.fromIndexFunction(size, size, (i, j) => {
+    return this.fromIndexFunction([size, size], (i, j) => {
       return this.ops().fromNumber(binomial(i + j, i));
     });
   }
@@ -507,46 +504,32 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * Constructs a matrix of the specified size whose entries are (uniformly-distributed) random
    * numbers between `min` and `max`
    *
-   * @param numberOfRows - The number of rows the new matrix should have
-   * @param numberOfColumns - The number of columns the new matrix should have
+   * @param shape - The shape of the matrix as a tuple
    * @param min - The lower limit of the random numbers to include
    * @param max - The upper limit of the random numbers to include
    * @public
    */
-  public random(
-    numberOfRows: number,
-    numberOfColumns: number = numberOfRows,
-    min: number = 0,
-    max: number = 1
-  ): M {
+  public random(shape: MatrixShape, min: number = 0, max: number = 1): M {
     if (min >= max) {
       throw Error(`Expected min < max; got ${min} and ${max}`);
     }
-    return this.fromIndexFunction(numberOfRows, numberOfColumns, () => this.ops().random(min, max));
+    return this.fromIndexFunction(shape, () => this.ops().random(min, max));
   }
 
   /**
    * Constructs a matrix of the specified size whose entries are normally distributed with the
    * specified mean and standard deviation.
    *
-   * @param numberOfRows - The number of rows the new matrix should have
-   * @param numberOfColumns - The number of columns the new matrix should have
+   * @param shape - The shape of the matrix as a tuple
    * @param mean - The center of the distribution of random numbers to include
    * @param standardDeviation - The standard deviation of the distribution of random numbers to include
    * @public
    */
-  public randomNormal(
-    numberOfRows: number,
-    numberOfColumns: number = numberOfRows,
-    mean: number = 0,
-    standardDeviation: number = 1
-  ): M {
+  public randomNormal(shape: MatrixShape, mean: number = 0, standardDeviation: number = 1): M {
     if (standardDeviation <= 0) {
       throw Error(`Expected standardDeviation > 0; got ${standardDeviation}`);
     }
-    return this.fromIndexFunction(numberOfRows, numberOfColumns, () =>
-      this.ops().randomNormal(mean, standardDeviation)
-    );
+    return this.fromIndexFunction(shape, () => this.ops().randomNormal(mean, standardDeviation));
   }
 
   /**
@@ -567,7 +550,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    */
   public diagonal(diagonalEntries: Vector<S>): M {
     const size = diagonalEntries.getDimension();
-    return this.fromIndexFunction(size, size, (i, j) =>
+    return this.fromIndexFunction([size, size], (i, j) =>
       i === j ? diagonalEntries.getEntry(i) : this.ops().zero()
     );
   }
@@ -612,7 +595,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
       throw Error('');
     }
 
-    return this.fromIndexFunction(size, size, (i, j) => {
+    return this.fromIndexFunction([size, size], (i, j) => {
       if (i === j) {
         return diagonalEntries.getEntry(i);
       } else if (i === j + 1) {
@@ -658,7 +641,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
         if (i === index) {
           row.push(matrix);
         } else {
-          row.push(this.zeros(matrix.getNumberOfRows(), matrices[i].getNumberOfColumns()));
+          row.push(this.zeros([matrix.getNumberOfRows(), matrices[i].getNumberOfColumns()]));
         }
       }
       return row;
@@ -802,8 +785,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
       throw Error('indices must be positive');
     }
 
-    const m = matrix.getNumberOfRows();
-    const n = matrix.getNumberOfColumns();
+    const [m, n] = matrix.getShape();
     if (rowStartIndex > m || rowEndIndex > m || columnStartIndex > n || columnEndIndex > n) {
       throw Error('index out of bounds');
     }

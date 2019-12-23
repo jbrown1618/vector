@@ -125,7 +125,7 @@ describe('Norms', () => {
       });
 
       test('handles the zero matrix', () => {
-        const zero = zeros(5, 5);
+        const zero = zeros([5, 5]);
         expect(frobeniusNorm(zero)).toEqual(0);
       });
 
@@ -143,7 +143,7 @@ describe('Norms', () => {
       });
 
       test('handles the zero matrix', () => {
-        const zero = zeros(5, 5);
+        const zero = zeros([5, 5]);
         expect(columnSumSupremumNorm(zero)).toEqual(0);
       });
 
@@ -161,7 +161,7 @@ describe('Norms', () => {
       });
 
       test('handles the zero matrix', () => {
-        const zero = zeros(5, 5);
+        const zero = zeros([5, 5]);
         expect(rowSumSupremumNorm(zero)).toEqual(0);
       });
 

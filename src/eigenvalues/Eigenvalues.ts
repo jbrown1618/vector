@@ -99,18 +99,18 @@ function getTwoByTwoEigenvalues<S>(A: Matrix<S>): Vector<S> {
   const [a10, a11] = data[1];
 
   // b, and c are the parameters of the quadratic formula.  a is one.
-  const minusb = ops.add(a00, a11);
+  const negativeB = ops.add(a00, a11);
   const c = ops.subtract(ops.multiply(a00, a11), ops.multiply(a10, a01));
 
   const overTwoA = ops.fromNumber(1 / 2);
-  const fourac = ops.multiply(c, ops.fromNumber(4));
-  const bSquaredMinusFourAC = ops.subtract(ops.multiply(minusb, minusb), fourac);
+  const fourAC = ops.multiply(c, ops.fromNumber(4));
+  const bSquaredMinusFourAC = ops.subtract(ops.multiply(negativeB, negativeB), fourAC);
   const rootPart = ops.getPrincipalSquareRoot(bSquaredMinusFourAC);
 
   if (rootPart === undefined) throw Error('This scalar type does not support complex values');
 
-  const firstEigenvalue = ops.multiply(ops.add(minusb, rootPart), overTwoA);
-  const secondEigenvalue = ops.multiply(ops.subtract(minusb, rootPart), overTwoA);
+  const firstEigenvalue = ops.multiply(ops.add(negativeB, rootPart), overTwoA);
+  const secondEigenvalue = ops.multiply(ops.subtract(negativeB, rootPart), overTwoA);
 
   return A.vectorBuilder().fromValues(firstEigenvalue, secondEigenvalue);
 }

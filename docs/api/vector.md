@@ -14,6 +14,8 @@
 |  [ComplexNumber](./vector.complexnumber.md) | A number of the form \_a + bi\_ where \_i\_ is the imaginary unit. |
 |  [ComplexNumberOperations](./vector.complexnumberoperations.md) | Implements the basic [ScalarOperations](./vector.scalaroperations.md) on [ComplexNumber](./vector.complexnumber.md)<!-- -->s |
 |  [ComplexVector](./vector.complexvector.md) | A dense [Vector](./vector.vector.md) of [ComplexNumber](./vector.complexnumber.md)<!-- -->s implemented as an [ArrayVector](./vector.arrayvector.md) |
+|  [FloatMatrix](./vector.floatmatrix.md) | A dense matrix of JavaScript <code>number</code> primitives, implemented as a column-major <code>Float64Array</code> |
+|  [FloatVector](./vector.floatvector.md) | A dense [Vector](./vector.vector.md) of <code>number</code>s implemented as a <code>Float64Array</code> |
 |  [LinearRegressor](./vector.linearregressor.md) | A [Regressor](./vector.regressor.md) model which uses an ordinary least squares model with regularization to predict a continuous target. The optimal set of parameters is computed with gradient descent. |
 |  [MatrixBuilder](./vector.matrixbuilder.md) | Provides methods for constructing [Matrices](./vector.matrix.md) of a given type |
 |  [NumberMatrix](./vector.numbermatrix.md) | A dense matrix of JavaScript <code>number</code> primitives, implemented as an [ArrayMatrix](./vector.arraymatrix.md) |
@@ -74,7 +76,7 @@
 |  [mean(A)](./vector.mean_1.md) | Calculates the mean vector of the matrix <code>A</code> |
 |  [normalize(v)](./vector.normalize.md) | Returns a vector with the same direction as the input <code>v</code>, but with a Euclidean norm of 1 |
 |  [ones(entries)](./vector.ones.md) | Creates a new vector of all 1s. See [VectorBuilder.ones()](./vector.vectorbuilder.ones.md) |
-|  [ones(rows, columns)](./vector.ones_1.md) | Creates a new matrix of all 1s. See [MatrixBuilder.ones()](./vector.matrixbuilder.ones.md) |
+|  [ones(shape)](./vector.ones_1.md) | Creates a new matrix of all 1s. See [MatrixBuilder.ones()](./vector.matrixbuilder.ones.md) |
 |  [pca(A, useCorrelation)](./vector.pca.md) | Conducts a principal component analysis of a matrix <code>A</code>, and returns <code>A</code> in a new basis corresponding to the principal components. |
 |  [pNorm(v, p)](./vector.pnorm.md) | Calculates the P-Norm of a vector <code>v</code> |
 |  [pow(A, n)](./vector.pow.md) | Computes \_A^n\_ recursively. |
@@ -99,7 +101,7 @@
 |  [variance(A)](./vector.variance_1.md) | Calculates the variance of each column of the matrix <code>A</code> |
 |  [vec(data)](./vector.vec.md) | Creates a new [Vector](./vector.vector.md) of numbers. See [VectorBuilder.fromArray()](./vector.vectorbuilder.fromarray.md) |
 |  [zeros(entries)](./vector.zeros.md) | Creates a new vector of all 0s. See [VectorBuilder.zeros()](./vector.vectorbuilder.zeros.md) |
-|  [zeros(rows, columns)](./vector.zeros_1.md) | Creates a new matrix of all 0s. See [MatrixBuilder.zeros()](./vector.matrixbuilder.zeros.md) |
+|  [zeros(shape)](./vector.zeros_1.md) | Creates a new matrix of all 0s. See [MatrixBuilder.zeros()](./vector.matrixbuilder.zeros.md) |
 
 ## Interfaces
 
@@ -134,6 +136,7 @@
 |  [MatrixEntryCallback](./vector.matrixentrycallback.md) | A function to execute on an entry in a matrix |
 |  [MatrixEntryFunction](./vector.matrixentryfunction.md) | A function that generates a matrix entry based on an existing entry <code>entry</code>, its row index <code>i</code>, and its column index <code>j</code> |
 |  [MatrixIndexFunction](./vector.matrixindexfunction.md) | A function that generates a matrix entry based on its row index <code>i</code> and column index <code>j</code> |
+|  [MatrixShape](./vector.matrixshape.md) | A tuple representing the shape of a [Matrix](./vector.matrix.md)<!-- -->. The first entry is the number of rows, and the second entry is the number of columns. |
 |  [SparseMatrixData](./vector.sparsematrixdata.md) | The data stored in a [Matrix](./vector.matrix.md) represented as a map |
 |  [SparseVectorData](./vector.sparsevectordata.md) | The data stored in a [Vector](./vector.vector.md) represented as a map |
 |  [VectorData](./vector.vectordata.md) | The data stored in a [Vector](./vector.vector.md) represented as a map |

@@ -9,15 +9,14 @@ Constructs a matrix of the specified dimensions, consisting of all zeros
 <b>Signature:</b>
 
 ```typescript
-zeros(numberOfRows: number, numberOfColumns?: number): M;
+zeros(shape: MatrixShape): M;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  numberOfRows | <code>number</code> | The number of rows the new matrix should have |
-|  numberOfColumns | <code>number</code> | The number of columns the new matrix should have |
+|  shape | <code>MatrixShape</code> | the shape of the matrix as a tuple |
 
 <b>Returns:</b>
 
@@ -29,7 +28,7 @@ The new matrix
 
 
 ```
-const allZeros = matrixBuilder.zeros(2, 3);
+const allZeros = matrixBuilder.zeros([2, 3]);
 
 // [ 0 0 0 ]
 // [ 0 0 0 ]

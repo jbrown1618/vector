@@ -10,6 +10,8 @@ import { ComplexMatrix as ComplexMatrix_2 } from '@lib/types/matrix/ComplexMatri
 import { ComplexNumber as ComplexNumber_2 } from '@lib/types/scalar/ComplexNumber';
 import { ComplexNumberOperations as ComplexNumberOperations_2 } from '@lib/types/scalar/ComplexNumberOperations';
 import { ComplexVector as ComplexVector_2 } from '@lib/types/vector/ComplexVector';
+import { FloatMatrix as FloatMatrix_2 } from '@lib/types/matrix/FloatMatrix';
+import { FloatVector as FloatVector_2 } from '@lib/types/vector/FloatVector';
 import { GradientDescentRegressor } from '@lib/applications/machine-learning/models/GradientDescentRegressor';
 import { LearningAlgorithm as LearningAlgorithm_2 } from '@lib/applications/machine-learning/LearningAlgorithm';
 import { LinearSolution } from '@lib/solvers/LinearSolution';
@@ -19,6 +21,7 @@ import { MatrixBuilder as MatrixBuilder_2 } from '@lib/types/matrix/MatrixBuilde
 import { MatrixConstructor as MatrixConstructor_2 } from '@lib/types/matrix/Matrix';
 import { MatrixData as MatrixData_2 } from '@lib/types/matrix/Matrix';
 import { MatrixEntryCallback as MatrixEntryCallback_2 } from '@lib/types/matrix/Matrix';
+import { MatrixShape as MatrixShape_2 } from '@lib/types/matrix/Matrix';
 import { NumberMatrix as NumberMatrix_2 } from '@lib/types/matrix/NumberMatrix';
 import { NumberOperations as NumberOperations_2 } from '@lib/types/scalar/NumberOperations';
 import { NumberVector as NumberVector_2 } from '@lib/types/vector/NumberVector';
@@ -58,6 +61,7 @@ export abstract class ArrayMatrix<S> implements Matrix_2<S> {
     getNumberOfRows(): number;
     getRow(i: number): Vector_2<S>;
     getRowVectors(): Vector_2<S>[];
+    getShape(): MatrixShape_2;
     getSparseData(): Map<number, Map<number, S>>;
     multiply(other: Matrix_2<S>): Matrix_2<S>;
     abstract ops(): ScalarOperations_2<S>;
@@ -243,7 +247,7 @@ export function determinant<S>(matrix: Matrix_2<S>): S;
 export function diag(elements: number[]): Matrix_2<number>;
 
 // Warning: (ae-forgotten-export) The symbol "DimensionReductionType" needs to be exported by the entry point index.d.ts
-// 
+//
 // @public
 export type DimensionReductionOptions = DimensionReductionType & {
     useCorrelation?: boolean;
@@ -268,6 +272,67 @@ export function exp<S>(A: Matrix_2<S>, order?: number): Matrix_2<S>;
 
 // @public
 export function eye(size: number): Matrix_2<number>;
+
+// @public
+export class FloatMatrix implements Matrix_2<number> {
+    // @internal
+    constructor(data: MatrixData_2<number>);
+    constructor(data: Float64Array, shape: MatrixShape_2);
+    add(other: Matrix_2<number>): Matrix_2<number>;
+    adjoint(): Matrix_2<number>;
+    apply(vector: Vector_2<number>): Vector_2<number>;
+    // (undocumented)
+    static builder(): MatrixBuilder_2<number, FloatVector_2, FloatMatrix>;
+    builder(): MatrixBuilder_2<number, FloatVector_2, FloatMatrix>;
+    equals(other: Matrix_2<number>): boolean;
+    forEachEntry(cb: MatrixEntryCallback_2<number>): void;
+    getColumn(j: number): Vector_2<number>;
+    getColumnVectors(): Vector_2<number>[];
+    getDiagonal(): Vector_2<number>;
+    getEntry(i: number, j: number): number;
+    getNumberOfColumns(): number;
+    getNumberOfRows(): number;
+    getRow(i: number): Vector_2<number>;
+    getRowVectors(): Vector_2<number>[];
+    getShape(): MatrixShape_2;
+    getSparseData(): Map<number, Map<number, number>>;
+    multiply(other: Matrix_2<number>): Matrix_2<number>;
+    // (undocumented)
+    static ops(): ScalarOperations_2<number>;
+    ops(): ScalarOperations_2<number>;
+    scalarMultiply(scalar: number): Matrix_2<number>;
+    set(i: number, j: number, value: number): Matrix_2<number>;
+    toArray(): number[][];
+    trace(): number;
+    transpose(): Matrix_2<number>;
+    // (undocumented)
+    static vectorBuilder(): VectorBuilder_2<number, FloatVector_2>;
+    vectorBuilder(): VectorBuilder_2<number, FloatVector_2>;
+}
+
+// @public
+export class FloatVector implements Vector_2<number> {
+    // @internal
+    constructor(data: VectorData_2<number> | Float64Array);
+    add(other: Vector_2<number>): Vector_2<number>;
+    // (undocumented)
+    static builder(): VectorBuilder_2<number, FloatVector>;
+    builder(): VectorBuilder_2<number, FloatVector>;
+    equals(other: Vector_2<number>): boolean;
+    getDimension(): number;
+    getEntry(index: number): number;
+    getSparseData(): Map<number, number>;
+    innerProduct(other: Vector_2<number>): number;
+    matrixBuilder(): MatrixBuilder_2<number, FloatVector, FloatMatrix_2>;
+    // (undocumented)
+    static ops(): NumberOperations_2;
+    ops(): NumberOperations_2;
+    outerProduct(other: Vector_2<number>): Matrix_2<number>;
+    projectOnto(u: Vector_2<number>): Vector_2<number>;
+    scalarMultiply(scalar: number): Vector_2<number>;
+    set(index: number, value: number): Vector_2<number>;
+    toArray(): number[];
+}
 
 // @public
 export function forwardDifferenceMatrix(binCount: number): NumberMatrix_2;
@@ -308,7 +373,7 @@ export function isOrthogonal<S>(matrix: Matrix_2<S>): boolean;
 export function isOrthonormal<S>(matrix: Matrix_2<S>): boolean;
 
 // Warning: (ae-internal-missing-underscore) The name "isSparse" should be prefixed with an underscore because the declaration is marked as @internal
-// 
+//
 // @internal
 export function isSparse<S>(vector: Vector_2<S>): vector is SparseVector<S>;
 
@@ -382,6 +447,7 @@ export interface Matrix<S> extends LinearTransformation_2<Vector_2<S>, Vector_2<
     getNumberOfRows(): number;
     getRow(i: number): Vector_2<S>;
     getRowVectors(): Vector_2<S>[];
+    getShape(): MatrixShape;
     getSparseData(): Map<number, Map<number, S>>;
     multiply(other: Matrix<S>): Matrix<S>;
     ops(): ScalarOperations_2<S>;
@@ -404,34 +470,34 @@ export class MatrixBuilder<S, V extends Vector_2<S>, M extends Matrix_2<S>> {
     diagonal(diagonalEntries: Vector_2<S>): M;
     empty(): M;
     exclude(matrix: Matrix_2<S>, rowToExclude: number, columnToExclude: number): M;
-    fill(value: S, numberOfRows: number, numberOfColumns?: number): M;
+    fill(value: S, shape: MatrixShape_2): M;
     // (undocumented)
     fromArray(data: MatrixData_2<S>): M;
     fromColumnVectors(columns: Vector_2<S>[]): M;
-    fromIndexFunction(numRows: number, numColumns: number, indexFunction: MatrixIndexFunction<S>): M;
+    fromIndexFunction(shape: MatrixShape_2, indexFunction: MatrixIndexFunction<S>): M;
     // (undocumented)
     fromNumberArray(numberData: MatrixData_2<number>): M;
     fromRowVectors(rows: Vector_2<S>[]): M;
     // (undocumented)
-    fromSparseData(numRows: number, numCols: number, sparseData: SparseMatrixData_2<S>): M;
+    fromSparseData(shape: MatrixShape_2, sparseData: SparseMatrixData_2<S>): M;
     hankel(firstColumn: Vector_2<S>, lastRow?: Vector_2<S>): M;
     hilbert(size: number): M;
     identity(size: number): M;
     map(matrix: Matrix_2<S>, entryFunction: MatrixEntryFunction<S>): M;
-    ones(numberOfRows: number, numberOfColumns?: number): M;
+    ones(shape: MatrixShape_2): M;
     pascal(size: number, upper?: boolean): M;
     pascalSymmetric(size: number): M;
-    random(numberOfRows: number, numberOfColumns?: number, min?: number, max?: number): M;
-    randomNormal(numberOfRows: number, numberOfColumns?: number, mean?: number, standardDeviation?: number): M;
+    random(shape: MatrixShape_2, min?: number, max?: number): M;
+    randomNormal(shape: MatrixShape_2, mean?: number, standardDeviation?: number): M;
     repeat(matrix: Matrix_2<S>, rows: number, columns: number): M;
     slice(matrix: Matrix_2<S>, rowStartIndex?: number, columnStartIndex?: number, rowEndIndex?: number, columnEndIndex?: number): M;
     toeplitz(firstColumn: Vector_2<S>, firstRow?: Vector_2<S>): M;
     tridiagonal(leftEntries: Vector_2<S>, diagonalEntries: Vector_2<S>, rightEntries: Vector_2<S>): M;
-    zeros(numberOfRows: number, numberOfColumns?: number): M;
+    zeros(shape: MatrixShape_2): M;
 }
 
 // Warning: (ae-internal-missing-underscore) The name "MatrixConstructor" should be prefixed with an underscore because the declaration is marked as @internal
-// 
+//
 // @internal (undocumented)
 export interface MatrixConstructor<S, V extends Vector_2<S>, M extends Matrix<S>> {
     // (undocumented)
@@ -455,6 +521,9 @@ export type MatrixEntryFunction<S> = (entry: S, i: number, j: number) => S;
 
 // @public
 export type MatrixIndexFunction<S> = (i: number, j: number) => S;
+
+// @public
+export type MatrixShape = [number, number];
 
 // @public
 export function mean<S>(x: Vector_2<S>): S;
@@ -515,7 +584,7 @@ export class NumberVector extends ArrayVector_2<number> {
 export function ones(entries: number): Vector_2<number>;
 
 // @public
-export function ones(rows: number, columns: number): Matrix_2<number>;
+export function ones(shape: MatrixShape_2): Matrix_2<number>;
 
 // @public
 export function pca<S>(A: Matrix_2<S>, useCorrelation?: boolean): PrincipalComponentAnalysis<S>;
@@ -648,6 +717,7 @@ export abstract class SparseMatrix<S> implements Matrix_2<S> {
     getNumberOfRows(): number;
     getRow(i: number): Vector_2<S>;
     getRowVectors(): Vector_2<S>[];
+    getShape(): MatrixShape_2;
     getSparseData(): Map<number, Map<number, S>>;
     multiply(other: Matrix_2<S>): Matrix_2<S>;
     abstract ops(): ScalarOperations_2<S>;
@@ -794,7 +864,7 @@ export class VectorBuilder<S, V extends Vector_2<S>> {
 }
 
 // Warning: (ae-internal-missing-underscore) The name "VectorConstructor" should be prefixed with an underscore because the declaration is marked as @internal
-// 
+//
 // @internal (undocumented)
 export interface VectorConstructor<S, V extends Vector<S>> {
     // (undocumented)
@@ -818,7 +888,7 @@ export type VectorIndexFunction<S> = (index: number) => S;
 export function zeros(entries: number): Vector_2<number>;
 
 // @public
-export function zeros(rows: number, columns: number): Matrix_2<number>;
+export function zeros(shape: MatrixShape_2): Matrix_2<number>;
 
 
 // (No @packageDocumentation comment for this package)

@@ -1,10 +1,10 @@
 import { Vector } from '@lib/types/vector/Vector';
-import { Matrix } from '@lib/types/matrix/Matrix';
-import { NumberVector } from '@lib/types/vector/NumberVector';
-import { NumberMatrix } from '@lib/types/matrix/NumberMatrix';
+import { Matrix, MatrixShape } from '@lib/types/matrix/Matrix';
+import { FloatVector } from '@lib/types/vector/FloatVector';
+import { FloatMatrix } from '@lib/types/matrix/FloatMatrix';
 
-const vb = NumberVector.builder();
-const mb = NumberMatrix.builder();
+const vb = FloatVector.builder();
+const mb = FloatMatrix.builder();
 
 /**
  * Creates a new {@link Vector} of numbers.  See {@link VectorBuilder.fromArray}
@@ -39,9 +39,9 @@ export function ones(entries: number): Vector<number>;
  * Creates a new matrix of all 1s.  See {@link MatrixBuilder.ones}
  * @public
  */
-export function ones(rows: number, columns: number): Matrix<number>;
-export function ones(rows: number, columns?: number): Matrix<number> | Vector<number> {
-  return columns === undefined ? vb.ones(rows) : mb.ones(rows, columns);
+export function ones(shape: MatrixShape): Matrix<number>;
+export function ones(shapeOrDim: number | MatrixShape): Matrix<number> | Vector<number> {
+  return Array.isArray(shapeOrDim) ? mb.ones(shapeOrDim) : vb.ones(shapeOrDim);
 }
 
 /**
@@ -53,9 +53,9 @@ export function zeros(entries: number): Vector<number>;
  * Creates a new matrix of all 0s.  See {@link MatrixBuilder.zeros}
  * @public
  */
-export function zeros(rows: number, columns: number): Matrix<number>;
-export function zeros(rows: number, columns?: number): Matrix<number> | Vector<number> {
-  return columns === undefined ? vb.zeros(rows) : mb.zeros(rows, columns);
+export function zeros(shape: MatrixShape): Matrix<number>;
+export function zeros(shapeOrDim: number | MatrixShape): Matrix<number> | Vector<number> {
+  return Array.isArray(shapeOrDim) ? mb.zeros(shapeOrDim) : vb.zeros(shapeOrDim);
 }
 
 /**

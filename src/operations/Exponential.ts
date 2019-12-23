@@ -119,7 +119,8 @@ function computeR<S>(A: Matrix<S>, p: number, q: number): Matrix<S> {
  * @param q - The number of terms in the denominator of the rational function
  */
 function computeN<S>(A: Matrix<S>, p: number, q: number): Matrix<S> {
-  let result = A.builder().zeros(A.getNumberOfColumns());
+  const n = A.getNumberOfColumns();
+  let result = A.builder().zeros([n, n]);
   for (let j = 0; j < p; j++) {
     result = result.add(computeJthTermOfN(A, p, q, j));
   }
@@ -150,7 +151,8 @@ function computeJthTermOfN<S>(A: Matrix<S>, p: number, q: number, j: number): Ma
  * @param q - The number of terms in the denominator of the rational function
  */
 function computeD<S>(negativeA: Matrix<S>, p: number, q: number): Matrix<S> {
-  let result = negativeA.builder().zeros(negativeA.getNumberOfColumns());
+  const n = negativeA.getNumberOfColumns();
+  let result = negativeA.builder().zeros([n, n]);
   for (let j = 0; j < q; j++) {
     result = result.add(computeJthTermOfD(negativeA, p, q, j));
   }

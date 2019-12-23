@@ -210,12 +210,25 @@ export abstract class SparseVector<S> implements Vector<S> {
    */
   private outerProductWithSparse(other: SparseVector<S>): Matrix<S> {
     // TODO - use a sparse matrix here
-    let output = this.matrixBuilder().zeros(this.getDimension(), other.getDimension());
+    const m = this.getDimension();
+    const n = other.getDimension();
+    if (m === 0 || n === 0) return this.matrixBuilder().empty();
+
+    const newData: Map<number, Map<number, S>> = new Map();
+
     this._sparseData.forEach((value, rowIndex) => {
       other.getSparseData().forEach((otherValue, colIndex) => {
-        output = output.set(rowIndex, colIndex, this.ops().multiply(value, otherValue));
+        const newValue = this.ops().multiply(value, otherValue);
+        const row = newData.get(rowIndex);
+        if (!row) {
+          const newRow: Map<number, S> = new Map();
+          newRow.set(colIndex, newValue);
+          newData.set(rowIndex, newRow);
+        } else {
+          row.set(colIndex, newValue);
+        }
       });
     });
-    return output;
+    return this.matrixBuilder().fromSparseData([m, n], newData);
   }
 }

@@ -78,9 +78,10 @@ export function rank<S>(matrix: Matrix<S>): number {
 export function reducedRowEchelonForm<S>(matrix: Matrix<S>): Matrix<S> {
   const ops = matrix.ops();
   matrix = rowEchelonForm(matrix);
+  const [m, n] = matrix.getShape();
 
   // Scale the rows
-  for (let rowIndex = 0; rowIndex < matrix.getNumberOfRows(); rowIndex++) {
+  for (let rowIndex = 0; rowIndex < m; rowIndex++) {
     let firstNonzeroEntry: S | undefined = undefined;
     for (const entry of matrix.getRow(rowIndex).toArray()) {
       if (!ops.equals(ops.zero(), entry)) {
@@ -95,7 +96,7 @@ export function reducedRowEchelonForm<S>(matrix: Matrix<S>): Matrix<S> {
   }
 
   // Clear above the pivot entries
-  const maxNumberOfPivotEntries = Math.min(matrix.getNumberOfColumns(), matrix.getNumberOfRows());
+  const maxNumberOfPivotEntries = Math.min(m, n);
   for (let pivotRow = maxNumberOfPivotEntries - 1; pivotRow >= 0; pivotRow--) {
     const pivotColumn = matrix
       .getRow(pivotRow)
@@ -119,7 +120,7 @@ export function reducedRowEchelonForm<S>(matrix: Matrix<S>): Matrix<S> {
  */
 export function rowEchelonForm<S>(matrix: Matrix<S>): Matrix<S> {
   const ops = matrix.ops();
-  const maxNumberOfPivotEntries = Math.min(matrix.getNumberOfRows(), matrix.getNumberOfColumns());
+  const maxNumberOfPivotEntries = Math.min(...matrix.getShape());
 
   for (let pivotRow = 0; pivotRow < maxNumberOfPivotEntries; pivotRow++) {
     matrix = RowOperations.pivot(matrix).result;

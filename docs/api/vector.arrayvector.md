@@ -12,6 +12,12 @@ Implements [Vector](./vector.vector.md) with an array of values.
 export declare abstract class ArrayVector<S> implements Vector<S> 
 ```
 
+## Remarks
+
+Subclasses must specify the usual scalar operations on their contents.
+
+The constructor for this class is marked as internal. Third-party code should not call the constructor directly or create subclasses that extend the `ArrayVector` class.
+
 ## Methods
 
 |  Method | Modifiers | Description |
@@ -30,10 +36,4 @@ export declare abstract class ArrayVector<S> implements Vector<S>
 |  [scalarMultiply(scalar)](./vector.arrayvector.scalarmultiply.md) |  | Implements vector multiplication by a scalar |
 |  [set(index, value)](./vector.arrayvector.set.md) |  | Returns a new vector equal to the old one, except with the entry at <code>index</code> replaced with <code>value</code> |
 |  [toArray()](./vector.arrayvector.toarray.md) |  | Returns the contents of the vector as an array |
-
-## Remarks
-
-Subclasses must specify the usual scalar operations on their contents.
-
-The constructor for this class is marked as internal. Third-party code should not call the constructor directly or create subclasses that extend the `ArrayVector` class.
 

@@ -12,6 +12,10 @@ A class which encapsulates the basic arithmetic operations for an arbitrary scal
 export declare abstract class ScalarOperations<S> 
 ```
 
+## Remarks
+
+This must be implemented for each scalar to be used in a [Vector](./vector.vector.md) or [Matrix](./vector.matrix.md)
+
 ## Methods
 
 |  Method | Modifiers | Description |
@@ -36,8 +40,4 @@ export declare abstract class ScalarOperations<S>
 |  [randomNormal(mean, standardDeviation)](./vector.scalaroperations.randomnormal.md) |  | Returns a random scalar value from a normal distribution centered on <code>mean</code> with standard deviation <code>standardDeviation</code> |
 |  [subtract(first, second)](./vector.scalaroperations.subtract.md) |  | Returns the difference of two scalars. |
 |  [zero()](./vector.scalaroperations.zero.md) |  | Alias for [ScalarOperations.getAdditiveIdentity()](./vector.scalaroperations.getadditiveidentity.md) |
-
-## Remarks
-
-This must be implemented for each scalar to be used in a [Vector](./vector.vector.md) or [Matrix](./vector.matrix.md)
 

@@ -1,5 +1,6 @@
 import { NumberVector } from '@lib/types/vector/NumberVector';
 import { SparseNumberVector } from '@lib/types/vector/SparseNumberVector';
+import { FloatVector } from '@lib/types/vector/FloatVector';
 
 const configs = [
   {
@@ -9,11 +10,24 @@ const configs = [
   {
     testClassName: 'SparseNumberVector',
     builder: SparseNumberVector.builder()
+  },
+  {
+    testClassName: 'FloatVector',
+    builder: FloatVector.builder()
   }
 ];
 
 configs.forEach(({ testClassName, builder }) => {
   describe(testClassName, () => {
+    describe('builders and ops', () => {
+      test('can be created from an instance', () => {
+        const instance = builder.empty();
+        expect(instance.builder()).toBeTruthy();
+        expect(instance.matrixBuilder()).toBeTruthy();
+        expect(instance.ops()).toBeTruthy();
+      });
+    });
+
     describe('constructors', () => {
       test('can be constructed from an array', () => {
         expect(builder.fromArray([1, 2, 3]).toArray()).toStrictEqual([1, 2, 3]);

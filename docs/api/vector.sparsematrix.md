@@ -12,6 +12,12 @@ Implements [Matrix](./vector.matrix.md) with a map of indices to nonzero values.
 export declare abstract class SparseMatrix<S> implements Matrix<S> 
 ```
 
+## Remarks
+
+Subclasses must specify the usual scalar operations on their contents.
+
+The constructor for this class is marked as internal. Third-party code should not call the constructor directly or create subclasses that extend the `SparseMatrix` class.
+
 ## Methods
 
 |  Method | Modifiers | Description |
@@ -30,6 +36,7 @@ export declare abstract class SparseMatrix<S> implements Matrix<S>
 |  [getNumberOfRows()](./vector.sparsematrix.getnumberofrows.md) |  | Returns the number of rows in the matrix |
 |  [getRow(i)](./vector.sparsematrix.getrow.md) |  | Returns a vector corresponding to the row at index <code>rowIndex</code> |
 |  [getRowVectors()](./vector.sparsematrix.getrowvectors.md) |  | Returns an array of vectors corresponding to the rows of the matrix |
+|  [getShape()](./vector.sparsematrix.getshape.md) |  | Returns a tuple representing the dimensions of the matrix. The first entry is the number of rows, and the second entry is the number of columns. |
 |  [getSparseData()](./vector.sparsematrix.getsparsedata.md) |  | Returns the contents of the matrix as a nested map of rowIndex to columnIndex to nonzero value |
 |  [multiply(other)](./vector.sparsematrix.multiply.md) |  | Implements matrix multiplication |
 |  [ops()](./vector.sparsematrix.ops.md) |  | Returns a [ScalarOperations](./vector.scalaroperations.md) object which will allow consumers to work generically with the scalars contained in the vector. |
@@ -39,10 +46,4 @@ export declare abstract class SparseMatrix<S> implements Matrix<S>
 |  [trace()](./vector.sparsematrix.trace.md) |  | Returns the trace of the matrix |
 |  [transpose()](./vector.sparsematrix.transpose.md) |  | Returns the transpose of the matrix |
 |  [vectorBuilder()](./vector.sparsematrix.vectorbuilder.md) |  | Returns a [VectorBuilder](./vector.vectorbuilder.md) which will build new vectors of a compatible type |
-
-## Remarks
-
-Subclasses must specify the usual scalar operations on their contents.
-
-The constructor for this class is marked as internal. Third-party code should not call the constructor directly or create subclasses that extend the `SparseMatrix` class.
 

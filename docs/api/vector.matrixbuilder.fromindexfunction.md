@@ -9,15 +9,14 @@ Builds a matrix with entries given by \_entry = f(i, j)\_ where \_f\_ is `indexF
 <b>Signature:</b>
 
 ```typescript
-fromIndexFunction(numRows: number, numColumns: number, indexFunction: MatrixIndexFunction<S>): M;
+fromIndexFunction(shape: MatrixShape, indexFunction: MatrixIndexFunction<S>): M;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  numRows | <code>number</code> | The number of columns the new matrix should have |
-|  numColumns | <code>number</code> | The number of columns the new matrix should have |
+|  shape | <code>MatrixShape</code> | The shape of the matrix as a tuple |
 |  indexFunction | <code>MatrixIndexFunction&lt;S&gt;</code> | A function returning the entry for a given <code>i</code>, <code>j</code> |
 
 <b>Returns:</b>

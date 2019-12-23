@@ -7,15 +7,14 @@
 <b>Signature:</b>
 
 ```typescript
-fromSparseData(numRows: number, numCols: number, sparseData: SparseMatrixData<S>): M;
+fromSparseData(shape: MatrixShape, sparseData: SparseMatrixData<S>): M;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  numRows | <code>number</code> |  |
-|  numCols | <code>number</code> |  |
+|  shape | <code>MatrixShape</code> |  |
 |  sparseData | <code>SparseMatrixData&lt;S&gt;</code> |  |
 
 <b>Returns:</b>

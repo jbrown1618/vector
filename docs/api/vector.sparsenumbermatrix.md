@@ -12,6 +12,10 @@ A [Matrix](./vector.matrix.md) implemented as a sparse set of JS `number` primit
 export declare class SparseNumberMatrix extends SparseMatrix<number> 
 ```
 
+## Remarks
+
+The constructor for this class is marked as internal. Third-party code should not call the constructor directly or create subclasses that extend the `SparseNumberMatrix` class.
+
 ## Methods
 
 |  Method | Modifiers | Description |
@@ -22,8 +26,4 @@ export declare class SparseNumberMatrix extends SparseMatrix<number>
 |  [ops()](./vector.sparsenumbermatrix.ops.md) | <code>static</code> |  |
 |  [vectorBuilder()](./vector.sparsenumbermatrix.vectorbuilder.md) |  | Returns a [VectorBuilder](./vector.vectorbuilder.md) which will build new vectors of a compatible type |
 |  [vectorBuilder()](./vector.sparsenumbermatrix.vectorbuilder.md) | <code>static</code> |  |
-
-## Remarks
-
-The constructor for this class is marked as internal. Third-party code should not call the constructor directly or create subclasses that extend the `SparseNumberMatrix` class.
 

@@ -12,12 +12,6 @@ An abstract linear transformation between vectors of type `V` and vectors of typ
 export interface LinearTransformation<V, U> 
 ```
 
-## Methods
-
-|  Method | Description |
-|  --- | --- |
-|  [apply(vector)](./vector.lineartransformation.apply.md) | Apply the linear transformation to a vector |
-
 ## Remarks
 
 Implementors should take care to ensure that the transformation is linear. That is,
@@ -25,4 +19,10 @@ Implementors should take care to ensure that the transformation is linear. That 
 \_T(x + y) = T(x) + T(y)\_
 
 \_T(k \* x) = k \* T(x)\_
+
+## Methods
+
+|  Method | Description |
+|  --- | --- |
+|  [apply(vector)](./vector.lineartransformation.apply.md) | Apply the linear transformation to a vector |
 

@@ -6,7 +6,7 @@ import {
 import { ScalarOperations } from '@lib/types/scalar/ScalarOperations';
 import { Vector } from '@lib/types/vector/Vector';
 import { VectorBuilder } from '@lib/types/vector/VectorBuilder';
-import { Matrix, MatrixData, MatrixEntryCallback } from '@lib/types/matrix/Matrix';
+import { Matrix, MatrixData, MatrixShape, MatrixEntryCallback } from '@lib/types/matrix/Matrix';
 import { MatrixBuilder } from '@lib/types/matrix/MatrixBuilder';
 
 /**
@@ -30,8 +30,7 @@ type MutableSparseMatrixData<S> = Map<number, Map<number, S>>;
  * @public
  */
 export abstract class SparseMatrix<S> implements Matrix<S> {
-  private readonly _numRows: number;
-  private readonly _numCols: number;
+  private readonly _shape: MatrixShape;
   private readonly _sparseData: SparseMatrixData<S>;
 
   /**
@@ -43,11 +42,12 @@ export abstract class SparseMatrix<S> implements Matrix<S> {
       data = [];
     }
 
-    this._numRows = data.length;
-    this._numCols = this._numRows > 0 ? data[0].length : 0;
+    const m = data.length;
+    const n = data.length > 0 ? data[0].length : 0;
+    this._shape = [m, n];
 
     const sparseData: MutableSparseMatrixData<S> = new Map();
-    if (this._numRows === 0 || this._numCols === 0) {
+    if (m === 0 || n === 0) {
       this._sparseData = sparseData;
       return;
     }
@@ -101,7 +101,8 @@ export abstract class SparseMatrix<S> implements Matrix<S> {
         rd.set(colIndex, this.ops().conjugate(value));
       });
     });
-    return this.builder().fromSparseData(this._numRows, this._numCols, adjointData);
+    const [m, n] = this._shape;
+    return this.builder().fromSparseData([n, m], adjointData);
   }
 
   /**
@@ -110,7 +111,7 @@ export abstract class SparseMatrix<S> implements Matrix<S> {
   public trace(): S {
     const ops = this.ops();
     let trace = ops.zero();
-    const n = Math.min(this.getNumberOfColumns(), this.getNumberOfRows());
+    const n = Math.min(...this.getShape());
     for (let i = 0; i < n; i++) {
       trace = ops.add(trace, this.getEntry(i, i));
     }
@@ -212,33 +213,43 @@ export abstract class SparseMatrix<S> implements Matrix<S> {
   }
 
   /**
+   * {@inheritDoc Matrix.getShape}
+   */
+  public getShape(): MatrixShape {
+    const [m, n] = this._shape;
+    return [m, n];
+  }
+
+  /**
    * {@inheritDoc Matrix.getNumberOfColumns}
    */
   public getNumberOfColumns(): number {
-    return this._numCols;
+    return this._shape[1];
   }
 
   /**
    * {@inheritDoc Matrix.getNumberOfRows}
    */
   public getNumberOfRows(): number {
-    return this._numRows;
+    return this._shape[0];
   }
 
   /**
    * {@inheritDoc Matrix.getRow}
    */
   public getRow(i: number): Vector<S> {
-    assertValidIndex(i, this.getNumberOfRows());
-    return this.vectorBuilder().fromSparseData(this._numCols, this._sparseData.get(i) || new Map());
+    const [m, n] = this._shape;
+    assertValidIndex(i, m);
+    return this.vectorBuilder().fromSparseData(n, this._sparseData.get(i) || new Map());
   }
 
   /**
    * {@inheritDoc Matrix.getRowVectors}
    */
   public getRowVectors(): Vector<S>[] {
+    const [m] = this._shape;
     const rowVectors: Vector<S>[] = [];
-    for (let i = 0; i < this._numRows; i++) {
+    for (let i = 0; i < m; i++) {
       rowVectors.push(this.getRow(i));
     }
     return rowVectors;
@@ -270,7 +281,7 @@ export abstract class SparseMatrix<S> implements Matrix<S> {
         rd.set(colIndex, this.ops().multiply(value, scalar));
       });
     });
-    return this.builder().fromSparseData(this._numRows, this._numCols, sd);
+    return this.builder().fromSparseData(this._shape, sd);
   }
 
   /**
@@ -287,7 +298,7 @@ export abstract class SparseMatrix<S> implements Matrix<S> {
       newRow.set(j, value);
       copy.set(i, newRow);
     }
-    return this.builder().fromSparseData(this._numRows, this._numCols, copy);
+    return this.builder().fromSparseData(this._shape, copy);
   }
 
   /**
@@ -307,7 +318,8 @@ export abstract class SparseMatrix<S> implements Matrix<S> {
         }
       });
     });
-    return this.builder().fromSparseData(this._numCols, this._numRows, transposeData);
+    const [m, n] = this._shape;
+    return this.builder().fromSparseData([n, m], transposeData);
   }
 
   /**

@@ -9,15 +9,14 @@ Creates a new matrix of all 0s. See [MatrixBuilder.zeros()](./vector.matrixbuild
 <b>Signature:</b>
 
 ```typescript
-export declare function zeros(rows: number, columns: number): Matrix<number>;
+export declare function zeros(shape: MatrixShape): Matrix<number>;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  rows | <code>number</code> |  |
-|  columns | <code>number</code> |  |
+|  shape | <code>MatrixShape</code> |  |
 
 <b>Returns:</b>
 

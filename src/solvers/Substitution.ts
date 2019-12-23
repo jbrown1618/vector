@@ -14,8 +14,7 @@ import { LinearSolution, SolutionType } from '@lib/solvers/LinearSolution';
 export function solveByForwardSubstitution<S>(L: Matrix<S>, b: Vector<S>): LinearSolution<S> {
   const ops = L.ops();
   const vectorBuilder = L.vectorBuilder();
-  const numRows = L.getNumberOfRows();
-  const numCols = L.getNumberOfColumns();
+  const [numRows, numCols] = L.getShape();
   const solution: S[] = [];
 
   // A system cannot have a unique solution if the matrix is wider than it is tall
@@ -96,8 +95,7 @@ export function forwardSubstituteAugmentedMatrix<S>(augmented: Matrix<S>): Linea
 export function solveByBackwardSubstitution<S>(U: Matrix<S>, b: Vector<S>): LinearSolution<S> {
   const ops = U.ops();
   const vectorBuilder = U.vectorBuilder();
-  const numRows = U.getNumberOfRows();
-  const numCols = U.getNumberOfColumns();
+  const [numRows, numCols] = U.getShape();
   const solution: S[] = [];
 
   // A system cannot have a unique solution if the matrix is wider than it is tall

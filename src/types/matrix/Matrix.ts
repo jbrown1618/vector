@@ -11,11 +11,19 @@ import { MatrixBuilder } from '@lib/types/matrix/MatrixBuilder';
 export type MatrixData<S> = readonly VectorData<S>[];
 
 /**
+ * A tuple representing the shape of a {@link Matrix}.
+ * The first entry is the number of rows, and the second entry is the number of columns.
+ * @public
+ */
+export type MatrixShape = [number, number];
+
+/**
  * A function to execute on an entry in a matrix
  * @public
  */
 export type MatrixEntryCallback<S> = (entry: S, rowIndex: number, columnIndex: number) => void;
 
+// TODO - the matrix constructor should be able to take data in any format.  Maybe we just need conversion functions for each of the data formats
 /**
  * @internal
  */
@@ -63,6 +71,14 @@ export interface Matrix<S> extends LinearTransformation<Vector<S>, Vector<S>> {
    * @public
    */
   getSparseData(): Map<number, Map<number, S>>;
+
+  /**
+   * Returns a tuple representing the dimensions of the matrix.
+   * The first entry is the number of rows, and the second entry is the number of columns.
+   * @returns The shape of the matrix as a tuple
+   * @public
+   */
+  getShape(): MatrixShape;
 
   /**
    * Returns the number of rows in the matrix

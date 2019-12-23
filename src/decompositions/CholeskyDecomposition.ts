@@ -30,7 +30,7 @@ export function calculateCholeskyDecomposition<S>(
   const builder = A.builder();
   const dim = A.getNumberOfColumns();
 
-  let L = builder.zeros(dim);
+  let L = builder.zeros([dim, dim]);
 
   for (let j = 0; j < dim; j++) {
     const Ajj = A.getEntry(j, j);
