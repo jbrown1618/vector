@@ -26,24 +26,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Install
+      - name: Run checks
         run: |
           npm install
-        env:
-          CI: true
-
-      - name: Build
-        run: |
-          npm run build
-
-      - name: Check
-        run: |
-          npm run format:check
-          npm run lint:check
-          npm run docs:check
-
-      - name: Test
-        run: |
-          npm run coverage
+          npm run ci
         env:
           CI: true

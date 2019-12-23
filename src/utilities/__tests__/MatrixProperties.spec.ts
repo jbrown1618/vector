@@ -36,13 +36,23 @@ describe('MatrixProperties', () => {
 
   describe('isUpperTriangular', () => {
     test('returns true for an upper-triangular matrix', () => {
-      const U = mat([[1, 2, 3, 4], [0, 5, 6, 7], [0, 0, 8, 9], [0, 0, 0, 10]]);
+      const U = mat([
+        [1, 2, 3, 4],
+        [0, 5, 6, 7],
+        [0, 0, 8, 9],
+        [0, 0, 0, 10]
+      ]);
 
       expect(isUpperTriangular(U)).toBe(true);
     });
 
     test('returns false for a non-upper-triangular matrix', () => {
-      const A = mat([[1, 2, 3, 4], [0, 5, 6, 7], [0, 0, 8, 9], [0, 1, 0, 10]]);
+      const A = mat([
+        [1, 2, 3, 4],
+        [0, 5, 6, 7],
+        [0, 0, 8, 9],
+        [0, 1, 0, 10]
+      ]);
 
       expect(isUpperTriangular(A)).toBe(false);
     });
@@ -54,13 +64,23 @@ describe('MatrixProperties', () => {
 
   describe('isLowerTriangular', () => {
     test('returns true for a lower-triangular matrix', () => {
-      const L = mat([[1, 0, 0, 0], [2, 3, 0, 0], [4, 5, 6, 0], [7, 8, 9, 10]]);
+      const L = mat([
+        [1, 0, 0, 0],
+        [2, 3, 0, 0],
+        [4, 5, 6, 0],
+        [7, 8, 9, 10]
+      ]);
 
       expect(isLowerTriangular(L)).toBe(true);
     });
 
     test('returns false for a non-lower-triangular matrix', () => {
-      const A = mat([[1, 0, 0, 0], [2, 3, 0, 1], [4, 5, 6, 0], [7, 8, 9, 10]]);
+      const A = mat([
+        [1, 0, 0, 0],
+        [2, 3, 0, 1],
+        [4, 5, 6, 0],
+        [7, 8, 9, 10]
+      ]);
 
       expect(isLowerTriangular(A)).toBe(false);
     });
@@ -72,19 +92,35 @@ describe('MatrixProperties', () => {
 
   describe('isSymmetric', () => {
     test('returns true for a symmetric matrix', () => {
-      const S = mat([[1, 2, 3, 4], [2, 1, 5, 6], [3, 5, 1, 7], [4, 6, 7, 1]]);
+      const S = mat([
+        [1, 2, 3, 4],
+        [2, 1, 5, 6],
+        [3, 5, 1, 7],
+        [4, 6, 7, 1]
+      ]);
 
       expect(isSymmetric(S)).toBe(true);
     });
 
     test('returns false for a non-symmetric matrix', () => {
-      const A = mat([[1, 2, 3, 4], [2, 1, 5, 6], [3, 5, 1, 7], [4, 3, 7, 1]]);
+      const A = mat([
+        [1, 2, 3, 4],
+        [2, 1, 5, 6],
+        [3, 5, 1, 7],
+        [4, 3, 7, 1]
+      ]);
 
       expect(isSymmetric(A)).toBe(false);
     });
 
     test('returns false for a matrix that is nearly symmetric but has an extra row', () => {
-      const A = mat([[1, 2, 3, 4], [2, 1, 5, 6], [3, 5, 1, 7], [4, 6, 7, 1], [1, 1, 1, 1]]);
+      const A = mat([
+        [1, 2, 3, 4],
+        [2, 1, 5, 6],
+        [3, 5, 1, 7],
+        [4, 6, 7, 1],
+        [1, 1, 1, 1]
+      ]);
 
       expect(isSymmetric(A)).toBe(false);
     });
@@ -96,7 +132,12 @@ describe('MatrixProperties', () => {
 
   describe('isHermitian', () => {
     test('returns true for a real symmetric matrix', () => {
-      const S = mat([[1, 2, 3, 4], [2, 1, 5, 6], [3, 5, 1, 7], [4, 6, 7, 1]]);
+      const S = mat([
+        [1, 2, 3, 4],
+        [2, 1, 5, 6],
+        [3, 5, 1, 7],
+        [4, 6, 7, 1]
+      ]);
 
       expect(isHermitian(S)).toBe(true);
     });
@@ -143,7 +184,11 @@ describe('MatrixProperties', () => {
     test('returns false for a non-identity matrix', () => {
       const A = eye(10).set(3, 4, 1);
       const B = eye(10).set(6, 6, 0);
-      const C = mat([[1, 0], [0, 1], [0, 0]]);
+      const C = mat([
+        [1, 0],
+        [0, 1],
+        [0, 0]
+      ]);
 
       expect(isIdentity(A)).toBe(false);
       expect(isIdentity(B)).toBe(false);
@@ -157,12 +202,20 @@ describe('MatrixProperties', () => {
 
   describe('isOrthogonal', () => {
     test('returns true for an orthogonal matrix', () => {
-      const O = mat([[1, 0, 0], [0, 2, 0], [0, 0, 3]]);
+      const O = mat([
+        [1, 0, 0],
+        [0, 2, 0],
+        [0, 0, 3]
+      ]);
       expect(isOrthogonal(O)).toBe(true);
     });
 
     test(`returns false for a non-orthogonal matrix`, () => {
-      const A = mat([[1, 0, 1], [0, 2, 0], [0, 0, 3]]);
+      const A = mat([
+        [1, 0, 1],
+        [0, 2, 0],
+        [0, 0, 3]
+      ]);
       expect(isOrthogonal(A)).toBe(false);
     });
 
@@ -173,12 +226,20 @@ describe('MatrixProperties', () => {
 
   describe('isOrthonormal', () => {
     test('returns true for an orthonormal matrix', () => {
-      const O = mat([[2 / 3, -2 / 3, 1 / 3], [1 / 3, 2 / 3, 2 / 3], [2 / 3, 1 / 3, -2 / 3]]);
+      const O = mat([
+        [2 / 3, -2 / 3, 1 / 3],
+        [1 / 3, 2 / 3, 2 / 3],
+        [2 / 3, 1 / 3, -2 / 3]
+      ]);
       expect(isOrthonormal(O)).toBe(true);
     });
 
     test('returns false for a non-orthonormal matrix', () => {
-      const O = mat([[2 / 3, -2 / 3, 1 / 3], [1 / 3, 2 / 3, 2 / 3], [2 / 3, 1, -2 / 3]]);
+      const O = mat([
+        [2 / 3, -2 / 3, 1 / 3],
+        [1 / 3, 2 / 3, 2 / 3],
+        [2 / 3, 1, -2 / 3]
+      ]);
       expect(isOrthonormal(O)).toBe(false);
     });
 

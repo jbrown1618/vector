@@ -134,7 +134,10 @@ configs.forEach(({ testClassName, builder }) => {
       test('computes a matrix product of two vectors', () => {
         const first = builder.fromValues(1, 2);
         const second = builder.fromValues(3, 4, 5);
-        const expectedData = [[3, 4, 5], [6, 8, 10]];
+        const expectedData = [
+          [3, 4, 5],
+          [6, 8, 10]
+        ];
 
         expect(first.outerProduct(second).toArray()).toStrictEqual(expectedData);
       });
@@ -151,7 +154,10 @@ configs.forEach(({ testClassName, builder }) => {
         test(`handles ${otherConfig.testClassName} inputs`, () => {
           const first = builder.fromArray([1, 2]);
           const second = otherConfig.builder.fromArray([3, 4, 5]);
-          const expectedData = [[3, 4, 5], [6, 8, 10]];
+          const expectedData = [
+            [3, 4, 5],
+            [6, 8, 10]
+          ];
           expect(first.outerProduct(second).toArray()).toStrictEqual(expectedData);
 
           const empty = builder.empty();

@@ -5,7 +5,10 @@ import { loadTestData } from '@test-utils/testData';
 describe('SingularValueDecomposition', () => {
   describe('calculateSingularValueDecomposition', () => {
     test('calculates the Singular Value Decomposition of a matrix A', () => {
-      const A = mat([[3, 2, 2], [2, 3, -2]]);
+      const A = mat([
+        [3, 2, 2],
+        [2, 3, -2]
+      ]);
 
       const oneOverRootTwo = 1 / Math.sqrt(2);
       const oneOverRootEighteen = 1 / Math.sqrt(18);

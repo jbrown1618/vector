@@ -34,7 +34,7 @@ export function pow<S>(A: Matrix<S>, n: number): Matrix<S> {
  * @param order - The order of the approximation - higher numbers yield more accurate results
  * @public
  */
-export function exp<S>(A: Matrix<S>, order: number = 6): Matrix<S> {
+export function exp<S>(A: Matrix<S>, order = 6): Matrix<S> {
   assertSquare(A);
   const ops = A.ops();
 

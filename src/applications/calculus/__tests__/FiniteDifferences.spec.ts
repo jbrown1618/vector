@@ -27,7 +27,12 @@ describe('FiniteDifferences', () => {
 
   describe('forwardDifferenceMatrix', () => {
     test('constructs a forward difference matrix', () => {
-      const expected = mat([[-1, 1, 0, 0], [0, -1, 1, 0], [0, 0, -1, 1], [0, 0, 0, -1]]);
+      const expected = mat([
+        [-1, 1, 0, 0],
+        [0, -1, 1, 0],
+        [0, 0, -1, 1],
+        [0, 0, 0, -1]
+      ]);
       const forwardDifference = forwardDifferenceMatrix(4);
       expect(forwardDifference.equals(expected)).toBe(true);
     });
@@ -35,7 +40,12 @@ describe('FiniteDifferences', () => {
 
   describe('backwardDifferenceMatrix', () => {
     test('constructs a backward difference matrix', () => {
-      const expected = mat([[1, 0, 0, 0], [-1, 1, 0, 0], [0, -1, 1, 0], [0, 0, -1, 1]]);
+      const expected = mat([
+        [1, 0, 0, 0],
+        [-1, 1, 0, 0],
+        [0, -1, 1, 0],
+        [0, 0, -1, 1]
+      ]);
       const backwardDifference = backwardDifferenceMatrix(4);
       expect(backwardDifference.equals(expected)).toBe(true);
     });
@@ -76,8 +86,14 @@ describe('FiniteDifferences', () => {
       };
 
       testDifferentiation(Math.sin, Math.cos);
-      testDifferentiation(x => Math.pow(x, 2), x => 2 * x);
-      testDifferentiation(x => Math.pow(x, 3), x => 3 * Math.pow(x, 2));
+      testDifferentiation(
+        x => Math.pow(x, 2),
+        x => 2 * x
+      );
+      testDifferentiation(
+        x => Math.pow(x, 3),
+        x => 3 * Math.pow(x, 2)
+      );
     });
   });
 });

@@ -10,7 +10,11 @@ import {
 describe('Eigenvalues', () => {
   describe('eig', () => {
     test('calculates the eigenvalue-eigenvector pairs', () => {
-      const A = mat([[-1, 2, 2], [-1, -4, -2], [-3, 9, 7]]);
+      const A = mat([
+        [-1, 2, 2],
+        [-1, -4, -2],
+        [-3, 9, 7]
+      ]);
       const pairs = eig(A);
 
       const expectedValues = [3, -2, 1];
@@ -25,7 +29,10 @@ describe('Eigenvalues', () => {
 
   describe('calculateEigenvalues', () => {
     test('calculates the eigenvalues of a 2x2 matrix', () => {
-      const A = mat([[2, 1], [2, 3]]);
+      const A = mat([
+        [2, 1],
+        [2, 3]
+      ]);
       const eigenvalues = calculateEigenvalues(A);
       const expected = vec([4, 1]);
 
@@ -34,7 +41,11 @@ describe('Eigenvalues', () => {
     });
 
     test('calculates the eigenvalues of a 3x3 matrix', () => {
-      const A = mat([[-1, 2, 2], [-1, -4, -2], [-3, 9, 7]]);
+      const A = mat([
+        [-1, 2, 2],
+        [-1, -4, -2],
+        [-3, 9, 7]
+      ]);
       const eigenvalues = calculateEigenvalues(A, 30);
       const expected = vec([3, -2, 1]);
 
@@ -44,12 +55,18 @@ describe('Eigenvalues', () => {
     });
 
     test('throws an error when eigenvalues are complex for a real-valued scalar type', () => {
-      const A = mat([[0, -1], [1, 0]]);
+      const A = mat([
+        [0, -1],
+        [1, 0]
+      ]);
       expect(() => calculateEigenvalues(A, 20)).toThrow();
     });
 
     test('calculates the complex eigenvalues of a complex matrix', () => {
-      const A = ComplexMatrix.builder().fromNumberArray([[0, -1], [1, 0]]);
+      const A = ComplexMatrix.builder().fromNumberArray([
+        [0, -1],
+        [1, 0]
+      ]);
       const eigenvalues = calculateEigenvalues(A);
       expect(eigenvalues.getEntry(0)).toStrictEqual(ComplexNumber.I);
       expect(eigenvalues.getEntry(1)).toStrictEqual(new ComplexNumber(0, -1));
@@ -58,7 +75,10 @@ describe('Eigenvalues', () => {
 
   describe('getEigenvectorForEigenvalue', () => {
     test('gets the eigenvectors for a 2x2 matrix', () => {
-      const A = mat([[2, 1], [2, 3]]);
+      const A = mat([
+        [2, 1],
+        [2, 3]
+      ]);
       const v1 = getEigenvectorForEigenvalue(A, 4);
       const v2 = getEigenvectorForEigenvalue(A, 1);
 
@@ -67,7 +87,11 @@ describe('Eigenvalues', () => {
     });
 
     test('gets the eigenvectors for a 3x3 matrix', () => {
-      const A = mat([[-1, 2, 2], [-1, -4, -2], [-3, 9, 7]]);
+      const A = mat([
+        [-1, 2, 2],
+        [-1, -4, -2],
+        [-3, 9, 7]
+      ]);
       const v1 = getEigenvectorForEigenvalue(A, 3);
       const v2 = getEigenvectorForEigenvalue(A, -2);
       const v3 = getEigenvectorForEigenvalue(A, 1);

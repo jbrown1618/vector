@@ -447,7 +447,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * @param upper - Construct an upper-triangular matrix (i choose j)
    * @public
    */
-  public pascal(size: number, upper: boolean = false): M {
+  public pascal(size: number, upper = false): M {
     return this.fromIndexFunction([size, size], (i, j) => {
       const entry = upper ? binomial(j, i) : binomial(i, j);
       return this.ops().fromNumber(entry);
@@ -509,7 +509,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * @param max - The upper limit of the random numbers to include
    * @public
    */
-  public random(shape: MatrixShape, min: number = 0, max: number = 1): M {
+  public random(shape: MatrixShape, min = 0, max = 1): M {
     if (min >= max) {
       throw Error(`Expected min < max; got ${min} and ${max}`);
     }
@@ -525,7 +525,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * @param standardDeviation - The standard deviation of the distribution of random numbers to include
    * @public
    */
-  public randomNormal(shape: MatrixShape, mean: number = 0, standardDeviation: number = 1): M {
+  public randomNormal(shape: MatrixShape, mean = 0, standardDeviation = 1): M {
     if (standardDeviation <= 0) {
       throw Error(`Expected standardDeviation > 0; got ${standardDeviation}`);
     }
@@ -776,8 +776,8 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    */
   public slice(
     matrix: Matrix<S>,
-    rowStartIndex: number = 0,
-    columnStartIndex: number = 0,
+    rowStartIndex = 0,
+    columnStartIndex = 0,
     rowEndIndex: number = matrix.getNumberOfRows(),
     columnEndIndex: number = matrix.getNumberOfColumns()
   ): M {
