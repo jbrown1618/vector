@@ -1,4 +1,4 @@
-import { Regressor } from '@lib/applications/machine-learning/models/Regressor';
+import { Classifier } from '@lib/applications/machine-learning/models/Classifier';
 import { Matrix } from '@lib/types/matrix/Matrix';
 import { Vector } from '@lib/types/vector/Vector';
 import { NumberVector } from '@lib/types/vector/NumberVector';
@@ -9,11 +9,11 @@ import {
 import { CostFunction } from '@lib/applications/machine-learning//LearningAlgorithm';
 
 /**
- * An abstract class which implements {@link Regressor} for any model which can use gradient descent.
+ * An abstract class which implements {@link Classifier} for any model which can use gradient descent.
  * Only the calculation of the cost function and gradient is left to subclasses.
  * @internal
  */
-export abstract class GradientDescentRegressor<H extends object> implements Regressor {
+export abstract class GradientDescentClassifier<H extends object> implements Classifier {
   protected readonly _hyperParameters: Readonly<Partial<H & GradientDescentParameters>>;
   protected _theta: Vector<number> | undefined;
 
@@ -34,9 +34,15 @@ export abstract class GradientDescentRegressor<H extends object> implements Regr
     );
   }
 
-  public predict(data: Matrix<number>): Vector<number> {
-    if (!this._theta) throw new Error(`Cannot call predict before train`);
+  public predictProbabilities(data: Matrix<number>): Vector<number> {
+    if (!this._theta) throw new Error(`Cannot call predictProbabilities before train`);
     return this.makePredictions(data, this._theta);
+  }
+
+  public predict(data: Matrix<number>, pThreshold = 0.5): Vector<number> {
+    if (!this._theta) throw new Error(`Cannot call predict before train`);
+    const probabilities = this.predictProbabilities(data);
+    return probabilities.builder().map(probabilities, x => (x > pThreshold ? 1 : 0));
   }
 
   private getCostFunction(data: Matrix<number>, target: Vector<number>): CostFunction {

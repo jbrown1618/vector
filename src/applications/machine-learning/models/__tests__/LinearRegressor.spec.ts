@@ -1,6 +1,7 @@
 import { loadTestData } from '@test-utils/testData';
 import { LinearRegressor } from '@lib/applications/machine-learning/models/LinearRegressor';
 import { mat, vec } from '@lib/utilities/aliases';
+import { FloatMatrix } from '@lib/types/matrix/FloatMatrix';
 
 describe('LinearRegressor', () => {
   it('makes predictions', () => {
@@ -13,7 +14,7 @@ describe('LinearRegressor', () => {
       lambda: 0
     });
 
-    const trueParams = [-0.40833333333332367, 0.7366666666666807, 2.5416666666666448];
+    const trueParams = [-0.4083333333333, 0.736666666666, 2.541666666666];
 
     reg.train(xTrain, yTrain);
     reg
@@ -37,6 +38,12 @@ describe('LinearRegressor', () => {
     predictions = reg.predict(xVal);
     predictions.toArray().forEach((pred, i) => {
       expect(pred - yVal.getEntry(i)).toBeLessThan(1);
+    });
+  });
+
+  describe('an untrained model', () => {
+    it('throws when making predictions', () => {
+      expect(() => new LinearRegressor({}).predict(FloatMatrix.builder().empty())).toThrow();
     });
   });
 });

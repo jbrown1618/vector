@@ -344,7 +344,7 @@ export function frobeniusNorm<S>(A: Matrix_2<S>): number;
 export function getEigenvectorForEigenvalue<S>(A: Matrix_2<S>, lambda: S): Vector_2<S>;
 
 // @public
-export function gradientDescent(parameters: GradientDescentParameters): LearningAlgorithm_2;
+export function gradientDescent(parameters: Partial<GradientDescentParameters>): LearningAlgorithm_2;
 
 // @public
 export interface GradientDescentParameters {
@@ -401,6 +401,8 @@ export class LinearRegressor extends GradientDescentRegressor<LinearRegressorHyp
     protected calculateCost(data: Matrix_2<number>, target: Vector_2<number>, theta: Vector_2<number>): number;
     // @internal
     protected calculateGradient(data: Matrix_2<number>, target: Vector_2<number>, theta: Vector_2<number>): Vector_2<number>;
+    // (undocumented)
+    protected getDefaultHyperParameters(): LinearRegressorHyperparams;
     // @internal
     protected makePredictions(data: Matrix_2<number>, theta: Vector_2<number>): Vector_2<number>;
 }

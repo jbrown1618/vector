@@ -11,3 +11,10 @@ A [Regressor](./vector.regressor.md) model which uses an ordinary least squares 
 ```typescript
 export declare class LinearRegressor extends GradientDescentRegressor<LinearRegressorHyperparams> 
 ```
+
+## Methods
+
+|  Method | Modifiers | Description |
+|  --- | --- | --- |
+|  [getDefaultHyperParameters()](./vector.linearregressor.getdefaulthyperparameters.md) |  |  |
+
