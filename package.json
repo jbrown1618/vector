@@ -1,7 +1,7 @@
 {
   "name": "@josh-brown/vector",
   "author": "Joshua Brown <jbrown1.618@gmail.com>",
-  "version": "3.0.0",
+  "version": "3.0.2",
   "description": "A linear algebra library written in TypeScript that focuses on generality, extensibility, and ease of use.",
   "license": "MIT",
   "repository": {
@@ -23,7 +23,7 @@
     "lint:check": "eslint '**/*.ts'",
     "docs": "api-extractor run --local && api-documenter markdown --input-folder temp/ --output-folder docs/api/",
     "docs:check": "api-extractor run",
-    "ci": "npm run build && npm run format:check && npm run lint:check && npm run docs:check && npm run coverage"
+    "ci": "npm run format:check && npm run lint:check && npm run build && npm run docs:check && npm run coverage"
   },
   "dependencies": {},
   "devDependencies": {

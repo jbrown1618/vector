@@ -9,14 +9,14 @@ Learns an optimal set of parameters `theta` using gradient descent
 <b>Signature:</b>
 
 ```typescript
-export declare function gradientDescent(parameters: GradientDescentParameters): LearningAlgorithm;
+export declare function gradientDescent(parameters: Partial<GradientDescentParameters>): LearningAlgorithm;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  parameters | <code>GradientDescentParameters</code> | The [GradientDescentParameters](./vector.gradientdescentparameters.md) which determine how the learning will run |
+|  parameters | <code>Partial&lt;GradientDescentParameters&gt;</code> | The [GradientDescentParameters](./vector.gradientdescentparameters.md) which determine how the learning will run |
 
 <b>Returns:</b>
 

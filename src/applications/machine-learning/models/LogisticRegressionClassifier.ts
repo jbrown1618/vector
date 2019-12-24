@@ -1,12 +1,13 @@
-import { GradientDescentRegressor } from '@lib/applications/machine-learning/models/GradientDescentRegressor';
 import { Matrix } from '@lib/types/matrix/Matrix';
 import { Vector } from '@lib/types/vector/Vector';
+import { sigmoid } from '@lib/utilities/NumberUtilities';
+import { GradientDescentClassifier } from '@lib/applications/machine-learning/models/GradientDescentClassifier';
 
 /**
- * The set of hyperparameters for a {@link LinearRegressor}
+ * The set of hyperparameters for a {@link LogisticRegressionClassifier}
  * @public
  */
-export interface LinearRegressorHyperparams {
+export interface LogisticRegressionHyperparams {
   /**
    * A number whose value influences the penalty for large coefficients.
    * Large values of `lambda` correspond to highly regularized models,
@@ -18,12 +19,13 @@ export interface LinearRegressorHyperparams {
 }
 
 /**
- * A {@link Regressor} model which uses an ordinary least squares model with regularization to
- * predict a continuous target.
+ * A {@link Classifier} model which uses logistic regression to predict a discrete target.
  * The optimal set of parameters is computed with gradient descent.
  * @public
  */
-export class LinearRegressor extends GradientDescentRegressor<LinearRegressorHyperparams> {
+export class LogisticRegressionClassifier extends GradientDescentClassifier<
+  LogisticRegressionHyperparams
+> {
   /**
    * Computes the predictions of a model with parameters `theta`
    *
@@ -33,11 +35,12 @@ export class LinearRegressor extends GradientDescentRegressor<LinearRegressorHyp
    * @internal
    */
   protected makePredictions(data: Matrix<number>, theta: Vector<number>): Vector<number> {
-    return this.augmentData(data).apply(theta);
+    const vb = data.vectorBuilder();
+    return vb.map(this.augmentData(data).apply(theta), sigmoid);
   }
 
   /**
-   * Computes the value of the cost function - in this case, a regularized mean squared error.
+   * Computes the value of the cost function - in this case, a regularized log loss.
    *
    * @param data - The input data
    * @param target - The true target values
@@ -52,16 +55,26 @@ export class LinearRegressor extends GradientDescentRegressor<LinearRegressorHyp
   ): number {
     const { lambda } = this.getHyperParameters();
     const predictions = this.makePredictions(data, theta);
-    const residuals = target.scalarMultiply(-1).add(predictions);
-    const squaredResiduals = target.builder().map(residuals, entry => entry ** 2);
-    const meanSquaredError =
-      squaredResiduals.toArray().reduce((prev, curr) => prev + curr, 0) / data.getNumberOfRows();
+
+    const costs = predictions.builder().map(predictions, (pred, i) => {
+      const actual = target.getEntry(i);
+      if (actual > 0.5) {
+        // Event
+        return -1 * Math.log(pred);
+      } else {
+        // Nonevent
+        return -1 * Math.log(1 - pred);
+      }
+    });
+
+    const meanCost =
+      costs.toArray().reduce((prev, curr) => prev + curr, 0) / data.getNumberOfRows();
 
     const penalty: (x: number) => number = x => x * x;
     const paramSum = theta.toArray().reduce((prev, curr) => penalty(prev) + curr, 0);
-    const regularizationTerm = (paramSum - theta.getEntry(0)) * lambda;
+    const regularizationTerm = (paramSum - penalty(theta.getEntry(0))) * lambda;
 
-    return meanSquaredError + regularizationTerm;
+    return meanCost + regularizationTerm;
   }
 
   /**
@@ -78,15 +91,15 @@ export class LinearRegressor extends GradientDescentRegressor<LinearRegressorHyp
     target: Vector<number>,
     theta: Vector<number>
   ): Vector<number> {
-    const { lambda } = this.getHyperParameters();
     const m = data.getNumberOfRows();
+    const { lambda } = this.getHyperParameters();
 
     const predictions = this.makePredictions(data, theta);
-    const residuals = target.scalarMultiply(-1).add(predictions);
+    const diff = predictions.add(target.scalarMultiply(-1));
 
     const gradientTerm = this.augmentData(data)
       .transpose()
-      .apply(residuals)
+      .apply(diff)
       .scalarMultiply(1 / m);
 
     const regularizationTerm = theta.scalarMultiply(lambda / m).set(0, 0);
@@ -100,7 +113,7 @@ export class LinearRegressor extends GradientDescentRegressor<LinearRegressorHyp
     return data.builder().augment(ones, data);
   }
 
-  protected getDefaultHyperParameters(): LinearRegressorHyperparams {
+  protected getDefaultHyperParameters(): LogisticRegressionHyperparams {
     return {
       lambda: 0
     };

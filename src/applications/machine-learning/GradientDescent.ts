@@ -20,8 +20,8 @@ export interface GradientDescentParameters {
  *
  * @public
  */
-export function gradientDescent(parameters: GradientDescentParameters): LearningAlgorithm {
-  const { alpha, maxIterations = 10000 } = parameters;
+export function gradientDescent(parameters: Partial<GradientDescentParameters>): LearningAlgorithm {
+  const { alpha = 0.1, maxIterations = 10000 } = parameters;
 
   return function(initialTheta: Vector<number>, costFn: CostFunction) {
     let theta = initialTheta;

@@ -61,3 +61,8 @@ export function factorial(n: number): number {
 
   return factorialResults.get(n) as number;
 }
+
+export function sigmoid(x: number): number {
+  const ex = Math.exp(x);
+  return ex / (1 + ex);
+}
