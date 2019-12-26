@@ -27,14 +27,35 @@ export class LogisticRegressionClassifier extends GradientDescentClassifier<
   LogisticRegressionHyperparams
 > {
   /**
-   * Computes the predictions of a model with parameters `theta`
+   * Computes the predictions for a model with parameters `theta`
    *
    * @param data - The input data
    * @param theta - The model parameters
    *
    * @internal
    */
-  protected makePredictions(data: Matrix<number>, theta: Vector<number>): Vector<number> {
+  protected makePredictions(
+    data: Matrix<number>,
+    theta: Vector<number>,
+    threshold?: number
+  ): Vector<number> {
+    const probabilities = this.makeProbabilityPredictions(data, theta);
+    const vb = data.vectorBuilder();
+    return vb.map(probabilities, p => (p > (threshold || 0.5) ? 1 : 0));
+  }
+
+  /**
+   * Computes the probabilities for a model with parameters `theta`
+   *
+   * @param data - The input data
+   * @param theta - The model parameters
+   *
+   * @internal
+   */
+  protected makeProbabilityPredictions(
+    data: Matrix<number>,
+    theta: Vector<number>
+  ): Vector<number> {
     const vb = data.vectorBuilder();
     return vb.map(this.augmentData(data).apply(theta), sigmoid);
   }
@@ -54,15 +75,15 @@ export class LogisticRegressionClassifier extends GradientDescentClassifier<
     theta: Vector<number>
   ): number {
     const { lambda } = this.getHyperParameters();
-    const predictions = this.makePredictions(data, theta);
+    const probabilities = this.makeProbabilityPredictions(data, theta);
 
-    const costs = predictions.builder().map(predictions, (pred, i) => {
+    const costs = probabilities.builder().map(probabilities, (pred, i) => {
       const actual = target.getEntry(i);
       if (actual > 0.5) {
-        // Event
+        // Event; actual === 1
         return -1 * Math.log(pred);
       } else {
-        // Nonevent
+        // Nonevent; actual === 0
         return -1 * Math.log(1 - pred);
       }
     });
@@ -94,7 +115,7 @@ export class LogisticRegressionClassifier extends GradientDescentClassifier<
     const m = data.getNumberOfRows();
     const { lambda } = this.getHyperParameters();
 
-    const predictions = this.makePredictions(data, theta);
+    const predictions = this.makeProbabilityPredictions(data, theta);
     const diff = predictions.add(target.scalarMultiply(-1));
 
     const gradientTerm = this.augmentData(data)

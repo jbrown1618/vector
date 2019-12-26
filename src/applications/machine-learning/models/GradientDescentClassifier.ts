@@ -36,13 +36,12 @@ export abstract class GradientDescentClassifier<H extends object> implements Cla
 
   public predictProbabilities(data: Matrix<number>): Vector<number> {
     if (!this._theta) throw new Error(`Cannot call predictProbabilities before train`);
-    return this.makePredictions(data, this._theta);
+    return this.makeProbabilityPredictions(data, this._theta);
   }
 
-  public predict(data: Matrix<number>, pThreshold = 0.5): Vector<number> {
+  public predict(data: Matrix<number>): Vector<number> {
     if (!this._theta) throw new Error(`Cannot call predict before train`);
-    const probabilities = this.predictProbabilities(data);
-    return probabilities.builder().map(probabilities, x => (x > pThreshold ? 1 : 0));
+    return this.makePredictions(data, this._theta);
   }
 
   private getCostFunction(data: Matrix<number>, target: Vector<number>): CostFunction {
@@ -51,6 +50,11 @@ export abstract class GradientDescentClassifier<H extends object> implements Cla
       gradient: this.calculateGradient(data, target, theta)
     });
   }
+
+  protected abstract makeProbabilityPredictions(
+    data: Matrix<number>,
+    theta: Vector<number>
+  ): Vector<number>;
 
   protected abstract makePredictions(data: Matrix<number>, theta: Vector<number>): Vector<number>;
 
