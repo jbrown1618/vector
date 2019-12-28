@@ -1,13 +1,18 @@
 import { Matrix } from '@lib/types/matrix/Matrix';
 import { Vector } from '@lib/types/vector/Vector';
 import { sigmoid } from '@lib/utilities/NumberUtilities';
-import { GradientDescentClassifier } from '@lib/applications/machine-learning/models/GradientDescentClassifier';
+import {
+  GradientDescentParameters,
+  gradientDescent
+} from '@lib/applications/machine-learning/GradientDescent';
+import { Classifier } from '@lib/applications/machine-learning/models/Classifier';
+import { FloatVector } from '@lib/types/vector/FloatVector';
 
 /**
  * The set of hyperparameters for a {@link LogisticRegressionClassifier}
  * @public
  */
-export interface LogisticRegressionHyperparams {
+export type LogisticRegressionHyperparams = GradientDescentParameters & {
   /**
    * A number whose value influences the penalty for large coefficients.
    * Large values of `lambda` correspond to highly regularized models,
@@ -16,20 +21,52 @@ export interface LogisticRegressionHyperparams {
    * and correct for underfitting.
    */
   lambda: number;
-}
+};
 
 /**
  * A {@link Classifier} model which uses logistic regression to predict a discrete target.
  * The optimal set of parameters is computed with gradient descent.
  * @public
  */
-export class LogisticRegressionClassifier extends GradientDescentClassifier<
-  LogisticRegressionHyperparams
-> {
-  /**
-   * {@inheritDoc GradientDescentClassifier.makePredictions}
-   */
-  protected makePredictions(
+export class LogisticRegressionClassifier implements Classifier<LogisticRegressionHyperparams> {
+  private readonly _hyperParameters: Readonly<Partial<LogisticRegressionHyperparams>>;
+  private _theta: Vector<number> | undefined;
+
+  constructor(hyperParameters: Partial<LogisticRegressionHyperparams>) {
+    this._hyperParameters = Object.freeze(hyperParameters);
+    this._theta = undefined;
+  }
+
+  public getParameters(): Vector<number> | undefined {
+    return this._theta;
+  }
+
+  public getHyperParameters(): LogisticRegressionHyperparams {
+    return {
+      ...this.getDefaultHyperParameters(),
+      ...this._hyperParameters
+    };
+  }
+
+  public train(data: Matrix<number>, target: Vector<number>): void {
+    const initialTheta = FloatVector.builder().random(data.getNumberOfColumns() + 1, -0.01, 0.01);
+    this._theta = gradientDescent(this._hyperParameters)(initialTheta, theta => ({
+      cost: this.calculateCost(data, target, theta),
+      gradient: this.calculateGradient(data, target, theta)
+    }));
+  }
+
+  public predictProbabilities(data: Matrix<number>): Vector<number> {
+    if (!this._theta) throw new Error(`Cannot call predictProbabilities before train`);
+    return this.makeProbabilityPredictions(data, this._theta);
+  }
+
+  public predict(data: Matrix<number>): Vector<number> {
+    if (!this._theta) throw new Error(`Cannot call predict before train`);
+    return this.makePredictions(data, this._theta);
+  }
+
+  private makePredictions(
     data: Matrix<number>,
     theta: Vector<number>,
     threshold?: number
@@ -39,21 +76,12 @@ export class LogisticRegressionClassifier extends GradientDescentClassifier<
     return vb.map(probabilities, p => (p > (threshold || 0.5) ? 1 : 0));
   }
 
-  /**
-   * {@inheritDoc GradientDescentClassifier.makeProbabilityPredictions}
-   */
-  protected makeProbabilityPredictions(
-    data: Matrix<number>,
-    theta: Vector<number>
-  ): Vector<number> {
+  private makeProbabilityPredictions(data: Matrix<number>, theta: Vector<number>): Vector<number> {
     const vb = data.vectorBuilder();
     return vb.map(this.augmentData(data).apply(theta), sigmoid);
   }
 
-  /**
-   * {@inheritDoc GradientDescentClassifier.calculateCost}
-   */
-  protected calculateCost(
+  private calculateCost(
     data: Matrix<number>,
     target: Vector<number>,
     theta: Vector<number>
@@ -85,7 +113,7 @@ export class LogisticRegressionClassifier extends GradientDescentClassifier<
   /**
    * {@inheritDoc GradientDescentClassifier.calculateGradient}
    */
-  protected calculateGradient(
+  private calculateGradient(
     data: Matrix<number>,
     target: Vector<number>,
     theta: Vector<number>
@@ -112,9 +140,10 @@ export class LogisticRegressionClassifier extends GradientDescentClassifier<
     return data.builder().augment(ones, data);
   }
 
-  protected getDefaultHyperParameters(): LogisticRegressionHyperparams {
+  private getDefaultHyperParameters(): LogisticRegressionHyperparams {
     return {
-      lambda: 0
+      lambda: 0,
+      alpha: 0.01
     };
   }
 }

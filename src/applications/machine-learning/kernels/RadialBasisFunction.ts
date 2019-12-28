@@ -1,15 +1,19 @@
 import { Vector } from '@lib/types/vector/Vector';
-import { Kernel } from '@lib/applications/machine-learning/kernels/Kernel';
 import { Matrix } from '@lib/types/matrix/Matrix';
+import { Kernel } from '@lib/applications/machine-learning/kernels/Kernel';
 
-export type DistanceMetric = (v1: Vector<number>, v2: Vector<number>) => number;
+export type SimilarityMetric = (v1: Vector<number>, v2: Vector<number>) => number;
 
-export function RadialBasisFunction(distanceMetric: DistanceMetric): Kernel {
-  return (data: Matrix<number>) => {
+export function RadialBasisFunction(distanceMetric: SimilarityMetric): Kernel {
+  return (data: Matrix<number>, trainingData: Matrix<number> = data) => {
     const [m] = data.getShape();
+    const [n] = trainingData.getShape();
+
     const rows = data.getRowVectors();
-    return data.builder().fromIndexFunction([m, m], (i, j) => {
-      return distanceMetric(rows[i], rows[j]);
+    const trainingRows = trainingData.getRowVectors();
+
+    return data.builder().fromIndexFunction([m, n], (i, j) => {
+      return distanceMetric(rows[i], trainingRows[j]);
     });
   };
 }

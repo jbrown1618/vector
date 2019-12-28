@@ -1,12 +1,17 @@
-import { GradientDescentRegressor } from '@lib/applications/machine-learning/models/GradientDescentRegressor';
 import { Matrix } from '@lib/types/matrix/Matrix';
 import { Vector } from '@lib/types/vector/Vector';
+import { Regressor } from '@lib/applications/machine-learning/models/Regressor';
+import { FloatVector } from '@lib/types/vector/FloatVector';
+import {
+  GradientDescentParameters,
+  gradientDescent
+} from '@lib/applications/machine-learning/GradientDescent';
 
 /**
  * The set of hyperparameters for a {@link LinearRegressor}
  * @public
  */
-export interface LinearRegressorHyperparams {
+export type LinearRegressorHyperparams = GradientDescentParameters & {
   /**
    * A number whose value influences the penalty for large coefficients.
    * Large values of `lambda` correspond to highly regularized models,
@@ -15,7 +20,7 @@ export interface LinearRegressorHyperparams {
    * and correct for underfitting.
    */
   lambda: number;
-}
+};
 
 /**
  * A {@link Regressor} model which uses an ordinary least squares model with regularization to
@@ -23,18 +28,43 @@ export interface LinearRegressorHyperparams {
  * The optimal set of parameters is computed with gradient descent.
  * @public
  */
-export class LinearRegressor extends GradientDescentRegressor<LinearRegressorHyperparams> {
-  /**
-   * {@inheritDoc GradientDescentRegressor.makePredictions}
-   */
-  protected makePredictions(data: Matrix<number>, theta: Vector<number>): Vector<number> {
-    return this.augmentData(data).apply(theta);
+export class LinearRegressor implements Regressor<LinearRegressorHyperparams> {
+  private readonly _hyperParameters: Readonly<Partial<LinearRegressorHyperparams>>;
+  private _theta: Vector<number> | undefined;
+
+  constructor(hyperParameters: Partial<LinearRegressorHyperparams>) {
+    this._hyperParameters = Object.freeze(hyperParameters);
+    this._theta = undefined;
+  }
+
+  public getParameters(): Vector<number> | undefined {
+    return this._theta;
+  }
+
+  public getHyperParameters(): LinearRegressorHyperparams {
+    return {
+      ...this.getDefaultHyperParameters(),
+      ...this._hyperParameters
+    };
+  }
+
+  public train(data: Matrix<number>, target: Vector<number>): void {
+    const initialTheta = FloatVector.builder().random(data.getNumberOfColumns() + 1, -0.01, 0.01);
+    this._theta = gradientDescent(this._hyperParameters)(initialTheta, theta => ({
+      cost: this.calculateCost(data, target, theta),
+      gradient: this.calculateGradient(data, target, theta)
+    }));
+  }
+
+  public predict(data: Matrix<number>): Vector<number> {
+    if (!this._theta) throw new Error(`Cannot call predict before train`);
+    return this.makePredictions(data, this._theta);
   }
 
   /**
    * {@inheritDoc GradientDescentRegressor.calculateCost}
    */
-  protected calculateCost(
+  private calculateCost(
     data: Matrix<number>,
     target: Vector<number>,
     theta: Vector<number>
@@ -56,7 +86,7 @@ export class LinearRegressor extends GradientDescentRegressor<LinearRegressorHyp
   /**
    * {@inheritDoc GradientDescentRegressor.calculateGradient}
    */
-  protected calculateGradient(
+  private calculateGradient(
     data: Matrix<number>,
     target: Vector<number>,
     theta: Vector<number>
@@ -77,15 +107,20 @@ export class LinearRegressor extends GradientDescentRegressor<LinearRegressorHyp
     return gradientTerm.add(regularizationTerm);
   }
 
+  private makePredictions(data: Matrix<number>, theta: Vector<number>): Vector<number> {
+    return this.augmentData(data).apply(theta);
+  }
+
   private augmentData(data: Matrix<number>): Matrix<number> {
     const m = data.getNumberOfRows();
     const ones = data.builder().ones([m, 1]);
     return data.builder().augment(ones, data);
   }
 
-  protected getDefaultHyperParameters(): LinearRegressorHyperparams {
+  private getDefaultHyperParameters(): LinearRegressorHyperparams {
     return {
-      lambda: 0
+      lambda: 0,
+      alpha: 0.01
     };
   }
 }

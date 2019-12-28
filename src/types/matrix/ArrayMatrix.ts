@@ -1,7 +1,8 @@
 import {
   assertRectangular,
   assertValidMatrixIndex,
-  assertDimensionMatch
+  assertDimensionMatch,
+  assertMultiplicable
 } from '@lib/utilities/ErrorAssertions';
 import { ScalarOperations } from '@lib/types/scalar/ScalarOperations';
 import { Vector, VectorData } from '@lib/types/vector/Vector';
@@ -214,9 +215,7 @@ export abstract class ArrayMatrix<S> implements Matrix<S> {
    * {@inheritDoc Matrix.multiply}
    */
   public multiply(other: Matrix<S>): Matrix<S> {
-    if (this.getNumberOfColumns() !== other.getNumberOfRows()) {
-      throw new Error('Dimension mismatch');
-    }
+    assertMultiplicable(this, other);
 
     return this.builder().fromArray(
       this.getRowVectors().map(row =>

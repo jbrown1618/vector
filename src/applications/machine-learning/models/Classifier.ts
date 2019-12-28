@@ -5,7 +5,7 @@ import { Vector } from '@lib/types/vector/Vector';
  * A machine learning model with a continuous numeric target
  * @public
  */
-export interface Classifier {
+export interface Classifier<H> {
   /**
    * Learns the optimal set of parameters for the model.
    *
@@ -38,4 +38,10 @@ export interface Classifier {
    * @public
    */
   predict(data: Matrix<number>, pThreshold: number): Vector<number>;
+
+  /**
+   * Return the full set of hyperparameters used to train the model, including defaults.
+   * @public
+   */
+  getHyperParameters(): H;
 }

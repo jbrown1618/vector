@@ -5,7 +5,7 @@ import { Vector } from '@lib/types/vector/Vector';
  * A machine learning model with a continuous numeric target
  * @public
  */
-export interface Regressor {
+export interface Regressor<H> {
   /**
    * Learns the optimal set of parameters for the model.
    *
@@ -25,4 +25,10 @@ export interface Regressor {
    * @public
    */
   predict(data: Matrix<number>): Vector<number>;
+
+  /**
+   * Return the full set of hyperparameters used to train the model, including defaults.
+   * @public
+   */
+  getHyperParameters(): H;
 }

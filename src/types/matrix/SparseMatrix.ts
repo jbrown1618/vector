@@ -1,7 +1,8 @@
 import {
   assertRectangular,
   assertValidMatrixIndex,
-  assertValidIndex
+  assertValidIndex,
+  assertMultiplicable
 } from '@lib/utilities/ErrorAssertions';
 import { ScalarOperations } from '@lib/types/scalar/ScalarOperations';
 import { Vector } from '@lib/types/vector/Vector';
@@ -259,9 +260,7 @@ export abstract class SparseMatrix<S> implements Matrix<S> {
    * {@inheritDoc Matrix.multiply}
    */
   public multiply(other: Matrix<S>): Matrix<S> {
-    if (this.getNumberOfColumns() !== other.getNumberOfRows()) {
-      throw new Error('Dimension mismatch');
-    }
+    assertMultiplicable(this, other);
 
     // TODO - can probably be optimized for the case of two sparse matrices
     return this.builder().fromArray(
