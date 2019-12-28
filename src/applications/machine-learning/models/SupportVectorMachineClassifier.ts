@@ -1,121 +1,129 @@
-// import { Matrix } from '@lib/types/matrix/Matrix';
-// import { Vector } from '@lib/types/vector/Vector';
-// import { sigmoid } from '@lib/utilities/NumberUtilities';
-// import { GradientDescentClassifier } from '@lib/applications/machine-learning/models/GradientDescentClassifier';
+import { Matrix } from '@lib/types/matrix/Matrix';
+import { Vector } from '@lib/types/vector/Vector';
+import { Kernel } from '@lib/applications/machine-learning/kernels/Kernel';
+import { LinearKernel } from '@lib/applications/machine-learning/kernels/LinearKernel';
+import { GradientDescentClassifier } from '@lib/applications/machine-learning/models/GradientDescentClassifier';
 
-// /**
-//  * The set of hyperparameters for a {@link SupportVectorMachineClassifier}
-//  * @public
-//  */
-// export interface SupportVectorMachineHyperparams {
-//   /**
-//    * A number whose value influences the penalty for large coefficients.
-//    * Small values of `C` correspond to highly regularized models,
-//    * and correct for overfitting.
-//    * Large values of `C` correspond to highly biased models,
-//    * and correct for underfitting.
-//    */
-//   C: number;
-// }
+/**
+ * The set of hyperparameters for a {@link SupportVectorMachineClassifier}
+ * @public
+ */
+export interface SupportVectorMachineHyperparams {
+  /**
+   * A number whose value influences the penalty for large coefficients.
+   * Small values of `C` correspond to highly regularized models,
+   * and correct for overfitting.
+   * Large values of `C` correspond to highly biased models,
+   * and correct for underfitting.
+   */
+  C: number;
 
-// /**
-//  * A {@link Classifier} model which uses logistic regression to predict a discrete target.
-//  * The optimal set of parameters is computed with gradient descent.
-//  * @public
-//  */
-// export class SupportVectorMachineClassifier extends GradientDescentClassifier<
-//   SupportVectorMachineHyperparams
-// > {
-//   /**
-//    * Computes the predictions of a model with parameters `theta`
-//    *
-//    * @param data - The input data
-//    * @param theta - The model parameters
-//    *
-//    * @internal
-//    */
-//   protected makePredictions(data: Matrix<number>, theta: Vector<number>): Vector<number> {
-//     const vb = data.vectorBuilder();
-//     return vb.map(this.augmentData(data).apply(theta), sigmoid);
-//   }
+  kernel: Kernel;
+}
 
-//   /**
-//    * Computes the value of the cost function - in this case, a regularized log loss.
-//    *
-//    * @param data - The input data
-//    * @param target - The true target values
-//    * @param theta - The model parameters
-//    *
-//    * @internal
-//    */
-//   protected calculateCost(
-//     data: Matrix<number>,
-//     target: Vector<number>,
-//     theta: Vector<number>
-//   ): number {
-//     const { lambda } = this.getHyperParameters();
-//     const predictions = this.makePredictions(data, theta);
+/**
+ * A {@link Classifier} model which uses logistic regression to predict a discrete target.
+ * The optimal set of parameters is computed with gradient descent.
+ * @public
+ */
+export class SupportVectorMachineClassifier extends GradientDescentClassifier<
+  SupportVectorMachineHyperparams
+> {
+  /**
+   * {@inheritDoc GradientDescentClassifier.makePredictions}
+   */
+  protected makePredictions(data: Matrix<number>, theta: Vector<number>): Vector<number> {
+    const xTheta = this.calculateScores(data, theta);
+    return xTheta.builder().map(xTheta, val => (val > 0 ? 1 : 0));
+  }
 
-//     const costs = predictions.builder().map(predictions, (pred, i) => {
-//       const actual = target.getEntry(i);
-//       if (actual > 0.5) {
-//         // Event
-//         return -1 * Math.log(pred);
-//       } else {
-//         // Nonevent
-//         return -1 * Math.log(1 - pred);
-//       }
-//     });
+  /**
+   * {@inheritDoc GradientDescentClassifier.makeProbabilityPredictions}
+   */
+  protected makeProbabilityPredictions(
+    _data: Matrix<number>,
+    _theta: Vector<number>
+  ): Vector<number> {
+    throw Error(`Probability predictions not implemented for SVM Classifier`);
+  }
 
-//     const meanCost =
-//       costs.toArray().reduce((prev, curr) => prev + curr, 0) / data.getNumberOfRows();
+  /**
+   * {@inheritDoc GradientDescentClassifier.calculateCost}
+   */
+  protected calculateCost(
+    data: Matrix<number>,
+    target: Vector<number>,
+    theta: Vector<number>
+  ): number {
+    const [m] = data.getShape();
+    const scores = this.calculateScores(data, theta);
+    const costs = scores.toArray().map((dist, i) => {
+      return cost(dist, target.getEntry(i));
+    });
+    const totalCost = costs.reduce((prev, curr) => prev + curr, 0);
+    return totalCost / m;
+  }
 
-//     const penalty: (x: number) => number = x => x * x;
-//     const paramSum = theta.toArray().reduce((prev, curr) => penalty(prev) + curr, 0);
-//     const regularizationTerm = (paramSum - penalty(theta.getEntry(0))) * lambda;
+  /**
+   * {@inheritDoc GradientDescentClassifier.calculateGradient}
+   */
+  protected calculateGradient(
+    data: Matrix<number>,
+    target: Vector<number>,
+    theta: Vector<number>
+  ): Vector<number> {
+    const [m] = data.getShape();
+    const { kernel } = this.getDefaultHyperParameters();
+    const X = kernel(data);
 
-//     return meanCost + regularizationTerm;
-//   }
+    const scores = this.calculateScores(data, theta);
+    const correct = scores.builder().fromArray(
+      scores.toArray().map((dist, i) => {
+        return cost(dist, target.getEntry(i)) > 0 ? 1 : 0;
+      })
+    );
 
-//   /**
-//    * Computes the gradient of the cost function with respect to the parameters `theta`.
-//    *
-//    * @param data - The input data
-//    * @param target - The true target values
-//    * @param theta - The model parameters
-//    *
-//    * @internal
-//    */
-//   protected calculateGradient(
-//     data: Matrix<number>,
-//     target: Vector<number>,
-//     theta: Vector<number>
-//   ): Vector<number> {
-//     const m = data.getNumberOfRows();
-//     const { lambda } = this.getHyperParameters();
+    const unscaledGradient = X.transpose().apply(correct);
+    return unscaledGradient.scalarMultiply(1 / m);
+  }
 
-//     const predictions = this.makePredictions(data, theta);
-//     const diff = predictions.add(target.scalarMultiply(-1));
+  protected getDefaultHyperParameters(): SupportVectorMachineHyperparams {
+    return {
+      C: 0,
+      kernel: LinearKernel
+    };
+  }
 
-//     const gradientTerm = this.augmentData(data)
-//       .transpose()
-//       .apply(diff)
-//       .scalarMultiply(1 / m);
+  private calculateScores(data: Matrix<number>, theta: Vector<number>): Vector<number> {
+    const { kernel } = this.getDefaultHyperParameters();
+    const X = kernel(data);
+    return X.apply(theta);
+  }
+}
 
-//     const regularizationTerm = theta.scalarMultiply(lambda / m).set(0, 0);
+function cost(score: number, y: number): number {
+  if (y > 0.5) {
+    // y = 1
+    return cost1(score);
+  } else {
+    return cost0(score);
+  }
+}
 
-//     return gradientTerm.add(regularizationTerm);
-//   }
+function cost0(score: number): number {
+  if (score < -1) {
+    // Decision is very correct
+    return 0;
+  } else {
+    return 1 + score;
+  }
+}
 
-//   private augmentData(data: Matrix<number>): Matrix<number> {
-//     const m = data.getNumberOfRows();
-//     const ones = data.builder().ones([m, 1]);
-//     return data.builder().augment(ones, data);
-//   }
-
-//   protected getDefaultHyperParameters(): SupportVectorMachineHyperparams {
-//     return {
-//       C: 0
-//     };
-//   }
-// }
+function cost1(score: number): number {
+  if (score > 1) {
+    // Decision is very correct
+    return 0;
+  } else {
+    return 1 - score;
+  }
+}

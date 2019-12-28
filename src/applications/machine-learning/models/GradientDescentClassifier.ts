@@ -51,19 +51,53 @@ export abstract class GradientDescentClassifier<H extends object> implements Cla
     });
   }
 
+  /**
+   * Computes the probabilities for a model with parameters `theta`
+   *
+   * @param data - The input data
+   * @param theta - The model parameters
+   *
+   * @internal
+   */
   protected abstract makeProbabilityPredictions(
     data: Matrix<number>,
     theta: Vector<number>
   ): Vector<number>;
 
+  /**
+   * Computes the predictions for a model with parameters `theta`
+   *
+   * @param data - The input data
+   * @param theta - The model parameters
+   *
+   * @internal
+   */
   protected abstract makePredictions(data: Matrix<number>, theta: Vector<number>): Vector<number>;
 
+  /**
+   * Computes the value of the cost function - in this case, a regularized log loss.
+   *
+   * @param data - The input data
+   * @param target - The true target values
+   * @param theta - The model parameters
+   *
+   * @internal
+   */
   protected abstract calculateCost(
     data: Matrix<number>,
     target: Vector<number>,
     theta: Vector<number>
   ): number;
 
+  /**
+   * Computes the gradient of the cost function with respect to the parameters `theta`.
+   *
+   * @param data - The input data
+   * @param target - The true target values
+   * @param theta - The model parameters
+   *
+   * @internal
+   */
   protected abstract calculateGradient(
     data: Matrix<number>,
     target: Vector<number>,

@@ -27,12 +27,7 @@ export class LogisticRegressionClassifier extends GradientDescentClassifier<
   LogisticRegressionHyperparams
 > {
   /**
-   * Computes the predictions for a model with parameters `theta`
-   *
-   * @param data - The input data
-   * @param theta - The model parameters
-   *
-   * @internal
+   * {@inheritDoc GradientDescentClassifier.makePredictions}
    */
   protected makePredictions(
     data: Matrix<number>,
@@ -45,12 +40,7 @@ export class LogisticRegressionClassifier extends GradientDescentClassifier<
   }
 
   /**
-   * Computes the probabilities for a model with parameters `theta`
-   *
-   * @param data - The input data
-   * @param theta - The model parameters
-   *
-   * @internal
+   * {@inheritDoc GradientDescentClassifier.makeProbabilityPredictions}
    */
   protected makeProbabilityPredictions(
     data: Matrix<number>,
@@ -61,13 +51,7 @@ export class LogisticRegressionClassifier extends GradientDescentClassifier<
   }
 
   /**
-   * Computes the value of the cost function - in this case, a regularized log loss.
-   *
-   * @param data - The input data
-   * @param target - The true target values
-   * @param theta - The model parameters
-   *
-   * @internal
+   * {@inheritDoc GradientDescentClassifier.calculateCost}
    */
   protected calculateCost(
     data: Matrix<number>,
@@ -99,13 +83,7 @@ export class LogisticRegressionClassifier extends GradientDescentClassifier<
   }
 
   /**
-   * Computes the gradient of the cost function with respect to the parameters `theta`.
-   *
-   * @param data - The input data
-   * @param target - The true target values
-   * @param theta - The model parameters
-   *
-   * @internal
+   * {@inheritDoc GradientDescentClassifier.calculateGradient}
    */
   protected calculateGradient(
     data: Matrix<number>,

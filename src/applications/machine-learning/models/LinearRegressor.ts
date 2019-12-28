@@ -25,25 +25,14 @@ export interface LinearRegressorHyperparams {
  */
 export class LinearRegressor extends GradientDescentRegressor<LinearRegressorHyperparams> {
   /**
-   * Computes the predictions of a model with parameters `theta`
-   *
-   * @param data - The input data
-   * @param theta - The model parameters
-   *
-   * @internal
+   * {@inheritDoc GradientDescentRegressor.makePredictions}
    */
   protected makePredictions(data: Matrix<number>, theta: Vector<number>): Vector<number> {
     return this.augmentData(data).apply(theta);
   }
 
   /**
-   * Computes the value of the cost function - in this case, a regularized mean squared error.
-   *
-   * @param data - The input data
-   * @param target - The true target values
-   * @param theta - The model parameters
-   *
-   * @internal
+   * {@inheritDoc GradientDescentRegressor.calculateCost}
    */
   protected calculateCost(
     data: Matrix<number>,
@@ -65,13 +54,7 @@ export class LinearRegressor extends GradientDescentRegressor<LinearRegressorHyp
   }
 
   /**
-   * Computes the gradient of the cost function with respect to the parameters `theta`.
-   *
-   * @param data - The input data
-   * @param target - The true target values
-   * @param theta - The model parameters
-   *
-   * @internal
+   * {@inheritDoc GradientDescentRegressor.calculateGradient}
    */
   protected calculateGradient(
     data: Matrix<number>,
