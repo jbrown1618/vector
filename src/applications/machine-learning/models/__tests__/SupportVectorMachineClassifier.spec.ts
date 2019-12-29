@@ -9,8 +9,8 @@ describe('SupportVectorMachineClassifier', () => {
       const yTrain = iris.vectorBuilder().map(iris.getColumn(4), x => (x === 0 ? 1 : 0));
 
       const cls = new SupportVectorMachineClassifier({
-        alpha: 0.00001,
-        maxIterations: 10000
+        alpha: 0.01,
+        maxIterations: 100
       });
 
       cls.train(xTrain, yTrain);

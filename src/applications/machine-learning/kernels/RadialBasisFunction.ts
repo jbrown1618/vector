@@ -12,8 +12,9 @@ export function RadialBasisFunction(distanceMetric: SimilarityMetric): Kernel {
     const rows = data.getRowVectors();
     const trainingRows = trainingData.getRowVectors();
 
-    return data.builder().fromIndexFunction([m, n], (i, j) => {
-      return distanceMetric(rows[i], trainingRows[j]);
+    return data.builder().fromIndexFunction([m, n + 1], (i, j) => {
+      if (j === 0) return 1; // Bias term
+      return distanceMetric(rows[i], trainingRows[j - 1]);
     });
   };
 }

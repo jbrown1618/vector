@@ -1,4 +1,7 @@
 import { Matrix } from '@lib/types/matrix/Matrix';
-import { Kernel } from '@lib/applications/machine-learning/kernels/Kernel';
 
-export const LinearKernel: Kernel = (data: Matrix<number>) => data;
+export function LinearKernel(data: Matrix<number>): Matrix<number> {
+  const m = data.getNumberOfRows();
+  const ones = data.builder().ones([m, 1]);
+  return data.builder().augment(ones, data);
+}

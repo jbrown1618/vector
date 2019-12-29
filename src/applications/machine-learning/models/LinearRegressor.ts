@@ -6,6 +6,7 @@ import {
   GradientDescentParameters,
   gradientDescent
 } from '@lib/applications/machine-learning/GradientDescent';
+import { LinearKernel } from '@lib/applications/machine-learning/kernels/LinearKernel';
 
 /**
  * The set of hyperparameters for a {@link LinearRegressor}
@@ -97,7 +98,7 @@ export class LinearRegressor implements Regressor<LinearRegressorHyperparams> {
     const predictions = this.makePredictions(data, theta);
     const residuals = target.scalarMultiply(-1).add(predictions);
 
-    const gradientTerm = this.augmentData(data)
+    const gradientTerm = LinearKernel(data)
       .transpose()
       .apply(residuals)
       .scalarMultiply(1 / m);
@@ -108,13 +109,7 @@ export class LinearRegressor implements Regressor<LinearRegressorHyperparams> {
   }
 
   private makePredictions(data: Matrix<number>, theta: Vector<number>): Vector<number> {
-    return this.augmentData(data).apply(theta);
-  }
-
-  private augmentData(data: Matrix<number>): Matrix<number> {
-    const m = data.getNumberOfRows();
-    const ones = data.builder().ones([m, 1]);
-    return data.builder().augment(ones, data);
+    return LinearKernel(data).apply(theta);
   }
 
   private getDefaultHyperParameters(): LinearRegressorHyperparams {

@@ -2,10 +2,10 @@ import { loadTestData } from '@test-utils/testData';
 import { GaussianKernel } from '../GaussianKernel';
 
 describe('GaussianKernel', () => {
-  it('has a mxm result', () => {
+  it('has a mxm+1 result', () => {
     const data = loadTestData('iris');
     const kerneled = GaussianKernel(1)(data);
-    expect(kerneled.getShape()).toStrictEqual([150, 150]);
+    expect(kerneled.getShape()).toStrictEqual([150, 151]);
   });
 
   it('varies based on the sigmaSquared parameter', () => {

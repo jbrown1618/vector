@@ -7,6 +7,7 @@ import {
 } from '@lib/applications/machine-learning/GradientDescent';
 import { Classifier } from '@lib/applications/machine-learning/models/Classifier';
 import { FloatVector } from '@lib/types/vector/FloatVector';
+import { LinearKernel } from '@lib/applications/machine-learning/kernels/LinearKernel';
 
 /**
  * The set of hyperparameters for a {@link LogisticRegressionClassifier}
@@ -78,7 +79,7 @@ export class LogisticRegressionClassifier implements Classifier<LogisticRegressi
 
   private makeProbabilityPredictions(data: Matrix<number>, theta: Vector<number>): Vector<number> {
     const vb = data.vectorBuilder();
-    return vb.map(this.augmentData(data).apply(theta), sigmoid);
+    return vb.map(LinearKernel(data).apply(theta), sigmoid);
   }
 
   private calculateCost(
@@ -105,9 +106,9 @@ export class LogisticRegressionClassifier implements Classifier<LogisticRegressi
 
     const penalty: (x: number) => number = x => x * x;
     const paramSum = theta.toArray().reduce((prev, curr) => penalty(prev) + curr, 0);
-    const regularizationTerm = (paramSum - penalty(theta.getEntry(0))) * lambda;
+    const regularizationTerm = paramSum - penalty(theta.getEntry(0));
 
-    return meanCost + regularizationTerm;
+    return meanCost + lambda * regularizationTerm;
   }
 
   /**
@@ -124,7 +125,7 @@ export class LogisticRegressionClassifier implements Classifier<LogisticRegressi
     const predictions = this.makeProbabilityPredictions(data, theta);
     const diff = predictions.add(target.scalarMultiply(-1));
 
-    const gradientTerm = this.augmentData(data)
+    const gradientTerm = LinearKernel(data)
       .transpose()
       .apply(diff)
       .scalarMultiply(1 / m);
@@ -132,12 +133,6 @@ export class LogisticRegressionClassifier implements Classifier<LogisticRegressi
     const regularizationTerm = theta.scalarMultiply(lambda / m).set(0, 0);
 
     return gradientTerm.add(regularizationTerm);
-  }
-
-  private augmentData(data: Matrix<number>): Matrix<number> {
-    const m = data.getNumberOfRows();
-    const ones = data.builder().ones([m, 1]);
-    return data.builder().augment(ones, data);
   }
 
   private getDefaultHyperParameters(): LogisticRegressionHyperparams {
