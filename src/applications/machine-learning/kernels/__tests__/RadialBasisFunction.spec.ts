@@ -2,6 +2,7 @@ import { Vector } from '@lib/types/vector/Vector';
 import { euclideanNorm } from '@lib/operations/Norms';
 import { loadTestData } from '@test-utils/testData';
 import { RadialBasisFunction } from '@lib/applications/machine-learning/kernels/RadialBasisFunction';
+import { roundMatrix } from '@test-utils/rounding';
 
 describe('RadialBasisFunction', () => {
   it('constructs a similarity matrix given a similarity metric', () => {
@@ -13,6 +14,7 @@ describe('RadialBasisFunction', () => {
     const data = loadTestData('iris');
     const kerneled = RadialBasisFunction(metric)(data);
 
-    expect(kerneled).toMatchSnapshot();
+    // Round to 6 decimal places to make sure snapshots pass on older versions of Node
+    expect(roundMatrix(kerneled, 6)).toMatchSnapshot();
   });
 });

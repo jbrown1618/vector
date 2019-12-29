@@ -1,5 +1,6 @@
 import { loadTestData } from '@test-utils/testData';
-import { GaussianKernel } from '../GaussianKernel';
+import { GaussianKernel } from '@lib/applications/machine-learning/kernels/GaussianKernel';
+import { roundMatrix } from '@test-utils/rounding';
 
 describe('GaussianKernel', () => {
   it('has a mxm+1 result', () => {
@@ -11,9 +12,13 @@ describe('GaussianKernel', () => {
   it('varies based on the sigmaSquared parameter', () => {
     const data = loadTestData('iris');
     let kerneled = GaussianKernel(1)(data);
-    expect(kerneled).toMatchSnapshot();
+
+    // Round to 6 decimal places to make sure snapshots pass on older versions of Node
+    expect(roundMatrix(kerneled, 6)).toMatchSnapshot();
 
     kerneled = GaussianKernel(10)(data);
-    expect(kerneled).toMatchSnapshot();
+
+    // Round to 6 decimal places to make sure snapshots pass on older versions of Node
+    expect(roundMatrix(kerneled, 6)).toMatchSnapshot();
   });
 });
