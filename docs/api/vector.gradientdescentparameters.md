@@ -2,20 +2,15 @@
 
 [Home](./index.md) &gt; [@josh-brown/vector](./vector.md) &gt; [GradientDescentParameters](./vector.gradientdescentparameters.md)
 
-## GradientDescentParameters interface
+## GradientDescentParameters type
 
 The parameters for [gradientDescent()](./vector.gradientdescent.md)
 
 <b>Signature:</b>
 
 ```typescript
-export interface GradientDescentParameters 
+export declare type GradientDescentParameters = {
+    alpha: number;
+    maxIterations?: number;
+};
 ```
-
-## Properties
-
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [alpha](./vector.gradientdescentparameters.alpha.md) | <code>number</code> |  |
-|  [maxIterations](./vector.gradientdescentparameters.maxiterations.md) | <code>number</code> |  |
-

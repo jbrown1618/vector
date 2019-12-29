@@ -6,13 +6,15 @@
 
 import { ArrayMatrix as ArrayMatrix_2 } from '@lib/types/matrix/ArrayMatrix';
 import { ArrayVector as ArrayVector_2 } from '@lib/types/vector/ArrayVector';
+import { Classifier as Classifier_2 } from '@lib/applications/machine-learning/models/Classifier';
 import { ComplexMatrix as ComplexMatrix_2 } from '@lib/types/matrix/ComplexMatrix';
 import { ComplexNumber as ComplexNumber_2 } from '@lib/types/scalar/ComplexNumber';
 import { ComplexNumberOperations as ComplexNumberOperations_2 } from '@lib/types/scalar/ComplexNumberOperations';
 import { ComplexVector as ComplexVector_2 } from '@lib/types/vector/ComplexVector';
 import { FloatMatrix as FloatMatrix_2 } from '@lib/types/matrix/FloatMatrix';
 import { FloatVector as FloatVector_2 } from '@lib/types/vector/FloatVector';
-import { GradientDescentRegressor } from '@lib/applications/machine-learning/models/GradientDescentRegressor';
+import { GradientDescentParameters as GradientDescentParameters_2 } from '@lib/applications/machine-learning/GradientDescent';
+import { Kernel as Kernel_2 } from '@lib/applications/machine-learning/kernels/Kernel';
 import { LearningAlgorithm as LearningAlgorithm_2 } from '@lib/applications/machine-learning/LearningAlgorithm';
 import { LinearSolution } from '@lib/solvers/LinearSolution';
 import { LinearTransformation as LinearTransformation_2 } from '@lib/types/matrix/LinearTransformation';
@@ -25,6 +27,7 @@ import { MatrixShape as MatrixShape_2 } from '@lib/types/matrix/Matrix';
 import { NumberMatrix as NumberMatrix_2 } from '@lib/types/matrix/NumberMatrix';
 import { NumberOperations as NumberOperations_2 } from '@lib/types/scalar/NumberOperations';
 import { NumberVector as NumberVector_2 } from '@lib/types/vector/NumberVector';
+import { Regressor as Regressor_2 } from '@lib/applications/machine-learning/models/Regressor';
 import { ScalarOperations as ScalarOperations_2 } from '@lib/types/scalar/ScalarOperations';
 import { SparseMatrix as SparseMatrix_2 } from '@lib/types/matrix/SparseMatrix';
 import { SparseMatrixData as SparseMatrixData_2 } from '@lib/types/matrix/SparseMatrix';
@@ -130,6 +133,14 @@ export function centralDifferenceMatrix(binCount: number): NumberMatrix_2;
 export interface CholeskyDecomposition<S> {
     // (undocumented)
     L: Matrix_2<S>;
+}
+
+// @public
+export interface Classifier<H> {
+    getHyperParameters(): H;
+    predict(data: Matrix_2<number>, pThreshold: number): Vector_2<number>;
+    predictProbabilities(data: Matrix_2<number>): Vector_2<number>;
+    train(data: Matrix_2<number>, target: Vector_2<number>): void;
 }
 
 // @public
@@ -341,18 +352,19 @@ export function forwardDifferenceMatrix(binCount: number): NumberMatrix_2;
 export function frobeniusNorm<S>(A: Matrix_2<S>): number;
 
 // @public
+export function GaussianKernel(sigmaSquared: number): Kernel_2;
+
+// @public
 export function getEigenvectorForEigenvalue<S>(A: Matrix_2<S>, lambda: S): Vector_2<S>;
 
 // @public
 export function gradientDescent(parameters: Partial<GradientDescentParameters>): LearningAlgorithm_2;
 
 // @public
-export interface GradientDescentParameters {
-    // (undocumented)
+export type GradientDescentParameters = {
     alpha: number;
-    // (undocumented)
     maxIterations?: number;
-}
+};
 
 // @public
 export function inverse<S>(matrix: Matrix_2<S>): Matrix_2<S> | undefined;
@@ -387,6 +399,9 @@ export function isSymmetric<S>(matrix: Matrix_2<S>): boolean;
 export function isUpperTriangular<S>(matrix: Matrix_2<S>): boolean;
 
 // @public
+export type Kernel = (data: Matrix_2<number>, trainingData?: Matrix_2<number>) => Matrix_2<number>;
+
+// @public
 export type LearningAlgorithm = (initialTheta: Vector_2<number>, costFn: CostFunction) => Vector_2<number>;
 
 // @public
@@ -396,21 +411,21 @@ export interface LeastSquaresApproximation<S> {
 }
 
 // @public
-export class LinearRegressor extends GradientDescentRegressor<LinearRegressorHyperparams> {
-    // @internal
-    protected calculateCost(data: Matrix_2<number>, target: Vector_2<number>, theta: Vector_2<number>): number;
-    // @internal
-    protected calculateGradient(data: Matrix_2<number>, target: Vector_2<number>, theta: Vector_2<number>): Vector_2<number>;
-    // (undocumented)
-    protected getDefaultHyperParameters(): LinearRegressorHyperparams;
-    // @internal
-    protected makePredictions(data: Matrix_2<number>, theta: Vector_2<number>): Vector_2<number>;
+export function LinearKernel(data: Matrix_2<number>): Matrix_2<number>;
+
+// @public
+export class LinearRegressor implements Regressor_2<LinearRegressorHyperparams> {
+    constructor(hyperParameters: Partial<LinearRegressorHyperparams>);
+    getHyperParameters(): LinearRegressorHyperparams;
+    getParameters(): Vector_2<number> | undefined;
+    predict(data: Matrix_2<number>): Vector_2<number>;
+    train(data: Matrix_2<number>, target: Vector_2<number>): void;
 }
 
 // @public
-export interface LinearRegressorHyperparams {
+export type LinearRegressorHyperparams = GradientDescentParameters_2 & {
     lambda: number;
-}
+};
 
 // @public
 export interface LinearTransformation<V, U> {
@@ -419,6 +434,21 @@ export interface LinearTransformation<V, U> {
 
 // @public
 export function linspace(xMin: number, xMax: number, binCount: number): NumberVector_2;
+
+// @public
+export class LogisticRegressionClassifier implements Classifier_2<LogisticRegressionHyperparams> {
+    constructor(hyperParameters: Partial<LogisticRegressionHyperparams>);
+    getHyperParameters(): LogisticRegressionHyperparams;
+    getParameters(): Vector_2<number> | undefined;
+    predict(data: Matrix_2<number>): Vector_2<number>;
+    predictProbabilities(data: Matrix_2<number>): Vector_2<number>;
+    train(data: Matrix_2<number>, target: Vector_2<number>): void;
+}
+
+// @public
+export type LogisticRegressionHyperparams = GradientDescentParameters_2 & {
+    lambda: number;
+};
 
 // @public
 export interface LUDecomposition<S> {
@@ -624,6 +654,9 @@ export interface QRDecomposition<S> {
 }
 
 // @public
+export function RadialBasisFunction(distanceMetric: SimilarityMetric): Kernel_2;
+
+// @public
 export function rank<S>(matrix: Matrix_2<S>): number;
 
 // @public
@@ -633,7 +666,8 @@ export function reduceDimensions(A: Matrix_2<number>, options: DimensionReductio
 export function reducedRowEchelonForm<S>(matrix: Matrix_2<S>): Matrix_2<S>;
 
 // @public
-export interface Regressor {
+export interface Regressor<H> {
+    getHyperParameters(): H;
     predict(data: Matrix_2<number>): Vector_2<number>;
     train(data: Matrix_2<number>, target: Vector_2<number>): void;
 }
@@ -684,6 +718,9 @@ export abstract class ScalarOperations<S> {
     subtract(first: S, second: S): S;
     zero(): S;
 }
+
+// @public
+export type SimilarityMetric = (v1: Vector_2<number>, v2: Vector_2<number>) => number;
 
 // @public
 export interface SingularValueDecomposition<S> {
@@ -805,6 +842,22 @@ export function standardize<S>(A: Matrix_2<S>): Matrix_2<S>;
 
 // @public
 export function sumNorm<S>(v: Vector_2<S>): number;
+
+// @public
+export class SupportVectorMachineClassifier implements Classifier_2<SupportVectorMachineHyperparams> {
+    constructor(hyperParameters: Partial<SupportVectorMachineHyperparams>);
+    getHyperParameters(): SupportVectorMachineHyperparams;
+    getParameters(): Vector_2<number> | undefined;
+    predict(data: Matrix_2<number>): Vector_2<number>;
+    predictProbabilities(_data: Matrix_2<number>): Vector_2<number>;
+    train(data: Matrix_2<number>, target: Vector_2<number>): void;
+    }
+
+// @public
+export type SupportVectorMachineHyperparams = GradientDescentParameters_2 & {
+    C: number;
+    kernel: Kernel_2;
+};
 
 // @public
 export function supremumNorm<S>(v: Vector_2<S>): number;

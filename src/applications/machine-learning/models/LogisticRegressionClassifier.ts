@@ -1,13 +1,19 @@
 import { Matrix } from '@lib/types/matrix/Matrix';
 import { Vector } from '@lib/types/vector/Vector';
 import { sigmoid } from '@lib/utilities/NumberUtilities';
-import { GradientDescentClassifier } from '@lib/applications/machine-learning/models/GradientDescentClassifier';
+import {
+  GradientDescentParameters,
+  gradientDescent
+} from '@lib/applications/machine-learning/GradientDescent';
+import { Classifier } from '@lib/applications/machine-learning/models/Classifier';
+import { FloatVector } from '@lib/types/vector/FloatVector';
+import { LinearKernel } from '@lib/applications/machine-learning/kernels/LinearKernel';
 
 /**
  * The set of hyperparameters for a {@link LogisticRegressionClassifier}
  * @public
  */
-export interface LogisticRegressionHyperparams {
+export type LogisticRegressionHyperparams = GradientDescentParameters & {
   /**
    * A number whose value influences the penalty for large coefficients.
    * Large values of `lambda` correspond to highly regularized models,
@@ -16,53 +22,97 @@ export interface LogisticRegressionHyperparams {
    * and correct for underfitting.
    */
   lambda: number;
-}
+};
 
 /**
  * A {@link Classifier} model which uses logistic regression to predict a discrete target.
  * The optimal set of parameters is computed with gradient descent.
  * @public
  */
-export class LogisticRegressionClassifier extends GradientDescentClassifier<
-  LogisticRegressionHyperparams
-> {
-  /**
-   * Computes the predictions of a model with parameters `theta`
-   *
-   * @param data - The input data
-   * @param theta - The model parameters
-   *
-   * @internal
-   */
-  protected makePredictions(data: Matrix<number>, theta: Vector<number>): Vector<number> {
-    const vb = data.vectorBuilder();
-    return vb.map(this.augmentData(data).apply(theta), sigmoid);
+export class LogisticRegressionClassifier implements Classifier<LogisticRegressionHyperparams> {
+  private readonly _hyperParameters: Readonly<Partial<LogisticRegressionHyperparams>>;
+  private _theta: Vector<number> | undefined;
+
+  constructor(hyperParameters: Partial<LogisticRegressionHyperparams>) {
+    this._hyperParameters = Object.freeze(hyperParameters);
   }
 
   /**
-   * Computes the value of the cost function - in this case, a regularized log loss.
-   *
-   * @param data - The input data
-   * @param target - The true target values
-   * @param theta - The model parameters
-   *
-   * @internal
+   * Get the coefficients of the trained linear regression model, or
+   * `undefined` if the model has not been trained.
+   * @public
    */
-  protected calculateCost(
+  public getParameters(): Vector<number> | undefined {
+    return this._theta;
+  }
+
+  /**
+   * {@inheritDoc Classifier.getHyperParameters}
+   */
+  public getHyperParameters(): LogisticRegressionHyperparams {
+    return {
+      ...this.getDefaultHyperParameters(),
+      ...this._hyperParameters
+    };
+  }
+
+  /**
+   * {@inheritDoc Classifier.train}
+   */
+  public train(data: Matrix<number>, target: Vector<number>): void {
+    const initialTheta = FloatVector.builder().random(data.getNumberOfColumns() + 1, -0.01, 0.01);
+    this._theta = gradientDescent(this._hyperParameters)(initialTheta, theta => ({
+      cost: this.calculateCost(data, target, theta),
+      gradient: this.calculateGradient(data, target, theta)
+    }));
+  }
+
+  /**
+   * {@inheritDoc Classifier.predictProbabilities}
+   */
+  public predictProbabilities(data: Matrix<number>): Vector<number> {
+    if (!this._theta) throw new Error(`Cannot call predictProbabilities before train`);
+    return this.makeProbabilityPredictions(data, this._theta);
+  }
+
+  /**
+   * {@inheritDoc Classifier.predict}
+   */
+  public predict(data: Matrix<number>): Vector<number> {
+    if (!this._theta) throw new Error(`Cannot call predict before train`);
+    return this.makePredictions(data, this._theta);
+  }
+
+  private makePredictions(
+    data: Matrix<number>,
+    theta: Vector<number>,
+    threshold?: number
+  ): Vector<number> {
+    const probabilities = this.makeProbabilityPredictions(data, theta);
+    const vb = data.vectorBuilder();
+    return vb.map(probabilities, p => (p > (threshold || 0.5) ? 1 : 0));
+  }
+
+  private makeProbabilityPredictions(data: Matrix<number>, theta: Vector<number>): Vector<number> {
+    const vb = data.vectorBuilder();
+    return vb.map(LinearKernel(data).apply(theta), sigmoid);
+  }
+
+  private calculateCost(
     data: Matrix<number>,
     target: Vector<number>,
     theta: Vector<number>
   ): number {
     const { lambda } = this.getHyperParameters();
-    const predictions = this.makePredictions(data, theta);
+    const probabilities = this.makeProbabilityPredictions(data, theta);
 
-    const costs = predictions.builder().map(predictions, (pred, i) => {
+    const costs = probabilities.builder().map(probabilities, (pred, i) => {
       const actual = target.getEntry(i);
       if (actual > 0.5) {
-        // Event
+        // Event; actual === 1
         return -1 * Math.log(pred);
       } else {
-        // Nonevent
+        // Nonevent; actual === 0
         return -1 * Math.log(1 - pred);
       }
     });
@@ -72,21 +122,15 @@ export class LogisticRegressionClassifier extends GradientDescentClassifier<
 
     const penalty: (x: number) => number = x => x * x;
     const paramSum = theta.toArray().reduce((prev, curr) => penalty(prev) + curr, 0);
-    const regularizationTerm = (paramSum - penalty(theta.getEntry(0))) * lambda;
+    const regularizationTerm = paramSum - penalty(theta.getEntry(0));
 
-    return meanCost + regularizationTerm;
+    return meanCost + lambda * regularizationTerm;
   }
 
   /**
-   * Computes the gradient of the cost function with respect to the parameters `theta`.
-   *
-   * @param data - The input data
-   * @param target - The true target values
-   * @param theta - The model parameters
-   *
-   * @internal
+   * {@inheritDoc GradientDescentClassifier.calculateGradient}
    */
-  protected calculateGradient(
+  private calculateGradient(
     data: Matrix<number>,
     target: Vector<number>,
     theta: Vector<number>
@@ -94,10 +138,10 @@ export class LogisticRegressionClassifier extends GradientDescentClassifier<
     const m = data.getNumberOfRows();
     const { lambda } = this.getHyperParameters();
 
-    const predictions = this.makePredictions(data, theta);
+    const predictions = this.makeProbabilityPredictions(data, theta);
     const diff = predictions.add(target.scalarMultiply(-1));
 
-    const gradientTerm = this.augmentData(data)
+    const gradientTerm = LinearKernel(data)
       .transpose()
       .apply(diff)
       .scalarMultiply(1 / m);
@@ -107,15 +151,10 @@ export class LogisticRegressionClassifier extends GradientDescentClassifier<
     return gradientTerm.add(regularizationTerm);
   }
 
-  private augmentData(data: Matrix<number>): Matrix<number> {
-    const m = data.getNumberOfRows();
-    const ones = data.builder().ones([m, 1]);
-    return data.builder().augment(ones, data);
-  }
-
-  protected getDefaultHyperParameters(): LogisticRegressionHyperparams {
+  private getDefaultHyperParameters(): LogisticRegressionHyperparams {
     return {
-      lambda: 0
+      lambda: 0,
+      alpha: 0.01
     };
   }
 }

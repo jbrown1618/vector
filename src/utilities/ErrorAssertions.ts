@@ -69,6 +69,21 @@ export function assertValidDimension(dimension: number, message?: string): void 
   }
 }
 
+export function assertMultiplicable(
+  first: Matrix<any>,
+  second: Matrix<any>,
+  message?: string
+): void {
+  message =
+    message ||
+    `Dimension mismatch: expected dimensions compatible with matrix multiplication; got ${shape(
+      first
+    )} and ${shape(second)}`;
+  if (first.getNumberOfColumns() !== second.getNumberOfRows()) {
+    throw Error(message);
+  }
+}
+
 /**
  * Throws an error if either dimension is negative, or if only one dimension is nonzero.
  */
@@ -129,8 +144,13 @@ export function assertDimensionMatch(
 ): void {
   const [m1, n1] = first.getShape();
   const [m2, n2] = second.getShape();
-  message = message || `Expected matching dimensions; got (${m1}x${n1}) and (${m2}x${n2})`;
+  message = message || `Expected matching dimensions; got ${shape(first)} and ${shape(second)}`;
   if (m1 !== m2 || n1 !== n2) {
     throw Error(message);
   }
+}
+
+function shape(matrix: Matrix<any>): string {
+  const [m, n] = matrix.getShape();
+  return `(${m}x${n})`;
 }

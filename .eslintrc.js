@@ -24,13 +24,15 @@ module.exports = {
       'error',
       { accessibility: 'explicit', overrides: { constructors: 'no-public' } }
     ],
-    '@typescript-eslint/no-unused-vars': ['error', { varsIgnorePattern: '_' }],
-    '@typescript-eslint/interface-name-prefix': [2, { prefixWithI: 'never' }],
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      { varsIgnorePattern: '^_', argsIgnorePattern: '^_' }
+    ],
+    '@typescript-eslint/interface-name-prefix': ['error', { prefixWithI: 'never' }],
     '@typescript-eslint/ban-ts-ignore': 'off',
     '@typescript-eslint/no-empty-function': 'off',
     '@typescript-eslint/no-use-before-define': 'off',
-    '@typescript-eslint/no-explicit-any': 'off',
-    
+    '@typescript-eslint/no-explicit-any': 'off'
   },
   overrides: [
     {

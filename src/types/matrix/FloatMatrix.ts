@@ -9,7 +9,8 @@ import { ScalarOperations } from '@lib/types/scalar/ScalarOperations';
 import {
   assertRectangular,
   assertValidMatrixIndex,
-  assertDimensionMatch
+  assertDimensionMatch,
+  assertMultiplicable
 } from '@lib/utilities/ErrorAssertions';
 import { Vector } from '@lib/types/vector/Vector';
 
@@ -303,9 +304,7 @@ export class FloatMatrix implements Matrix<number> {
    * {@inheritDoc Matrix.multiply}
    */
   public multiply(other: Matrix<number>): Matrix<number> {
-    if (this.getNumberOfColumns() !== other.getNumberOfRows()) {
-      throw new Error('Dimension mismatch');
-    }
+    assertMultiplicable(this, other);
 
     const thisRows = this.getRowVectors();
     const otherColumns = other.getColumnVectors();
