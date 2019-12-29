@@ -107,9 +107,21 @@ export class SupportVectorMachineClassifier implements Classifier<SupportVectorM
     const [m] = X.getShape();
 
     const scores = this.calculateScores(X, weights);
+
+    // 0 indicates 0-cost; we exceed the margin on the correct side
+    // 1 indicates a negative example which fails the margin condition
+    // -1 indicates a positive example fails the margin condition
+    //
+    // TODO: This can be solved a lot more elegantly with a generic rather than
+    // binary classifier.  This would allow us to have only 0 or 1 instead of this mess.
     const failsMarginCondition = scores.builder().fromArray(
       scores.toArray().map((score, i) => {
-        return cost(score, target.getEntry(i)) > 0 ? 1 : 0;
+        const y = target.getEntry(i);
+        const rowCost = cost(score, target.getEntry(i));
+
+        if (rowCost === 0) return 0;
+
+        return y === 0 ? 1 : -1;
       })
     );
 

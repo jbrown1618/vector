@@ -29,8 +29,7 @@ export function gradientDescent(parameters: Partial<GradientDescentParameters>):
     const zeros = theta.builder().zeros(theta.getDimension());
 
     while (i < maxIterations) {
-      const { gradient, cost } = costFn(theta);
-      console.debug(cost);
+      const { gradient } = costFn(theta);
       theta = theta.add(gradient.scalarMultiply(-alpha));
 
       if (gradient.equals(zeros)) break;
