@@ -8,10 +8,10 @@ import {
  * The parameters for {@link gradientDescent}
  * @public
  */
-export interface GradientDescentParameters {
+export type GradientDescentParameters = {
   alpha: number;
   maxIterations?: number;
-}
+};
 
 /**
  * Learns an optimal set of parameters `theta` using gradient descent

@@ -35,13 +35,20 @@ export class LogisticRegressionClassifier implements Classifier<LogisticRegressi
 
   constructor(hyperParameters: Partial<LogisticRegressionHyperparams>) {
     this._hyperParameters = Object.freeze(hyperParameters);
-    this._theta = undefined;
   }
 
+  /**
+   * Get the coefficients of the trained linear regression model, or
+   * `undefined` if the model has not been trained.
+   * @public
+   */
   public getParameters(): Vector<number> | undefined {
     return this._theta;
   }
 
+  /**
+   * {@inheritDoc Classifier.getHyperParameters}
+   */
   public getHyperParameters(): LogisticRegressionHyperparams {
     return {
       ...this.getDefaultHyperParameters(),
@@ -49,6 +56,9 @@ export class LogisticRegressionClassifier implements Classifier<LogisticRegressi
     };
   }
 
+  /**
+   * {@inheritDoc Classifier.train}
+   */
   public train(data: Matrix<number>, target: Vector<number>): void {
     const initialTheta = FloatVector.builder().random(data.getNumberOfColumns() + 1, -0.01, 0.01);
     this._theta = gradientDescent(this._hyperParameters)(initialTheta, theta => ({
@@ -57,11 +67,17 @@ export class LogisticRegressionClassifier implements Classifier<LogisticRegressi
     }));
   }
 
+  /**
+   * {@inheritDoc Classifier.predictProbabilities}
+   */
   public predictProbabilities(data: Matrix<number>): Vector<number> {
     if (!this._theta) throw new Error(`Cannot call predictProbabilities before train`);
     return this.makeProbabilityPredictions(data, this._theta);
   }
 
+  /**
+   * {@inheritDoc Classifier.predict}
+   */
   public predict(data: Matrix<number>): Vector<number> {
     if (!this._theta) throw new Error(`Cannot call predict before train`);
     return this.makePredictions(data, this._theta);

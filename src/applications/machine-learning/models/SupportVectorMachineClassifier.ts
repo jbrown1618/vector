@@ -24,7 +24,8 @@ export type SupportVectorMachineHyperparams = GradientDescentParameters & {
   C: number;
 
   /**
-   * TODO: docs
+   * A {@link Kernel} which preprocess the data and enables nonlinear decision
+   * boundaries.
    */
   kernel: Kernel;
 };
@@ -43,10 +44,18 @@ export class SupportVectorMachineClassifier implements Classifier<SupportVectorM
     this._hyperParameters = Object.freeze(hyperParameters);
   }
 
+  /**
+   * Get the weights of the trained SVM, or
+   * `undefined` if the model has not been trained.
+   * @public
+   */
   public getParameters(): Vector<number> | undefined {
     return this._weights;
   }
 
+  /**
+   * {@inheritDoc Classifier.train}
+   */
   public train(data: Matrix<number>, target: Vector<number>): void {
     const { kernel } = this.getHyperParameters();
 
@@ -60,10 +69,16 @@ export class SupportVectorMachineClassifier implements Classifier<SupportVectorM
     }));
   }
 
+  /**
+   * {@inheritDoc Classifier.predictProbabilities}
+   */
   public predictProbabilities(_data: Matrix<number>): Vector<number> {
     throw Error(`Probability predictions not implemented for SVM Classifier`);
   }
 
+  /**
+   * {@inheritDoc Classifier.predict}
+   */
   public predict(data: Matrix<number>): Vector<number> {
     if (!this._weights) throw new Error(`Cannot call predict before train`);
 
@@ -73,6 +88,9 @@ export class SupportVectorMachineClassifier implements Classifier<SupportVectorM
     return this.makePredictions(X, this._weights);
   }
 
+  /**
+   * {@inheritDoc Classifier.getHyperParameters}
+   */
   public getHyperParameters(): SupportVectorMachineHyperparams {
     return {
       ...this.getDefaultHyperParameters(),

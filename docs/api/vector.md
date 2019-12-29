@@ -17,6 +17,7 @@
 |  [FloatMatrix](./vector.floatmatrix.md) | A dense matrix of JavaScript <code>number</code> primitives, implemented as a column-major <code>Float64Array</code> |
 |  [FloatVector](./vector.floatvector.md) | A dense [Vector](./vector.vector.md) of <code>number</code>s implemented as a <code>Float64Array</code> |
 |  [LinearRegressor](./vector.linearregressor.md) | A [Regressor](./vector.regressor.md) model which uses an ordinary least squares model with regularization to predict a continuous target. The optimal set of parameters is computed with gradient descent. |
+|  [LogisticRegressionClassifier](./vector.logisticregressionclassifier.md) | A [Classifier](./vector.classifier.md) model which uses logistic regression to predict a discrete target. The optimal set of parameters is computed with gradient descent. |
 |  [MatrixBuilder](./vector.matrixbuilder.md) | Provides methods for constructing [Matrices](./vector.matrix.md) of a given type |
 |  [NumberMatrix](./vector.numbermatrix.md) | A dense matrix of JavaScript <code>number</code> primitives, implemented as an [ArrayMatrix](./vector.arraymatrix.md) |
 |  [NumberOperations](./vector.numberoperations.md) | Implements the basic [ScalarOperations](./vector.scalaroperations.md) on <code>number</code>s |
@@ -27,6 +28,7 @@
 |  [SparseNumberMatrix](./vector.sparsenumbermatrix.md) | A [Matrix](./vector.matrix.md) implemented as a sparse set of JS <code>number</code> primitives keyed by their indices. |
 |  [SparseNumberVector](./vector.sparsenumbervector.md) | A [Vector](./vector.vector.md) implemented as a sparse set of JS <code>number</code> primitives keyed by their indices. |
 |  [SparseVector](./vector.sparsevector.md) | Implements [Vector](./vector.vector.md) as a map of indices to nonzero values. |
+|  [SupportVectorMachineClassifier](./vector.supportvectormachineclassifier.md) | A [Classifier](./vector.classifier.md) model which uses logistic regression to predict a discrete target. The optimal set of parameters is computed with gradient descent. |
 |  [VectorBuilder](./vector.vectorbuilder.md) | Provides methods for constructing [Vector](./vector.vector.md)<!-- -->s of a given type |
 
 ## Functions
@@ -59,6 +61,7 @@
 |  [eye(size)](./vector.eye.md) | Creates a new identity matrix of size <code>size</code>. See [MatrixBuilder.identity()](./vector.matrixbuilder.identity.md) |
 |  [forwardDifferenceMatrix(binCount)](./vector.forwarddifferencematrix.md) | Builds a matrix that transforms a vector to a vector of forward differences |
 |  [frobeniusNorm(A)](./vector.frobeniusnorm.md) | Calculates the Frobenius Norm of a matrix <code>A</code> |
+|  [GaussianKernel(sigmaSquared)](./vector.gaussiankernel.md) | Creates a gaussian [Kernel](./vector.kernel.md) for use in a [SupportVectorMachineClassifier](./vector.supportvectormachineclassifier.md)<!-- -->. The gaussian kernel converts a data [Matrix](./vector.matrix.md) into a similarity <code>Matrix</code> where the value of entry (i,j) expresses the similarity of rows i and j in the original data set. |
 |  [getEigenvectorForEigenvalue(A, lambda)](./vector.geteigenvectorforeigenvalue.md) | Given a matrix <code>A</code> and an eigenvalue <code>lambda</code> of that matrix, returns the eigenvector of <code>A</code> corresponding to <code>lambda</code> |
 |  [gradientDescent(parameters)](./vector.gradientdescent.md) | Learns an optimal set of parameters <code>theta</code> using gradient descent |
 |  [inverse(matrix)](./vector.inverse.md) | Uses Gauss-Jordan elimination with pivoting to calculate the inverse of a matrix. |
@@ -70,6 +73,7 @@
 |  [isSquare(matrix)](./vector.issquare.md) | Tests if a matrix is square. |
 |  [isSymmetric(matrix)](./vector.issymmetric.md) | Tests if a matrix is symmetric. |
 |  [isUpperTriangular(matrix)](./vector.isuppertriangular.md) | Tests if a matrix is upper-triangular. |
+|  [LinearKernel(data)](./vector.linearkernel.md) | A linear kernel for use in a [SupportVectorMachineClassifier](./vector.supportvectormachineclassifier.md)<!-- -->. The linear kernel converts a data [Matrix](./vector.matrix.md) into a matrix which has been prepended with a column of all ones, representing the constant term in a linear model, or the bias term in an SVM. |
 |  [linspace(xMin, xMax, binCount)](./vector.linspace.md) | Builds a vector of <code>binCount</code> evenly spaced numbers between <code>xMin</code> (inclusive) and <code>xMax</code> (exclusive). |
 |  [mat(data)](./vector.mat.md) | Creates a new [Matrix](./vector.matrix.md) of numbers. See [MatrixBuilder.fromArray()](./vector.matrixbuilder.fromarray.md) |
 |  [mean(x)](./vector.mean.md) | Calculates the mean of the values in the vector <code>x</code> |
@@ -83,6 +87,7 @@
 |  [prettyPrint(num)](./vector.prettyprint.md) | Returns an easy-to-read string representing a <code>number</code> |
 |  [prettyPrint(vector)](./vector.prettyprint_1.md) | Returns an easy-to-read string representing the contents of a [Vector](./vector.vector.md) |
 |  [prettyPrint(matrix)](./vector.prettyprint_2.md) | Returns an easy-to-read string representing the contents of a [Matrix](./vector.matrix.md) |
+|  [RadialBasisFunction(distanceMetric)](./vector.radialbasisfunction.md) | Creates a [Kernel](./vector.kernel.md) for use in a [SupportVectorMachineClassifier](./vector.supportvectormachineclassifier.md)<!-- -->. The RBF kernel converts a data [Matrix](./vector.matrix.md) into a similarity <code>Matrix</code> where the value of entry (i,j) expresses the similarity of rows i and j in the original data set. |
 |  [rank(matrix)](./vector.rank.md) | Calculates the rank of a matrix |
 |  [reduceDimensions(A, options)](./vector.reducedimensions.md) | Reduce the number of dimensions of a data matrix <code>A</code> while losing as little information as possible. |
 |  [reducedRowEchelonForm(matrix)](./vector.reducedrowechelonform.md) | Uses Gauss-Jordan elimination with pivoting to convert a matrix to Reduced Row-Echelon Form (RREF) |
@@ -108,11 +113,10 @@
 |  Interface | Description |
 |  --- | --- |
 |  [CholeskyDecomposition](./vector.choleskydecomposition.md) | The result of a Cholesky Decomposition |
+|  [Classifier](./vector.classifier.md) | A machine learning model with a continuous numeric target |
 |  [Cost](./vector.cost.md) | The output of a cost function |
 |  [EigenPair](./vector.eigenpair.md) | An eigenvector and its corresponding eigenvalue |
-|  [GradientDescentParameters](./vector.gradientdescentparameters.md) | The parameters for [gradientDescent()](./vector.gradientdescent.md) |
 |  [LeastSquaresApproximation](./vector.leastsquaresapproximation.md) | The result of a least squares approximation. |
-|  [LinearRegressorHyperparams](./vector.linearregressorhyperparams.md) | The set of hyperparameters for a [LinearRegressor](./vector.linearregressor.md) |
 |  [LinearTransformation](./vector.lineartransformation.md) | An abstract linear transformation between vectors of type <code>V</code> and vectors of type <code>U</code>. |
 |  [LUDecomposition](./vector.ludecomposition.md) | The result of an LU Decomposition |
 |  [Matrix](./vector.matrix.md) | A generalized Matrix - one of the core data types |
@@ -131,14 +135,20 @@
 |  [ApproximationFunctionTemplate](./vector.approximationfunctiontemplate.md) | A higher-order function which is used to generate an <code>ApproximationFunction</code>. This must be linear in its coefficients, or the result of the linear regression will not be correct. |
 |  [CostFunction](./vector.costfunction.md) | A function that evaluates the cost of a set of parameters <code>theta</code> |
 |  [DimensionReductionOptions](./vector.dimensionreductionoptions.md) | Specify how dimension reduction ought to be done. |
+|  [GradientDescentParameters](./vector.gradientdescentparameters.md) | The parameters for [gradientDescent()](./vector.gradientdescent.md) |
+|  [Kernel](./vector.kernel.md) | A function which takes a [Matrix](./vector.matrix.md) of data (and optionally another <code>Matrix</code> of data on which the kernel was trained) and returns a new <code>Matrix</code> which will be used to train a machine learning model.<!-- -->Generally intended for use with a [SupportVectorMachineClassifier](./vector.supportvectormachineclassifier.md)<!-- -->. |
 |  [LearningAlgorithm](./vector.learningalgorithm.md) | An function which, given an initial value of <code>theta</code> and a CostFunction, will compute the optimal value of <code>theta</code> |
+|  [LinearRegressorHyperparams](./vector.linearregressorhyperparams.md) | The set of hyperparameters for a [LinearRegressor](./vector.linearregressor.md) |
+|  [LogisticRegressionHyperparams](./vector.logisticregressionhyperparams.md) | The set of hyperparameters for a [LogisticRegressionClassifier](./vector.logisticregressionclassifier.md) |
 |  [MatrixData](./vector.matrixdata.md) | The data stored in a [Matrix](./vector.matrix.md) represented as a 2-D array |
 |  [MatrixEntryCallback](./vector.matrixentrycallback.md) | A function to execute on an entry in a matrix |
 |  [MatrixEntryFunction](./vector.matrixentryfunction.md) | A function that generates a matrix entry based on an existing entry <code>entry</code>, its row index <code>i</code>, and its column index <code>j</code> |
 |  [MatrixIndexFunction](./vector.matrixindexfunction.md) | A function that generates a matrix entry based on its row index <code>i</code> and column index <code>j</code> |
 |  [MatrixShape](./vector.matrixshape.md) | A tuple representing the shape of a [Matrix](./vector.matrix.md)<!-- -->. The first entry is the number of rows, and the second entry is the number of columns. |
+|  [SimilarityMetric](./vector.similaritymetric.md) | A function which expresses the similarity of two [Vector](./vector.vector.md)<!-- -->s as a number between 0 (very dissimilar) and 1 (identical). |
 |  [SparseMatrixData](./vector.sparsematrixdata.md) | The data stored in a [Matrix](./vector.matrix.md) represented as a map |
 |  [SparseVectorData](./vector.sparsevectordata.md) | The data stored in a [Vector](./vector.vector.md) represented as a map |
+|  [SupportVectorMachineHyperparams](./vector.supportvectormachinehyperparams.md) | The set of hyperparameters for a [SupportVectorMachineClassifier](./vector.supportvectormachineclassifier.md) |
 |  [VectorData](./vector.vectordata.md) | The data stored in a [Vector](./vector.vector.md) represented as a map |
 |  [VectorEntryFunction](./vector.vectorentryfunction.md) | A function that generates a vector entry based on an existing entry and its index |
 |  [VectorIndexFunction](./vector.vectorindexfunction.md) | A function that generates a vector entry based on its index |

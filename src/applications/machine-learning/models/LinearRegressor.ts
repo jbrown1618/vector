@@ -38,10 +38,18 @@ export class LinearRegressor implements Regressor<LinearRegressorHyperparams> {
     this._theta = undefined;
   }
 
+  /**
+   * Get the coefficients of the trained linear regression model, or
+   * `undefined` if the model has not been trained.
+   * @public
+   */
   public getParameters(): Vector<number> | undefined {
     return this._theta;
   }
 
+  /**
+   * {@inheritDoc Regressor.getHyperParameters}
+   */
   public getHyperParameters(): LinearRegressorHyperparams {
     return {
       ...this.getDefaultHyperParameters(),
@@ -49,6 +57,9 @@ export class LinearRegressor implements Regressor<LinearRegressorHyperparams> {
     };
   }
 
+  /**
+   * {@inheritDoc Regressor.train}
+   */
   public train(data: Matrix<number>, target: Vector<number>): void {
     const initialTheta = FloatVector.builder().random(data.getNumberOfColumns() + 1, -0.01, 0.01);
     this._theta = gradientDescent(this._hyperParameters)(initialTheta, theta => ({
@@ -57,14 +68,14 @@ export class LinearRegressor implements Regressor<LinearRegressorHyperparams> {
     }));
   }
 
+  /**
+   * {@inheritDoc Regressor.predict}
+   */
   public predict(data: Matrix<number>): Vector<number> {
     if (!this._theta) throw new Error(`Cannot call predict before train`);
     return this.makePredictions(data, this._theta);
   }
 
-  /**
-   * {@inheritDoc GradientDescentRegressor.calculateCost}
-   */
   private calculateCost(
     data: Matrix<number>,
     target: Vector<number>,
@@ -84,9 +95,6 @@ export class LinearRegressor implements Regressor<LinearRegressorHyperparams> {
     return meanSquaredError + regularizationTerm;
   }
 
-  /**
-   * {@inheritDoc GradientDescentRegressor.calculateGradient}
-   */
   private calculateGradient(
     data: Matrix<number>,
     target: Vector<number>,

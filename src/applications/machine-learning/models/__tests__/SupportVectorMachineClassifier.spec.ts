@@ -1,6 +1,7 @@
 import { loadTestData } from '@test-utils/testData';
 import { SupportVectorMachineClassifier } from '@lib/applications/machine-learning/models/SupportVectorMachineClassifier';
 import { GaussianKernel } from '@lib/applications/machine-learning/kernels/GaussianKernel';
+import { mat } from '@lib/utilities/aliases';
 
 describe('SupportVectorMachineClassifier', () => {
   describe('with a linear kernel', () => {
@@ -62,5 +63,9 @@ describe('SupportVectorMachineClassifier', () => {
       expect(accuracy).toBeGreaterThan(0.99);
       expect(cls.getParameters()?.toArray()).toHaveLength(151);
     });
+  });
+
+  it('cannot predict probabilities', () => {
+    expect(() => new SupportVectorMachineClassifier({}).predictProbabilities(mat([]))).toThrow();
   });
 });
