@@ -4,33 +4,30 @@ A linear algebra library written in TypeScript that focuses on generality, exten
 
 ## Features
 
-- Basic manipulation of vectors and matrices
-- Out-of-the-box support for `number` and `ComplexNumber`
-- Extensible to support general scalar types
-- Matrix determinants
-- Matrix exponentials
-- Elementary row operations
-- Gauss-Jordan elimination
+- Core:
+  - Basic manipulation of vectors and matrices
+  - Out-of-the-box support for `number` and `ComplexNumber`
+  - Extensible to support general scalar types
+- Matrix Operations:
+  - Matrix determinants
+  - Matrix exponentials
+  - Elementary row operations
+  - Gauss-Jordan elimination
+  - Eigenvalue / Eigenvector finding
 - Matrix Factorizations:
   - Cholesky Decomposition
   - LU Decomposition
   - QR Decomposition
   - Singular Value Decomposition
-- Differentiation via finite differences
-- Least-Squares Regression for arbitrary model functions
-- Eigenvalue / Eigenvector finding
-- Principal component analysis
+- Applications:
+  - Calculus: Differentiation via finite differences
+  - Statistics: Least-Squares Regression for arbitrary model functions
+  - Statistics: Principal component analysis
+- Machine learning models
+  - Regularized linear regression
+  - Logistic Regression
+  - Support Vector Machines
 - And more to come!
-
-## Design Priorities
-
-- Generality
-- Extensibility
-- Ease of use
-- Immutability
-
-Notably absent from this list is performance. Better solutions (and languages)
-exist for performing heavy linear algebra computations.
 
 ## Using Vector
 

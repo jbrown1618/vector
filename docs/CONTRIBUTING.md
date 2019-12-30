@@ -14,11 +14,25 @@ npm i
 npm test
 ```
 
+## Pull Requests
+
+Pull requests are very welcome.
+To keep things organized, here are some things you should include in a PR:
+
+- Reference a specific issue. If an issue does not exist for the problem you're
+  trying to solve, [create one!](https://github.com/jbrown1618/vector/issues)
+- Describe your general approach to solving the problem, and any alternate approaches you considered.
+- Call out the most important changed files - this will make reviewing your code much easier.
+- Pass CI. This means documenting all exported functions and public methods, and writing
+  appropriate unit tests. You can run the same set of checks as our CI build with `npm run ci`.
+- Don't forget to include any new files in `index.ts`!
+
 ## Coding Standards
 
 ### Formatting
 
-All code must be formatted with [Prettier](https://prettier.io/).
+All code must be formatted with [Prettier](https://prettier.io/)
+and linted with [eslint](https://eslint.org/).
 This will happen automatically every time you commit.
 
 ### Naming
@@ -27,7 +41,9 @@ This will happen automatically every time you commit.
   - Exception: accept short names only to match well-known libraries
     (e.g. `linspace` matches NumPy and MATLAB/Octave)
   - Exception: accept short names to adhere to mathematical convention
-    (e.g. `A` is a good name for a generic matrix when solving a system _Ax = b_)
+    (e.g. `A` is a good name for a generic matrix when solving a system _Ax = b_,
+    `i` and `j` are good names for matrix indices,
+    and `m` and `n` are good names for matrix dimensions)
 - Prefix private member variables with an underscore
   - JavaScript consumers do not have the compiler to tell them they shouldn't be using the private
     part of your class.
@@ -44,11 +60,11 @@ You can run the unit tests with:
 npm run test
 ```
 
-Our tests are written in [Jest](https://jestjs.io/).
+Our tests are written with [Jest](https://jestjs.io/).
 
 - The test file for `MyModule.ts` must be named `MyModule.spec.ts`.
 - `describe` blocks should be named according to the name of a module, class, or function.
-- Nesting describe blocks is encouraged; it makes the testing results easier to read.
+- Nesting describe blocks is encouraged; it makes the testing results (arguably) easier to read.
 
 ```javascript
 describe('MyModule', () => {
@@ -76,12 +92,8 @@ You can inspect the current test coverage by running:
 npm run coverage && open ./coverage/index.html
 ```
 
-Merge requests will only be accepted if the coverage check passes. You can check whether your branch
-passes the coverage thresholds by running:
-
-```
-npm run coverage:check
-```
+Merge requests will only be accepted if the coverage check passes.
+`npm run coverage` will fail if your branch does not pass the current thresholds.
 
 ### Documentation
 
