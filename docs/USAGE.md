@@ -43,7 +43,7 @@ or if you want to use one of the less-common matrix generation functions.
 You can get one from one of the matrix or vector implementation classes above.
 
 ```typescript
-import { SparseNumberMatrix, SparseNumberVector } from `@josh-brown/vector`;
+import { SparseNumberMatrix, SparseNumberVector } from '@josh-brown/vector';
 
 const vectorBuilder = SparseNumberVector.builder();
 const matrixBuilder = SparseNumberMatrix.builder();
@@ -99,10 +99,13 @@ import {
   calculateLinearLeastSquaresApproximation
 } from '@josh-brown/vector';
 
+const vb = FloatVector.builder();
+const mb = FloatMatrix.builder();
+
 const slope = 4;
-const intercept = FloatVector.builder().fill(3, 1000);
-const horizontalJitter = FloatVector.randomNormal(1000, 0, 1);
-const verticalJitter = FloatVector.randomNormal(1000, 0, 10);
+const intercept = vb.fill(3, 1000);
+const horizontalJitter = vb.randomNormal(1000, 0, 1);
+const verticalJitter = vb.randomNormal(1000, 0, 10);
 
 // Generate approximately-linear test data
 const x = linspace(0, 100, 0.1).add(horizontalJitter);
@@ -112,7 +115,7 @@ const y = x
   .add(verticalJitter);
 
 // Convert from the vectors of input/output to an array of vectors [xi, yi]
-const dataPoints = FloatMatrix.fromColumnVectors([x, y]).getRowVectors();
+const dataPoints = mb.fromColumnVectors([x, y]).getRowVectors();
 const approximation = calculateLinearLeastSquaresApproximation(dataPoints);
 
 const coefficients = approximation.coefficients;
