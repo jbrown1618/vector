@@ -2,7 +2,7 @@ import { StaticImplements } from '@lib/utilities/StaticImplements';
 import { NumberOperations } from '@lib/types/scalar/NumberOperations';
 import { FloatVector } from '@lib/types/vector/FloatVector';
 import { VectorBuilder } from '@lib/types/vector/VectorBuilder';
-import { Matrix, MatrixEntryCallback, MatrixShape } from '@lib/types/matrix/Matrix';
+import { Matrix, MatrixShape } from '@lib/types/matrix/Matrix';
 import { MatrixConstructor, MatrixData } from '@lib/types/matrix/Matrix';
 import { MatrixBuilder } from '@lib/types/matrix/MatrixBuilder';
 import { ScalarOperations } from '@lib/types/scalar/ScalarOperations';
@@ -224,7 +224,7 @@ export class FloatMatrix implements Matrix<number> {
     const ops = this.ops();
     const zero = ops.zero();
     const sparseData: Map<number, Map<number, number>> = new Map();
-    this.forEachEntry((value, rowIndex, colIndex) => {
+    this.forEach((value, rowIndex, colIndex) => {
       if (ops.equals(zero, value)) {
         return;
       }
@@ -353,13 +353,26 @@ export class FloatMatrix implements Matrix<number> {
   }
 
   /**
-   * {@inheritDoc Matrix.forEachEntry}
+   * {@inheritDoc Matrix.forEach}
    */
-  public forEachEntry(cb: MatrixEntryCallback<number>): void {
+  public forEach(cb: (entry: number, rowIndex: number, columnIndex: number) => void): void {
     this._data.forEach((value, index) => {
       const [i, j] = this.getIndices(index);
       cb(value, i, j);
     });
+  }
+
+  /**
+   * {@inheritDoc Matrix.map}
+   */
+  public map(
+    entryFunction: (entry: number, rowIndex: number, columnIndex: number) => number
+  ): Matrix<number> {
+    const newData = this._data.map((value, arrIndex) => {
+      const [i, j] = this.getIndices(arrIndex);
+      return entryFunction(value, i, j);
+    });
+    return new FloatMatrix(newData, this.getShape());
   }
 
   private getArrayIndex(i: number, j: number): number {

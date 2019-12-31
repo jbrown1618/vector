@@ -119,6 +119,51 @@ export interface Vector<S> {
   outerProduct(other: Vector<S>): Matrix<S>;
 
   /**
+   * Executes the `callback` function for each entry in the vector.
+   * @param callback - The function to execute for each entry
+   * @public
+   */
+  forEach(callback: (entry: S, index: number) => void): void;
+
+  /**
+   * Constructs a vector by transforming the values of another vector.
+   *
+   * @example
+   * ```
+   * const original = vectorBuilder.fromValues(1, 2, 3, 4);
+   *
+   * const originalPlusOne = original.map(value => value + 1);
+   * // [2, 3, 4, 5]
+   *
+   * const originalPlusIndex = original.map((value, index) => value + index);
+   * // [1, 3, 5, 7]
+   * ```
+   * @param valueFromEntry - A function which takes an entry of
+   *     the original vector and its index, and returns the corresponding entry of the new vector
+   * @returns The new vector
+   * @public
+   */
+  map(valueFromEntry: (entry: S, index: number) => S): Vector<S>;
+
+  /**
+   * Constructs a vector by combining the values of two other vectors
+   *
+   * @example
+   * ```
+   * const first = vec([1, 2, 3]);
+   * const second = vec([2, 3, 4]);
+   *
+   * const combined = first.combine(second, (a, b) => a * b);
+   * // [2, 6, 12]
+   * ```
+   * @param other - The vector with which to combine this one
+   * @param combineEntries - A function which takes an entry from each vector and returns a new entry
+   * @returns The new vector
+   * @public
+   */
+  combine(other: Vector<S>, combineEntries: (a: S, b: S) => S): Vector<S>;
+
+  /**
    * Returns the dimension of the vector
    * @returns The dimension
    * @public

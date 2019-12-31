@@ -104,7 +104,7 @@ export function supremumNorm<S>(v: Vector<S>): number {
   }
 
   const ops = v.ops();
-  const entries: number[] = v.toArray().map(ops.norm);
+  const entries = v.toArray().map(ops.norm);
 
   let max: number | undefined;
   entries.forEach(entry => {

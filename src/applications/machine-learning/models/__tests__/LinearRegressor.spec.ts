@@ -17,15 +17,12 @@ describe('LinearRegressor', () => {
     const trueParams = [-0.4083333333333, 0.736666666666, 2.541666666666];
 
     reg.train(xTrain, yTrain);
-    reg
-      .getParameters()!
-      .toArray()
-      .forEach((param, i) => {
-        expect(param - trueParams[i]).toBeLessThan(0.00001);
-      });
+    reg.getParameters()!.forEach((param, i) => {
+      expect(param - trueParams[i]).toBeLessThan(0.00001);
+    });
 
     let predictions = reg.predict(xTrain);
-    predictions.toArray().forEach((pred, i) => {
+    predictions.forEach((pred, i) => {
       expect(pred - yTrain.getEntry(i)).toBeLessThan(1);
     });
 
@@ -36,7 +33,7 @@ describe('LinearRegressor', () => {
     ]);
     const yVal = vec([2.87, 5.41, 22.87]);
     predictions = reg.predict(xVal);
-    predictions.toArray().forEach((pred, i) => {
+    predictions.forEach((pred, i) => {
       expect(pred - yVal.getEntry(i)).toBeLessThan(1);
     });
   });

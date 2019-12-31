@@ -7,7 +7,7 @@ import {
 import { ScalarOperations } from '@lib/types/scalar/ScalarOperations';
 import { Vector, VectorData } from '@lib/types/vector/Vector';
 import { VectorBuilder } from '@lib/types/vector/VectorBuilder';
-import { Matrix, MatrixData, MatrixShape, MatrixEntryCallback } from '@lib/types/matrix/Matrix';
+import { Matrix, MatrixData, MatrixShape } from '@lib/types/matrix/Matrix';
 import { MatrixBuilder } from '@lib/types/matrix/MatrixBuilder';
 
 /**
@@ -61,15 +61,8 @@ export abstract class ArrayMatrix<S> implements Matrix<S> {
    * {@inheritDoc Matrix.adjoint}
    */
   public adjoint(): Matrix<S> {
-    const transposedData = this.transpose().toArray();
-    const adjointData: S[][] = [];
-    transposedData.forEach((row, i) => {
-      adjointData[i] = [];
-      row.forEach((entry: S, j: number) => {
-        adjointData[i][j] = this.ops().conjugate(entry);
-      });
-    });
-    return this.builder().fromArray(adjointData);
+    const ops = this.ops();
+    return this.transpose().map(e => ops.conjugate(e));
   }
 
   /**
@@ -149,7 +142,7 @@ export abstract class ArrayMatrix<S> implements Matrix<S> {
     const ops = this.ops();
     const zero = ops.zero();
     const sparseData: Map<number, Map<number, S>> = new Map();
-    this.forEachEntry((value, rowIndex, colIndex) => {
+    this.forEach((value, rowIndex, colIndex) => {
       if (ops.equals(zero, value)) {
         return;
       }
@@ -251,13 +244,23 @@ export abstract class ArrayMatrix<S> implements Matrix<S> {
   }
 
   /**
-   * {@inheritDoc Matrix.forEachEntry}
+   * {@inheritDoc Matrix.forEach}
    */
-  public forEachEntry(cb: MatrixEntryCallback<S>): void {
+  public forEach(cb: (value: S, i: number, j: number) => void): void {
     this.getRowVectors().forEach((row, i) => {
-      row.toArray().forEach((entry, j) => {
+      row.forEach((entry, j) => {
         cb(entry, i, j);
       });
     });
+  }
+
+  /**
+   * {@inheritDoc Matrix.map}
+   */
+  public map(entryFunction: (entry: S, rowIndex: number, columnIndex: number) => S): Matrix<S> {
+    const newRows = this.getRowVectors().map((row, rowIndex) =>
+      row.map((entry, colIndex) => entryFunction(entry, rowIndex, colIndex))
+    );
+    return this.builder().fromRowVectors(newRows);
   }
 }

@@ -27,7 +27,7 @@ The constructor for this class is marked as internal. Third-party code should no
 |  [apply(vector)](./vector.arraymatrix.apply.md) |  | Applies the matrix as a linear transformation to the given vector. Implements matrix-vector multiplication. |
 |  [builder()](./vector.arraymatrix.builder.md) |  | Returns a [MatrixBuilder](./vector.matrixbuilder.md) which will build new matrices of the same type |
 |  [equals(other)](./vector.arraymatrix.equals.md) |  | Tests if two matrices are equal |
-|  [forEachEntry(cb)](./vector.arraymatrix.foreachentry.md) |  | Executes the <code>callback</code> function for each entry in the matrix. |
+|  [forEach(cb)](./vector.arraymatrix.foreach.md) |  | Executes the <code>callback</code> function for each entry in the matrix. |
 |  [getColumn(j)](./vector.arraymatrix.getcolumn.md) |  | Returns a vector corresponding to the column at index <code>columnIndex</code> |
 |  [getColumnVectors()](./vector.arraymatrix.getcolumnvectors.md) |  | An array of vectors corresponding to the columns of the matrix |
 |  [getDiagonal()](./vector.arraymatrix.getdiagonal.md) |  | Returns a vector containing the elements of the main diagonal of the matrix |
@@ -38,6 +38,7 @@ The constructor for this class is marked as internal. Third-party code should no
 |  [getRowVectors()](./vector.arraymatrix.getrowvectors.md) |  | Returns an array of vectors corresponding to the rows of the matrix |
 |  [getShape()](./vector.arraymatrix.getshape.md) |  | Returns a tuple representing the dimensions of the matrix. The first entry is the number of rows, and the second entry is the number of columns. |
 |  [getSparseData()](./vector.arraymatrix.getsparsedata.md) |  | Returns the contents of the matrix as a nested map of rowIndex to columnIndex to nonzero value |
+|  [map(entryFunction)](./vector.arraymatrix.map.md) |  | Builds a matrix by transforming the values of another matrix. |
 |  [multiply(other)](./vector.arraymatrix.multiply.md) |  | Implements matrix multiplication |
 |  [ops()](./vector.arraymatrix.ops.md) |  | Returns a [ScalarOperations](./vector.scalaroperations.md) object which will allow consumers to work generically with the scalars contained in the vector. |
 |  [scalarMultiply(scalar)](./vector.arraymatrix.scalarmultiply.md) |  | Implements multiplication of a matrix by a scalar |

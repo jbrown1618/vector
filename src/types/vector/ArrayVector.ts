@@ -1,9 +1,9 @@
 import { assertHomogeneous, assertValidVectorIndex } from '@lib/utilities/ErrorAssertions';
-import { Matrix } from '@lib/types/matrix/Matrix';
 import { MatrixBuilder } from '@lib/types/matrix/MatrixBuilder';
 import { ScalarOperations } from '@lib/types/scalar/ScalarOperations';
 import { Vector, VectorData } from '@lib/types/vector/Vector';
 import { VectorBuilder } from '@lib/types/vector/VectorBuilder';
+import { Matrix } from '@lib/types/matrix/Matrix';
 
 /**
  * Implements {@link Vector} with an array of values.
@@ -64,11 +64,7 @@ export abstract class ArrayVector<S> implements Vector<S> {
   public add(other: Vector<S>): Vector<S> {
     assertHomogeneous([this, other]);
 
-    const newData = this.toArray().map((entry, index) =>
-      this.ops().add(entry, other.getEntry(index))
-    );
-
-    return this.builder().fromArray(newData);
+    return this.map((entry, index) => this.ops().add(entry, other.getEntry(index)));
   }
 
   /**
@@ -107,9 +103,9 @@ export abstract class ArrayVector<S> implements Vector<S> {
       return this.matrixBuilder().fromArray(matrixData);
     }
 
-    this.toArray().forEach((thisValue, rowIndex) => {
+    this.forEach((thisValue, rowIndex) => {
       matrixData[rowIndex] = [];
-      other.toArray().forEach((otherValue, columnIndex) => {
+      other.forEach((otherValue, columnIndex) => {
         matrixData[rowIndex][columnIndex] = this.ops().multiply(thisValue, otherValue);
       });
     });
@@ -135,9 +131,7 @@ export abstract class ArrayVector<S> implements Vector<S> {
    * {@inheritDoc Vector.scalarMultiply}
    */
   public scalarMultiply(scalar: S): Vector<S> {
-    return this.builder().fromArray(
-      this.toArray().map(entry => this.ops().multiply(entry, scalar))
-    );
+    return this.map(entry => this.ops().multiply(entry, scalar));
   }
 
   /**
@@ -155,7 +149,7 @@ export abstract class ArrayVector<S> implements Vector<S> {
     const zero = ops.zero();
 
     const sparseData: Map<number, S> = new Map();
-    this.toArray().forEach((value, index) => {
+    this.forEach((value, index) => {
       if (!ops.equals(zero, value)) {
         sparseData.set(index, value);
       }
@@ -169,5 +163,27 @@ export abstract class ArrayVector<S> implements Vector<S> {
    */
   public getDimension(): number {
     return this._data.length;
+  }
+
+  /**
+   * {@inheritDoc Vector.getDimension}
+   */
+  public forEach(callback: (entry: S, index: number) => void): void {
+    this._data.forEach(callback);
+  }
+
+  /**
+   * {@inheritDoc Vector.getDimension}
+   */
+  public map(valueFromEntry: (entry: S, index: number) => S): Vector<S> {
+    return this.builder().fromArray(this._data.map(valueFromEntry));
+  }
+
+  /**
+   * {@inheritDoc Vector.getDimension}
+   */
+  public combine(other: Vector<S>, combineEntries: (entry1: S, entry2: S) => S): Vector<S> {
+    assertHomogeneous([this, other]);
+    return this.map((entry, index) => combineEntries(entry, other.getEntry(index)));
   }
 }

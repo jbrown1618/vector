@@ -444,12 +444,32 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
       });
     });
 
-    describe('forEachEntry', () => {
+    describe('forEach', () => {
       test('runs a function for each entry in the matrix', () => {
         let numCalls = 0;
         const A = builder.zeros([6, 7]);
-        A.forEachEntry(() => ++numCalls);
+        A.forEach(() => ++numCalls);
         expect(numCalls).toEqual(6 * 7);
+      });
+    });
+
+    describe('map', () => {
+      test('builds a matrix by transforming the values of another matrix', () => {
+        const original = builder.fromArray([
+          [1, 2, 3],
+          [4, 5, 6]
+        ]);
+        const mapped = original.map((entry, i, j) => entry + i - j);
+        const expected = builder.fromArray([
+          [1, 1, 1],
+          [5, 5, 5]
+        ]);
+
+        expect(mapped).toStrictEqual(expected);
+      });
+
+      test('handles an empty matrix', () => {
+        expect(builder.empty().map(() => 1)).toStrictEqual(builder.empty());
       });
     });
   });

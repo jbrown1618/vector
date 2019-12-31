@@ -24,11 +24,14 @@ The constructor for this class is marked as internal. Third-party code should no
 |  --- | --- | --- |
 |  [add(other)](./vector.arrayvector.add.md) |  | Implements vector addition |
 |  [builder()](./vector.arrayvector.builder.md) |  | Returns a [VectorBuilder](./vector.vectorbuilder.md) which will build new vectors of the same type |
+|  [combine(other, combineEntries)](./vector.arrayvector.combine.md) |  | Returns the dimension of the vector |
 |  [equals(other)](./vector.arrayvector.equals.md) |  | Tests if two vectors are equal |
+|  [forEach(callback)](./vector.arrayvector.foreach.md) |  | Returns the dimension of the vector |
 |  [getDimension()](./vector.arrayvector.getdimension.md) |  | Returns the dimension of the vector |
 |  [getEntry(index)](./vector.arrayvector.getentry.md) |  | Returns the entry of the matrix located at the provided index (<code>index</code>) |
 |  [getSparseData()](./vector.arrayvector.getsparsedata.md) |  | Returns the contents of the vector as a map of indices to nonzero values |
 |  [innerProduct(other)](./vector.arrayvector.innerproduct.md) |  | Implements the inner product (scalar product or dot product) of two vectors |
+|  [map(valueFromEntry)](./vector.arrayvector.map.md) |  | Returns the dimension of the vector |
 |  [matrixBuilder()](./vector.arrayvector.matrixbuilder.md) |  | Returns a [MatrixBuilder](./vector.matrixbuilder.md) which will build new matrices of a compatible type |
 |  [ops()](./vector.arrayvector.ops.md) |  | Returns a [ScalarOperations](./vector.scalaroperations.md) object which will allow consumers to work generically with the scalars contained in the vector. |
 |  [outerProduct(other)](./vector.arrayvector.outerproduct.md) |  | Implements the outer product (matrix product) of two vectors |

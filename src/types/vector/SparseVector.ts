@@ -231,4 +231,26 @@ export abstract class SparseVector<S> implements Vector<S> {
     });
     return this.matrixBuilder().fromSparseData([m, n], newData);
   }
+
+  /**
+   * {@inheritDoc Vector.getDimension}
+   */
+  public forEach(callback: (entry: S, index: number) => void): void {
+    this.toArray().forEach(callback);
+  }
+
+  /**
+   * {@inheritDoc Vector.getDimension}
+   */
+  public map(valueFromEntry: (entry: S, index: number) => S): Vector<S> {
+    return this.builder().fromArray(this.toArray().map(valueFromEntry));
+  }
+
+  /**
+   * {@inheritDoc Vector.getDimension}
+   */
+  public combine(other: Vector<S>, combineEntries: (a: S, b: S) => S): Vector<S> {
+    assertHomogeneous([this, other]);
+    return this.map((entry, index) => combineEntries(entry, other.getEntry(index)));
+  }
 }

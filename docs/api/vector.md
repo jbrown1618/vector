@@ -141,15 +141,12 @@
 |  [LinearRegressorHyperparams](./vector.linearregressorhyperparams.md) | The set of hyperparameters for a [LinearRegressor](./vector.linearregressor.md) |
 |  [LogisticRegressionHyperparams](./vector.logisticregressionhyperparams.md) | The set of hyperparameters for a [LogisticRegressionClassifier](./vector.logisticregressionclassifier.md) |
 |  [MatrixData](./vector.matrixdata.md) | The data stored in a [Matrix](./vector.matrix.md) represented as a 2-D array |
-|  [MatrixEntryCallback](./vector.matrixentrycallback.md) | A function to execute on an entry in a matrix |
 |  [MatrixEntryFunction](./vector.matrixentryfunction.md) | A function that generates a matrix entry based on an existing entry <code>entry</code>, its row index <code>i</code>, and its column index <code>j</code> |
-|  [MatrixIndexFunction](./vector.matrixindexfunction.md) | A function that generates a matrix entry based on its row index <code>i</code> and column index <code>j</code> |
 |  [MatrixShape](./vector.matrixshape.md) | A tuple representing the shape of a [Matrix](./vector.matrix.md)<!-- -->. The first entry is the number of rows, and the second entry is the number of columns. |
 |  [SimilarityMetric](./vector.similaritymetric.md) | A function which expresses the similarity of two [Vector](./vector.vector.md)<!-- -->s as a number between 0 (very dissimilar) and 1 (identical). |
 |  [SparseMatrixData](./vector.sparsematrixdata.md) | The data stored in a [Matrix](./vector.matrix.md) represented as a map |
 |  [SparseVectorData](./vector.sparsevectordata.md) | The data stored in a [Vector](./vector.vector.md) represented as a map |
 |  [SupportVectorMachineHyperparams](./vector.supportvectormachinehyperparams.md) | The set of hyperparameters for a [SupportVectorMachineClassifier](./vector.supportvectormachineclassifier.md) |
 |  [VectorData](./vector.vectordata.md) | The data stored in a [Vector](./vector.vector.md) represented as a map |
-|  [VectorEntryFunction](./vector.vectorentryfunction.md) | A function that generates a vector entry based on an existing entry and its index |
 |  [VectorIndexFunction](./vector.vectorindexfunction.md) | A function that generates a vector entry based on its index |
 

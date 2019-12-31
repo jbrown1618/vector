@@ -88,14 +88,13 @@ export class LogisticRegressionClassifier implements Classifier<LogisticRegressi
     theta: Vector<number>,
     threshold?: number
   ): Vector<number> {
-    const probabilities = this.makeProbabilityPredictions(data, theta);
-    const vb = data.vectorBuilder();
-    return vb.map(probabilities, p => (p > (threshold || 0.5) ? 1 : 0));
+    return this.makeProbabilityPredictions(data, theta).map(p => (p > (threshold || 0.5) ? 1 : 0));
   }
 
   private makeProbabilityPredictions(data: Matrix<number>, theta: Vector<number>): Vector<number> {
-    const vb = data.vectorBuilder();
-    return vb.map(LinearKernel(data).apply(theta), sigmoid);
+    return LinearKernel(data)
+      .apply(theta)
+      .map(sigmoid);
   }
 
   private calculateCost(
@@ -106,7 +105,7 @@ export class LogisticRegressionClassifier implements Classifier<LogisticRegressi
     const { lambda } = this.getHyperParameters();
     const probabilities = this.makeProbabilityPredictions(data, theta);
 
-    const costs = probabilities.builder().map(probabilities, (pred, i) => {
+    const costs = probabilities.map((pred, i) => {
       const actual = target.getEntry(i);
       if (actual > 0.5) {
         // Event; actual === 1

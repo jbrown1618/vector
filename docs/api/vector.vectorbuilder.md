@@ -20,7 +20,6 @@ The constructor for this class is marked as internal. Third-party code should no
 
 |  Method | Modifiers | Description |
 |  --- | --- | --- |
-|  [combine(first, second, combineEntries)](./vector.vectorbuilder.combine.md) |  | Constructs a vector by combining the values of two other vectors |
 |  [concatenate(first, second)](./vector.vectorbuilder.concatenate.md) |  | Constructs a vector consisting of two vectors end-to-end |
 |  [elementaryVector(dimension, oneIndex)](./vector.vectorbuilder.elementaryvector.md) |  | Constructs a vector that has the value 1 at one index, and 0 at the others |
 |  [empty()](./vector.vectorbuilder.empty.md) |  | Constructs a Vector of dimension 0 |
@@ -30,7 +29,6 @@ The constructor for this class is marked as internal. Third-party code should no
 |  [fromNumberArray(data)](./vector.vectorbuilder.fromnumberarray.md) |  |  |
 |  [fromSparseData(dimension, sparseData)](./vector.vectorbuilder.fromsparsedata.md) |  |  |
 |  [fromValues(data)](./vector.vectorbuilder.fromvalues.md) |  |  |
-|  [map(vector, valueFromEntry)](./vector.vectorbuilder.map.md) |  | Constructs a vector by transforming the values of another vector. |
 |  [ones(dimension)](./vector.vectorbuilder.ones.md) |  | Constructs a vector of all ones |
 |  [random(dimension, min, max)](./vector.vectorbuilder.random.md) |  | Constructs a vector whose entries are (uniformly-distributed) random numbers between <code>min</code> and <code>max</code> |
 |  [randomNormal(dimension, mean, standardDeviation)](./vector.vectorbuilder.randomnormal.md) |  | Constructs a vector whose entries are normally distributed, with the specified mean and standard deviation |

@@ -1,7 +1,7 @@
 import { vec, zeros, diag, ones, eye } from '@lib/utilities/aliases';
 import { ComplexNumber } from '@lib/types/scalar/ComplexNumber';
 import { ComplexMatrix } from '@lib/types/matrix/ComplexMatrix';
-import { MatrixBuilder, MatrixIndexFunction } from '@lib/types/matrix/MatrixBuilder';
+import { MatrixBuilder } from '@lib/types/matrix/MatrixBuilder';
 import { NumberMatrix } from '@lib/types/matrix/NumberMatrix';
 
 describe('MatrixBuilder', () => {
@@ -96,7 +96,7 @@ describe('MatrixBuilder', () => {
 
   describe('fromIndexFunction', () => {
     test('builds a matrix whose entries are determined by a function of their indices', () => {
-      const fn: MatrixIndexFunction<number> = (i, j) => i + j;
+      const fn = (i: number, j: number) => i + j;
       const expected = [
         [0, 1, 2, 3],
         [1, 2, 3, 4],
@@ -122,28 +122,6 @@ describe('MatrixBuilder', () => {
     });
   });
 
-  describe('map', () => {
-    test('builds a matrix by transforming the values of another matrix', () => {
-      const original = matrixBuilder.fromArray([
-        [1, 2, 3],
-        [4, 5, 6]
-      ]);
-      const mapped = matrixBuilder.map(original, (entry, i, j) => entry + i - j);
-      const expected = matrixBuilder.fromArray([
-        [1, 1, 1],
-        [5, 5, 5]
-      ]);
-
-      expect(mapped).toStrictEqual(expected);
-    });
-
-    test('handles an empty matrix', () => {
-      expect(matrixBuilder.map(matrixBuilder.empty(), () => 1)).toStrictEqual(
-        matrixBuilder.empty()
-      );
-    });
-  });
-
   describe('empty', () => {
     test('returns an empty vector', () => {
       const E = matrixBuilder.empty();
@@ -163,7 +141,7 @@ describe('MatrixBuilder', () => {
           const filled = matrixBuilder.fill(value, [size, size]);
           expect(filled.getNumberOfRows()).toEqual(size);
           expect(filled.getNumberOfColumns()).toEqual(size);
-          filled.forEachEntry(entry => {
+          filled.forEach(entry => {
             expect(entry).toEqual(value);
           });
         });
@@ -180,7 +158,7 @@ describe('MatrixBuilder', () => {
             const filled = matrixBuilder.fill(value, [m, n]);
             expect(filled.getNumberOfRows()).toEqual(m);
             expect(filled.getNumberOfColumns()).toEqual(n);
-            filled.forEachEntry(entry => {
+            filled.forEach(entry => {
               expect(entry).toEqual(value);
             });
           });
@@ -202,7 +180,7 @@ describe('MatrixBuilder', () => {
         expect(zero.getNumberOfRows()).toEqual(n);
         expect(zero.getNumberOfColumns()).toEqual(n);
 
-        zero.forEachEntry((entry: number) => {
+        zero.forEach((entry: number) => {
           expect(entry).toEqual(0);
         });
       }
@@ -215,7 +193,7 @@ describe('MatrixBuilder', () => {
           expect(zero.getNumberOfRows()).toEqual(r);
           expect(zero.getNumberOfColumns()).toEqual(c);
 
-          zero.forEachEntry((entry: number) => {
+          zero.forEach((entry: number) => {
             expect(entry).toEqual(0);
           });
         }
@@ -230,7 +208,7 @@ describe('MatrixBuilder', () => {
         expect(ones.getNumberOfRows()).toEqual(n);
         expect(ones.getNumberOfColumns()).toEqual(n);
 
-        ones.forEachEntry((entry: number) => {
+        ones.forEach((entry: number) => {
           expect(entry).toEqual(1);
         });
       }
@@ -243,7 +221,7 @@ describe('MatrixBuilder', () => {
           expect(ones.getNumberOfRows()).toEqual(r);
           expect(ones.getNumberOfColumns()).toEqual(c);
 
-          ones.forEachEntry((entry: number) => {
+          ones.forEach((entry: number) => {
             expect(entry).toEqual(1);
           });
         }
@@ -258,7 +236,7 @@ describe('MatrixBuilder', () => {
         expect(I.getNumberOfColumns()).toEqual(n);
         expect(I.getNumberOfRows()).toEqual(n);
 
-        I.forEachEntry((entry: number, i: number, j: number) => {
+        I.forEach((entry: number, i: number, j: number) => {
           expect(entry).toEqual(i === j ? 1 : 0);
         });
       }
@@ -436,7 +414,7 @@ describe('MatrixBuilder', () => {
         bounds.forEach(max => {
           if (max > min) {
             const randomMatrix = matrixBuilder.random([10, 10], min, max);
-            randomMatrix.forEachEntry(value => {
+            randomMatrix.forEach(value => {
               expect(value).toBeGreaterThan(min);
               expect(value).toBeLessThan(max);
             });
@@ -453,7 +431,7 @@ describe('MatrixBuilder', () => {
 
     test('defaults to min = 0 and max = 1', () => {
       const randomMatrix = matrixBuilder.random([10, 10]);
-      randomMatrix.forEachEntry(value => {
+      randomMatrix.forEach(value => {
         expect(value).toBeGreaterThan(0);
         expect(value).toBeLessThan(1);
       });

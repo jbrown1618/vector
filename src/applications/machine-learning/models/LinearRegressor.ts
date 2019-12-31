@@ -84,7 +84,7 @@ export class LinearRegressor implements Regressor<LinearRegressorHyperparams> {
     const { lambda } = this.getHyperParameters();
     const predictions = this.makePredictions(data, theta);
     const residuals = target.scalarMultiply(-1).add(predictions);
-    const squaredResiduals = target.builder().map(residuals, entry => entry ** 2);
+    const squaredResiduals = residuals.map(entry => entry ** 2);
     const meanSquaredError =
       squaredResiduals.toArray().reduce((prev, curr) => prev + curr, 0) / data.getNumberOfRows();
 

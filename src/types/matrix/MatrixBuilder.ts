@@ -11,16 +11,6 @@ import { Matrix, MatrixConstructor, MatrixShape, MatrixData } from '@lib/types/m
 import { SparseMatrixData } from '@lib/types/matrix/SparseMatrix';
 
 /**
- * A function that generates a matrix entry based on its row index `i` and column index `j`
- *
- * @remarks
- * This should be a pure function
- *
- * @public
- */
-export type MatrixIndexFunction<S> = (i: number, j: number) => S;
-
-/**
  * A function that generates a matrix entry based on an existing entry `entry`,
  * its row index `i`, and its column index `j`
  *
@@ -149,7 +139,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * @returns The new matrix
    * @public
    */
-  public fromIndexFunction(shape: MatrixShape, indexFunction: MatrixIndexFunction<S>): M {
+  public fromIndexFunction(shape: MatrixShape, indexFunction: (i: number, j: number) => S): M {
     assertValidShape(shape);
     const [m, n] = shape;
     const data: S[][] = [];
@@ -160,38 +150,6 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
       }
     }
     return new this._matrixConstructor(data);
-  }
-
-  /**
-   * Builds a matrix by transforming the values of another matrix.
-   *
-   * @example
-   * ```
-   * const original = matrixBuilder.fromArray([
-   *   [ 1, 2, 3 ]
-   *   [ 4, 5, 6 ]
-   * ]);
-   *
-   * const originalPlusOne = matrixBuilder.map(original, (value) => value + 1);
-   *
-   * // [ 2 3 4 ]
-   * // [ 5 6 7 ]
-   *
-   * const originalPlusIMinusJ = vectorBuilder.map(original, (value, i, j) => value + i - j);
-   *
-   * // [ 1 1 1 ]
-   * // [ 5 5 5 ]
-   * ```
-   * @param matrix - The matrix on whose entries to base the entries of the new matrix
-   * @param entryFunction - A function which takes an entry of
-   *     the original matrix and its indices, and returns the corresponding entry of the new matrix
-   * @returns The new matrix
-   * @public
-   */
-  public map(matrix: Matrix<S>, entryFunction: MatrixEntryFunction<S>): M {
-    return this.fromIndexFunction(matrix.getShape(), (i, j) =>
-      entryFunction(matrix.getEntry(i, j), i, j)
-    );
   }
 
   /**
@@ -337,9 +295,8 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * @public
    */
   public toeplitz(firstColumn: Vector<S>, firstRow?: Vector<S>): M {
-    const vb = this._matrixConstructor.vectorBuilder();
     const ops = this.ops();
-    firstRow = firstRow || vb.map(firstColumn, value => ops.conjugate(value));
+    firstRow = firstRow || firstColumn.map(value => ops.conjugate(value));
 
     if (firstRow.getDimension() === 0 || firstColumn.getDimension() === 0) {
       return this.empty();
