@@ -244,6 +244,14 @@ configs.forEach(({ testClassName, builder }) => {
       });
     });
 
+    describe('forEach', () => {
+      test('runs a callback for each entry', () => {
+        let called = 0;
+        builder.fromValues(1, 2, 3, 4, 5).forEach(_ => called++);
+        expect(called).toBe(5);
+      });
+    });
+
     describe('combine', () => {
       test('builds a vector by combining two other vectors', () => {
         const first = builder.fromValues(1, 2, 3, 4);

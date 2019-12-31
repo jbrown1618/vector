@@ -9,7 +9,7 @@ Builds a matrix with entries given by \_entry = f(i, j)\_ where \_f\_ is `indexF
 <b>Signature:</b>
 
 ```typescript
-fromIndexFunction(shape: MatrixShape, indexFunction: MatrixIndexFunction<S>): M;
+fromIndexFunction(shape: MatrixShape, indexFunction: (i: number, j: number) => S): M;
 ```
 
 ## Parameters
@@ -17,7 +17,7 @@ fromIndexFunction(shape: MatrixShape, indexFunction: MatrixIndexFunction<S>): M;
 |  Parameter | Type | Description |
 |  --- | --- | --- |
 |  shape | <code>MatrixShape</code> | The shape of the matrix as a tuple |
-|  indexFunction | <code>MatrixIndexFunction&lt;S&gt;</code> | A function returning the entry for a given <code>i</code>, <code>j</code> |
+|  indexFunction | <code>(i: number, j: number) =&gt; S</code> | A function returning the entry for a given <code>i</code>, <code>j</code> |
 
 <b>Returns:</b>
 

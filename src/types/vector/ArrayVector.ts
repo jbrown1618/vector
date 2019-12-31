@@ -103,9 +103,9 @@ export abstract class ArrayVector<S> implements Vector<S> {
       return this.matrixBuilder().fromArray(matrixData);
     }
 
-    this.toArray().forEach((thisValue, rowIndex) => {
+    this.forEach((thisValue, rowIndex) => {
       matrixData[rowIndex] = [];
-      other.toArray().forEach((otherValue, columnIndex) => {
+      other.forEach((otherValue, columnIndex) => {
         matrixData[rowIndex][columnIndex] = this.ops().multiply(thisValue, otherValue);
       });
     });
@@ -149,7 +149,7 @@ export abstract class ArrayVector<S> implements Vector<S> {
     const zero = ops.zero();
 
     const sparseData: Map<number, S> = new Map();
-    this.toArray().forEach((value, index) => {
+    this.forEach((value, index) => {
       if (!ops.equals(zero, value)) {
         sparseData.set(index, value);
       }

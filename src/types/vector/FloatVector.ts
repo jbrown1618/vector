@@ -170,7 +170,7 @@ export class FloatVector implements Vector<number> {
    */
   public getSparseData(): Map<number, number> {
     const sparseData: Map<number, number> = new Map();
-    this._data.forEach((value, index) => {
+    this.forEach((value, index) => {
       if (value !== 0) {
         sparseData.set(index, value);
       }

@@ -61,15 +61,8 @@ export abstract class ArrayMatrix<S> implements Matrix<S> {
    * {@inheritDoc Matrix.adjoint}
    */
   public adjoint(): Matrix<S> {
-    const transposedData = this.transpose().toArray();
-    const adjointData: S[][] = [];
-    transposedData.forEach((row, i) => {
-      adjointData[i] = [];
-      row.forEach((entry: S, j: number) => {
-        adjointData[i][j] = this.ops().conjugate(entry);
-      });
-    });
-    return this.builder().fromArray(adjointData);
+    const ops = this.ops();
+    return this.transpose().map(e => ops.conjugate(e));
   }
 
   /**
@@ -255,7 +248,7 @@ export abstract class ArrayMatrix<S> implements Matrix<S> {
    */
   public forEach(cb: (value: S, i: number, j: number) => void): void {
     this.getRowVectors().forEach((row, i) => {
-      row.toArray().forEach((entry, j) => {
+      row.forEach((entry, j) => {
         cb(entry, i, j);
       });
     });

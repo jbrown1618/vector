@@ -26,11 +26,14 @@ The constructor for this class is marked as internal. Third-party code should no
 |  --- | --- | --- |
 |  [add(other)](./vector.sparsevector.add.md) |  | Implements vector addition |
 |  [builder()](./vector.sparsevector.builder.md) |  |  |
+|  [combine(other, combineEntries)](./vector.sparsevector.combine.md) |  | Returns the dimension of the vector |
 |  [equals(other)](./vector.sparsevector.equals.md) |  | Tests if two vectors are equal |
+|  [forEach(callback)](./vector.sparsevector.foreach.md) |  | Returns the dimension of the vector |
 |  [getDimension()](./vector.sparsevector.getdimension.md) |  | Returns the dimension of the vector |
 |  [getEntry(index)](./vector.sparsevector.getentry.md) |  | Returns the entry of the matrix located at the provided index (<code>index</code>) |
 |  [getSparseData()](./vector.sparsevector.getsparsedata.md) |  | Returns the contents of the vector as a map of indices to nonzero values |
 |  [innerProduct(other)](./vector.sparsevector.innerproduct.md) |  | Implements the inner product (scalar product or dot product) of two vectors |
+|  [map(valueFromEntry)](./vector.sparsevector.map.md) |  | Returns the dimension of the vector |
 |  [matrixBuilder()](./vector.sparsevector.matrixbuilder.md) |  |  |
 |  [ops()](./vector.sparsevector.ops.md) |  |  |
 |  [outerProduct(other)](./vector.sparsevector.outerproduct.md) |  | Implements the outer product (matrix product) of two vectors |

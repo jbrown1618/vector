@@ -19,7 +19,7 @@ describe('SupportVectorMachineClassifier', () => {
 
       const predictions = cls.predict(xTrain);
       let numIncorrect = 0;
-      predictions.toArray().forEach((pred, i) => {
+      predictions.forEach((pred, i) => {
         const actual = yTrain.getEntry(i);
         if (pred !== actual) {
           numIncorrect++;
@@ -50,7 +50,7 @@ describe('SupportVectorMachineClassifier', () => {
 
       const predictions = cls.predict(xTrain);
       let numIncorrect = 0;
-      predictions.toArray().forEach((pred, i) => {
+      predictions.forEach((pred, i) => {
         const actual = yTrain.getEntry(i);
         if (pred !== actual) {
           numIncorrect++;

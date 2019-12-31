@@ -27,7 +27,7 @@ The constructor for this class is marked as internal. Third-party code should no
 |  [apply(vector)](./vector.sparsematrix.apply.md) |  | Applies the matrix as a linear transformation to the given vector. Implements matrix-vector multiplication. |
 |  [builder()](./vector.sparsematrix.builder.md) |  | Returns a [MatrixBuilder](./vector.matrixbuilder.md) which will build new matrices of the same type |
 |  [equals(other)](./vector.sparsematrix.equals.md) |  | Tests if two matrices are equal |
-|  [forEach(cb)](./vector.sparsematrix.forEach.md) |  | Executes the <code>callback</code> function for each entry in the matrix. |
+|  [forEach(cb)](./vector.sparsematrix.foreach.md) |  | Executes the <code>callback</code> function for each entry in the matrix. |
 |  [getColumn(j)](./vector.sparsematrix.getcolumn.md) |  | Returns a vector corresponding to the column at index <code>columnIndex</code> |
 |  [getColumnVectors()](./vector.sparsematrix.getcolumnvectors.md) |  | An array of vectors corresponding to the columns of the matrix |
 |  [getDiagonal()](./vector.sparsematrix.getdiagonal.md) |  | Returns a vector containing the elements of the main diagonal of the matrix |
@@ -38,6 +38,7 @@ The constructor for this class is marked as internal. Third-party code should no
 |  [getRowVectors()](./vector.sparsematrix.getrowvectors.md) |  | Returns an array of vectors corresponding to the rows of the matrix |
 |  [getShape()](./vector.sparsematrix.getshape.md) |  | Returns a tuple representing the dimensions of the matrix. The first entry is the number of rows, and the second entry is the number of columns. |
 |  [getSparseData()](./vector.sparsematrix.getsparsedata.md) |  | Returns the contents of the matrix as a nested map of rowIndex to columnIndex to nonzero value |
+|  [map(entryFunction)](./vector.sparsematrix.map.md) |  | Builds a matrix by transforming the values of another matrix. |
 |  [multiply(other)](./vector.sparsematrix.multiply.md) |  | Implements matrix multiplication |
 |  [ops()](./vector.sparsematrix.ops.md) |  | Returns a [ScalarOperations](./vector.scalaroperations.md) object which will allow consumers to work generically with the scalars contained in the vector. |
 |  [scalarMultiply(scalar)](./vector.sparsematrix.scalarmultiply.md) |  | Implements multiplication of a matrix by a scalar |

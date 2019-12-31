@@ -18,7 +18,7 @@ describe('LogisticRegressionClassifier', () => {
 
     const predictions = cls.predict(xTrain);
     let numIncorrect = 0;
-    predictions.toArray().forEach((pred, i) => {
+    predictions.forEach((pred, i) => {
       const actual = yTrain.getEntry(i);
       if (pred !== actual) {
         numIncorrect++;
@@ -39,7 +39,7 @@ describe('LogisticRegressionClassifier', () => {
     ];
 
     const theta = cls.getParameters();
-    theta?.toArray().forEach((param, i) => {
+    theta?.forEach((param, i) => {
       // A pretty wide range of values will produce 100% accuracy
       expect(param - expectedParams[i]).toBeLessThan(0.4);
     });

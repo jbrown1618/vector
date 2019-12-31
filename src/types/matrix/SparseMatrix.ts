@@ -326,7 +326,7 @@ export abstract class SparseMatrix<S> implements Matrix<S> {
    */
   public forEach(cb: (entry: S, rowIndex: number, columnIndex: number) => void): void {
     this.getRowVectors().forEach((row, i) => {
-      row.toArray().forEach((entry, j) => {
+      row.forEach((entry, j) => {
         cb(entry, i, j);
       });
     });

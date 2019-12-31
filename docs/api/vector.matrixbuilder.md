@@ -37,7 +37,6 @@ The constructor for this class is marked as internal. Third-party code should no
 |  [hankel(firstColumn, lastRow)](./vector.matrixbuilder.hankel.md) |  | Constructs a Hankel matrix from the specified first column and last row. A Hankel matrix has constant anti-diagonals. If <code>lastRow</code> is not given, then a vector with the last entry of the first row in the first entry and zero elsewhere is assumed. The last entry of the first column must equal the first entry of the last row. |
 |  [hilbert(size)](./vector.matrixbuilder.hilbert.md) |  | Constructs a Hilbert matrix of the specified size |
 |  [identity(size)](./vector.matrixbuilder.identity.md) |  | Constructs a <code>size</code> x <code>size</code> identity matrix |
-|  [map(matrix, entryFunction)](./vector.matrixbuilder.map.md) |  | Builds a matrix by transforming the values of another matrix. |
 |  [ones(shape)](./vector.matrixbuilder.ones.md) |  | Constructs a matrix of the specified dimensions, consisting of all ones |
 |  [pascal(size, upper)](./vector.matrixbuilder.pascal.md) |  | Constructs a lower-triangular matrix whose entries are the binomial coefficients (j choose i). Constructs an upper triangular matrix when the second argument is <code>true</code>. |
 |  [pascalSymmetric(size)](./vector.matrixbuilder.pascalsymmetric.md) |  | Constructs a symmetric matrix whose entries are the binomial coefficients (i + j choose i) |

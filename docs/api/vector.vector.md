@@ -18,11 +18,14 @@ export interface Vector<S>
 |  --- | --- |
 |  [add(other)](./vector.vector.add.md) | Implements vector addition |
 |  [builder()](./vector.vector.builder.md) | Returns a [VectorBuilder](./vector.vectorbuilder.md) which will build new vectors of the same type |
+|  [combine(other, combineEntries)](./vector.vector.combine.md) | Constructs a vector by combining the values of two other vectors |
 |  [equals(other)](./vector.vector.equals.md) | Tests if two vectors are equal |
+|  [forEach(callback)](./vector.vector.foreach.md) | Executes the <code>callback</code> function for each entry in the vector. |
 |  [getDimension()](./vector.vector.getdimension.md) | Returns the dimension of the vector |
 |  [getEntry(index)](./vector.vector.getentry.md) | Returns the entry of the matrix located at the provided index (<code>index</code>) |
 |  [getSparseData()](./vector.vector.getsparsedata.md) | Returns the contents of the vector as a map of indices to nonzero values |
 |  [innerProduct(other)](./vector.vector.innerproduct.md) | Implements the inner product (scalar product or dot product) of two vectors |
+|  [map(valueFromEntry)](./vector.vector.map.md) | Constructs a vector by transforming the values of another vector. |
 |  [matrixBuilder()](./vector.vector.matrixbuilder.md) | Returns a [MatrixBuilder](./vector.matrixbuilder.md) which will build new matrices of a compatible type |
 |  [ops()](./vector.vector.ops.md) | Returns a [ScalarOperations](./vector.scalaroperations.md) object which will allow consumers to work generically with the scalars contained in the vector. |
 |  [outerProduct(other)](./vector.vector.outerproduct.md) | Implements the outer product (matrix product) of two vectors |

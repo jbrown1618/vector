@@ -21,7 +21,7 @@ export interface Matrix<S> extends LinearTransformation<Vector<S>, Vector<S>>
 |  [apply(vector)](./vector.matrix.apply.md) | Applies the matrix as a linear transformation to the given vector. Implements matrix-vector multiplication. |
 |  [builder()](./vector.matrix.builder.md) | Returns a [MatrixBuilder](./vector.matrixbuilder.md) which will build new matrices of the same type |
 |  [equals(other)](./vector.matrix.equals.md) | Tests if two matrices are equal |
-|  [forEach(callback)](./vector.matrix.forEach.md) | Executes the <code>callback</code> function for each entry in the matrix. |
+|  [forEach(callback)](./vector.matrix.foreach.md) | Executes the <code>callback</code> function for each entry in the matrix. |
 |  [getColumn(j)](./vector.matrix.getcolumn.md) | Returns a vector corresponding to the column at index <code>columnIndex</code> |
 |  [getColumnVectors()](./vector.matrix.getcolumnvectors.md) | An array of vectors corresponding to the columns of the matrix |
 |  [getDiagonal()](./vector.matrix.getdiagonal.md) | Returns a vector containing the elements of the main diagonal of the matrix |
@@ -32,6 +32,7 @@ export interface Matrix<S> extends LinearTransformation<Vector<S>, Vector<S>>
 |  [getRowVectors()](./vector.matrix.getrowvectors.md) | Returns an array of vectors corresponding to the rows of the matrix |
 |  [getShape()](./vector.matrix.getshape.md) | Returns a tuple representing the dimensions of the matrix. The first entry is the number of rows, and the second entry is the number of columns. |
 |  [getSparseData()](./vector.matrix.getsparsedata.md) | Returns the contents of the matrix as a nested map of rowIndex to columnIndex to nonzero value |
+|  [map(entryFunction)](./vector.matrix.map.md) | Builds a matrix by transforming the values of another matrix. |
 |  [multiply(other)](./vector.matrix.multiply.md) | Implements matrix multiplication |
 |  [ops()](./vector.matrix.ops.md) | Returns a [ScalarOperations](./vector.scalaroperations.md) object which will allow consumers to work generically with the scalars contained in the vector. |
 |  [scalarMultiply(scalar)](./vector.matrix.scalarmultiply.md) | Implements multiplication of a matrix by a scalar |
