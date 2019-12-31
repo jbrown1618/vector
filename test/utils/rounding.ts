@@ -1,5 +1,5 @@
-import { Vector } from '@lib/types/vector/Vector';
-import { Matrix } from '@lib/types/matrix/Matrix';
+import { Vector } from '../../src/types/vector/Vector';
+import { Matrix } from '../../src/types/matrix/Matrix';
 
 export function roundMatrix(M: Matrix<number>, decimals: number): Matrix<number> {
   return M.map(x => round(x, decimals));

@@ -1,5 +1,5 @@
-import { calculateSingularValueDecomposition } from '@lib/decompositions/SingularValueDecomposition';
-import { diag, mat } from '@lib/utilities/aliases';
+import { calculateSingularValueDecomposition } from '../SingularValueDecomposition';
+import { diag, mat } from '../../utilities/aliases';
 import { loadTestData } from '@test-utils/testData';
 
 describe('SingularValueDecomposition', () => {

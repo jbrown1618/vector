@@ -1,11 +1,15 @@
-import { mat, vec } from '@lib/utilities/aliases';
-import { SolutionType, UnderdeterminedSolution, UniqueSolution } from '@lib/solvers/LinearSolution';
+import { mat, vec } from '../../utilities/aliases';
+import {
+  SolutionType,
+  UnderdeterminedSolution,
+  UniqueSolution
+} from '../../solvers/LinearSolution';
 import {
   backwardSubstituteAugmentedMatrix,
   forwardSubstituteAugmentedMatrix,
   solveByBackwardSubstitution,
   solveByForwardSubstitution
-} from '@lib/solvers/Substitution';
+} from '../Substitution';
 
 describe('Substitution', () => {
   describe('solveByForwardSubstitution', () => {

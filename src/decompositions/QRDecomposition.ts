@@ -1,7 +1,7 @@
-import { Matrix } from '@lib/types/matrix/Matrix';
-import { Vector } from '@lib/types/vector/Vector';
-import { assertSquare } from '@lib/utilities/ErrorAssertions';
-import { normalize } from '@lib/operations/Norms';
+import { Matrix } from '../types/matrix/Matrix';
+import { Vector } from '../types/vector/Vector';
+import { assertSquare } from '../utilities/ErrorAssertions';
+import { normalize } from '../operations/Norms';
 
 /**
  * The result of a QR decomposition.

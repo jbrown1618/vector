@@ -7,8 +7,8 @@ import {
   rowSumSupremumNorm,
   sumNorm,
   supremumNorm
-} from '@lib/operations/Norms';
-import { vec, mat, zeros } from '@lib/utilities/aliases';
+} from '../Norms';
+import { vec, mat, zeros } from '../../utilities/aliases';
 
 describe('Norms', () => {
   describe('Vector norms', () => {

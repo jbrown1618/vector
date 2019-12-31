@@ -1,5 +1,5 @@
-import { LinearKernel } from '@lib/applications/machine-learning/kernels/LinearKernel';
 import { loadTestData } from '@test-utils/testData';
+import { LinearKernel } from '../LinearKernel';
 
 describe('LinearKernel', () => {
   it('returns the original data with a bias term applied', () => {

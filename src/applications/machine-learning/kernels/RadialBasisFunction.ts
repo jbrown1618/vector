@@ -1,6 +1,6 @@
-import { Vector } from '@lib/types/vector/Vector';
-import { Matrix } from '@lib/types/matrix/Matrix';
-import { Kernel } from '@lib/applications/machine-learning/kernels/Kernel';
+import { Vector } from '../../../types/vector/Vector';
+import { Matrix } from '../../../types/matrix/Matrix';
+import { Kernel } from './Kernel';
 
 /**
  * A function which expresses the similarity of two {@link Vector}s as a number between

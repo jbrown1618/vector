@@ -1,11 +1,11 @@
-import { mat, vec } from '@lib/utilities/aliases';
+import { mat, vec } from '../../..//utilities/aliases';
 import {
   backwardDifferenceMatrix,
   centralDifferenceMatrix,
   derivative,
   forwardDifferenceMatrix,
   linspace
-} from '@lib/applications/calculus/FiniteDifferences';
+} from '../FiniteDifferences';
 
 describe('FiniteDifferences', () => {
   describe('linspace', () => {

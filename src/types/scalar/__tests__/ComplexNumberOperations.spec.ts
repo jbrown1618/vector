@@ -1,6 +1,6 @@
-import { approximatelyEqual } from '@lib/utilities/NumberUtilities';
-import { ComplexNumber } from '@lib/types/scalar/ComplexNumber';
-import { ComplexNumberOperations } from '@lib/types/scalar/ComplexNumberOperations';
+import { approximatelyEqual } from '../../../utilities/NumberUtilities';
+import { ComplexNumber } from '../ComplexNumber';
+import { ComplexNumberOperations } from '../ComplexNumberOperations';
 
 describe('ComplexNumberOperations', () => {
   const ops = new ComplexNumberOperations();

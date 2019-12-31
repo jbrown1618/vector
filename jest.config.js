@@ -14,7 +14,6 @@ module.exports = {
     }
   },
   moduleNameMapper: {
-    '^@test-utils/(.*)$': '<rootDir>/test/utils/$1',
-    '^@lib/(.*)$': '<rootDir>/src/$1'
+    '^@test-utils/(.*)$': '<rootDir>/test/utils/$1'
   }
 };

@@ -4,164 +4,129 @@
 
 ```ts
 
-import { ArrayMatrix as ArrayMatrix_2 } from '@lib/types/matrix/ArrayMatrix';
-import { ArrayVector as ArrayVector_2 } from '@lib/types/vector/ArrayVector';
-import { Classifier as Classifier_2 } from '@lib/applications/machine-learning/models/Classifier';
-import { ComplexMatrix as ComplexMatrix_2 } from '@lib/types/matrix/ComplexMatrix';
-import { ComplexNumber as ComplexNumber_2 } from '@lib/types/scalar/ComplexNumber';
-import { ComplexNumberOperations as ComplexNumberOperations_2 } from '@lib/types/scalar/ComplexNumberOperations';
-import { ComplexVector as ComplexVector_2 } from '@lib/types/vector/ComplexVector';
-import { FloatMatrix as FloatMatrix_2 } from '@lib/types/matrix/FloatMatrix';
-import { FloatVector as FloatVector_2 } from '@lib/types/vector/FloatVector';
-import { GradientDescentParameters as GradientDescentParameters_2 } from '@lib/applications/machine-learning/GradientDescent';
-import { Kernel as Kernel_2 } from '@lib/applications/machine-learning/kernels/Kernel';
-import { LearningAlgorithm as LearningAlgorithm_2 } from '@lib/applications/machine-learning/LearningAlgorithm';
-import { LinearSolution } from '@lib/solvers/LinearSolution';
-import { LinearTransformation as LinearTransformation_2 } from '@lib/types/matrix/LinearTransformation';
-import { Matrix as Matrix_2 } from '@lib/types/matrix/Matrix';
-import { MatrixBuilder as MatrixBuilder_2 } from '@lib/types/matrix/MatrixBuilder';
-import { MatrixConstructor as MatrixConstructor_2 } from '@lib/types/matrix/Matrix';
-import { MatrixData as MatrixData_2 } from '@lib/types/matrix/Matrix';
-import { MatrixShape as MatrixShape_2 } from '@lib/types/matrix/Matrix';
-import { NumberMatrix as NumberMatrix_2 } from '@lib/types/matrix/NumberMatrix';
-import { NumberOperations as NumberOperations_2 } from '@lib/types/scalar/NumberOperations';
-import { NumberVector as NumberVector_2 } from '@lib/types/vector/NumberVector';
-import { Regressor as Regressor_2 } from '@lib/applications/machine-learning/models/Regressor';
-import { ScalarOperations as ScalarOperations_2 } from '@lib/types/scalar/ScalarOperations';
-import { SparseMatrix as SparseMatrix_2 } from '@lib/types/matrix/SparseMatrix';
-import { SparseMatrixData as SparseMatrixData_2 } from '@lib/types/matrix/SparseMatrix';
-import { SparseNumberMatrix as SparseNumberMatrix_2 } from '@lib/types/matrix/SparseNumberMatrix';
-import { SparseNumberVector as SparseNumberVector_2 } from '@lib/types/vector/SparseNumberVector';
-import { SparseVector as SparseVector_2 } from '@lib/types/vector/SparseVector';
-import { SparseVectorData as SparseVectorData_2 } from '@lib/types/vector/SparseVector';
-import { Vector as Vector_2 } from '@lib/types/vector/Vector';
-import { VectorBuilder as VectorBuilder_2 } from '@lib/types/vector/VectorBuilder';
-import { VectorConstructor as VectorConstructor_2 } from '@lib/types/vector/Vector';
-import { VectorData as VectorData_2 } from '@lib/types/vector/Vector';
+// @public
+export type ApproximationFunction<S> = (input: Vector<S>) => S;
 
 // @public
-export type ApproximationFunction<S> = (input: Vector_2<S>) => S;
+export type ApproximationFunctionTemplate<S> = (coefficients: Vector<S>) => ApproximationFunction<S>;
 
 // @public
-export type ApproximationFunctionTemplate<S> = (coefficients: Vector_2<S>) => ApproximationFunction<S>;
-
-// @public
-export abstract class ArrayMatrix<S> implements Matrix_2<S> {
+export abstract class ArrayMatrix<S> implements Matrix<S> {
     // @internal
-    protected constructor(data: MatrixData_2<S>);
-    add(other: Matrix_2<S>): Matrix_2<S>;
-    adjoint(): Matrix_2<S>;
-    apply(vector: Vector_2<S>): Vector_2<S>;
-    abstract builder(): MatrixBuilder_2<S, Vector_2<S>, Matrix_2<S>>;
-    equals(other: Matrix_2<S>): boolean;
+    protected constructor(data: MatrixData<S>);
+    add(other: Matrix<S>): Matrix<S>;
+    adjoint(): Matrix<S>;
+    apply(vector: Vector<S>): Vector<S>;
+    abstract builder(): MatrixBuilder<S, Vector<S>, Matrix<S>>;
+    equals(other: Matrix<S>): boolean;
     forEach(cb: (value: S, i: number, j: number) => void): void;
-    getColumn(j: number): Vector_2<S>;
-    getColumnVectors(): Vector_2<S>[];
-    getDiagonal(): Vector_2<S>;
+    getColumn(j: number): Vector<S>;
+    getColumnVectors(): Vector<S>[];
+    getDiagonal(): Vector<S>;
     getEntry(i: number, j: number): S;
     getNumberOfColumns(): number;
     getNumberOfRows(): number;
-    getRow(i: number): Vector_2<S>;
-    getRowVectors(): Vector_2<S>[];
-    getShape(): MatrixShape_2;
+    getRow(i: number): Vector<S>;
+    getRowVectors(): Vector<S>[];
+    getShape(): MatrixShape;
     getSparseData(): Map<number, Map<number, S>>;
-    map(entryFunction: (entry: S, rowIndex: number, columnIndex: number) => S): Matrix_2<S>;
-    multiply(other: Matrix_2<S>): Matrix_2<S>;
-    abstract ops(): ScalarOperations_2<S>;
-    scalarMultiply(scalar: S): Matrix_2<S>;
-    set(i: number, j: number, value: S): Matrix_2<S>;
+    map(entryFunction: (entry: S, rowIndex: number, columnIndex: number) => S): Matrix<S>;
+    multiply(other: Matrix<S>): Matrix<S>;
+    abstract ops(): ScalarOperations<S>;
+    scalarMultiply(scalar: S): Matrix<S>;
+    set(i: number, j: number, value: S): Matrix<S>;
     toArray(): S[][];
     trace(): S;
-    transpose(): Matrix_2<S>;
-    abstract vectorBuilder(): VectorBuilder_2<S, Vector_2<S>>;
+    transpose(): Matrix<S>;
+    abstract vectorBuilder(): VectorBuilder<S, Vector<S>>;
 }
 
 // @public
-export abstract class ArrayVector<S> implements Vector_2<S> {
+export abstract class ArrayVector<S> implements Vector<S> {
     // @internal
-    protected constructor(data: VectorData_2<S>);
-    add(other: Vector_2<S>): Vector_2<S>;
-    abstract builder(): VectorBuilder_2<S, Vector_2<S>>;
-    combine(other: Vector_2<S>, combineEntries: (entry1: S, entry2: S) => S): Vector_2<S>;
-    equals(other: Vector_2<S>): boolean;
+    protected constructor(data: VectorData<S>);
+    add(other: Vector<S>): Vector<S>;
+    abstract builder(): VectorBuilder<S, Vector<S>>;
+    combine(other: Vector<S>, combineEntries: (entry1: S, entry2: S) => S): Vector<S>;
+    equals(other: Vector<S>): boolean;
     forEach(callback: (entry: S, index: number) => void): void;
     getDimension(): number;
     getEntry(index: number): S;
     getSparseData(): Map<number, S>;
-    innerProduct(other: Vector_2<S>): S;
-    map(valueFromEntry: (entry: S, index: number) => S): Vector_2<S>;
-    abstract matrixBuilder(): MatrixBuilder_2<S, Vector_2<S>, Matrix_2<S>>;
-    abstract ops(): ScalarOperations_2<S>;
-    outerProduct(other: Vector_2<S>): Matrix_2<S>;
-    projectOnto(u: Vector_2<S>): Vector_2<S>;
-    scalarMultiply(scalar: S): Vector_2<S>;
-    set(index: number, value: S): Vector_2<S>;
+    innerProduct(other: Vector<S>): S;
+    map(valueFromEntry: (entry: S, index: number) => S): Vector<S>;
+    abstract matrixBuilder(): MatrixBuilder<S, Vector<S>, Matrix<S>>;
+    abstract ops(): ScalarOperations<S>;
+    outerProduct(other: Vector<S>): Matrix<S>;
+    projectOnto(u: Vector<S>): Vector<S>;
+    scalarMultiply(scalar: S): Vector<S>;
+    set(index: number, value: S): Vector<S>;
     toArray(): S[];
 }
 
 // @public
-export function backwardDifferenceMatrix(binCount: number): NumberMatrix_2;
+export function backwardDifferenceMatrix(binCount: number): NumberMatrix;
 
 // @public
-export function calculateCholeskyDecomposition<S>(A: Matrix_2<S>): CholeskyDecomposition<S> | undefined;
+export function calculateCholeskyDecomposition<S>(A: Matrix<S>): CholeskyDecomposition<S> | undefined;
 
 // @public
-export function calculateEigenvalues<S>(A: Matrix_2<S>, numIterations?: number): Vector_2<S>;
+export function calculateEigenvalues<S>(A: Matrix<S>, numIterations?: number): Vector<S>;
 
 // @public
-export function calculateGeneralLeastSquares<S>(dataPoints: Vector_2<S>[], functionTemplate: ApproximationFunctionTemplate<S>, numberOfTerms: number): LeastSquaresApproximation<S>;
+export function calculateGeneralLeastSquares<S>(dataPoints: Vector<S>[], functionTemplate: ApproximationFunctionTemplate<S>, numberOfTerms: number): LeastSquaresApproximation<S>;
 
 // @public
-export function calculateLinearLeastSquares<S>(dataPoints: Vector_2<S>[]): LeastSquaresApproximation<S>;
+export function calculateLinearLeastSquares<S>(dataPoints: Vector<S>[]): LeastSquaresApproximation<S>;
 
 // @public
-export function calculateLUDecomposition<S>(A: Matrix_2<S>): LUDecomposition<S>;
+export function calculateLUDecomposition<S>(A: Matrix<S>): LUDecomposition<S>;
 
 // @public
-export function calculateQRDecomposition<S>(A: Matrix_2<S>): QRDecomposition<S>;
+export function calculateQRDecomposition<S>(A: Matrix<S>): QRDecomposition<S>;
 
 // @public
-export function calculateSingularValueDecomposition<S>(A: Matrix_2<S>): SingularValueDecomposition<S>;
+export function calculateSingularValueDecomposition<S>(A: Matrix<S>): SingularValueDecomposition<S>;
 
 // @public
-export function center<S>(x: Vector_2<S>): Vector_2<S>;
+export function center<S>(x: Vector<S>): Vector<S>;
 
 // @public
-export function center<S>(A: Matrix_2<S>): Matrix_2<S>;
+export function center<S>(A: Matrix<S>): Matrix<S>;
 
 // @public
-export function centralDifferenceMatrix(binCount: number): NumberMatrix_2;
+export function centralDifferenceMatrix(binCount: number): NumberMatrix;
 
 // @public
 export interface CholeskyDecomposition<S> {
     // (undocumented)
-    L: Matrix_2<S>;
+    L: Matrix<S>;
 }
 
 // @public
 export interface Classifier<H> {
     getHyperParameters(): H;
-    predict(data: Matrix_2<number>, pThreshold: number): Vector_2<number>;
-    predictProbabilities(data: Matrix_2<number>): Vector_2<number>;
-    train(data: Matrix_2<number>, target: Vector_2<number>): void;
+    predict(data: Matrix<number>, pThreshold: number): Vector<number>;
+    predictProbabilities(data: Matrix<number>): Vector<number>;
+    train(data: Matrix<number>, target: Vector<number>): void;
 }
 
 // @public
-export function columnSumSupremumNorm<S>(A: Matrix_2<S>): number;
+export function columnSumSupremumNorm<S>(A: Matrix<S>): number;
 
 // @public
-export class ComplexMatrix extends ArrayMatrix_2<ComplexNumber_2> {
+export class ComplexMatrix extends ArrayMatrix<ComplexNumber> {
     // @internal
-    constructor(data: MatrixData_2<ComplexNumber_2>);
+    constructor(data: MatrixData<ComplexNumber>);
     // (undocumented)
-    static builder(): MatrixBuilder_2<ComplexNumber_2, ComplexVector_2, ComplexMatrix>;
-    builder(): MatrixBuilder_2<ComplexNumber_2, ComplexVector_2, ComplexMatrix>;
+    static builder(): MatrixBuilder<ComplexNumber, ComplexVector, ComplexMatrix>;
+    builder(): MatrixBuilder<ComplexNumber, ComplexVector, ComplexMatrix>;
     // (undocumented)
-    static ops(): ScalarOperations_2<ComplexNumber_2>;
-    ops(): ScalarOperations_2<ComplexNumber_2>;
+    static ops(): ScalarOperations<ComplexNumber>;
+    ops(): ScalarOperations<ComplexNumber>;
     // (undocumented)
-    static vectorBuilder(): VectorBuilder_2<ComplexNumber_2, ComplexVector_2>;
-    vectorBuilder(): VectorBuilder_2<ComplexNumber_2, ComplexVector_2>;
+    static vectorBuilder(): VectorBuilder<ComplexNumber, ComplexVector>;
+    vectorBuilder(): VectorBuilder<ComplexNumber, ComplexVector>;
 }
 
 // @public
@@ -194,71 +159,71 @@ export class ComplexNumber {
 }
 
 // @public
-export class ComplexNumberOperations extends ScalarOperations_2<ComplexNumber_2> {
-    add(first: ComplexNumber_2, second: ComplexNumber_2): ComplexNumber_2;
-    conjugate(scalar: ComplexNumber_2): ComplexNumber_2;
-    equals(first: ComplexNumber_2, second: ComplexNumber_2): boolean;
-    fromComplex(real: number, imag: number): ComplexNumber_2;
-    fromNumber(num: number): ComplexNumber_2;
-    getAdditiveIdentity(): ComplexNumber_2;
-    getAdditiveInverse(scalar: ComplexNumber_2): ComplexNumber_2;
-    getMultiplicativeIdentity(): ComplexNumber_2;
-    getMultiplicativeInverse(scalar: ComplexNumber_2): ComplexNumber_2 | undefined;
-    getPrincipalSquareRoot(x: ComplexNumber_2): ComplexNumber_2;
-    multiply(first: ComplexNumber_2, second: ComplexNumber_2): ComplexNumber_2;
-    norm(x: ComplexNumber_2): number;
-    prettyPrint(x: ComplexNumber_2): string;
-    random(min?: number, max?: number): ComplexNumber_2;
-    randomNormal(mean?: number, standardDeviation?: number): ComplexNumber_2;
+export class ComplexNumberOperations extends ScalarOperations<ComplexNumber> {
+    add(first: ComplexNumber, second: ComplexNumber): ComplexNumber;
+    conjugate(scalar: ComplexNumber): ComplexNumber;
+    equals(first: ComplexNumber, second: ComplexNumber): boolean;
+    fromComplex(real: number, imag: number): ComplexNumber;
+    fromNumber(num: number): ComplexNumber;
+    getAdditiveIdentity(): ComplexNumber;
+    getAdditiveInverse(scalar: ComplexNumber): ComplexNumber;
+    getMultiplicativeIdentity(): ComplexNumber;
+    getMultiplicativeInverse(scalar: ComplexNumber): ComplexNumber | undefined;
+    getPrincipalSquareRoot(x: ComplexNumber): ComplexNumber;
+    multiply(first: ComplexNumber, second: ComplexNumber): ComplexNumber;
+    norm(x: ComplexNumber): number;
+    prettyPrint(x: ComplexNumber): string;
+    random(min?: number, max?: number): ComplexNumber;
+    randomNormal(mean?: number, standardDeviation?: number): ComplexNumber;
 }
 
 // @public
-export class ComplexVector extends ArrayVector_2<ComplexNumber_2> {
+export class ComplexVector extends ArrayVector<ComplexNumber> {
     // @internal
-    constructor(data: VectorData_2<ComplexNumber_2>);
+    constructor(data: VectorData<ComplexNumber>);
     // (undocumented)
-    static builder(): VectorBuilder_2<ComplexNumber_2, ComplexVector>;
-    builder(): VectorBuilder_2<ComplexNumber_2, ComplexVector>;
-    matrixBuilder(): MatrixBuilder_2<ComplexNumber_2, ComplexVector, ComplexMatrix_2>;
+    static builder(): VectorBuilder<ComplexNumber, ComplexVector>;
+    builder(): VectorBuilder<ComplexNumber, ComplexVector>;
+    matrixBuilder(): MatrixBuilder<ComplexNumber, ComplexVector, ComplexMatrix>;
     // (undocumented)
-    static ops(): ComplexNumberOperations_2;
-    ops(): ComplexNumberOperations_2;
+    static ops(): ComplexNumberOperations;
+    ops(): ComplexNumberOperations;
 }
 
 // @public
-export function correlation<S>(first: Vector_2<S>, second: Vector_2<S>): S;
+export function correlation<S>(first: Vector<S>, second: Vector<S>): S;
 
 // @public
-export function correlation<S>(A: Matrix_2<S>): Matrix_2<S>;
+export function correlation<S>(A: Matrix<S>): Matrix<S>;
 
 // @public
 export interface Cost {
     // (undocumented)
     cost: number;
     // (undocumented)
-    gradient: Vector_2<number>;
+    gradient: Vector<number>;
 }
 
 // @public
-export type CostFunction = (theta: Vector_2<number>) => Cost;
+export type CostFunction = (theta: Vector<number>) => Cost;
 
 // @public
-export function covariance<S>(first: Vector_2<S>, second: Vector_2<S>): S;
+export function covariance<S>(first: Vector<S>, second: Vector<S>): S;
 
 // @public
-export function covariance<S>(A: Matrix_2<S>): Matrix_2<S>;
+export function covariance<S>(A: Matrix<S>): Matrix<S>;
 
 // @public
-export function crossProduct<S>(first: Vector_2<S>, second: Vector_2<S>): Vector_2<S>;
+export function crossProduct<S>(first: Vector<S>, second: Vector<S>): Vector<S>;
 
 // @public
-export function derivative(f: (x: number) => number, xMin: number, xMax: number, binCount: number): Vector_2<number>;
+export function derivative(f: (x: number) => number, xMin: number, xMax: number, binCount: number): Vector<number>;
 
 // @public
-export function determinant<S>(matrix: Matrix_2<S>): S;
+export function determinant<S>(matrix: Matrix<S>): S;
 
 // @public
-export function diag(elements: number[]): Matrix_2<number>;
+export function diag(elements: number[]): Matrix<number>;
 
 // Warning: (ae-forgotten-export) The symbol "DimensionReductionType" needs to be exported by the entry point index.d.ts
 //
@@ -268,104 +233,104 @@ export type DimensionReductionOptions = DimensionReductionType & {
 };
 
 // @public
-export function eig<S>(A: Matrix_2<S>, numIterations?: number): EigenPair<S>[];
+export function eig<S>(A: Matrix<S>, numIterations?: number): EigenPair<S>[];
 
 // @public
 export interface EigenPair<S> {
     // (undocumented)
     eigenvalue: S;
     // (undocumented)
-    eigenvector: Vector_2<S>;
+    eigenvector: Vector<S>;
 }
 
 // @public
-export function euclideanNorm<S>(v: Vector_2<S>): number;
+export function euclideanNorm<S>(v: Vector<S>): number;
 
 // @public
-export function exp<S>(A: Matrix_2<S>, order?: number): Matrix_2<S>;
+export function exp<S>(A: Matrix<S>, order?: number): Matrix<S>;
 
 // @public
-export function eye(size: number): Matrix_2<number>;
+export function eye(size: number): Matrix<number>;
 
 // @public
-export class FloatMatrix implements Matrix_2<number> {
+export class FloatMatrix implements Matrix<number> {
     // @internal
-    constructor(data: MatrixData_2<number>);
-    constructor(data: Float64Array, shape: MatrixShape_2);
-    add(other: Matrix_2<number>): Matrix_2<number>;
-    adjoint(): Matrix_2<number>;
-    apply(vector: Vector_2<number>): Vector_2<number>;
+    constructor(data: MatrixData<number>);
+    constructor(data: Float64Array, shape: MatrixShape);
+    add(other: Matrix<number>): Matrix<number>;
+    adjoint(): Matrix<number>;
+    apply(vector: Vector<number>): Vector<number>;
     // (undocumented)
-    static builder(): MatrixBuilder_2<number, FloatVector_2, FloatMatrix>;
-    builder(): MatrixBuilder_2<number, FloatVector_2, FloatMatrix>;
-    equals(other: Matrix_2<number>): boolean;
+    static builder(): MatrixBuilder<number, FloatVector, FloatMatrix>;
+    builder(): MatrixBuilder<number, FloatVector, FloatMatrix>;
+    equals(other: Matrix<number>): boolean;
     forEach(cb: (entry: number, rowIndex: number, columnIndex: number) => void): void;
-    getColumn(j: number): Vector_2<number>;
-    getColumnVectors(): Vector_2<number>[];
-    getDiagonal(): Vector_2<number>;
+    getColumn(j: number): Vector<number>;
+    getColumnVectors(): Vector<number>[];
+    getDiagonal(): Vector<number>;
     getEntry(i: number, j: number): number;
     getNumberOfColumns(): number;
     getNumberOfRows(): number;
-    getRow(i: number): Vector_2<number>;
-    getRowVectors(): Vector_2<number>[];
-    getShape(): MatrixShape_2;
+    getRow(i: number): Vector<number>;
+    getRowVectors(): Vector<number>[];
+    getShape(): MatrixShape;
     getSparseData(): Map<number, Map<number, number>>;
-    map(entryFunction: (entry: number, rowIndex: number, columnIndex: number) => number): Matrix_2<number>;
-    multiply(other: Matrix_2<number>): Matrix_2<number>;
+    map(entryFunction: (entry: number, rowIndex: number, columnIndex: number) => number): Matrix<number>;
+    multiply(other: Matrix<number>): Matrix<number>;
     // (undocumented)
-    static ops(): ScalarOperations_2<number>;
-    ops(): ScalarOperations_2<number>;
-    scalarMultiply(scalar: number): Matrix_2<number>;
-    set(i: number, j: number, value: number): Matrix_2<number>;
+    static ops(): ScalarOperations<number>;
+    ops(): ScalarOperations<number>;
+    scalarMultiply(scalar: number): Matrix<number>;
+    set(i: number, j: number, value: number): Matrix<number>;
     toArray(): number[][];
     trace(): number;
-    transpose(): Matrix_2<number>;
+    transpose(): Matrix<number>;
     // (undocumented)
-    static vectorBuilder(): VectorBuilder_2<number, FloatVector_2>;
-    vectorBuilder(): VectorBuilder_2<number, FloatVector_2>;
+    static vectorBuilder(): VectorBuilder<number, FloatVector>;
+    vectorBuilder(): VectorBuilder<number, FloatVector>;
 }
 
 // @public
-export class FloatVector implements Vector_2<number> {
+export class FloatVector implements Vector<number> {
     // @internal
-    constructor(data: VectorData_2<number> | Float64Array);
-    add(other: Vector_2<number>): Vector_2<number>;
+    constructor(data: VectorData<number> | Float64Array);
+    add(other: Vector<number>): Vector<number>;
     // (undocumented)
-    static builder(): VectorBuilder_2<number, FloatVector>;
-    builder(): VectorBuilder_2<number, FloatVector>;
-    combine(other: Vector_2<number>, combineEntries: (a: number, b: number) => number): Vector_2<number>;
-    equals(other: Vector_2<number>): boolean;
+    static builder(): VectorBuilder<number, FloatVector>;
+    builder(): VectorBuilder<number, FloatVector>;
+    combine(other: Vector<number>, combineEntries: (a: number, b: number) => number): Vector<number>;
+    equals(other: Vector<number>): boolean;
     forEach(callback: (entry: number, index: number) => void): void;
     getDimension(): number;
     getEntry(index: number): number;
     getSparseData(): Map<number, number>;
-    innerProduct(other: Vector_2<number>): number;
-    map(valueFromEntry: (entry: number, index: number) => number): Vector_2<number>;
-    matrixBuilder(): MatrixBuilder_2<number, FloatVector, FloatMatrix_2>;
+    innerProduct(other: Vector<number>): number;
+    map(valueFromEntry: (entry: number, index: number) => number): Vector<number>;
+    matrixBuilder(): MatrixBuilder<number, FloatVector, FloatMatrix>;
     // (undocumented)
-    static ops(): NumberOperations_2;
-    ops(): NumberOperations_2;
-    outerProduct(other: Vector_2<number>): Matrix_2<number>;
-    projectOnto(u: Vector_2<number>): Vector_2<number>;
-    scalarMultiply(scalar: number): Vector_2<number>;
-    set(index: number, value: number): Vector_2<number>;
+    static ops(): NumberOperations;
+    ops(): NumberOperations;
+    outerProduct(other: Vector<number>): Matrix<number>;
+    projectOnto(u: Vector<number>): Vector<number>;
+    scalarMultiply(scalar: number): Vector<number>;
+    set(index: number, value: number): Vector<number>;
     toArray(): number[];
 }
 
 // @public
-export function forwardDifferenceMatrix(binCount: number): NumberMatrix_2;
+export function forwardDifferenceMatrix(binCount: number): NumberMatrix;
 
 // @public
-export function frobeniusNorm<S>(A: Matrix_2<S>): number;
+export function frobeniusNorm<S>(A: Matrix<S>): number;
 
 // @public
-export function GaussianKernel(sigmaSquared: number): Kernel_2;
+export function GaussianKernel(sigmaSquared: number): Kernel;
 
 // @public
-export function getEigenvectorForEigenvalue<S>(A: Matrix_2<S>, lambda: S): Vector_2<S>;
+export function getEigenvectorForEigenvalue<S>(A: Matrix<S>, lambda: S): Vector<S>;
 
 // @public
-export function gradientDescent(parameters: Partial<GradientDescentParameters>): LearningAlgorithm_2;
+export function gradientDescent(parameters: Partial<GradientDescentParameters>): LearningAlgorithm;
 
 // @public
 export type GradientDescentParameters = {
@@ -374,63 +339,63 @@ export type GradientDescentParameters = {
 };
 
 // @public
-export function inverse<S>(matrix: Matrix_2<S>): Matrix_2<S> | undefined;
+export function inverse<S>(matrix: Matrix<S>): Matrix<S> | undefined;
 
 // @public
-export function isHermitian<S>(matrix: Matrix_2<S>): boolean;
+export function isHermitian<S>(matrix: Matrix<S>): boolean;
 
 // @public
-export function isIdentity<S>(matrix: Matrix_2<S>): boolean;
+export function isIdentity<S>(matrix: Matrix<S>): boolean;
 
 // @public
-export function isLowerTriangular<S>(matrix: Matrix_2<S>): boolean;
+export function isLowerTriangular<S>(matrix: Matrix<S>): boolean;
 
 // @public
-export function isOrthogonal<S>(matrix: Matrix_2<S>): boolean;
+export function isOrthogonal<S>(matrix: Matrix<S>): boolean;
 
 // @public
-export function isOrthonormal<S>(matrix: Matrix_2<S>): boolean;
+export function isOrthonormal<S>(matrix: Matrix<S>): boolean;
 
 // Warning: (ae-internal-missing-underscore) The name "isSparse" should be prefixed with an underscore because the declaration is marked as @internal
 //
 // @internal
-export function isSparse<S>(vector: Vector_2<S>): vector is SparseVector<S>;
+export function isSparse<S>(vector: Vector<S>): vector is SparseVector<S>;
 
 // @public
-export function isSquare(matrix: Matrix_2<any>): boolean;
+export function isSquare(matrix: Matrix<any>): boolean;
 
 // @public
-export function isSymmetric<S>(matrix: Matrix_2<S>): boolean;
+export function isSymmetric<S>(matrix: Matrix<S>): boolean;
 
 // @public
-export function isUpperTriangular<S>(matrix: Matrix_2<S>): boolean;
+export function isUpperTriangular<S>(matrix: Matrix<S>): boolean;
 
 // @public
-export type Kernel = (data: Matrix_2<number>, trainingData?: Matrix_2<number>) => Matrix_2<number>;
+export type Kernel = (data: Matrix<number>, trainingData?: Matrix<number>) => Matrix<number>;
 
 // @public
-export type LearningAlgorithm = (initialTheta: Vector_2<number>, costFn: CostFunction) => Vector_2<number>;
+export type LearningAlgorithm = (initialTheta: Vector<number>, costFn: CostFunction) => Vector<number>;
 
 // @public
 export interface LeastSquaresApproximation<S> {
     approximationFunction: ApproximationFunction<S>;
-    coefficients: Vector_2<S>;
+    coefficients: Vector<S>;
 }
 
 // @public
-export function LinearKernel(data: Matrix_2<number>): Matrix_2<number>;
+export function LinearKernel(data: Matrix<number>): Matrix<number>;
 
 // @public
-export class LinearRegressor implements Regressor_2<LinearRegressorHyperparams> {
+export class LinearRegressor implements Regressor<LinearRegressorHyperparams> {
     constructor(hyperParameters: Partial<LinearRegressorHyperparams>);
     getHyperParameters(): LinearRegressorHyperparams;
-    getParameters(): Vector_2<number> | undefined;
-    predict(data: Matrix_2<number>): Vector_2<number>;
-    train(data: Matrix_2<number>, target: Vector_2<number>): void;
+    getParameters(): Vector<number> | undefined;
+    predict(data: Matrix<number>): Vector<number>;
+    train(data: Matrix<number>, target: Vector<number>): void;
 }
 
 // @public
-export type LinearRegressorHyperparams = GradientDescentParameters_2 & {
+export type LinearRegressorHyperparams = GradientDescentParameters & {
     lambda: number;
 };
 
@@ -440,117 +405,117 @@ export interface LinearTransformation<V, U> {
 }
 
 // @public
-export function linspace(xMin: number, xMax: number, binCount: number): NumberVector_2;
+export function linspace(xMin: number, xMax: number, binCount: number): NumberVector;
 
 // @public
-export class LogisticRegressionClassifier implements Classifier_2<LogisticRegressionHyperparams> {
+export class LogisticRegressionClassifier implements Classifier<LogisticRegressionHyperparams> {
     constructor(hyperParameters: Partial<LogisticRegressionHyperparams>);
     getHyperParameters(): LogisticRegressionHyperparams;
-    getParameters(): Vector_2<number> | undefined;
-    predict(data: Matrix_2<number>): Vector_2<number>;
-    predictProbabilities(data: Matrix_2<number>): Vector_2<number>;
-    train(data: Matrix_2<number>, target: Vector_2<number>): void;
+    getParameters(): Vector<number> | undefined;
+    predict(data: Matrix<number>): Vector<number>;
+    predictProbabilities(data: Matrix<number>): Vector<number>;
+    train(data: Matrix<number>, target: Vector<number>): void;
 }
 
 // @public
-export type LogisticRegressionHyperparams = GradientDescentParameters_2 & {
+export type LogisticRegressionHyperparams = GradientDescentParameters & {
     lambda: number;
 };
 
 // @public
 export interface LUDecomposition<S> {
     // (undocumented)
-    L: Matrix_2<S>;
+    L: Matrix<S>;
     // (undocumented)
-    P: Matrix_2<S>;
+    P: Matrix<S>;
     // (undocumented)
-    U: Matrix_2<S>;
+    U: Matrix<S>;
 }
 
 // @public
-export function mat(data: number[][]): Matrix_2<number>;
+export function mat(data: number[][]): Matrix<number>;
 
 // @public
-export interface Matrix<S> extends LinearTransformation_2<Vector_2<S>, Vector_2<S>> {
+export interface Matrix<S> extends LinearTransformation<Vector<S>, Vector<S>> {
     add(other: Matrix<S>): Matrix<S>;
     adjoint(): Matrix<S>;
-    apply(vector: Vector_2<S>): Vector_2<S>;
-    builder(): MatrixBuilder_2<S, Vector_2<S>, Matrix<S>>;
+    apply(vector: Vector<S>): Vector<S>;
+    builder(): MatrixBuilder<S, Vector<S>, Matrix<S>>;
     equals(other: Matrix<S>): boolean;
     forEach(callback: (entry: S, rowIndex: number, columnIndex: number) => void): void;
-    getColumn(j: number): Vector_2<S>;
-    getColumnVectors(): Vector_2<S>[];
-    getDiagonal(): Vector_2<S>;
+    getColumn(j: number): Vector<S>;
+    getColumnVectors(): Vector<S>[];
+    getDiagonal(): Vector<S>;
     getEntry(i: number, j: number): S;
     getNumberOfColumns(): number;
     getNumberOfRows(): number;
-    getRow(i: number): Vector_2<S>;
-    getRowVectors(): Vector_2<S>[];
+    getRow(i: number): Vector<S>;
+    getRowVectors(): Vector<S>[];
     getShape(): MatrixShape;
     getSparseData(): Map<number, Map<number, S>>;
     map(entryFunction: (entry: S, rowIndex: number, columnIndex: number) => S): Matrix<S>;
     multiply(other: Matrix<S>): Matrix<S>;
-    ops(): ScalarOperations_2<S>;
+    ops(): ScalarOperations<S>;
     scalarMultiply(scalar: S): Matrix<S>;
     set(i: number, j: number, value: S): Matrix<S>;
     toArray(): S[][];
     trace(): S;
     transpose(): Matrix<S>;
-    vectorBuilder(): VectorBuilder_2<S, Vector_2<S>>;
+    vectorBuilder(): VectorBuilder<S, Vector<S>>;
 }
 
 // @public
-export class MatrixBuilder<S, V extends Vector_2<S>, M extends Matrix_2<S>> {
+export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
     // @internal
-    constructor(matrixConstructor: MatrixConstructor_2<S, V, M>);
-    augment(left: Matrix_2<S>, right: Matrix_2<S>): M;
-    block(grid: Matrix_2<S>[][]): M;
-    blockDiagonal(matrices: Matrix_2<S>[]): M;
-    circulant(vector: Vector_2<S>): M;
-    diagonal(diagonalEntries: Vector_2<S>): M;
+    constructor(matrixConstructor: MatrixConstructor<S, V, M>);
+    augment(left: Matrix<S>, right: Matrix<S>): M;
+    block(grid: Matrix<S>[][]): M;
+    blockDiagonal(matrices: Matrix<S>[]): M;
+    circulant(vector: Vector<S>): M;
+    diagonal(diagonalEntries: Vector<S>): M;
     empty(): M;
-    exclude(matrix: Matrix_2<S>, rowToExclude: number, columnToExclude: number): M;
-    fill(value: S, shape: MatrixShape_2): M;
+    exclude(matrix: Matrix<S>, rowToExclude: number, columnToExclude: number): M;
+    fill(value: S, shape: MatrixShape): M;
     // (undocumented)
-    fromArray(data: MatrixData_2<S>): M;
-    fromColumnVectors(columns: Vector_2<S>[]): M;
-    fromIndexFunction(shape: MatrixShape_2, indexFunction: (i: number, j: number) => S): M;
+    fromArray(data: MatrixData<S>): M;
+    fromColumnVectors(columns: Vector<S>[]): M;
+    fromIndexFunction(shape: MatrixShape, indexFunction: (i: number, j: number) => S): M;
     // (undocumented)
-    fromNumberArray(numberData: MatrixData_2<number>): M;
-    fromRowVectors(rows: Vector_2<S>[]): M;
+    fromNumberArray(numberData: MatrixData<number>): M;
+    fromRowVectors(rows: Vector<S>[]): M;
     // (undocumented)
-    fromSparseData(shape: MatrixShape_2, sparseData: SparseMatrixData_2<S>): M;
-    hankel(firstColumn: Vector_2<S>, lastRow?: Vector_2<S>): M;
+    fromSparseData(shape: MatrixShape, sparseData: SparseMatrixData<S>): M;
+    hankel(firstColumn: Vector<S>, lastRow?: Vector<S>): M;
     hilbert(size: number): M;
     identity(size: number): M;
-    ones(shape: MatrixShape_2): M;
+    ones(shape: MatrixShape): M;
     pascal(size: number, upper?: boolean): M;
     pascalSymmetric(size: number): M;
-    random(shape: MatrixShape_2, min?: number, max?: number): M;
-    randomNormal(shape: MatrixShape_2, mean?: number, standardDeviation?: number): M;
-    repeat(matrix: Matrix_2<S>, rows: number, columns: number): M;
-    slice(matrix: Matrix_2<S>, rowStartIndex?: number, columnStartIndex?: number, rowEndIndex?: number, columnEndIndex?: number): M;
-    toeplitz(firstColumn: Vector_2<S>, firstRow?: Vector_2<S>): M;
-    tridiagonal(leftEntries: Vector_2<S>, diagonalEntries: Vector_2<S>, rightEntries: Vector_2<S>): M;
-    zeros(shape: MatrixShape_2): M;
+    random(shape: MatrixShape, min?: number, max?: number): M;
+    randomNormal(shape: MatrixShape, mean?: number, standardDeviation?: number): M;
+    repeat(matrix: Matrix<S>, rows: number, columns: number): M;
+    slice(matrix: Matrix<S>, rowStartIndex?: number, columnStartIndex?: number, rowEndIndex?: number, columnEndIndex?: number): M;
+    toeplitz(firstColumn: Vector<S>, firstRow?: Vector<S>): M;
+    tridiagonal(leftEntries: Vector<S>, diagonalEntries: Vector<S>, rightEntries: Vector<S>): M;
+    zeros(shape: MatrixShape): M;
 }
 
 // Warning: (ae-internal-missing-underscore) The name "MatrixConstructor" should be prefixed with an underscore because the declaration is marked as @internal
 //
 // @internal (undocumented)
-export interface MatrixConstructor<S, V extends Vector_2<S>, M extends Matrix<S>> {
+export interface MatrixConstructor<S, V extends Vector<S>, M extends Matrix<S>> {
     // (undocumented)
     new (data: MatrixData<S>): M;
     // (undocumented)
-    builder(): MatrixBuilder_2<S, V, M>;
+    builder(): MatrixBuilder<S, V, M>;
     // (undocumented)
-    ops(): ScalarOperations_2<S>;
+    ops(): ScalarOperations<S>;
     // (undocumented)
-    vectorBuilder(): VectorBuilder_2<S, V>;
+    vectorBuilder(): VectorBuilder<S, V>;
 }
 
 // @public
-export type MatrixData<S> = readonly VectorData_2<S>[];
+export type MatrixData<S> = readonly VectorData<S>[];
 
 // @public
 export type MatrixEntryFunction<S> = (entry: S, i: number, j: number) => S;
@@ -559,31 +524,31 @@ export type MatrixEntryFunction<S> = (entry: S, i: number, j: number) => S;
 export type MatrixShape = [number, number];
 
 // @public
-export function mean<S>(x: Vector_2<S>): S;
+export function mean<S>(x: Vector<S>): S;
 
 // @public
-export function mean<S>(A: Matrix_2<S>): Vector_2<S>;
+export function mean<S>(A: Matrix<S>): Vector<S>;
 
 // @public
-export function normalize<S>(v: Vector_2<S>): Vector_2<S> | undefined;
+export function normalize<S>(v: Vector<S>): Vector<S> | undefined;
 
 // @public
-export class NumberMatrix extends ArrayMatrix_2<number> {
+export class NumberMatrix extends ArrayMatrix<number> {
     // @internal
-    constructor(data: MatrixData_2<number>);
+    constructor(data: MatrixData<number>);
     // (undocumented)
-    static builder(): MatrixBuilder_2<number, NumberVector_2, NumberMatrix>;
-    builder(): MatrixBuilder_2<number, NumberVector_2, NumberMatrix>;
+    static builder(): MatrixBuilder<number, NumberVector, NumberMatrix>;
+    builder(): MatrixBuilder<number, NumberVector, NumberMatrix>;
     // (undocumented)
-    static ops(): ScalarOperations_2<number>;
-    ops(): ScalarOperations_2<number>;
+    static ops(): ScalarOperations<number>;
+    ops(): ScalarOperations<number>;
     // (undocumented)
-    static vectorBuilder(): VectorBuilder_2<number, NumberVector_2>;
-    vectorBuilder(): VectorBuilder_2<number, NumberVector_2>;
+    static vectorBuilder(): VectorBuilder<number, NumberVector>;
+    vectorBuilder(): VectorBuilder<number, NumberVector>;
 }
 
 // @public
-export class NumberOperations extends ScalarOperations_2<number> {
+export class NumberOperations extends ScalarOperations<number> {
     add(first: number, second: number): number;
     conjugate(scalar: number): number;
     equals(first: number, second: number): boolean;
@@ -601,47 +566,47 @@ export class NumberOperations extends ScalarOperations_2<number> {
 }
 
 // @public
-export class NumberVector extends ArrayVector_2<number> {
+export class NumberVector extends ArrayVector<number> {
     // @internal
-    constructor(data: VectorData_2<number>);
+    constructor(data: VectorData<number>);
     // (undocumented)
-    static builder(): VectorBuilder_2<number, NumberVector>;
-    builder(): VectorBuilder_2<number, NumberVector>;
-    matrixBuilder(): MatrixBuilder_2<number, NumberVector, NumberMatrix_2>;
+    static builder(): VectorBuilder<number, NumberVector>;
+    builder(): VectorBuilder<number, NumberVector>;
+    matrixBuilder(): MatrixBuilder<number, NumberVector, NumberMatrix>;
     // (undocumented)
-    static ops(): NumberOperations_2;
-    ops(): NumberOperations_2;
+    static ops(): NumberOperations;
+    ops(): NumberOperations;
 }
 
 // @public
-export function ones(entries: number): Vector_2<number>;
+export function ones(entries: number): Vector<number>;
 
 // @public
-export function ones(shape: MatrixShape_2): Matrix_2<number>;
+export function ones(shape: MatrixShape): Matrix<number>;
 
 // @public
-export function pca<S>(A: Matrix_2<S>, useCorrelation?: boolean): PrincipalComponentAnalysis<S>;
+export function pca<S>(A: Matrix<S>, useCorrelation?: boolean): PrincipalComponentAnalysis<S>;
 
 // @public
-export function pNorm<S>(v: Vector_2<S>, p: number): number;
+export function pNorm<S>(v: Vector<S>, p: number): number;
 
 // @public
-export function pow<S>(A: Matrix_2<S>, n: number): Matrix_2<S>;
+export function pow<S>(A: Matrix<S>, n: number): Matrix<S>;
 
 // @public
 export function prettyPrint(num: number): string;
 
 // @public
-export function prettyPrint<S>(vector: Vector_2<S>): string;
+export function prettyPrint<S>(vector: Vector<S>): string;
 
 // @public
-export function prettyPrint<S>(matrix: Matrix_2<S>): string;
+export function prettyPrint<S>(matrix: Matrix<S>): string;
 
 // @public
 export interface PrincipalComponentAnalysis<S> {
-    coordinates: Matrix_2<S>;
+    coordinates: Matrix<S>;
     cumulativeProportions: S[];
-    principalComponents: Vector_2<S>[];
+    principalComponents: Vector<S>[];
     proportions: S[];
     variances: S[];
 }
@@ -649,52 +614,52 @@ export interface PrincipalComponentAnalysis<S> {
 // @public
 export interface QRDecomposition<S> {
     // (undocumented)
-    Q: Matrix_2<S>;
+    Q: Matrix<S>;
     // (undocumented)
-    R: Matrix_2<S>;
+    R: Matrix<S>;
 }
 
 // @public
-export function RadialBasisFunction(distanceMetric: SimilarityMetric): Kernel_2;
+export function RadialBasisFunction(distanceMetric: SimilarityMetric): Kernel;
 
 // @public
-export function rank<S>(matrix: Matrix_2<S>): number;
+export function rank<S>(matrix: Matrix<S>): number;
 
 // @public
-export function reduceDimensions(A: Matrix_2<number>, options: DimensionReductionOptions): Matrix_2<number>;
+export function reduceDimensions(A: Matrix<number>, options: DimensionReductionOptions): Matrix<number>;
 
 // @public
-export function reducedRowEchelonForm<S>(matrix: Matrix_2<S>): Matrix_2<S>;
+export function reducedRowEchelonForm<S>(matrix: Matrix<S>): Matrix<S>;
 
 // @public
 export interface Regressor<H> {
     getHyperParameters(): H;
-    predict(data: Matrix_2<number>): Vector_2<number>;
-    train(data: Matrix_2<number>, target: Vector_2<number>): void;
+    predict(data: Matrix<number>): Vector<number>;
+    train(data: Matrix<number>, target: Vector<number>): void;
 }
 
 // @public
-export function rowEchelonForm<S>(matrix: Matrix_2<S>): Matrix_2<S>;
+export function rowEchelonForm<S>(matrix: Matrix<S>): Matrix<S>;
 
 // @public
 export interface RowOperationResult<S> {
     // (undocumented)
-    operator: Matrix_2<S>;
+    operator: Matrix<S>;
     // (undocumented)
-    result: Matrix_2<S>;
+    result: Matrix<S>;
 }
 
 // @public
 export class RowOperations {
-    static addRowToRow<S>(matrix: Matrix_2<S>, targetRow: number, rowToAdd: number): Matrix_2<S>;
-    static addScalarMultipleOfRowToRow<S>(matrix: Matrix_2<S>, targetRow: number, rowToAdd: number, scalar: S): Matrix_2<S>;
-    static exchangeRows<S>(matrix: Matrix_2<S>, first: number, second: number): Matrix_2<S>;
-    static multiplyRowByScalar<S>(matrix: Matrix_2<S>, rowIndex: number, scalar: S): Matrix_2<S>;
-    static pivot<S>(matrix: Matrix_2<S>): RowOperationResult<S>;
+    static addRowToRow<S>(matrix: Matrix<S>, targetRow: number, rowToAdd: number): Matrix<S>;
+    static addScalarMultipleOfRowToRow<S>(matrix: Matrix<S>, targetRow: number, rowToAdd: number, scalar: S): Matrix<S>;
+    static exchangeRows<S>(matrix: Matrix<S>, first: number, second: number): Matrix<S>;
+    static multiplyRowByScalar<S>(matrix: Matrix<S>, rowIndex: number, scalar: S): Matrix<S>;
+    static pivot<S>(matrix: Matrix<S>): RowOperationResult<S>;
 }
 
 // @public
-export function rowSumSupremumNorm<S>(A: Matrix_2<S>): number;
+export function rowSumSupremumNorm<S>(A: Matrix<S>): number;
 
 // @public
 export abstract class ScalarOperations<S> {
@@ -721,168 +686,98 @@ export abstract class ScalarOperations<S> {
 }
 
 // @public
-export type SimilarityMetric = (v1: Vector_2<number>, v2: Vector_2<number>) => number;
+export type SimilarityMetric = (v1: Vector<number>, v2: Vector<number>) => number;
 
 // @public
 export interface SingularValueDecomposition<S> {
     // (undocumented)
-    Sigma: Matrix_2<S>;
+    Sigma: Matrix<S>;
     // (undocumented)
-    U: Matrix_2<S>;
+    U: Matrix<S>;
     // (undocumented)
-    V: Matrix_2<S>;
+    V: Matrix<S>;
 }
 
+// Warning: (ae-forgotten-export) The symbol "LinearSolution" needs to be exported by the entry point index.d.ts
+//
 // @public
-export function solveByGaussianElimination<S>(A: Matrix_2<S>, b: Vector_2<S>): LinearSolution<S>;
+export function solveByGaussianElimination<S>(A: Matrix<S>, b: Vector<S>): LinearSolution<S>;
 
 // @public
-export function solveOverdeterminedSystem<S>(A: Matrix_2<S>, b: Vector_2<S>): Vector_2<S>;
+export function solveOverdeterminedSystem<S>(A: Matrix<S>, b: Vector<S>): Vector<S>;
 
 // @public
-export abstract class SparseMatrix<S> implements Matrix_2<S> {
+export abstract class SparseMatrix<S> implements Matrix<S> {
     // @internal
-    protected constructor(data: MatrixData_2<S>);
-    add(other: Matrix_2<S>): Matrix_2<S>;
-    adjoint(): Matrix_2<S>;
-    apply(vector: Vector_2<S>): Vector_2<S>;
-    abstract builder(): MatrixBuilder_2<S, Vector_2<S>, Matrix_2<S>>;
-    equals(other: Matrix_2<S>): boolean;
+    protected constructor(data: MatrixData<S>);
+    add(other: Matrix<S>): Matrix<S>;
+    adjoint(): Matrix<S>;
+    apply(vector: Vector<S>): Vector<S>;
+    abstract builder(): MatrixBuilder<S, Vector<S>, Matrix<S>>;
+    equals(other: Matrix<S>): boolean;
     forEach(cb: (entry: S, rowIndex: number, columnIndex: number) => void): void;
-    getColumn(j: number): Vector_2<S>;
-    getColumnVectors(): Vector_2<S>[];
-    getDiagonal(): Vector_2<S>;
+    getColumn(j: number): Vector<S>;
+    getColumnVectors(): Vector<S>[];
+    getDiagonal(): Vector<S>;
     getEntry(i: number, j: number): S;
     getNumberOfColumns(): number;
     getNumberOfRows(): number;
-    getRow(i: number): Vector_2<S>;
-    getRowVectors(): Vector_2<S>[];
-    getShape(): MatrixShape_2;
+    getRow(i: number): Vector<S>;
+    getRowVectors(): Vector<S>[];
+    getShape(): MatrixShape;
     getSparseData(): Map<number, Map<number, S>>;
-    map(entryFunction: (entry: S, rowIndex: number, columnIndex: number) => S): Matrix_2<S>;
-    multiply(other: Matrix_2<S>): Matrix_2<S>;
-    abstract ops(): ScalarOperations_2<S>;
-    scalarMultiply(scalar: S): Matrix_2<S>;
-    set(i: number, j: number, value: S): Matrix_2<S>;
+    map(entryFunction: (entry: S, rowIndex: number, columnIndex: number) => S): Matrix<S>;
+    multiply(other: Matrix<S>): Matrix<S>;
+    abstract ops(): ScalarOperations<S>;
+    scalarMultiply(scalar: S): Matrix<S>;
+    set(i: number, j: number, value: S): Matrix<S>;
     toArray(): S[][];
     trace(): S;
-    transpose(): Matrix_2<S>;
-    abstract vectorBuilder(): VectorBuilder_2<S, Vector_2<S>>;
+    transpose(): Matrix<S>;
+    abstract vectorBuilder(): VectorBuilder<S, Vector<S>>;
 }
 
 // @public
 export type SparseMatrixData<S> = ReadonlyMap<number, ReadonlyMap<number, S>>;
 
 // @public
-export class SparseNumberMatrix extends SparseMatrix_2<number> {
+export class SparseNumberMatrix extends SparseMatrix<number> {
     // @internal
-    constructor(data: MatrixData_2<number>);
+    constructor(data: MatrixData<number>);
     // (undocumented)
-    static builder(): MatrixBuilder_2<number, SparseNumberVector_2, SparseNumberMatrix>;
-    builder(): MatrixBuilder_2<number, SparseNumberVector_2, SparseNumberMatrix>;
+    static builder(): MatrixBuilder<number, SparseNumberVector, SparseNumberMatrix>;
+    builder(): MatrixBuilder<number, SparseNumberVector, SparseNumberMatrix>;
     // (undocumented)
-    static ops(): ScalarOperations_2<number>;
-    ops(): ScalarOperations_2<number>;
+    static ops(): ScalarOperations<number>;
+    ops(): ScalarOperations<number>;
     // (undocumented)
-    static vectorBuilder(): VectorBuilder_2<number, SparseNumberVector_2>;
-    vectorBuilder(): VectorBuilder_2<number, SparseNumberVector_2>;
+    static vectorBuilder(): VectorBuilder<number, SparseNumberVector>;
+    vectorBuilder(): VectorBuilder<number, SparseNumberVector>;
 }
 
 // @public
-export class SparseNumberVector extends SparseVector_2<number> {
+export class SparseNumberVector extends SparseVector<number> {
     // @internal
-    constructor(data: VectorData_2<number>);
+    constructor(data: VectorData<number>);
     // (undocumented)
-    static builder(): VectorBuilder_2<number, SparseNumberVector>;
+    static builder(): VectorBuilder<number, SparseNumberVector>;
     // (undocumented)
-    builder(): VectorBuilder_2<number, SparseNumberVector>;
+    builder(): VectorBuilder<number, SparseNumberVector>;
     // (undocumented)
-    matrixBuilder(): MatrixBuilder_2<number, SparseNumberVector, SparseNumberMatrix_2>;
+    matrixBuilder(): MatrixBuilder<number, SparseNumberVector, SparseNumberMatrix>;
     // (undocumented)
-    static ops(): ScalarOperations_2<number>;
+    static ops(): ScalarOperations<number>;
     // (undocumented)
-    ops(): ScalarOperations_2<number>;
+    ops(): ScalarOperations<number>;
 }
 
 // @public
-export abstract class SparseVector<S> implements Vector_2<S> {
+export abstract class SparseVector<S> implements Vector<S> {
     // @internal
-    protected constructor(data: VectorData_2<S>);
-    add(other: Vector_2<S>): Vector_2<S>;
-    // (undocumented)
-    abstract builder(): VectorBuilder_2<S, Vector_2<S>>;
-    combine(other: Vector_2<S>, combineEntries: (a: S, b: S) => S): Vector_2<S>;
-    equals(other: Vector_2<S>): boolean;
-    forEach(callback: (entry: S, index: number) => void): void;
-    getDimension(): number;
-    getEntry(index: number): S;
-    getSparseData(): Map<number, S>;
-    innerProduct(other: Vector_2<S>): S;
-    map(valueFromEntry: (entry: S, index: number) => S): Vector_2<S>;
-    // (undocumented)
-    abstract matrixBuilder(): MatrixBuilder_2<S, Vector_2<S>, Matrix_2<S>>;
-    // (undocumented)
-    abstract ops(): ScalarOperations_2<S>;
-    outerProduct(other: Vector_2<S>): Matrix_2<S>;
-    projectOnto(u: Vector_2<S>): Vector_2<S>;
-    scalarMultiply(scalar: S): Vector_2<S>;
-    set(index: number, value: S): Vector_2<S>;
-    toArray(): S[];
-}
-
-// @public
-export type SparseVectorData<S> = ReadonlyMap<number, S>;
-
-// @public
-export function standardDeviation<S>(x: Vector_2<S>): S;
-
-// @public
-export function standardDeviation<S>(A: Matrix_2<S>): Vector_2<S>;
-
-// @public
-export function standardize<S>(x: Vector_2<S>): Vector_2<S>;
-
-// @public
-export function standardize<S>(A: Matrix_2<S>): Matrix_2<S>;
-
-// @public
-export function sumNorm<S>(v: Vector_2<S>): number;
-
-// @public
-export class SupportVectorMachineClassifier implements Classifier_2<SupportVectorMachineHyperparams> {
-    constructor(hyperParameters: Partial<SupportVectorMachineHyperparams>);
-    getHyperParameters(): SupportVectorMachineHyperparams;
-    getParameters(): Vector_2<number> | undefined;
-    predict(data: Matrix_2<number>): Vector_2<number>;
-    predictProbabilities(_data: Matrix_2<number>): Vector_2<number>;
-    train(data: Matrix_2<number>, target: Vector_2<number>): void;
-    }
-
-// @public
-export type SupportVectorMachineHyperparams = GradientDescentParameters_2 & {
-    C: number;
-    kernel: Kernel_2;
-};
-
-// @public
-export function supremumNorm<S>(v: Vector_2<S>): number;
-
-// @public
-export function tripleProduct<S>(first: Vector_2<S>, second: Vector_2<S>, third: Vector_2<S>): S;
-
-// @public
-export function variance<S>(x: Vector_2<S>): S;
-
-// @public
-export function variance<S>(A: Matrix_2<S>): Vector_2<S>;
-
-// @public
-export function vec(data: number[]): Vector_2<number>;
-
-// @public
-export interface Vector<S> {
+    protected constructor(data: VectorData<S>);
     add(other: Vector<S>): Vector<S>;
-    builder(): VectorBuilder_2<S, Vector<S>>;
+    // (undocumented)
+    abstract builder(): VectorBuilder<S, Vector<S>>;
     combine(other: Vector<S>, combineEntries: (a: S, b: S) => S): Vector<S>;
     equals(other: Vector<S>): boolean;
     forEach(callback: (entry: S, index: number) => void): void;
@@ -891,9 +786,11 @@ export interface Vector<S> {
     getSparseData(): Map<number, S>;
     innerProduct(other: Vector<S>): S;
     map(valueFromEntry: (entry: S, index: number) => S): Vector<S>;
-    matrixBuilder(): MatrixBuilder_2<S, Vector<S>, Matrix_2<S>>;
-    ops(): ScalarOperations_2<S>;
-    outerProduct(other: Vector<S>): Matrix_2<S>;
+    // (undocumented)
+    abstract matrixBuilder(): MatrixBuilder<S, Vector<S>, Matrix<S>>;
+    // (undocumented)
+    abstract ops(): ScalarOperations<S>;
+    outerProduct(other: Vector<S>): Matrix<S>;
     projectOnto(u: Vector<S>): Vector<S>;
     scalarMultiply(scalar: S): Vector<S>;
     set(index: number, value: S): Vector<S>;
@@ -901,26 +798,96 @@ export interface Vector<S> {
 }
 
 // @public
-export class VectorBuilder<S, V extends Vector_2<S>> {
+export type SparseVectorData<S> = ReadonlyMap<number, S>;
+
+// @public
+export function standardDeviation<S>(x: Vector<S>): S;
+
+// @public
+export function standardDeviation<S>(A: Matrix<S>): Vector<S>;
+
+// @public
+export function standardize<S>(x: Vector<S>): Vector<S>;
+
+// @public
+export function standardize<S>(A: Matrix<S>): Matrix<S>;
+
+// @public
+export function sumNorm<S>(v: Vector<S>): number;
+
+// @public
+export class SupportVectorMachineClassifier implements Classifier<SupportVectorMachineHyperparams> {
+    constructor(hyperParameters: Partial<SupportVectorMachineHyperparams>);
+    getHyperParameters(): SupportVectorMachineHyperparams;
+    getParameters(): Vector<number> | undefined;
+    predict(data: Matrix<number>): Vector<number>;
+    predictProbabilities(_data: Matrix<number>): Vector<number>;
+    train(data: Matrix<number>, target: Vector<number>): void;
+    }
+
+// @public
+export type SupportVectorMachineHyperparams = GradientDescentParameters & {
+    C: number;
+    kernel: Kernel;
+};
+
+// @public
+export function supremumNorm<S>(v: Vector<S>): number;
+
+// @public
+export function tripleProduct<S>(first: Vector<S>, second: Vector<S>, third: Vector<S>): S;
+
+// @public
+export function variance<S>(x: Vector<S>): S;
+
+// @public
+export function variance<S>(A: Matrix<S>): Vector<S>;
+
+// @public
+export function vec(data: number[]): Vector<number>;
+
+// @public
+export interface Vector<S> {
+    add(other: Vector<S>): Vector<S>;
+    builder(): VectorBuilder<S, Vector<S>>;
+    combine(other: Vector<S>, combineEntries: (a: S, b: S) => S): Vector<S>;
+    equals(other: Vector<S>): boolean;
+    forEach(callback: (entry: S, index: number) => void): void;
+    getDimension(): number;
+    getEntry(index: number): S;
+    getSparseData(): Map<number, S>;
+    innerProduct(other: Vector<S>): S;
+    map(valueFromEntry: (entry: S, index: number) => S): Vector<S>;
+    matrixBuilder(): MatrixBuilder<S, Vector<S>, Matrix<S>>;
+    ops(): ScalarOperations<S>;
+    outerProduct(other: Vector<S>): Matrix<S>;
+    projectOnto(u: Vector<S>): Vector<S>;
+    scalarMultiply(scalar: S): Vector<S>;
+    set(index: number, value: S): Vector<S>;
+    toArray(): S[];
+}
+
+// @public
+export class VectorBuilder<S, V extends Vector<S>> {
     // @internal
-    constructor(vectorConstructor: VectorConstructor_2<S, V>);
-    concatenate(first: Vector_2<S>, second: Vector_2<S>): V;
+    constructor(vectorConstructor: VectorConstructor<S, V>);
+    concatenate(first: Vector<S>, second: Vector<S>): V;
     elementaryVector(dimension: number, oneIndex: number): V;
     empty(): V;
     fill(value: S, dimension: number): V;
     // (undocumented)
-    fromArray(data: VectorData_2<S>): V;
+    fromArray(data: VectorData<S>): V;
     fromIndexFunction(dimension: number, valueFromIndex: VectorIndexFunction<S>): V;
     // (undocumented)
-    fromNumberArray(data: VectorData_2<number>): V;
+    fromNumberArray(data: VectorData<number>): V;
     // (undocumented)
-    fromSparseData(dimension: number, sparseData: SparseVectorData_2<S>): V;
+    fromSparseData(dimension: number, sparseData: SparseVectorData<S>): V;
     // (undocumented)
-    fromValues(...data: VectorData_2<S>): V;
+    fromValues(...data: VectorData<S>): V;
     ones(dimension: number): V;
     random(dimension: number, min?: number, max?: number): V;
     randomNormal(dimension: number, mean?: number, standardDeviation?: number): V;
-    shift(vector: Vector_2<S>, offset?: number, reverse?: boolean): V;
+    shift(vector: Vector<S>, offset?: number, reverse?: boolean): V;
     zeros(dimension: number): V;
 }
 
@@ -931,9 +898,9 @@ export interface VectorConstructor<S, V extends Vector<S>> {
     // (undocumented)
     new (data: VectorData<S>): V;
     // (undocumented)
-    builder(): VectorBuilder_2<S, V>;
+    builder(): VectorBuilder<S, V>;
     // (undocumented)
-    ops(): ScalarOperations_2<S>;
+    ops(): ScalarOperations<S>;
 }
 
 // @public
@@ -943,10 +910,10 @@ export type VectorData<S> = readonly S[];
 export type VectorIndexFunction<S> = (index: number) => S;
 
 // @public
-export function zeros(entries: number): Vector_2<number>;
+export function zeros(entries: number): Vector<number>;
 
 // @public
-export function zeros(shape: MatrixShape_2): Matrix_2<number>;
+export function zeros(shape: MatrixShape): Matrix<number>;
 
 
 // (No @packageDocumentation comment for this package)

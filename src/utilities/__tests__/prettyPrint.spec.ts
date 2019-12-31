@@ -1,8 +1,8 @@
-import { vec, mat } from '@lib/utilities/aliases';
-import { ComplexVector } from '@lib/types/vector/ComplexVector';
-import { ComplexNumber } from '@lib/types/scalar/ComplexNumber';
-import { ComplexMatrix } from '@lib/types/matrix/ComplexMatrix';
-import { prettyPrint } from '@lib/utilities/prettyPrint';
+import { vec, mat } from '../aliases';
+import { ComplexVector } from '../../types/vector/ComplexVector';
+import { ComplexNumber } from '../../types/scalar/ComplexNumber';
+import { ComplexMatrix } from '../../types/matrix/ComplexMatrix';
+import { prettyPrint } from '../prettyPrint';
 
 describe('prettyPrint', () => {
   test('prints a NumberVector', () => {

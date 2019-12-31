@@ -1,8 +1,8 @@
-import { assertValidDimension, assertValidIndex } from '@lib/utilities/ErrorAssertions';
-import { mod } from '@lib/utilities/NumberUtilities';
-import { ScalarOperations } from '@lib/types/scalar/ScalarOperations';
-import { SparseVectorData } from '@lib/types/vector/SparseVector';
-import { Vector, VectorConstructor, VectorData } from '@lib/types/vector/Vector';
+import { assertValidDimension, assertValidIndex } from '../../utilities/ErrorAssertions';
+import { mod } from '../../utilities/NumberUtilities';
+import { ScalarOperations } from '../scalar/ScalarOperations';
+import { SparseVectorData } from './SparseVector';
+import { Vector, VectorConstructor, VectorData } from './Vector';
 
 /**
  * A function that generates a vector entry based on its index

@@ -1,4 +1,4 @@
-import { Matrix } from '@lib/types/matrix/Matrix';
+import { Matrix } from '../../../types/matrix/Matrix';
 
 /**
  * A function which takes a {@link Matrix} of data

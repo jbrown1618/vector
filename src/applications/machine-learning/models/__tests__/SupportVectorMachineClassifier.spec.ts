@@ -1,7 +1,7 @@
 import { loadTestData } from '@test-utils/testData';
-import { SupportVectorMachineClassifier } from '@lib/applications/machine-learning/models/SupportVectorMachineClassifier';
-import { GaussianKernel } from '@lib/applications/machine-learning/kernels/GaussianKernel';
-import { mat } from '@lib/utilities/aliases';
+import { SupportVectorMachineClassifier } from '../SupportVectorMachineClassifier';
+import { GaussianKernel } from '../../kernels/GaussianKernel';
+import { mat } from '../../../../utilities/aliases';
 
 describe('SupportVectorMachineClassifier', () => {
   describe('with a linear kernel', () => {

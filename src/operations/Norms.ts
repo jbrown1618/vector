@@ -1,6 +1,6 @@
-import { vec } from '@lib/utilities/aliases';
-import { Matrix } from '@lib/types/matrix/Matrix';
-import { Vector } from '@lib/types/vector/Vector';
+import { vec } from '../utilities/aliases';
+import { Matrix } from '../types/matrix/Matrix';
+import { Vector } from '../types/vector/Vector';
 
 /**
  * Returns a vector with the same direction as the input `v`, but with a Euclidean norm of 1

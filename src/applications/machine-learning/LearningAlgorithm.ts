@@ -1,4 +1,4 @@
-import { Vector } from '@lib/types/vector/Vector';
+import { Vector } from '../../types/vector/Vector';
 
 /**
  * The output of a cost function

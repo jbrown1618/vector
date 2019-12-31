@@ -1,11 +1,11 @@
-import { vec, zeros, diag, ones, eye } from '@lib/utilities/aliases';
-import { ComplexNumber } from '@lib/types/scalar/ComplexNumber';
-import { ComplexMatrix } from '@lib/types/matrix/ComplexMatrix';
-import { MatrixBuilder } from '@lib/types/matrix/MatrixBuilder';
-import { NumberMatrix } from '@lib/types/matrix/NumberMatrix';
+import { vec, zeros, diag, ones, eye } from '../../../utilities/aliases';
+import { ComplexNumber } from '../../scalar/ComplexNumber';
+import { ComplexMatrix } from '../ComplexMatrix';
+import { MatrixBuilder } from '../MatrixBuilder';
+import { FloatMatrix } from '../FloatMatrix';
 
 describe('MatrixBuilder', () => {
-  const matrixBuilder = new MatrixBuilder(NumberMatrix);
+  const matrixBuilder = new MatrixBuilder(FloatMatrix);
 
   describe('fromArray', () => {
     test('builds a matrix from a 2D array of values', () => {

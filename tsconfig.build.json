@@ -8,11 +8,6 @@
     "sourceMap": true,
     "outDir": "./dist/",
 
-    "baseUrl": "./src",
-    "paths": {
-      "@lib/*": ["../src/*"]
-    },
-
     "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": true,

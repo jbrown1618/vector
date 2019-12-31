@@ -1,6 +1,6 @@
-import { Matrix } from '@lib/types/matrix/Matrix';
-import { Vector } from '@lib/types/vector/Vector';
-import { isVector } from '@lib/utilities/typeGuards';
+import { Matrix } from '../../types/matrix/Matrix';
+import { Vector } from '../../types/vector/Vector';
+import { isVector } from '../../utilities/typeGuards';
 
 /**
  * Calculates the mean of the values in the vector `x`

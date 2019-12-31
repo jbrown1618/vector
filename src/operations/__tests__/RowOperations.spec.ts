@@ -1,5 +1,5 @@
-import { mat } from '@lib/utilities/aliases';
-import { RowOperations } from '@lib/operations/RowOperations';
+import { mat } from '../../utilities/aliases';
+import { RowOperations } from '../RowOperations';
 
 describe('RowOperations', () => {
   const original = mat([

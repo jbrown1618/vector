@@ -7,10 +7,10 @@ import {
   isOrthogonal,
   isOrthonormal,
   isHermitian
-} from '@lib/utilities/MatrixProperties';
-import { ComplexMatrix } from '@lib/types/matrix/ComplexMatrix';
-import { ComplexNumber } from '@lib/types/scalar/ComplexNumber';
-import { mat, eye } from '@lib/utilities/aliases';
+} from '../MatrixProperties';
+import { ComplexMatrix } from '../../types/matrix/ComplexMatrix';
+import { ComplexNumber } from '../../types/scalar/ComplexNumber';
+import { mat, eye } from '../aliases';
 
 describe('MatrixProperties', () => {
   describe('isSquare', () => {

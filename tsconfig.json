@@ -3,8 +3,8 @@
   "compilerOptions": {
     "moduleResolution": "node",
     "types": ["jest", "node"],
+    "baseUrl": "./src/",
     "paths": {
-      "@lib/*": ["../src/*"],
       "@test-utils/*": ["../test/utils/*"]
     }
   },

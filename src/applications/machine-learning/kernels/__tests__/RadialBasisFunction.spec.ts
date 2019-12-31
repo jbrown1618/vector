@@ -1,8 +1,8 @@
-import { Vector } from '@lib/types/vector/Vector';
-import { euclideanNorm } from '@lib/operations/Norms';
 import { loadTestData } from '@test-utils/testData';
-import { RadialBasisFunction } from '@lib/applications/machine-learning/kernels/RadialBasisFunction';
 import { roundMatrix } from '@test-utils/rounding';
+import { Vector } from '../../../../types/vector/Vector';
+import { euclideanNorm } from '../../../../operations/Norms';
+import { RadialBasisFunction } from '../RadialBasisFunction';
 
 describe('RadialBasisFunction', () => {
   it('constructs a similarity matrix given a similarity metric', () => {

@@ -3,12 +3,12 @@ import {
   assertSquare,
   assertValidMatrixIndex,
   assertValidShape
-} from '@lib/utilities/ErrorAssertions';
-import { binomial } from '@lib/utilities/NumberUtilities';
-import { ScalarOperations } from '@lib/types/scalar/ScalarOperations';
-import { Vector } from '@lib/types/vector/Vector';
-import { Matrix, MatrixConstructor, MatrixShape, MatrixData } from '@lib/types/matrix/Matrix';
-import { SparseMatrixData } from '@lib/types/matrix/SparseMatrix';
+} from '../../utilities/ErrorAssertions';
+import { binomial } from '../../utilities/NumberUtilities';
+import { ScalarOperations } from '../scalar/ScalarOperations';
+import { Vector } from '../vector/Vector';
+import { Matrix, MatrixConstructor, MatrixShape, MatrixData } from './Matrix';
+import { SparseMatrixData } from './SparseMatrix';
 
 /**
  * A function that generates a matrix entry based on an existing entry `entry`,

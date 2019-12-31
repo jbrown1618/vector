@@ -1,4 +1,4 @@
-import { Matrix } from '@lib/types/matrix/Matrix';
+import { Matrix } from '../types/matrix/Matrix';
 
 /**
  * Tests if a matrix is square.

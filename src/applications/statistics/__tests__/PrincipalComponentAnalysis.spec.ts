@@ -1,4 +1,4 @@
-import { pca, reduceDimensions } from '@lib/applications/statistics/PrincipalComponentAnalysis';
+import { pca, reduceDimensions } from '../PrincipalComponentAnalysis';
 import { loadTestData } from '@test-utils/testData';
 
 describe('PrincipalComponentAnalysis', () => {

@@ -1,18 +1,17 @@
-import { StaticImplements } from '@lib/utilities/StaticImplements';
-import { NumberOperations } from '@lib/types/scalar/NumberOperations';
-import { FloatVector } from '@lib/types/vector/FloatVector';
-import { VectorBuilder } from '@lib/types/vector/VectorBuilder';
-import { Matrix, MatrixShape } from '@lib/types/matrix/Matrix';
-import { MatrixConstructor, MatrixData } from '@lib/types/matrix/Matrix';
-import { MatrixBuilder } from '@lib/types/matrix/MatrixBuilder';
-import { ScalarOperations } from '@lib/types/scalar/ScalarOperations';
+import { StaticImplements } from '../../utilities/StaticImplements';
+import { NumberOperations } from '../scalar/NumberOperations';
+import { FloatVector } from '../vector/FloatVector';
+import { VectorBuilder } from '../vector/VectorBuilder';
+import { Matrix, MatrixShape, MatrixConstructor, MatrixData } from './Matrix';
+import { MatrixBuilder } from './MatrixBuilder';
+import { ScalarOperations } from '../scalar/ScalarOperations';
 import {
   assertRectangular,
   assertValidMatrixIndex,
   assertDimensionMatch,
   assertMultiplicable
-} from '@lib/utilities/ErrorAssertions';
-import { Vector } from '@lib/types/vector/Vector';
+} from '../../utilities/ErrorAssertions';
+import { Vector } from '../vector/Vector';
 
 /**
  * A dense matrix of JavaScript `number` primitives, implemented as a column-major `Float64Array`

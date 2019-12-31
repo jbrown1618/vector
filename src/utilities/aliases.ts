@@ -1,7 +1,7 @@
-import { Vector } from '@lib/types/vector/Vector';
-import { Matrix, MatrixShape } from '@lib/types/matrix/Matrix';
-import { FloatVector } from '@lib/types/vector/FloatVector';
-import { FloatMatrix } from '@lib/types/matrix/FloatMatrix';
+import { Vector } from '../types/vector/Vector';
+import { Matrix, MatrixShape } from '../types/matrix/Matrix';
+import { FloatVector } from '../types/vector/FloatVector';
+import { FloatMatrix } from '../types/matrix/FloatMatrix';
 
 const vb = FloatVector.builder();
 const mb = FloatMatrix.builder();

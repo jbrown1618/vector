@@ -5,7 +5,7 @@ import {
   mod,
   random,
   randomNormal
-} from '@lib/utilities/NumberUtilities';
+} from '../NumberUtilities';
 
 describe('NumberUtilities', () => {
   describe('approximatelyEqual', () => {
