@@ -155,7 +155,7 @@ export class FloatVector implements Vector<number> {
    * {@inheritDoc Vector.scalarMultiply}
    */
   public scalarMultiply(scalar: number): Vector<number> {
-    return new FloatVector(this._data.map(v => v * scalar));
+    return this.map(v => v * scalar);
   }
 
   /**
@@ -183,5 +183,30 @@ export class FloatVector implements Vector<number> {
    */
   public getDimension(): number {
     return this._data.length;
+  }
+
+  /**
+   * {@inheritDoc Vector.getDimension}
+   */
+  public forEach(callback: (entry: number, index: number) => void): void {
+    this._data.forEach(callback);
+  }
+
+  /**
+   * {@inheritDoc Vector.getDimension}
+   */
+  public map(valueFromEntry: (entry: number, index: number) => number): Vector<number> {
+    return new FloatVector(this._data.map(valueFromEntry));
+  }
+
+  /**
+   * {@inheritDoc Vector.getDimension}
+   */
+  public combine(
+    other: Vector<number>,
+    combineEntries: (a: number, b: number) => number
+  ): Vector<number> {
+    assertHomogeneous([this, other]);
+    return this.map((entry, index) => combineEntries(entry, other.getEntry(index)));
   }
 }

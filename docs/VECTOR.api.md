@@ -55,7 +55,7 @@ export abstract class ArrayMatrix<S> implements Matrix_2<S> {
     apply(vector: Vector_2<S>): Vector_2<S>;
     abstract builder(): MatrixBuilder_2<S, Vector_2<S>, Matrix_2<S>>;
     equals(other: Matrix_2<S>): boolean;
-    forEachEntry(cb: MatrixEntryCallback_2<S>): void;
+    forEach(cb: MatrixEntryCallback_2<S>): void;
     getColumn(j: number): Vector_2<S>;
     getColumnVectors(): Vector_2<S>[];
     getDiagonal(): Vector_2<S>;
@@ -296,7 +296,7 @@ export class FloatMatrix implements Matrix_2<number> {
     static builder(): MatrixBuilder_2<number, FloatVector_2, FloatMatrix>;
     builder(): MatrixBuilder_2<number, FloatVector_2, FloatMatrix>;
     equals(other: Matrix_2<number>): boolean;
-    forEachEntry(cb: MatrixEntryCallback_2<number>): void;
+    forEach(cb: MatrixEntryCallback_2<number>): void;
     getColumn(j: number): Vector_2<number>;
     getColumnVectors(): Vector_2<number>[];
     getDiagonal(): Vector_2<number>;
@@ -470,7 +470,7 @@ export interface Matrix<S> extends LinearTransformation_2<Vector_2<S>, Vector_2<
     apply(vector: Vector_2<S>): Vector_2<S>;
     builder(): MatrixBuilder_2<S, Vector_2<S>, Matrix<S>>;
     equals(other: Matrix<S>): boolean;
-    forEachEntry(callback: MatrixEntryCallback<S>): void;
+    forEach(callback: MatrixEntryCallback<S>): void;
     getColumn(j: number): Vector_2<S>;
     getColumnVectors(): Vector_2<S>[];
     getDiagonal(): Vector_2<S>;
@@ -747,7 +747,7 @@ export abstract class SparseMatrix<S> implements Matrix_2<S> {
     apply(vector: Vector_2<S>): Vector_2<S>;
     abstract builder(): MatrixBuilder_2<S, Vector_2<S>, Matrix_2<S>>;
     equals(other: Matrix_2<S>): boolean;
-    forEachEntry(cb: MatrixEntryCallback_2<S>): void;
+    forEach(cb: MatrixEntryCallback_2<S>): void;
     getColumn(j: number): Vector_2<S>;
     getColumnVectors(): Vector_2<S>[];
     getDiagonal(): Vector_2<S>;

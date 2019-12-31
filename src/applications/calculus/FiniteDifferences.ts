@@ -148,7 +148,7 @@ export function derivative(
   binCount: number
 ): Vector<number> {
   const x = linspace(xMin, xMax, binCount);
-  const y = NumberVector.builder().map(x, f);
+  const y = x.map(f);
   const delta = x.getEntry(1) - x.getEntry(0);
 
   const D = centralDifferenceMatrix(binCount);

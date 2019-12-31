@@ -78,33 +78,6 @@ describe('VectorBuilder', () => {
     });
   });
 
-  describe('map', () => {
-    test('builds a vector by transforming the values of another vector', () => {
-      const original = builder.fromValues(1, 2, 3, 4);
-      const expected = builder.fromValues(1, 3, 5, 7);
-      expect(builder.map(original, (value, index) => value + index)).toStrictEqual(expected);
-    });
-
-    test('handles an empty vector', () => {
-      expect(builder.map(builder.empty(), value => value + 1)).toStrictEqual(builder.empty());
-    });
-  });
-
-  describe('combine', () => {
-    test('builds a vector by combining two other vectors', () => {
-      const first = builder.fromValues(1, 2, 3, 4);
-      const second = builder.fromValues(5, 6, 7, 8);
-      const expected = builder.fromValues(5, 12, 21, 32);
-      expect(builder.combine(first, second, (a, b) => a * b)).toStrictEqual(expected);
-    });
-
-    test('rejects a dimension mismatch', () => {
-      const first = builder.fromValues(1, 2, 3, 4);
-      const second = builder.fromValues(5, 6, 7);
-      expect(() => builder.combine(first, second, () => 1)).toThrow();
-    });
-  });
-
   describe('empty', () => {
     test('returns an empty vector', () => {
       const E = builder.empty();

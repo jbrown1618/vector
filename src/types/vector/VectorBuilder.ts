@@ -15,16 +15,6 @@ import { Vector, VectorConstructor, VectorData } from '@lib/types/vector/Vector'
 export type VectorIndexFunction<S> = (index: number) => S;
 
 /**
- * A function that generates a vector entry based on an existing entry and its index
- *
- * @remarks
- * This should be a pure function
- *
- * @public
- */
-export type VectorEntryFunction<S> = (entry: S, index: number) => S;
-
-/**
  * Provides methods for constructing {@link Vector}s of a given type
  * @public
  */
@@ -81,59 +71,6 @@ export class VectorBuilder<S, V extends Vector<S>> {
       data[i] = valueFromIndex(i);
     }
     return this.fromArray(data);
-  }
-
-  /**
-   * Constructs a vector by transforming the values of another vector.
-   *
-   * @example
-   * ```
-   * const original = vectorBuilder.fromValues(1, 2, 3, 4);
-   *
-   * const originalPlusOne = vectorBuilder.map(original, (value) => value + 1);
-   * // [2, 3, 4, 5]
-   *
-   * const originalPlusIndex = vectorBuilder.map(original, (value, index) => value + index);
-   * // [1, 3, 5, 7]
-   * ```
-   * @param vector - The vector on whose entries to base the entries of the new vector
-   * @param valueFromEntry - A function which takes an entry of
-   *     the original vector and its index, and returns the corresponding entry of the new vector
-   * @returns The new vector
-   */
-  public map(vector: Vector<S>, valueFromEntry: VectorEntryFunction<S>): V {
-    return this.fromArray(vector.toArray().map(valueFromEntry));
-  }
-
-  /**
-   * Constructs a vector by combining the values of two other vectors
-   *
-   * @example
-   * ```
-   * const first = vec([1, 2, 3]);
-   * const second = vec([2, 3, 4]);
-   *
-   * const combined = combine(first, second, (a,b) => a * b);
-   * // [2, 6, 12]
-   * ```
-   * @param first - The first vector to combine
-   * @param second - The second vector to combine
-   * @param combineEntries - A function which takes an entry from each vector and returns a new entry
-   * @returns The new vector
-   */
-  public combine(
-    first: Vector<S>,
-    second: Vector<S>,
-    combineEntries: (a: S, b: S) => S
-  ): Vector<S> {
-    if (first.getDimension() != second.getDimension()) {
-      throw new Error(
-        `Expected equal dimensions; get ${first.getDimension()} and ${second.getDimension()}`
-      );
-    }
-    return this.map(first, (a, index) => {
-      return combineEntries(a, second.getEntry(index));
-    });
   }
 
   /**

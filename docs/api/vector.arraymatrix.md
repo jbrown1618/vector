@@ -27,7 +27,7 @@ The constructor for this class is marked as internal. Third-party code should no
 |  [apply(vector)](./vector.arraymatrix.apply.md) |  | Applies the matrix as a linear transformation to the given vector. Implements matrix-vector multiplication. |
 |  [builder()](./vector.arraymatrix.builder.md) |  | Returns a [MatrixBuilder](./vector.matrixbuilder.md) which will build new matrices of the same type |
 |  [equals(other)](./vector.arraymatrix.equals.md) |  | Tests if two matrices are equal |
-|  [forEachEntry(cb)](./vector.arraymatrix.foreachentry.md) |  | Executes the <code>callback</code> function for each entry in the matrix. |
+|  [forEach(cb)](./vector.arraymatrix.forEach.md) |  | Executes the <code>callback</code> function for each entry in the matrix. |
 |  [getColumn(j)](./vector.arraymatrix.getcolumn.md) |  | Returns a vector corresponding to the column at index <code>columnIndex</code> |
 |  [getColumnVectors()](./vector.arraymatrix.getcolumnvectors.md) |  | An array of vectors corresponding to the columns of the matrix |
 |  [getDiagonal()](./vector.arraymatrix.getdiagonal.md) |  | Returns a vector containing the elements of the main diagonal of the matrix |

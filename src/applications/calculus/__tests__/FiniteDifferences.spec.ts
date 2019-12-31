@@ -1,5 +1,4 @@
 import { mat, vec } from '@lib/utilities/aliases';
-import { NumberVector } from '@lib/types/vector/NumberVector';
 import {
   backwardDifferenceMatrix,
   centralDifferenceMatrix,
@@ -72,7 +71,7 @@ describe('FiniteDifferences', () => {
         const xMax = 6;
 
         const x = linspace(xMin, xMax, binCount);
-        const actualDerivative = NumberVector.builder().map(x, df);
+        const actualDerivative = x.map(df);
 
         const approximateDerivative = derivative(f, xMin, xMax, binCount);
 

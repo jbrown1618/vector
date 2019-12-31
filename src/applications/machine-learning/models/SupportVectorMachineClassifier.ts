@@ -100,7 +100,7 @@ export class SupportVectorMachineClassifier implements Classifier<SupportVectorM
 
   private makePredictions(X: Matrix<number>, weights: Vector<number>): Vector<number> {
     const scores = this.calculateScores(X, weights);
-    return scores.builder().map(scores, score => (score > 0 ? 1 : 0));
+    return scores.map(score => (score > 0 ? 1 : 0));
   }
 
   private calculateCost(
@@ -110,10 +110,10 @@ export class SupportVectorMachineClassifier implements Classifier<SupportVectorM
   ): number {
     const [m] = X.getShape();
     const scores = this.calculateScores(X, weights);
-    const costs = scores.toArray().map((score, i) => {
+    const costs = scores.map((score, i) => {
       return cost(score, target.getEntry(i));
     });
-    const totalCost = costs.reduce((prev, curr) => prev + curr, 0);
+    const totalCost = costs.toArray().reduce((prev, curr) => prev + curr, 0);
     return totalCost / m;
   }
 

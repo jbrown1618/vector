@@ -6,7 +6,7 @@ describe('LogisticRegressionClassifier', () => {
   it('makes predictions', () => {
     const iris = loadTestData('iris');
     const xTrain = iris.builder().slice(iris, 0, 0, iris.getNumberOfRows(), 4);
-    const yTrain = iris.vectorBuilder().map(iris.getColumn(4), x => (x === 0 ? 1 : 0));
+    const yTrain = iris.getColumn(4).map(x => (x === 0 ? 1 : 0));
 
     const cls = new LogisticRegressionClassifier({
       alpha: 0.1,

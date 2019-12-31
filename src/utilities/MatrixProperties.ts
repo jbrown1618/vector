@@ -27,7 +27,7 @@ export function isSquare(matrix: Matrix<any>): boolean {
 export function isUpperTriangular<S>(matrix: Matrix<S>): boolean {
   const ops = matrix.ops();
   let isUT = true;
-  matrix.forEachEntry((entry, i, j) => {
+  matrix.forEach((entry, i, j) => {
     if (i > j && !ops.equals(ops.zero(), entry)) {
       isUT = false;
     }
@@ -48,7 +48,7 @@ export function isUpperTriangular<S>(matrix: Matrix<S>): boolean {
 export function isLowerTriangular<S>(matrix: Matrix<S>): boolean {
   const ops = matrix.ops();
   let isLT = true;
-  matrix.forEachEntry((entry, i, j) => {
+  matrix.forEach((entry, i, j) => {
     if (i < j && !ops.equals(ops.zero(), entry)) {
       isLT = false;
     }

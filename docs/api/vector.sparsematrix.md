@@ -27,7 +27,7 @@ The constructor for this class is marked as internal. Third-party code should no
 |  [apply(vector)](./vector.sparsematrix.apply.md) |  | Applies the matrix as a linear transformation to the given vector. Implements matrix-vector multiplication. |
 |  [builder()](./vector.sparsematrix.builder.md) |  | Returns a [MatrixBuilder](./vector.matrixbuilder.md) which will build new matrices of the same type |
 |  [equals(other)](./vector.sparsematrix.equals.md) |  | Tests if two matrices are equal |
-|  [forEachEntry(cb)](./vector.sparsematrix.foreachentry.md) |  | Executes the <code>callback</code> function for each entry in the matrix. |
+|  [forEach(cb)](./vector.sparsematrix.forEach.md) |  | Executes the <code>callback</code> function for each entry in the matrix. |
 |  [getColumn(j)](./vector.sparsematrix.getcolumn.md) |  | Returns a vector corresponding to the column at index <code>columnIndex</code> |
 |  [getColumnVectors()](./vector.sparsematrix.getcolumnvectors.md) |  | An array of vectors corresponding to the columns of the matrix |
 |  [getDiagonal()](./vector.sparsematrix.getdiagonal.md) |  | Returns a vector containing the elements of the main diagonal of the matrix |

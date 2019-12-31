@@ -21,7 +21,7 @@ export interface Matrix<S> extends LinearTransformation<Vector<S>, Vector<S>>
 |  [apply(vector)](./vector.matrix.apply.md) | Applies the matrix as a linear transformation to the given vector. Implements matrix-vector multiplication. |
 |  [builder()](./vector.matrix.builder.md) | Returns a [MatrixBuilder](./vector.matrixbuilder.md) which will build new matrices of the same type |
 |  [equals(other)](./vector.matrix.equals.md) | Tests if two matrices are equal |
-|  [forEachEntry(callback)](./vector.matrix.foreachentry.md) | Executes the <code>callback</code> function for each entry in the matrix. |
+|  [forEach(callback)](./vector.matrix.forEach.md) | Executes the <code>callback</code> function for each entry in the matrix. |
 |  [getColumn(j)](./vector.matrix.getcolumn.md) | Returns a vector corresponding to the column at index <code>columnIndex</code> |
 |  [getColumnVectors()](./vector.matrix.getcolumnvectors.md) | An array of vectors corresponding to the columns of the matrix |
 |  [getDiagonal()](./vector.matrix.getdiagonal.md) | Returns a vector containing the elements of the main diagonal of the matrix |

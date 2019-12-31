@@ -17,12 +17,6 @@ export type MatrixData<S> = readonly VectorData<S>[];
  */
 export type MatrixShape = [number, number];
 
-/**
- * A function to execute on an entry in a matrix
- * @public
- */
-export type MatrixEntryCallback<S> = (entry: S, rowIndex: number, columnIndex: number) => void;
-
 // TODO - the matrix constructor should be able to take data in any format.  Maybe we just need conversion functions for each of the data formats
 /**
  * @internal
@@ -232,5 +226,32 @@ export interface Matrix<S> extends LinearTransformation<Vector<S>, Vector<S>> {
    * @param callback - The function to execute for each entry
    * @public
    */
-  forEachEntry(callback: MatrixEntryCallback<S>): void;
+  forEach(callback: (entry: S, rowIndex: number, columnIndex: number) => void): void;
+
+  /**
+   * Builds a matrix by transforming the values of another matrix.
+   *
+   * @example
+   * ```
+   * const original = matrixBuilder.fromArray([
+   *   [ 1, 2, 3 ]
+   *   [ 4, 5, 6 ]
+   * ]);
+   *
+   * const originalPlusOne = original.map(value => value + 1);
+   *
+   * // [ 2 3 4 ]
+   * // [ 5 6 7 ]
+   *
+   * const originalPlusIMinusJ = original.map((value, i, j) => value + i - j);
+   *
+   * // [ 1 1 1 ]
+   * // [ 5 5 5 ]
+   * ```
+   * @param entryFunction - A function which takes an entry of
+   *     the original matrix and its indices, and returns the corresponding entry of the new matrix
+   * @returns The new matrix
+   * @public
+   */
+  map(entryFunction: (entry: S, rowIndex: number, columnIndex: number) => S): Matrix<S>;
 }
