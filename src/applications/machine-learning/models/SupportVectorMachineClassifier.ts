@@ -1,13 +1,10 @@
-import { Matrix } from '@lib/types/matrix/Matrix';
-import { Vector } from '@lib/types/vector/Vector';
-import { Kernel } from '@lib/applications/machine-learning/kernels/Kernel';
-import { LinearKernel } from '@lib/applications/machine-learning/kernels/LinearKernel';
-import {
-  GradientDescentParameters,
-  gradientDescent
-} from '@lib/applications/machine-learning/GradientDescent';
-import { FloatVector } from '@lib/types/vector/FloatVector';
-import { Classifier } from '@lib/applications/machine-learning/models/Classifier';
+import { Matrix } from '../../../types/matrix/Matrix';
+import { Vector } from '../../../types/vector/Vector';
+import { FloatVector } from '../../../types/vector/FloatVector';
+import { Kernel } from '../kernels/Kernel';
+import { LinearKernel } from '../kernels/LinearKernel';
+import { GradientDescentParameters, gradientDescent } from '../GradientDescent';
+import { Classifier } from './Classifier';
 
 /**
  * The set of hyperparameters for a {@link SupportVectorMachineClassifier}

@@ -1,5 +1,5 @@
-import { approximatelyEqual } from '@lib/utilities/NumberUtilities';
-import { NumberOperations } from '@lib/types/scalar/NumberOperations';
+import { approximatelyEqual } from '../../../utilities/NumberUtilities';
+import { NumberOperations } from '../NumberOperations';
 
 describe('NumberOperations', () => {
   const ops = new NumberOperations();

@@ -1,6 +1,6 @@
-import { gradientDescent } from '@lib/applications/machine-learning/GradientDescent';
-import { CostFunction } from '@lib/applications/machine-learning/LearningAlgorithm';
-import { vec } from '@lib/utilities/aliases';
+import { gradientDescent } from '../GradientDescent';
+import { CostFunction } from '../LearningAlgorithm';
+import { vec } from '../../../utilities/aliases';
 
 describe('GradientDescent', () => {
   it('respects maxIterations', () => {

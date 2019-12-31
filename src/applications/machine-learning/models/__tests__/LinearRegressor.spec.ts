@@ -1,7 +1,7 @@
 import { loadTestData } from '@test-utils/testData';
-import { LinearRegressor } from '@lib/applications/machine-learning/models/LinearRegressor';
-import { mat, vec } from '@lib/utilities/aliases';
-import { FloatMatrix } from '@lib/types/matrix/FloatMatrix';
+import { LinearRegressor } from '../LinearRegressor';
+import { mat, vec } from '../../../../utilities/aliases';
+import { FloatMatrix } from '../../../../types/matrix/FloatMatrix';
 
 describe('LinearRegressor', () => {
   it('makes predictions', () => {

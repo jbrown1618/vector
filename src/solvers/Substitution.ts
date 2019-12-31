@@ -1,6 +1,6 @@
-import { Matrix } from '@lib/types/matrix/Matrix';
-import { Vector } from '@lib/types/vector/Vector';
-import { LinearSolution, SolutionType } from '@lib/solvers/LinearSolution';
+import { Matrix } from '../types/matrix/Matrix';
+import { Vector } from '../types/vector/Vector';
+import { LinearSolution, SolutionType } from './LinearSolution';
 
 /**
  * Uses forward substitution to solve the linear system _Lx=b_ for a lower-triangular matrix `L`.

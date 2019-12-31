@@ -1,7 +1,7 @@
-import { euclideanNorm } from '@lib/operations/Norms';
-import { RadialBasisFunction } from '@lib/applications/machine-learning/kernels//RadialBasisFunction';
-import { Kernel } from '@lib/applications/machine-learning/kernels/Kernel';
-import { Vector } from '@lib/types/vector/Vector';
+import { euclideanNorm } from '../../../operations/Norms';
+import { Vector } from '../../../types/vector/Vector';
+import { RadialBasisFunction } from './RadialBasisFunction';
+import { Kernel } from './Kernel';
 
 /**
  * Creates a gaussian {@link Kernel} for use in a {@link SupportVectorMachineClassifier}.

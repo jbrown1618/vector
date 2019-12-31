@@ -1,5 +1,5 @@
-import { vec } from '@lib/utilities/aliases';
-import { crossProduct, tripleProduct } from '@lib/operations/CrossProduct';
+import { vec } from '../../utilities/aliases';
+import { crossProduct, tripleProduct } from '../CrossProduct';
 
 describe('CrossProduct', () => {
   describe('crossProduct', () => {

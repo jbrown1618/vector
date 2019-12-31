@@ -3,12 +3,12 @@ import {
   assertValidMatrixIndex,
   assertDimensionMatch,
   assertMultiplicable
-} from '@lib/utilities/ErrorAssertions';
-import { ScalarOperations } from '@lib/types/scalar/ScalarOperations';
-import { Vector, VectorData } from '@lib/types/vector/Vector';
-import { VectorBuilder } from '@lib/types/vector/VectorBuilder';
-import { Matrix, MatrixData, MatrixShape } from '@lib/types/matrix/Matrix';
-import { MatrixBuilder } from '@lib/types/matrix/MatrixBuilder';
+} from '../../utilities/ErrorAssertions';
+import { ScalarOperations } from '../scalar/ScalarOperations';
+import { Vector, VectorData } from '../vector/Vector';
+import { VectorBuilder } from '../vector/VectorBuilder';
+import { Matrix, MatrixData, MatrixShape } from './Matrix';
+import { MatrixBuilder } from './MatrixBuilder';
 
 /**
  * Implements {@link Matrix} with a 2-dimensional array of values.

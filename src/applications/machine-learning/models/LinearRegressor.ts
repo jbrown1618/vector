@@ -1,12 +1,9 @@
-import { Matrix } from '@lib/types/matrix/Matrix';
-import { Vector } from '@lib/types/vector/Vector';
-import { Regressor } from '@lib/applications/machine-learning/models/Regressor';
-import { FloatVector } from '@lib/types/vector/FloatVector';
-import {
-  GradientDescentParameters,
-  gradientDescent
-} from '@lib/applications/machine-learning/GradientDescent';
-import { LinearKernel } from '@lib/applications/machine-learning/kernels/LinearKernel';
+import { Matrix } from '../../../types/matrix/Matrix';
+import { Vector } from '../../../types/vector/Vector';
+import { FloatVector } from '../../../types/vector/FloatVector';
+import { Regressor } from './Regressor';
+import { GradientDescentParameters, gradientDescent } from '../GradientDescent';
+import { LinearKernel } from '../kernels/LinearKernel';
 
 /**
  * The set of hyperparameters for a {@link LinearRegressor}

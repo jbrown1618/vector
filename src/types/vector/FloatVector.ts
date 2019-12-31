@@ -1,11 +1,11 @@
-import { StaticImplements } from '@lib/utilities/StaticImplements';
-import { NumberOperations } from '@lib/types/scalar/NumberOperations';
-import { Vector, VectorConstructor, VectorData } from '@lib/types/vector/Vector';
-import { VectorBuilder } from '@lib/types/vector/VectorBuilder';
-import { MatrixBuilder } from '@lib/types/matrix/MatrixBuilder';
-import { assertValidVectorIndex, assertHomogeneous } from '@lib/utilities/ErrorAssertions';
-import { Matrix } from '@lib/types/matrix/Matrix';
-import { FloatMatrix } from '@lib/types/matrix/FloatMatrix';
+import { StaticImplements } from '../../utilities/StaticImplements';
+import { NumberOperations } from '../scalar/NumberOperations';
+import { Vector, VectorConstructor, VectorData } from './Vector';
+import { VectorBuilder } from './VectorBuilder';
+import { MatrixBuilder } from '../matrix/MatrixBuilder';
+import { assertValidVectorIndex, assertHomogeneous } from '../../utilities/ErrorAssertions';
+import { Matrix } from '../matrix/Matrix';
+import { FloatMatrix } from '../matrix/FloatMatrix';
 
 /**
  * A dense {@link Vector} of `number`s implemented as a `Float64Array`

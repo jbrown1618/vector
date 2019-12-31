@@ -1,6 +1,6 @@
 import { loadTestData } from '@test-utils/testData';
-import { LogisticRegressionClassifier } from '@lib/applications/machine-learning/models/LogisticRegressionClassifier';
-import { FloatMatrix } from '@lib/types/matrix/FloatMatrix';
+import { LogisticRegressionClassifier } from '../LogisticRegressionClassifier';
+import { FloatMatrix } from '../../../../types/matrix/FloatMatrix';
 
 describe('LogisticRegressionClassifier', () => {
   it('makes predictions', () => {

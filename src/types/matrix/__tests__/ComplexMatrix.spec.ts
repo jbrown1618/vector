@@ -1,5 +1,5 @@
-import { ComplexNumber } from '@lib/types/scalar/ComplexNumber';
-import { ComplexMatrix } from '@lib/types/matrix/ComplexMatrix';
+import { ComplexNumber } from '../../scalar/ComplexNumber';
+import { ComplexMatrix } from '../ComplexMatrix';
 
 describe('ComplexMatrix', () => {
   describe('adjoint', () => {

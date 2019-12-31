@@ -1,5 +1,5 @@
-import { mat } from '@lib/utilities/aliases';
-import { calculateCholeskyDecomposition } from '@lib/decompositions/CholeskyDecomposition';
+import { mat } from '../../utilities/aliases';
+import { calculateCholeskyDecomposition } from '../CholeskyDecomposition';
 
 describe('CholeskyDecomposition', () => {
   describe('calculateCholeskyDecomposition', () => {

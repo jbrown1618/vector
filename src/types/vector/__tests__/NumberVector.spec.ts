@@ -1,6 +1,6 @@
-import { NumberVector } from '@lib/types/vector/NumberVector';
-import { SparseNumberVector } from '@lib/types/vector/SparseNumberVector';
-import { FloatVector } from '@lib/types/vector/FloatVector';
+import { NumberVector } from '../NumberVector';
+import { SparseNumberVector } from '../SparseNumberVector';
+import { FloatVector } from '../FloatVector';
 
 const configs = [
   {

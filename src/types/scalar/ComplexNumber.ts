@@ -1,4 +1,4 @@
-import { approximatelyEqual } from '@lib/utilities/NumberUtilities';
+import { approximatelyEqual } from '../../utilities/NumberUtilities';
 
 /**
  * A number of the form _a + bi_ where _i_ is the imaginary unit.

@@ -2,8 +2,8 @@ import * as fs from 'fs';
 import * as path from 'path';
 import csvParser from 'csv-parse/lib/sync';
 import csvWriter from 'csv-stringify/lib/sync';
-import { Matrix } from '@lib/types/matrix/Matrix';
-import { mat } from '@lib/utilities/aliases';
+import { Matrix } from '../../src/types/matrix/Matrix';
+import { mat } from '../../src/utilities/aliases';
 
 const cache: Map<string, Matrix<number>> = new Map();
 

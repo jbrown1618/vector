@@ -1,6 +1,6 @@
-import { NumberMatrix } from '@lib/types/matrix/NumberMatrix';
-import { SparseNumberMatrix } from '@lib/types/matrix/SparseNumberMatrix';
-import { FloatMatrix } from '@lib/types/matrix/FloatMatrix';
+import { NumberMatrix } from '../NumberMatrix';
+import { SparseNumberMatrix } from '../SparseNumberMatrix';
+import { FloatMatrix } from '../FloatMatrix';
 
 const configs = [
   {

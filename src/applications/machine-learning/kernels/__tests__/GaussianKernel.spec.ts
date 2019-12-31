@@ -1,6 +1,6 @@
 import { loadTestData } from '@test-utils/testData';
-import { GaussianKernel } from '@lib/applications/machine-learning/kernels/GaussianKernel';
 import { roundMatrix } from '@test-utils/rounding';
+import { GaussianKernel } from '../GaussianKernel';
 
 describe('GaussianKernel', () => {
   it('has a mxm+1 result', () => {

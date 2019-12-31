@@ -1,4 +1,4 @@
-import { Matrix } from '@lib/types/matrix/Matrix';
+import { Matrix } from '../../../types/matrix/Matrix';
 
 /**
  * A linear kernel for use in a {@link SupportVectorMachineClassifier}.
