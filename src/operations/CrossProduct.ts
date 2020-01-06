@@ -12,24 +12,16 @@ export function crossProduct<S>(first: Vector<S>, second: Vector<S>): Vector<S> 
   if (first.getDimension() !== 3 || second.getDimension() !== 3) {
     throw new Error('The cross product is only defined for vectors of dimension 3');
   }
-
   const ops = first.ops();
-  return first
-    .builder()
-    .fromValues(
-      ops.add(
-        ops.multiply(first.getEntry(1), second.getEntry(2)),
-        ops.multiply(ops.negativeOne(), ops.multiply(first.getEntry(2), second.getEntry(1)))
-      ),
-      ops.add(
-        ops.multiply(first.getEntry(2), second.getEntry(0)),
-        ops.multiply(ops.negativeOne(), ops.multiply(first.getEntry(0), second.getEntry(2)))
-      ),
-      ops.add(
-        ops.multiply(first.getEntry(0), second.getEntry(1)),
-        ops.multiply(ops.negativeOne(), ops.multiply(first.getEntry(1), second.getEntry(0)))
-      )
-    );
+
+  const [x1, y1, z1] = first.toArray();
+  const [x2, y2, z2] = second.toArray();
+
+  const x = ops.add(ops.multiply(y1, z2), ops.multiply(ops.negativeOne(), ops.multiply(z1, y2)));
+  const y = ops.add(ops.multiply(z1, x2), ops.multiply(ops.negativeOne(), ops.multiply(x1, z2)));
+  const z = ops.add(ops.multiply(x1, y2), ops.multiply(ops.negativeOne(), ops.multiply(y1, x2)));
+
+  return first.builder().fromValues(x, y, z);
 }
 
 /**
