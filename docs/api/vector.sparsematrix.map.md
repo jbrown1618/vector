@@ -4,7 +4,7 @@
 
 ## SparseMatrix.map() method
 
-Builds a matrix by transforming the values of another matrix.
+Builds a matrix by transforming the values of the current matrix.
 
 <b>Signature:</b>
 

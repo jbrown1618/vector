@@ -55,6 +55,7 @@
 |  [derivative(f, xMin, xMax, binCount)](./vector.derivative.md) | Uses finite differences to build a vector containing approximate values of the derivative of <code>f</code>. |
 |  [determinant(matrix)](./vector.determinant.md) | Uses expansion of minors to calculate the determinant of a matrix. Throws an error if the input is not square. |
 |  [diag(elements)](./vector.diag.md) | Creates a new matrix with the specified entries on the diagonal. See [MatrixBuilder.diagonal()](./vector.matrixbuilder.diagonal.md) |
+|  [dotProduct(first, second)](./vector.dotproduct.md) | Computes the dot/inner/scalar product of two vectors. See [Vector.innerProduct()](./vector.vector.innerproduct.md)<!-- -->. |
 |  [eig(A, numIterations)](./vector.eig.md) | Uses the QR algorithm to compute the eigenvalues and eigenvectors of a matrix <code>A</code> |
 |  [euclideanNorm(v)](./vector.euclideannorm.md) | Calculates the Euclidean Norm (or 2-Norm) of a vector <code>v</code> |
 |  [exp(A, order)](./vector.exp.md) | Implements the Pade Approximant to compute the exponential of matrix <code>A</code> |
@@ -64,6 +65,8 @@
 |  [GaussianKernel(sigmaSquared)](./vector.gaussiankernel.md) | Creates a gaussian [Kernel](./vector.kernel.md) for use in a [SupportVectorMachineClassifier](./vector.supportvectormachineclassifier.md)<!-- -->. The gaussian kernel converts a data [Matrix](./vector.matrix.md) into a similarity <code>Matrix</code> where the value of entry (i,j) expresses the similarity of rows i and j in the original data set. |
 |  [getEigenvectorForEigenvalue(A, lambda)](./vector.geteigenvectorforeigenvalue.md) | Given a matrix <code>A</code> and an eigenvalue <code>lambda</code> of that matrix, returns the eigenvector of <code>A</code> corresponding to <code>lambda</code> |
 |  [gradientDescent(parameters)](./vector.gradientdescent.md) | Learns an optimal set of parameters <code>theta</code> using gradient descent |
+|  [hadamardProduct(first, second)](./vector.hadamardproduct.md) | Computes the hadamard (element-wise) product of two vectors. |
+|  [hadamardProduct(first, second)](./vector.hadamardproduct_1.md) | Computes the hadamard (element-wise) product of two matrices. |
 |  [inverse(matrix)](./vector.inverse.md) | Uses Gauss-Jordan elimination with pivoting to calculate the inverse of a matrix. |
 |  [isHermitian(matrix)](./vector.ishermitian.md) | Tests if a matrix is Hermitian. |
 |  [isIdentity(matrix)](./vector.isidentity.md) | Tests if a matrix is an identity matrix |
@@ -73,6 +76,7 @@
 |  [isSquare(matrix)](./vector.issquare.md) | Tests if a matrix is square. |
 |  [isSymmetric(matrix)](./vector.issymmetric.md) | Tests if a matrix is symmetric. |
 |  [isUpperTriangular(matrix)](./vector.isuppertriangular.md) | Tests if a matrix is upper-triangular. |
+|  [kroneckerProduct(first, second)](./vector.kroneckerproduct.md) | Computes the Kronecker product (generalized outer product) of two matrices. |
 |  [LinearKernel(data)](./vector.linearkernel.md) | A linear kernel for use in a [SupportVectorMachineClassifier](./vector.supportvectormachineclassifier.md)<!-- -->. The linear kernel converts a data [Matrix](./vector.matrix.md) into a matrix which has been prepended with a column of all ones, representing the constant term in a linear model, or the bias term in an SVM. |
 |  [linspace(xMin, xMax, binCount)](./vector.linspace.md) | Builds a vector of <code>binCount</code> evenly spaced numbers between <code>xMin</code> (inclusive) and <code>xMax</code> (exclusive). |
 |  [mat(data)](./vector.mat.md) | Creates a new [Matrix](./vector.matrix.md) of numbers. See [MatrixBuilder.fromArray()](./vector.matrixbuilder.fromarray.md) |

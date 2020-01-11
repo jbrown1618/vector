@@ -31,6 +31,7 @@ The constructor for this class is marked as internal. Third-party code should no
 |  [apply(vector)](./vector.floatmatrix.apply.md) |  | Applies the matrix as a linear transformation to the given vector. Implements matrix-vector multiplication. |
 |  [builder()](./vector.floatmatrix.builder.md) |  | Returns a [MatrixBuilder](./vector.matrixbuilder.md) which will build new matrices of the same type |
 |  [builder()](./vector.floatmatrix.builder.md) | <code>static</code> |  |
+|  [combine(other, combineEntries)](./vector.floatmatrix.combine.md) |  | Builds a matrix by combining element-wise the values of this matrix with the values of another matrix. |
 |  [equals(other)](./vector.floatmatrix.equals.md) |  | Tests if two matrices are equal |
 |  [forEach(cb)](./vector.floatmatrix.foreach.md) |  | Executes the <code>callback</code> function for each entry in the matrix. |
 |  [getColumn(j)](./vector.floatmatrix.getcolumn.md) |  | Returns a vector corresponding to the column at index <code>columnIndex</code> |
@@ -43,7 +44,7 @@ The constructor for this class is marked as internal. Third-party code should no
 |  [getRowVectors()](./vector.floatmatrix.getrowvectors.md) |  | Returns an array of vectors corresponding to the rows of the matrix |
 |  [getShape()](./vector.floatmatrix.getshape.md) |  | Returns a tuple representing the dimensions of the matrix. The first entry is the number of rows, and the second entry is the number of columns. |
 |  [getSparseData()](./vector.floatmatrix.getsparsedata.md) |  | Returns the contents of the matrix as a nested map of rowIndex to columnIndex to nonzero value |
-|  [map(entryFunction)](./vector.floatmatrix.map.md) |  | Builds a matrix by transforming the values of another matrix. |
+|  [map(entryFunction)](./vector.floatmatrix.map.md) |  | Builds a matrix by transforming the values of the current matrix. |
 |  [multiply(other)](./vector.floatmatrix.multiply.md) |  | Implements matrix multiplication |
 |  [ops()](./vector.floatmatrix.ops.md) |  | Returns a [ScalarOperations](./vector.scalaroperations.md) object which will allow consumers to work generically with the scalars contained in the vector. |
 |  [ops()](./vector.floatmatrix.ops.md) | <code>static</code> |  |

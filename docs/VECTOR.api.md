@@ -18,6 +18,7 @@ export abstract class ArrayMatrix<S> implements Matrix<S> {
     adjoint(): Matrix<S>;
     apply(vector: Vector<S>): Vector<S>;
     abstract builder(): MatrixBuilder<S, Vector<S>, Matrix<S>>;
+    combine(other: Matrix<S>, combineEntries: (a: S, b: S) => S): Matrix<S>;
     equals(other: Matrix<S>): boolean;
     forEach(cb: (value: S, i: number, j: number) => void): void;
     getColumn(j: number): Vector<S>;
@@ -233,6 +234,9 @@ export type DimensionReductionOptions = DimensionReductionType & {
 };
 
 // @public
+export function dotProduct<S>(first: Vector<S>, second: Vector<S>): S;
+
+// @public
 export function eig<S>(A: Matrix<S>, numIterations?: number): EigenPair<S>[];
 
 // @public
@@ -263,6 +267,7 @@ export class FloatMatrix implements Matrix<number> {
     // (undocumented)
     static builder(): MatrixBuilder<number, FloatVector, FloatMatrix>;
     builder(): MatrixBuilder<number, FloatVector, FloatMatrix>;
+    combine(other: Matrix<number>, combineEntries: (a: number, b: number) => number): Matrix<number>;
     equals(other: Matrix<number>): boolean;
     forEach(cb: (entry: number, rowIndex: number, columnIndex: number) => void): void;
     getColumn(j: number): Vector<number>;
@@ -339,6 +344,12 @@ export type GradientDescentParameters = {
 };
 
 // @public
+export function hadamardProduct<S>(first: Vector<S>, second: Vector<S>): Vector<S>;
+
+// @public
+export function hadamardProduct<S>(first: Matrix<S>, second: Matrix<S>): Matrix<S>;
+
+// @public
 export function inverse<S>(matrix: Matrix<S>): Matrix<S> | undefined;
 
 // @public
@@ -372,6 +383,9 @@ export function isUpperTriangular<S>(matrix: Matrix<S>): boolean;
 
 // @public
 export type Kernel = (data: Matrix<number>, trainingData?: Matrix<number>) => Matrix<number>;
+
+// @public
+export function kroneckerProduct<S>(first: Matrix<S>, second: Matrix<S>): Matrix<S>;
 
 // @public
 export type LearningAlgorithm = (initialTheta: Vector<number>, costFn: CostFunction) => Vector<number>;
@@ -441,6 +455,7 @@ export interface Matrix<S> extends LinearTransformation<Vector<S>, Vector<S>> {
     adjoint(): Matrix<S>;
     apply(vector: Vector<S>): Vector<S>;
     builder(): MatrixBuilder<S, Vector<S>, Matrix<S>>;
+    combine(other: Matrix<S>, combineEntries: (a: S, b: S) => S): Matrix<S>;
     equals(other: Matrix<S>): boolean;
     forEach(callback: (entry: S, rowIndex: number, columnIndex: number) => void): void;
     getColumn(j: number): Vector<S>;
@@ -714,6 +729,7 @@ export abstract class SparseMatrix<S> implements Matrix<S> {
     adjoint(): Matrix<S>;
     apply(vector: Vector<S>): Vector<S>;
     abstract builder(): MatrixBuilder<S, Vector<S>, Matrix<S>>;
+    combine(other: Matrix<S>, combineEntries: (a: S, b: S) => S): Matrix<S>;
     equals(other: Matrix<S>): boolean;
     forEach(cb: (entry: S, rowIndex: number, columnIndex: number) => void): void;
     getColumn(j: number): Vector<S>;

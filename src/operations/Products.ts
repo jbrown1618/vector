@@ -2,10 +2,12 @@ import { Vector } from '../types/vector/Vector';
 import { Matrix } from '../types/matrix/Matrix';
 
 /**
- * Computes the dot/inner/scalar product of two vectors.  {@see Vector.innerProduct}.
+ * Computes the dot/inner/scalar product of two vectors.  See {@link Vector.innerProduct}.
  *
  * @param first - the left vector in the product
  * @param second - the right vector in the product
+ *
+ * @public
  */
 export function dotProduct<S>(first: Vector<S>, second: Vector<S>): S {
   return first.innerProduct(second);
@@ -16,6 +18,8 @@ export function dotProduct<S>(first: Vector<S>, second: Vector<S>): S {
  *
  * @param first - the left vector in the product
  * @param second - the right vector in the product
+ *
+ * @public
  */
 export function hadamardProduct<S>(first: Vector<S>, second: Vector<S>): Vector<S>;
 /**
@@ -23,6 +27,8 @@ export function hadamardProduct<S>(first: Vector<S>, second: Vector<S>): Vector<
  *
  * @param first - the left matrix in the product
  * @param second - the right matrix in the product
+ *
+ * @public
  */
 export function hadamardProduct<S>(first: Matrix<S>, second: Matrix<S>): Matrix<S>;
 export function hadamardProduct<S>(
@@ -39,6 +45,8 @@ export function hadamardProduct<S>(
  *
  * @param first - the left matrix in the product
  * @param second - the right matrix in the product
+ *
+ * @public
  */
 export function kroneckerProduct<S>(first: Matrix<S>, second: Matrix<S>): Matrix<S> {
   const block: Matrix<S>[][] = [];
@@ -57,6 +65,7 @@ export function kroneckerProduct<S>(first: Matrix<S>, second: Matrix<S>): Matrix
  *
  * @param first - a vector with dimension 3
  * @param second - another vector with dimension 3
+ *
  * @public
  */
 export function crossProduct<S>(first: Vector<S>, second: Vector<S>): Vector<S> {
@@ -82,6 +91,7 @@ export function crossProduct<S>(first: Vector<S>, second: Vector<S>): Vector<S> 
  * @param first - a vector with dimension 3
  * @param second - another vector with dimension 3
  * @param third - another vector with dimension 3
+ *
  * @public
  */
 export function tripleProduct<S>(first: Vector<S>, second: Vector<S>, third: Vector<S>): S {
