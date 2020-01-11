@@ -19,7 +19,7 @@ export * from './decompositions/LUDecomposition';
 export * from './decompositions/QRDecomposition';
 export * from './decompositions/SingularValueDecomposition';
 export * from './eigenvalues/Eigenvalues';
-export * from './operations/CrossProduct';
+export * from './operations/Products';
 export * from './operations/Determinant';
 export * from './operations/Exponential';
 export * from './operations/GaussJordan';

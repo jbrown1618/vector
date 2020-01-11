@@ -374,6 +374,17 @@ export class FloatMatrix implements Matrix<number> {
     return new FloatMatrix(newData, this.getShape());
   }
 
+  /**
+   * {@inheritDoc Matrix.combine}
+   */
+  public combine(
+    other: Matrix<number>,
+    combineEntries: (a: number, b: number) => number
+  ): Matrix<number> {
+    assertDimensionMatch(this, other);
+    return this.map((entry, i, j) => combineEntries(entry, other.getEntry(i, j)));
+  }
+
   private getArrayIndex(i: number, j: number): number {
     const [m] = this._shape;
     return j * m + i;

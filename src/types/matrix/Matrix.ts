@@ -229,7 +229,7 @@ export interface Matrix<S> extends LinearTransformation<Vector<S>, Vector<S>> {
   forEach(callback: (entry: S, rowIndex: number, columnIndex: number) => void): void;
 
   /**
-   * Builds a matrix by transforming the values of another matrix.
+   * Builds a matrix by transforming the values of the current matrix.
    *
    * @example
    * ```
@@ -254,4 +254,30 @@ export interface Matrix<S> extends LinearTransformation<Vector<S>, Vector<S>> {
    * @public
    */
   map(entryFunction: (entry: S, rowIndex: number, columnIndex: number) => S): Matrix<S>;
+
+  /**
+   * Builds a matrix by combining element-wise the values of this matrix with the values of another matrix.
+   *
+   * @example
+   * ```
+   * const first = mat([
+   *   [ 1, 2, 3 ]
+   *   [ 4, 5, 6 ]
+   * ]);
+   *
+   * const second = mat([
+   *   [ 3, 4, 5 ]
+   *   [ 6, 7, 8 ]
+   * ]);
+   *
+   * const third = first.combine(second, (x, y) => x + y);
+   * // [  4  6  8 ]
+   * // [ 10 12 14 ]
+   * ```
+   * @param entryFunction - A function which takes an entry of
+   *     the original matrix and its indices, and returns the corresponding entry of the new matrix
+   * @returns The new matrix
+   * @public
+   */
+  combine(other: Matrix<S>, combineEntries: (a: S, b: S) => S): Matrix<S>;
 }
