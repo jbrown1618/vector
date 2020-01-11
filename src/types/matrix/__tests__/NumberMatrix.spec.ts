@@ -472,5 +472,34 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
         expect(builder.empty().map(() => 1)).toStrictEqual(builder.empty());
       });
     });
+
+    describe('combine', () => {
+      test('combines two matrices element-wise', () => {
+        const first = builder.fromArray([
+          [1, 2],
+          [3, 4]
+        ]);
+
+        const second = builder.fromArray([
+          [5, 6],
+          [7, 8]
+        ]);
+
+        const combined = first.combine(second, (x, y) => {
+          return parseInt(x + '' + (y + ''));
+        });
+
+        expect(combined).toStrictEqual(
+          builder.fromArray([
+            [15, 26],
+            [37, 48]
+          ])
+        );
+      });
+
+      test('handles an empty matrix', () => {
+        expect(builder.empty().combine(builder.empty(), () => 1)).toStrictEqual(builder.empty());
+      });
+    });
   });
 });

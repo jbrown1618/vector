@@ -263,4 +263,12 @@ export abstract class ArrayMatrix<S> implements Matrix<S> {
     );
     return this.builder().fromRowVectors(newRows);
   }
+
+  /**
+   * {@inheritDoc Matrix.combine}
+   */
+  public combine(other: Matrix<S>, combineEntries: (a: S, b: S) => S): Matrix<S> {
+    assertDimensionMatch(this, other);
+    return this.map((entry, i, j) => combineEntries(entry, other.getEntry(i, j)));
+  }
 }

@@ -2,7 +2,8 @@ import {
   assertRectangular,
   assertValidMatrixIndex,
   assertValidIndex,
-  assertMultiplicable
+  assertMultiplicable,
+  assertDimensionMatch
 } from '../../utilities/ErrorAssertions';
 import { ScalarOperations } from '../scalar/ScalarOperations';
 import { Vector } from '../vector/Vector';
@@ -340,5 +341,13 @@ export abstract class SparseMatrix<S> implements Matrix<S> {
       row.map((entry, colIndex) => entryFunction(entry, rowIndex, colIndex))
     );
     return this.builder().fromRowVectors(newRows);
+  }
+
+  /**
+   * {@inheritDoc Matrix.combine}
+   */
+  public combine(other: Matrix<S>, combineEntries: (a: S, b: S) => S): Matrix<S> {
+    assertDimensionMatch(this, other);
+    return this.map((entry, i, j) => combineEntries(entry, other.getEntry(i, j)));
   }
 }
