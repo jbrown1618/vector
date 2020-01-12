@@ -28,6 +28,13 @@ describe('Eigenvalues', () => {
   });
 
   describe('calculateEigenvalues', () => {
+    test('exactly calculates the eigenvalues of a 1x1 matrix', () => {
+      const A = mat([[6]]);
+      const eigenvalues = calculateEigenvalues(A);
+      const expected = vec([6]);
+      expect(eigenvalues).toStrictEqual(expected);
+    });
+
     test('calculates the eigenvalues of a 2x2 matrix', () => {
       const A = mat([
         [2, 1],
@@ -71,6 +78,14 @@ describe('Eigenvalues', () => {
       expect(eigenvalues.getEntry(0)).toStrictEqual(ComplexNumber.I);
       expect(eigenvalues.getEntry(1)).toStrictEqual(new ComplexNumber(0, -1));
     });
+
+    test('rejects a non-square matrix', () => {
+      const A = mat([
+        [1, 2, 3],
+        [4, 5, 6]
+      ]);
+      expect(() => calculateEigenvalues(A)).toThrow();
+    });
   });
 
   describe('getEigenvectorForEigenvalue', () => {
@@ -103,6 +118,16 @@ describe('Eigenvalues', () => {
       expect(v1.equals(expected1)).toBe(true);
       expect(v2.equals(expected2)).toBe(true);
       expect(v3.equals(expected3)).toBe(true);
+    });
+
+    test('rejects a value that is not an eigenvalue', () => {
+      const A = mat([
+        [-1, 2, 2],
+        [-1, -4, -2],
+        [-3, 9, 7]
+      ]);
+      const notAnEValue = 5;
+      expect(() => getEigenvectorForEigenvalue(A, notAnEValue)).toThrow();
     });
   });
 });
