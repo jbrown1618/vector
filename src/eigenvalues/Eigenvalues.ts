@@ -125,6 +125,8 @@ function getTwoByTwoEigenvalues<S>(A: Matrix<S>): Vector<S> {
  */
 export function getEigenvectorForEigenvalue<S>(A: Matrix<S>, lambda: S): Vector<S> {
   const builder = A.builder();
+  const vectorBuilder = A.vectorBuilder();
+  const m = A.getNumberOfRows();
   const ops = A.ops();
   const minusLambda = ops.multiply(lambda, ops.negativeOne());
   const minusLambdaI = builder.identity(A.getNumberOfColumns()).scalarMultiply(minusLambda);
@@ -135,15 +137,22 @@ export function getEigenvectorForEigenvalue<S>(A: Matrix<S>, lambda: S): Vector<
     A.vectorBuilder().zeros(A.getNumberOfRows())
   );
 
-  if (
-    eigenvectorSolution.solutionType === SolutionType.UNIQUE ||
-    eigenvectorSolution.solutionType === SolutionType.UNDERDETERMINED
-  ) {
-    return eigenvectorSolution.solution;
-  } else {
-    // If lambda is an eigenvalue of A, then it must correspond to at least one eigenvector.
-    throw Error(
-      `Cannot find an eigenvector; ${lambda} is not an eigenvalue of the provided matrix`
-    );
+  const notAnEigenvectorError = new Error(
+    `Cannot find an eigenvector; ${lambda} is not an eigenvalue of the provided matrix`
+  );
+
+  if (eigenvectorSolution.solutionType === SolutionType.OVERDETERMINED) {
+    throw notAnEigenvectorError; // Should never happen, since 0 is always a solution
   }
+
+  const zero = vectorBuilder.zeros(m);
+  if (
+    eigenvectorSolution.solutionType === SolutionType.UNIQUE &&
+    eigenvectorSolution.solution.equals(zero)
+  ) {
+    // If zero is the unique eigenvector, then lambda was not an eigenvalue to begin with.
+    throw notAnEigenvectorError;
+  }
+
+  return eigenvectorSolution.solution;
 }
