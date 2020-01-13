@@ -82,7 +82,8 @@ export function calculateEigenvalues<S>(
       continue;
     }
 
-    // If we're here, then either we failed to converge, or we are looking at a pair of complex eigenvalues
+    // If we're here, then either we failed to converge, or we
+    // are looking at a pair of complex eigenvalues
     const subMatrix = A.builder().slice(nthA, i, i, i + 2, i + 2);
     const subEigenvalues = getTwoByTwoEigenvalues(subMatrix);
     eigenvalues.push(subEigenvalues.getEntry(0));
@@ -126,32 +127,30 @@ function getTwoByTwoEigenvalues<S>(A: Matrix<S>): Vector<S> {
 export function getEigenvectorForEigenvalue<S>(A: Matrix<S>, lambda: S): Vector<S> {
   const builder = A.builder();
   const vectorBuilder = A.vectorBuilder();
-  const m = A.getNumberOfRows();
   const ops = A.ops();
+  const m = A.getNumberOfRows();
+
   const minusLambda = ops.multiply(lambda, ops.negativeOne());
   const minusLambdaI = builder.identity(A.getNumberOfColumns()).scalarMultiply(minusLambda);
   const aMinusLambdaI = A.add(minusLambdaI);
+  const zero = vectorBuilder.zeros(m);
 
-  const eigenvectorSolution = solveByGaussianElimination(
-    aMinusLambdaI,
-    A.vectorBuilder().zeros(A.getNumberOfRows())
-  );
-
-  const notAnEigenvectorError = new Error(
-    `Cannot find an eigenvector; ${lambda} is not an eigenvalue of the provided matrix`
-  );
+  const eigenvectorSolution = solveByGaussianElimination(aMinusLambdaI, zero);
 
   if (eigenvectorSolution.solutionType === SolutionType.OVERDETERMINED) {
-    throw notAnEigenvectorError; // Should never happen, since 0 is always a solution
+    // Should never happen, since 0 is always a solution
+    throw new Error(`Unexpected error: unable to find a solution to the eigenvector equation`);
   }
 
-  const zero = vectorBuilder.zeros(m);
+  // If zero is the only solution to the eigenvector equation,
+  // then lambda was not an eigenvalue to begin with.
   if (
     eigenvectorSolution.solutionType === SolutionType.UNIQUE &&
     eigenvectorSolution.solution.equals(zero)
   ) {
-    // If zero is the unique eigenvector, then lambda was not an eigenvalue to begin with.
-    throw notAnEigenvectorError;
+    throw new Error(
+      `Cannot find an eigenvector; ${lambda} is not an eigenvalue of the provided matrix`
+    );
   }
 
   return eigenvectorSolution.solution;
