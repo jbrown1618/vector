@@ -8,7 +8,6 @@ on:
 jobs:
   release:
     name: Release
-    needs: verify
     runs-on: ubuntu-latest
 
     steps:
