@@ -3,6 +3,20 @@ import { Matrix } from '../types/matrix/Matrix';
 import { Vector } from '../types/vector/Vector';
 
 /**
+ * A function that calculates a norm for a vector.
+ *
+ * @remarks
+ * A `Norm` should satisfy:
+ * - `norm(v)` is greater than 0 when `v` is not the zero vector
+ * - `norm(v)` equals 0 when `v` is the zero vector
+ * - `norm(k * v)` equals `k * norm(v)`
+ * - `norm(v + w)` is less than or equal to `norm(v) + norm(w)` (the triangle inequality)
+ *
+ * @public
+ */
+export type Norm<S = number> = (v: Vector<S>) => number;
+
+/**
  * Returns a vector with the same direction as the input `v`, but with a Euclidean norm of 1
  *
  * @example

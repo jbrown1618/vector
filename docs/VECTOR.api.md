@@ -545,6 +545,9 @@ export function mean<S>(x: Vector<S>): S;
 export function mean<S>(A: Matrix<S>): Vector<S>;
 
 // @public
+export type Norm<S = number> = (v: Vector<S>) => number;
+
+// @public
 export function normalize<S>(v: Vector<S>): Vector<S> | undefined;
 
 // @public

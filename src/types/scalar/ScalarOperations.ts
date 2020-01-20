@@ -208,7 +208,7 @@ export abstract class ScalarOperations<S> {
    * with standard deviation `standardDeviation`
    *
    * @remarks
-   * This might not be a meaningful value for non-real-values scalar types
+   * This might not be a meaningful value for non-real-valued scalar types
    *
    * @returns The random scalar
    * @public
