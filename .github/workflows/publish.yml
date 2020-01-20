@@ -6,24 +6,8 @@ on:
       - master
 
 jobs:
-  verify:
-    name: Verify
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v1
-        with:
-          fetch-depth: 1
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 12
-      - run: |
-          npm install
-          npm run ci
-        env:
-          CI: true
-
   release:
+    name: Release
     needs: verify
     runs-on: ubuntu-latest
 
@@ -34,12 +18,12 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12
-      - name: Install and build
-        run: |
-          npm install
-          npm run build
+      - name: Install, build, and verify
         env:
           CI: true
+        run: |
+          npm install
+          npm run ci
       - name: Release
         env:
           NPM_TOKEN: ${{secrets.NPM_TOKEN}}

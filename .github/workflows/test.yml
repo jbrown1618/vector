@@ -1,15 +1,13 @@
 name: CI
 
 on:
-  push:
-    branches:
-      - 'master'
   pull_request:
     branches:
       - 'master'
 
 jobs:
-  build:
+  verify:
+    name: Verify
     runs-on: ubuntu-latest
 
     strategy:
@@ -17,18 +15,17 @@ jobs:
         node-version: [8.x, 10.x, 12.x]
 
     steps:
-      - uses: actions/checkout@v1
+      - name: Checkout
+        uses: actions/checkout@v1
         with:
           fetch-depth: 1
-
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-
-      - name: Run checks
+      - name: Run Checks
+        env:
+          CI: true
         run: |
           npm install
           npm run ci
-        env:
-          CI: true
