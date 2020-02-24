@@ -9,5 +9,5 @@ An function which, given an initial value of `theta` and a CostFunction, will co
 <b>Signature:</b>
 
 ```typescript
-export declare type LearningAlgorithm = (initialTheta: Vector<number>, costFn: CostFunction) => Vector<number>;
+export declare type LearningAlgorithm = (initialTheta: Vector, costFn: CostFunction) => Vector;
 ```

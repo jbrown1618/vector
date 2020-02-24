@@ -9,7 +9,7 @@ Creates a new identity matrix of size `size`<!-- -->. See [MatrixBuilder.identit
 <b>Signature:</b>
 
 ```typescript
-export declare function eye(size: number): Matrix<number>;
+export declare function eye(size: number): Matrix;
 ```
 
 ## Parameters
@@ -20,5 +20,5 @@ export declare function eye(size: number): Matrix<number>;
 
 <b>Returns:</b>
 
-`Matrix<number>`
+`Matrix`
 

@@ -22,7 +22,7 @@ export interface VectorConstructor<S, V extends Vector<S>> {
  * A generalized Vector - one of the core data types
  * @public
  */
-export interface Vector<S> {
+export interface Vector<S = number> {
   /**
    * Returns a {@link ScalarOperations} object which will allow consumers to work generically
    * with the scalars contained in the vector.

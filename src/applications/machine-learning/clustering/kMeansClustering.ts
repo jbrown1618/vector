@@ -10,14 +10,11 @@ interface KMeansParameters {
 }
 
 interface ClusteringResult {
-  centroids: Vector<number>[];
-  labels: Vector<number>;
+  centroids: Vector[];
+  labels: Vector;
 }
 
-export function kMeansClustering(
-  X: Matrix<number>,
-  params: Partial<KMeansParameters>
-): ClusteringResult {
+export function kMeansClustering(X: Matrix, params: Partial<KMeansParameters>): ClusteringResult {
   const rows = X.getRowVectors();
   const [m, n] = X.getShape();
   const { k = 5, norm = euclideanNorm, maxIterations = 100 } = params;
@@ -40,11 +37,7 @@ export function kMeansClustering(
   return { centroids, labels };
 }
 
-function updateLabels(
-  rows: Vector<number>[],
-  centroids: Vector<number>[],
-  norm: Norm
-): Vector<number> {
+function updateLabels(rows: Vector[], centroids: Vector[], norm: Norm): Vector {
   const m = rows.length;
   const vectorBuilder = rows[0].builder();
   return vectorBuilder.fromIndexFunction(m, i =>
@@ -52,11 +45,7 @@ function updateLabels(
   );
 }
 
-function getIndexOfClosestCentroid(
-  row: Vector<number>,
-  centroids: Vector<number>[],
-  norm: Norm
-): number {
+function getIndexOfClosestCentroid(row: Vector, centroids: Vector[], norm: Norm): number {
   let min = Number.MAX_VALUE;
   let index = -1;
 
@@ -71,10 +60,10 @@ function getIndexOfClosestCentroid(
   return index;
 }
 
-function updateCentroids(rows: Vector<number>[], labels: Vector<number>): Vector<number>[] {
+function updateCentroids(rows: Vector[], labels: Vector): Vector[] {
   const n = rows[0].getDimension();
   const zero = rows[0].builder().zeros(n);
-  const clusters: Vector<number>[][] = [];
+  const clusters: Vector[][] = [];
 
   rows.forEach((row, i) => {
     const label = labels.getEntry(i);
@@ -94,14 +83,14 @@ function updateCentroids(rows: Vector<number>[], labels: Vector<number>): Vector
   return centroids;
 }
 
-function initializeCentroids(X: Matrix<number>, k: number, n: number): Vector<number>[] {
+function initializeCentroids(X: Matrix, k: number, n: number): Vector[] {
   const vectorBuilder = X.vectorBuilder();
   const ops = X.ops();
   ops.randomNormal;
   const means = mean(X);
   const stdDevs = standardDeviation(X).map(x => 2 * x);
 
-  const cols: Vector<number>[] = [];
+  const cols: Vector[] = [];
   for (let i = 0; i < n; i++) {
     cols.push(vectorBuilder.randomNormal(k, means.getEntry(i), stdDevs.getEntry(i)));
   }

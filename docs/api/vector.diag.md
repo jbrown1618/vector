@@ -9,7 +9,7 @@ Creates a new matrix with the specified entries on the diagonal. See [MatrixBuil
 <b>Signature:</b>
 
 ```typescript
-export declare function diag(elements: number[]): Matrix<number>;
+export declare function diag(elements: number[]): Matrix;
 ```
 
 ## Parameters
@@ -20,5 +20,5 @@ export declare function diag(elements: number[]): Matrix<number>;
 
 <b>Returns:</b>
 
-`Matrix<number>`
+`Matrix`
 

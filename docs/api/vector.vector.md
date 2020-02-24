@@ -9,7 +9,7 @@ A generalized Vector - one of the core data types
 <b>Signature:</b>
 
 ```typescript
-export interface Vector<S> 
+export interface Vector<S = number> 
 ```
 
 ## Methods

@@ -34,8 +34,8 @@ export type SupportVectorMachineHyperparams = GradientDescentParameters & {
  */
 export class SupportVectorMachineClassifier implements Classifier<SupportVectorMachineHyperparams> {
   private readonly _hyperParameters: Readonly<Partial<SupportVectorMachineHyperparams>>;
-  private _weights: Vector<number> | undefined;
-  private _trainingData: Matrix<number> | undefined;
+  private _weights: Vector | undefined;
+  private _trainingData: Matrix | undefined;
 
   constructor(hyperParameters: Partial<SupportVectorMachineHyperparams>) {
     this._hyperParameters = Object.freeze(hyperParameters);
@@ -46,14 +46,14 @@ export class SupportVectorMachineClassifier implements Classifier<SupportVectorM
    * `undefined` if the model has not been trained.
    * @public
    */
-  public getParameters(): Vector<number> | undefined {
+  public getParameters(): Vector | undefined {
     return this._weights;
   }
 
   /**
    * {@inheritDoc Classifier.train}
    */
-  public train(data: Matrix<number>, target: Vector<number>): void {
+  public train(data: Matrix, target: Vector): void {
     const { kernel } = this.getHyperParameters();
 
     this._trainingData = data;
@@ -69,14 +69,14 @@ export class SupportVectorMachineClassifier implements Classifier<SupportVectorM
   /**
    * {@inheritDoc Classifier.predictProbabilities}
    */
-  public predictProbabilities(_data: Matrix<number>): Vector<number> {
+  public predictProbabilities(_data: Matrix): Vector {
     throw Error(`Probability predictions not implemented for SVM Classifier`);
   }
 
   /**
    * {@inheritDoc Classifier.predict}
    */
-  public predict(data: Matrix<number>): Vector<number> {
+  public predict(data: Matrix): Vector {
     if (!this._weights) throw new Error(`Cannot call predict before train`);
 
     const { kernel } = this.getHyperParameters();
@@ -95,16 +95,12 @@ export class SupportVectorMachineClassifier implements Classifier<SupportVectorM
     };
   }
 
-  private makePredictions(X: Matrix<number>, weights: Vector<number>): Vector<number> {
+  private makePredictions(X: Matrix, weights: Vector): Vector {
     const scores = this.calculateScores(X, weights);
     return scores.map(score => (score > 0 ? 1 : 0));
   }
 
-  private calculateCost(
-    X: Matrix<number>,
-    target: Vector<number>,
-    weights: Vector<number>
-  ): number {
+  private calculateCost(X: Matrix, target: Vector, weights: Vector): number {
     const [m] = X.getShape();
     const scores = this.calculateScores(X, weights);
     const costs = scores.map((score, i) => {
@@ -114,11 +110,7 @@ export class SupportVectorMachineClassifier implements Classifier<SupportVectorM
     return totalCost / m;
   }
 
-  private calculateGradient(
-    X: Matrix<number>,
-    target: Vector<number>,
-    weights: Vector<number>
-  ): Vector<number> {
+  private calculateGradient(X: Matrix, target: Vector, weights: Vector): Vector {
     const [m] = X.getShape();
 
     const scores = this.calculateScores(X, weights);
@@ -144,7 +136,7 @@ export class SupportVectorMachineClassifier implements Classifier<SupportVectorM
     return unscaledGradient.scalarMultiply(1 / m);
   }
 
-  private calculateScores(X: Matrix<number>, weights: Vector<number>): Vector<number> {
+  private calculateScores(X: Matrix, weights: Vector): Vector {
     return X.apply(weights);
   }
 

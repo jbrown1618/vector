@@ -9,7 +9,7 @@ Creates a new [Vector](./vector.vector.md) of numbers. See [VectorBuilder.fromAr
 <b>Signature:</b>
 
 ```typescript
-export declare function vec(data: number[]): Vector<number>;
+export declare function vec(data: number[]): Vector;
 ```
 
 ## Parameters
@@ -20,5 +20,5 @@ export declare function vec(data: number[]): Vector<number>;
 
 <b>Returns:</b>
 
-`Vector<number>`
+`Vector`
 

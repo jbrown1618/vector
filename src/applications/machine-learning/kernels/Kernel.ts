@@ -9,4 +9,4 @@ import { Matrix } from '../../../types/matrix/Matrix';
  *
  * @public
  */
-export type Kernel = (data: Matrix<number>, trainingData?: Matrix<number>) => Matrix<number>;
+export type Kernel = (data: Matrix, trainingData?: Matrix) => Matrix;

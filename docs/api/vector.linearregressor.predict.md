@@ -9,18 +9,18 @@ Uses the learned parameters to make predictions based on a set of input data.
 <b>Signature:</b>
 
 ```typescript
-predict(data: Matrix<number>): Vector<number>;
+predict(data: Matrix): Vector;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  data | <code>Matrix&lt;number&gt;</code> | A [Vector](./vector.vector.md) whose rows are the observations in the test set |
+|  data | <code>Matrix</code> | A [Vector](./vector.vector.md) whose rows are the observations in the test set |
 
 <b>Returns:</b>
 
-`Vector<number>`
+`Vector`
 
 ## Remarks
 

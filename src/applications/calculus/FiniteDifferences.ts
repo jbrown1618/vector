@@ -146,7 +146,7 @@ export function derivative(
   xMin: number,
   xMax: number,
   binCount: number
-): Vector<number> {
+): Vector {
   const x = linspace(xMin, xMax, binCount);
   const y = x.map(f);
   const delta = x.getEntry(1) - x.getEntry(0);

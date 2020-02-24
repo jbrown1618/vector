@@ -32,7 +32,7 @@ export function isSparse<S>(vector: Vector<S>): vector is SparseVector<S> {
  *
  * @public
  */
-export abstract class SparseVector<S> implements Vector<S> {
+export abstract class SparseVector<S = number> implements Vector<S> {
   private readonly _dimension: number;
   private readonly _sparseData: SparseVectorData<S>;
 

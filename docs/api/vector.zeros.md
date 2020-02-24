@@ -9,7 +9,7 @@ Creates a new vector of all 0s. See [VectorBuilder.zeros()](./vector.vectorbuild
 <b>Signature:</b>
 
 ```typescript
-export declare function zeros(entries: number): Vector<number>;
+export declare function zeros(entries: number): Vector;
 ```
 
 ## Parameters
@@ -20,5 +20,5 @@ export declare function zeros(entries: number): Vector<number>;
 
 <b>Returns:</b>
 
-`Vector<number>`
+`Vector`
 

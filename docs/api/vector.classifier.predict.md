@@ -9,19 +9,19 @@ Uses the learned parameters to make predictions based on a set of input data.
 <b>Signature:</b>
 
 ```typescript
-predict(data: Matrix<number>, pThreshold: number): Vector<number>;
+predict(data: Matrix, pThreshold: number): Vector;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  data | <code>Matrix&lt;number&gt;</code> | A [Vector](./vector.vector.md) whose rows are the observations in the test set |
+|  data | <code>Matrix</code> | A [Vector](./vector.vector.md) whose rows are the observations in the test set |
 |  pThreshold | <code>number</code> | The probability threshold above which an event will be predicted |
 
 <b>Returns:</b>
 
-`Vector<number>`
+`Vector`
 
 ## Remarks
 

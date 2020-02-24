@@ -9,5 +9,5 @@ A function which expresses the similarity of two [Vector](./vector.vector.md)<!-
 <b>Signature:</b>
 
 ```typescript
-export declare type SimilarityMetric = (v1: Vector<number>, v2: Vector<number>) => number;
+export declare type SimilarityMetric = (v1: Vector, v2: Vector) => number;
 ```

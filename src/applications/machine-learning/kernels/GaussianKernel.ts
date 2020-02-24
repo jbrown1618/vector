@@ -20,7 +20,7 @@ export function GaussianKernel(sigmaSquared: number): Kernel {
 /**
  * {@see SimilarityMetric}
  */
-function gaussianSimilarity(sigmaSquared: number, v1: Vector<number>, v2: Vector<number>): number {
+function gaussianSimilarity(sigmaSquared: number, v1: Vector, v2: Vector): number {
   const diff = euclideanNorm(v1.add(v2.scalarMultiply(-1)));
   return gaussian(diff, sigmaSquared);
 }

@@ -13,7 +13,7 @@ export interface Classifier<H> {
    * @param target - A {@link Vector} whose entries are the target values in the training set
    * @public
    */
-  train(data: Matrix<number>, target: Vector<number>): void;
+  train(data: Matrix, target: Vector): void;
 
   /**
    * Uses the learned parameters to make predictions for the probability of an event
@@ -25,7 +25,7 @@ export interface Classifier<H> {
    * @param data - A {@link Vector} whose rows are the observations in the test set
    * @public
    */
-  predictProbabilities(data: Matrix<number>): Vector<number>;
+  predictProbabilities(data: Matrix): Vector;
 
   /**
    * Uses the learned parameters to make predictions based on a set of input data.
@@ -37,7 +37,7 @@ export interface Classifier<H> {
    * @param pThreshold - The probability threshold above which an event will be predicted
    * @public
    */
-  predict(data: Matrix<number>, pThreshold: number): Vector<number>;
+  predict(data: Matrix, pThreshold: number): Vector;
 
   /**
    * Return the full set of hyperparameters used to train the model, including defaults.

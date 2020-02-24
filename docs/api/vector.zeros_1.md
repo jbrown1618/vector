@@ -9,7 +9,7 @@ Creates a new matrix of all 0s. See [MatrixBuilder.zeros()](./vector.matrixbuild
 <b>Signature:</b>
 
 ```typescript
-export declare function zeros(shape: MatrixShape): Matrix<number>;
+export declare function zeros(shape: MatrixShape): Matrix;
 ```
 
 ## Parameters
@@ -20,5 +20,5 @@ export declare function zeros(shape: MatrixShape): Matrix<number>;
 
 <b>Returns:</b>
 
-`Matrix<number>`
+`Matrix`
 

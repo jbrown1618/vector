@@ -9,16 +9,16 @@ A linear kernel for use in a [SupportVectorMachineClassifier](./vector.supportve
 <b>Signature:</b>
 
 ```typescript
-export declare function LinearKernel(data: Matrix<number>): Matrix<number>;
+export declare function LinearKernel(data: Matrix): Matrix;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  data | <code>Matrix&lt;number&gt;</code> | The variance of the gaussian distribution used in the kernel |
+|  data | <code>Matrix</code> | The variance of the gaussian distribution used in the kernel |
 
 <b>Returns:</b>
 
-`Matrix<number>`
+`Matrix`
 

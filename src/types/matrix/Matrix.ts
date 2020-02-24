@@ -32,7 +32,7 @@ export interface MatrixConstructor<S, V extends Vector<S>, M extends Matrix<S>> 
  * A generalized Matrix - one of the core data types
  * @public
  */
-export interface Matrix<S> extends LinearTransformation<Vector<S>, Vector<S>> {
+export interface Matrix<S = number> extends LinearTransformation<Vector<S>, Vector<S>> {
   /**
    * Returns a {@link ScalarOperations} object which will allow consumers to work generically
    * with the scalars contained in the vector.

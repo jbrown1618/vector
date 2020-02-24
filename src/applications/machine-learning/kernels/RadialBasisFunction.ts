@@ -8,7 +8,7 @@ import { Kernel } from './Kernel';
  *
  * @public
  */
-export type SimilarityMetric = (v1: Vector<number>, v2: Vector<number>) => number;
+export type SimilarityMetric = (v1: Vector, v2: Vector) => number;
 
 /**
  * Creates a {@link Kernel} for use in a {@link SupportVectorMachineClassifier}.
@@ -22,7 +22,7 @@ export type SimilarityMetric = (v1: Vector<number>, v2: Vector<number>) => numbe
  * @public
  */
 export function RadialBasisFunction(distanceMetric: SimilarityMetric): Kernel {
-  return (data: Matrix<number>, trainingData: Matrix<number> = data) => {
+  return (data: Matrix, trainingData: Matrix = data) => {
     const [m] = data.getShape();
     const [n] = trainingData.getShape();
 

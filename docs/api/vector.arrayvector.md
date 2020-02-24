@@ -9,7 +9,7 @@ Implements [Vector](./vector.vector.md) with an array of values.
 <b>Signature:</b>
 
 ```typescript
-export declare abstract class ArrayVector<S> implements Vector<S> 
+export declare abstract class ArrayVector<S = number> implements Vector<S> 
 ```
 
 ## Remarks

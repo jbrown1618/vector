@@ -31,7 +31,7 @@ type MutableSparseMatrixData<S> = Map<number, Map<number, S>>;
  *
  * @public
  */
-export abstract class SparseMatrix<S> implements Matrix<S> {
+export abstract class SparseMatrix<S = number> implements Matrix<S> {
   private readonly _shape: MatrixShape;
   private readonly _sparseData: SparseMatrixData<S>;
 

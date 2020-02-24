@@ -6,21 +6,18 @@ import { Vector } from '../../types/vector/Vector';
  */
 export interface Cost {
   cost: number;
-  gradient: Vector<number>;
+  gradient: Vector;
 }
 
 /**
  * A function that evaluates the cost of a set of parameters `theta`
  * @public
  */
-export type CostFunction = (theta: Vector<number>) => Cost;
+export type CostFunction = (theta: Vector) => Cost;
 
 /**
  * An function which, given an initial value of `theta` and a CostFunction,
  * will compute the optimal value of `theta`
  * @public
  */
-export type LearningAlgorithm = (
-  initialTheta: Vector<number>,
-  costFn: CostFunction
-) => Vector<number>;
+export type LearningAlgorithm = (initialTheta: Vector, costFn: CostFunction) => Vector;

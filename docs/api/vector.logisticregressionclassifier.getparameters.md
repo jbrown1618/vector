@@ -9,9 +9,9 @@ Get the coefficients of the trained linear regression model, or `undefined` if t
 <b>Signature:</b>
 
 ```typescript
-getParameters(): Vector<number> | undefined;
+getParameters(): Vector | undefined;
 ```
 <b>Returns:</b>
 
-`Vector<number> | undefined`
+`Vector | undefined`
 

@@ -28,7 +28,7 @@ export type LinearRegressorHyperparams = GradientDescentParameters & {
  */
 export class LinearRegressor implements Regressor<LinearRegressorHyperparams> {
   private readonly _hyperParameters: Readonly<Partial<LinearRegressorHyperparams>>;
-  private _theta: Vector<number> | undefined;
+  private _theta: Vector | undefined;
 
   constructor(hyperParameters: Partial<LinearRegressorHyperparams>) {
     this._hyperParameters = Object.freeze(hyperParameters);
@@ -40,7 +40,7 @@ export class LinearRegressor implements Regressor<LinearRegressorHyperparams> {
    * `undefined` if the model has not been trained.
    * @public
    */
-  public getParameters(): Vector<number> | undefined {
+  public getParameters(): Vector | undefined {
     return this._theta;
   }
 
@@ -57,7 +57,7 @@ export class LinearRegressor implements Regressor<LinearRegressorHyperparams> {
   /**
    * {@inheritDoc Regressor.train}
    */
-  public train(data: Matrix<number>, target: Vector<number>): void {
+  public train(data: Matrix, target: Vector): void {
     const initialTheta = FloatVector.builder().random(data.getNumberOfColumns() + 1, -0.01, 0.01);
     this._theta = gradientDescent(this._hyperParameters)(initialTheta, theta => ({
       cost: this.calculateCost(data, target, theta),
@@ -68,16 +68,12 @@ export class LinearRegressor implements Regressor<LinearRegressorHyperparams> {
   /**
    * {@inheritDoc Regressor.predict}
    */
-  public predict(data: Matrix<number>): Vector<number> {
+  public predict(data: Matrix): Vector {
     if (!this._theta) throw new Error(`Cannot call predict before train`);
     return this.makePredictions(data, this._theta);
   }
 
-  private calculateCost(
-    data: Matrix<number>,
-    target: Vector<number>,
-    theta: Vector<number>
-  ): number {
+  private calculateCost(data: Matrix, target: Vector, theta: Vector): number {
     const { lambda } = this.getHyperParameters();
     const predictions = this.makePredictions(data, theta);
     const residuals = target.scalarMultiply(-1).add(predictions);
@@ -92,11 +88,7 @@ export class LinearRegressor implements Regressor<LinearRegressorHyperparams> {
     return meanSquaredError + regularizationTerm;
   }
 
-  private calculateGradient(
-    data: Matrix<number>,
-    target: Vector<number>,
-    theta: Vector<number>
-  ): Vector<number> {
+  private calculateGradient(data: Matrix, target: Vector, theta: Vector): Vector {
     const { lambda } = this.getHyperParameters();
     const m = data.getNumberOfRows();
 
@@ -113,7 +105,7 @@ export class LinearRegressor implements Regressor<LinearRegressorHyperparams> {
     return gradientTerm.add(regularizationTerm);
   }
 
-  private makePredictions(data: Matrix<number>, theta: Vector<number>): Vector<number> {
+  private makePredictions(data: Matrix, theta: Vector): Vector {
     return LinearKernel(data).apply(theta);
   }
 
