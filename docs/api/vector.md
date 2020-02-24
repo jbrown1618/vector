@@ -147,6 +147,7 @@
 |  [MatrixData](./vector.matrixdata.md) | The data stored in a [Matrix](./vector.matrix.md) represented as a 2-D array |
 |  [MatrixEntryFunction](./vector.matrixentryfunction.md) | A function that generates a matrix entry based on an existing entry <code>entry</code>, its row index <code>i</code>, and its column index <code>j</code> |
 |  [MatrixShape](./vector.matrixshape.md) | A tuple representing the shape of a [Matrix](./vector.matrix.md)<!-- -->. The first entry is the number of rows, and the second entry is the number of columns. |
+|  [Norm](./vector.norm.md) | A function that calculates a norm for a vector. |
 |  [SimilarityMetric](./vector.similaritymetric.md) | A function which expresses the similarity of two [Vector](./vector.vector.md)<!-- -->s as a number between 0 (very dissimilar) and 1 (identical). |
 |  [SparseMatrixData](./vector.sparsematrixdata.md) | The data stored in a [Matrix](./vector.matrix.md) represented as a map |
 |  [SparseVectorData](./vector.sparsevectordata.md) | The data stored in a [Vector](./vector.vector.md) represented as a map |

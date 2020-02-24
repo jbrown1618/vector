@@ -27,5 +27,5 @@ The random scalar
 
 ## Remarks
 
-This might not be a meaningful value for non-real-values scalar types
+This might not be a meaningful value for non-real-valued scalar types
 
