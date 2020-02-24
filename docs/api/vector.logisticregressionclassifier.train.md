@@ -9,15 +9,15 @@ Learns the optimal set of parameters for the model.
 <b>Signature:</b>
 
 ```typescript
-train(data: Matrix<number>, target: Vector<number>): void;
+train(data: Matrix, target: Vector): void;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  data | <code>Matrix&lt;number&gt;</code> | A [Matrix](./vector.matrix.md) whose rows are the individual observations in the training set |
-|  target | <code>Vector&lt;number&gt;</code> | A [Vector](./vector.vector.md) whose entries are the target values in the training set |
+|  data | <code>Matrix</code> | A [Matrix](./vector.matrix.md) whose rows are the individual observations in the training set |
+|  target | <code>Vector</code> | A [Vector](./vector.vector.md) whose entries are the target values in the training set |
 
 <b>Returns:</b>
 

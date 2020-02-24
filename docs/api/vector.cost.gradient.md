@@ -7,5 +7,5 @@
 <b>Signature:</b>
 
 ```typescript
-gradient: Vector<number>;
+gradient: Vector;
 ```

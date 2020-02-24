@@ -9,7 +9,7 @@ Creates a new matrix of all 1s. See [MatrixBuilder.ones()](./vector.matrixbuilde
 <b>Signature:</b>
 
 ```typescript
-export declare function ones(shape: MatrixShape): Matrix<number>;
+export declare function ones(shape: MatrixShape): Matrix;
 ```
 
 ## Parameters
@@ -20,5 +20,5 @@ export declare function ones(shape: MatrixShape): Matrix<number>;
 
 <b>Returns:</b>
 
-`Matrix<number>`
+`Matrix`
 

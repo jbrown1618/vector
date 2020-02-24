@@ -11,7 +11,7 @@ export type ApproximationFunction<S> = (input: Vector<S>) => S;
 export type ApproximationFunctionTemplate<S> = (coefficients: Vector<S>) => ApproximationFunction<S>;
 
 // @public
-export abstract class ArrayMatrix<S> implements Matrix<S> {
+export abstract class ArrayMatrix<S = number> implements Matrix<S> {
     // @internal
     protected constructor(data: MatrixData<S>);
     add(other: Matrix<S>): Matrix<S>;
@@ -43,7 +43,7 @@ export abstract class ArrayMatrix<S> implements Matrix<S> {
 }
 
 // @public
-export abstract class ArrayVector<S> implements Vector<S> {
+export abstract class ArrayVector<S = number> implements Vector<S> {
     // @internal
     protected constructor(data: VectorData<S>);
     add(other: Vector<S>): Vector<S>;
@@ -107,9 +107,9 @@ export interface CholeskyDecomposition<S> {
 // @public
 export interface Classifier<H> {
     getHyperParameters(): H;
-    predict(data: Matrix<number>, pThreshold: number): Vector<number>;
-    predictProbabilities(data: Matrix<number>): Vector<number>;
-    train(data: Matrix<number>, target: Vector<number>): void;
+    predict(data: Matrix, pThreshold: number): Vector;
+    predictProbabilities(data: Matrix): Vector;
+    train(data: Matrix, target: Vector): void;
 }
 
 // @public
@@ -202,11 +202,11 @@ export interface Cost {
     // (undocumented)
     cost: number;
     // (undocumented)
-    gradient: Vector<number>;
+    gradient: Vector;
 }
 
 // @public
-export type CostFunction = (theta: Vector<number>) => Cost;
+export type CostFunction = (theta: Vector) => Cost;
 
 // @public
 export function covariance<S>(first: Vector<S>, second: Vector<S>): S;
@@ -218,13 +218,13 @@ export function covariance<S>(A: Matrix<S>): Matrix<S>;
 export function crossProduct<S>(first: Vector<S>, second: Vector<S>): Vector<S>;
 
 // @public
-export function derivative(f: (x: number) => number, xMin: number, xMax: number, binCount: number): Vector<number>;
+export function derivative(f: (x: number) => number, xMin: number, xMax: number, binCount: number): Vector;
 
 // @public
 export function determinant<S>(matrix: Matrix<S>): S;
 
 // @public
-export function diag(elements: number[]): Matrix<number>;
+export function diag(elements: number[]): Matrix;
 
 // Warning: (ae-forgotten-export) The symbol "DimensionReductionType" needs to be exported by the entry point index.d.ts
 //
@@ -254,7 +254,7 @@ export function euclideanNorm<S>(v: Vector<S>): number;
 export function exp<S>(A: Matrix<S>, order?: number): Matrix<S>;
 
 // @public
-export function eye(size: number): Matrix<number>;
+export function eye(size: number): Matrix;
 
 // @public
 export class FloatMatrix implements Matrix<number> {
@@ -382,13 +382,13 @@ export function isSymmetric<S>(matrix: Matrix<S>): boolean;
 export function isUpperTriangular<S>(matrix: Matrix<S>): boolean;
 
 // @public
-export type Kernel = (data: Matrix<number>, trainingData?: Matrix<number>) => Matrix<number>;
+export type Kernel = (data: Matrix, trainingData?: Matrix) => Matrix;
 
 // @public
 export function kroneckerProduct<S>(first: Matrix<S>, second: Matrix<S>): Matrix<S>;
 
 // @public
-export type LearningAlgorithm = (initialTheta: Vector<number>, costFn: CostFunction) => Vector<number>;
+export type LearningAlgorithm = (initialTheta: Vector, costFn: CostFunction) => Vector;
 
 // @public
 export interface LeastSquaresApproximation<S> {
@@ -397,15 +397,15 @@ export interface LeastSquaresApproximation<S> {
 }
 
 // @public
-export function LinearKernel(data: Matrix<number>): Matrix<number>;
+export function LinearKernel(data: Matrix): Matrix;
 
 // @public
 export class LinearRegressor implements Regressor<LinearRegressorHyperparams> {
     constructor(hyperParameters: Partial<LinearRegressorHyperparams>);
     getHyperParameters(): LinearRegressorHyperparams;
-    getParameters(): Vector<number> | undefined;
-    predict(data: Matrix<number>): Vector<number>;
-    train(data: Matrix<number>, target: Vector<number>): void;
+    getParameters(): Vector | undefined;
+    predict(data: Matrix): Vector;
+    train(data: Matrix, target: Vector): void;
 }
 
 // @public
@@ -425,10 +425,10 @@ export function linspace(xMin: number, xMax: number, binCount: number): NumberVe
 export class LogisticRegressionClassifier implements Classifier<LogisticRegressionHyperparams> {
     constructor(hyperParameters: Partial<LogisticRegressionHyperparams>);
     getHyperParameters(): LogisticRegressionHyperparams;
-    getParameters(): Vector<number> | undefined;
-    predict(data: Matrix<number>): Vector<number>;
-    predictProbabilities(data: Matrix<number>): Vector<number>;
-    train(data: Matrix<number>, target: Vector<number>): void;
+    getParameters(): Vector | undefined;
+    predict(data: Matrix): Vector;
+    predictProbabilities(data: Matrix): Vector;
+    train(data: Matrix, target: Vector): void;
 }
 
 // @public
@@ -447,10 +447,10 @@ export interface LUDecomposition<S> {
 }
 
 // @public
-export function mat(data: number[][]): Matrix<number>;
+export function mat(data: number[][]): Matrix;
 
 // @public
-export interface Matrix<S> extends LinearTransformation<Vector<S>, Vector<S>> {
+export interface Matrix<S = number> extends LinearTransformation<Vector<S>, Vector<S>> {
     add(other: Matrix<S>): Matrix<S>;
     adjoint(): Matrix<S>;
     apply(vector: Vector<S>): Vector<S>;
@@ -597,10 +597,10 @@ export class NumberVector extends ArrayVector<number> {
 }
 
 // @public
-export function ones(entries: number): Vector<number>;
+export function ones(entries: number): Vector;
 
 // @public
-export function ones(shape: MatrixShape): Matrix<number>;
+export function ones(shape: MatrixShape): Matrix;
 
 // @public
 export function pca<S>(A: Matrix<S>, useCorrelation?: boolean): PrincipalComponentAnalysis<S>;
@@ -644,7 +644,7 @@ export function RadialBasisFunction(distanceMetric: SimilarityMetric): Kernel;
 export function rank<S>(matrix: Matrix<S>): number;
 
 // @public
-export function reduceDimensions(A: Matrix<number>, options: DimensionReductionOptions): Matrix<number>;
+export function reduceDimensions(A: Matrix, options: DimensionReductionOptions): Matrix;
 
 // @public
 export function reducedRowEchelonForm<S>(matrix: Matrix<S>): Matrix<S>;
@@ -652,8 +652,8 @@ export function reducedRowEchelonForm<S>(matrix: Matrix<S>): Matrix<S>;
 // @public
 export interface Regressor<H> {
     getHyperParameters(): H;
-    predict(data: Matrix<number>): Vector<number>;
-    train(data: Matrix<number>, target: Vector<number>): void;
+    predict(data: Matrix): Vector;
+    train(data: Matrix, target: Vector): void;
 }
 
 // @public
@@ -704,7 +704,7 @@ export abstract class ScalarOperations<S> {
 }
 
 // @public
-export type SimilarityMetric = (v1: Vector<number>, v2: Vector<number>) => number;
+export type SimilarityMetric = (v1: Vector, v2: Vector) => number;
 
 // @public
 export interface SingularValueDecomposition<S> {
@@ -725,7 +725,7 @@ export function solveByGaussianElimination<S>(A: Matrix<S>, b: Vector<S>): Linea
 export function solveOverdeterminedSystem<S>(A: Matrix<S>, b: Vector<S>): Vector<S>;
 
 // @public
-export abstract class SparseMatrix<S> implements Matrix<S> {
+export abstract class SparseMatrix<S = number> implements Matrix<S> {
     // @internal
     protected constructor(data: MatrixData<S>);
     add(other: Matrix<S>): Matrix<S>;
@@ -791,7 +791,7 @@ export class SparseNumberVector extends SparseVector<number> {
 }
 
 // @public
-export abstract class SparseVector<S> implements Vector<S> {
+export abstract class SparseVector<S = number> implements Vector<S> {
     // @internal
     protected constructor(data: VectorData<S>);
     add(other: Vector<S>): Vector<S>;
@@ -838,10 +838,10 @@ export function sumNorm<S>(v: Vector<S>): number;
 export class SupportVectorMachineClassifier implements Classifier<SupportVectorMachineHyperparams> {
     constructor(hyperParameters: Partial<SupportVectorMachineHyperparams>);
     getHyperParameters(): SupportVectorMachineHyperparams;
-    getParameters(): Vector<number> | undefined;
-    predict(data: Matrix<number>): Vector<number>;
-    predictProbabilities(_data: Matrix<number>): Vector<number>;
-    train(data: Matrix<number>, target: Vector<number>): void;
+    getParameters(): Vector | undefined;
+    predict(data: Matrix): Vector;
+    predictProbabilities(_data: Matrix): Vector;
+    train(data: Matrix, target: Vector): void;
     }
 
 // @public
@@ -863,10 +863,10 @@ export function variance<S>(x: Vector<S>): S;
 export function variance<S>(A: Matrix<S>): Vector<S>;
 
 // @public
-export function vec(data: number[]): Vector<number>;
+export function vec(data: number[]): Vector;
 
 // @public
-export interface Vector<S> {
+export interface Vector<S = number> {
     add(other: Vector<S>): Vector<S>;
     builder(): VectorBuilder<S, Vector<S>>;
     combine(other: Vector<S>, combineEntries: (a: S, b: S) => S): Vector<S>;
@@ -929,10 +929,10 @@ export type VectorData<S> = readonly S[];
 export type VectorIndexFunction<S> = (index: number) => S;
 
 // @public
-export function zeros(entries: number): Vector<number>;
+export function zeros(entries: number): Vector;
 
 // @public
-export function zeros(shape: MatrixShape): Matrix<number>;
+export function zeros(shape: MatrixShape): Matrix;
 
 
 // (No @packageDocumentation comment for this package)

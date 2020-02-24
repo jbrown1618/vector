@@ -9,9 +9,9 @@ Get the weights of the trained SVM, or `undefined` if the model has not been tra
 <b>Signature:</b>
 
 ```typescript
-getParameters(): Vector<number> | undefined;
+getParameters(): Vector | undefined;
 ```
 <b>Returns:</b>
 
-`Vector<number> | undefined`
+`Vector | undefined`
 

@@ -227,7 +227,7 @@ describe('GaussJordan', () => {
       const I = eye(3);
       const iInv = inverse(I);
       expect(iInv).not.toBeUndefined;
-      expect((iInv as Matrix<number>).equals(I)).toBe(true);
+      expect((iInv as Matrix).equals(I)).toBe(true);
     });
 
     test('calculates the inverse of a square matrix', () => {
@@ -239,7 +239,7 @@ describe('GaussJordan', () => {
         [0.6, -0.7],
         [-0.2, 0.4]
       ]);
-      const aInv = inverse(A) as Matrix<number>;
+      const aInv = inverse(A) as Matrix;
       expect(aInv).not.toBeUndefined;
       expect(aInv.equals(expectedInverse)).toBe(true);
     });

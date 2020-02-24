@@ -10,7 +10,7 @@ import { Matrix } from '../../../types/matrix/Matrix';
  *
  * @public
  */
-export function LinearKernel(data: Matrix<number>): Matrix<number> {
+export function LinearKernel(data: Matrix): Matrix {
   const m = data.getNumberOfRows();
   const ones = data.builder().ones([m, 1]);
   return data.builder().augment(ones, data);

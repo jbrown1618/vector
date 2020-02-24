@@ -11,5 +11,5 @@ Generally intended for use with a [SupportVectorMachineClassifier](./vector.supp
 <b>Signature:</b>
 
 ```typescript
-export declare type Kernel = (data: Matrix<number>, trainingData?: Matrix<number>) => Matrix<number>;
+export declare type Kernel = (data: Matrix, trainingData?: Matrix) => Matrix;
 ```

@@ -105,10 +105,7 @@ export type DimensionReductionOptions = DimensionReductionType & {
  *          be explained by the remaining columns
  * @public
  */
-export function reduceDimensions(
-  A: Matrix<number>,
-  options: DimensionReductionOptions
-): Matrix<number> {
+export function reduceDimensions(A: Matrix, options: DimensionReductionOptions): Matrix {
   let keep = A.getNumberOfColumns();
   if (hasKeep(options) && (options.keep > keep || options.keep < 0)) {
     throw Error(`Cannot keep ${options.keep} dimensions of a matrix with ${keep} columns`);

@@ -82,7 +82,7 @@ describe('LeastSquares', () => {
   describe('calculateGeneralLeastSquaresApproximation', () => {
     test('calculates a quadratic regression', () => {
       const data = singleVariableTestData.getRowVectors();
-      const quadraticTemplate = (coefficients: Vector<number>) => (inputs: Vector<number>) => {
+      const quadraticTemplate = (coefficients: Vector) => (inputs: Vector) => {
         const x = inputs.getEntry(0);
         const constantTerm = coefficients.getEntry(0);
         const linearTerm = coefficients.getEntry(1) * x;

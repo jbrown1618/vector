@@ -9,7 +9,7 @@ Creates a new [Matrix](./vector.matrix.md) of numbers. See [MatrixBuilder.fromAr
 <b>Signature:</b>
 
 ```typescript
-export declare function mat(data: number[][]): Matrix<number>;
+export declare function mat(data: number[][]): Matrix;
 ```
 
 ## Parameters
@@ -20,5 +20,5 @@ export declare function mat(data: number[][]): Matrix<number>;
 
 <b>Returns:</b>
 
-`Matrix<number>`
+`Matrix`
 

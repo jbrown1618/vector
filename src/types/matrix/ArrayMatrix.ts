@@ -18,7 +18,7 @@ import { MatrixBuilder } from './MatrixBuilder';
  *
  * @public
  */
-export abstract class ArrayMatrix<S> implements Matrix<S> {
+export abstract class ArrayMatrix<S = number> implements Matrix<S> {
   private readonly _data: MatrixData<S>;
 
   /**

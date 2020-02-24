@@ -9,7 +9,7 @@ Creates a new vector of all 1s. See [VectorBuilder.ones()](./vector.vectorbuilde
 <b>Signature:</b>
 
 ```typescript
-export declare function ones(entries: number): Vector<number>;
+export declare function ones(entries: number): Vector;
 ```
 
 ## Parameters
@@ -20,5 +20,5 @@ export declare function ones(entries: number): Vector<number>;
 
 <b>Returns:</b>
 
-`Vector<number>`
+`Vector`
 

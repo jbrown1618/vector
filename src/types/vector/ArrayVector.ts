@@ -13,7 +13,7 @@ import { Matrix } from '../matrix/Matrix';
  *
  * @public
  */
-export abstract class ArrayVector<S> implements Vector<S> {
+export abstract class ArrayVector<S = number> implements Vector<S> {
   private readonly _data: VectorData<S>;
 
   /**

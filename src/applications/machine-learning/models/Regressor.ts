@@ -13,7 +13,7 @@ export interface Regressor<H> {
    * @param target - A {@link Vector} whose entries are the target values in the training set
    * @public
    */
-  train(data: Matrix<number>, target: Vector<number>): void;
+  train(data: Matrix, target: Vector): void;
 
   /**
    * Uses the learned parameters to make predictions based on a set of input data.
@@ -24,7 +24,7 @@ export interface Regressor<H> {
    * @param data - A {@link Vector} whose rows are the observations in the test set
    * @public
    */
-  predict(data: Matrix<number>): Vector<number>;
+  predict(data: Matrix): Vector;
 
   /**
    * Return the full set of hyperparameters used to train the model, including defaults.

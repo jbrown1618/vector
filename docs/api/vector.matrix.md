@@ -9,7 +9,7 @@ A generalized Matrix - one of the core data types
 <b>Signature:</b>
 
 ```typescript
-export interface Matrix<S> extends LinearTransformation<Vector<S>, Vector<S>> 
+export interface Matrix<S = number> extends LinearTransformation<Vector<S>, Vector<S>> 
 ```
 
 ## Methods

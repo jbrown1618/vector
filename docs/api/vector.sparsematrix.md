@@ -9,7 +9,7 @@ Implements [Matrix](./vector.matrix.md) with a map of indices to nonzero values.
 <b>Signature:</b>
 
 ```typescript
-export declare abstract class SparseMatrix<S> implements Matrix<S> 
+export declare abstract class SparseMatrix<S = number> implements Matrix<S> 
 ```
 
 ## Remarks

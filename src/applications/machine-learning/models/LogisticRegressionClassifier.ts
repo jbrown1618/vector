@@ -28,7 +28,7 @@ export type LogisticRegressionHyperparams = GradientDescentParameters & {
  */
 export class LogisticRegressionClassifier implements Classifier<LogisticRegressionHyperparams> {
   private readonly _hyperParameters: Readonly<Partial<LogisticRegressionHyperparams>>;
-  private _theta: Vector<number> | undefined;
+  private _theta: Vector | undefined;
 
   constructor(hyperParameters: Partial<LogisticRegressionHyperparams>) {
     this._hyperParameters = Object.freeze(hyperParameters);
@@ -39,7 +39,7 @@ export class LogisticRegressionClassifier implements Classifier<LogisticRegressi
    * `undefined` if the model has not been trained.
    * @public
    */
-  public getParameters(): Vector<number> | undefined {
+  public getParameters(): Vector | undefined {
     return this._theta;
   }
 
@@ -56,7 +56,7 @@ export class LogisticRegressionClassifier implements Classifier<LogisticRegressi
   /**
    * {@inheritDoc Classifier.train}
    */
-  public train(data: Matrix<number>, target: Vector<number>): void {
+  public train(data: Matrix, target: Vector): void {
     const initialTheta = FloatVector.builder().random(data.getNumberOfColumns() + 1, -0.01, 0.01);
     this._theta = gradientDescent(this._hyperParameters)(initialTheta, theta => ({
       cost: this.calculateCost(data, target, theta),
@@ -67,7 +67,7 @@ export class LogisticRegressionClassifier implements Classifier<LogisticRegressi
   /**
    * {@inheritDoc Classifier.predictProbabilities}
    */
-  public predictProbabilities(data: Matrix<number>): Vector<number> {
+  public predictProbabilities(data: Matrix): Vector {
     if (!this._theta) throw new Error(`Cannot call predictProbabilities before train`);
     return this.makeProbabilityPredictions(data, this._theta);
   }
@@ -75,30 +75,22 @@ export class LogisticRegressionClassifier implements Classifier<LogisticRegressi
   /**
    * {@inheritDoc Classifier.predict}
    */
-  public predict(data: Matrix<number>): Vector<number> {
+  public predict(data: Matrix): Vector {
     if (!this._theta) throw new Error(`Cannot call predict before train`);
     return this.makePredictions(data, this._theta);
   }
 
-  private makePredictions(
-    data: Matrix<number>,
-    theta: Vector<number>,
-    threshold?: number
-  ): Vector<number> {
+  private makePredictions(data: Matrix, theta: Vector, threshold?: number): Vector {
     return this.makeProbabilityPredictions(data, theta).map(p => (p > (threshold || 0.5) ? 1 : 0));
   }
 
-  private makeProbabilityPredictions(data: Matrix<number>, theta: Vector<number>): Vector<number> {
+  private makeProbabilityPredictions(data: Matrix, theta: Vector): Vector {
     return LinearKernel(data)
       .apply(theta)
       .map(sigmoid);
   }
 
-  private calculateCost(
-    data: Matrix<number>,
-    target: Vector<number>,
-    theta: Vector<number>
-  ): number {
+  private calculateCost(data: Matrix, target: Vector, theta: Vector): number {
     const { lambda } = this.getHyperParameters();
     const probabilities = this.makeProbabilityPredictions(data, theta);
 
@@ -126,11 +118,7 @@ export class LogisticRegressionClassifier implements Classifier<LogisticRegressi
   /**
    * {@inheritDoc GradientDescentClassifier.calculateGradient}
    */
-  private calculateGradient(
-    data: Matrix<number>,
-    target: Vector<number>,
-    theta: Vector<number>
-  ): Vector<number> {
+  private calculateGradient(data: Matrix, target: Vector, theta: Vector): Vector {
     const m = data.getNumberOfRows();
     const { lambda } = this.getHyperParameters();
 

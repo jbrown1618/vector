@@ -9,7 +9,7 @@ Implements [Matrix](./vector.matrix.md) with a 2-dimensional array of values.
 <b>Signature:</b>
 
 ```typescript
-export declare abstract class ArrayMatrix<S> implements Matrix<S> 
+export declare abstract class ArrayMatrix<S = number> implements Matrix<S> 
 ```
 
 ## Remarks

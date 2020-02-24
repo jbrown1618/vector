@@ -9,5 +9,5 @@ A function that evaluates the cost of a set of parameters `theta`
 <b>Signature:</b>
 
 ```typescript
-export declare type CostFunction = (theta: Vector<number>) => Cost;
+export declare type CostFunction = (theta: Vector) => Cost;
 ```
