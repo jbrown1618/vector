@@ -13,7 +13,7 @@ transpose(): Matrix<S>;
 ```
 <b>Returns:</b>
 
-`Matrix<S>`
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
 
 The transpose
 

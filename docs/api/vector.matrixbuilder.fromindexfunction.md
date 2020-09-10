@@ -16,12 +16,12 @@ fromIndexFunction(shape: MatrixShape, indexFunction: (i: number, j: number) => S
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  shape | <code>MatrixShape</code> | The shape of the matrix as a tuple |
-|  indexFunction | <code>(i: number, j: number) =&gt; S</code> | A function returning the entry for a given <code>i</code>, <code>j</code> |
+|  shape | [MatrixShape](./vector.matrixshape.md) | The shape of the matrix as a tuple |
+|  indexFunction | (i: number, j: number) =&gt; S | A function returning the entry for a given <code>i</code>, <code>j</code> |
 
 <b>Returns:</b>
 
-`M`
+M
 
 The new matrix
 

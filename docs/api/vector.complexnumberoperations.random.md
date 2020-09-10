@@ -16,12 +16,12 @@ random(min?: number, max?: number): ComplexNumber;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  min | <code>number</code> |  |
-|  max | <code>number</code> |  |
+|  min | number |  |
+|  max | number |  |
 
 <b>Returns:</b>
 
-`ComplexNumber`
+[ComplexNumber](./vector.complexnumber.md)
 
 The random scalar
 

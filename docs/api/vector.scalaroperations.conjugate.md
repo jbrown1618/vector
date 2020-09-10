@@ -16,11 +16,11 @@ abstract conjugate(scalar: S): S;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  scalar | <code>S</code> | The scalar to conjugate |
+|  scalar | S | The scalar to conjugate |
 
 <b>Returns:</b>
 
-`S`
+S
 
 The complex conjugate
 

@@ -4,7 +4,7 @@ import { Vector } from '../types/vector/Vector';
 export enum SolutionType {
   UNIQUE = 'Unique',
   UNDERDETERMINED = 'Underdetermined',
-  OVERDETERMINED = 'Overdetermined'
+  OVERDETERMINED = 'Overdetermined',
 }
 
 export interface UniqueSolution<S> {

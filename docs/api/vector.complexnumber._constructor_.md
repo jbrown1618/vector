@@ -16,6 +16,6 @@ constructor(real: number, imaginary: number);
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  real | <code>number</code> |  |
-|  imaginary | <code>number</code> |  |
+|  real | number |  |
+|  imaginary | number |  |
 

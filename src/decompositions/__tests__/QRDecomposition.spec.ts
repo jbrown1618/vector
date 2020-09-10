@@ -7,19 +7,19 @@ describe('QRDecomposition', () => {
       const A = mat([
         [12, -51, 4],
         [6, 167, -68],
-        [-4, 24, -41]
+        [-4, 24, -41],
       ]);
 
       const expectedQ = mat([
         [6 / 7, -69 / 175, -58 / 175],
         [3 / 7, 158 / 175, 6 / 175],
-        [-2 / 7, 6 / 35, -33 / 35]
+        [-2 / 7, 6 / 35, -33 / 35],
       ]);
 
       const expectedR = mat([
         [14, 21, -14],
         [0, 175, -70],
-        [0, 0, 35]
+        [0, 0, 35],
       ]);
 
       const result = calculateQRDecomposition(A);
@@ -38,7 +38,7 @@ describe('QRDecomposition', () => {
     test('rejects a matrix with linearly dependent columns', () => {
       const A = mat([
         [1, 1],
-        [1, 1]
+        [1, 1],
       ]);
       expect(() => calculateQRDecomposition(A)).toThrow();
     });

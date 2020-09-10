@@ -16,11 +16,11 @@ randomNormal(dimension: number, mean?: number, standardDeviation?: number): V;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  dimension | <code>number</code> | The dimension of the new vector |
-|  mean | <code>number</code> | The center of the distribution of random numbers to include |
-|  standardDeviation | <code>number</code> | The standard deviation of the distribution of random numbers to include |
+|  dimension | number | The dimension of the new vector |
+|  mean | number | The center of the distribution of random numbers to include |
+|  standardDeviation | number | The standard deviation of the distribution of random numbers to include |
 
 <b>Returns:</b>
 
-`V`
+V
 

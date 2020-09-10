@@ -14,9 +14,9 @@ multiply(other: ComplexNumber): ComplexNumber;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  other | <code>ComplexNumber</code> |  |
+|  other | [ComplexNumber](./vector.complexnumber.md) |  |
 
 <b>Returns:</b>
 
-`ComplexNumber`
+[ComplexNumber](./vector.complexnumber.md)
 

@@ -11,6 +11,7 @@ A dense [Vector](./vector.vector.md) of `number`<!-- -->s implemented as a [Arra
 ```typescript
 export declare class NumberVector extends ArrayVector<number> 
 ```
+<b>Extends:</b> [ArrayVector](./vector.arrayvector.md)<!-- -->&lt;number&gt;
 
 ## Remarks
 

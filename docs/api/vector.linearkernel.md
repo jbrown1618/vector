@@ -16,9 +16,9 @@ export declare function LinearKernel(data: Matrix): Matrix;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  data | <code>Matrix</code> | The variance of the gaussian distribution used in the kernel |
+|  data | [Matrix](./vector.matrix.md) | The variance of the gaussian distribution used in the kernel |
 
 <b>Returns:</b>
 
-`Matrix`
+[Matrix](./vector.matrix.md)
 

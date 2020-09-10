@@ -16,11 +16,11 @@ abstract prettyPrint(x: S): string;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  x | <code>S</code> |  |
+|  x | S |  |
 
 <b>Returns:</b>
 
-`string`
+string
 
 The readable string
 

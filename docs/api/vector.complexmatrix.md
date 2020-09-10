@@ -11,6 +11,7 @@ A dense [Matrix](./vector.matrix.md) of [ComplexNumber](./vector.complexnumber.m
 ```typescript
 export declare class ComplexMatrix extends ArrayMatrix<ComplexNumber> 
 ```
+<b>Extends:</b> [ArrayMatrix](./vector.arraymatrix.md)<!-- -->&lt;[ComplexNumber](./vector.complexnumber.md)<!-- -->&gt;
 
 ## Remarks
 

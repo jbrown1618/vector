@@ -2,7 +2,7 @@ import {
   assertRectangular,
   assertValidMatrixIndex,
   assertDimensionMatch,
-  assertMultiplicable
+  assertMultiplicable,
 } from '../../utilities/ErrorAssertions';
 import { ScalarOperations } from '../scalar/ScalarOperations';
 import { Vector, VectorData } from '../vector/Vector';
@@ -62,7 +62,7 @@ export abstract class ArrayMatrix<S = number> implements Matrix<S> {
    */
   public adjoint(): Matrix<S> {
     const ops = this.ops();
-    return this.transpose().map(e => ops.conjugate(e));
+    return this.transpose().map((e) => ops.conjugate(e));
   }
 
   /**
@@ -125,14 +125,14 @@ export abstract class ArrayMatrix<S = number> implements Matrix<S> {
    */
   public getDiagonal(): Vector<S> {
     const numDiagonalElements = Math.min(...this.getShape());
-    return this.vectorBuilder().fromIndexFunction(numDiagonalElements, i => this.getEntry(i, i));
+    return this.vectorBuilder().fromIndexFunction(numDiagonalElements, (i) => this.getEntry(i, i));
   }
 
   /**
    * {@inheritDoc Matrix.toArray}
    */
   public toArray(): S[][] {
-    return this.getRowVectors().map(row => [...row.toArray()]);
+    return this.getRowVectors().map((row) => [...row.toArray()]);
   }
 
   /**
@@ -211,8 +211,8 @@ export abstract class ArrayMatrix<S = number> implements Matrix<S> {
     assertMultiplicable(this, other);
 
     return this.builder().fromArray(
-      this.getRowVectors().map(row =>
-        other.getColumnVectors().map(column => row.innerProduct(column))
+      this.getRowVectors().map((row) =>
+        other.getColumnVectors().map((column) => row.innerProduct(column))
       )
     );
   }
@@ -222,7 +222,7 @@ export abstract class ArrayMatrix<S = number> implements Matrix<S> {
    */
   public scalarMultiply(scalar: S): Matrix<S> {
     return this.builder().fromColumnVectors(
-      this.getColumnVectors().map(column => column.scalarMultiply(scalar))
+      this.getColumnVectors().map((column) => column.scalarMultiply(scalar))
     );
   }
 

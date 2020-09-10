@@ -16,11 +16,11 @@ equals(other: Vector<number>): boolean;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  other | <code>Vector&lt;number&gt;</code> | The vector against which to compare |
+|  other | [Vector](./vector.vector.md)<!-- -->&lt;number&gt; | The vector against which to compare |
 
 <b>Returns:</b>
 
-`boolean`
+boolean
 
 - `true` if `this` is equal to `other`
 

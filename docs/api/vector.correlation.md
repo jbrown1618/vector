@@ -16,10 +16,10 @@ export declare function correlation<S>(first: Vector<S>, second: Vector<S>): S;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  first | <code>Vector&lt;S&gt;</code> | The first vector |
-|  second | <code>Vector&lt;S&gt;</code> | The second vector |
+|  first | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | The first vector |
+|  second | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | The second vector |
 
 <b>Returns:</b>
 
-`S`
+S
 

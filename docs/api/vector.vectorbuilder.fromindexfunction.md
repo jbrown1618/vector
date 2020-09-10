@@ -16,12 +16,12 @@ fromIndexFunction(dimension: number, valueFromIndex: VectorIndexFunction<S>): V;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  dimension | <code>number</code> | The dimension of the vector to generate |
-|  valueFromIndex | <code>VectorIndexFunction&lt;S&gt;</code> | A function returning the entry for a given index |
+|  dimension | number | The dimension of the vector to generate |
+|  valueFromIndex | [VectorIndexFunction](./vector.vectorindexfunction.md)<!-- -->&lt;S&gt; | A function returning the entry for a given index |
 
 <b>Returns:</b>
 
-`V`
+V
 
 The new vector
 

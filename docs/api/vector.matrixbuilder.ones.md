@@ -16,11 +16,11 @@ ones(shape: MatrixShape): M;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  shape | <code>MatrixShape</code> | the shape of the matrix as a tuple |
+|  shape | [MatrixShape](./vector.matrixshape.md) | the shape of the matrix as a tuple |
 
 <b>Returns:</b>
 
-`M`
+M
 
 The new matrix
 

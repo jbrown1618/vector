@@ -16,12 +16,12 @@ combine(other: Matrix<number>, combineEntries: (a: number, b: number) => number)
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  other | <code>Matrix&lt;number&gt;</code> |  |
-|  combineEntries | <code>(a: number, b: number) =&gt; number</code> |  |
+|  other | [Matrix](./vector.matrix.md)<!-- -->&lt;number&gt; |  |
+|  combineEntries | (a: number, b: number) =&gt; number |  |
 
 <b>Returns:</b>
 
-`Matrix<number>`
+[Matrix](./vector.matrix.md)<!-- -->&lt;number&gt;
 
 The new matrix
 

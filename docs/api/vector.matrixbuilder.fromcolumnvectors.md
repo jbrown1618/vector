@@ -16,11 +16,11 @@ fromColumnVectors(columns: Vector<S>[]): M;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  columns | <code>Vector&lt;S&gt;[]</code> | The vectors to use as the columns of the new matrix |
+|  columns | [Vector](./vector.vector.md)<!-- -->&lt;S&gt;\[\] | The vectors to use as the columns of the new matrix |
 
 <b>Returns:</b>
 
-`M`
+M
 
 ## Example
 

@@ -13,5 +13,5 @@ getHyperParameters(): LogisticRegressionHyperparams;
 ```
 <b>Returns:</b>
 
-`LogisticRegressionHyperparams`
+[LogisticRegressionHyperparams](./vector.logisticregressionhyperparams.md)
 

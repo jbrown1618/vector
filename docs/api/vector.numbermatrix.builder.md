@@ -11,5 +11,5 @@ static builder(): MatrixBuilder<number, NumberVector, NumberMatrix>;
 ```
 <b>Returns:</b>
 
-`MatrixBuilder<number, NumberVector, NumberMatrix>`
+[MatrixBuilder](./vector.matrixbuilder.md)<!-- -->&lt;number, [NumberVector](./vector.numbervector.md)<!-- -->, [NumberMatrix](./vector.numbermatrix.md)<!-- -->&gt;
 

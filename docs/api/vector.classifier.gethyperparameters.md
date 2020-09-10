@@ -13,5 +13,5 @@ getHyperParameters(): H;
 ```
 <b>Returns:</b>
 
-`H`
+H
 

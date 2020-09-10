@@ -16,9 +16,9 @@ export declare function prettyPrint<S>(vector: Vector<S>): string;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  vector | <code>Vector&lt;S&gt;</code> |  |
+|  vector | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; |  |
 
 <b>Returns:</b>
 
-`string`
+string
 

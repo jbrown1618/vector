@@ -16,11 +16,11 @@ map(valueFromEntry: (entry: number, index: number) => number): Vector<number>;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  valueFromEntry | <code>(entry: number, index: number) =&gt; number</code> |  |
+|  valueFromEntry | (entry: number, index: number) =&gt; number |  |
 
 <b>Returns:</b>
 
-`Vector<number>`
+[Vector](./vector.vector.md)<!-- -->&lt;number&gt;
 
 The dimension
 

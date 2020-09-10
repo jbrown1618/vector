@@ -16,12 +16,12 @@ add(first: number, second: number): number;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  first | <code>number</code> |  |
-|  second | <code>number</code> |  |
+|  first | number |  |
+|  second | number |  |
 
 <b>Returns:</b>
 
-`number`
+number
 
 The sum
 

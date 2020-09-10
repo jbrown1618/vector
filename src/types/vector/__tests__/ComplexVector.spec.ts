@@ -5,7 +5,7 @@ describe('ComplexVector', () => {
   const builder = ComplexVector.builder();
 
   function complexify(data: number[]): ComplexNumber[] {
-    return data.map(i => new ComplexNumber(i, 0));
+    return data.map((i) => new ComplexNumber(i, 0));
   }
 
   describe('constructors', () => {
@@ -68,7 +68,7 @@ describe('ComplexVector', () => {
       expect(first.add(second).toArray()).toStrictEqual([
         new ComplexNumber(5, 0),
         new ComplexNumber(7, 0),
-        new ComplexNumber(9, 0)
+        new ComplexNumber(9, 0),
       ]);
     });
 
@@ -77,7 +77,7 @@ describe('ComplexVector', () => {
       const vector3 = builder.fromArray([
         ComplexNumber.ZERO,
         ComplexNumber.ZERO,
-        ComplexNumber.ZERO
+        ComplexNumber.ZERO,
       ]);
 
       expect(() => vector2.add(vector3)).toThrow();
@@ -131,7 +131,7 @@ describe('ComplexVector', () => {
       const vector3 = builder.fromArray([
         ComplexNumber.ZERO,
         ComplexNumber.ZERO,
-        ComplexNumber.ZERO
+        ComplexNumber.ZERO,
       ]);
 
       expect(() => vector2.innerProduct(vector3)).toThrow();

@@ -16,12 +16,12 @@ export declare function eig<S>(A: Matrix<S>, numIterations?: number): EigenPair<
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  A | <code>Matrix&lt;S&gt;</code> | The matrix for which to compute eigenvalues |
-|  numIterations | <code>number</code> | The number of iterations to take |
+|  A | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The matrix for which to compute eigenvalues |
+|  numIterations | number | The number of iterations to take |
 
 <b>Returns:</b>
 
-`EigenPair<S>[]`
+[EigenPair](./vector.eigenpair.md)<!-- -->&lt;S&gt;\[\]
 
 An array of eigenvalue-eigenvalue pairs
 

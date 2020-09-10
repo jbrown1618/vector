@@ -22,10 +22,10 @@ export declare class ComplexNumber
 
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
-|  [I](./vector.complexnumber.i.md) | <code>static</code> | <code>ComplexNumber</code> |  |
-|  [NEG\_ONE](./vector.complexnumber.neg_one.md) | <code>static</code> | <code>ComplexNumber</code> |  |
-|  [ONE](./vector.complexnumber.one.md) | <code>static</code> | <code>ComplexNumber</code> |  |
-|  [ZERO](./vector.complexnumber.zero.md) | <code>static</code> | <code>ComplexNumber</code> |  |
+|  [I](./vector.complexnumber.i.md) | <code>static</code> | [ComplexNumber](./vector.complexnumber.md) |  |
+|  [NEG\_ONE](./vector.complexnumber.neg_one.md) | <code>static</code> | [ComplexNumber](./vector.complexnumber.md) |  |
+|  [ONE](./vector.complexnumber.one.md) | <code>static</code> | [ComplexNumber](./vector.complexnumber.md) |  |
+|  [ZERO](./vector.complexnumber.zero.md) | <code>static</code> | [ComplexNumber](./vector.complexnumber.md) |  |
 
 ## Methods
 

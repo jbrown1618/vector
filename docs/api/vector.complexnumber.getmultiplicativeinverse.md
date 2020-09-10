@@ -11,5 +11,5 @@ getMultiplicativeInverse(): ComplexNumber | undefined;
 ```
 <b>Returns:</b>
 
-`ComplexNumber | undefined`
+[ComplexNumber](./vector.complexnumber.md) \| undefined
 

@@ -11,5 +11,5 @@ static builder(): VectorBuilder<number, FloatVector>;
 ```
 <b>Returns:</b>
 
-`VectorBuilder<number, FloatVector>`
+[VectorBuilder](./vector.vectorbuilder.md)<!-- -->&lt;number, [FloatVector](./vector.floatvector.md)<!-- -->&gt;
 

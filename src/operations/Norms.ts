@@ -61,7 +61,7 @@ export function pNorm<S>(v: Vector<S>, p: number): number {
   const ops = v.ops();
   let terms: number[] = v.toArray().map(ops.norm);
   if (p > 1) {
-    terms = terms.map(term => Math.abs(Math.pow(term, p)));
+    terms = terms.map((term) => Math.abs(Math.pow(term, p)));
   }
 
   const sum = terms.reduce((a, b) => a + b, 0);
@@ -121,7 +121,7 @@ export function supremumNorm<S>(v: Vector<S>): number {
   const entries = v.toArray().map(ops.norm);
 
   let max: number | undefined;
-  entries.forEach(entry => {
+  entries.forEach((entry) => {
     if (max === undefined || entry > max) {
       max = entry;
     }

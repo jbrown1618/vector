@@ -11,6 +11,7 @@ A dense [Vector](./vector.vector.md) of `number`<!-- -->s implemented as a `Floa
 ```typescript
 export declare class FloatVector implements Vector<number> 
 ```
+<b>Implements:</b> [Vector](./vector.vector.md)<!-- -->&lt;number&gt;
 
 ## Remarks
 

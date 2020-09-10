@@ -16,10 +16,10 @@ export declare function pca<S>(A: Matrix<S>, useCorrelation?: boolean): Principa
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  A | <code>Matrix&lt;S&gt;</code> | The matrix to analyze |
-|  useCorrelation | <code>boolean</code> | Whether to use correlation rather than covariance to determine principal components. Equivalently, whether to standardize rather than merely center the data. This option should be used if the variables in the data naturally fall on different scales. |
+|  A | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The matrix to analyze |
+|  useCorrelation | boolean | Whether to use correlation rather than covariance to determine principal components. Equivalently, whether to standardize rather than merely center the data. This option should be used if the variables in the data naturally fall on different scales. |
 
 <b>Returns:</b>
 
-`PrincipalComponentAnalysis<S>`
+[PrincipalComponentAnalysis](./vector.principalcomponentanalysis.md)<!-- -->&lt;S&gt;
 

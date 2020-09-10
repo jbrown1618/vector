@@ -11,5 +11,5 @@ static ops(): ScalarOperations<ComplexNumber>;
 ```
 <b>Returns:</b>
 
-`ScalarOperations<ComplexNumber>`
+[ScalarOperations](./vector.scalaroperations.md)<!-- -->&lt;[ComplexNumber](./vector.complexnumber.md)<!-- -->&gt;
 

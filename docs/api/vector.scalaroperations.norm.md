@@ -16,11 +16,11 @@ abstract norm(x: S): number;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  x | <code>S</code> |  |
+|  x | S |  |
 
 <b>Returns:</b>
 
-`number`
+number
 
 The norm
 

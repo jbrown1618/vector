@@ -11,7 +11,7 @@ describe('LinearRegressor', () => {
 
     const reg = new LinearRegressor({
       alpha: 0.01,
-      lambda: 0
+      lambda: 0,
     });
 
     const trueParams = [-0.4083333333333, 0.736666666666, 2.541666666666];
@@ -29,7 +29,7 @@ describe('LinearRegressor', () => {
     const xVal = mat([
       [1, 1],
       [1, 2],
-      [4, 8]
+      [4, 8],
     ]);
     const yVal = vec([2.87, 5.41, 22.87]);
     predictions = reg.predict(xVal);

@@ -16,9 +16,9 @@ export declare function gradientDescent(parameters: Partial<GradientDescentParam
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  parameters | <code>Partial&lt;GradientDescentParameters&gt;</code> | The [GradientDescentParameters](./vector.gradientdescentparameters.md) which determine how the learning will run |
+|  parameters | Partial&lt;[GradientDescentParameters](./vector.gradientdescentparameters.md)<!-- -->&gt; | The [GradientDescentParameters](./vector.gradientdescentparameters.md) which determine how the learning will run |
 
 <b>Returns:</b>
 
-`LearningAlgorithm`
+[LearningAlgorithm](./vector.learningalgorithm.md)
 

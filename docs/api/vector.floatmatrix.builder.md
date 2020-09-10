@@ -11,5 +11,5 @@ static builder(): MatrixBuilder<number, FloatVector, FloatMatrix>;
 ```
 <b>Returns:</b>
 
-`MatrixBuilder<number, FloatVector, FloatMatrix>`
+[MatrixBuilder](./vector.matrixbuilder.md)<!-- -->&lt;number, [FloatVector](./vector.floatvector.md)<!-- -->, [FloatMatrix](./vector.floatmatrix.md)<!-- -->&gt;
 

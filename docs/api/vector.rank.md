@@ -16,11 +16,11 @@ export declare function rank<S>(matrix: Matrix<S>): number;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  matrix | <code>Matrix&lt;S&gt;</code> | the matrix for which to determine the rank |
+|  matrix | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | the matrix for which to determine the rank |
 
 <b>Returns:</b>
 
-`number`
+number
 
 ## Remarks
 

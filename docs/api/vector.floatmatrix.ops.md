@@ -11,5 +11,5 @@ static ops(): ScalarOperations<number>;
 ```
 <b>Returns:</b>
 
-`ScalarOperations<number>`
+[ScalarOperations](./vector.scalaroperations.md)<!-- -->&lt;number&gt;
 

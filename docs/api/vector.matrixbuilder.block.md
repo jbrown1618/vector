@@ -16,11 +16,11 @@ block(grid: Matrix<S>[][]): M;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  grid | <code>Matrix&lt;S&gt;[][]</code> | A 2-dimensional array of matrices that will be combined into the new matrix |
+|  grid | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;\[\]\[\] | A 2-dimensional array of matrices that will be combined into the new matrix |
 
 <b>Returns:</b>
 
-`M`
+M
 
 The new matrix
 

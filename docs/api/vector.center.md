@@ -16,9 +16,9 @@ export declare function center<S>(x: Vector<S>): Vector<S>;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  x | <code>Vector&lt;S&gt;</code> | The vector to center |
+|  x | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | The vector to center |
 
 <b>Returns:</b>
 
-`Vector<S>`
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;
 

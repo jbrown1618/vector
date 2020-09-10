@@ -7,12 +7,12 @@ describe('CholeskyDecomposition', () => {
       const A = mat([
         [4, 12, -16],
         [12, 37, -43],
-        [-16, -43, 98]
+        [-16, -43, 98],
       ]);
       const expectedL = mat([
         [2, 0, 0],
         [6, 1, 0],
-        [-8, 5, 3]
+        [-8, 5, 3],
       ]);
 
       const decomposition = calculateCholeskyDecomposition(A);
@@ -34,7 +34,7 @@ describe('CholeskyDecomposition', () => {
       const A = mat([
         [4, 12, -16],
         [12, 37, -43],
-        [-16, -46, 98]
+        [-16, -46, 98],
       ]);
       expect(calculateCholeskyDecomposition(A)).toBeUndefined;
     });

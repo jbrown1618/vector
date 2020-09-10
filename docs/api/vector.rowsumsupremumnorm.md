@@ -16,11 +16,11 @@ export declare function rowSumSupremumNorm<S>(A: Matrix<S>): number;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  A | <code>Matrix&lt;S&gt;</code> | The matrix for which to calculate the norm |
+|  A | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The matrix for which to calculate the norm |
 
 <b>Returns:</b>
 
-`number`
+number
 
 ## Example
 

@@ -16,12 +16,12 @@ fill(value: S, shape: MatrixShape): M;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  value | <code>S</code> | The value that should be used for every entry in the new matrix |
-|  shape | <code>MatrixShape</code> | The shape of the matrix as a tuple |
+|  value | S | The value that should be used for every entry in the new matrix |
+|  shape | [MatrixShape](./vector.matrixshape.md) | The shape of the matrix as a tuple |
 
 <b>Returns:</b>
 
-`M`
+M
 
 The new matrix
 

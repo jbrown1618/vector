@@ -16,11 +16,11 @@ identity(size: number): M;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  size | <code>number</code> | The dimension of the vector space for which the new matrix is the identity |
+|  size | number | The dimension of the vector space for which the new matrix is the identity |
 
 <b>Returns:</b>
 
-`M`
+M
 
 The new matrix
 

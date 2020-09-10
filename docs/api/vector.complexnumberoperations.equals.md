@@ -16,12 +16,12 @@ equals(first: ComplexNumber, second: ComplexNumber): boolean;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  first | <code>ComplexNumber</code> |  |
-|  second | <code>ComplexNumber</code> |  |
+|  first | [ComplexNumber](./vector.complexnumber.md) |  |
+|  second | [ComplexNumber](./vector.complexnumber.md) |  |
 
 <b>Returns:</b>
 
-`boolean`
+boolean
 
 true if `first` is equal to `second`
 

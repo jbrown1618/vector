@@ -16,12 +16,12 @@ export declare function pNorm<S>(v: Vector<S>, p: number): number;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  v | <code>Vector&lt;S&gt;</code> | The vector for which to calculate the norm |
-|  p | <code>number</code> | The power used to calculate the norm |
+|  v | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | The vector for which to calculate the norm |
+|  p | number | The power used to calculate the norm |
 
 <b>Returns:</b>
 
-`number`
+number
 
 ## Example
 

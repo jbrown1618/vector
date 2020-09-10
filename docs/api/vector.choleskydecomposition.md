@@ -16,5 +16,5 @@ export interface CholeskyDecomposition<S>
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [L](./vector.choleskydecomposition.l.md) | <code>Matrix&lt;S&gt;</code> |  |
+|  [L](./vector.choleskydecomposition.l.md) | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; |  |
 

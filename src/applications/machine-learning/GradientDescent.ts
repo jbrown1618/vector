@@ -20,7 +20,7 @@ export type GradientDescentParameters = {
 export function gradientDescent(parameters: Partial<GradientDescentParameters>): LearningAlgorithm {
   const { alpha = 0.1, maxIterations = 10000 } = parameters;
 
-  return function(initialTheta: Vector, costFn: CostFunction) {
+  return function (initialTheta: Vector, costFn: CostFunction) {
     let theta = initialTheta;
     let i = 0;
     const zeros = theta.builder().zeros(theta.getDimension());

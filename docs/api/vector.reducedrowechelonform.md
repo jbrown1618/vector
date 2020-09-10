@@ -16,11 +16,11 @@ export declare function reducedRowEchelonForm<S>(matrix: Matrix<S>): Matrix<S>;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  matrix | <code>Matrix&lt;S&gt;</code> | The input matrix |
+|  matrix | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The input matrix |
 
 <b>Returns:</b>
 
-`Matrix<S>`
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
 
 The matrix in RREF
 

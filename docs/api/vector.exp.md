@@ -16,10 +16,10 @@ export declare function exp<S>(A: Matrix<S>, order?: number): Matrix<S>;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  A | <code>Matrix&lt;S&gt;</code> | The matrix to exponentiate |
-|  order | <code>number</code> | The order of the approximation - higher numbers yield more accurate results |
+|  A | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The matrix to exponentiate |
+|  order | number | The order of the approximation - higher numbers yield more accurate results |
 
 <b>Returns:</b>
 
-`Matrix<S>`
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
 

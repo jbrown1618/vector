@@ -64,7 +64,7 @@ export function calculateLinearLeastSquares<S>(
   const ops = dataPoints[0].ops();
   const numberOfIndependentVariables = dataPoints[0].getDimension() - 1;
 
-  const linearFunctionTemplate: ApproximationFunctionTemplate<S> = coefficients => {
+  const linearFunctionTemplate: ApproximationFunctionTemplate<S> = (coefficients) => {
     return (input: Vector<S>) => {
       let value = coefficients.getEntry(0); // constant term
       for (let i = 1; i < coefficients.getDimension(); i++) {
@@ -127,7 +127,7 @@ export function calculateGeneralLeastSquares<S>(
     return hypotheticalApproximationFunction(inputs);
   };
 
-  const getEntryInOutputVector: (index: number) => S = index => {
+  const getEntryInOutputVector: (index: number) => S = (index) => {
     return dataPoints[index].getEntry(numberOfIndependentVariables); // last entry
   };
 

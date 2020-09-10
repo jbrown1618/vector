@@ -16,6 +16,6 @@ export interface Cost
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [cost](./vector.cost.cost.md) | <code>number</code> |  |
-|  [gradient](./vector.cost.gradient.md) | <code>Vector</code> |  |
+|  [cost](./vector.cost.cost.md) | number |  |
+|  [gradient](./vector.cost.gradient.md) | [Vector](./vector.vector.md) |  |
 

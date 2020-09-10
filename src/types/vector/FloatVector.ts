@@ -155,7 +155,7 @@ export class FloatVector implements Vector<number> {
    * {@inheritDoc Vector.scalarMultiply}
    */
   public scalarMultiply(scalar: number): Vector<number> {
-    return this.map(v => v * scalar);
+    return this.map((v) => v * scalar);
   }
 
   /**

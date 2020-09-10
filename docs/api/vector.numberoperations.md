@@ -11,6 +11,7 @@ Implements the basic [ScalarOperations](./vector.scalaroperations.md) on `number
 ```typescript
 export declare class NumberOperations extends ScalarOperations<number> 
 ```
+<b>Extends:</b> [ScalarOperations](./vector.scalaroperations.md)<!-- -->&lt;number&gt;
 
 ## Methods
 

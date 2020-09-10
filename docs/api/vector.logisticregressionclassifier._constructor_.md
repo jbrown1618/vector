@@ -16,5 +16,5 @@ constructor(hyperParameters: Partial<LogisticRegressionHyperparams>);
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  hyperParameters | <code>Partial&lt;LogisticRegressionHyperparams&gt;</code> |  |
+|  hyperParameters | Partial&lt;[LogisticRegressionHyperparams](./vector.logisticregressionhyperparams.md)<!-- -->&gt; |  |
 

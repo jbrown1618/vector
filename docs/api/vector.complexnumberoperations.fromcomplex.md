@@ -16,12 +16,12 @@ fromComplex(real: number, imag: number): ComplexNumber;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  real | <code>number</code> |  |
-|  imag | <code>number</code> |  |
+|  real | number |  |
+|  imag | number |  |
 
 <b>Returns:</b>
 
-`ComplexNumber`
+[ComplexNumber](./vector.complexnumber.md)
 
 The scalar
 

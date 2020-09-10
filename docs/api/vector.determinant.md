@@ -16,11 +16,11 @@ export declare function determinant<S>(matrix: Matrix<S>): S;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  matrix | <code>Matrix&lt;S&gt;</code> | A square matrix |
+|  matrix | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | A square matrix |
 
 <b>Returns:</b>
 
-`S`
+S
 
 - The determinant
 

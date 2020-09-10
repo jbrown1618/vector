@@ -16,11 +16,11 @@ equals(other: Matrix<S>): boolean;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  other | <code>Matrix&lt;S&gt;</code> | The matrix against which to compare |
+|  other | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The matrix against which to compare |
 
 <b>Returns:</b>
 
-`boolean`
+boolean
 
 true if `this` is equal to `other`
 

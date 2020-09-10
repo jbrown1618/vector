@@ -16,9 +16,9 @@ export declare function mat(data: number[][]): Matrix;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  data | <code>number[][]</code> |  |
+|  data | number\[\]\[\] |  |
 
 <b>Returns:</b>
 
-`Matrix`
+[Matrix](./vector.matrix.md)
 

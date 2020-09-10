@@ -16,11 +16,11 @@ apply(vector: V): U;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  vector | <code>V</code> | A vector in the domain of the transformation |
+|  vector | V | A vector in the domain of the transformation |
 
 <b>Returns:</b>
 
-`U`
+U
 
 A vector in the image of the transformation
 

@@ -16,6 +16,6 @@ export interface RowOperationResult<S>
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [operator](./vector.rowoperationresult.operator.md) | <code>Matrix&lt;S&gt;</code> |  |
-|  [result](./vector.rowoperationresult.result.md) | <code>Matrix&lt;S&gt;</code> |  |
+|  [operator](./vector.rowoperationresult.operator.md) | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; |  |
+|  [result](./vector.rowoperationresult.result.md) | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; |  |
 

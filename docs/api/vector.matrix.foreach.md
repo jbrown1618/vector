@@ -16,9 +16,9 @@ forEach(callback: (entry: S, rowIndex: number, columnIndex: number) => void): vo
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  callback | <code>(entry: S, rowIndex: number, columnIndex: number) =&gt; void</code> | The function to execute for each entry |
+|  callback | (entry: S, rowIndex: number, columnIndex: number) =&gt; void | The function to execute for each entry |
 
 <b>Returns:</b>
 
-`void`
+void
 

@@ -28,7 +28,6 @@ module.exports = {
       'error',
       { varsIgnorePattern: '^_', argsIgnorePattern: '^_' }
     ],
-    '@typescript-eslint/interface-name-prefix': ['error', { prefixWithI: 'never' }],
     '@typescript-eslint/ban-ts-ignore': 'off',
     '@typescript-eslint/no-empty-function': 'off',
     '@typescript-eslint/no-use-before-define': 'off',

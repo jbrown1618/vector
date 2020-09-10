@@ -8,11 +8,11 @@ describe('SupportVectorMachineClassifier', () => {
     it('makes predictions', () => {
       const iris = loadTestData('iris');
       const xTrain = iris.builder().slice(iris, 0, 0, iris.getNumberOfRows(), 4);
-      const yTrain = iris.getColumn(4).map(x => (x === 0 ? 1 : 0));
+      const yTrain = iris.getColumn(4).map((x) => (x === 0 ? 1 : 0));
 
       const cls = new SupportVectorMachineClassifier({
         alpha: 0.01,
-        maxIterations: 100
+        maxIterations: 100,
       });
 
       cls.train(xTrain, yTrain);
@@ -38,12 +38,12 @@ describe('SupportVectorMachineClassifier', () => {
     it('makes predictions', () => {
       const iris = loadTestData('iris');
       const xTrain = iris.builder().slice(iris, 0, 0, iris.getNumberOfRows(), 4);
-      const yTrain = iris.getColumn(4).map(x => (x === 0 ? 1 : 0));
+      const yTrain = iris.getColumn(4).map((x) => (x === 0 ? 1 : 0));
 
       const cls = new SupportVectorMachineClassifier({
         alpha: 0.01,
         maxIterations: 100,
-        kernel: GaussianKernel(1)
+        kernel: GaussianKernel(1),
       });
 
       cls.train(xTrain, yTrain);

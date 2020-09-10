@@ -11,5 +11,5 @@ static builder(): MatrixBuilder<number, SparseNumberVector, SparseNumberMatrix>;
 ```
 <b>Returns:</b>
 
-`MatrixBuilder<number, SparseNumberVector, SparseNumberMatrix>`
+[MatrixBuilder](./vector.matrixbuilder.md)<!-- -->&lt;number, [SparseNumberVector](./vector.sparsenumbervector.md)<!-- -->, [SparseNumberMatrix](./vector.sparsenumbermatrix.md)<!-- -->&gt;
 

@@ -11,5 +11,5 @@ static vectorBuilder(): VectorBuilder<ComplexNumber, ComplexVector>;
 ```
 <b>Returns:</b>
 
-`VectorBuilder<ComplexNumber, ComplexVector>`
+[VectorBuilder](./vector.vectorbuilder.md)<!-- -->&lt;[ComplexNumber](./vector.complexnumber.md)<!-- -->, [ComplexVector](./vector.complexvector.md)<!-- -->&gt;
 

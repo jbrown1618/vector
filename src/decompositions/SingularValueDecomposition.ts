@@ -46,10 +46,7 @@ export function calculateSingularValueDecomposition<S>(
     singularValues.push(sigma);
     vColumns.push(v);
 
-    const delta = u
-      .outerProduct(v)
-      .scalarMultiply(sigma)
-      .scalarMultiply(ops.negativeOne());
+    const delta = u.outerProduct(v).scalarMultiply(sigma).scalarMultiply(ops.negativeOne());
     A = A.add(delta);
   }
 

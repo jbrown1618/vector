@@ -13,5 +13,5 @@ zero(): S;
 ```
 <b>Returns:</b>
 
-`S`
+S
 

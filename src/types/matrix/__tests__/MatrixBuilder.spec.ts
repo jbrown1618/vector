@@ -11,7 +11,7 @@ describe('MatrixBuilder', () => {
     test('builds a matrix from a 2D array of values', () => {
       const data = [
         [1, 2, 3],
-        [4, 5, 6]
+        [4, 5, 6],
       ];
       expect(matrixBuilder.fromArray(data).toArray()).toStrictEqual(data);
     });
@@ -29,7 +29,7 @@ describe('MatrixBuilder', () => {
     test('behaves exactly like fromArray for a NumberMatrix', () => {
       const data = [
         [1, 2, 3],
-        [4, 5, 6]
+        [4, 5, 6],
       ];
       expect(matrixBuilder.fromNumberArray(data).toArray()).toStrictEqual(data);
     });
@@ -38,11 +38,11 @@ describe('MatrixBuilder', () => {
       const complexMatrixBuilder = ComplexMatrix.builder();
       const data = [
         [1, 2, 3],
-        [4, 5, 6]
+        [4, 5, 6],
       ];
       const expected = complexMatrixBuilder.fromArray([
         [new ComplexNumber(1, 0), new ComplexNumber(2, 0), new ComplexNumber(3, 0)],
-        [new ComplexNumber(4, 0), new ComplexNumber(5, 0), new ComplexNumber(6, 0)]
+        [new ComplexNumber(4, 0), new ComplexNumber(5, 0), new ComplexNumber(6, 0)],
       ]);
 
       expect(complexMatrixBuilder.fromNumberArray(data)).toStrictEqual(expected);
@@ -64,7 +64,7 @@ describe('MatrixBuilder', () => {
       const expected = matrixBuilder.fromArray([
         [1, 4],
         [2, 5],
-        [3, 6]
+        [3, 6],
       ]);
 
       expect(matrixBuilder.fromColumnVectors([first, second])).toStrictEqual(expected);
@@ -82,7 +82,7 @@ describe('MatrixBuilder', () => {
       const second = vec([4, 5, 6]);
       const expected = matrixBuilder.fromArray([
         [1, 2, 3],
-        [4, 5, 6]
+        [4, 5, 6],
       ]);
 
       expect(matrixBuilder.fromRowVectors([first, second])).toStrictEqual(expected);
@@ -101,7 +101,7 @@ describe('MatrixBuilder', () => {
         [0, 1, 2, 3],
         [1, 2, 3, 4],
         [2, 3, 4, 5],
-        [3, 4, 5, 6]
+        [3, 4, 5, 6],
       ];
       const result = matrixBuilder.fromIndexFunction([4, 4], fn);
       expect(result.toArray()).toStrictEqual(expected);
@@ -136,12 +136,12 @@ describe('MatrixBuilder', () => {
       const values = [-1, 0, 1, 2];
       const sizes = [0, 1, 2, 3];
 
-      sizes.forEach(size => {
-        values.forEach(value => {
+      sizes.forEach((size) => {
+        values.forEach((value) => {
           const filled = matrixBuilder.fill(value, [size, size]);
           expect(filled.getNumberOfRows()).toEqual(size);
           expect(filled.getNumberOfColumns()).toEqual(size);
-          filled.forEach(entry => {
+          filled.forEach((entry) => {
             expect(entry).toEqual(value);
           });
         });
@@ -152,13 +152,13 @@ describe('MatrixBuilder', () => {
       const values = [-1, 0, 1, 2];
       const sizes = [1, 2, 3];
 
-      sizes.forEach(m => {
-        sizes.forEach(n => {
-          values.forEach(value => {
+      sizes.forEach((m) => {
+        sizes.forEach((n) => {
+          values.forEach((value) => {
             const filled = matrixBuilder.fill(value, [m, n]);
             expect(filled.getNumberOfRows()).toEqual(m);
             expect(filled.getNumberOfColumns()).toEqual(n);
-            filled.forEach(entry => {
+            filled.forEach((entry) => {
               expect(entry).toEqual(value);
             });
           });
@@ -249,7 +249,7 @@ describe('MatrixBuilder', () => {
       const expected = matrixBuilder.fromArray([
         [1, 1 / 2, 1 / 3],
         [1 / 2, 1 / 3, 1 / 4],
-        [1 / 3, 1 / 4, 1 / 5]
+        [1 / 3, 1 / 4, 1 / 5],
       ]);
       expect(hilbert).toStrictEqual(expected);
     });
@@ -269,7 +269,7 @@ describe('MatrixBuilder', () => {
       const expected = matrixBuilder.fromArray([
         [1, 2, 3],
         [2, 1, 2],
-        [3, 2, 1]
+        [3, 2, 1],
       ]);
       expect(toeplitz).toStrictEqual(expected);
     });
@@ -279,7 +279,7 @@ describe('MatrixBuilder', () => {
       const expected = matrixBuilder.fromArray([
         [1, 3, 5, 7],
         [2, 1, 3, 5],
-        [3, 2, 1, 3]
+        [3, 2, 1, 3],
       ]);
       expect(toeplitz).toStrictEqual(expected);
     });
@@ -301,7 +301,7 @@ describe('MatrixBuilder', () => {
         [2, 4, 6, 8],
         [4, 6, 8, 0],
         [6, 8, 0, 0],
-        [8, 0, 0, 0]
+        [8, 0, 0, 0],
       ]);
       expect(hankel).toStrictEqual(expected);
     });
@@ -312,7 +312,7 @@ describe('MatrixBuilder', () => {
         [1, 2, 3],
         [2, 3, 4],
         [3, 4, 9],
-        [4, 9, 9]
+        [4, 9, 9],
       ]);
       expect(hankel).toStrictEqual(expected);
     });
@@ -322,7 +322,7 @@ describe('MatrixBuilder', () => {
       const expected = matrixBuilder.fromArray([
         [1, 2, 3, 9],
         [2, 3, 9, 9],
-        [3, 9, 9, 9]
+        [3, 9, 9, 9],
       ]);
       expect(hankel).toStrictEqual(expected);
     });
@@ -349,7 +349,7 @@ describe('MatrixBuilder', () => {
         [1, 1, 0, 0, 0],
         [1, 2, 1, 0, 0],
         [1, 3, 3, 1, 0],
-        [1, 4, 6, 4, 1]
+        [1, 4, 6, 4, 1],
       ]);
       expect(lower).toStrictEqual(expected);
     });
@@ -361,7 +361,7 @@ describe('MatrixBuilder', () => {
         [0, 1, 2, 3, 4],
         [0, 0, 1, 3, 6],
         [0, 0, 0, 1, 4],
-        [0, 0, 0, 0, 1]
+        [0, 0, 0, 0, 1],
       ]);
       expect(upper).toStrictEqual(expected);
     });
@@ -379,7 +379,7 @@ describe('MatrixBuilder', () => {
         [1, 2, 3, 4, 5],
         [1, 3, 6, 10, 15],
         [1, 4, 10, 20, 35],
-        [1, 5, 15, 35, 70]
+        [1, 5, 15, 35, 70],
       ]);
       expect(pascal).toStrictEqual(expected);
     });
@@ -396,7 +396,7 @@ describe('MatrixBuilder', () => {
       const expected = matrixBuilder.fromArray([
         [1, 3, 2],
         [2, 1, 3],
-        [3, 2, 1]
+        [3, 2, 1],
       ]);
       expect(circulant).toStrictEqual(expected);
     });
@@ -410,11 +410,11 @@ describe('MatrixBuilder', () => {
     test('constructs a matrix of random numbers between min and max', () => {
       const bounds = [-1, 0, 1, 2];
 
-      bounds.forEach(min => {
-        bounds.forEach(max => {
+      bounds.forEach((min) => {
+        bounds.forEach((max) => {
           if (max > min) {
             const randomMatrix = matrixBuilder.random([10, 10], min, max);
-            randomMatrix.forEach(value => {
+            randomMatrix.forEach((value) => {
               expect(value).toBeGreaterThan(min);
               expect(value).toBeLessThan(max);
             });
@@ -431,7 +431,7 @@ describe('MatrixBuilder', () => {
 
     test('defaults to min = 0 and max = 1', () => {
       const randomMatrix = matrixBuilder.random([10, 10]);
-      randomMatrix.forEach(value => {
+      randomMatrix.forEach((value) => {
         expect(value).toBeGreaterThan(0);
         expect(value).toBeLessThan(1);
       });
@@ -449,8 +449,8 @@ describe('MatrixBuilder', () => {
     test('constructs a matrix of numbers randomly drawn from a normal distribution', () => {
       const means = [-1, 0, 1];
       const standardDeviations = [1, 2, 10];
-      means.forEach(mean => {
-        standardDeviations.forEach(standardDeviation => {
+      means.forEach((mean) => {
+        standardDeviations.forEach((standardDeviation) => {
           const randomVector = matrixBuilder.randomNormal([10, 10], mean, standardDeviation);
           const average =
             randomVector
@@ -493,7 +493,7 @@ describe('MatrixBuilder', () => {
       const expected = matrixBuilder.fromArray([
         [1, 0, 0],
         [0, 2, 0],
-        [0, 0, 3]
+        [0, 0, 3],
       ]);
 
       expect(matrixBuilder.diagonal(diagonalEntries).equals(expected)).toBe(true);
@@ -513,7 +513,7 @@ describe('MatrixBuilder', () => {
         [1, 2, 3, 0, 0],
         [0, 1, 2, 3, 0],
         [0, 0, 1, 2, 3],
-        [0, 0, 0, 1, 2]
+        [0, 0, 0, 1, 2],
       ]);
 
       const left = vec([1, 1, 1, 1]);
@@ -554,7 +554,7 @@ describe('MatrixBuilder', () => {
         [0, 0, 2, 2, 2, 0, 0],
         [0, 0, 2, 2, 2, 0, 0],
         [0, 0, 0, 0, 0, 1, 1],
-        [0, 0, 0, 0, 0, 1, 1]
+        [0, 0, 0, 0, 0, 1, 1],
       ]);
 
       expect(blockDiagonal).toStrictEqual(expected);
@@ -577,7 +577,7 @@ describe('MatrixBuilder', () => {
       const second = ones([2, 2]);
       const expected = matrixBuilder.fromArray([
         [1, 0, 1, 1],
-        [0, 1, 1, 1]
+        [0, 1, 1, 1],
       ]);
 
       expect(matrixBuilder.augment(first, second).equals(expected)).toBe(true);
@@ -604,14 +604,14 @@ describe('MatrixBuilder', () => {
 
       const grid = [
         [A, B],
-        [C, D]
+        [C, D],
       ];
 
       const expected = matrixBuilder.fromArray([
         [1, 0, 1, 1],
         [0, 1, 1, 1],
         [0, 0, 2, 0],
-        [0, 0, 0, 4]
+        [0, 0, 0, 4],
       ]);
 
       expect(matrixBuilder.block(grid).equals(expected)).toBe(true);
@@ -625,7 +625,7 @@ describe('MatrixBuilder', () => {
 
       const grid = [
         [A, B],
-        [C, D]
+        [C, D],
       ];
 
       const expected = matrixBuilder.fromArray([
@@ -633,7 +633,7 @@ describe('MatrixBuilder', () => {
         [0, 1, 1, 1],
         [0, 1, 1, 1],
         [0, 1, 1, 1],
-        [0, 1, 1, 1]
+        [0, 1, 1, 1],
       ]);
 
       expect(matrixBuilder.block(grid).equals(expected)).toBe(true);
@@ -650,14 +650,14 @@ describe('MatrixBuilder', () => {
     test('constructs a matrix by repeating a smaller matrix', () => {
       const A = matrixBuilder.fromArray([
         [1, 2],
-        [3, 4]
+        [3, 4],
       ]);
 
       const expected = matrixBuilder.fromArray([
         [1, 2, 1, 2, 1, 2],
         [3, 4, 3, 4, 3, 4],
         [1, 2, 1, 2, 1, 2],
-        [3, 4, 3, 4, 3, 4]
+        [3, 4, 3, 4, 3, 4],
       ]);
 
       expect(matrixBuilder.repeat(A, 2, 3).equals(expected)).toBe(true);
@@ -668,13 +668,13 @@ describe('MatrixBuilder', () => {
     const A = matrixBuilder.fromArray([
       [1, 2, 3, 4],
       [5, 6, 7, 8],
-      [9, 10, 11, 12]
+      [9, 10, 11, 12],
     ]);
 
     test('includes the start indices but excludes the end indices', () => {
       let expectedSlice = matrixBuilder.fromArray([
         [1, 2],
-        [5, 6]
+        [5, 6],
       ]);
       expect(matrixBuilder.slice(A, 0, 0, 2, 2)).toStrictEqual(expectedSlice);
 
@@ -692,7 +692,7 @@ describe('MatrixBuilder', () => {
     test('defaults to the end of the matrix when no end indices are given', () => {
       const expectedSlice = matrixBuilder.fromArray([
         [6, 7, 8],
-        [10, 11, 12]
+        [10, 11, 12],
       ]);
       expect(matrixBuilder.slice(A, 1, 1)).toStrictEqual(expectedSlice);
     });
@@ -724,12 +724,12 @@ describe('MatrixBuilder', () => {
         [1, 2, 3],
         [4, 5, 6],
         [7, 8, 9],
-        [10, 11, 12]
+        [10, 11, 12],
       ]);
       const expected = matrixBuilder.fromArray([
         [1, 3],
         [4, 6],
-        [10, 12]
+        [10, 12],
       ]);
 
       const removedRow1Col2 = matrixBuilder.exclude(original, 2, 1);
@@ -741,7 +741,7 @@ describe('MatrixBuilder', () => {
       const original = matrixBuilder.fromArray([
         [1, 2, 3],
         [4, 5, 6],
-        [7, 8, 9]
+        [7, 8, 9],
       ]);
 
       expect(() => matrixBuilder.exclude(original, -1, 1)).toThrow();

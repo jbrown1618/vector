@@ -11,6 +11,7 @@ A [Classifier](./vector.classifier.md) model which uses logistic regression to p
 ```typescript
 export declare class SupportVectorMachineClassifier implements Classifier<SupportVectorMachineHyperparams> 
 ```
+<b>Implements:</b> [Classifier](./vector.classifier.md)<!-- -->&lt;[SupportVectorMachineHyperparams](./vector.supportvectormachinehyperparams.md)<!-- -->&gt;
 
 ## Constructors
 

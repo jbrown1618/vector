@@ -16,9 +16,9 @@ forEach(cb: (entry: S, rowIndex: number, columnIndex: number) => void): void;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  cb | <code>(entry: S, rowIndex: number, columnIndex: number) =&gt; void</code> |  |
+|  cb | (entry: S, rowIndex: number, columnIndex: number) =&gt; void |  |
 
 <b>Returns:</b>
 
-`void`
+void
 

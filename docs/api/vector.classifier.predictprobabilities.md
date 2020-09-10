@@ -16,11 +16,11 @@ predictProbabilities(data: Matrix): Vector;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  data | <code>Matrix</code> | A [Vector](./vector.vector.md) whose rows are the observations in the test set |
+|  data | [Matrix](./vector.matrix.md) | A [Vector](./vector.vector.md) whose rows are the observations in the test set |
 
 <b>Returns:</b>
 
-`Vector`
+[Vector](./vector.vector.md)
 
 ## Remarks
 

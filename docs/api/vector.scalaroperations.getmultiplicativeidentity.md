@@ -13,7 +13,7 @@ abstract getMultiplicativeIdentity(): S;
 ```
 <b>Returns:</b>
 
-`S`
+S
 
 The multiplicative identity
 

@@ -16,9 +16,9 @@ export declare function zeros(shape: MatrixShape): Matrix;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  shape | <code>MatrixShape</code> |  |
+|  shape | [MatrixShape](./vector.matrixshape.md) |  |
 
 <b>Returns:</b>
 
-`Matrix`
+[Matrix](./vector.matrix.md)
 

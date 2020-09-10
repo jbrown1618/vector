@@ -16,12 +16,12 @@ abstract randomNormal(mean: number, standardDeviation: number): S;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  mean | <code>number</code> |  |
-|  standardDeviation | <code>number</code> |  |
+|  mean | number |  |
+|  standardDeviation | number |  |
 
 <b>Returns:</b>
 
-`S`
+S
 
 The random scalar
 

@@ -17,7 +17,7 @@ describe('prettyPrint', () => {
     const v = ComplexVector.builder().fromArray([
       new ComplexNumber(1, 1),
       new ComplexNumber(2, 22),
-      new ComplexNumber(33, 333)
+      new ComplexNumber(33, 333),
     ]);
     expect(prettyPrint(v)).toMatchSnapshot();
   });
@@ -26,7 +26,7 @@ describe('prettyPrint', () => {
     const v = mat([
       [1, 22222, 333],
       [444, 5, 6],
-      [77, 88, 9999]
+      [77, 88, 9999],
     ]);
     expect(prettyPrint(v)).toMatchSnapshot();
   });
@@ -35,7 +35,7 @@ describe('prettyPrint', () => {
     const v = ComplexMatrix.builder().fromArray([
       [new ComplexNumber(1, 1), new ComplexNumber(22, 222), new ComplexNumber(33, 3)],
       [new ComplexNumber(44, 44), new ComplexNumber(5, 5), new ComplexNumber(6, 6)],
-      [new ComplexNumber(7, 777), new ComplexNumber(888, 888), new ComplexNumber(9, 99999)]
+      [new ComplexNumber(7, 777), new ComplexNumber(888, 888), new ComplexNumber(9, 99999)],
     ]);
     expect(prettyPrint(v)).toMatchSnapshot();
   });

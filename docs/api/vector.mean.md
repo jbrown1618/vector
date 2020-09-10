@@ -16,9 +16,9 @@ export declare function mean<S>(x: Vector<S>): S;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  x | <code>Vector&lt;S&gt;</code> | The vector for which to find the mean |
+|  x | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | The vector for which to find the mean |
 
 <b>Returns:</b>
 
-`S`
+S
 

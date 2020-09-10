@@ -9,7 +9,7 @@ import {
   assertRectangular,
   assertValidMatrixIndex,
   assertDimensionMatch,
-  assertMultiplicable
+  assertMultiplicable,
 } from '../../utilities/ErrorAssertions';
 import { Vector } from '../vector/Vector';
 
@@ -184,7 +184,7 @@ export class FloatMatrix implements Matrix<number> {
       columnArrays[j][i] = this._data[index];
     }
 
-    return columnArrays.map(columnData => new FloatVector(columnData));
+    return columnArrays.map((columnData) => new FloatVector(columnData));
   }
 
   /**
@@ -296,7 +296,7 @@ export class FloatMatrix implements Matrix<number> {
       rowArrays[i][j] = this._data[index];
     }
 
-    return rowArrays.map(rowData => new FloatVector(rowData));
+    return rowArrays.map((rowData) => new FloatVector(rowData));
   }
 
   /**
@@ -323,7 +323,7 @@ export class FloatMatrix implements Matrix<number> {
    * {@inheritDoc Matrix.scalarMultiply}
    */
   public scalarMultiply(scalar: number): Matrix<number> {
-    const newData = new Float64Array(this._data).map(entry => entry * scalar);
+    const newData = new Float64Array(this._data).map((entry) => entry * scalar);
     return new FloatMatrix(newData, this._shape);
   }
 

@@ -16,9 +16,9 @@ export interface PrincipalComponentAnalysis<S>
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [coordinates](./vector.principalcomponentanalysis.coordinates.md) | <code>Matrix&lt;S&gt;</code> | The original data in a basis formed by the principal component vectors |
-|  [cumulativeProportions](./vector.principalcomponentanalysis.cumulativeproportions.md) | <code>S[]</code> | The proportion of the total variance explained by the first k components |
-|  [principalComponents](./vector.principalcomponentanalysis.principalcomponents.md) | <code>Vector&lt;S&gt;[]</code> | The directions in which the data varies the most, ordered by the proportion of variation explained by each direction |
-|  [proportions](./vector.principalcomponentanalysis.proportions.md) | <code>S[]</code> | The proportion of the total variance explained by each principal component |
-|  [variances](./vector.principalcomponentanalysis.variances.md) | <code>S[]</code> | The variances in the directions of the corresponding principal components |
+|  [coordinates](./vector.principalcomponentanalysis.coordinates.md) | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The original data in a basis formed by the principal component vectors |
+|  [cumulativeProportions](./vector.principalcomponentanalysis.cumulativeproportions.md) | S\[\] | The proportion of the total variance explained by the first k components |
+|  [principalComponents](./vector.principalcomponentanalysis.principalcomponents.md) | [Vector](./vector.vector.md)<!-- -->&lt;S&gt;\[\] | The directions in which the data varies the most, ordered by the proportion of variation explained by each direction |
+|  [proportions](./vector.principalcomponentanalysis.proportions.md) | S\[\] | The proportion of the total variance explained by each principal component |
+|  [variances](./vector.principalcomponentanalysis.variances.md) | S\[\] | The variances in the directions of the corresponding principal components |
 

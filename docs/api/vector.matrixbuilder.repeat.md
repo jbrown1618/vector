@@ -16,13 +16,13 @@ repeat(matrix: Matrix<S>, rows: number, columns: number): M;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  matrix | <code>Matrix&lt;S&gt;</code> | The matrix to be repeated |
-|  rows | <code>number</code> | The number of times to repeat the matrix vertically |
-|  columns | <code>number</code> | The number of times to repeat the matrix horizontally |
+|  matrix | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The matrix to be repeated |
+|  rows | number | The number of times to repeat the matrix vertically |
+|  columns | number | The number of times to repeat the matrix horizontally |
 
 <b>Returns:</b>
 
-`M`
+M
 
 The new matrix
 

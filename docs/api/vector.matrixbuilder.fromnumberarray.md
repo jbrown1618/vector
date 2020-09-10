@@ -14,9 +14,9 @@ fromNumberArray(numberData: MatrixData<number>): M;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  numberData | <code>MatrixData&lt;number&gt;</code> |  |
+|  numberData | [MatrixData](./vector.matrixdata.md)<!-- -->&lt;number&gt; |  |
 
 <b>Returns:</b>
 
-`M`
+M
 

@@ -11,6 +11,7 @@ A [Matrix](./vector.matrix.md) implemented as a sparse set of JS `number` primit
 ```typescript
 export declare class SparseNumberMatrix extends SparseMatrix<number> 
 ```
+<b>Extends:</b> [SparseMatrix](./vector.sparsematrix.md)<!-- -->&lt;number&gt;
 
 ## Remarks
 

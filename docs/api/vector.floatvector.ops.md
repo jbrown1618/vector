@@ -11,5 +11,5 @@ static ops(): NumberOperations;
 ```
 <b>Returns:</b>
 
-`NumberOperations`
+[NumberOperations](./vector.numberoperations.md)
 

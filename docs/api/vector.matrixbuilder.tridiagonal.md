@@ -16,13 +16,13 @@ tridiagonal(leftEntries: Vector<S>, diagonalEntries: Vector<S>, rightEntries: Ve
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  leftEntries | <code>Vector&lt;S&gt;</code> | A vector whose entries will be used in the left off-diagonal |
-|  diagonalEntries | <code>Vector&lt;S&gt;</code> | A vector whose entries will be used in the diagonal |
-|  rightEntries | <code>Vector&lt;S&gt;</code> | A vector whose entries will be used in the right off-diagonal |
+|  leftEntries | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | A vector whose entries will be used in the left off-diagonal |
+|  diagonalEntries | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | A vector whose entries will be used in the diagonal |
+|  rightEntries | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | A vector whose entries will be used in the right off-diagonal |
 
 <b>Returns:</b>
 
-`M`
+M
 
 The new matrix
 

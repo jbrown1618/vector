@@ -16,11 +16,11 @@ forEach(callback: (entry: S, index: number) => void): void;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  callback | <code>(entry: S, index: number) =&gt; void</code> |  |
+|  callback | (entry: S, index: number) =&gt; void |  |
 
 <b>Returns:</b>
 
-`void`
+void
 
 The dimension
 

@@ -16,11 +16,11 @@ pascalSymmetric(size: number): M;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  size | <code>number</code> | The size of the Pascal matrix |
+|  size | number | The size of the Pascal matrix |
 
 <b>Returns:</b>
 
-`M`
+M
 
 ## Example
 

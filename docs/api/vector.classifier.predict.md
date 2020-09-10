@@ -16,12 +16,12 @@ predict(data: Matrix, pThreshold: number): Vector;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  data | <code>Matrix</code> | A [Vector](./vector.vector.md) whose rows are the observations in the test set |
-|  pThreshold | <code>number</code> | The probability threshold above which an event will be predicted |
+|  data | [Matrix](./vector.matrix.md) | A [Vector](./vector.vector.md) whose rows are the observations in the test set |
+|  pThreshold | number | The probability threshold above which an event will be predicted |
 
 <b>Returns:</b>
 
-`Vector`
+[Vector](./vector.vector.md)
 
 ## Remarks
 

@@ -13,5 +13,5 @@ getParameters(): Vector | undefined;
 ```
 <b>Returns:</b>
 
-`Vector | undefined`
+[Vector](./vector.vector.md) \| undefined
 

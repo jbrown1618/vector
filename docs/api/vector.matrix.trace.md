@@ -13,7 +13,7 @@ trace(): S;
 ```
 <b>Returns:</b>
 
-`S`
+S
 
 The trace
 

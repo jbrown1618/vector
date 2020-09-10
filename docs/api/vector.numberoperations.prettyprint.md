@@ -16,11 +16,11 @@ prettyPrint(x: number): string;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  x | <code>number</code> |  |
+|  x | number |  |
 
 <b>Returns:</b>
 
-`string`
+string
 
 The readable string
 

@@ -13,5 +13,5 @@ negativeOne(): S;
 ```
 <b>Returns:</b>
 
-`S`
+S
 

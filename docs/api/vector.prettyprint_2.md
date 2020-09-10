@@ -16,9 +16,9 @@ export declare function prettyPrint<S>(matrix: Matrix<S>): string;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  matrix | <code>Matrix&lt;S&gt;</code> |  |
+|  matrix | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; |  |
 
 <b>Returns:</b>
 
-`string`
+string
 

@@ -16,13 +16,13 @@ set(i: number, j: number, value: S): Matrix<S>;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  i | <code>number</code> |  |
-|  j | <code>number</code> |  |
-|  value | <code>S</code> | The new value |
+|  i | number |  |
+|  j | number |  |
+|  value | S | The new value |
 
 <b>Returns:</b>
 
-`Matrix<S>`
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
 
 The new matrix
 

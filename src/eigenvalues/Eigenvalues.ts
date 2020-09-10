@@ -28,7 +28,7 @@ export interface EigenPair<S> {
  */
 export function eig<S>(A: Matrix<S>, numIterations: number = defaultIterations): EigenPair<S>[] {
   const eigenvalues = calculateEigenvalues(A, numIterations);
-  return eigenvalues.toArray().map(eigenvalue => {
+  return eigenvalues.toArray().map((eigenvalue) => {
     const eigenvector = getEigenvectorForEigenvalue(A, eigenvalue);
     return { eigenvalue, eigenvector };
   });

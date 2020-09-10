@@ -4,7 +4,7 @@ import {
   tripleProduct,
   dotProduct,
   hadamardProduct,
-  kroneckerProduct
+  kroneckerProduct,
 } from '../Products';
 
 describe('Products', () => {
@@ -53,16 +53,16 @@ describe('Products', () => {
       test('computes an element-wise product', () => {
         const first = mat([
           [1, 2, 3],
-          [4, 5, 6]
+          [4, 5, 6],
         ]);
         const second = mat([
           [2, 3, 4],
-          [5, 6, 7]
+          [5, 6, 7],
         ]);
         expect(hadamardProduct(first, second)).toStrictEqual(
           mat([
             [2, 6, 12],
-            [20, 30, 42]
+            [20, 30, 42],
           ])
         );
       });
@@ -82,17 +82,17 @@ describe('Products', () => {
     test('computes a generalized outer product', () => {
       const first = mat([
         [1, 2],
-        [3, 4]
+        [3, 4],
       ]);
       const second = mat([
         [5, 6, 7],
-        [8, 9, 0]
+        [8, 9, 0],
       ]);
       const expected = mat([
         [5, 6, 7, 8, 9, 0],
         [15, 18, 21, 24, 27, 0],
         [10, 12, 14, 16, 18, 0],
-        [20, 24, 28, 32, 36, 0]
+        [20, 24, 28, 32, 36, 0],
       ]);
       expect(kroneckerProduct(first, second)).toStrictEqual(expected);
     });
@@ -100,7 +100,7 @@ describe('Products', () => {
       const empty = mat([]);
       const nonempty = mat([
         [1, 2],
-        [3, 4]
+        [3, 4],
       ]);
       expect(kroneckerProduct(empty, empty)).toStrictEqual(empty);
       expect(kroneckerProduct(empty, nonempty)).toStrictEqual(empty);

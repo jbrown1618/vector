@@ -16,11 +16,11 @@ export declare function centralDifferenceMatrix(binCount: number): NumberMatrix;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  binCount | <code>number</code> | The size of the vector to which the output ought to be applied |
+|  binCount | number | The size of the vector to which the output ought to be applied |
 
 <b>Returns:</b>
 
-`NumberMatrix`
+[NumberMatrix](./vector.numbermatrix.md)
 
 The central difference matrix
 

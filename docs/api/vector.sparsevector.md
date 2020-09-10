@@ -11,6 +11,7 @@ Implements [Vector](./vector.vector.md) as a map of indices to nonzero values.
 ```typescript
 export declare abstract class SparseVector<S = number> implements Vector<S> 
 ```
+<b>Implements:</b> [Vector](./vector.vector.md)<!-- -->&lt;S&gt;
 
 ## Remarks
 

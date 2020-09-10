@@ -16,11 +16,11 @@ getMultiplicativeInverse(scalar: ComplexNumber): ComplexNumber | undefined;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  scalar | <code>ComplexNumber</code> |  |
+|  scalar | [ComplexNumber](./vector.complexnumber.md) |  |
 
 <b>Returns:</b>
 
-`ComplexNumber | undefined`
+[ComplexNumber](./vector.complexnumber.md) \| undefined
 
 The multiplicative inverse
 

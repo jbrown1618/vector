@@ -16,12 +16,12 @@ augment(left: Matrix<S>, right: Matrix<S>): M;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  left | <code>Matrix&lt;S&gt;</code> | The matrix that will form the left-side of the augmented matrix |
-|  right | <code>Matrix&lt;S&gt;</code> | The matrix that will form the right-side of the augmented matrix |
+|  left | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The matrix that will form the left-side of the augmented matrix |
+|  right | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The matrix that will form the right-side of the augmented matrix |
 
 <b>Returns:</b>
 
-`M`
+M
 
 The new augmented matrix
 

@@ -11,6 +11,7 @@ A dense matrix of JavaScript `number` primitives, implemented as a column-major 
 ```typescript
 export declare class FloatMatrix implements Matrix<number> 
 ```
+<b>Implements:</b> [Matrix](./vector.matrix.md)<!-- -->&lt;number&gt;
 
 ## Remarks
 

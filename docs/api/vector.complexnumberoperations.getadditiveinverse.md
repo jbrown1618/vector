@@ -16,11 +16,11 @@ getAdditiveInverse(scalar: ComplexNumber): ComplexNumber;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  scalar | <code>ComplexNumber</code> |  |
+|  scalar | [ComplexNumber](./vector.complexnumber.md) |  |
 
 <b>Returns:</b>
 
-`ComplexNumber`
+[ComplexNumber](./vector.complexnumber.md)
 
 The additive inverse
 

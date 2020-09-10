@@ -16,5 +16,5 @@ constructor(hyperParameters: Partial<SupportVectorMachineHyperparams>);
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  hyperParameters | <code>Partial&lt;SupportVectorMachineHyperparams&gt;</code> |  |
+|  hyperParameters | Partial&lt;[SupportVectorMachineHyperparams](./vector.supportvectormachinehyperparams.md)<!-- -->&gt; |  |
 

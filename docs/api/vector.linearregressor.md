@@ -11,6 +11,7 @@ A [Regressor](./vector.regressor.md) model which uses an ordinary least squares 
 ```typescript
 export declare class LinearRegressor implements Regressor<LinearRegressorHyperparams> 
 ```
+<b>Implements:</b> [Regressor](./vector.regressor.md)<!-- -->&lt;[LinearRegressorHyperparams](./vector.linearregressorhyperparams.md)<!-- -->&gt;
 
 ## Constructors
 

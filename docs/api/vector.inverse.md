@@ -16,11 +16,11 @@ export declare function inverse<S>(matrix: Matrix<S>): Matrix<S> | undefined;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  matrix | <code>Matrix&lt;S&gt;</code> | A square matrix |
+|  matrix | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | A square matrix |
 
 <b>Returns:</b>
 
-`Matrix<S> | undefined`
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; \| undefined
 
 The inverse matrix
 

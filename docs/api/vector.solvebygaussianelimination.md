@@ -16,12 +16,12 @@ export declare function solveByGaussianElimination<S>(A: Matrix<S>, b: Vector<S>
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  A | <code>Matrix&lt;S&gt;</code> | The matrix \_A\_ in \_Ax=b\_ |
-|  b | <code>Vector&lt;S&gt;</code> | The vector \_b\_ in \_Ax=b\_ |
+|  A | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The matrix \_A\_ in \_Ax=b\_ |
+|  b | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | The vector \_b\_ in \_Ax=b\_ |
 
 <b>Returns:</b>
 
-`LinearSolution<S>`
+LinearSolution&lt;S&gt;
 
 The vector \_x\_ in \_Ax=b\_
 

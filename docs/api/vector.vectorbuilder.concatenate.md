@@ -16,12 +16,12 @@ concatenate(first: Vector<S>, second: Vector<S>): V;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  first | <code>Vector&lt;S&gt;</code> | The vector which will be used for the entries starting with index 0 |
-|  second | <code>Vector&lt;S&gt;</code> | The vector which will be used for the entries starting with <code>first.getDimension()</code> |
+|  first | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | The vector which will be used for the entries starting with index 0 |
+|  second | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | The vector which will be used for the entries starting with <code>first.getDimension()</code> |
 
 <b>Returns:</b>
 
-`V`
+V
 
 The new vector
 

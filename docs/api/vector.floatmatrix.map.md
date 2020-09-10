@@ -16,11 +16,11 @@ map(entryFunction: (entry: number, rowIndex: number, columnIndex: number) => num
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  entryFunction | <code>(entry: number, rowIndex: number, columnIndex: number) =&gt; number</code> | A function which takes an entry of the original matrix and its indices, and returns the corresponding entry of the new matrix |
+|  entryFunction | (entry: number, rowIndex: number, columnIndex: number) =&gt; number | A function which takes an entry of the original matrix and its indices, and returns the corresponding entry of the new matrix |
 
 <b>Returns:</b>
 
-`Matrix<number>`
+[Matrix](./vector.matrix.md)<!-- -->&lt;number&gt;
 
 The new matrix
 

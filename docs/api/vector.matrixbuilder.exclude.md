@@ -16,13 +16,13 @@ exclude(matrix: Matrix<S>, rowToExclude: number, columnToExclude: number): M;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  matrix | <code>Matrix&lt;S&gt;</code> | The input matrix |
-|  rowToExclude | <code>number</code> | The index of the row that will be removed |
-|  columnToExclude | <code>number</code> | The index of the column that will be removed |
+|  matrix | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The input matrix |
+|  rowToExclude | number | The index of the row that will be removed |
+|  columnToExclude | number | The index of the column that will be removed |
 
 <b>Returns:</b>
 
-`M`
+M
 
 The new matrix
 

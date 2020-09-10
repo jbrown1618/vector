@@ -11,5 +11,5 @@ abstract ops(): ScalarOperations<S>;
 ```
 <b>Returns:</b>
 
-`ScalarOperations<S>`
+[ScalarOperations](./vector.scalaroperations.md)<!-- -->&lt;S&gt;
 

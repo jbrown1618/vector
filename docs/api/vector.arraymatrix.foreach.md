@@ -16,9 +16,9 @@ forEach(cb: (value: S, i: number, j: number) => void): void;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  cb | <code>(value: S, i: number, j: number) =&gt; void</code> |  |
+|  cb | (value: S, i: number, j: number) =&gt; void |  |
 
 <b>Returns:</b>
 
-`void`
+void
 

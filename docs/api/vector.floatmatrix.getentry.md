@@ -16,12 +16,12 @@ getEntry(i: number, j: number): number;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  i | <code>number</code> |  |
-|  j | <code>number</code> |  |
+|  i | number |  |
+|  j | number |  |
 
 <b>Returns:</b>
 
-`number`
+number
 
 The entry
 

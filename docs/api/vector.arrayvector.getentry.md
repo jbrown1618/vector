@@ -16,11 +16,11 @@ getEntry(index: number): S;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  index | <code>number</code> | The index of the entry to retrieve |
+|  index | number | The index of the entry to retrieve |
 
 <b>Returns:</b>
 
-`S`
+S
 
 The entry
 

@@ -16,14 +16,14 @@ static addScalarMultipleOfRowToRow<S>(matrix: Matrix<S>, targetRow: number, rowT
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  matrix | <code>Matrix&lt;S&gt;</code> | The original matrix |
-|  targetRow | <code>number</code> | The index of the row to modify |
-|  rowToAdd | <code>number</code> | The index of the row to be scaled and added |
-|  scalar | <code>S</code> | The factor by which to scale the row |
+|  matrix | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The original matrix |
+|  targetRow | number | The index of the row to modify |
+|  rowToAdd | number | The index of the row to be scaled and added |
+|  scalar | S | The factor by which to scale the row |
 
 <b>Returns:</b>
 
-`Matrix<S>`
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
 
 The matrix with the transformation applied
 

@@ -16,6 +16,6 @@ export interface QRDecomposition<S>
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [Q](./vector.qrdecomposition.q.md) | <code>Matrix&lt;S&gt;</code> |  |
-|  [R](./vector.qrdecomposition.r.md) | <code>Matrix&lt;S&gt;</code> |  |
+|  [Q](./vector.qrdecomposition.q.md) | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; |  |
+|  [R](./vector.qrdecomposition.r.md) | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; |  |
 

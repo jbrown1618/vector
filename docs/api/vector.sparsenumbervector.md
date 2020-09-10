@@ -11,6 +11,7 @@ A [Vector](./vector.vector.md) implemented as a sparse set of JS `number` primit
 ```typescript
 export declare class SparseNumberVector extends SparseVector<number> 
 ```
+<b>Extends:</b> [SparseVector](./vector.sparsevector.md)<!-- -->&lt;number&gt;
 
 ## Remarks
 

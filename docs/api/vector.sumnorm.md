@@ -16,11 +16,11 @@ export declare function sumNorm<S>(v: Vector<S>): number;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  v | <code>Vector&lt;S&gt;</code> | The vector for which to calculate the norm |
+|  v | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | The vector for which to calculate the norm |
 
 <b>Returns:</b>
 
-`number`
+number
 
 ## Example
 

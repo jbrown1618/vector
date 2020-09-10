@@ -16,12 +16,12 @@ fromComplex(real: number, imaginary: number): S;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  real | <code>number</code> |  |
-|  imaginary | <code>number</code> |  |
+|  real | number |  |
+|  imaginary | number |  |
 
 <b>Returns:</b>
 
-`S`
+S
 
 The scalar
 

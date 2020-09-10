@@ -16,9 +16,9 @@ export declare function standardDeviation<S>(A: Matrix<S>): Vector<S>;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  A | <code>Matrix&lt;S&gt;</code> | The matrix |
+|  A | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The matrix |
 
 <b>Returns:</b>
 
-`Vector<S>`
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;
 

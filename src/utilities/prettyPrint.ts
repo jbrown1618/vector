@@ -40,18 +40,18 @@ function prettyPrintNumber(num: number): string {
 function prettyPrintVector<S>(vector: Vector<S>): string {
   const ops = vector.ops();
   const width = getPrintWidth(vector);
-  const prettyData = vector.toArray().map(val => ops.prettyPrint(val));
-  return prettyData.map(value => '[ ' + spaces(width - value.length) + value + ' ]').join('\n');
+  const prettyData = vector.toArray().map((val) => ops.prettyPrint(val));
+  return prettyData.map((value) => '[ ' + spaces(width - value.length) + value + ' ]').join('\n');
 }
 
 function prettyPrintMatrix<S>(matrix: Matrix<S>): string {
   const ops = matrix.ops();
-  const widthByCol = matrix.getColumnVectors().map(col => getPrintWidth(col));
-  const prettyData = matrix.toArray().map(rowArr => rowArr.map(val => ops.prettyPrint(val)));
+  const widthByCol = matrix.getColumnVectors().map((col) => getPrintWidth(col));
+  const prettyData = matrix.toArray().map((rowArr) => rowArr.map((val) => ops.prettyPrint(val)));
 
   return prettyData
     .map(
-      rowArr =>
+      (rowArr) =>
         '[ ' +
         rowArr.map((val, colIndex) => spaces(widthByCol[colIndex] - val.length) + val).join('  ') +
         ' ]'
@@ -62,8 +62,8 @@ function prettyPrintMatrix<S>(matrix: Matrix<S>): string {
 function getPrintWidth<S>(v: Vector<S>): number {
   return v
     .toArray()
-    .map(val => v.ops().prettyPrint(val))
-    .map(str => str.length)
+    .map((val) => v.ops().prettyPrint(val))
+    .map((str) => str.length)
     .reduce((max, curr) => (curr > max ? curr : max), 0);
 }
 

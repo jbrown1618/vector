@@ -16,12 +16,12 @@ fill(value: S, dimension: number): V;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  value | <code>S</code> | The value to use as the entries of the new vector |
-|  dimension | <code>number</code> | The dimension of the new vector |
+|  value | S | The value to use as the entries of the new vector |
+|  dimension | number | The dimension of the new vector |
 
 <b>Returns:</b>
 
-`V`
+V
 
 The new vector
 

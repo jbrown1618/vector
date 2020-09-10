@@ -16,12 +16,12 @@ combine(other: Vector<S>, combineEntries: (entry1: S, entry2: S) => S): Vector<S
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  other | <code>Vector&lt;S&gt;</code> |  |
-|  combineEntries | <code>(entry1: S, entry2: S) =&gt; S</code> |  |
+|  other | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; |  |
+|  combineEntries | (entry1: S, entry2: S) =&gt; S |  |
 
 <b>Returns:</b>
 
-`Vector<S>`
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;
 
 The dimension
 

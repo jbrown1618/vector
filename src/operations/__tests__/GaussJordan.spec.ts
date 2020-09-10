@@ -5,12 +5,12 @@ import {
   inverse,
   reducedRowEchelonForm,
   rowEchelonForm,
-  solveByGaussianElimination
+  solveByGaussianElimination,
 } from '../GaussJordan';
 import {
   SolutionType,
   UnderdeterminedSolution,
-  UniqueSolution
+  UniqueSolution,
 } from '../../solvers/LinearSolution';
 import { loadTestData } from '@test-utils/testData';
 
@@ -20,7 +20,7 @@ describe('GaussJordan', () => {
       const A = mat([
         [0, 2, 1],
         [1, -2, -3],
-        [-1, 1, 2]
+        [-1, 1, 2],
       ]);
       const b = vec([-8, 0, 3]);
       const solution = solveByGaussianElimination(A, b);
@@ -46,7 +46,7 @@ describe('GaussJordan', () => {
       const A = mat([
         [0, 2, 1],
         [1, -2, -3],
-        [-3, 6, 9]
+        [-3, 6, 9],
       ]);
       const b = vec([-4, 1, -3]);
       const solution = solveByGaussianElimination(A, b);
@@ -60,7 +60,7 @@ describe('GaussJordan', () => {
       const A = mat([
         [1, -2, -6],
         [2, 4, 12],
-        [1, -4, -12]
+        [1, -4, -12],
       ]);
       const b = vec([12, -17, 22]);
       const solution = solveByGaussianElimination(A, b);
@@ -73,12 +73,12 @@ describe('GaussJordan', () => {
     test('row reduces a "wide" matrix', () => {
       const A = mat([
         [1, 2, 3],
-        [4, 5, 6]
+        [4, 5, 6],
       ]);
       const aRef = rowEchelonForm(A);
       expect(aRef.toArray()).toStrictEqual([
         [4, 5, 6],
-        [0, 0.75, 1.5]
+        [0, 0.75, 1.5],
       ]);
     });
 
@@ -86,13 +86,13 @@ describe('GaussJordan', () => {
       const A = mat([
         [0, 1],
         [0, 0],
-        [5, 9]
+        [5, 9],
       ]);
       const aRef = rowEchelonForm(A);
       const expected = mat([
         [5, 9],
         [0, 1],
-        [0, 0]
+        [0, 0],
       ]);
       expect(aRef.equals(expected)).toBe(true);
     });
@@ -101,14 +101,14 @@ describe('GaussJordan', () => {
       const A = mat([
         [1, 2, 3],
         [1, 1, 1],
-        [1, 1, 1]
+        [1, 1, 1],
       ]);
       const aRef = rowEchelonForm(A);
       expect(aRef).toStrictEqual(
         mat([
           [1, 2, 3],
           [0, -1, -2],
-          [0, 0, 0]
+          [0, 0, 0],
         ])
       );
 
@@ -116,14 +116,14 @@ describe('GaussJordan', () => {
       const B = mat([
         [1, 2, 2, 0],
         [-1, -2, -2, 0],
-        [-3, 9, 9, 0]
+        [-3, 9, 9, 0],
       ]);
       const bRef = rowEchelonForm(B);
       expect(bRef).toStrictEqual(
         mat([
           [-3, 9, 9, 0],
           [0, 5, 5, 0],
-          [0, 0, 0, 0]
+          [0, 0, 0, 0],
         ])
       );
     });
@@ -132,14 +132,14 @@ describe('GaussJordan', () => {
       const A = mat([
         [1, 1, 1],
         [0, 0, 2],
-        [0, 0, 1]
+        [0, 0, 1],
       ]);
 
       const aRef = rowEchelonForm(A);
       expect(aRef.toArray()).toStrictEqual([
         [1, 1, 1],
         [0, 0, 2],
-        [0, 0, 0]
+        [0, 0, 0],
       ]);
     });
 
@@ -158,12 +158,12 @@ describe('GaussJordan', () => {
     test('row reduces a "wide" matrix', () => {
       const A = mat([
         [1, 2, 3],
-        [4, 5, 6]
+        [4, 5, 6],
       ]);
       const aRef = reducedRowEchelonForm(A);
       expect(aRef.toArray()).toStrictEqual([
         [1, 0, -1],
-        [0, 1, 2]
+        [0, 1, 2],
       ]);
     });
 
@@ -171,13 +171,13 @@ describe('GaussJordan', () => {
       const A = mat([
         [0, 1],
         [0, 0],
-        [5, 9]
+        [5, 9],
       ]);
       const aRef = reducedRowEchelonForm(A);
       expect(aRef.toArray()).toStrictEqual([
         [1, 0],
         [0, 1],
-        [0, 0]
+        [0, 0],
       ]);
     });
 
@@ -185,14 +185,14 @@ describe('GaussJordan', () => {
       const A = mat([
         [1, 2, 3],
         [1, 1, 1],
-        [1, 1, 1]
+        [1, 1, 1],
       ]);
 
       const aRef = reducedRowEchelonForm(A);
       expect(aRef.toArray()).toStrictEqual([
         [1, 0, -1],
         [0, 1, 2],
-        [0, 0, 0]
+        [0, 0, 0],
       ]);
     });
 
@@ -200,14 +200,14 @@ describe('GaussJordan', () => {
       const A = mat([
         [1, 1, 1],
         [0, 0, 2],
-        [0, 0, 1]
+        [0, 0, 1],
       ]);
 
       const aRef = reducedRowEchelonForm(A);
       expect(aRef.toArray()).toStrictEqual([
         [1, 1, 0],
         [0, 0, 1],
-        [0, 0, 0]
+        [0, 0, 0],
       ]);
     });
 
@@ -233,11 +233,11 @@ describe('GaussJordan', () => {
     test('calculates the inverse of a square matrix', () => {
       const A = mat([
         [4, 7],
-        [2, 6]
+        [2, 6],
       ]);
       const expectedInverse = mat([
         [0.6, -0.7],
-        [-0.2, 0.4]
+        [-0.2, 0.4],
       ]);
       const aInv = inverse(A) as Matrix;
       expect(aInv).not.toBeUndefined;
@@ -252,7 +252,7 @@ describe('GaussJordan', () => {
     test('returns undefined for a singular matrix', () => {
       const S = mat([
         [0, 0],
-        [0, 0]
+        [0, 0],
       ]);
       const sInv = inverse(S);
       expect(sInv).toBeUndefined;

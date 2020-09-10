@@ -38,7 +38,7 @@ describe('VectorBuilder', () => {
       const expected = ComplexVector.builder().fromArray([
         new ComplexNumber(1, 0),
         new ComplexNumber(2, 0),
-        new ComplexNumber(3, 0)
+        new ComplexNumber(3, 0),
       ]);
       expect(ComplexVector.builder().fromNumberArray(data)).toStrictEqual(expected);
     });
@@ -66,15 +66,15 @@ describe('VectorBuilder', () => {
   describe('fromIndexFunction', () => {
     test('builds a vector whose values are determined by a function of their index', () => {
       const expected = builder.fromArray([0, 2, 4, 6, 8]);
-      expect(builder.fromIndexFunction(5, i => i * 2)).toStrictEqual(expected);
+      expect(builder.fromIndexFunction(5, (i) => i * 2)).toStrictEqual(expected);
     });
 
     test('handles size 0', () => {
-      expect(builder.fromIndexFunction(0, i => i)).toStrictEqual(builder.empty());
+      expect(builder.fromIndexFunction(0, (i) => i)).toStrictEqual(builder.empty());
     });
 
     test('rejects a negative size', () => {
-      expect(() => builder.fromIndexFunction(-1, i => i)).toThrow();
+      expect(() => builder.fromIndexFunction(-1, (i) => i)).toThrow();
     });
   });
 
@@ -99,7 +99,7 @@ describe('VectorBuilder', () => {
       };
 
       for (let dim = 0; dim < 10; dim++) {
-        [-1, 0, 1, 2].forEach(value => {
+        [-1, 0, 1, 2].forEach((value) => {
           testForDimension(dim, value);
         });
       }
@@ -139,7 +139,7 @@ describe('VectorBuilder', () => {
         expect(ones.getDimension()).toEqual(dim);
         const allOne = ones
           .toArray()
-          .map(entry => entry === 1)
+          .map((entry) => entry === 1)
           .reduce((all, current) => all && current, true);
         expect(allOne).toBe(true);
       };
@@ -210,11 +210,11 @@ describe('VectorBuilder', () => {
     test('constructs a vector of random numbers between min and max', () => {
       const bounds = [-1, 0, 1, 2];
 
-      bounds.forEach(min => {
-        bounds.forEach(max => {
+      bounds.forEach((min) => {
+        bounds.forEach((max) => {
           if (max > min) {
             const randomVector = builder.random(100, min, max);
-            randomVector.toArray().forEach(value => {
+            randomVector.toArray().forEach((value) => {
               expect(value).toBeGreaterThan(min);
               expect(value).toBeLessThan(max);
             });
@@ -225,7 +225,7 @@ describe('VectorBuilder', () => {
 
     test('defaults to min = 0 and max = 1', () => {
       const randomVector = builder.random(50);
-      randomVector.toArray().forEach(value => {
+      randomVector.toArray().forEach((value) => {
         expect(value).toBeGreaterThan(0);
         expect(value).toBeLessThan(1);
       });
@@ -243,8 +243,8 @@ describe('VectorBuilder', () => {
     test('constructs a vector of numbers randomly drawn from a normal distribution', () => {
       const means = [-1, 0, 1];
       const standardDeviations = [1, 2, 10];
-      means.forEach(mean => {
-        standardDeviations.forEach(standardDeviation => {
+      means.forEach((mean) => {
+        standardDeviations.forEach((standardDeviation) => {
           const randomVector = builder.randomNormal(100, mean, standardDeviation);
           const average = randomVector.toArray().reduce((accum, next) => accum + next, 0) / 100;
 

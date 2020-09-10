@@ -16,12 +16,12 @@ equals(first: number, second: number): boolean;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  first | <code>number</code> |  |
-|  second | <code>number</code> |  |
+|  first | number |  |
+|  second | number |  |
 
 <b>Returns:</b>
 
-`boolean`
+boolean
 
 true if `first` is equal to `second`
 

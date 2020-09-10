@@ -16,11 +16,11 @@ apply(vector: Vector<S>): Vector<S>;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  vector | <code>Vector&lt;S&gt;</code> | the vector that should be transformed by the matrix |
+|  vector | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | the vector that should be transformed by the matrix |
 
 <b>Returns:</b>
 
-`Vector<S>`
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;
 
 The transformed vector
 

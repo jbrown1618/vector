@@ -16,10 +16,10 @@ export declare function calculateEigenvalues<S>(A: Matrix<S>, numIterations?: nu
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  A | <code>Matrix&lt;S&gt;</code> | The matrix for which to compute eigenvalues |
-|  numIterations | <code>number</code> | The number of iterations to take |
+|  A | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The matrix for which to compute eigenvalues |
+|  numIterations | number | The number of iterations to take |
 
 <b>Returns:</b>
 
-`Vector<S>`
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;
 

@@ -16,12 +16,12 @@ pascal(size: number, upper?: boolean): M;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  size | <code>number</code> | The size of the Pascal matrix |
-|  upper | <code>boolean</code> | Construct an upper-triangular matrix (i choose j) |
+|  size | number | The size of the Pascal matrix |
+|  upper | boolean | Construct an upper-triangular matrix (i choose j) |
 
 <b>Returns:</b>
 
-`M`
+M
 
 ## Example
 

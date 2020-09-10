@@ -60,9 +60,9 @@ export class SupportVectorMachineClassifier implements Classifier<SupportVectorM
     const X = kernel(data, this._trainingData);
 
     const initialWeights = FloatVector.builder().random(X.getNumberOfColumns(), -0.01, 0.01);
-    this._weights = gradientDescent(this._hyperParameters)(initialWeights, weights => ({
+    this._weights = gradientDescent(this._hyperParameters)(initialWeights, (weights) => ({
       cost: this.calculateCost(X, target, weights),
-      gradient: this.calculateGradient(X, target, weights)
+      gradient: this.calculateGradient(X, target, weights),
     }));
   }
 
@@ -91,13 +91,13 @@ export class SupportVectorMachineClassifier implements Classifier<SupportVectorM
   public getHyperParameters(): SupportVectorMachineHyperparams {
     return {
       ...this.getDefaultHyperParameters(),
-      ...this._hyperParameters
+      ...this._hyperParameters,
     };
   }
 
   private makePredictions(X: Matrix, weights: Vector): Vector {
     const scores = this.calculateScores(X, weights);
-    return scores.map(score => (score > 0 ? 1 : 0));
+    return scores.map((score) => (score > 0 ? 1 : 0));
   }
 
   private calculateCost(X: Matrix, target: Vector, weights: Vector): number {
@@ -144,7 +144,7 @@ export class SupportVectorMachineClassifier implements Classifier<SupportVectorM
     return {
       C: 0,
       kernel: LinearKernel,
-      alpha: 0.01
+      alpha: 0.01,
     };
   }
 }

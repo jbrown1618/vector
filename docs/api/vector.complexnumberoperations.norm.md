@@ -16,11 +16,11 @@ norm(x: ComplexNumber): number;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  x | <code>ComplexNumber</code> |  |
+|  x | [ComplexNumber](./vector.complexnumber.md) |  |
 
 <b>Returns:</b>
 
-`number`
+number
 
 The norm
 

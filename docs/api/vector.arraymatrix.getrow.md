@@ -16,11 +16,11 @@ getRow(i: number): Vector<S>;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  i | <code>number</code> | The index for which to fetch the row |
+|  i | number | The index for which to fetch the row |
 
 <b>Returns:</b>
 
-`Vector<S>`
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;
 
 The row vector
 

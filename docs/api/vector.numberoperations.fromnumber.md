@@ -16,11 +16,11 @@ fromNumber(num: number): number;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  num | <code>number</code> |  |
+|  num | number |  |
 
 <b>Returns:</b>
 
-`number`
+number
 
 The scalar
 

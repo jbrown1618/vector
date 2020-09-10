@@ -3,7 +3,7 @@ import {
   assertValidMatrixIndex,
   assertValidIndex,
   assertMultiplicable,
-  assertDimensionMatch
+  assertDimensionMatch,
 } from '../../utilities/ErrorAssertions';
 import { ScalarOperations } from '../scalar/ScalarOperations';
 import { Vector } from '../vector/Vector';
@@ -98,7 +98,7 @@ export abstract class SparseMatrix<S = number> implements Matrix<S> {
    */
   public adjoint(): Matrix<S> {
     const adjointData = this.transpose().getSparseData();
-    adjointData.forEach(rd => {
+    adjointData.forEach((rd) => {
       rd.forEach((value, colIndex) => {
         rd.set(colIndex, this.ops().conjugate(value));
       });
@@ -166,14 +166,14 @@ export abstract class SparseMatrix<S = number> implements Matrix<S> {
    */
   public getDiagonal(): Vector<S> {
     const numDiagonalElements = Math.min(this.getNumberOfRows(), this.getNumberOfColumns());
-    return this.vectorBuilder().fromIndexFunction(numDiagonalElements, i => this.getEntry(i, i));
+    return this.vectorBuilder().fromIndexFunction(numDiagonalElements, (i) => this.getEntry(i, i));
   }
 
   /**
    * {@inheritDoc Matrix.toArray}
    */
   public toArray(): S[][] {
-    return this.getRowVectors().map(row => [...row.toArray()]);
+    return this.getRowVectors().map((row) => [...row.toArray()]);
   }
 
   /**
@@ -265,8 +265,8 @@ export abstract class SparseMatrix<S = number> implements Matrix<S> {
 
     // TODO - can probably be optimized for the case of two sparse matrices
     return this.builder().fromArray(
-      this.getRowVectors().map(row =>
-        other.getColumnVectors().map(column => row.innerProduct(column))
+      this.getRowVectors().map((row) =>
+        other.getColumnVectors().map((column) => row.innerProduct(column))
       )
     );
   }
@@ -276,7 +276,7 @@ export abstract class SparseMatrix<S = number> implements Matrix<S> {
    */
   public scalarMultiply(scalar: S): Matrix<S> {
     const sd = this.getSparseData();
-    sd.forEach(rd => {
+    sd.forEach((rd) => {
       rd.forEach((value, colIndex) => {
         rd.set(colIndex, this.ops().multiply(value, scalar));
       });

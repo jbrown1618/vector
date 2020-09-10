@@ -16,12 +16,12 @@ divide(numerator: S, denominator: S): S | undefined;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  numerator | <code>S</code> |  |
-|  denominator | <code>S</code> |  |
+|  numerator | S |  |
+|  denominator | S |  |
 
 <b>Returns:</b>
 
-`S | undefined`
+S \| undefined
 
 The quotient
 

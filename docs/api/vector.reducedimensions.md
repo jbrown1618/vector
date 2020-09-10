@@ -16,10 +16,10 @@ export declare function reduceDimensions(A: Matrix, options: DimensionReductionO
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  A | <code>Matrix</code> | The data matrix |
-|  options | <code>DimensionReductionOptions</code> | Specify how the dimension reduction should be done. <code>useCorrelation: boolean</code> - use the correlation rather than covariance matrix when conducting the PCA; <code>keep: number</code> - the desired number of dimensions; <code>remove: number</code> - the number of dimensions to remove; <code>proportionOfVariance: number</code> - the desired proportion of the total variance in the data that should be explained by the remaining columns |
+|  A | [Matrix](./vector.matrix.md) | The data matrix |
+|  options | [DimensionReductionOptions](./vector.dimensionreductionoptions.md) | Specify how the dimension reduction should be done. <code>useCorrelation: boolean</code> - use the correlation rather than covariance matrix when conducting the PCA; <code>keep: number</code> - the desired number of dimensions; <code>remove: number</code> - the number of dimensions to remove; <code>proportionOfVariance: number</code> - the desired proportion of the total variance in the data that should be explained by the remaining columns |
 
 <b>Returns:</b>
 
-`Matrix`
+[Matrix](./vector.matrix.md)
 

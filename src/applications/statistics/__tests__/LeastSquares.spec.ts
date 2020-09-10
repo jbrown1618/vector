@@ -3,7 +3,7 @@ import { Vector } from '../../../types/vector/Vector';
 import {
   calculateGeneralLeastSquares,
   calculateLinearLeastSquares,
-  solveOverdeterminedSystem
+  solveOverdeterminedSystem,
 } from '../LeastSquares';
 import { loadTestData } from '@test-utils/testData';
 
@@ -24,7 +24,7 @@ describe('LeastSquares', () => {
         result.coefficients.getEntry(0) + result.coefficients.getEntry(1) * input;
 
       const inputValuesToCheck = [-1, 0, 1, 20];
-      inputValuesToCheck.forEach(value => {
+      inputValuesToCheck.forEach((value) => {
         const approximated = result.approximationFunction(vec([value]));
         const expected = expectedApproximator(value);
         expect(approximated).toEqual(expected);
@@ -44,7 +44,7 @@ describe('LeastSquares', () => {
         result.coefficients.getEntry(2) * x2;
 
       const inputValuesToCheck = [-1, 0, 1, 20];
-      inputValuesToCheck.forEach(value => {
+      inputValuesToCheck.forEach((value) => {
         const approximated = result.approximationFunction(vec([value, value]));
         const expected = expectedApproximator(value, value);
         expect(approximated).toEqual(expected);
@@ -62,7 +62,7 @@ describe('LeastSquares', () => {
       expect(result.coefficients).toStrictEqual(expectedCoefficients);
 
       const inputValuesToCheck = [-1, 0, 1, 20];
-      inputValuesToCheck.forEach(value => {
+      inputValuesToCheck.forEach((value) => {
         const approximated = result.approximationFunction(vec([value]));
         const expected = expectedApproximator(value);
         expect(approximated).toEqual(expected);
@@ -101,7 +101,7 @@ describe('LeastSquares', () => {
         result.coefficients.getEntry(2) * Math.pow(input, 2);
 
       const inputValuesToCheck = [-1, 0, 1, 20];
-      inputValuesToCheck.forEach(value => {
+      inputValuesToCheck.forEach((value) => {
         const approximated = result.approximationFunction(vec([value]));
         const expected = expectedApproximator(value);
         expect(approximated).toEqual(expected);
@@ -133,7 +133,7 @@ describe('LeastSquares', () => {
     test('rejects a system where A is underdetermined', () => {
       const A = mat([
         [1, 2, 3],
-        [4, 5, 6]
+        [4, 5, 6],
       ]);
       const b = vec([1, 2]);
 
@@ -145,7 +145,7 @@ describe('LeastSquares', () => {
       const A = mat([
         [1, 2],
         [3, 4],
-        [5, 6]
+        [5, 6],
       ]);
       const b = vec([1, 2, 3, 4]);
 

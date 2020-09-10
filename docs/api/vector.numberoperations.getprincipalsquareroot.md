@@ -16,11 +16,11 @@ getPrincipalSquareRoot(x: number): number | undefined;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  x | <code>number</code> |  |
+|  x | number |  |
 
 <b>Returns:</b>
 
-`number | undefined`
+number \| undefined
 
 The square root
 

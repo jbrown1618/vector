@@ -13,7 +13,7 @@ getShape(): MatrixShape;
 ```
 <b>Returns:</b>
 
-`MatrixShape`
+[MatrixShape](./vector.matrixshape.md)
 
 The shape of the matrix as a tuple
 

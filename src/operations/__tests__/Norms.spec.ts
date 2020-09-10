@@ -6,7 +6,7 @@ import {
   pNorm,
   rowSumSupremumNorm,
   sumNorm,
-  supremumNorm
+  supremumNorm,
 } from '../Norms';
 import { vec, mat, zeros } from '../../utilities/aliases';
 
@@ -58,7 +58,7 @@ describe('Norms', () => {
 
       test('rejects p < 1', () => {
         const v = vec([3, 4]);
-        [0, -1, -2].forEach(p => {
+        [0, -1, -2].forEach((p) => {
           expect(() => pNorm(v, p)).toThrow();
         });
       });
@@ -121,7 +121,7 @@ describe('Norms', () => {
       test('calculates the Frobenius Norm of a matrix', () => {
         const A = mat([
           [1, 2],
-          [3, 4]
+          [3, 4],
         ]);
         const norm = frobeniusNorm(A);
         expect(norm).toEqual(5.477225575051661);
@@ -142,7 +142,7 @@ describe('Norms', () => {
       test('calculates the 1-norm of a matrix', () => {
         const A = mat([
           [1, 2],
-          [3, 4]
+          [3, 4],
         ]);
         const norm = columnSumSupremumNorm(A);
         expect(norm).toEqual(6);
@@ -163,7 +163,7 @@ describe('Norms', () => {
       test('calculates the infinity-norm of a matrix', () => {
         const A = mat([
           [1, 2],
-          [3, 4]
+          [3, 4],
         ]);
         const norm = rowSumSupremumNorm(A);
         expect(norm).toEqual(7);

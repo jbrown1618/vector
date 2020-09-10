@@ -16,11 +16,11 @@ export declare function calculateCholeskyDecomposition<S>(A: Matrix<S>): Cholesk
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  A | <code>Matrix&lt;S&gt;</code> | The matrix to decompose |
+|  A | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The matrix to decompose |
 
 <b>Returns:</b>
 
-`CholeskyDecomposition<S> | undefined`
+[CholeskyDecomposition](./vector.choleskydecomposition.md)<!-- -->&lt;S&gt; \| undefined
 
 ## Remarks
 

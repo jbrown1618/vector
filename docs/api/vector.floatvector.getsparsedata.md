@@ -13,7 +13,7 @@ getSparseData(): Map<number, number>;
 ```
 <b>Returns:</b>
 
-`Map<number, number>`
+Map&lt;number, number&gt;
 
 The contents of the vector
 
