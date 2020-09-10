@@ -25,7 +25,9 @@
     "docs:check": "api-extractor run",
     "ci": "npm run format:check && npm run lint:check && npm run build && npm run docs:check && npm run coverage"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@semantic-release/github": "^7.1.1"
+  },
   "devDependencies": {
     "@microsoft/api-documenter": "^7.8.44",
     "@microsoft/api-extractor": "^7.8.44",
@@ -43,7 +45,7 @@
     "jest": "^26.4.2",
     "lint-staged": "^10.3.0",
     "prettier": "^2.1.1",
-    "semantic-release": "^16.0.4",
+    "semantic-release": "^17.1.1",
     "ts-jest": "^26.3.0",
     "ts-node": "^9.0.0",
     "typescript": "^4.0.2"
