@@ -13,7 +13,7 @@ getRowVectors(): Vector<number>[];
 ```
 <b>Returns:</b>
 
-`Vector<number>[]`
+[Vector](./vector.vector.md)<!-- -->&lt;number&gt;\[\]
 
 The row vectors
 

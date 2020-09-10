@@ -16,12 +16,12 @@ random(min?: number, max?: number): number;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  min | <code>number</code> |  |
-|  max | <code>number</code> |  |
+|  min | number |  |
+|  max | number |  |
 
 <b>Returns:</b>
 
-`number`
+number
 
 The random scalar
 

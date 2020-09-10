@@ -16,11 +16,11 @@ blockDiagonal(matrices: Matrix<S>[]): M;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  matrices | <code>Matrix&lt;S&gt;[]</code> | The matrices to appear along the primary diagonal of the block matrix |
+|  matrices | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;\[\] | The matrices to appear along the primary diagonal of the block matrix |
 
 <b>Returns:</b>
 
-`M`
+M
 
 ## Example
 

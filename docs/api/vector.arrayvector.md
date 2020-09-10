@@ -11,6 +11,7 @@ Implements [Vector](./vector.vector.md) with an array of values.
 ```typescript
 export declare abstract class ArrayVector<S = number> implements Vector<S> 
 ```
+<b>Implements:</b> [Vector](./vector.vector.md)<!-- -->&lt;S&gt;
 
 ## Remarks
 

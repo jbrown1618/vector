@@ -13,5 +13,5 @@ getHyperParameters(): LinearRegressorHyperparams;
 ```
 <b>Returns:</b>
 
-`LinearRegressorHyperparams`
+[LinearRegressorHyperparams](./vector.linearregressorhyperparams.md)
 

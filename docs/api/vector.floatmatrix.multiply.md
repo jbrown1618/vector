@@ -16,11 +16,11 @@ multiply(other: Matrix<number>): Matrix<number>;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  other | <code>Matrix&lt;number&gt;</code> | The matrix by which to multiply |
+|  other | [Matrix](./vector.matrix.md)<!-- -->&lt;number&gt; | The matrix by which to multiply |
 
 <b>Returns:</b>
 
-`Matrix<number>`
+[Matrix](./vector.matrix.md)<!-- -->&lt;number&gt;
 
 The matrix product
 

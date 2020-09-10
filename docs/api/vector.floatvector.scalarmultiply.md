@@ -16,11 +16,11 @@ scalarMultiply(scalar: number): Vector<number>;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  scalar | <code>number</code> | The scalar by which to multiply |
+|  scalar | number | The scalar by which to multiply |
 
 <b>Returns:</b>
 
-`Vector<number>`
+[Vector](./vector.vector.md)<!-- -->&lt;number&gt;
 
 The product
 

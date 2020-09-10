@@ -16,9 +16,9 @@ export declare function variance<S>(x: Vector<S>): S;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  x | <code>Vector&lt;S&gt;</code> | The vector |
+|  x | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | The vector |
 
 <b>Returns:</b>
 
-`S`
+S
 

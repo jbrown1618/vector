@@ -13,7 +13,7 @@ getNumberOfRows(): number;
 ```
 <b>Returns:</b>
 
-`number`
+number
 
 The number of rows
 

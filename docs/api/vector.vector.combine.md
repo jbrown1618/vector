@@ -16,12 +16,12 @@ combine(other: Vector<S>, combineEntries: (a: S, b: S) => S): Vector<S>;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  other | <code>Vector&lt;S&gt;</code> | The vector with which to combine this one |
-|  combineEntries | <code>(a: S, b: S) =&gt; S</code> | A function which takes an entry from each vector and returns a new entry |
+|  other | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | The vector with which to combine this one |
+|  combineEntries | (a: S, b: S) =&gt; S | A function which takes an entry from each vector and returns a new entry |
 
 <b>Returns:</b>
 
-`Vector<S>`
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;
 
 The new vector
 

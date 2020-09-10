@@ -16,11 +16,11 @@ predictProbabilities(_data: Matrix): Vector;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  \_data | <code>Matrix</code> |  |
+|  \_data | [Matrix](./vector.matrix.md) |  |
 
 <b>Returns:</b>
 
-`Vector`
+[Vector](./vector.vector.md)
 
 ## Remarks
 

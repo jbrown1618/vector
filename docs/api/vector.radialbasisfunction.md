@@ -16,9 +16,9 @@ export declare function RadialBasisFunction(distanceMetric: SimilarityMetric): K
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  distanceMetric | <code>SimilarityMetric</code> | A [SimilarityMetric](./vector.similaritymetric.md) which defines how the RBF kernel expresses the similarity between two vectors. |
+|  distanceMetric | [SimilarityMetric](./vector.similaritymetric.md) | A [SimilarityMetric](./vector.similaritymetric.md) which defines how the RBF kernel expresses the similarity between two vectors. |
 
 <b>Returns:</b>
 
-`Kernel`
+[Kernel](./vector.kernel.md)
 

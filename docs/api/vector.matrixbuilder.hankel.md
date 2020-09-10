@@ -16,12 +16,12 @@ hankel(firstColumn: Vector<S>, lastRow?: Vector<S>): M;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  firstColumn | <code>Vector&lt;S&gt;</code> | The first column of the Hankel matrix |
-|  lastRow | <code>Vector&lt;S&gt;</code> | The last row of the Hankel matrix |
+|  firstColumn | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | The first column of the Hankel matrix |
+|  lastRow | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | The last row of the Hankel matrix |
 
 <b>Returns:</b>
 
-`M`
+M
 
 ## Example
 

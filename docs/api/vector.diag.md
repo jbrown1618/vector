@@ -16,9 +16,9 @@ export declare function diag(elements: number[]): Matrix;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  elements | <code>number[]</code> |  |
+|  elements | number\[\] |  |
 
 <b>Returns:</b>
 
-`Matrix`
+[Matrix](./vector.matrix.md)
 

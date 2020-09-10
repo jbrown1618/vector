@@ -13,7 +13,7 @@ getMultiplicativeIdentity(): number;
 ```
 <b>Returns:</b>
 
-`number`
+number
 
 The multiplicative identity
 

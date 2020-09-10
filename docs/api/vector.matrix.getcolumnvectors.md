@@ -13,7 +13,7 @@ getColumnVectors(): Vector<S>[];
 ```
 <b>Returns:</b>
 
-`Vector<S>[]`
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;\[\]
 
 The column vectors
 

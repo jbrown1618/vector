@@ -38,7 +38,7 @@ export class VectorBuilder<S, V extends Vector<S>> {
 
   public fromNumberArray(data: VectorData<number>): V {
     const ops = this.ops();
-    return this.fromArray(data.map(num => ops.fromNumber(num)));
+    return this.fromArray(data.map((num) => ops.fromNumber(num)));
   }
 
   public fromSparseData(dimension: number, sparseData: SparseVectorData<S>): V {
@@ -147,7 +147,7 @@ export class VectorBuilder<S, V extends Vector<S>> {
   public elementaryVector(dimension: number, oneIndex: number): V {
     assertValidDimension(dimension);
     assertValidIndex(oneIndex, dimension);
-    return this.fromIndexFunction(dimension, i =>
+    return this.fromIndexFunction(dimension, (i) =>
       i === oneIndex ? this.ops().one() : this.ops().zero()
     );
   }
@@ -169,7 +169,7 @@ export class VectorBuilder<S, V extends Vector<S>> {
    */
   public shift(vector: Vector<S>, offset = 1, reverse = false): V {
     const dim = vector.getDimension();
-    return this.fromIndexFunction(dim, i => {
+    return this.fromIndexFunction(dim, (i) => {
       const indexToUse = mod(reverse ? i - offset : i + offset, dim);
       return vector.getEntry(indexToUse);
     });

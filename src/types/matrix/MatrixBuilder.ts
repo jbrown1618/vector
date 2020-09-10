@@ -2,7 +2,7 @@ import {
   assertHomogeneous,
   assertSquare,
   assertValidMatrixIndex,
-  assertValidShape
+  assertValidShape,
 } from '../../utilities/ErrorAssertions';
 import { binomial } from '../../utilities/NumberUtilities';
 import { ScalarOperations } from '../scalar/ScalarOperations';
@@ -41,7 +41,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
 
   public fromNumberArray(numberData: MatrixData<number>): M {
     const ops = this.ops();
-    const data = numberData.map(dataRow => dataRow.map(num => ops.fromNumber(num)));
+    const data = numberData.map((dataRow) => dataRow.map((num) => ops.fromNumber(num)));
     return this.fromArray(data);
   }
 
@@ -296,7 +296,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    */
   public toeplitz(firstColumn: Vector<S>, firstRow?: Vector<S>): M {
     const ops = this.ops();
-    firstRow = firstRow || firstColumn.map(value => ops.conjugate(value));
+    firstRow = firstRow || firstColumn.map((value) => ops.conjugate(value));
 
     if (firstRow.getDimension() === 0 || firstColumn.getDimension() === 0) {
       return this.empty();
@@ -588,7 +588,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * @public
    */
   public blockDiagonal(matrices: Matrix<S>[]): M {
-    matrices.forEach(matrix => assertSquare(matrix));
+    matrices.forEach((matrix) => assertSquare(matrix));
 
     const numberOfDiagonalMatrices = matrices.length;
 
@@ -639,7 +639,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
     }
 
     const data = grid
-      .map(gridRow => {
+      .map((gridRow) => {
         return gridRow.reduce((accumulator: Matrix<S>, gridEntry: Matrix<S>) => {
           return this.augment(accumulator, gridEntry);
         });

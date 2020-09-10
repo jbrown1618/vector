@@ -49,7 +49,7 @@ export class LogisticRegressionClassifier implements Classifier<LogisticRegressi
   public getHyperParameters(): LogisticRegressionHyperparams {
     return {
       ...this.getDefaultHyperParameters(),
-      ...this._hyperParameters
+      ...this._hyperParameters,
     };
   }
 
@@ -58,9 +58,9 @@ export class LogisticRegressionClassifier implements Classifier<LogisticRegressi
    */
   public train(data: Matrix, target: Vector): void {
     const initialTheta = FloatVector.builder().random(data.getNumberOfColumns() + 1, -0.01, 0.01);
-    this._theta = gradientDescent(this._hyperParameters)(initialTheta, theta => ({
+    this._theta = gradientDescent(this._hyperParameters)(initialTheta, (theta) => ({
       cost: this.calculateCost(data, target, theta),
-      gradient: this.calculateGradient(data, target, theta)
+      gradient: this.calculateGradient(data, target, theta),
     }));
   }
 
@@ -81,13 +81,13 @@ export class LogisticRegressionClassifier implements Classifier<LogisticRegressi
   }
 
   private makePredictions(data: Matrix, theta: Vector, threshold?: number): Vector {
-    return this.makeProbabilityPredictions(data, theta).map(p => (p > (threshold || 0.5) ? 1 : 0));
+    return this.makeProbabilityPredictions(data, theta).map((p) =>
+      p > (threshold || 0.5) ? 1 : 0
+    );
   }
 
   private makeProbabilityPredictions(data: Matrix, theta: Vector): Vector {
-    return LinearKernel(data)
-      .apply(theta)
-      .map(sigmoid);
+    return LinearKernel(data).apply(theta).map(sigmoid);
   }
 
   private calculateCost(data: Matrix, target: Vector, theta: Vector): number {
@@ -108,7 +108,7 @@ export class LogisticRegressionClassifier implements Classifier<LogisticRegressi
     const meanCost =
       costs.toArray().reduce((prev, curr) => prev + curr, 0) / data.getNumberOfRows();
 
-    const penalty: (x: number) => number = x => x * x;
+    const penalty: (x: number) => number = (x) => x * x;
     const paramSum = theta.toArray().reduce((prev, curr) => penalty(prev) + curr, 0);
     const regularizationTerm = paramSum - penalty(theta.getEntry(0));
 
@@ -138,7 +138,7 @@ export class LogisticRegressionClassifier implements Classifier<LogisticRegressi
   private getDefaultHyperParameters(): LogisticRegressionHyperparams {
     return {
       lambda: 0,
-      alpha: 0.01
+      alpha: 0.01,
     };
   }
 }

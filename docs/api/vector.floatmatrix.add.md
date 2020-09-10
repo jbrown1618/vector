@@ -16,11 +16,11 @@ add(other: Matrix<number>): Matrix<number>;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  other | <code>Matrix&lt;number&gt;</code> | The matrix to add |
+|  other | [Matrix](./vector.matrix.md)<!-- -->&lt;number&gt; | The matrix to add |
 
 <b>Returns:</b>
 
-`Matrix<number>`
+[Matrix](./vector.matrix.md)<!-- -->&lt;number&gt;
 
 The matrix sum
 

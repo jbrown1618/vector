@@ -14,10 +14,10 @@ fromSparseData(shape: MatrixShape, sparseData: SparseMatrixData<S>): M;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  shape | <code>MatrixShape</code> |  |
-|  sparseData | <code>SparseMatrixData&lt;S&gt;</code> |  |
+|  shape | [MatrixShape](./vector.matrixshape.md) |  |
+|  sparseData | [SparseMatrixData](./vector.sparsematrixdata.md)<!-- -->&lt;S&gt; |  |
 
 <b>Returns:</b>
 
-`M`
+M
 

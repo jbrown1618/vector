@@ -13,5 +13,5 @@ builder(): VectorBuilder<S, Vector<S>>;
 ```
 <b>Returns:</b>
 
-`VectorBuilder<S, Vector<S>>`
+[VectorBuilder](./vector.vectorbuilder.md)<!-- -->&lt;S, [Vector](./vector.vector.md)<!-- -->&lt;S&gt;&gt;
 

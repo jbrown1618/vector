@@ -16,5 +16,5 @@ constructor(hyperParameters: Partial<LinearRegressorHyperparams>);
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  hyperParameters | <code>Partial&lt;LinearRegressorHyperparams&gt;</code> |  |
+|  hyperParameters | Partial&lt;[LinearRegressorHyperparams](./vector.linearregressorhyperparams.md)<!-- -->&gt; |  |
 

@@ -16,12 +16,12 @@ abstract add(first: S, second: S): S;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  first | <code>S</code> |  |
-|  second | <code>S</code> |  |
+|  first | S |  |
+|  second | S |  |
 
 <b>Returns:</b>
 
-`S`
+S
 
 The sum
 

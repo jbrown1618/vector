@@ -16,12 +16,12 @@ multiply(first: ComplexNumber, second: ComplexNumber): ComplexNumber;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  first | <code>ComplexNumber</code> |  |
-|  second | <code>ComplexNumber</code> |  |
+|  first | [ComplexNumber](./vector.complexnumber.md) |  |
+|  second | [ComplexNumber](./vector.complexnumber.md) |  |
 
 <b>Returns:</b>
 
-`ComplexNumber`
+[ComplexNumber](./vector.complexnumber.md)
 
 The product of `first` and `second`
 

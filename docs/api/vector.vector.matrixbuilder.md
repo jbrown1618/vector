@@ -13,5 +13,5 @@ matrixBuilder(): MatrixBuilder<S, Vector<S>, Matrix<S>>;
 ```
 <b>Returns:</b>
 
-`MatrixBuilder<S, Vector<S>, Matrix<S>>`
+[MatrixBuilder](./vector.matrixbuilder.md)<!-- -->&lt;S, [Vector](./vector.vector.md)<!-- -->&lt;S&gt;, [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;&gt;
 

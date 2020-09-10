@@ -5,7 +5,7 @@ describe('RowOperations', () => {
   const original = mat([
     [1, 2, 3],
     [4, 5, 6],
-    [7, 8, 9]
+    [7, 8, 9],
   ]);
 
   describe('multiplyRowByScalar', () => {
@@ -14,7 +14,7 @@ describe('RowOperations', () => {
       expect(transformed.toArray()).toStrictEqual([
         [1, 2, 3],
         [8, 10, 12],
-        [7, 8, 9]
+        [7, 8, 9],
       ]);
     });
   });
@@ -25,7 +25,7 @@ describe('RowOperations', () => {
       expect(transformed.toArray()).toStrictEqual([
         [5, 7, 9],
         [4, 5, 6],
-        [7, 8, 9]
+        [7, 8, 9],
       ]);
     });
   });
@@ -36,7 +36,7 @@ describe('RowOperations', () => {
       expect(transformed.toArray()).toStrictEqual([
         [1, 2, 3],
         [25, 29, 33],
-        [7, 8, 9]
+        [7, 8, 9],
       ]);
     });
   });
@@ -47,7 +47,7 @@ describe('RowOperations', () => {
       expect(transformed.toArray()).toStrictEqual([
         [7, 8, 9],
         [4, 5, 6],
-        [1, 2, 3]
+        [1, 2, 3],
       ]);
     });
   });
@@ -57,17 +57,17 @@ describe('RowOperations', () => {
       const unsorted = mat([
         [0, 5, 5],
         [5, 5, 5],
-        [0, 0, 5]
+        [0, 0, 5],
       ]);
       const sorted = mat([
         [5, 5, 5],
         [0, 5, 5],
-        [0, 0, 5]
+        [0, 0, 5],
       ]);
       const permutation = mat([
         [0, 1, 0],
         [1, 0, 0],
-        [0, 0, 1]
+        [0, 0, 1],
       ]);
 
       const result = RowOperations.pivot(unsorted);

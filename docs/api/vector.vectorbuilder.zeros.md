@@ -16,11 +16,11 @@ zeros(dimension: number): V;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  dimension | <code>number</code> | The dimension of the vector to construct |
+|  dimension | number | The dimension of the vector to construct |
 
 <b>Returns:</b>
 
-`V`
+V
 
 The new vector
 

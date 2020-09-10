@@ -16,9 +16,9 @@ export declare function zeros(entries: number): Vector;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  entries | <code>number</code> |  |
+|  entries | number |  |
 
 <b>Returns:</b>
 
-`Vector`
+[Vector](./vector.vector.md)
 

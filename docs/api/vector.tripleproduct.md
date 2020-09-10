@@ -16,11 +16,11 @@ export declare function tripleProduct<S>(first: Vector<S>, second: Vector<S>, th
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  first | <code>Vector&lt;S&gt;</code> | a vector with dimension 3 |
-|  second | <code>Vector&lt;S&gt;</code> | another vector with dimension 3 |
-|  third | <code>Vector&lt;S&gt;</code> | another vector with dimension 3 |
+|  first | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | a vector with dimension 3 |
+|  second | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | another vector with dimension 3 |
+|  third | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | another vector with dimension 3 |
 
 <b>Returns:</b>
 
-`S`
+S
 

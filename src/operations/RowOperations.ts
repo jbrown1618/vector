@@ -142,7 +142,7 @@ export class RowOperations {
 
     return {
       operator: P,
-      result: permuted
+      result: permuted,
     };
   }
 }

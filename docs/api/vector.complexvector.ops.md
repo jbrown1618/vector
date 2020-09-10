@@ -11,5 +11,5 @@ static ops(): ComplexNumberOperations;
 ```
 <b>Returns:</b>
 
-`ComplexNumberOperations`
+[ComplexNumberOperations](./vector.complexnumberoperations.md)
 

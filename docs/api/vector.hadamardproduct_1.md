@@ -16,10 +16,10 @@ export declare function hadamardProduct<S>(first: Matrix<S>, second: Matrix<S>):
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  first | <code>Matrix&lt;S&gt;</code> | the left matrix in the product |
-|  second | <code>Matrix&lt;S&gt;</code> | the right matrix in the product |
+|  first | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | the left matrix in the product |
+|  second | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | the right matrix in the product |
 
 <b>Returns:</b>
 
-`Matrix<S>`
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
 

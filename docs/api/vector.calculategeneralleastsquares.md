@@ -16,13 +16,13 @@ export declare function calculateGeneralLeastSquares<S>(dataPoints: Vector<S>[],
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  dataPoints | <code>Vector&lt;S&gt;[]</code> | The data used to construct the approximation |
-|  functionTemplate | <code>ApproximationFunctionTemplate&lt;S&gt;</code> | A higher-order function which takes a vector of coefficients and yields a new function which takes a vector of independent variables to produce a value for the dependent variable |
-|  numberOfTerms | <code>number</code> | The number of coefficients needed to produce the approximation function |
+|  dataPoints | [Vector](./vector.vector.md)<!-- -->&lt;S&gt;\[\] | The data used to construct the approximation |
+|  functionTemplate | [ApproximationFunctionTemplate](./vector.approximationfunctiontemplate.md)<!-- -->&lt;S&gt; | A higher-order function which takes a vector of coefficients and yields a new function which takes a vector of independent variables to produce a value for the dependent variable |
+|  numberOfTerms | number | The number of coefficients needed to produce the approximation function |
 
 <b>Returns:</b>
 
-`LeastSquaresApproximation<S>`
+[LeastSquaresApproximation](./vector.leastsquaresapproximation.md)<!-- -->&lt;S&gt;
 
 - the result of the linear regression
 

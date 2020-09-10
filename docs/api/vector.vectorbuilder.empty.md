@@ -13,7 +13,7 @@ empty(): V;
 ```
 <b>Returns:</b>
 
-`V`
+V
 
 The new vector
 

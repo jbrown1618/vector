@@ -6,7 +6,7 @@ import {
   center,
   standardDeviation,
   correlation,
-  standardize
+  standardize,
 } from '../DescriptiveStatistics';
 
 describe('DescriptiveStatistics', () => {
@@ -15,7 +15,7 @@ describe('DescriptiveStatistics', () => {
     [90, 90, 30],
     [60, 60, 60],
     [60, 60, 90],
-    [30, 30, 30]
+    [30, 30, 30],
   ]);
 
   describe('mean', () => {
@@ -45,7 +45,7 @@ describe('DescriptiveStatistics', () => {
           [24, 30, -30],
           [-6, 0, 0],
           [-6, 0, 30],
-          [-36, -30, -30]
+          [-36, -30, -30],
         ])
       );
     });
@@ -125,7 +125,7 @@ describe('DescriptiveStatistics', () => {
         mat([
           [504, 360, 180],
           [360, 360, 0],
-          [180, 0, 720]
+          [180, 0, 720],
         ])
       );
     });

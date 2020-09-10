@@ -13,7 +13,7 @@ empty(): M;
 ```
 <b>Returns:</b>
 
-`M`
+M
 
 ## Example
 

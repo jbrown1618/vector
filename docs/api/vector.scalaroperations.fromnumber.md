@@ -16,11 +16,11 @@ abstract fromNumber(num: number): S;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  num | <code>number</code> |  |
+|  num | number |  |
 
 <b>Returns:</b>
 
-`S`
+S
 
 The scalar
 

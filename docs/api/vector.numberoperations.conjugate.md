@@ -16,11 +16,11 @@ conjugate(scalar: number): number;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  scalar | <code>number</code> | The scalar to conjugate |
+|  scalar | number | The scalar to conjugate |
 
 <b>Returns:</b>
 
-`number`
+number
 
 The complex conjugate
 

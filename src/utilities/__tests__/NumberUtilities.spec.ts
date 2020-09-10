@@ -4,7 +4,7 @@ import {
   factorial,
   mod,
   random,
-  randomNormal
+  randomNormal,
 } from '../NumberUtilities';
 
 describe('NumberUtilities', () => {
@@ -13,8 +13,8 @@ describe('NumberUtilities', () => {
       const tolerances = [0.1, 0.01, 0.001, 0.0001, 0.00001];
       const numbers = [0, 1, -1, 3.14, -2.71];
 
-      tolerances.forEach(tolerance => {
-        numbers.forEach(n => {
+      tolerances.forEach((tolerance) => {
+        numbers.forEach((n) => {
           const offByALittle = n + tolerance / 1.1;
           expect(approximatelyEqual(n, offByALittle, tolerance)).toBe(true);
         });
@@ -25,8 +25,8 @@ describe('NumberUtilities', () => {
       const tolerances = [0.1, 0.01, 0.001, 0.0001, 0.00001];
       const numbers = [0, 1, -1, 3.14, -2.71];
 
-      tolerances.forEach(tolerance => {
-        numbers.forEach(n => {
+      tolerances.forEach((tolerance) => {
+        numbers.forEach((n) => {
           const offByTooMuch = n + tolerance * 1.1;
           expect(approximatelyEqual(n, offByTooMuch, tolerance)).toBe(false);
         });
@@ -109,23 +109,23 @@ describe('NumberUtilities', () => {
     });
 
     test('yields results for a specified mean', () => {
-      means.forEach(mean => {
+      means.forEach((mean) => {
         expect(randomNormal(mean)).not.toBeUndefined;
       });
     });
 
     test('yields results for a specified mean and standard deviation', () => {
-      means.forEach(mean => {
-        stddevs.forEach(stddev => {
+      means.forEach((mean) => {
+        stddevs.forEach((stddev) => {
           expect(randomNormal(mean, stddev)).not.toBeUndefined;
         });
       });
     });
 
     test('yields results for a specified mean, standard deviation, and number of samples', () => {
-      means.forEach(mean => {
-        stddevs.forEach(stddev => {
-          sampleSizes.forEach(n => {
+      means.forEach((mean) => {
+        stddevs.forEach((stddev) => {
+          sampleSizes.forEach((n) => {
             expect(randomNormal(mean, stddev, n)).not.toBeUndefined;
           });
         });

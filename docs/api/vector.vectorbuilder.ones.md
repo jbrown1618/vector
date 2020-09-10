@@ -16,11 +16,11 @@ ones(dimension: number): V;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  dimension | <code>number</code> | The dimension of the new vector |
+|  dimension | number | The dimension of the new vector |
 
 <b>Returns:</b>
 
-`V`
+V
 
 The new vector
 

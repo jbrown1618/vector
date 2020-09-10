@@ -16,11 +16,11 @@ export declare function isSquare(matrix: Matrix<any>): boolean;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  matrix | <code>Matrix&lt;any&gt;</code> | The matrix to check |
+|  matrix | [Matrix](./vector.matrix.md)<!-- -->&lt;any&gt; | The matrix to check |
 
 <b>Returns:</b>
 
-`boolean`
+boolean
 
 `true` if `matrix` is square
 

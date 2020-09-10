@@ -13,7 +13,7 @@ getSparseData(): Map<number, Map<number, number>>;
 ```
 <b>Returns:</b>
 
-`Map<number, Map<number, number>>`
+Map&lt;number, Map&lt;number, number&gt;&gt;
 
 The contents of the matrix
 

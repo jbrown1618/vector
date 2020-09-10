@@ -5,16 +5,16 @@ import { FloatVector } from '../FloatVector';
 const configs = [
   {
     testClassName: 'NumberVector',
-    builder: NumberVector.builder()
+    builder: NumberVector.builder(),
   },
   {
     testClassName: 'SparseNumberVector',
-    builder: SparseNumberVector.builder()
+    builder: SparseNumberVector.builder(),
   },
   {
     testClassName: 'FloatVector',
-    builder: FloatVector.builder()
-  }
+    builder: FloatVector.builder(),
+  },
 ];
 
 configs.forEach(({ testClassName, builder }) => {
@@ -136,7 +136,7 @@ configs.forEach(({ testClassName, builder }) => {
         const second = builder.fromValues(3, 4, 5);
         const expectedData = [
           [3, 4, 5],
-          [6, 8, 10]
+          [6, 8, 10],
         ];
 
         expect(first.outerProduct(second).toArray()).toStrictEqual(expectedData);
@@ -150,13 +150,13 @@ configs.forEach(({ testClassName, builder }) => {
         expect(nonEmpty.outerProduct(empty).toArray()).toStrictEqual([]);
       });
 
-      configs.forEach(otherConfig => {
+      configs.forEach((otherConfig) => {
         test(`handles ${otherConfig.testClassName} inputs`, () => {
           const first = builder.fromArray([1, 2]);
           const second = otherConfig.builder.fromArray([3, 4, 5]);
           const expectedData = [
             [3, 4, 5],
-            [6, 8, 10]
+            [6, 8, 10],
           ];
           expect(first.outerProduct(second).toArray()).toStrictEqual(expectedData);
 
@@ -190,7 +190,7 @@ configs.forEach(({ testClassName, builder }) => {
         expect(builder.fromValues(1, 2, 3).equals(builder.fromValues(1, 2))).toBe(false);
       });
 
-      configs.forEach(otherConfig => {
+      configs.forEach((otherConfig) => {
         test(`handles ${otherConfig.testClassName} inputs`, () => {
           const original = builder.fromArray([1, 2, 3]);
           const equal = otherConfig.builder.fromArray([1, 2, 3]);
@@ -240,14 +240,14 @@ configs.forEach(({ testClassName, builder }) => {
       });
 
       test('handles an empty vector', () => {
-        expect(builder.empty().map(value => value + 1)).toStrictEqual(builder.empty());
+        expect(builder.empty().map((value) => value + 1)).toStrictEqual(builder.empty());
       });
     });
 
     describe('forEach', () => {
       test('runs a callback for each entry', () => {
         let called = 0;
-        builder.fromValues(1, 2, 3, 4, 5).forEach(_ => called++);
+        builder.fromValues(1, 2, 3, 4, 5).forEach((_) => called++);
         expect(called).toBe(5);
       });
     });

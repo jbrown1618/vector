@@ -16,11 +16,11 @@ getColumn(j: number): Vector<number>;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  j | <code>number</code> | The index for which to fetch the column |
+|  j | number | The index for which to fetch the column |
 
 <b>Returns:</b>
 
-`Vector<number>`
+[Vector](./vector.vector.md)<!-- -->&lt;number&gt;
 
 The column vector
 

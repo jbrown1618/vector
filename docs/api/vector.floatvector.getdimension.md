@@ -13,7 +13,7 @@ getDimension(): number;
 ```
 <b>Returns:</b>
 
-`number`
+number
 
 The dimension
 

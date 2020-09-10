@@ -16,7 +16,7 @@ export interface LUDecomposition<S>
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [L](./vector.ludecomposition.l.md) | <code>Matrix&lt;S&gt;</code> |  |
-|  [P](./vector.ludecomposition.p.md) | <code>Matrix&lt;S&gt;</code> |  |
-|  [U](./vector.ludecomposition.u.md) | <code>Matrix&lt;S&gt;</code> |  |
+|  [L](./vector.ludecomposition.l.md) | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; |  |
+|  [P](./vector.ludecomposition.p.md) | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; |  |
+|  [U](./vector.ludecomposition.u.md) | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; |  |
 

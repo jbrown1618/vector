@@ -16,9 +16,9 @@ static pivot<S>(matrix: Matrix<S>): RowOperationResult<S>;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  matrix | <code>Matrix&lt;S&gt;</code> |  |
+|  matrix | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; |  |
 
 <b>Returns:</b>
 
-`RowOperationResult<S>`
+[RowOperationResult](./vector.rowoperationresult.md)<!-- -->&lt;S&gt;
 

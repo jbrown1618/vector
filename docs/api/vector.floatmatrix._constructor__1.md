@@ -16,6 +16,6 @@ constructor(data: Float64Array, shape: MatrixShape);
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  data | <code>Float64Array</code> |  |
-|  shape | <code>MatrixShape</code> |  |
+|  data | Float64Array |  |
+|  shape | [MatrixShape](./vector.matrixshape.md) |  |
 

@@ -16,9 +16,9 @@ export declare function correlation<S>(A: Matrix<S>): Matrix<S>;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  A | <code>Matrix&lt;S&gt;</code> | The matrix |
+|  A | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The matrix |
 
 <b>Returns:</b>
 
-`Matrix<S>`
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
 

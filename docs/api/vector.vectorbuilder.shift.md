@@ -16,13 +16,13 @@ shift(vector: Vector<S>, offset?: number, reverse?: boolean): V;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  vector | <code>Vector&lt;S&gt;</code> | The vector whose entries to use |
-|  offset | <code>number</code> | The amount by which to shift the indices |
-|  reverse | <code>boolean</code> | Shift entries backward rather than forward |
+|  vector | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | The vector whose entries to use |
+|  offset | number | The amount by which to shift the indices |
+|  reverse | boolean | Shift entries backward rather than forward |
 
 <b>Returns:</b>
 
-`V`
+V
 
 ## Example
 

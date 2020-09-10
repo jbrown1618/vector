@@ -16,15 +16,15 @@ slice(matrix: Matrix<S>, rowStartIndex?: number, columnStartIndex?: number, rowE
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  matrix | <code>Matrix&lt;S&gt;</code> | The original matrix |
-|  rowStartIndex | <code>number</code> | The (inclusive) first row of the slice |
-|  columnStartIndex | <code>number</code> | The (inclusive) first column of the slice |
-|  rowEndIndex | <code>number</code> | The (exclusive) last row of the slice |
-|  columnEndIndex | <code>number</code> | The (exclusive) last column of the slice |
+|  matrix | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The original matrix |
+|  rowStartIndex | number | The (inclusive) first row of the slice |
+|  columnStartIndex | number | The (inclusive) first column of the slice |
+|  rowEndIndex | number | The (exclusive) last row of the slice |
+|  columnEndIndex | number | The (exclusive) last column of the slice |
 
 <b>Returns:</b>
 
-`M`
+M
 
 The new matrix
 

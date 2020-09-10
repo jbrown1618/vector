@@ -16,12 +16,12 @@ randomNormal(mean?: number, standardDeviation?: number): ComplexNumber;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  mean | <code>number</code> |  |
-|  standardDeviation | <code>number</code> |  |
+|  mean | number |  |
+|  standardDeviation | number |  |
 
 <b>Returns:</b>
 
-`ComplexNumber`
+[ComplexNumber](./vector.complexnumber.md)
 
 The random scalar
 

@@ -25,7 +25,7 @@ export function mean<S>(xOrA: Matrix<S> | Vector<S>): Vector<S> | S {
     const ones = x.builder().ones(x.getDimension());
     return ones.scalarMultiply(dimInverse).innerProduct(x);
   } else {
-    return xOrA.vectorBuilder().fromArray(xOrA.getColumnVectors().map(v => mean(v)));
+    return xOrA.vectorBuilder().fromArray(xOrA.getColumnVectors().map((v) => mean(v)));
   }
 }
 
@@ -59,9 +59,7 @@ export function center<S>(xOrA: Matrix<S> | Vector<S>): Matrix<S> | Vector<S> {
     const dim = ops.fromNumber(rows);
     const dimInverse = ops.getMultiplicativeInverse(dim) as S;
 
-    const offsets = A.builder()
-      .fill(dimInverse, [rows, rows])
-      .multiply(A);
+    const offsets = A.builder().fill(dimInverse, [rows, rows]).multiply(A);
     return A.add(offsets.scalarMultiply(ops.negativeOne()));
   }
 }
@@ -92,7 +90,7 @@ export function standardize<S>(xOrA: Matrix<S> | Vector<S>): Matrix<S> | Vector<
     return centered.scalarMultiply(stdInverse);
   } else {
     if (xOrA.getNumberOfColumns() === 0) return xOrA;
-    return xOrA.builder().fromColumnVectors(xOrA.getColumnVectors().map(v => standardize(v)));
+    return xOrA.builder().fromColumnVectors(xOrA.getColumnVectors().map((v) => standardize(v)));
   }
 }
 
@@ -113,7 +111,7 @@ export function variance<S>(xOrA: Matrix<S> | Vector<S>): Vector<S> | S {
     if (xOrA.getDimension() === 0) throw Error('Variance is not defined for vectors of length 0');
     return covariance(xOrA, xOrA);
   } else {
-    return xOrA.vectorBuilder().fromArray(xOrA.getColumnVectors().map(v => variance(v)));
+    return xOrA.vectorBuilder().fromArray(xOrA.getColumnVectors().map((v) => variance(v)));
   }
 }
 
@@ -135,7 +133,7 @@ export function standardDeviation<S>(xOrA: Matrix<S> | Vector<S>): Vector<S> | S
       throw Error('Standard deviation is not defined for 0-dimensional vectors');
     return xOrA.ops().getPrincipalSquareRoot(variance(xOrA)) as S;
   } else {
-    return xOrA.vectorBuilder().fromArray(xOrA.getColumnVectors().map(v => standardDeviation(v)));
+    return xOrA.vectorBuilder().fromArray(xOrA.getColumnVectors().map((v) => standardDeviation(v)));
   }
 }
 
@@ -174,10 +172,7 @@ export function covariance<S>(xOrA: Matrix<S> | Vector<S>, s?: Vector<S>): S | M
       throw Error('The covariance matrix is not defined for a matrix with no rows');
 
     const centered = center(A);
-    return centered
-      .transpose()
-      .multiply(centered)
-      .scalarMultiply(dimInverse);
+    return centered.transpose().multiply(centered).scalarMultiply(dimInverse);
   }
 }
 
@@ -216,9 +211,6 @@ export function correlation<S>(xOrA: Matrix<S> | Vector<S>, s?: Vector<S>): S | 
       throw Error('The correlation matrix is not defined for a matrix with no rows');
 
     const centered = standardize(A);
-    return centered
-      .transpose()
-      .multiply(centered)
-      .scalarMultiply(dimInverse);
+    return centered.transpose().multiply(centered).scalarMultiply(dimInverse);
   }
 }

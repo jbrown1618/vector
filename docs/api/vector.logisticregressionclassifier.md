@@ -11,6 +11,7 @@ A [Classifier](./vector.classifier.md) model which uses logistic regression to p
 ```typescript
 export declare class LogisticRegressionClassifier implements Classifier<LogisticRegressionHyperparams> 
 ```
+<b>Implements:</b> [Classifier](./vector.classifier.md)<!-- -->&lt;[LogisticRegressionHyperparams](./vector.logisticregressionhyperparams.md)<!-- -->&gt;
 
 ## Constructors
 

@@ -14,10 +14,10 @@ fromSparseData(dimension: number, sparseData: SparseVectorData<S>): V;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  dimension | <code>number</code> |  |
-|  sparseData | <code>SparseVectorData&lt;S&gt;</code> |  |
+|  dimension | number |  |
+|  sparseData | [SparseVectorData](./vector.sparsevectordata.md)<!-- -->&lt;S&gt; |  |
 
 <b>Returns:</b>
 
-`V`
+V
 

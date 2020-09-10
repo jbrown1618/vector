@@ -16,11 +16,11 @@ export declare function calculateQRDecomposition<S>(A: Matrix<S>): QRDecompositi
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  A | <code>Matrix&lt;S&gt;</code> | The matrix to decompose |
+|  A | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The matrix to decompose |
 
 <b>Returns:</b>
 
-`QRDecomposition<S>`
+[QRDecomposition](./vector.qrdecomposition.md)<!-- -->&lt;S&gt;
 
 ## Remarks
 

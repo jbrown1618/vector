@@ -16,11 +16,11 @@ conjugate(scalar: ComplexNumber): ComplexNumber;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  scalar | <code>ComplexNumber</code> | The scalar to conjugate |
+|  scalar | [ComplexNumber](./vector.complexnumber.md) | The scalar to conjugate |
 
 <b>Returns:</b>
 
-`ComplexNumber`
+[ComplexNumber](./vector.complexnumber.md)
 
 The complex conjugate
 

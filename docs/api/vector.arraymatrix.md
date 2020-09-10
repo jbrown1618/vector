@@ -11,6 +11,7 @@ Implements [Matrix](./vector.matrix.md) with a 2-dimensional array of values.
 ```typescript
 export declare abstract class ArrayMatrix<S = number> implements Matrix<S> 
 ```
+<b>Implements:</b> [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
 
 ## Remarks
 

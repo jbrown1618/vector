@@ -64,7 +64,7 @@ export function inverse<S>(matrix: Matrix<S>): Matrix<S> | undefined {
 export function rank<S>(matrix: Matrix<S>): number {
   const zeroRow = matrix.vectorBuilder().zeros(matrix.getNumberOfColumns());
   const ref = rowEchelonForm(matrix);
-  const nonZeroRows = ref.getRowVectors().filter(v => !v.equals(zeroRow));
+  const nonZeroRows = ref.getRowVectors().filter((v) => !v.equals(zeroRow));
   return nonZeroRows.length;
 }
 
@@ -98,10 +98,7 @@ export function reducedRowEchelonForm<S>(matrix: Matrix<S>): Matrix<S> {
   // Clear above the pivot entries
   const maxNumberOfPivotEntries = Math.min(m, n);
   for (let pivotRow = maxNumberOfPivotEntries - 1; pivotRow >= 0; pivotRow--) {
-    const pivotColumn = matrix
-      .getRow(pivotRow)
-      .toArray()
-      .indexOf(ops.one());
+    const pivotColumn = matrix.getRow(pivotRow).toArray().indexOf(ops.one());
     if (pivotColumn === -1) {
       continue;
     }

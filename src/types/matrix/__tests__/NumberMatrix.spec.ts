@@ -6,18 +6,18 @@ const configs = [
   {
     testClassName: 'NumberMatrix',
     builder: NumberMatrix.builder(),
-    vectorBuilder: NumberMatrix.vectorBuilder()
+    vectorBuilder: NumberMatrix.vectorBuilder(),
   },
   {
     testClassName: 'SparseNumberMatrix',
     builder: SparseNumberMatrix.builder(),
-    vectorBuilder: SparseNumberMatrix.vectorBuilder()
+    vectorBuilder: SparseNumberMatrix.vectorBuilder(),
   },
   {
     testClassName: 'FloatMatrix',
     builder: FloatMatrix.builder(),
-    vectorBuilder: FloatMatrix.vectorBuilder()
-  }
+    vectorBuilder: FloatMatrix.vectorBuilder(),
+  },
 ];
 
 configs.forEach(({ testClassName, builder, vectorBuilder }) => {
@@ -35,7 +35,7 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
       const data = [
         [1, 2, 3],
         [2, 2, 1],
-        [5, 2, 9]
+        [5, 2, 9],
       ];
 
       test('can be constructed from a 2d array', () => {
@@ -80,7 +80,7 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
         const badVectorData = [
           vectorBuilder.fromValues(0),
           vectorBuilder.fromValues(0, 0),
-          vectorBuilder.fromValues(0, 0, 0)
+          vectorBuilder.fromValues(0, 0, 0),
         ];
         expect(() => builder.fromColumnVectors(badVectorData)).toThrow();
         expect(() => builder.fromRowVectors(badVectorData)).toThrow();
@@ -88,17 +88,17 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
     });
 
     describe('equals', () => {
-      configs.forEach(otherConfig => {
+      configs.forEach((otherConfig) => {
         const otherBuilder = otherConfig.builder;
         describe(otherConfig.testClassName, () => {
           test('returns true for matrices with equal entries', () => {
             const first = builder.fromArray([
               [1, 2],
-              [0, 1]
+              [0, 1],
             ]);
             const second = otherBuilder.fromArray([
               [1, 2],
-              [0, 1]
+              [0, 1],
             ]);
             expect(first.equals(second)).toBe(true);
           });
@@ -106,11 +106,11 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
           test('returns false when the data does not match', () => {
             const first = builder.fromArray([
               [1, 2],
-              [0, 1]
+              [0, 1],
             ]);
             const second = otherBuilder.fromArray([
               [1, 2],
-              [0.001, 1]
+              [0.001, 1],
             ]);
             expect(first.equals(second)).toBe(false);
           });
@@ -118,7 +118,7 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
           test('returns false when the dimensions do not match', () => {
             const first = builder.fromArray([
               [1, 2],
-              [0, 1]
+              [0, 1],
             ]);
             const fewerRows = otherBuilder.fromArray([[1, 2]]);
             const fewerColumns = otherBuilder.fromArray([[1], [0]]);
@@ -132,7 +132,7 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
     describe('getters', () => {
       const testMatrix = builder.fromArray([
         [1, 2, 3],
-        [4, 5, 6]
+        [4, 5, 6],
       ]);
 
       describe('getColumnVectors', () => {
@@ -192,7 +192,7 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
           const A = builder.fromArray([
             [1, 2, 3],
             [4, 5, 6],
-            [7, 8, 9]
+            [7, 8, 9],
           ]);
           expect(A.getDiagonal().toArray()).toStrictEqual([1, 5, 9]);
         });
@@ -200,14 +200,14 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
         test('returns the diagonal entries of a non-square matrix', () => {
           const wide = builder.fromArray([
             [1, 2, 3],
-            [4, 5, 6]
+            [4, 5, 6],
           ]);
           expect(wide.getDiagonal().toArray()).toStrictEqual([1, 5]);
 
           const tall = builder.fromArray([
             [1, 2],
             [3, 4],
-            [5, 6]
+            [5, 6],
           ]);
           expect(tall.getDiagonal().toArray()).toStrictEqual([1, 4]);
         });
@@ -230,12 +230,12 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
         const expected = builder.fromArray([
           [0, 0, 0],
           [0, 4, 0],
-          [0, 0, 0]
+          [0, 0, 0],
         ]);
         const second = builder.fromArray([
           [0, 0, 0],
           [0, 4, 5],
-          [0, 0, 0]
+          [0, 0, 0],
         ]);
 
         expect(original.set(1, 1, 4)).toStrictEqual(expected);
@@ -253,33 +253,33 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
       test('returns the product of two matrices of equal dimension', () => {
         const I = builder.fromArray([
           [1, 0],
-          [0, 1]
+          [0, 1],
         ]);
         const A = builder.fromArray([
           [1, 2],
-          [3, 4]
+          [3, 4],
         ]);
         const B = builder.fromArray([
           [2, 3],
-          [4, 5]
+          [4, 5],
         ]);
 
         expect(A.multiply(A).toArray()).toStrictEqual([
           [7, 10],
-          [15, 22]
+          [15, 22],
         ]);
         expect(A.multiply(B).toArray()).toStrictEqual([
           [10, 13],
-          [22, 29]
+          [22, 29],
         ]);
         expect(A.multiply(I).toArray()).toStrictEqual(A.toArray());
         expect(B.multiply(A).toArray()).toStrictEqual([
           [11, 16],
-          [19, 28]
+          [19, 28],
         ]);
         expect(B.multiply(B).toArray()).toStrictEqual([
           [16, 21],
-          [28, 37]
+          [28, 37],
         ]);
         expect(B.multiply(I).toArray()).toStrictEqual(B.toArray());
         expect(I.multiply(A).toArray()).toStrictEqual(A.toArray());
@@ -296,30 +296,25 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
           [1, 2, 3, 4],
           [2, 4, 6, 8],
           [3, 6, 9, 12],
-          [4, 8, 12, 16]
+          [4, 8, 12, 16],
         ]);
       });
 
       test('throws an error when the dimensions are not compatible', () => {
         const A = builder.fromArray([
           [1, 0],
-          [0, 1]
+          [0, 1],
         ]);
         const B = builder.fromArray([
           [1, 0, 0],
           [0, 1, 0],
-          [0, 0, 1]
+          [0, 0, 1],
         ]);
         expect(() => A.multiply(B)).toThrow();
       });
 
       test('handles the degenerate case', () => {
-        expect(
-          builder
-            .empty()
-            .multiply(builder.empty())
-            .toArray()
-        ).toStrictEqual([]);
+        expect(builder.empty().multiply(builder.empty()).toArray()).toStrictEqual([]);
       });
     });
 
@@ -335,12 +330,12 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
       test('returns the transpose of a matrix', () => {
         const A = builder.fromArray([
           [1, 2, 3],
-          [4, 5, 6]
+          [4, 5, 6],
         ]);
         const B = builder.fromArray([
           [1, 4],
           [2, 5],
-          [3, 6]
+          [3, 6],
         ]);
         expect(A.transpose().equals(B)).toBe(true);
         expect(B.transpose().equals(A)).toBe(true);
@@ -356,39 +351,34 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
       test('adds two matrices of equal dimension', () => {
         const A = builder.fromArray([
           [1, 2, 3],
-          [4, 5, 6]
+          [4, 5, 6],
         ]);
         const B = builder.fromArray([
           [2, 3, 4],
-          [5, 6, 7]
+          [5, 6, 7],
         ]);
 
         expect(A.add(B).toArray()).toStrictEqual([
           [3, 5, 7],
-          [9, 11, 13]
+          [9, 11, 13],
         ]);
       });
 
       test('throws an error when the dimensions do not match', () => {
         const A = builder.fromArray([
           [1, 2, 3],
-          [4, 5, 6]
+          [4, 5, 6],
         ]);
         const B = builder.fromArray([
           [2, 3],
-          [5, 6]
+          [5, 6],
         ]);
 
         expect(() => A.add(B)).toThrow();
       });
 
       test('handles the degenerate case', () => {
-        expect(
-          builder
-            .empty()
-            .add(builder.empty())
-            .toArray()
-        ).toStrictEqual([]);
+        expect(builder.empty().add(builder.empty()).toArray()).toStrictEqual([]);
       });
     });
 
@@ -396,11 +386,11 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
       test('transforms a vector with the correct dimension', () => {
         const I = builder.fromArray([
           [1, 0],
-          [0, 1]
+          [0, 1],
         ]);
         const A = builder.fromArray([
           [1, 2],
-          [3, 4]
+          [3, 4],
         ]);
         const x = vectorBuilder.fromValues(1, 2);
 
@@ -411,7 +401,7 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
       test('throws an error when the dimensions are not compatible', () => {
         const A = builder.fromArray([
           [1, 2],
-          [3, 4]
+          [3, 4],
         ]);
         const x = vectorBuilder.fromValues(1, 2, 3);
         expect(() => A.apply(x)).toThrow();
@@ -422,7 +412,7 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
       test('returns the transpose of the original matrix', () => {
         const M = builder.fromArray([
           [1, 2],
-          [3, 4]
+          [3, 4],
         ]);
         const mStar = M.adjoint();
         const mTrans = M.transpose();
@@ -437,7 +427,7 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
             .fromArray([
               [1, 2, 3],
               [4, 5, 6],
-              [7, 8, 9]
+              [7, 8, 9],
             ])
             .trace()
         ).toEqual(15);
@@ -457,12 +447,12 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
       test('builds a matrix by transforming the values of another matrix', () => {
         const original = builder.fromArray([
           [1, 2, 3],
-          [4, 5, 6]
+          [4, 5, 6],
         ]);
         const mapped = original.map((entry, i, j) => entry + i - j);
         const expected = builder.fromArray([
           [1, 1, 1],
-          [5, 5, 5]
+          [5, 5, 5],
         ]);
 
         expect(mapped).toStrictEqual(expected);
@@ -477,12 +467,12 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
       test('combines two matrices element-wise', () => {
         const first = builder.fromArray([
           [1, 2],
-          [3, 4]
+          [3, 4],
         ]);
 
         const second = builder.fromArray([
           [5, 6],
-          [7, 8]
+          [7, 8],
         ]);
 
         const combined = first.combine(second, (x, y) => {
@@ -492,7 +482,7 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
         expect(combined).toStrictEqual(
           builder.fromArray([
             [15, 26],
-            [37, 48]
+            [37, 48],
           ])
         );
       });

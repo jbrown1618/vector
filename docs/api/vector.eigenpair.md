@@ -16,6 +16,6 @@ export interface EigenPair<S>
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [eigenvalue](./vector.eigenpair.eigenvalue.md) | <code>S</code> |  |
-|  [eigenvector](./vector.eigenpair.eigenvector.md) | <code>Vector&lt;S&gt;</code> |  |
+|  [eigenvalue](./vector.eigenpair.eigenvalue.md) | S |  |
+|  [eigenvector](./vector.eigenpair.eigenvector.md) | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; |  |
 

@@ -16,9 +16,9 @@ export declare function prettyPrint(num: number): string;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  num | <code>number</code> |  |
+|  num | number |  |
 
 <b>Returns:</b>
 
-`string`
+string
 

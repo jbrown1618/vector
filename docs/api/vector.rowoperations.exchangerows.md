@@ -16,13 +16,13 @@ static exchangeRows<S>(matrix: Matrix<S>, first: number, second: number): Matrix
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  matrix | <code>Matrix&lt;S&gt;</code> | The original matrix |
-|  first | <code>number</code> | The index of the first row to exchange |
-|  second | <code>number</code> | The index of the second row to exchange |
+|  matrix | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The original matrix |
+|  first | number | The index of the first row to exchange |
+|  second | number | The index of the second row to exchange |
 
 <b>Returns:</b>
 
-`Matrix<S>`
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
 
 The matrix with the transformation applied
 

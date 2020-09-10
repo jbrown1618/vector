@@ -131,7 +131,7 @@ export abstract class ArrayVector<S = number> implements Vector<S> {
    * {@inheritDoc Vector.scalarMultiply}
    */
   public scalarMultiply(scalar: S): Vector<S> {
-    return this.map(entry => this.ops().multiply(entry, scalar));
+    return this.map((entry) => this.ops().multiply(entry, scalar));
   }
 
   /**

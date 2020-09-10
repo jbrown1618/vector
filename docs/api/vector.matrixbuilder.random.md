@@ -16,11 +16,11 @@ random(shape: MatrixShape, min?: number, max?: number): M;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  shape | <code>MatrixShape</code> | The shape of the matrix as a tuple |
-|  min | <code>number</code> | The lower limit of the random numbers to include |
-|  max | <code>number</code> | The upper limit of the random numbers to include |
+|  shape | [MatrixShape](./vector.matrixshape.md) | The shape of the matrix as a tuple |
+|  min | number | The lower limit of the random numbers to include |
+|  max | number | The upper limit of the random numbers to include |
 
 <b>Returns:</b>
 
-`M`
+M
 

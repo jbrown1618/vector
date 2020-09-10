@@ -16,11 +16,11 @@ outerProduct(other: Vector<number>): Matrix<number>;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  other | <code>Vector&lt;number&gt;</code> | The vector with which to calculate an outer product |
+|  other | [Vector](./vector.vector.md)<!-- -->&lt;number&gt; | The vector with which to calculate an outer product |
 
 <b>Returns:</b>
 
-`Matrix<number>`
+[Matrix](./vector.matrix.md)<!-- -->&lt;number&gt;
 
 The outer product
 

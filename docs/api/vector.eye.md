@@ -16,9 +16,9 @@ export declare function eye(size: number): Matrix;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  size | <code>number</code> |  |
+|  size | number |  |
 
 <b>Returns:</b>
 
-`Matrix`
+[Matrix](./vector.matrix.md)
 

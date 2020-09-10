@@ -16,10 +16,10 @@ train(data: Matrix, target: Vector): void;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  data | <code>Matrix</code> | A [Matrix](./vector.matrix.md) whose rows are the individual observations in the training set |
-|  target | <code>Vector</code> | A [Vector](./vector.vector.md) whose entries are the target values in the training set |
+|  data | [Matrix](./vector.matrix.md) | A [Matrix](./vector.matrix.md) whose rows are the individual observations in the training set |
+|  target | [Vector](./vector.vector.md) | A [Vector](./vector.vector.md) whose entries are the target values in the training set |
 
 <b>Returns:</b>
 
-`void`
+void
 

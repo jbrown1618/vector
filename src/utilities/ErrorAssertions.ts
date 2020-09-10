@@ -36,7 +36,7 @@ export function assertSquare<T>(matrix: Matrix<T>, message?: string): void {
 export function assertHomogeneous<T>(vectors: Vector<T>[], message?: string): void {
   message =
     message ||
-    `Expected vectors all to have the same dimension; got ${vectors.map(v => v.getDimension())}`;
+    `Expected vectors all to have the same dimension; got ${vectors.map((v) => v.getDimension())}`;
   if (vectors.length === 0) {
     return;
   }
@@ -120,8 +120,9 @@ export function assertValidMatrixIndex<T>(
   const [rows, cols] = matrix.getShape();
   message =
     message ||
-    `Expected indices between (0, 0) and (${rows - 1}, ${cols -
-      1}); got (${rowIndex}, ${colIndex})`;
+    `Expected indices between (0, 0) and (${rows - 1}, ${
+      cols - 1
+    }); got (${rowIndex}, ${colIndex})`;
   assertValidIndex(rowIndex, rows, message);
   assertValidIndex(colIndex, cols, message);
 }

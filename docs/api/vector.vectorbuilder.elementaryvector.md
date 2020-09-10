@@ -16,12 +16,12 @@ elementaryVector(dimension: number, oneIndex: number): V;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  dimension | <code>number</code> | The dimension of the new vector |
-|  oneIndex | <code>number</code> | The index of the element that should be the multiplicative identity |
+|  dimension | number | The dimension of the new vector |
+|  oneIndex | number | The index of the element that should be the multiplicative identity |
 
 <b>Returns:</b>
 
-`V`
+V
 
 The new vector
 

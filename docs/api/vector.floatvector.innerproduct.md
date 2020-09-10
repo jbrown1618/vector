@@ -16,11 +16,11 @@ innerProduct(other: Vector<number>): number;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  other | <code>Vector&lt;number&gt;</code> | The vector with which to calculate an inner product |
+|  other | [Vector](./vector.vector.md)<!-- -->&lt;number&gt; | The vector with which to calculate an inner product |
 
 <b>Returns:</b>
 
-`number`
+number
 
 The inner product
 

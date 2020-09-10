@@ -13,5 +13,5 @@ matrixBuilder(): MatrixBuilder<ComplexNumber, ComplexVector, ComplexMatrix>;
 ```
 <b>Returns:</b>
 
-`MatrixBuilder<ComplexNumber, ComplexVector, ComplexMatrix>`
+[MatrixBuilder](./vector.matrixbuilder.md)<!-- -->&lt;[ComplexNumber](./vector.complexnumber.md)<!-- -->, [ComplexVector](./vector.complexvector.md)<!-- -->, [ComplexMatrix](./vector.complexmatrix.md)<!-- -->&gt;
 

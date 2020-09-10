@@ -13,7 +13,7 @@ toArray(): S[][];
 ```
 <b>Returns:</b>
 
-`S[][]`
+S\[\]\[\]
 
 The contents of the matrix
 

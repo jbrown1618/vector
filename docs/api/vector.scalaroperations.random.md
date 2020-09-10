@@ -16,12 +16,12 @@ abstract random(min: number, max: number): S;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  min | <code>number</code> |  |
-|  max | <code>number</code> |  |
+|  min | number |  |
+|  max | number |  |
 
 <b>Returns:</b>
 
-`S`
+S
 
 The random scalar
 

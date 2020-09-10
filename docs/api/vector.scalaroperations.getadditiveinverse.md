@@ -16,11 +16,11 @@ abstract getAdditiveInverse(x: S): S;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  x | <code>S</code> |  |
+|  x | S |  |
 
 <b>Returns:</b>
 
-`S`
+S
 
 The additive inverse
 

@@ -16,11 +16,11 @@ export declare function mean<S>(A: Matrix<S>): Vector<S>;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  A | <code>Matrix&lt;S&gt;</code> | The matrix for which to find the mean vector |
+|  A | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The matrix for which to find the mean vector |
 
 <b>Returns:</b>
 
-`Vector<S>`
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;
 
 ## Remarks
 

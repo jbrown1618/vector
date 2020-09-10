@@ -13,7 +13,7 @@ trace(): number;
 ```
 <b>Returns:</b>
 
-`number`
+number
 
 The trace
 

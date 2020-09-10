@@ -16,11 +16,11 @@ random(dimension: number, min?: number, max?: number): V;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  dimension | <code>number</code> | The dimension of the new vector |
-|  min | <code>number</code> | The lower limit of the random numbers to include |
-|  max | <code>number</code> | The upper limit of the random numbers to include |
+|  dimension | number | The dimension of the new vector |
+|  min | number | The lower limit of the random numbers to include |
+|  max | number | The upper limit of the random numbers to include |
 
 <b>Returns:</b>
 
-`V`
+V
 

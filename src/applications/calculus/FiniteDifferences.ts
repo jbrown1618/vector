@@ -30,7 +30,7 @@ export function linspace(xMin: number, xMax: number, binCount: number): NumberVe
     throw Error(`Expected binCount to be nonnegative; got ${binCount}`);
   }
 
-  const indexToX: VectorIndexFunction<number> = index => {
+  const indexToX: VectorIndexFunction<number> = (index) => {
     return xMin + ((xMax - xMin) / binCount) * index;
   };
 

@@ -16,11 +16,11 @@ add(other: Vector<number>): Vector<number>;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  other | <code>Vector&lt;number&gt;</code> | The vector to add |
+|  other | [Vector](./vector.vector.md)<!-- -->&lt;number&gt; | The vector to add |
 
 <b>Returns:</b>
 
-`Vector<number>`
+[Vector](./vector.vector.md)<!-- -->&lt;number&gt;
 
 The vector sum
 

@@ -16,7 +16,7 @@ export interface SingularValueDecomposition<S>
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [Sigma](./vector.singularvaluedecomposition.sigma.md) | <code>Matrix&lt;S&gt;</code> |  |
-|  [U](./vector.singularvaluedecomposition.u.md) | <code>Matrix&lt;S&gt;</code> |  |
-|  [V](./vector.singularvaluedecomposition.v.md) | <code>Matrix&lt;S&gt;</code> |  |
+|  [Sigma](./vector.singularvaluedecomposition.sigma.md) | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; |  |
+|  [U](./vector.singularvaluedecomposition.u.md) | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; |  |
+|  [V](./vector.singularvaluedecomposition.v.md) | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; |  |
 

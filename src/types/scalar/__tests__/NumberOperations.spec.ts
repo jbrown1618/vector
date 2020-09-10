@@ -6,7 +6,7 @@ describe('NumberOperations', () => {
 
   describe('fromNumber', () => {
     test('creates a number whose real part is the input', () => {
-      [-1, 0, 1, 2].forEach(num => {
+      [-1, 0, 1, 2].forEach((num) => {
         expect(ops.fromNumber(num)).toEqual(num);
       });
     });
@@ -24,7 +24,7 @@ describe('NumberOperations', () => {
 
   describe('conjugate', () => {
     test('returns the original number, since real numbers are their own conjugate', () => {
-      testNumbers(n => {
+      testNumbers((n) => {
         const conj = ops.conjugate(n);
 
         expect(conj).toEqual(n);
@@ -43,7 +43,7 @@ describe('NumberOperations', () => {
 
   describe('getAdditiveInverse', () => {
     test('returns the additive inverse of a complex number', () => {
-      testNumbers(n => {
+      testNumbers((n) => {
         const inverse = ops.getAdditiveInverse(n);
 
         let zero = ops.add(n, inverse);
@@ -63,7 +63,7 @@ describe('NumberOperations', () => {
 
   describe('getMultiplicativeInverse', () => {
     test('returns the multiplicative inverse of a complex number', () => {
-      testNumbers(n => {
+      testNumbers((n) => {
         const inverse = ops.getMultiplicativeInverse(n);
 
         if (inverse === undefined) {
@@ -106,7 +106,7 @@ describe('NumberOperations', () => {
 
   describe('getPrincipalSquareRoot', () => {
     test('returns the positive square root', () => {
-      testNumbers(n => {
+      testNumbers((n) => {
         if (n < 0) {
           expect(ops.getPrincipalSquareRoot(n)).toBeUndefined;
         } else {
@@ -118,7 +118,7 @@ describe('NumberOperations', () => {
 
   describe('norm', () => {
     test('returns the absolute value of the number', () => {
-      testNumbers(n => {
+      testNumbers((n) => {
         expect(ops.norm(n)).toEqual(Math.abs(n));
       });
     });
@@ -126,7 +126,7 @@ describe('NumberOperations', () => {
 
   describe('equals', () => {
     test('typical complex numbers equal themselves', () => {
-      testNumbers(n => {
+      testNumbers((n) => {
         expect(ops.equals(n, n)).toBe(true);
       });
     });
@@ -161,15 +161,15 @@ describe('NumberOperations', () => {
 
   function testNumbers(executeTest: (n: number) => void) {
     const values: number[] = [0, 1, 3.14, -2];
-    values.forEach(value => {
+    values.forEach((value) => {
       executeTest(value);
     });
   }
 
   function testPairs(executeTest: (n1: number, n2: number) => void) {
     const values: number[] = [0, 1, 3.14, -2];
-    values.forEach(value1 => {
-      values.forEach(value2 => {
+    values.forEach((value1) => {
+      values.forEach((value2) => {
         executeTest(value1, value2);
       });
     });

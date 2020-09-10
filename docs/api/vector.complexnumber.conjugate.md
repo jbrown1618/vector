@@ -11,5 +11,5 @@ conjugate(): ComplexNumber;
 ```
 <b>Returns:</b>
 
-`ComplexNumber`
+[ComplexNumber](./vector.complexnumber.md)
 

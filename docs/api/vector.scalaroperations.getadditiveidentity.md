@@ -13,7 +13,7 @@ abstract getAdditiveIdentity(): S;
 ```
 <b>Returns:</b>
 
-`S`
+S
 
 The additive identity
 

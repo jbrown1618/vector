@@ -16,12 +16,12 @@ abstract equals(first: S, second: S): boolean;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  first | <code>S</code> |  |
-|  second | <code>S</code> |  |
+|  first | S |  |
+|  second | S |  |
 
 <b>Returns:</b>
 
-`boolean`
+boolean
 
 true if `first` is equal to `second`
 

@@ -40,7 +40,7 @@ export function kMeansClustering(X: Matrix, params: Partial<KMeansParameters>): 
 function updateLabels(rows: Vector[], centroids: Vector[], norm: Norm): Vector {
   const m = rows.length;
   const vectorBuilder = rows[0].builder();
-  return vectorBuilder.fromIndexFunction(m, i =>
+  return vectorBuilder.fromIndexFunction(m, (i) =>
     getIndexOfClosestCentroid(rows[i], centroids, norm)
   );
 }
@@ -71,7 +71,7 @@ function updateCentroids(rows: Vector[], labels: Vector): Vector[] {
     clusters[label].push(row);
   });
 
-  const centroids = clusters.map(cluster => {
+  const centroids = clusters.map((cluster) => {
     if (!cluster || !cluster.length) {
       throw new Error('TODO: re-initialize');
     }
@@ -88,14 +88,12 @@ function initializeCentroids(X: Matrix, k: number, n: number): Vector[] {
   const ops = X.ops();
   ops.randomNormal;
   const means = mean(X);
-  const stdDevs = standardDeviation(X).map(x => 2 * x);
+  const stdDevs = standardDeviation(X).map((x) => 2 * x);
 
   const cols: Vector[] = [];
   for (let i = 0; i < n; i++) {
     cols.push(vectorBuilder.randomNormal(k, means.getEntry(i), stdDevs.getEntry(i)));
   }
 
-  return X.builder()
-    .fromColumnVectors(cols)
-    .getRowVectors();
+  return X.builder().fromColumnVectors(cols).getRowVectors();
 }

@@ -16,9 +16,9 @@ export declare function standardize<S>(A: Matrix<S>): Matrix<S>;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  A | <code>Matrix&lt;S&gt;</code> | The matrix to standardize |
+|  A | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The matrix to standardize |
 
 <b>Returns:</b>
 
-`Matrix<S>`
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
 

@@ -16,9 +16,9 @@ export declare function standardize<S>(x: Vector<S>): Vector<S>;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  x | <code>Vector&lt;S&gt;</code> | The vector to standardize |
+|  x | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | The vector to standardize |
 
 <b>Returns:</b>
 
-`Vector<S>`
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;
 

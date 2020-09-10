@@ -16,10 +16,10 @@ export declare function hadamardProduct<S>(first: Vector<S>, second: Vector<S>):
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  first | <code>Vector&lt;S&gt;</code> | the left vector in the product |
-|  second | <code>Vector&lt;S&gt;</code> | the right vector in the product |
+|  first | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | the left vector in the product |
+|  second | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | the right vector in the product |
 
 <b>Returns:</b>
 
-`Vector<S>`
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;
 

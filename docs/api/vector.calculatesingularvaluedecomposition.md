@@ -16,11 +16,11 @@ export declare function calculateSingularValueDecomposition<S>(A: Matrix<S>): Si
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  A | <code>Matrix&lt;S&gt;</code> | the matrix to decompose |
+|  A | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | the matrix to decompose |
 
 <b>Returns:</b>
 
-`SingularValueDecomposition<S>`
+[SingularValueDecomposition](./vector.singularvaluedecomposition.md)<!-- -->&lt;S&gt;
 
 ## Remarks
 

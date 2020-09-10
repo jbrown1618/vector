@@ -14,9 +14,9 @@ fromValues(...data: VectorData<S>): V;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  data | <code>VectorData&lt;S&gt;</code> |  |
+|  data | [VectorData](./vector.vectordata.md)<!-- -->&lt;S&gt; |  |
 
 <b>Returns:</b>
 
-`V`
+V
 

@@ -46,10 +46,10 @@ export function pca<S>(A: Matrix<S>, useCorrelation = false): PrincipalComponent
   const pairs = eig(C);
 
   // The eigenvectors of the covariance matrix are the principal components of the data
-  const principalComponents = pairs.map(pair => pair.eigenvector);
+  const principalComponents = pairs.map((pair) => pair.eigenvector);
 
   // The eigenvalues of the covariance matrix are the variances of the principal components
-  const variances = pairs.map(pair => pair.eigenvalue);
+  const variances = pairs.map((pair) => pair.eigenvalue);
 
   // Reframe the data in the new basis
   const coordinates = A.multiply(A.builder().fromColumnVectors(principalComponents));
@@ -60,11 +60,11 @@ export function pca<S>(A: Matrix<S>, useCorrelation = false): PrincipalComponent
     : variances.reduce((total, next) => ops.add(total, next), ops.zero());
 
   // The proportion of the total variance explained by each variable
-  const proportions = variances.map(variance => ops.divide(variance, totalVariance)) as S[];
+  const proportions = variances.map((variance) => ops.divide(variance, totalVariance)) as S[];
 
   // The proportion of the total variance explained by the first k variables
   const cumulativeProportions: S[] = [];
-  proportions.forEach(prop => {
+  proportions.forEach((prop) => {
     const currentTotal =
       cumulativeProportions.length === 0
         ? ops.zero()

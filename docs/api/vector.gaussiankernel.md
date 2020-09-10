@@ -16,9 +16,9 @@ export declare function GaussianKernel(sigmaSquared: number): Kernel;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  sigmaSquared | <code>number</code> | The variance of the gaussian distribution used in the kernel |
+|  sigmaSquared | number | The variance of the gaussian distribution used in the kernel |
 
 <b>Returns:</b>
 
-`Kernel`
+[Kernel](./vector.kernel.md)
 

@@ -148,7 +148,7 @@ export abstract class SparseVector<S = number> implements Vector<S> {
   public add(other: Vector<S>): Vector<S> {
     assertHomogeneous([this, other]);
 
-    return this.builder().fromIndexFunction(this._dimension, i => {
+    return this.builder().fromIndexFunction(this._dimension, (i) => {
       return this.ops().add(this.getEntry(i), other.getEntry(i));
     });
   }

@@ -16,14 +16,14 @@ export declare function derivative(f: (x: number) => number, xMin: number, xMax:
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  f | <code>(x: number) =&gt; number</code> | A deterministic function with no side effects |
-|  xMin | <code>number</code> | The minimum value for which the derivative will be approximated |
-|  xMax | <code>number</code> | The maximum (exclusive) value for which the derivative will be approximated |
-|  binCount | <code>number</code> | The number of approximations |
+|  f | (x: number) =&gt; number | A deterministic function with no side effects |
+|  xMin | number | The minimum value for which the derivative will be approximated |
+|  xMax | number | The maximum (exclusive) value for which the derivative will be approximated |
+|  binCount | number | The number of approximations |
 
 <b>Returns:</b>
 
-`Vector`
+[Vector](./vector.vector.md)
 
 A linearly spaced vector whose values represent the values of the derivative
 

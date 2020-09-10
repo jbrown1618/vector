@@ -16,11 +16,11 @@ diagonal(diagonalEntries: Vector<S>): M;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  diagonalEntries | <code>Vector&lt;S&gt;</code> | A vector whose entries will be used as the diagonal entries of the new matrix |
+|  diagonalEntries | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | A vector whose entries will be used as the diagonal entries of the new matrix |
 
 <b>Returns:</b>
 
-`M`
+M
 
 The new matrix
 

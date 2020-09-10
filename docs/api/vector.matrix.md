@@ -11,6 +11,7 @@ A generalized Matrix - one of the core data types
 ```typescript
 export interface Matrix<S = number> extends LinearTransformation<Vector<S>, Vector<S>> 
 ```
+<b>Extends:</b> [LinearTransformation](./vector.lineartransformation.md)<!-- -->&lt;[Vector](./vector.vector.md)<!-- -->&lt;S&gt;, [Vector](./vector.vector.md)<!-- -->&lt;S&gt;&gt;
 
 ## Methods
 

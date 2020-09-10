@@ -16,12 +16,12 @@ set(index: number, value: number): Vector<number>;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  index | <code>number</code> | The index of the value to replace |
-|  value | <code>number</code> | The new value |
+|  index | number | The index of the value to replace |
+|  value | number | The new value |
 
 <b>Returns:</b>
 
-`Vector<number>`
+[Vector](./vector.vector.md)<!-- -->&lt;number&gt;
 
 The new vector
 

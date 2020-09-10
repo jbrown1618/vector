@@ -50,7 +50,7 @@ export class LinearRegressor implements Regressor<LinearRegressorHyperparams> {
   public getHyperParameters(): LinearRegressorHyperparams {
     return {
       ...this.getDefaultHyperParameters(),
-      ...this._hyperParameters
+      ...this._hyperParameters,
     };
   }
 
@@ -59,9 +59,9 @@ export class LinearRegressor implements Regressor<LinearRegressorHyperparams> {
    */
   public train(data: Matrix, target: Vector): void {
     const initialTheta = FloatVector.builder().random(data.getNumberOfColumns() + 1, -0.01, 0.01);
-    this._theta = gradientDescent(this._hyperParameters)(initialTheta, theta => ({
+    this._theta = gradientDescent(this._hyperParameters)(initialTheta, (theta) => ({
       cost: this.calculateCost(data, target, theta),
-      gradient: this.calculateGradient(data, target, theta)
+      gradient: this.calculateGradient(data, target, theta),
     }));
   }
 
@@ -77,11 +77,11 @@ export class LinearRegressor implements Regressor<LinearRegressorHyperparams> {
     const { lambda } = this.getHyperParameters();
     const predictions = this.makePredictions(data, theta);
     const residuals = target.scalarMultiply(-1).add(predictions);
-    const squaredResiduals = residuals.map(entry => entry ** 2);
+    const squaredResiduals = residuals.map((entry) => entry ** 2);
     const meanSquaredError =
       squaredResiduals.toArray().reduce((prev, curr) => prev + curr, 0) / data.getNumberOfRows();
 
-    const penalty: (x: number) => number = x => x * x;
+    const penalty: (x: number) => number = (x) => x * x;
     const paramSum = theta.toArray().reduce((prev, curr) => penalty(prev) + curr, 0);
     const regularizationTerm = (paramSum - theta.getEntry(0)) * lambda;
 
@@ -112,7 +112,7 @@ export class LinearRegressor implements Regressor<LinearRegressorHyperparams> {
   private getDefaultHyperParameters(): LinearRegressorHyperparams {
     return {
       lambda: 0,
-      alpha: 0.01
+      alpha: 0.01,
     };
   }
 }

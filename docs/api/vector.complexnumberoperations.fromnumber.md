@@ -16,11 +16,11 @@ fromNumber(num: number): ComplexNumber;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  num | <code>number</code> |  |
+|  num | number |  |
 
 <b>Returns:</b>
 
-`ComplexNumber`
+[ComplexNumber](./vector.complexnumber.md)
 
 The scalar
 

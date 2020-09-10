@@ -11,6 +11,7 @@ A dense matrix of JavaScript `number` primitives, implemented as an [ArrayMatrix
 ```typescript
 export declare class NumberMatrix extends ArrayMatrix<number> 
 ```
+<b>Extends:</b> [ArrayMatrix](./vector.arraymatrix.md)<!-- -->&lt;number&gt;
 
 ## Remarks
 

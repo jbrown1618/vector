@@ -16,10 +16,10 @@ export declare function pow<S>(A: Matrix<S>, n: number): Matrix<S>;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  A | <code>Matrix&lt;S&gt;</code> | The matrix to raise to a power <code>n</code> |
-|  n | <code>number</code> | The power to which to raise <code>A</code> |
+|  A | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The matrix to raise to a power <code>n</code> |
+|  n | number | The power to which to raise <code>A</code> |
 
 <b>Returns:</b>
 
-`Matrix<S>`
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
 

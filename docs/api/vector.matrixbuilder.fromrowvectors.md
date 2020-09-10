@@ -16,11 +16,11 @@ fromRowVectors(rows: Vector<S>[]): M;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  rows | <code>Vector&lt;S&gt;[]</code> | The vectors to use as the rows of the new matrix |
+|  rows | [Vector](./vector.vector.md)<!-- -->&lt;S&gt;\[\] | The vectors to use as the rows of the new matrix |
 
 <b>Returns:</b>
 
-`M`
+M
 
 The new matrix
 

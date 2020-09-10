@@ -16,11 +16,11 @@ getPrincipalSquareRoot(x: ComplexNumber): ComplexNumber;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  x | <code>ComplexNumber</code> |  |
+|  x | [ComplexNumber](./vector.complexnumber.md) |  |
 
 <b>Returns:</b>
 
-`ComplexNumber`
+[ComplexNumber](./vector.complexnumber.md)
 
 The square root
 

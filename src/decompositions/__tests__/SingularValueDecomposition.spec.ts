@@ -7,7 +7,7 @@ describe('SingularValueDecomposition', () => {
     test('calculates the Singular Value Decomposition of a matrix A', () => {
       const A = mat([
         [3, 2, 2],
-        [2, 3, -2]
+        [2, 3, -2],
       ]);
 
       const oneOverRootTwo = 1 / Math.sqrt(2);
@@ -16,12 +16,12 @@ describe('SingularValueDecomposition', () => {
       const expectedSigma = diag([5, 3]);
       const expectedU = mat([
         [oneOverRootTwo, oneOverRootTwo],
-        [oneOverRootTwo, -1 * oneOverRootTwo]
+        [oneOverRootTwo, -1 * oneOverRootTwo],
       ]);
       const expectedV = mat([
         [oneOverRootTwo, oneOverRootEighteen],
         [oneOverRootTwo, -1 * oneOverRootEighteen],
-        [0, 4 * oneOverRootEighteen]
+        [0, 4 * oneOverRootEighteen],
       ]);
 
       const { U, Sigma, V } = calculateSingularValueDecomposition(A);

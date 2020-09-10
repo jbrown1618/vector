@@ -11,7 +11,7 @@ export function loadTestData(name: string): Matrix {
   if (cache.has(name)) return cache.get(name) as Matrix;
 
   const contents = fs.readFileSync(path.resolve(__dirname, '../data/', name + '.csv')).toString();
-  const data = (csvParser(contents) as any[][]).map(row => row.map(entry => parseFloat(entry)));
+  const data = (csvParser(contents) as any[][]).map((row) => row.map((entry) => parseFloat(entry)));
   return mat(data);
 }
 

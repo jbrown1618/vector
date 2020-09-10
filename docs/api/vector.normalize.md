@@ -16,11 +16,11 @@ export declare function normalize<S>(v: Vector<S>): Vector<S> | undefined;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  v | <code>Vector&lt;S&gt;</code> | The vector to normalize |
+|  v | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | The vector to normalize |
 
 <b>Returns:</b>
 
-`Vector<S> | undefined`
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt; \| undefined
 
 ## Example
 

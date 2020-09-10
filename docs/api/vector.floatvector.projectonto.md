@@ -16,11 +16,11 @@ projectOnto(u: Vector<number>): Vector<number>;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  u | <code>Vector&lt;number&gt;</code> | The vector on which to project this |
+|  u | [Vector](./vector.vector.md)<!-- -->&lt;number&gt; | The vector on which to project this |
 
 <b>Returns:</b>
 
-`Vector<number>`
+[Vector](./vector.vector.md)<!-- -->&lt;number&gt;
 
 This vector projected onto `u`
 

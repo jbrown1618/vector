@@ -14,9 +14,9 @@ fromNumberArray(data: VectorData<number>): V;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  data | <code>VectorData&lt;number&gt;</code> |  |
+|  data | [VectorData](./vector.vectordata.md)<!-- -->&lt;number&gt; |  |
 
 <b>Returns:</b>
 
-`V`
+V
 

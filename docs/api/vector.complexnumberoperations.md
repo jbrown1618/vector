@@ -11,6 +11,7 @@ Implements the basic [ScalarOperations](./vector.scalaroperations.md) on [Comple
 ```typescript
 export declare class ComplexNumberOperations extends ScalarOperations<ComplexNumber> 
 ```
+<b>Extends:</b> [ScalarOperations](./vector.scalaroperations.md)<!-- -->&lt;[ComplexNumber](./vector.complexnumber.md)<!-- -->&gt;
 
 ## Methods
 

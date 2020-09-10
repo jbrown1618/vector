@@ -16,11 +16,11 @@ map(valueFromEntry: (entry: S, index: number) => S): Vector<S>;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  valueFromEntry | <code>(entry: S, index: number) =&gt; S</code> | A function which takes an entry of the original vector and its index, and returns the corresponding entry of the new vector |
+|  valueFromEntry | (entry: S, index: number) =&gt; S | A function which takes an entry of the original vector and its index, and returns the corresponding entry of the new vector |
 
 <b>Returns:</b>
 
-`Vector<S>`
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;
 
 The new vector
 

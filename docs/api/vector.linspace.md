@@ -16,13 +16,13 @@ export declare function linspace(xMin: number, xMax: number, binCount: number): 
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  xMin | <code>number</code> | The smallest value in the vector |
-|  xMax | <code>number</code> | The largest value in the vector |
-|  binCount | <code>number</code> | The number of entries |
+|  xMin | number | The smallest value in the vector |
+|  xMax | number | The largest value in the vector |
+|  binCount | number | The number of entries |
 
 <b>Returns:</b>
 
-`NumberVector`
+[NumberVector](./vector.numbervector.md)
 
 The evenly-spaced vector
 

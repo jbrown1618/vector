@@ -16,11 +16,11 @@ circulant(vector: Vector<S>): M;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  vector | <code>Vector&lt;S&gt;</code> | The vector whose entries to use in the circulant matrix |
+|  vector | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | The vector whose entries to use in the circulant matrix |
 
 <b>Returns:</b>
 
-`M`
+M
 
 ## Example
 

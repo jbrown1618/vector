@@ -13,7 +13,7 @@ getAdditiveIdentity(): number;
 ```
 <b>Returns:</b>
 
-`number`
+number
 
 The additive identity
 

@@ -16,11 +16,11 @@ export declare function isIdentity<S>(matrix: Matrix<S>): boolean;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  matrix | <code>Matrix&lt;S&gt;</code> |  |
+|  matrix | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; |  |
 
 <b>Returns:</b>
 
-`boolean`
+boolean
 
 `true` if the matrix is an identity
 

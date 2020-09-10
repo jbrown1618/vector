@@ -16,10 +16,10 @@ export declare function getEigenvectorForEigenvalue<S>(A: Matrix<S>, lambda: S):
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  A | <code>Matrix&lt;S&gt;</code> | The matrix with eigenvalue <code>lambda</code> |
-|  lambda | <code>S</code> | The eigenvalue for which to find an eigenvector |
+|  A | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The matrix with eigenvalue <code>lambda</code> |
+|  lambda | S | The eigenvalue for which to find an eigenvector |
 
 <b>Returns:</b>
 
-`Vector<S>`
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;
 

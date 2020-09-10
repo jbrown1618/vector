@@ -34,7 +34,7 @@ export function solveByForwardSubstitution<S>(L: Matrix<S>, b: Vector<S>): Linea
 
       if (!ops.equals(entryNumerator, ops.zero()) && ops.equals(entryDenominator, ops.zero())) {
         return {
-          solutionType: SolutionType.OVERDETERMINED
+          solutionType: SolutionType.OVERDETERMINED,
         };
       } else if (entry === undefined || ops.equals(entryDenominator, ops.zero())) {
         isUnique = false;
@@ -47,7 +47,7 @@ export function solveByForwardSubstitution<S>(L: Matrix<S>, b: Vector<S>): Linea
       // remaining rows make the system inconsistent
       if (!ops.equals(ops.subtract(b.getEntry(rowIndex), sum), ops.zero())) {
         return {
-          solutionType: SolutionType.OVERDETERMINED
+          solutionType: SolutionType.OVERDETERMINED,
         };
       }
     }
@@ -56,12 +56,12 @@ export function solveByForwardSubstitution<S>(L: Matrix<S>, b: Vector<S>): Linea
   if (isUnique) {
     return {
       solutionType: SolutionType.UNIQUE,
-      solution: vectorBuilder.fromArray(solution)
+      solution: vectorBuilder.fromArray(solution),
     };
   } else {
     return {
       solutionType: SolutionType.UNDERDETERMINED,
-      solution: vectorBuilder.fromArray(solution)
+      solution: vectorBuilder.fromArray(solution),
     };
   }
 }
@@ -107,7 +107,7 @@ export function solveByBackwardSubstitution<S>(U: Matrix<S>, b: Vector<S>): Line
       // are nonzero.  If so, the system is inconsistent.
       if (!ops.equals(b.getEntry(rowIndex), ops.zero())) {
         return {
-          solutionType: SolutionType.OVERDETERMINED
+          solutionType: SolutionType.OVERDETERMINED,
         };
       }
     } else {
@@ -122,7 +122,7 @@ export function solveByBackwardSubstitution<S>(U: Matrix<S>, b: Vector<S>): Line
 
       if (!ops.equals(entryNumerator, ops.zero()) && ops.equals(entryDenominator, ops.zero())) {
         return {
-          solutionType: SolutionType.OVERDETERMINED
+          solutionType: SolutionType.OVERDETERMINED,
         };
       } else if (entry === undefined || ops.equals(entryDenominator, ops.zero())) {
         isUnique = false;
@@ -136,12 +136,12 @@ export function solveByBackwardSubstitution<S>(U: Matrix<S>, b: Vector<S>): Line
   if (isUnique) {
     return {
       solutionType: SolutionType.UNIQUE,
-      solution: vectorBuilder.fromArray(solution)
+      solution: vectorBuilder.fromArray(solution),
     };
   } else {
     return {
       solutionType: SolutionType.UNDERDETERMINED,
-      solution: vectorBuilder.fromArray(solution)
+      solution: vectorBuilder.fromArray(solution),
     };
   }
 }

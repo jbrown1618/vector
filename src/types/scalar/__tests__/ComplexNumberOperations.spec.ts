@@ -7,7 +7,7 @@ describe('ComplexNumberOperations', () => {
 
   describe('fromNumber', () => {
     test('creates a complex number whose real part is the input', () => {
-      [-1, 0, 1, 2].forEach(num => {
+      [-1, 0, 1, 2].forEach((num) => {
         expect(ops.fromNumber(num)).toStrictEqual(new ComplexNumber(num, 0));
       });
     });
@@ -215,8 +215,8 @@ describe('ComplexNumberOperations', () => {
 
   function testComplexNumbers(executeTest: (r: number, i: number) => void) {
     const values: number[] = [0, 1, 3.14, -2];
-    values.forEach(realPart => {
-      values.forEach(imaginaryPart => {
+    values.forEach((realPart) => {
+      values.forEach((imaginaryPart) => {
         executeTest(realPart, imaginaryPart);
       });
     });

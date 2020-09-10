@@ -11,5 +11,5 @@ static vectorBuilder(): VectorBuilder<number, SparseNumberVector>;
 ```
 <b>Returns:</b>
 
-`VectorBuilder<number, SparseNumberVector>`
+[VectorBuilder](./vector.vectorbuilder.md)<!-- -->&lt;number, [SparseNumberVector](./vector.sparsenumbervector.md)<!-- -->&gt;
 

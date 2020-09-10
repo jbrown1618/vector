@@ -16,11 +16,11 @@ abstract getMultiplicativeInverse(x: S): S | undefined;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  x | <code>S</code> |  |
+|  x | S |  |
 
 <b>Returns:</b>
 
-`S | undefined`
+S \| undefined
 
 The multiplicative inverse
 

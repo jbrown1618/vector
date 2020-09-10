@@ -13,5 +13,5 @@ getHyperParameters(): SupportVectorMachineHyperparams;
 ```
 <b>Returns:</b>
 
-`SupportVectorMachineHyperparams`
+[SupportVectorMachineHyperparams](./vector.supportvectormachinehyperparams.md)
 

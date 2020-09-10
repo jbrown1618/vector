@@ -4,7 +4,7 @@ import {
   centralDifferenceMatrix,
   derivative,
   forwardDifferenceMatrix,
-  linspace
+  linspace,
 } from '../FiniteDifferences';
 
 describe('FiniteDifferences', () => {
@@ -30,7 +30,7 @@ describe('FiniteDifferences', () => {
         [-1, 1, 0, 0],
         [0, -1, 1, 0],
         [0, 0, -1, 1],
-        [0, 0, 0, -1]
+        [0, 0, 0, -1],
       ]);
       const forwardDifference = forwardDifferenceMatrix(4);
       expect(forwardDifference.equals(expected)).toBe(true);
@@ -43,7 +43,7 @@ describe('FiniteDifferences', () => {
         [1, 0, 0, 0],
         [-1, 1, 0, 0],
         [0, -1, 1, 0],
-        [0, 0, -1, 1]
+        [0, 0, -1, 1],
       ]);
       const backwardDifference = backwardDifferenceMatrix(4);
       expect(backwardDifference.equals(expected)).toBe(true);
@@ -56,7 +56,7 @@ describe('FiniteDifferences', () => {
         [0, 1 / 2, 0, 0],
         [-1 / 2, 0, 1 / 2, 0],
         [0, -1 / 2, 0, 1 / 2],
-        [0, 0, -1 / 2, 0]
+        [0, 0, -1 / 2, 0],
       ]);
       const centralDifference = centralDifferenceMatrix(4);
       expect(centralDifference.equals(expected)).toBe(true);
@@ -86,12 +86,12 @@ describe('FiniteDifferences', () => {
 
       testDifferentiation(Math.sin, Math.cos);
       testDifferentiation(
-        x => Math.pow(x, 2),
-        x => 2 * x
+        (x) => Math.pow(x, 2),
+        (x) => 2 * x
       );
       testDifferentiation(
-        x => Math.pow(x, 3),
-        x => 3 * Math.pow(x, 2)
+        (x) => Math.pow(x, 3),
+        (x) => 3 * Math.pow(x, 2)
       );
     });
   });

@@ -16,13 +16,13 @@ static multiplyRowByScalar<S>(matrix: Matrix<S>, rowIndex: number, scalar: S): M
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  matrix | <code>Matrix&lt;S&gt;</code> | The original matrix |
-|  rowIndex | <code>number</code> | The index of the row to modify |
-|  scalar | <code>S</code> | The factor by which to scale the row |
+|  matrix | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The original matrix |
+|  rowIndex | number | The index of the row to modify |
+|  scalar | S | The factor by which to scale the row |
 
 <b>Returns:</b>
 
-`Matrix<S>`
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
 
 The matrix with the transformation applied
 

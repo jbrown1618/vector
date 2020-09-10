@@ -16,9 +16,9 @@ export declare function vec(data: number[]): Vector;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  data | <code>number[]</code> |  |
+|  data | number\[\] |  |
 
 <b>Returns:</b>
 
-`Vector`
+[Vector](./vector.vector.md)
 

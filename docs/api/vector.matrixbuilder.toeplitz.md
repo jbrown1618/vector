@@ -16,12 +16,12 @@ toeplitz(firstColumn: Vector<S>, firstRow?: Vector<S>): M;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  firstColumn | <code>Vector&lt;S&gt;</code> | The first column of the Toeplitz matrix |
-|  firstRow | <code>Vector&lt;S&gt;</code> | The first row of the Toeplitz matrix |
+|  firstColumn | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | The first column of the Toeplitz matrix |
+|  firstRow | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | The first row of the Toeplitz matrix |
 
 <b>Returns:</b>
 
-`M`
+M
 
 ## Example
 

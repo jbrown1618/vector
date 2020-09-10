@@ -13,7 +13,7 @@ getMultiplicativeIdentity(): ComplexNumber;
 ```
 <b>Returns:</b>
 
-`ComplexNumber`
+[ComplexNumber](./vector.complexnumber.md)
 
 The multiplicative identity
 

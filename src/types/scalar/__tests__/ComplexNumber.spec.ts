@@ -142,8 +142,8 @@ describe('ComplexNumber', () => {
 
   function testComplexNumbers(executeTest: (r: number, i: number) => void) {
     const values: number[] = [0, 1, 3.14, -2];
-    values.forEach(realPart => {
-      values.forEach(imaginaryPart => {
+    values.forEach((realPart) => {
+      values.forEach((imaginaryPart) => {
         executeTest(realPart, imaginaryPart);
       });
     });

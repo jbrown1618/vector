@@ -16,11 +16,11 @@ export declare function calculateLinearLeastSquares<S>(dataPoints: Vector<S>[]):
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  dataPoints | <code>Vector&lt;S&gt;[]</code> | An array of vectors, each of which represents a single data point where the last entry is the variable to be predicted, and the other entries are the values of the independent variables |
+|  dataPoints | [Vector](./vector.vector.md)<!-- -->&lt;S&gt;\[\] | An array of vectors, each of which represents a single data point where the last entry is the variable to be predicted, and the other entries are the values of the independent variables |
 
 <b>Returns:</b>
 
-`LeastSquaresApproximation<S>`
+[LeastSquaresApproximation](./vector.leastsquaresapproximation.md)<!-- -->&lt;S&gt;
 
 - the result of the linear regression
 
