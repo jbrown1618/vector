@@ -1,9 +1,12 @@
 import { Matrix } from '../types/matrix/Matrix';
 import { Vector } from '../types/vector/Vector';
 import { assertSquare } from '../utilities/ErrorAssertions';
-import { LinearSolution } from '../solvers/LinearSolution';
+import { LinearSolution, SolutionType } from '../solvers/LinearSolution';
 import { RowOperations } from './RowOperations';
-import { backwardSubstituteAugmentedMatrix } from '../solvers/Substitution';
+import {
+  backwardSubstituteAugmentedMatrix,
+  extractSolutionFromRrefAugmentedMatrix,
+} from '../solvers/Substitution';
 
 /**
  * Uses Gauss-Jordan elimination with pivoting and backward substitution
@@ -16,8 +19,29 @@ import { backwardSubstituteAugmentedMatrix } from '../solvers/Substitution';
  */
 export function solveByGaussianElimination<S>(A: Matrix<S>, b: Vector<S>): LinearSolution<S> {
   const augmented = A.builder().augment(A, A.builder().fromColumnVectors([b]));
-  const ref = rowEchelonForm(augmented);
-  return backwardSubstituteAugmentedMatrix(ref);
+
+  const [m, n] = A.getShape();
+  if (m === n) {
+    // This is a square matrix, so we might be able to use ref and backward substitution
+    const ref = rowEchelonForm(augmented);
+
+    // First try backward substitution because it is cheap
+    const uniqueSolution = backwardSubstituteAugmentedMatrix(ref);
+    if (uniqueSolution !== undefined) {
+      return {
+        solutionType: SolutionType.UNIQUE,
+        solution: uniqueSolution,
+      };
+    }
+
+    // The matrix is singular; proceed to rref and read solutions
+    const rref = continueToReducedRowEchelonForm(ref);
+    return extractSolutionFromRrefAugmentedMatrix(rref);
+  } else {
+    // The matrix is singular; proceed to rref and read solutions
+    const rref = reducedRowEchelonForm(augmented);
+    return extractSolutionFromRrefAugmentedMatrix(rref);
+  }
 }
 
 /**
@@ -76,14 +100,18 @@ export function rank<S>(matrix: Matrix<S>): number {
  * @public
  */
 export function reducedRowEchelonForm<S>(matrix: Matrix<S>): Matrix<S> {
-  const ops = matrix.ops();
-  matrix = rowEchelonForm(matrix);
-  const [m, n] = matrix.getShape();
+  const ref = rowEchelonForm(matrix);
+  return continueToReducedRowEchelonForm(ref);
+}
+
+function continueToReducedRowEchelonForm<S>(ref: Matrix<S>): Matrix<S> {
+  const ops = ref.ops();
+  const [m, n] = ref.getShape();
 
   // Scale the rows
   for (let rowIndex = 0; rowIndex < m; rowIndex++) {
     let firstNonzeroEntry: S | undefined = undefined;
-    for (const entry of matrix.getRow(rowIndex).toArray()) {
+    for (const entry of ref.getRow(rowIndex).toArray()) {
       if (!ops.equals(ops.zero(), entry)) {
         firstNonzeroEntry = entry;
         break;
@@ -91,21 +119,21 @@ export function reducedRowEchelonForm<S>(matrix: Matrix<S>): Matrix<S> {
     }
     if (firstNonzeroEntry) {
       const inverse = ops.getMultiplicativeInverse(firstNonzeroEntry) as S;
-      matrix = RowOperations.multiplyRowByScalar(matrix, rowIndex, inverse);
+      ref = RowOperations.multiplyRowByScalar(ref, rowIndex, inverse);
     }
   }
 
   // Clear above the pivot entries
   const maxNumberOfPivotEntries = Math.min(m, n);
   for (let pivotRow = maxNumberOfPivotEntries - 1; pivotRow >= 0; pivotRow--) {
-    const pivotColumn = matrix.getRow(pivotRow).toArray().indexOf(ops.one());
+    const pivotColumn = ref.getRow(pivotRow).toArray().indexOf(ops.one());
     if (pivotColumn === -1) {
       continue;
     }
-    matrix = clearEntriesAbove(matrix, pivotRow, pivotColumn);
+    ref = clearEntriesAbove(ref, pivotRow, pivotColumn);
   }
 
-  return matrix;
+  return ref;
 }
 
 /**
