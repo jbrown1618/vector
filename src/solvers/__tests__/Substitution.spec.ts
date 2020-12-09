@@ -1,10 +1,5 @@
 import { mat, vec } from '../../utilities/aliases';
 import {
-  SolutionType,
-  UnderdeterminedSolution,
-  UniqueSolution,
-} from '../../solvers/LinearSolution';
-import {
   backwardSubstituteAugmentedMatrix,
   forwardSubstituteAugmentedMatrix,
   solveByBackwardSubstitution,
@@ -20,92 +15,74 @@ describe('Substitution', () => {
         [3, 3, 2],
       ]);
       const b = vec([3, 2, 3]);
-      const solution = solveByForwardSubstitution(L, b);
 
-      expect(solution.solutionType).toEqual(SolutionType.UNIQUE);
-      const x = (solution as UniqueSolution<number>).solution;
+      const x = solveByForwardSubstitution(L, b)!;
+
       expect(x).toStrictEqual(vec([1.5, -1, 3 / 4]));
       expect(L.apply(x)).toStrictEqual(b);
     });
 
-    test('solves an underdetermined lower-triangular system', () => {
-      const L = mat([
-        [0, 0, 0],
-        [0, 0, 0],
-        [1, 1, 1],
-      ]);
-      const b = vec([0, 0, 3]);
-      const solution = solveByForwardSubstitution(L, b);
+    test('returns undefined for underdetermined system', () => {
+      expect(
+        solveByForwardSubstitution(
+          mat([
+            [0, 0, 0],
+            [0, 0, 0],
+            [1, 1, 1],
+          ]),
+          vec([0, 0, 3])
+        )
+      ).toBeUndefined();
 
-      expect(solution.solutionType).toEqual(SolutionType.UNDERDETERMINED);
-      const x = (solution as UnderdeterminedSolution<number>).solution;
-      expect(L.apply(x)).toStrictEqual(b);
+      expect(
+        solveByForwardSubstitution(
+          mat([
+            [0, 0, 0],
+            [1, 0, 0],
+            [0, 2, 0],
+          ]),
+          vec([0, 0, 0])
+        )
+      ).toBeUndefined();
     });
 
-    test('solves an overdetermined lower-triangular system', () => {
-      const L = mat([
-        [0, 0],
-        [1, 1],
-      ]);
-      const b = vec([1, 1]);
-      const solution = solveByForwardSubstitution(L, b);
-
-      expect(solution.solutionType).toEqual(SolutionType.OVERDETERMINED);
+    test('returns undefined for an overdetermined system', () => {
+      expect(
+        solveByForwardSubstitution(
+          mat([
+            [0, 0],
+            [1, 1],
+          ]),
+          vec([1, 1])
+        )
+      ).toBeUndefined();
     });
 
-    test('solves a unique "tall" system', () => {
-      const L = mat([
-        [1, 0],
-        [0, 1],
-        [0, 1],
-      ]);
-      const b = vec([1, 2, 2]);
-      const expected = vec([1, 2]);
-      const solution = solveByForwardSubstitution(L, b);
-      expect(solution.solutionType).toEqual(SolutionType.UNIQUE);
-      expect((solution as UniqueSolution<number>).solution).toStrictEqual(expected);
+    test('throws for non-square matrices', () => {
+      expect(() => {
+        solveByForwardSubstitution(
+          mat([
+            [1, 0],
+            [0, 1],
+            [0, 1],
+          ]),
+          vec([1, 2, 2])
+        );
+      }).toThrow();
+
+      expect(() => {
+        solveByForwardSubstitution(
+          mat([
+            [1, 0, 0],
+            [0, 1, 0],
+          ]),
+          vec([1, 2])
+        );
+      }).toThrow();
     });
 
-    test('solves an overdetermined "tall" system', () => {
-      const L = mat([
-        [1, 0],
-        [3, 4],
-        [5, 6],
-      ]);
-      const b = vec([1, 2, 3]);
-      const solution = solveByForwardSubstitution(L, b);
-      expect(solution.solutionType).toEqual(SolutionType.OVERDETERMINED);
-    });
-
-    test('solves an underdetermined "tall" system', () => {
-      const L = mat([
-        [1, 0],
-        [1, 0],
-        [1, 0],
-      ]);
-      const b = vec([1, 1, 1]);
-      const solution = solveByForwardSubstitution(L, b);
-      expect(solution.solutionType).toEqual(SolutionType.UNDERDETERMINED);
-    });
-
-    test('solves an underdetermined "wide" system', () => {
-      const L = mat([
-        [1, 0, 0],
-        [0, 1, 0],
-      ]);
-      const b = vec([1, 2]);
-      const solution = solveByForwardSubstitution(L, b);
-      expect(solution.solutionType).toEqual(SolutionType.UNDERDETERMINED);
-    });
-
-    test('solves an overdetermined "wide" system', () => {
-      const L = mat([
-        [1, 0, 0],
-        [1, 0, 0],
-      ]);
-      const b = vec([1, 2]);
-      const solution = solveByForwardSubstitution(L, b);
-      expect(solution.solutionType).toEqual(SolutionType.OVERDETERMINED);
+    test('handles the trivial case', () => {
+      expect(solveByForwardSubstitution(mat([]), vec([]))).toStrictEqual(vec([]));
     });
   });
 
@@ -116,32 +93,30 @@ describe('Substitution', () => {
         [2, 1, 0, 2],
         [3, 3, 2, 3],
       ]);
-      const solution = forwardSubstituteAugmentedMatrix(L);
+      const x = forwardSubstituteAugmentedMatrix(L);
 
-      expect(solution.solutionType).toEqual(SolutionType.UNIQUE);
-      const x = (solution as UniqueSolution<number>).solution;
       expect(x).toStrictEqual(vec([1.5, -1, 3 / 4]));
     });
 
-    test('solves an underdetermined lower-triangular system', () => {
+    test('returns undefined for an underdetermined lower-triangular system', () => {
       const L = mat([
         [0, 0, 0, 0],
         [0, 0, 0, 0],
         [1, 1, 1, 3],
       ]);
-      const solution = forwardSubstituteAugmentedMatrix(L);
+      const x = forwardSubstituteAugmentedMatrix(L);
 
-      expect(solution.solutionType).toEqual(SolutionType.UNDERDETERMINED);
+      expect(x).toBeUndefined();
     });
 
-    test('solves an overdetermined lower-triangular system', () => {
+    test('returns undefined for an overdetermined lower-triangular system', () => {
       const L = mat([
         [0, 0, 1],
         [1, 1, 1],
       ]);
-      const solution = forwardSubstituteAugmentedMatrix(L);
+      const x = forwardSubstituteAugmentedMatrix(L);
 
-      expect(solution.solutionType).toEqual(SolutionType.OVERDETERMINED);
+      expect(x).toBeUndefined();
     });
   });
 
@@ -153,92 +128,70 @@ describe('Substitution', () => {
         [0, 0, 2],
       ]);
       const b = vec([3, 2, 3]);
-      const solution = solveByBackwardSubstitution(U, b);
+      const x = solveByBackwardSubstitution(U, b)!;
 
-      expect(solution.solutionType).toEqual(SolutionType.UNIQUE);
-      const x = (solution as UniqueSolution<number>).solution;
       expect(x).toStrictEqual(vec([0.25, -1, 1.5]));
       expect(U.apply(x)).toStrictEqual(b);
     });
 
-    test('solves an underdetermined upper-triangular system', () => {
-      const U = mat([
+    test('returns undefined for an underdetermined upper-triangular system', () => {
+      let U = mat([
         [1, 1, 1],
         [0, 0, 0],
         [0, 0, 0],
       ]);
-      const b = vec([3, 0, 0]);
-      const solution = solveByBackwardSubstitution(U, b);
+      let b = vec([3, 0, 0]);
+      let x = solveByBackwardSubstitution(U, b);
 
-      expect(solution.solutionType).toEqual(SolutionType.UNDERDETERMINED);
-      const x = (solution as UnderdeterminedSolution<number>).solution;
-      expect(U.apply(x)).toStrictEqual(b);
+      expect(x).toBeUndefined();
+
+      U = mat([
+        [0, 1, 0],
+        [0, 0, 2],
+        [0, 0, 0],
+      ]);
+      b = vec([0, 0, 0]);
+      x = solveByBackwardSubstitution(U, b);
+
+      expect(x).toBeUndefined();
     });
 
-    test('solves an overdetermined upper-triangular system', () => {
+    test('returns undefined for an overdetermined upper-triangular system', () => {
       const U = mat([
         [1, 1],
         [0, 0],
       ]);
       const b = vec([1, 1]);
-      const solution = solveByBackwardSubstitution(U, b);
+      const x = solveByBackwardSubstitution(U, b);
 
-      expect(solution.solutionType).toEqual(SolutionType.OVERDETERMINED);
+      expect(x).toBeUndefined();
     });
 
-    test('solves a unique "tall" system', () => {
-      const U = mat([
-        [1, 0],
-        [0, 1],
-        [0, 0],
-      ]);
-      const b = vec([1, 2, 0]);
-      const expected = vec([1, 2]);
-      const solution = solveByBackwardSubstitution(U, b);
-      expect(solution.solutionType).toEqual(SolutionType.UNIQUE);
-      expect((solution as UniqueSolution<number>).solution).toStrictEqual(expected);
+    test('throws for non-square matrices', () => {
+      expect(() =>
+        solveByBackwardSubstitution(
+          mat([
+            [1, 0],
+            [0, 1],
+            [0, 0],
+          ]),
+          vec([1, 2, 0])
+        )
+      ).toThrow();
+
+      expect(() =>
+        solveByBackwardSubstitution(
+          mat([
+            [1, 0, 0],
+            [0, 1, 0],
+          ]),
+          vec([1, 2])
+        )
+      ).toThrow();
     });
 
-    test('solves an overdetermined "tall" system', () => {
-      const U = mat([
-        [1, 0],
-        [0, 1],
-        [0, 1],
-      ]);
-      const b = vec([1, 2, 3]);
-      const solution = solveByBackwardSubstitution(U, b);
-      expect(solution.solutionType).toEqual(SolutionType.OVERDETERMINED);
-    });
-
-    test('solves an underdetermined "tall" system', () => {
-      const U = mat([
-        [0, 1],
-        [0, 1],
-        [0, 0],
-      ]);
-      const b = vec([1, 1, 0]);
-      const solution = solveByBackwardSubstitution(U, b);
-      expect(solution.solutionType).toEqual(SolutionType.UNDERDETERMINED);
-    });
-
-    test('solves an underdetermined "wide" system', () => {
-      const U = mat([
-        [1, 0, 0],
-        [0, 1, 0],
-      ]);
-      const b = vec([1, 2]);
-      const solution = solveByBackwardSubstitution(U, b);
-      expect(solution.solutionType).toEqual(SolutionType.UNDERDETERMINED);
-    });
-
-    test('solves an overdetermined "wide" system', () => {
-      const U = mat([
-        [0, 0, 1],
-        [0, 0, 1],
-      ]);
-      const b = vec([1, 2]);
-      const solution = solveByBackwardSubstitution(U, b);
-      expect(solution.solutionType).toEqual(SolutionType.OVERDETERMINED);
+    test('handles the trivial case', () => {
+      expect(solveByBackwardSubstitution(mat([]), vec([]))).toStrictEqual(vec([]));
     });
   });
 
@@ -249,32 +202,28 @@ describe('Substitution', () => {
         [0, 1, 2, 2],
         [0, 0, 2, 3],
       ]);
-      const solution = backwardSubstituteAugmentedMatrix(U);
+      const x = backwardSubstituteAugmentedMatrix(U);
 
-      expect(solution.solutionType).toEqual(SolutionType.UNIQUE);
-      const x = (solution as UniqueSolution<number>).solution;
       expect(x).toStrictEqual(vec([0.25, -1, 1.5]));
     });
 
-    test('solves an underdetermined upper-triangular system', () => {
+    test('returns undefined for an underdetermined upper-triangular system', () => {
       const U = mat([
         [1, 1, 1, 3],
         [0, 0, 0, 0],
         [0, 0, 0, 0],
       ]);
-      const solution = backwardSubstituteAugmentedMatrix(U);
-
-      expect(solution.solutionType).toEqual(SolutionType.UNDERDETERMINED);
+      const x = backwardSubstituteAugmentedMatrix(U);
+      expect(x).toBeUndefined();
     });
 
-    test('solves an overdetermined upper-triangular system', () => {
+    test('returns undefined an overdetermined upper-triangular system', () => {
       const U = mat([
         [1, 1, 1],
         [0, 0, 1],
       ]);
-      const solution = backwardSubstituteAugmentedMatrix(U);
-
-      expect(solution.solutionType).toEqual(SolutionType.OVERDETERMINED);
+      const x = backwardSubstituteAugmentedMatrix(U);
+      expect(x).toBeUndefined();
     });
   });
 });

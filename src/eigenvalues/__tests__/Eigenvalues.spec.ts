@@ -10,16 +10,29 @@ import {
 describe('Eigenvalues', () => {
   describe('eig', () => {
     test('calculates the eigenvalue-eigenvector pairs', () => {
-      const A = mat([
+      let A = mat([
+        [1, 0, 0],
+        [0, 2, 0],
+        [0, 0, 3],
+      ]);
+      let expectedValues = [1, 2, 3];
+      let expectedVectors = [vec([1, 0, 0]), vec([0, 1, 0]), vec([0, 0, 1])];
+
+      let pairs = eig(A);
+      pairs.forEach((pair, i) => {
+        expect(pair.eigenvalue).toBeCloseTo(expectedValues[i], 5);
+        expect(pair.eigenvector.equals(expectedVectors[i])).toBe(true);
+      });
+
+      A = mat([
         [-1, 2, 2],
         [-1, -4, -2],
         [-3, 9, 7],
       ]);
-      const pairs = eig(A);
+      expectedValues = [3, -2, 1];
+      expectedVectors = [vec([1 / 3, -1 / 3, 1]), vec([0, -1, 1]), vec([1 / 2, -1 / 2, 1])];
 
-      const expectedValues = [3, -2, 1];
-      const expectedVectors = [vec([1 / 3, -1 / 3, 1]), vec([0, -1, 1]), vec([1 / 2, -1 / 2, 1])];
-
+      pairs = eig(A);
       pairs.forEach((pair, i) => {
         expect(pair.eigenvalue).toBeCloseTo(expectedValues[i], 5);
         expect(pair.eigenvector.equals(expectedVectors[i])).toBe(true);
