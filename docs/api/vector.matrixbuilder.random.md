@@ -16,7 +16,7 @@ random(shape: MatrixShape, min?: number, max?: number): M;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  shape | [MatrixShape](./vector.matrixshape.md) | The shape of the matrix as a tuple |
+|  shape | [MatrixShape](./vector.matrixshape.md) | The shape of the matrix as a tuple <code>[m, n]</code> |
 |  min | number | The lower limit of the random numbers to include |
 |  max | number | The upper limit of the random numbers to include |
 

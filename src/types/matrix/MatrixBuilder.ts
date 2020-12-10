@@ -134,7 +134,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * // [ 4 5 6 7 ]
    * // [ 5 6 7 8 ]
    * ```
-   * @param shape - The shape of the matrix as a tuple
+   * @param shape - The shape of the matrix as a tuple `[m, n]`
    * @param indexFunction - A function returning the entry for a given `i`, `j`
    * @returns The new matrix
    * @public
@@ -179,7 +179,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * ```
    *
    * @param value - The value that should be used for every entry in the new matrix
-   * @param shape - The shape of the matrix as a tuple
+   * @param shape - The shape of the matrix as a tuple `[m, n]`
    * @returns The new matrix
    * @public
    */
@@ -197,7 +197,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * // [ 0 0 0 ]
    * // [ 0 0 0 ]
    * ```
-   * @param shape - the shape of the matrix as a tuple
+   * @param shape - The shape of the matrix as a tuple `[m, n]`
    * @returns The new matrix
    * @public
    */
@@ -215,7 +215,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * // [ 1 1 1 ]
    * // [ 1 1 1 ]
    * ```
-   * @param shape - the shape of the matrix as a tuple
+   * @param shape - The shape of the matrix as a tuple `[m, n]`
    * @returns The new matrix
    * @public
    */
@@ -461,7 +461,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * Constructs a matrix of the specified size whose entries are (uniformly-distributed) random
    * numbers between `min` and `max`
    *
-   * @param shape - The shape of the matrix as a tuple
+   * @param shape - The shape of the matrix as a tuple `[m, n]`
    * @param min - The lower limit of the random numbers to include
    * @param max - The upper limit of the random numbers to include
    * @public
@@ -477,7 +477,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    * Constructs a matrix of the specified size whose entries are normally distributed with the
    * specified mean and standard deviation.
    *
-   * @param shape - The shape of the matrix as a tuple
+   * @param shape - The shape of the matrix as a tuple `[m, n]`
    * @param mean - The center of the distribution of random numbers to include
    * @param standardDeviation - The standard deviation of the distribution of random numbers to include
    * @public
@@ -813,6 +813,55 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
     }
 
     return this.fromArray(data);
+  }
+
+  /**
+   * Constructs a matrix that has ones on and above the diagonal, and zeros elsewhere.
+   *
+   * @example
+   * ```
+   * const upper = matrixBuilder.triangularMask([4, 4]);
+   *
+   * // [ 1 1 1 1 ]
+   * // [ 0 1 1 1 ]
+   * // [ 0 0 1 1 ]
+   * // [ 0 0 0 1 ]
+   *
+   * const lower = matrixBuilder.triangularMask([4, 4], true);
+   *
+   * // [ 1 0 0 0 ]
+   * // [ 1 1 0 0 ]
+   * // [ 1 1 1 0 ]
+   * // [ 1 1 1 1 ]
+   *
+   * const strictUpper = matrixBuilder.triangularMask([4, 4], false, false);
+   *
+   * // [ 0 1 1 1 ]
+   * // [ 0 0 1 1 ]
+   * // [ 0 0 0 1 ]
+   * // [ 0 0 0 0 ]
+   * ```
+   *
+   * @param shape - The shape of the matrix as a tuple `[m, n]`
+   * @param lower - If `true`, the matrix will have ones below the diagonal rather than above. `false` by default.
+   * @param includeDiagonal - If `false`, entries on the diagonal will be zero. `true` by default.
+   * @returns The triangular matrix
+   * @public
+   */
+  public triangularMask(shape: MatrixShape, lower = false, includeDiagonal = true): M {
+    const one = this.ops().one();
+    const zero = this.ops().zero();
+
+    return this.fromIndexFunction(shape, (i, j) => {
+      if (i === j) {
+        return includeDiagonal ? one : zero;
+      }
+      if (lower) {
+        return i > j ? one : zero;
+      } else {
+        return i < j ? one : zero;
+      }
+    });
   }
 
   private ops(): ScalarOperations<S> {

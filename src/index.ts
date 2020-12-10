@@ -25,6 +25,7 @@ export * from './operations/Exponential';
 export * from './operations/GaussJordan';
 export * from './operations/Norms';
 export * from './operations/RowOperations';
+export * from './solvers/LinearSolution';
 export * from './types/matrix/ArrayMatrix';
 export * from './types/matrix/ComplexMatrix';
 export * from './types/matrix/FloatMatrix';
