@@ -16,7 +16,7 @@ fromIndexFunction(shape: MatrixShape, indexFunction: (i: number, j: number) => S
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  shape | [MatrixShape](./vector.matrixshape.md) | The shape of the matrix as a tuple |
+|  shape | [MatrixShape](./vector.matrixshape.md) | The shape of the matrix as a tuple <code>[m, n]</code> |
 |  indexFunction | (i: number, j: number) =&gt; S | A function returning the entry for a given <code>i</code>, <code>j</code> |
 
 <b>Returns:</b>

@@ -2,6 +2,8 @@ import { Vector } from '../types/vector/Vector';
 import { Matrix, MatrixShape } from '../types/matrix/Matrix';
 import { FloatVector } from '../types/vector/FloatVector';
 import { FloatMatrix } from '../types/matrix/FloatMatrix';
+import { LinearSolution } from '../solvers/LinearSolution';
+import { solveByGaussianElimination } from '../operations/GaussJordan';
 
 const vb = FloatVector.builder();
 const mb = FloatMatrix.builder();
@@ -64,4 +66,12 @@ export function zeros(shapeOrDim: number | MatrixShape): Matrix | Vector {
  */
 export function diag(elements: number[]): Matrix {
   return mb.diagonal(vec(elements));
+}
+
+/**
+ * Solves the matrix equation _Ax=b_ for the vector _x_ using the default implementation. See {@link solveByGaussianElimination}
+ * @public
+ */
+export function solve<S>(A: Matrix<S>, b: Vector<S>): LinearSolution<S> {
+  return solveByGaussianElimination(A, b);
 }

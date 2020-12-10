@@ -414,6 +414,9 @@ export type LinearRegressorHyperparams = GradientDescentParameters & {
 };
 
 // @public
+export type LinearSolution<S> = UniqueSolution<S> | OverdeterminedSolution | UnderdeterminedSolution<S>;
+
+// @public
 export interface LinearTransformation<V, U> {
     apply(vector: V): U;
 }
@@ -511,6 +514,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
     repeat(matrix: Matrix<S>, rows: number, columns: number): M;
     slice(matrix: Matrix<S>, rowStartIndex?: number, columnStartIndex?: number, rowEndIndex?: number, columnEndIndex?: number): M;
     toeplitz(firstColumn: Vector<S>, firstRow?: Vector<S>): M;
+    triangularMask(shape: MatrixShape, lower?: boolean, includeDiagonal?: boolean): M;
     tridiagonal(leftEntries: Vector<S>, diagonalEntries: Vector<S>, rightEntries: Vector<S>): M;
     zeros(shape: MatrixShape): M;
 }
@@ -601,6 +605,12 @@ export function ones(entries: number): Vector;
 
 // @public
 export function ones(shape: MatrixShape): Matrix;
+
+// @public
+export interface OverdeterminedSolution {
+    // (undocumented)
+    solutionType: SolutionType.OVERDETERMINED;
+}
 
 // @public
 export function pca<S>(A: Matrix<S>, useCorrelation?: boolean): PrincipalComponentAnalysis<S>;
@@ -716,13 +726,24 @@ export interface SingularValueDecomposition<S> {
     V: Matrix<S>;
 }
 
-// Warning: (ae-forgotten-export) The symbol "LinearSolution" needs to be exported by the entry point index.d.ts
-//
+// @public
+export enum SolutionType {
+    OVERDETERMINED = "Overdetermined",
+    UNDERDETERMINED = "Underdetermined",
+    UNIQUE = "Unique"
+}
+
+// @public
+export function solve<S>(A: Matrix<S>, b: Vector<S>): LinearSolution<S>;
+
 // @public
 export function solveByGaussianElimination<S>(A: Matrix<S>, b: Vector<S>): LinearSolution<S>;
 
 // @public
 export function solveOverdeterminedSystem<S>(A: Matrix<S>, b: Vector<S>): Vector<S>;
+
+// @public
+export type Solver<S> = (A: Matrix<S>, b: Vector<S>) => LinearSolution<S>;
 
 // @public
 export abstract class SparseMatrix<S = number> implements Matrix<S> {
@@ -855,6 +876,20 @@ export function supremumNorm<S>(v: Vector<S>): number;
 
 // @public
 export function tripleProduct<S>(first: Vector<S>, second: Vector<S>, third: Vector<S>): S;
+
+// @public
+export interface UnderdeterminedSolution<S> {
+    solution: Vector<S>;
+    // (undocumented)
+    solutionType: SolutionType.UNDERDETERMINED;
+}
+
+// @public
+export interface UniqueSolution<S> {
+    solution: Vector<S>;
+    // (undocumented)
+    solutionType: SolutionType.UNIQUE;
+}
 
 // @public
 export function variance<S>(x: Vector<S>): S;

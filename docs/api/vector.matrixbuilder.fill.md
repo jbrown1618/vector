@@ -17,7 +17,7 @@ fill(value: S, shape: MatrixShape): M;
 |  Parameter | Type | Description |
 |  --- | --- | --- |
 |  value | S | The value that should be used for every entry in the new matrix |
-|  shape | [MatrixShape](./vector.matrixshape.md) | The shape of the matrix as a tuple |
+|  shape | [MatrixShape](./vector.matrixshape.md) | The shape of the matrix as a tuple <code>[m, n]</code> |
 
 <b>Returns:</b>
 

@@ -10,7 +10,7 @@ import { LinearSolution, SolutionType } from './LinearSolution';
  * @param L - The lower-triangular matrix `L` in _Lx=b_
  * @param b - The vector `b` in _Lx=b_
  * @returns The vector `x` in _Lx=b_, or `undefined` if the matrix is numerically singular
- * @public
+ * @internal
  */
 export function solveByForwardSubstitution<S>(L: Matrix<S>, b: Vector<S>): Vector<S> | undefined {
   assertSquare(L);
@@ -41,13 +41,13 @@ export function solveByForwardSubstitution<S>(L: Matrix<S>, b: Vector<S>): Vecto
 }
 
 /**
- * Uses forward substitution on the augmented matrix L|b to solve the linear system _Lx=b_ for a
+ * Uses forward substitution on the augmented matrix _L|b_ to solve the linear system _Lx=b_ for a
  * lower-triangular matrix `L`.
  * If `L` is not lower-triangular, the results will be incorrect.
  *
  * @param augmented - The augmented matrix `L|b` in _Lx=b_
  * @returns The vector `x` in _Lx=b_, or `undefined` if the matrix is numerically singular
- * @public
+ * @internal
  */
 export function forwardSubstituteAugmentedMatrix<S>(augmented: Matrix<S>): Vector<S> | undefined {
   const L = augmented
@@ -64,7 +64,7 @@ export function forwardSubstituteAugmentedMatrix<S>(augmented: Matrix<S>): Vecto
  * @param U - The lower-triangular matrix `U` in _Ux=b_
  * @param b - The vector `b` in _Ux=b_
  * @returns The vector `x` in _Ux=b_, or `undefined` if the matrix is numerically singular
- * @public
+ * @internal
  */
 export function solveByBackwardSubstitution<S>(U: Matrix<S>, b: Vector<S>): Vector<S> | undefined {
   assertSquare(U);
@@ -94,13 +94,13 @@ export function solveByBackwardSubstitution<S>(U: Matrix<S>, b: Vector<S>): Vect
 }
 
 /**
- * Uses backward substitution on the augmented matrix U|b to solve the linear system _Ux=b_ for an
+ * Uses backward substitution on the augmented matrix _U|b_ to solve the linear system _Ux=b_ for an
  * upper-triangular matrix `U`.
  * If `U` is not upper-triangular, the results will be incorrect.
  *
  * @param augmented - The augmented matrix `U|b` in _Ux=b_
  * @returns The vector `x` in _Ux=b_, or `undefined` if the matrix is numerically singular
- * @public
+ * @internal
  */
 export function backwardSubstituteAugmentedMatrix<S>(augmented: Matrix<S>): Vector<S> | undefined {
   const U = augmented

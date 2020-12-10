@@ -1,3 +1,4 @@
+import { loadTestData } from '@test-utils/testData';
 import { mat, vec } from '../../utilities/aliases';
 import {
   backwardSubstituteAugmentedMatrix,
@@ -20,6 +21,16 @@ describe('Substitution', () => {
 
       expect(x).toStrictEqual(vec([1.5, -1, 3 / 4]));
       expect(L.apply(x)).toStrictEqual(b);
+    });
+
+    test('solves a random 50x50 lower-triangular matrix', () => {
+      const L = loadTestData('random-lower-50x50');
+      const b = loadTestData('random-50x1').getColumn(0);
+
+      const x = solveByForwardSubstitution(L, b);
+
+      expect(x).not.toBeUndefined();
+      expect(x).toMatchSnapshot();
     });
 
     test('returns undefined for underdetermined system', () => {
@@ -132,6 +143,16 @@ describe('Substitution', () => {
 
       expect(x).toStrictEqual(vec([0.25, -1, 1.5]));
       expect(U.apply(x)).toStrictEqual(b);
+    });
+
+    test('solves a random 50x50 upper-triangular system', () => {
+      const U = loadTestData('random-upper-50x50');
+      const b = loadTestData('random-50x1').getColumn(0);
+
+      const x = solveByForwardSubstitution(U, b);
+
+      expect(x).not.toBeUndefined();
+      expect(x).toMatchSnapshot();
     });
 
     test('returns undefined for an underdetermined upper-triangular system', () => {

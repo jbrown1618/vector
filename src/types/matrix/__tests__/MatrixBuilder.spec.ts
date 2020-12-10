@@ -750,4 +750,50 @@ describe('MatrixBuilder', () => {
       expect(() => matrixBuilder.exclude(original, 1, 3)).toThrow();
     });
   });
+
+  describe('triangularMask', () => {
+    test('makes an upper-triangular matrix', () => {
+      const U = matrixBuilder.triangularMask([3, 3]);
+      const expected = matrixBuilder.fromArray([
+        [1, 1, 1],
+        [0, 1, 1],
+        [0, 0, 1],
+      ]);
+
+      expect(U).toStrictEqual(expected);
+    });
+
+    test('makes a strict upper-triangular matrix', () => {
+      const U = matrixBuilder.triangularMask([3, 3], false, false);
+      const expected = matrixBuilder.fromArray([
+        [0, 1, 1],
+        [0, 0, 1],
+        [0, 0, 0],
+      ]);
+
+      expect(U).toStrictEqual(expected);
+    });
+
+    test('makes an lower-triangular matrix', () => {
+      const L = matrixBuilder.triangularMask([3, 3], true);
+      const expected = matrixBuilder.fromArray([
+        [1, 0, 0],
+        [1, 1, 0],
+        [1, 1, 1],
+      ]);
+
+      expect(L).toStrictEqual(expected);
+    });
+
+    test('makes a strict lower-triangular matrix', () => {
+      const L = matrixBuilder.triangularMask([3, 3], true, false);
+      const expected = matrixBuilder.fromArray([
+        [0, 0, 0],
+        [1, 0, 0],
+        [1, 1, 0],
+      ]);
+
+      expect(L).toStrictEqual(expected);
+    });
+  });
 });

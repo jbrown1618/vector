@@ -16,7 +16,7 @@ randomNormal(shape: MatrixShape, mean?: number, standardDeviation?: number): M;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  shape | [MatrixShape](./vector.matrixshape.md) | The shape of the matrix as a tuple |
+|  shape | [MatrixShape](./vector.matrixshape.md) | The shape of the matrix as a tuple <code>[m, n]</code> |
 |  mean | number | The center of the distribution of random numbers to include |
 |  standardDeviation | number | The standard deviation of the distribution of random numbers to include |
 

@@ -1,5 +1,35 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`GaussJordan solve returns the same results as solveByGaussianElimination 1`] = `
+Object {
+  "solution": FloatVector {
+    "_data": Float64Array [
+      0.9136263277500446,
+      0.346696713406094,
+      0.3111557882953938,
+      0.39975222268696264,
+      -0.1643066328933712,
+      0.03885561914864894,
+      -0.6657811157870935,
+      0.007257352835084505,
+      0.28777790799551173,
+      -1.0613360257097249,
+      0.9776891059889999,
+      -0.22741440800345275,
+      0.13036176562117635,
+      -0.7378049693857984,
+      -0.16142731728327223,
+      -0.24265911924001132,
+      -1.0766507493074127,
+      -0.628984646265577,
+      2.100922398641603,
+      0.9878363505843968,
+    ],
+  },
+  "solutionType": "Unique",
+}
+`;
+
 exports[`GaussJordan solveByGaussianElimination solves a random 20x20 system 1`] = `
 Object {
   "solution": FloatVector {

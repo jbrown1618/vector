@@ -31,6 +31,12 @@
 |  [SupportVectorMachineClassifier](./vector.supportvectormachineclassifier.md) | A [Classifier](./vector.classifier.md) model which uses logistic regression to predict a discrete target. The optimal set of parameters is computed with gradient descent. |
 |  [VectorBuilder](./vector.vectorbuilder.md) | Provides methods for constructing [Vector](./vector.vector.md)<!-- -->s of a given type |
 
+## Enumerations
+
+|  Enumeration | Description |
+|  --- | --- |
+|  [SolutionType](./vector.solutiontype.md) | Types of solution to a linear system. |
+
 ## Functions
 
 |  Function | Description |
@@ -97,6 +103,7 @@
 |  [reducedRowEchelonForm(matrix)](./vector.reducedrowechelonform.md) | Uses Gauss-Jordan elimination with pivoting to convert a matrix to Reduced Row-Echelon Form (RREF) |
 |  [rowEchelonForm(matrix)](./vector.rowechelonform.md) | Uses Gauss-Jordan elimination with pivoting to convert a matrix to Row-Echelon Form (REF) |
 |  [rowSumSupremumNorm(A)](./vector.rowsumsupremumnorm.md) | Calculates the Infinity-Norm of a matrix <code>A</code> |
+|  [solve(A, b)](./vector.solve.md) | Solves the matrix equation \_Ax=b\_ for the vector \_x\_ using the default implementation. See [solveByGaussianElimination()](./vector.solvebygaussianelimination.md) |
 |  [solveByGaussianElimination(A, b)](./vector.solvebygaussianelimination.md) | Uses Gauss-Jordan elimination with pivoting and backward substitution to solve the linear equation \_Ax=b\_ |
 |  [solveOverdeterminedSystem(A, b)](./vector.solveoverdeterminedsystem.md) | Gives an approximate solution to an overdetermined linear system. |
 |  [standardDeviation(x)](./vector.standarddeviation.md) | Calculates the standard deviation of a vector |
@@ -124,11 +131,14 @@
 |  [LinearTransformation](./vector.lineartransformation.md) | An abstract linear transformation between vectors of type <code>V</code> and vectors of type <code>U</code>. |
 |  [LUDecomposition](./vector.ludecomposition.md) | The result of an LU Decomposition |
 |  [Matrix](./vector.matrix.md) | A generalized Matrix - one of the core data types |
+|  [OverdeterminedSolution](./vector.overdeterminedsolution.md) | A type representing the lack of solution to a linear system. |
 |  [PrincipalComponentAnalysis](./vector.principalcomponentanalysis.md) | The result of a principal component analysis. |
 |  [QRDecomposition](./vector.qrdecomposition.md) | The result of a QR decomposition. |
 |  [Regressor](./vector.regressor.md) | A machine learning model with a continuous numeric target |
 |  [RowOperationResult](./vector.rowoperationresult.md) | The result of a row operation (<code>result</code>), and the matrix that we multiply by the original matrix to yield that result (<code>operator</code>) |
 |  [SingularValueDecomposition](./vector.singularvaluedecomposition.md) | The result of a Singular Value Decomposition |
+|  [UnderdeterminedSolution](./vector.underdeterminedsolution.md) | A particular solution to a linear system with infinitely many solutions. |
+|  [UniqueSolution](./vector.uniquesolution.md) | The unique solution to a linear system. |
 |  [Vector](./vector.vector.md) | A generalized Vector - one of the core data types |
 
 ## Type Aliases
@@ -143,12 +153,14 @@
 |  [Kernel](./vector.kernel.md) | A function which takes a [Matrix](./vector.matrix.md) of data (and optionally another <code>Matrix</code> of data on which the kernel was trained) and returns a new <code>Matrix</code> which will be used to train a machine learning model.<!-- -->Generally intended for use with a [SupportVectorMachineClassifier](./vector.supportvectormachineclassifier.md)<!-- -->. |
 |  [LearningAlgorithm](./vector.learningalgorithm.md) | An function which, given an initial value of <code>theta</code> and a CostFunction, will compute the optimal value of <code>theta</code> |
 |  [LinearRegressorHyperparams](./vector.linearregressorhyperparams.md) | The set of hyperparameters for a [LinearRegressor](./vector.linearregressor.md) |
+|  [LinearSolution](./vector.linearsolution.md) | A general type representing any type of solution to a linear system. |
 |  [LogisticRegressionHyperparams](./vector.logisticregressionhyperparams.md) | The set of hyperparameters for a [LogisticRegressionClassifier](./vector.logisticregressionclassifier.md) |
 |  [MatrixData](./vector.matrixdata.md) | The data stored in a [Matrix](./vector.matrix.md) represented as a 2-D array |
 |  [MatrixEntryFunction](./vector.matrixentryfunction.md) | A function that generates a matrix entry based on an existing entry <code>entry</code>, its row index <code>i</code>, and its column index <code>j</code> |
 |  [MatrixShape](./vector.matrixshape.md) | A tuple representing the shape of a [Matrix](./vector.matrix.md)<!-- -->. The first entry is the number of rows, and the second entry is the number of columns. |
 |  [Norm](./vector.norm.md) | A function that calculates a norm for a vector. |
 |  [SimilarityMetric](./vector.similaritymetric.md) | A function which expresses the similarity of two [Vector](./vector.vector.md)<!-- -->s as a number between 0 (very dissimilar) and 1 (identical). |
+|  [Solver](./vector.solver.md) | A function that solves a linear system \_Ax=b\_ |
 |  [SparseMatrixData](./vector.sparsematrixdata.md) | The data stored in a [Matrix](./vector.matrix.md) represented as a map |
 |  [SparseVectorData](./vector.sparsevectordata.md) | The data stored in a [Vector](./vector.vector.md) represented as a map |
 |  [SupportVectorMachineHyperparams](./vector.supportvectormachinehyperparams.md) | The set of hyperparameters for a [SupportVectorMachineClassifier](./vector.supportvectormachineclassifier.md) |

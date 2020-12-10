@@ -1,4 +1,4 @@
-import { mat, vec, eye } from '../../utilities/aliases';
+import { mat, vec, eye, solve } from '../../utilities/aliases';
 import { Matrix } from '../../types/matrix/Matrix';
 import { NumberMatrix } from '../../types/matrix/NumberMatrix';
 import {
@@ -15,6 +15,20 @@ import {
 import { loadTestData } from '@test-utils/testData';
 
 describe('GaussJordan', () => {
+  describe('solve', () => {
+    test('returns the same results as solveByGaussianElimination', () => {
+      const A = loadTestData('random-20x20');
+      const b = loadTestData('random-20x1').getColumn(0);
+
+      const solution = solve(A, b);
+
+      expect(solution).toMatchSnapshot();
+      expect(solution.solutionType).toBe(SolutionType.UNIQUE);
+      const x = (solution as UniqueSolution<number>).solution;
+      expect(A.apply(x).equals(b)).toBe(true);
+    });
+  });
+
   describe('solveByGaussianElimination', () => {
     test('solves a system with a unique solution', () => {
       const A = mat([

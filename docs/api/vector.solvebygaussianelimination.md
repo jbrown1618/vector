@@ -21,7 +21,7 @@ export declare function solveByGaussianElimination<S>(A: Matrix<S>, b: Vector<S>
 
 <b>Returns:</b>
 
-LinearSolution&lt;S&gt;
+[LinearSolution](./vector.linearsolution.md)<!-- -->&lt;S&gt;
 
 The vector \_x\_ in \_Ax=b\_
 

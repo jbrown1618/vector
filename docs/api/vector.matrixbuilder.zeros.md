@@ -16,7 +16,7 @@ zeros(shape: MatrixShape): M;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  shape | [MatrixShape](./vector.matrixshape.md) | the shape of the matrix as a tuple |
+|  shape | [MatrixShape](./vector.matrixshape.md) | The shape of the matrix as a tuple <code>[m, n]</code> |
 
 <b>Returns:</b>
 
