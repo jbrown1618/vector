@@ -1,4 +1,4 @@
-import { mat } from '../../utilities/aliases';
+import { mat, zeros } from '../../utilities/aliases';
 import { RowOperations } from '../RowOperations';
 
 describe('RowOperations', () => {
@@ -73,6 +73,34 @@ describe('RowOperations', () => {
       const result = RowOperations.pivot(unsorted);
       expect(result.result).toStrictEqual(sorted);
       expect(result.operator).toStrictEqual(permutation);
+    });
+
+    test('sorts by the first entry when the number of leading zeros is the same', () => {
+      const unsorted = mat([
+        [0, 5, 5],
+        [5, 5, 5],
+        [0, 4, 5],
+      ]);
+      const sorted = mat([
+        [5, 5, 5],
+        [0, 5, 5],
+        [0, 4, 5],
+      ]);
+      const permutation = mat([
+        [0, 1, 0],
+        [1, 0, 0],
+        [0, 0, 1],
+      ]);
+
+      const result = RowOperations.pivot(unsorted);
+      expect(result.result).toStrictEqual(sorted);
+      expect(result.operator).toStrictEqual(permutation);
+    });
+
+    test('handles all-zero rows', () => {
+      const unsorted = zeros([3, 3]);
+      const { result } = RowOperations.pivot(unsorted);
+      expect(result).toStrictEqual(unsorted);
     });
   });
 });
