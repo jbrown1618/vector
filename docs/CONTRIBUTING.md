@@ -43,7 +43,7 @@ This will happen automatically every time you commit.
   - Exception: accept short names to adhere to mathematical convention
     (e.g. `A` is a good name for a generic matrix when solving a system _Ax = b_,
     `i` and `j` are good names for matrix indices,
-    and `m` and `n` are good names for matrix dimensions)
+    and `m` and `n` are good names for matrix dimensions).
 - Prefix private member variables with an underscore
   - JavaScript consumers do not have the compiler to tell them they shouldn't be using the private
     part of your class.
@@ -134,7 +134,7 @@ export class LoggingThing implements Thing {
    * @public
    */
   do(options: string[]): void {
-    options.forEach(option => console.log(option));
+    options.forEach((option) => console.log(option));
   }
 }
 
@@ -148,7 +148,7 @@ export class LoggingThing implements Thing {
  * @public
  */
 export function doTheThings(things: Thing[], options: string[]): Thing | undefined {
-  things.forEach(thing => thing.do(options));
+  things.forEach((thing) => thing.do(options));
   return things.length > 0 ? things[0] : undefined;
 }
 ```
