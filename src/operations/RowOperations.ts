@@ -12,6 +12,8 @@ export interface RowOperationResult<S> {
   operator: Matrix<S>;
 }
 
+type VectorComparator<S> = (v1: Vector<S>, v2: Vector<S>) => number;
+
 /**
  * A wrapper for static methods representing the elementary row operations
  * @public
@@ -118,7 +120,7 @@ export class RowOperations {
     const ops = matrix.ops();
     // We will sort the rows of an identity matrix according to the number
     // of leading zeros in the corresponding row of `matrix`
-    const comparator: (r1: Vector<S>, r2: Vector<S>) => number = (iRow1, iRow2) => {
+    const comparator: VectorComparator<S> = (iRow1, iRow2) => {
       const rowIndex1 = getNumberOfLeadingZeros(iRow1);
       const rowIndex2 = getNumberOfLeadingZeros(iRow2);
       const mRow1 = matrix.getRow(rowIndex1);
@@ -127,6 +129,11 @@ export class RowOperations {
       const leadingZeros2 = getNumberOfLeadingZeros(mRow2);
 
       if (leadingZeros1 === leadingZeros2) {
+        const rowsAreAllZero = leadingZeros1 === mRow1.getDimension();
+        if (rowsAreAllZero) {
+          // The rows are equivalent - the sort order does not matter
+          return 0;
+        }
         // If they have the same number of leading zeros, put
         // the entry with the greatest magnitude on top
         const firstEntry1 = mRow1.getEntry(leadingZeros1);

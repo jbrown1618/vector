@@ -38,6 +38,22 @@ describe('Eigenvalues', () => {
         expect(pair.eigenvector.equals(expectedVectors[i])).toBe(true);
       });
     });
+
+    test('calculates eigenvalue-eigenvector pairs of a singular matrix', () => {
+      const A = mat([
+        [2, -1, -1],
+        [-1, 2, -1],
+        [-1, -1, 2],
+      ]);
+      const expectedValues = [3, 3, 0];
+      const expectedVectors = [vec([-2, 1, 1]), vec([-2, 1, 1]), vec([1, 1, 1])];
+
+      const pairs = eig(A);
+      pairs.forEach((pair, i) => {
+        expect(pair.eigenvalue).toBeCloseTo(expectedValues[i], 5);
+        expect(pair.eigenvector.equals(expectedVectors[i])).toBe(true);
+      });
+    });
   });
 
   describe('calculateEigenvalues', () => {

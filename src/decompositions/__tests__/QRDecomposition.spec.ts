@@ -22,12 +22,12 @@ describe('QRDecomposition', () => {
         [0, 0, 35],
       ]);
 
-      const result = calculateQRDecomposition(A);
-      expect(result.Q.equals(expectedQ)).toBe(true);
-      expect(result.R.equals(expectedR)).toBe(true);
+      const { Q, R } = calculateQRDecomposition(A);
+      expect(Q.equals(expectedQ)).toBe(true);
+      expect(R.equals(expectedR)).toBe(true);
 
       // Check that QR equals A
-      expect(result.Q.multiply(result.R).equals(A)).toBe(true);
+      expect(Q.multiply(R).equals(A)).toBe(true);
     });
 
     test('rejects a non-square matrix', () => {
@@ -35,12 +35,16 @@ describe('QRDecomposition', () => {
       expect(() => calculateQRDecomposition(A)).toThrow();
     });
 
-    test('rejects a matrix with linearly dependent columns', () => {
+    test('handles a singular matrix', () => {
       const A = mat([
         [1, 1],
         [1, 1],
       ]);
-      expect(() => calculateQRDecomposition(A)).toThrow();
+
+      const { Q, R } = calculateQRDecomposition(A);
+
+      // The decomposition is not unique in this case, so just verify that it reconstitutes A
+      expect(Q.multiply(R).equals(A)).toBe(true);
     });
   });
 });

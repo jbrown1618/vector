@@ -50,10 +50,7 @@ export function calculateQRDecomposition<S>(A: Matrix<S>): QRDecomposition<S> {
   // If any columns are the zero vector, then A was not full-rank to begin with.
   const qColumns: Vector<S>[] = [];
   for (let i = 0; i < dim; i++) {
-    const qi = normalize(uColumns[i]);
-    if (qi === undefined) {
-      throw Error('A is singular; no QR decomposition exists');
-    }
+    const qi = normalize(uColumns[i]) ?? uColumns[i]; // Default to the zero-vector
     qColumns.push(qi);
   }
   const Q = matrixBuilder.fromColumnVectors(qColumns);
