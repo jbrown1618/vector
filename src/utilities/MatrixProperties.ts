@@ -10,7 +10,7 @@ import { Matrix } from '../types/matrix/Matrix';
  * @returns `true` if `matrix` is square
  * @public
  */
-export function isSquare(matrix: Matrix<any>): boolean {
+export function isSquare<S>(matrix: Matrix<S>): boolean {
   return matrix.getNumberOfColumns() === matrix.getNumberOfRows();
 }
 

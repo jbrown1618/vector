@@ -69,18 +69,20 @@ export function assertValidDimension(dimension: number, message?: string): void 
   }
 }
 
-export function assertMultiplicable(
-  first: Matrix<any>,
-  second: Matrix<any>,
-  message?: string
-): void {
-  message =
-    message ||
-    `Dimension mismatch: expected dimensions compatible with matrix multiplication; got ${shape(
-      first
-    )} and ${shape(second)}`;
-  if (first.getNumberOfColumns() !== second.getNumberOfRows()) {
-    throw Error(message);
+export function assertMultiplicable<S>(...matrices: Matrix<S>[]): void {
+  if (matrices.length <= 1) return; // trivially multiplicable
+
+  const message = `Dimension mismatch: expected dimensions compatible with matrix multiplication; got ${matrices
+    .map((m) => shape(m))
+    .join(', ')}`;
+
+  for (let i = 0; i < matrices.length - 1; i++) {
+    const left = matrices[i];
+    const right = matrices[i + 1];
+
+    if (left.getNumberOfColumns() !== right.getNumberOfRows()) {
+      throw Error(message);
+    }
   }
 }
 
@@ -138,9 +140,9 @@ export function assertValidIndex(index: number, size: number, message?: string):
   }
 }
 
-export function assertDimensionMatch(
-  first: Matrix<any>,
-  second: Matrix<any>,
+export function assertDimensionMatch<S>(
+  first: Matrix<S>,
+  second: Matrix<S>,
   message?: string
 ): void {
   const [m1, n1] = first.getShape();
@@ -151,7 +153,7 @@ export function assertDimensionMatch(
   }
 }
 
-function shape(matrix: Matrix<any>): string {
+function shape<T>(matrix: Matrix<T>): string {
   const [m, n] = matrix.getShape();
   return `(${m}x${n})`;
 }

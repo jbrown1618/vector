@@ -52,6 +52,7 @@
 |  [center(x)](./vector.center.md) | Returns the vector <code>x</code>, shifted so that its mean is at 0 |
 |  [center(A)](./vector.center_1.md) | Returns the matrix <code>A</code> with each column shifted so that its mean is at 0 |
 |  [centralDifferenceMatrix(binCount)](./vector.centraldifferencematrix.md) | Builds a matrix that transforms a vector to a vector of central differences |
+|  [chainProduct(matrices)](./vector.chainproduct.md) | Returns the product of the given array of matrices. |
 |  [columnSumSupremumNorm(A)](./vector.columnsumsupremumnorm.md) | Calculates the 1-Norm of a matrix <code>A</code> |
 |  [correlation(first, second)](./vector.correlation.md) | Calculates the correlation coefficient r of two vectors |
 |  [correlation(A)](./vector.correlation_1.md) | Calculates the correlation matrix of a matrix <code>A</code> |

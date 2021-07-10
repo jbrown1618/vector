@@ -99,6 +99,9 @@ export function center<S>(A: Matrix<S>): Matrix<S>;
 export function centralDifferenceMatrix(binCount: number): NumberMatrix;
 
 // @public
+export function chainProduct<S>(...matrices: Matrix<S>[]): Matrix<S>;
+
+// @public
 export interface CholeskyDecomposition<S> {
     // (undocumented)
     L: Matrix<S>;
@@ -373,7 +376,7 @@ export function isOrthonormal<S>(matrix: Matrix<S>): boolean;
 export function isSparse<S>(vector: Vector<S>): vector is SparseVector<S>;
 
 // @public
-export function isSquare(matrix: Matrix<any>): boolean;
+export function isSquare<S>(matrix: Matrix<S>): boolean;
 
 // @public
 export function isSymmetric<S>(matrix: Matrix<S>): boolean;
