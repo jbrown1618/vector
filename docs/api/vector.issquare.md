@@ -9,14 +9,14 @@ Tests if a matrix is square.
 <b>Signature:</b>
 
 ```typescript
-export declare function isSquare(matrix: Matrix<any>): boolean;
+export declare function isSquare<S>(matrix: Matrix<S>): boolean;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  matrix | [Matrix](./vector.matrix.md)<!-- -->&lt;any&gt; | The matrix to check |
+|  matrix | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The matrix to check |
 
 <b>Returns:</b>
 

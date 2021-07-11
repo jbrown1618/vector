@@ -19,6 +19,7 @@ export * from './decompositions/LUDecomposition';
 export * from './decompositions/QRDecomposition';
 export * from './decompositions/SingularValueDecomposition';
 export * from './eigenvalues/Eigenvalues';
+export * from './operations/ChainMultiplication';
 export * from './operations/Products';
 export * from './operations/Determinant';
 export * from './operations/Exponential';

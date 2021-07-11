@@ -1,5 +1,6 @@
 import { Matrix } from '../types/matrix/Matrix';
 import { Vector } from '../types/vector/Vector';
+import { isVector } from './typeGuards';
 
 /**
  * Returns an easy-to-read string representing a `number`
@@ -23,8 +24,8 @@ export function prettyPrint<S>(input: number | Vector<S> | Matrix<S>): string {
   if (typeof input === 'number') {
     return prettyPrintNumber(input);
   }
-  const isVector = !!(input as any).innerProduct;
-  if (isVector) {
+
+  if (isVector(input)) {
     return prettyPrintVector(input as Vector<S>);
   } else {
     return prettyPrintMatrix(input as Matrix<S>);
