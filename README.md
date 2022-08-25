@@ -14,6 +14,7 @@ A linear algebra library written in TypeScript that focuses on generality, exten
   - Elementary row operations
   - Gauss-Jordan elimination
   - Eigenvalue / Eigenvector finding
+  - 
 - Matrix Factorizations:
   - Cholesky Decomposition
   - LU Decomposition
