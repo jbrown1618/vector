@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SingularValueDecomposition calculateSingularValueDecomposition calculates the SVD for a random 20x20 matrix 1`] = `
-Object {
+{
   "Sigma": FloatMatrix {
     "_data": Float64Array [
       9.593207006521274,
@@ -405,7 +405,7 @@ Object {
       0,
       0.12044053821351741,
     ],
-    "_shape": Array [
+    "_shape": [
       20,
       20,
     ],
@@ -813,7 +813,7 @@ Object {
       -0.08964877253057944,
       -0.16008858314539506,
     ],
-    "_shape": Array [
+    "_shape": [
       20,
       20,
     ],
@@ -1221,7 +1221,7 @@ Object {
       0.4547665771155873,
       0.4009456042360031,
     ],
-    "_shape": Array [
+    "_shape": [
       20,
       20,
     ],

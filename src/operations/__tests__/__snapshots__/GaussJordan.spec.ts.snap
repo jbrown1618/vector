@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`GaussJordan solve returns the same results as solveByGaussianElimination 1`] = `
-Object {
+{
   "solution": FloatVector {
     "_data": Float64Array [
       0.9136263277500446,
@@ -31,7 +31,7 @@ Object {
 `;
 
 exports[`GaussJordan solveByGaussianElimination solves a random 20x20 system 1`] = `
-Object {
+{
   "solution": FloatVector {
     "_data": Float64Array [
       0.9136263277500446,
