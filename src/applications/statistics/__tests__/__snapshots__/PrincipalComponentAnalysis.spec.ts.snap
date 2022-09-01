@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PrincipalComponentAnalysis pca conducts a principal component analysis 1`] = `
-Object {
+{
   "coordinates": FloatMatrix {
     "_data": Float64Array [
       -29941.74975079455,
@@ -505,19 +505,19 @@ Object {
       102.67913774533754,
       103.0299869640932,
     ],
-    "_shape": Array [
+    "_shape": [
       100,
       5,
     ],
   },
-  "cumulativeProportions": Array [
+  "cumulativeProportions": [
     0.8271606673331464,
     0.9839630018899226,
     0.9960428082704289,
     0.9995246225331788,
     1,
   ],
-  "principalComponents": Array [
+  "principalComponents": [
     FloatVector {
       "_data": Float64Array [
         -1.5113488518191678,
@@ -564,14 +564,14 @@ Object {
       ],
     },
   ],
-  "proportions": Array [
+  "proportions": [
     0.8271606673331464,
     0.1568023345567762,
     0.012079806380506361,
     0.003481814262749873,
     0.0004753774668212167,
   ],
-  "variances": Array [
+  "variances": [
     1088.94957409808,
     206.4288622229846,
     15.90295638167918,
@@ -582,7 +582,7 @@ Object {
 `;
 
 exports[`PrincipalComponentAnalysis pca uses correlation rather than covariance when prompted 1`] = `
-Object {
+{
   "coordinates": FloatMatrix {
     "_data": Float64Array [
       -650.6677985822266,
@@ -1086,19 +1086,19 @@ Object {
       392.22325587920386,
       78.1677273953137,
     ],
-    "_shape": Array [
+    "_shape": [
       100,
       5,
     ],
   },
-  "cumulativeProportions": Array [
+  "cumulativeProportions": [
     0.51664229272493,
     0.7226404999318378,
     0.9011576112044227,
     0.9921423446555406,
     1.0000000000000009,
   ],
-  "principalComponents": Array [
+  "principalComponents": [
     FloatVector {
       "_data": Float64Array [
         -0.5252857578097191,
@@ -1145,14 +1145,14 @@ Object {
       ],
     },
   ],
-  "proportions": Array [
+  "proportions": [
     0.51664229272493,
     0.20599820720690773,
     0.17851711127258496,
     0.0909847334511179,
     0.007857655344460264,
   ],
-  "variances": Array [
+  "variances": [
     2.58321146362465,
     1.0299910360345386,
     0.8925855563629248,

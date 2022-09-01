@@ -22654,7 +22654,7 @@ FloatMatrix {
     0.744532,
     1,
   ],
-  "_shape": Array [
+  "_shape": [
     150,
     151,
   ],
@@ -45315,7 +45315,7 @@ FloatMatrix {
     0.970931,
     1,
   ],
-  "_shape": Array [
+  "_shape": [
     150,
     151,
   ],
