@@ -13,7 +13,7 @@ describe('Eigenvalues', () => {
       let A = mat([
         [1, 0, 0],
         [0, 2, 0],
-        [0, 0, 3],
+        [0, 0, 3000],
       ]);
       let expectedValues = [1, 2, 3];
       let expectedVectors = [vec([1, 0, 0]), vec([0, 1, 0]), vec([0, 0, 1])];
