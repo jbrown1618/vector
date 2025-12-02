@@ -6,7 +6,7 @@
 
 The result of a least squares approximation.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface LeastSquaresApproximation<S> 
@@ -14,8 +14,64 @@ export interface LeastSquaresApproximation<S>
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [approximationFunction](./vector.leastsquaresapproximation.approximationfunction.md) | [ApproximationFunction](./vector.approximationfunction.md)<!-- -->&lt;S&gt; | A function which takes a vector of the independent variable values, and returns the predicted value of the dependent variable |
-|  [coefficients](./vector.leastsquaresapproximation.coefficients.md) | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | A vector whose entries correspond to the coefficients which must be plugged into the function template to yield the best approximation function |
+<table><thead><tr><th>
+
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[approximationFunction](./vector.leastsquaresapproximation.approximationfunction.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[ApproximationFunction](./vector.approximationfunction.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+A function which takes a vector of the independent variable values, and returns the predicted value of the dependent variable
+
+
+</td></tr>
+<tr><td>
+
+[coefficients](./vector.leastsquaresapproximation.coefficients.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+A vector whose entries correspond to the coefficients which must be plugged into the function template to yield the best approximation function
+
+
+</td></tr>
+</tbody></table>
 

@@ -6,12 +6,12 @@
 
 Returns the dimension of the vector
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 getDimension(): number;
 ```
-<b>Returns:</b>
+**Returns:**
 
 number
 

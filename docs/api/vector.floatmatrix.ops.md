@@ -4,12 +4,12 @@
 
 ## FloatMatrix.ops() method
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 static ops(): ScalarOperations<number>;
 ```
-<b>Returns:</b>
+**Returns:**
 
 [ScalarOperations](./vector.scalaroperations.md)<!-- -->&lt;number&gt;
 

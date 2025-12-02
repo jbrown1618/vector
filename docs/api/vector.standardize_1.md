@@ -6,7 +6,7 @@
 
 Returns the matrix `A` with each column shifted and scaled to have a mean of 0 and standard deviation of 1
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function standardize<S>(A: Matrix<S>): Matrix<S>;
@@ -14,11 +14,41 @@ export declare function standardize<S>(A: Matrix<S>): Matrix<S>;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  A | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The matrix to standardize |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+A
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+The matrix to standardize
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
 

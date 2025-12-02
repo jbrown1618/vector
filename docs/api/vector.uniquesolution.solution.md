@@ -6,7 +6,7 @@
 
 The unique vector \_x\_ which satisfies \_Ax=b\_
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 solution: Vector<S>;

@@ -6,7 +6,7 @@
 
 The proportion of the total variance explained by the first k components
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 cumulativeProportions: S[];

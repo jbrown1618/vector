@@ -6,7 +6,7 @@
 
 Constructs a new matrix consisting of `left` and `right` next to one another. Throws an error of `left` and `right` do not have the same number of rows.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 augment(left: Matrix<S>, right: Matrix<S>): M;
@@ -14,12 +14,57 @@ augment(left: Matrix<S>, right: Matrix<S>): M;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  left | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The matrix that will form the left-side of the augmented matrix |
-|  right | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The matrix that will form the right-side of the augmented matrix |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+left
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+The matrix that will form the left-side of the augmented matrix
+
+
+</td></tr>
+<tr><td>
+
+right
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+The matrix that will form the right-side of the augmented matrix
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 M
 
@@ -36,6 +81,5 @@ matrixBuilder.augment(left, right);
 
 // [ 1 1 0 0 0 ]
 // [ 1 1 0 0 0 ]
-
 ```
 

@@ -6,7 +6,7 @@
 
 Calculates the mean of the values in the vector `x`
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function mean<S>(x: Vector<S>): S;
@@ -14,11 +14,41 @@ export declare function mean<S>(x: Vector<S>): S;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  x | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | The vector for which to find the mean |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+x
+
+
+</td><td>
+
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+The vector for which to find the mean
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 S
 

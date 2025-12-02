@@ -6,7 +6,7 @@
 
 Returns the unique scalar that, when multiplied by `scalar`<!-- -->, returns the multiplicative identity
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 abstract getMultiplicativeInverse(x: S): S | undefined;
@@ -14,11 +14,39 @@ abstract getMultiplicativeInverse(x: S): S | undefined;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  x | S |  |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+x
+
+
+</td><td>
+
+S
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 S \| undefined
 
@@ -29,7 +57,6 @@ The multiplicative inverse
 
 ```
 multiplyScalars(scalar, getMultiplicativeInverse(scalar)) === getMultiplicativeIdentity()
-
 ```
 is true for `scalar`
 

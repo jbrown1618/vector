@@ -6,7 +6,7 @@
 
 The result of a principal component analysis.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface PrincipalComponentAnalysis<S> 
@@ -14,11 +14,121 @@ export interface PrincipalComponentAnalysis<S>
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [coordinates](./vector.principalcomponentanalysis.coordinates.md) | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The original data in a basis formed by the principal component vectors |
-|  [cumulativeProportions](./vector.principalcomponentanalysis.cumulativeproportions.md) | S\[\] | The proportion of the total variance explained by the first k components |
-|  [principalComponents](./vector.principalcomponentanalysis.principalcomponents.md) | [Vector](./vector.vector.md)<!-- -->&lt;S&gt;\[\] | The directions in which the data varies the most, ordered by the proportion of variation explained by each direction |
-|  [proportions](./vector.principalcomponentanalysis.proportions.md) | S\[\] | The proportion of the total variance explained by each principal component |
-|  [variances](./vector.principalcomponentanalysis.variances.md) | S\[\] | The variances in the directions of the corresponding principal components |
+<table><thead><tr><th>
+
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[coordinates](./vector.principalcomponentanalysis.coordinates.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+The original data in a basis formed by the principal component vectors
+
+
+</td></tr>
+<tr><td>
+
+[cumulativeProportions](./vector.principalcomponentanalysis.cumulativeproportions.md)
+
+
+</td><td>
+
+
+</td><td>
+
+S\[\]
+
+
+</td><td>
+
+The proportion of the total variance explained by the first k components
+
+
+</td></tr>
+<tr><td>
+
+[principalComponents](./vector.principalcomponentanalysis.principalcomponents.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;\[\]
+
+
+</td><td>
+
+The directions in which the data varies the most, ordered by the proportion of variation explained by each direction
+
+
+</td></tr>
+<tr><td>
+
+[proportions](./vector.principalcomponentanalysis.proportions.md)
+
+
+</td><td>
+
+
+</td><td>
+
+S\[\]
+
+
+</td><td>
+
+The proportion of the total variance explained by each principal component
+
+
+</td></tr>
+<tr><td>
+
+[variances](./vector.principalcomponentanalysis.variances.md)
+
+
+</td><td>
+
+
+</td><td>
+
+S\[\]
+
+
+</td><td>
+
+The variances in the directions of the corresponding principal components
+
+
+</td></tr>
+</tbody></table>
 

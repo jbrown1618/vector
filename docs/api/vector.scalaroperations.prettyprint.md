@@ -6,7 +6,7 @@
 
 Returns a readable string that represents the value of the scalar
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 abstract prettyPrint(x: S): string;
@@ -14,11 +14,39 @@ abstract prettyPrint(x: S): string;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  x | S |  |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+x
+
+
+</td><td>
+
+S
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 string
 

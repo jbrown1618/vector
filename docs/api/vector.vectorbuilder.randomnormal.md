@@ -6,7 +6,7 @@
 
 Constructs a vector whose entries are normally distributed, with the specified mean and standard deviation
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 randomNormal(dimension: number, mean?: number, standardDeviation?: number): V;
@@ -14,13 +14,73 @@ randomNormal(dimension: number, mean?: number, standardDeviation?: number): V;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  dimension | number | The dimension of the new vector |
-|  mean | number | The center of the distribution of random numbers to include |
-|  standardDeviation | number | The standard deviation of the distribution of random numbers to include |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+dimension
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+The dimension of the new vector
+
+
+</td></tr>
+<tr><td>
+
+mean
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+_(Optional)_ The center of the distribution of random numbers to include
+
+
+</td></tr>
+<tr><td>
+
+standardDeviation
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+_(Optional)_ The standard deviation of the distribution of random numbers to include
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 V
 

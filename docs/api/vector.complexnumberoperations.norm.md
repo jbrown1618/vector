@@ -6,7 +6,7 @@
 
 Returns the norm (absolute value or magnitude) of a scalar
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 norm(x: ComplexNumber): number;
@@ -14,11 +14,39 @@ norm(x: ComplexNumber): number;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  x | [ComplexNumber](./vector.complexnumber.md) |  |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+x
+
+
+</td><td>
+
+[ComplexNumber](./vector.complexnumber.md)
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 number
 

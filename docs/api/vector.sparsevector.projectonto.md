@@ -6,7 +6,7 @@
 
 Returns a new vector in the direction of `u` but with magnitude equal to the amount of the original vector that lies in that direction
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 projectOnto(u: Vector<S>): Vector<S>;
@@ -14,11 +14,41 @@ projectOnto(u: Vector<S>): Vector<S>;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  u | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | The vector on which to project this |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+u
+
+
+</td><td>
+
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+The vector on which to project this
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [Vector](./vector.vector.md)<!-- -->&lt;S&gt;
 

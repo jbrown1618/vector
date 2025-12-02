@@ -4,7 +4,7 @@
 
 ## Cost.gradient property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 gradient: Vector;

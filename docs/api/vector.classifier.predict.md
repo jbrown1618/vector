@@ -6,7 +6,7 @@
 
 Uses the learned parameters to make predictions based on a set of input data.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 predict(data: Matrix, pThreshold: number): Vector;
@@ -14,12 +14,57 @@ predict(data: Matrix, pThreshold: number): Vector;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  data | [Matrix](./vector.matrix.md) | A [Vector](./vector.vector.md) whose rows are the observations in the test set |
-|  pThreshold | number | The probability threshold above which an event will be predicted |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+data
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)
+
+
+</td><td>
+
+A [Vector](./vector.vector.md) whose rows are the observations in the test set
+
+
+</td></tr>
+<tr><td>
+
+pThreshold
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+The probability threshold above which an event will be predicted
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [Vector](./vector.vector.md)
 

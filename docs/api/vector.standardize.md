@@ -6,7 +6,7 @@
 
 Returns the vector `x` shifted and scaled to have a mean of 0 and standard deviation of 1
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function standardize<S>(x: Vector<S>): Vector<S>;
@@ -14,11 +14,41 @@ export declare function standardize<S>(x: Vector<S>): Vector<S>;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  x | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | The vector to standardize |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+x
+
+
+</td><td>
+
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+The vector to standardize
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [Vector](./vector.vector.md)<!-- -->&lt;S&gt;
 

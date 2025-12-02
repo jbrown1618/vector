@@ -4,7 +4,7 @@
 
 ## LUDecomposition.U property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 U: Matrix<S>;

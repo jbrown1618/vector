@@ -6,7 +6,7 @@
 
 Constructs a matrix of the specified size whose entries are (uniformly-distributed) random numbers between `min` and `max`
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 random(shape: MatrixShape, min?: number, max?: number): M;
@@ -14,13 +14,73 @@ random(shape: MatrixShape, min?: number, max?: number): M;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  shape | [MatrixShape](./vector.matrixshape.md) | The shape of the matrix as a tuple <code>[m, n]</code> |
-|  min | number | The lower limit of the random numbers to include |
-|  max | number | The upper limit of the random numbers to include |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+shape
+
+
+</td><td>
+
+[MatrixShape](./vector.matrixshape.md)
+
+
+</td><td>
+
+The shape of the matrix as a tuple `[m, n]`
+
+
+</td></tr>
+<tr><td>
+
+min
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+_(Optional)_ The lower limit of the random numbers to include
+
+
+</td></tr>
+<tr><td>
+
+max
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+_(Optional)_ The upper limit of the random numbers to include
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 M
 

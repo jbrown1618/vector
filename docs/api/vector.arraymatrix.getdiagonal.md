@@ -6,12 +6,12 @@
 
 Returns a vector containing the elements of the main diagonal of the matrix
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 getDiagonal(): Vector<S>;
 ```
-<b>Returns:</b>
+**Returns:**
 
 [Vector](./vector.vector.md)<!-- -->&lt;S&gt;
 

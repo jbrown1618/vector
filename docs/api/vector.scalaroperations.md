@@ -6,7 +6,7 @@
 
 A class which encapsulates the basic arithmetic operations for an arbitrary scalar type.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare abstract class ScalarOperations<S> 
@@ -18,26 +18,329 @@ This must be implemented for each scalar to be used in a [Vector](./vector.vecto
 
 ## Methods
 
-|  Method | Modifiers | Description |
-|  --- | --- | --- |
-|  [add(first, second)](./vector.scalaroperations.add.md) |  | Returns the sum of two scalars <code>first</code> and <code>second</code>. |
-|  [conjugate(scalar)](./vector.scalaroperations.conjugate.md) |  | Returns the complex conjugate of a scalar. |
-|  [divide(numerator, denominator)](./vector.scalaroperations.divide.md) |  | Returns the quotient of two scalars <code>numerator</code> and <code>denominator</code>, or <code>undefined</code> if the quotient does not exist. |
-|  [equals(first, second)](./vector.scalaroperations.equals.md) |  | Tests if the scalars are equal. Implementors should ensure that the operation is reflexive, associative, and transitive. |
-|  [fromComplex(real, imaginary)](./vector.scalaroperations.fromcomplex.md) |  | Returns an instance of the scalar type from its real and imaginary parts. If the scalar type does not support complex numbers, then an error will be thrown. |
-|  [fromNumber(num)](./vector.scalaroperations.fromnumber.md) |  | Returns an instance of the scalar type which most accurately corresponds to the value of <code>num</code> |
-|  [getAdditiveIdentity()](./vector.scalaroperations.getadditiveidentity.md) |  | Returns the unique scalar that, when added to another scalar, returns that scalar |
-|  [getAdditiveInverse(x)](./vector.scalaroperations.getadditiveinverse.md) |  | Returns the unique value that, when added to <code>x</code>, returns the additive identity |
-|  [getMultiplicativeIdentity()](./vector.scalaroperations.getmultiplicativeidentity.md) |  | Returns the unique scalar that, when multiplied by another scalar, returns that scalar |
-|  [getMultiplicativeInverse(x)](./vector.scalaroperations.getmultiplicativeinverse.md) |  | Returns the unique scalar that, when multiplied by <code>scalar</code>, returns the multiplicative identity |
-|  [getPrincipalSquareRoot(x)](./vector.scalaroperations.getprincipalsquareroot.md) |  | Returns the principal square root of a scalar. |
-|  [multiply(first, second)](./vector.scalaroperations.multiply.md) |  | Returns the product of two scalars <code>first</code> and <code>second</code>. |
-|  [negativeOne()](./vector.scalaroperations.negativeone.md) |  | Returns the additive inverse of the multiplicative identity. |
-|  [norm(x)](./vector.scalaroperations.norm.md) |  | Returns the norm (absolute value or magnitude) of a scalar |
-|  [one()](./vector.scalaroperations.one.md) |  | Alias for [ScalarOperations.getMultiplicativeIdentity()](./vector.scalaroperations.getmultiplicativeidentity.md) |
-|  [prettyPrint(x)](./vector.scalaroperations.prettyprint.md) |  | Returns a readable string that represents the value of the scalar |
-|  [random(min, max)](./vector.scalaroperations.random.md) |  | Returns a random scalar value between <code>min</code> and <code>max</code> |
-|  [randomNormal(mean, standardDeviation)](./vector.scalaroperations.randomnormal.md) |  | Returns a random scalar value from a normal distribution centered on <code>mean</code> with standard deviation <code>standardDeviation</code> |
-|  [subtract(first, second)](./vector.scalaroperations.subtract.md) |  | Returns the difference of two scalars. |
-|  [zero()](./vector.scalaroperations.zero.md) |  | Alias for [ScalarOperations.getAdditiveIdentity()](./vector.scalaroperations.getadditiveidentity.md) |
+<table><thead><tr><th>
+
+Method
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[add(first, second)](./vector.scalaroperations.add.md)
+
+
+</td><td>
+
+`abstract`
+
+
+</td><td>
+
+Returns the sum of two scalars `first` and `second`<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[conjugate(scalar)](./vector.scalaroperations.conjugate.md)
+
+
+</td><td>
+
+`abstract`
+
+
+</td><td>
+
+Returns the complex conjugate of a scalar.
+
+
+</td></tr>
+<tr><td>
+
+[divide(numerator, denominator)](./vector.scalaroperations.divide.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns the quotient of two scalars `numerator` and `denominator`<!-- -->, or `undefined` if the quotient does not exist.
+
+
+</td></tr>
+<tr><td>
+
+[equals(first, second)](./vector.scalaroperations.equals.md)
+
+
+</td><td>
+
+`abstract`
+
+
+</td><td>
+
+Tests if the scalars are equal. Implementors should ensure that the operation is reflexive, associative, and transitive.
+
+
+</td></tr>
+<tr><td>
+
+[fromComplex(real, imaginary)](./vector.scalaroperations.fromcomplex.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns an instance of the scalar type from its real and imaginary parts. If the scalar type does not support complex numbers, then an error will be thrown.
+
+
+</td></tr>
+<tr><td>
+
+[fromNumber(num)](./vector.scalaroperations.fromnumber.md)
+
+
+</td><td>
+
+`abstract`
+
+
+</td><td>
+
+Returns an instance of the scalar type which most accurately corresponds to the value of `num`
+
+
+</td></tr>
+<tr><td>
+
+[getAdditiveIdentity()](./vector.scalaroperations.getadditiveidentity.md)
+
+
+</td><td>
+
+`abstract`
+
+
+</td><td>
+
+Returns the unique scalar that, when added to another scalar, returns that scalar
+
+
+</td></tr>
+<tr><td>
+
+[getAdditiveInverse(x)](./vector.scalaroperations.getadditiveinverse.md)
+
+
+</td><td>
+
+`abstract`
+
+
+</td><td>
+
+Returns the unique value that, when added to `x`<!-- -->, returns the additive identity
+
+
+</td></tr>
+<tr><td>
+
+[getMultiplicativeIdentity()](./vector.scalaroperations.getmultiplicativeidentity.md)
+
+
+</td><td>
+
+`abstract`
+
+
+</td><td>
+
+Returns the unique scalar that, when multiplied by another scalar, returns that scalar
+
+
+</td></tr>
+<tr><td>
+
+[getMultiplicativeInverse(x)](./vector.scalaroperations.getmultiplicativeinverse.md)
+
+
+</td><td>
+
+`abstract`
+
+
+</td><td>
+
+Returns the unique scalar that, when multiplied by `scalar`<!-- -->, returns the multiplicative identity
+
+
+</td></tr>
+<tr><td>
+
+[getPrincipalSquareRoot(x)](./vector.scalaroperations.getprincipalsquareroot.md)
+
+
+</td><td>
+
+`abstract`
+
+
+</td><td>
+
+Returns the principal square root of a scalar.
+
+
+</td></tr>
+<tr><td>
+
+[multiply(first, second)](./vector.scalaroperations.multiply.md)
+
+
+</td><td>
+
+`abstract`
+
+
+</td><td>
+
+Returns the product of two scalars `first` and `second`<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[negativeOne()](./vector.scalaroperations.negativeone.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns the additive inverse of the multiplicative identity.
+
+
+</td></tr>
+<tr><td>
+
+[norm(x)](./vector.scalaroperations.norm.md)
+
+
+</td><td>
+
+`abstract`
+
+
+</td><td>
+
+Returns the norm (absolute value or magnitude) of a scalar
+
+
+</td></tr>
+<tr><td>
+
+[one()](./vector.scalaroperations.one.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Alias for [ScalarOperations.getMultiplicativeIdentity()](./vector.scalaroperations.getmultiplicativeidentity.md)
+
+
+</td></tr>
+<tr><td>
+
+[prettyPrint(x)](./vector.scalaroperations.prettyprint.md)
+
+
+</td><td>
+
+`abstract`
+
+
+</td><td>
+
+Returns a readable string that represents the value of the scalar
+
+
+</td></tr>
+<tr><td>
+
+[random(min, max)](./vector.scalaroperations.random.md)
+
+
+</td><td>
+
+`abstract`
+
+
+</td><td>
+
+Returns a random scalar value between `min` and `max`
+
+
+</td></tr>
+<tr><td>
+
+[randomNormal(mean, standardDeviation)](./vector.scalaroperations.randomnormal.md)
+
+
+</td><td>
+
+`abstract`
+
+
+</td><td>
+
+Returns a random scalar value from a normal distribution centered on `mean` with standard deviation `standardDeviation`
+
+
+</td></tr>
+<tr><td>
+
+[subtract(first, second)](./vector.scalaroperations.subtract.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns the difference of two scalars.
+
+
+</td></tr>
+<tr><td>
+
+[zero()](./vector.scalaroperations.zero.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Alias for [ScalarOperations.getAdditiveIdentity()](./vector.scalaroperations.getadditiveidentity.md)
+
+
+</td></tr>
+</tbody></table>
 

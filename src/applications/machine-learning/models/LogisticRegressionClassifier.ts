@@ -82,7 +82,7 @@ export class LogisticRegressionClassifier implements Classifier<LogisticRegressi
 
   private makePredictions(data: Matrix, theta: Vector, threshold?: number): Vector {
     return this.makeProbabilityPredictions(data, theta).map((p) =>
-      p > (threshold || 0.5) ? 1 : 0
+      p > (threshold || 0.5) ? 1 : 0,
     );
   }
 

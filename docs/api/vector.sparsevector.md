@@ -6,12 +6,12 @@
 
 Implements [Vector](./vector.vector.md) as a map of indices to nonzero values.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare abstract class SparseVector<S = number> implements Vector<S> 
 ```
-<b>Implements:</b> [Vector](./vector.vector.md)<!-- -->&lt;S&gt;
+**Implements:** [Vector](./vector.vector.md)<!-- -->&lt;S&gt;
 
 ## Remarks
 
@@ -23,23 +23,259 @@ The constructor for this class is marked as internal. Third-party code should no
 
 ## Methods
 
-|  Method | Modifiers | Description |
-|  --- | --- | --- |
-|  [add(other)](./vector.sparsevector.add.md) |  | Implements vector addition |
-|  [builder()](./vector.sparsevector.builder.md) |  |  |
-|  [combine(other, combineEntries)](./vector.sparsevector.combine.md) |  | Returns the dimension of the vector |
-|  [equals(other)](./vector.sparsevector.equals.md) |  | Tests if two vectors are equal |
-|  [forEach(callback)](./vector.sparsevector.foreach.md) |  | Returns the dimension of the vector |
-|  [getDimension()](./vector.sparsevector.getdimension.md) |  | Returns the dimension of the vector |
-|  [getEntry(index)](./vector.sparsevector.getentry.md) |  | Returns the entry of the matrix located at the provided index (<code>index</code>) |
-|  [getSparseData()](./vector.sparsevector.getsparsedata.md) |  | Returns the contents of the vector as a map of indices to nonzero values |
-|  [innerProduct(other)](./vector.sparsevector.innerproduct.md) |  | Implements the inner product (scalar product or dot product) of two vectors |
-|  [map(valueFromEntry)](./vector.sparsevector.map.md) |  | Returns the dimension of the vector |
-|  [matrixBuilder()](./vector.sparsevector.matrixbuilder.md) |  |  |
-|  [ops()](./vector.sparsevector.ops.md) |  |  |
-|  [outerProduct(other)](./vector.sparsevector.outerproduct.md) |  | Implements the outer product (matrix product) of two vectors |
-|  [projectOnto(u)](./vector.sparsevector.projectonto.md) |  | Returns a new vector in the direction of <code>u</code> but with magnitude equal to the amount of the original vector that lies in that direction |
-|  [scalarMultiply(scalar)](./vector.sparsevector.scalarmultiply.md) |  | Implements vector multiplication by a scalar |
-|  [set(index, value)](./vector.sparsevector.set.md) |  | Returns a new vector equal to the old one, except with the entry at <code>index</code> replaced with <code>value</code> |
-|  [toArray()](./vector.sparsevector.toarray.md) |  | Returns the contents of the vector as an array |
+<table><thead><tr><th>
+
+Method
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[add(other)](./vector.sparsevector.add.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Implements vector addition
+
+
+</td></tr>
+<tr><td>
+
+[builder()](./vector.sparsevector.builder.md)
+
+
+</td><td>
+
+`abstract`
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[combine(other, combineEntries)](./vector.sparsevector.combine.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns the dimension of the vector
+
+
+</td></tr>
+<tr><td>
+
+[equals(other)](./vector.sparsevector.equals.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Tests if two vectors are equal
+
+
+</td></tr>
+<tr><td>
+
+[forEach(callback)](./vector.sparsevector.foreach.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns the dimension of the vector
+
+
+</td></tr>
+<tr><td>
+
+[getDimension()](./vector.sparsevector.getdimension.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns the dimension of the vector
+
+
+</td></tr>
+<tr><td>
+
+[getEntry(index)](./vector.sparsevector.getentry.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns the entry of the matrix located at the provided index (`index`<!-- -->)
+
+
+</td></tr>
+<tr><td>
+
+[getSparseData()](./vector.sparsevector.getsparsedata.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns the contents of the vector as a map of indices to nonzero values
+
+
+</td></tr>
+<tr><td>
+
+[innerProduct(other)](./vector.sparsevector.innerproduct.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Implements the inner product (scalar product or dot product) of two vectors
+
+
+</td></tr>
+<tr><td>
+
+[map(valueFromEntry)](./vector.sparsevector.map.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns the dimension of the vector
+
+
+</td></tr>
+<tr><td>
+
+[matrixBuilder()](./vector.sparsevector.matrixbuilder.md)
+
+
+</td><td>
+
+`abstract`
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[ops()](./vector.sparsevector.ops.md)
+
+
+</td><td>
+
+`abstract`
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[outerProduct(other)](./vector.sparsevector.outerproduct.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Implements the outer product (matrix product) of two vectors
+
+
+</td></tr>
+<tr><td>
+
+[projectOnto(u)](./vector.sparsevector.projectonto.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns a new vector in the direction of `u` but with magnitude equal to the amount of the original vector that lies in that direction
+
+
+</td></tr>
+<tr><td>
+
+[scalarMultiply(scalar)](./vector.sparsevector.scalarmultiply.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Implements vector multiplication by a scalar
+
+
+</td></tr>
+<tr><td>
+
+[set(index, value)](./vector.sparsevector.set.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns a new vector equal to the old one, except with the entry at `index` replaced with `value`
+
+
+</td></tr>
+<tr><td>
+
+[toArray()](./vector.sparsevector.toarray.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns the contents of the vector as an array
+
+
+</td></tr>
+</tbody></table>
 

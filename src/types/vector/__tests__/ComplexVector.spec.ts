@@ -33,7 +33,7 @@ describe('ComplexVector', () => {
       const vector3 = builder.fromValues(
         ComplexNumber.ZERO,
         ComplexNumber.ZERO,
-        ComplexNumber.ZERO
+        ComplexNumber.ZERO,
       );
 
       expect(vector0.getDimension()).toEqual(0);
@@ -54,8 +54,8 @@ describe('ComplexVector', () => {
           ComplexNumber.ZERO,
           new ComplexNumber(1, 1),
           ComplexNumber.ZERO,
-          ComplexNumber.ZERO
-        )
+          ComplexNumber.ZERO,
+        ),
       );
     });
   });

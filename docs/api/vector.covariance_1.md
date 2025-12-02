@@ -6,7 +6,7 @@
 
 Calculates the covariance matrix of a matrix `A`
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function covariance<S>(A: Matrix<S>): Matrix<S>;
@@ -14,11 +14,41 @@ export declare function covariance<S>(A: Matrix<S>): Matrix<S>;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  A | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The matrix |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+A
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+The matrix
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
 

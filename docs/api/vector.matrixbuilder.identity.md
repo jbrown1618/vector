@@ -6,7 +6,7 @@
 
 Constructs a `size` x `size` identity matrix
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 identity(size: number): M;
@@ -14,11 +14,41 @@ identity(size: number): M;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  size | number | The dimension of the vector space for which the new matrix is the identity |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+size
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+The dimension of the vector space for which the new matrix is the identity
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 M
 
@@ -33,6 +63,5 @@ const I3 = matrixBuilder.identity(3);
 // [ 1 0 0 ]
 // [ 0 1 0 ]
 // [ 0 0 1 ]
-
 ```
 

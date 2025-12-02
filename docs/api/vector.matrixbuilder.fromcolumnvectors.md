@@ -6,7 +6,7 @@
 
 Builds a matrix from an array of column vectors
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 fromColumnVectors(columns: Vector<S>[]): M;
@@ -14,11 +14,41 @@ fromColumnVectors(columns: Vector<S>[]): M;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  columns | [Vector](./vector.vector.md)<!-- -->&lt;S&gt;\[\] | The vectors to use as the columns of the new matrix |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+columns
+
+
+</td><td>
+
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;\[\]
+
+
+</td><td>
+
+The vectors to use as the columns of the new matrix
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 M
 
@@ -34,6 +64,5 @@ const matrix = matrixBuilder.fromColumnVectors([ firstColumn, secondColumn ]);
 // [ 1 4 ]
 // [ 2 5 ]
 // [ 3 6 ]
-
 ```
 

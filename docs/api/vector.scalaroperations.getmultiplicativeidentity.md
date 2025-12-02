@@ -6,12 +6,12 @@
 
 Returns the unique scalar that, when multiplied by another scalar, returns that scalar
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 abstract getMultiplicativeIdentity(): S;
 ```
-<b>Returns:</b>
+**Returns:**
 
 S
 

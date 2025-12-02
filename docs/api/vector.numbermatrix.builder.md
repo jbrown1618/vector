@@ -4,12 +4,12 @@
 
 ## NumberMatrix.builder() method
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 static builder(): MatrixBuilder<number, NumberVector, NumberMatrix>;
 ```
-<b>Returns:</b>
+**Returns:**
 
 [MatrixBuilder](./vector.matrixbuilder.md)<!-- -->&lt;number, [NumberVector](./vector.numbervector.md)<!-- -->, [NumberMatrix](./vector.numbermatrix.md)<!-- -->&gt;
 

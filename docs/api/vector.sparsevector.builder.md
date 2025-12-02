@@ -4,12 +4,12 @@
 
 ## SparseVector.builder() method
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 abstract builder(): VectorBuilder<S, Vector<S>>;
 ```
-<b>Returns:</b>
+**Returns:**
 
 [VectorBuilder](./vector.vectorbuilder.md)<!-- -->&lt;S, [Vector](./vector.vector.md)<!-- -->&lt;S&gt;&gt;
 

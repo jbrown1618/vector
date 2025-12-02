@@ -18,7 +18,7 @@ export function determinant<S>(matrix: Matrix<S>): S {
   if (matrix.getNumberOfRows() === 2) {
     return ops.subtract(
       ops.multiply(matrix.getEntry(0, 0), matrix.getEntry(1, 1)),
-      ops.multiply(matrix.getEntry(0, 1), matrix.getEntry(1, 0))
+      ops.multiply(matrix.getEntry(0, 1), matrix.getEntry(1, 0)),
     );
   }
 

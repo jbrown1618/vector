@@ -4,7 +4,7 @@
 
 ## ComplexNumber.NEG\_ONE property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 static readonly NEG_ONE: ComplexNumber;

@@ -4,7 +4,7 @@
 
 ## ComplexNumber.ONE property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 static readonly ONE: ComplexNumber;

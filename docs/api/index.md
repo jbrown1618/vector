@@ -6,7 +6,25 @@
 
 ## Packages
 
-|  Package | Description |
-|  --- | --- |
-|  [@josh-brown/vector](./vector.md) |  |
+<table><thead><tr><th>
+
+Package
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[@josh-brown/vector](./vector.md)
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
 

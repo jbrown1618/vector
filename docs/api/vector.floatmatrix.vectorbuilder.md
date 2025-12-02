@@ -4,12 +4,12 @@
 
 ## FloatMatrix.vectorBuilder() method
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 static vectorBuilder(): VectorBuilder<number, FloatVector>;
 ```
-<b>Returns:</b>
+**Returns:**
 
 [VectorBuilder](./vector.vectorbuilder.md)<!-- -->&lt;number, [FloatVector](./vector.floatvector.md)<!-- -->&gt;
 

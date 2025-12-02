@@ -6,7 +6,7 @@
 
 Builds a matrix with entries given by \_entry = f(i, j)\_ where \_f\_ is `indexFunction` and `i` and `j` are the indices of the element
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 fromIndexFunction(shape: MatrixShape, indexFunction: (i: number, j: number) => S): M;
@@ -14,12 +14,57 @@ fromIndexFunction(shape: MatrixShape, indexFunction: (i: number, j: number) => S
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  shape | [MatrixShape](./vector.matrixshape.md) | The shape of the matrix as a tuple <code>[m, n]</code> |
-|  indexFunction | (i: number, j: number) =&gt; S | A function returning the entry for a given <code>i</code>, <code>j</code> |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+shape
+
+
+</td><td>
+
+[MatrixShape](./vector.matrixshape.md)
+
+
+</td><td>
+
+The shape of the matrix as a tuple `[m, n]`
+
+
+</td></tr>
+<tr><td>
+
+indexFunction
+
+
+</td><td>
+
+(i: number, j: number) =&gt; S
+
+
+</td><td>
+
+A function returning the entry for a given `i`<!-- -->, `j`
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 M
 
@@ -34,6 +79,5 @@ const matrix = matrixBuilder.fromIndexFunction(3, 4, (i, j) => i + j + 3);
 // [ 3 4 5 6 ]
 // [ 4 5 6 7 ]
 // [ 5 6 7 8 ]
-
 ```
 

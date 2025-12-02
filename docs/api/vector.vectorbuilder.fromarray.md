@@ -4,7 +4,7 @@
 
 ## VectorBuilder.fromArray() method
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 fromArray(data: VectorData<S>): V;
@@ -12,11 +12,39 @@ fromArray(data: VectorData<S>): V;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  data | [VectorData](./vector.vectordata.md)<!-- -->&lt;S&gt; |  |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+data
+
+
+</td><td>
+
+[VectorData](./vector.vectordata.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 V
 

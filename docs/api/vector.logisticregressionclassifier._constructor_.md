@@ -6,7 +6,7 @@
 
 Constructs a new instance of the `LogisticRegressionClassifier` class
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 constructor(hyperParameters: Partial<LogisticRegressionHyperparams>);
@@ -14,7 +14,35 @@ constructor(hyperParameters: Partial<LogisticRegressionHyperparams>);
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  hyperParameters | Partial&lt;[LogisticRegressionHyperparams](./vector.logisticregressionhyperparams.md)<!-- -->&gt; |  |
+<table><thead><tr><th>
+
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+hyperParameters
+
+
+</td><td>
+
+Partial&lt;[LogisticRegressionHyperparams](./vector.logisticregressionhyperparams.md)<!-- -->&gt;
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
 

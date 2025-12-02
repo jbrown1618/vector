@@ -6,7 +6,7 @@
 
 Calculates the mean vector of the matrix `A`
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function mean<S>(A: Matrix<S>): Vector<S>;
@@ -14,11 +14,41 @@ export declare function mean<S>(A: Matrix<S>): Vector<S>;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  A | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The matrix for which to find the mean vector |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+A
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+The matrix for which to find the mean vector
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [Vector](./vector.vector.md)<!-- -->&lt;S&gt;
 

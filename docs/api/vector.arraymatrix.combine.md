@@ -6,7 +6,7 @@
 
 Builds a matrix by combining element-wise the values of this matrix with the values of another matrix.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 combine(other: Matrix<S>, combineEntries: (a: S, b: S) => S): Matrix<S>;
@@ -14,12 +14,53 @@ combine(other: Matrix<S>, combineEntries: (a: S, b: S) => S): Matrix<S>;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  other | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; |  |
-|  combineEntries | (a: S, b: S) =&gt; S |  |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+other
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+combineEntries
+
+
+</td><td>
+
+(a: S, b: S) =&gt; S
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
 

@@ -6,12 +6,12 @@
 
 A dense [Vector](./vector.vector.md) of [ComplexNumber](./vector.complexnumber.md)<!-- -->s implemented as an [ArrayVector](./vector.arrayvector.md)
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare class ComplexVector extends ArrayVector<ComplexNumber> 
 ```
-<b>Extends:</b> [ArrayVector](./vector.arrayvector.md)<!-- -->&lt;[ComplexNumber](./vector.complexnumber.md)<!-- -->&gt;
+**Extends:** [ArrayVector](./vector.arrayvector.md)<!-- -->&lt;[ComplexNumber](./vector.complexnumber.md)<!-- -->&gt;
 
 ## Remarks
 
@@ -19,11 +19,91 @@ The constructor for this class is marked as internal. Third-party code should no
 
 ## Methods
 
-|  Method | Modifiers | Description |
-|  --- | --- | --- |
-|  [builder()](./vector.complexvector.builder.md) |  | Returns a [VectorBuilder](./vector.vectorbuilder.md) which will build new vectors of the same type |
-|  [builder()](./vector.complexvector.builder.md) | <code>static</code> |  |
-|  [matrixBuilder()](./vector.complexvector.matrixbuilder.md) |  | Returns a [MatrixBuilder](./vector.matrixbuilder.md) which will build new matrices of a compatible type |
-|  [ops()](./vector.complexvector.ops.md) |  | Returns a [ScalarOperations](./vector.scalaroperations.md) object which will allow consumers to work generically with the scalars contained in the vector. |
-|  [ops()](./vector.complexvector.ops.md) | <code>static</code> |  |
+<table><thead><tr><th>
+
+Method
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[builder()](./vector.complexvector.builder.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns a [VectorBuilder](./vector.vectorbuilder.md) which will build new vectors of the same type
+
+
+</td></tr>
+<tr><td>
+
+[builder()](./vector.complexvector.builder.md)
+
+
+</td><td>
+
+`static`
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[matrixBuilder()](./vector.complexvector.matrixbuilder.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns a [MatrixBuilder](./vector.matrixbuilder.md) which will build new matrices of a compatible type
+
+
+</td></tr>
+<tr><td>
+
+[ops()](./vector.complexvector.ops.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns a [ScalarOperations](./vector.scalaroperations.md) object which will allow consumers to work generically with the scalars contained in the vector.
+
+
+</td></tr>
+<tr><td>
+
+[ops()](./vector.complexvector.ops.md)
+
+
+</td><td>
+
+`static`
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
 

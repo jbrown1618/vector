@@ -6,12 +6,12 @@
 
 Returns a [MatrixBuilder](./vector.matrixbuilder.md) which will build new matrices of a compatible type
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 matrixBuilder(): MatrixBuilder<number, FloatVector, FloatMatrix>;
 ```
-<b>Returns:</b>
+**Returns:**
 
 [MatrixBuilder](./vector.matrixbuilder.md)<!-- -->&lt;number, [FloatVector](./vector.floatvector.md)<!-- -->, [FloatMatrix](./vector.floatmatrix.md)<!-- -->&gt;
 

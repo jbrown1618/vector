@@ -6,12 +6,12 @@
 
 Returns the contents of the vector as a map of indices to nonzero values
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 getSparseData(): Map<number, S>;
 ```
-<b>Returns:</b>
+**Returns:**
 
 Map&lt;number, S&gt;
 

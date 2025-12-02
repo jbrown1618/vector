@@ -4,12 +4,12 @@
 
 ## ComplexNumber.getImaginaryPart() method
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 getImaginaryPart(): number;
 ```
-<b>Returns:</b>
+**Returns:**
 
 number
 

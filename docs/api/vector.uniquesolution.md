@@ -6,7 +6,7 @@
 
 The unique solution to a linear system.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface UniqueSolution<S> 
@@ -14,8 +14,62 @@ export interface UniqueSolution<S>
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [solution](./vector.uniquesolution.solution.md) | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | The unique vector \_x\_ which satisfies \_Ax=b\_ |
-|  [solutionType](./vector.uniquesolution.solutiontype.md) | [SolutionType.UNIQUE](./vector.solutiontype.unique.md) |  |
+<table><thead><tr><th>
+
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[solution](./vector.uniquesolution.solution.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+The unique vector \_x\_ which satisfies \_Ax=b\_
+
+
+</td></tr>
+<tr><td>
+
+[solutionType](./vector.uniquesolution.solutiontype.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[SolutionType.UNIQUE](./vector.solutiontype.md)
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
 

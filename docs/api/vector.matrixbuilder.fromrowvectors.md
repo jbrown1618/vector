@@ -6,7 +6,7 @@
 
 Builds a matrix from an array of row vectors
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 fromRowVectors(rows: Vector<S>[]): M;
@@ -14,11 +14,41 @@ fromRowVectors(rows: Vector<S>[]): M;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  rows | [Vector](./vector.vector.md)<!-- -->&lt;S&gt;\[\] | The vectors to use as the rows of the new matrix |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+rows
+
+
+</td><td>
+
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;\[\]
+
+
+</td><td>
+
+The vectors to use as the rows of the new matrix
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 M
 
@@ -35,6 +65,5 @@ const matrix = matrixBuilder.fromRowVectors([ firstRow, secondRow ]);
 
 // [ 1 2 3 ]
 // [ 4 5 6 ]
-
 ```
 

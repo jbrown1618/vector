@@ -6,7 +6,7 @@
 
 The output of a cost function
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface Cost 
@@ -14,8 +14,60 @@ export interface Cost
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [cost](./vector.cost.cost.md) | number |  |
-|  [gradient](./vector.cost.gradient.md) | [Vector](./vector.vector.md) |  |
+<table><thead><tr><th>
+
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[cost](./vector.cost.cost.md)
+
+
+</td><td>
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[gradient](./vector.cost.gradient.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[Vector](./vector.vector.md)
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
 

@@ -4,12 +4,12 @@
 
 ## ComplexNumber.getAdditiveInverse() method
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 getAdditiveInverse(): ComplexNumber;
 ```
-<b>Returns:</b>
+**Returns:**
 
 [ComplexNumber](./vector.complexnumber.md)
 

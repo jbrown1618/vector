@@ -6,7 +6,7 @@
 
 Returns the entry of the matrix located at the provided index (`index`<!-- -->)
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 getEntry(index: number): number;
@@ -14,11 +14,41 @@ getEntry(index: number): number;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  index | number | The index of the entry to retrieve |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+index
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+The index of the entry to retrieve
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 number
 

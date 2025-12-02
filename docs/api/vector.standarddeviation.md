@@ -6,7 +6,7 @@
 
 Calculates the standard deviation of a vector
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function standardDeviation<S>(x: Vector<S>): S;
@@ -14,11 +14,41 @@ export declare function standardDeviation<S>(x: Vector<S>): S;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  x | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | The vector |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+x
+
+
+</td><td>
+
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+The vector
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 S
 

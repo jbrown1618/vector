@@ -6,12 +6,12 @@
 
 Returns the number of columns in the matrix
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 getNumberOfColumns(): number;
 ```
-<b>Returns:</b>
+**Returns:**
 
 number
 

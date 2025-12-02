@@ -6,10 +6,10 @@
 
 The parameters for [gradientDescent()](./vector.gradientdescent.md)
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-export declare type GradientDescentParameters = {
+export type GradientDescentParameters = {
     alpha: number;
     maxIterations?: number;
 };

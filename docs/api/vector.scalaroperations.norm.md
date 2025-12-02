@@ -6,7 +6,7 @@
 
 Returns the norm (absolute value or magnitude) of a scalar
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 abstract norm(x: S): number;
@@ -14,11 +14,39 @@ abstract norm(x: S): number;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  x | S |  |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+x
+
+
+</td><td>
+
+S
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 number
 

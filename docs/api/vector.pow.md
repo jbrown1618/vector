@@ -6,7 +6,7 @@
 
 Computes \_A^n\_ recursively.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function pow<S>(A: Matrix<S>, n: number): Matrix<S>;
@@ -14,12 +14,57 @@ export declare function pow<S>(A: Matrix<S>, n: number): Matrix<S>;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  A | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The matrix to raise to a power <code>n</code> |
-|  n | number | The power to which to raise <code>A</code> |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+A
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+The matrix to raise to a power `n`
+
+
+</td></tr>
+<tr><td>
+
+n
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+The power to which to raise `A`
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
 

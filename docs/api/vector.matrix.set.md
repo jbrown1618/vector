@@ -6,7 +6,7 @@
 
 Returns a new matrix equal to the old one, except with the entry at `(i, j)` replaced with `value`
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 set(i: number, j: number, value: S): Matrix<S>;
@@ -14,13 +14,69 @@ set(i: number, j: number, value: S): Matrix<S>;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  i | number |  |
-|  j | number |  |
-|  value | S | The new value |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+i
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+j
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+value
+
+
+</td><td>
+
+S
+
+
+</td><td>
+
+The new value
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
 

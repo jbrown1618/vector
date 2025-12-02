@@ -4,7 +4,7 @@
 
 ## RowOperationResult.operator property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 operator: Matrix<S>;

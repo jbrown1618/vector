@@ -139,7 +139,7 @@ export class ComplexNumberOperations extends ScalarOperations<ComplexNumber> {
   public randomNormal(mean = 0, standardDeviation = 1): ComplexNumber {
     return new ComplexNumber(
       randomNormal(mean, standardDeviation),
-      randomNormal(mean, standardDeviation)
+      randomNormal(mean, standardDeviation),
     );
   }
 

@@ -6,7 +6,7 @@
 
 Calculates the correlation coefficient r of two vectors
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function correlation<S>(first: Vector<S>, second: Vector<S>): S;
@@ -14,12 +14,57 @@ export declare function correlation<S>(first: Vector<S>, second: Vector<S>): S;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  first | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | The first vector |
-|  second | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | The second vector |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+first
+
+
+</td><td>
+
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+The first vector
+
+
+</td></tr>
+<tr><td>
+
+second
+
+
+</td><td>
+
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+The second vector
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 S
 

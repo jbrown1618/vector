@@ -6,7 +6,7 @@
 
 Creates a [Kernel](./vector.kernel.md) for use in a [SupportVectorMachineClassifier](./vector.supportvectormachineclassifier.md)<!-- -->. The RBF kernel converts a data [Matrix](./vector.matrix.md) into a similarity `Matrix` where the value of entry (i,j) expresses the similarity of rows i and j in the original data set.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function RadialBasisFunction(distanceMetric: SimilarityMetric): Kernel;
@@ -14,11 +14,41 @@ export declare function RadialBasisFunction(distanceMetric: SimilarityMetric): K
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  distanceMetric | [SimilarityMetric](./vector.similaritymetric.md) | A [SimilarityMetric](./vector.similaritymetric.md) which defines how the RBF kernel expresses the similarity between two vectors. |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+distanceMetric
+
+
+</td><td>
+
+[SimilarityMetric](./vector.similaritymetric.md)
+
+
+</td><td>
+
+A [SimilarityMetric](./vector.similaritymetric.md) which defines how the RBF kernel expresses the similarity between two vectors.
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [Kernel](./vector.kernel.md)
 

@@ -6,7 +6,7 @@
 
 Calculates a regression model for an arbitrary function.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function calculateGeneralLeastSquares<S>(dataPoints: Vector<S>[], functionTemplate: ApproximationFunctionTemplate<S>, numberOfTerms: number): LeastSquaresApproximation<S>;
@@ -14,13 +14,73 @@ export declare function calculateGeneralLeastSquares<S>(dataPoints: Vector<S>[],
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  dataPoints | [Vector](./vector.vector.md)<!-- -->&lt;S&gt;\[\] | The data used to construct the approximation |
-|  functionTemplate | [ApproximationFunctionTemplate](./vector.approximationfunctiontemplate.md)<!-- -->&lt;S&gt; | A higher-order function which takes a vector of coefficients and yields a new function which takes a vector of independent variables to produce a value for the dependent variable |
-|  numberOfTerms | number | The number of coefficients needed to produce the approximation function |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+dataPoints
+
+
+</td><td>
+
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;\[\]
+
+
+</td><td>
+
+The data used to construct the approximation
+
+
+</td></tr>
+<tr><td>
+
+functionTemplate
+
+
+</td><td>
+
+[ApproximationFunctionTemplate](./vector.approximationfunctiontemplate.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+A higher-order function which takes a vector of coefficients and yields a new function which takes a vector of independent variables to produce a value for the dependent variable
+
+
+</td></tr>
+<tr><td>
+
+numberOfTerms
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+The number of coefficients needed to produce the approximation function
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [LeastSquaresApproximation](./vector.leastsquaresapproximation.md)<!-- -->&lt;S&gt;
 

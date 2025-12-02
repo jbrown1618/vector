@@ -6,8 +6,10 @@
 
 A function that solves a linear system \_Ax=b\_
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-export declare type Solver<S> = (A: Matrix<S>, b: Vector<S>) => LinearSolution<S>;
+export type Solver<S> = (A: Matrix<S>, b: Vector<S>) => LinearSolution<S>;
 ```
+**References:** [Matrix](./vector.matrix.md)<!-- -->, [Vector](./vector.vector.md)<!-- -->, [LinearSolution](./vector.linearsolution.md)
+

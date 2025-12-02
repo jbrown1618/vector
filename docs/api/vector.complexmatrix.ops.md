@@ -4,12 +4,12 @@
 
 ## ComplexMatrix.ops() method
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 static ops(): ScalarOperations<ComplexNumber>;
 ```
-<b>Returns:</b>
+**Returns:**
 
 [ScalarOperations](./vector.scalaroperations.md)<!-- -->&lt;[ComplexNumber](./vector.complexnumber.md)<!-- -->&gt;
 

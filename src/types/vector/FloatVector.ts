@@ -204,7 +204,7 @@ export class FloatVector implements Vector<number> {
    */
   public combine(
     other: Vector<number>,
-    combineEntries: (a: number, b: number) => number
+    combineEntries: (a: number, b: number) => number,
   ): Vector<number> {
     assertHomogeneous([this, other]);
     return this.map((entry, index) => combineEntries(entry, other.getEntry(index)));

@@ -4,12 +4,12 @@
 
 ## ComplexNumber.getMultiplicativeInverse() method
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 getMultiplicativeInverse(): ComplexNumber | undefined;
 ```
-<b>Returns:</b>
+**Returns:**
 
 [ComplexNumber](./vector.complexnumber.md) \| undefined
 

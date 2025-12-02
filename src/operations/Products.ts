@@ -33,7 +33,7 @@ export function hadamardProduct<S>(first: Vector<S>, second: Vector<S>): Vector<
 export function hadamardProduct<S>(first: Matrix<S>, second: Matrix<S>): Matrix<S>;
 export function hadamardProduct<S>(
   first: Vector<S> | Matrix<S>,
-  second: Vector<S> | Matrix<S>
+  second: Vector<S> | Matrix<S>,
 ): Vector<S> | Matrix<S> {
   const ops = first.ops();
   // TODO: The type assertion below is not correct, but it satisfies tsc.

@@ -36,7 +36,7 @@ export class RowOperations {
       matrix,
       rowIndex,
       rowIndex,
-      ops.subtract(scalar, ops.one())
+      ops.subtract(scalar, ops.one()),
     );
   }
 
@@ -55,7 +55,7 @@ export class RowOperations {
       matrix,
       targetRow,
       rowToAdd,
-      matrix.ops().one()
+      matrix.ops().one(),
     );
   }
 
@@ -74,7 +74,7 @@ export class RowOperations {
     matrix: Matrix<S>,
     targetRow: number,
     rowToAdd: number,
-    scalar: S
+    scalar: S,
   ): Matrix<S> {
     assertValidMatrixIndex(matrix, targetRow, 0);
     assertValidMatrixIndex(matrix, rowToAdd, 0);

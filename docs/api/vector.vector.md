@@ -6,7 +6,7 @@
 
 A generalized Vector - one of the core data types
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface Vector<S = number> 
@@ -14,23 +14,203 @@ export interface Vector<S = number>
 
 ## Methods
 
-|  Method | Description |
-|  --- | --- |
-|  [add(other)](./vector.vector.add.md) | Implements vector addition |
-|  [builder()](./vector.vector.builder.md) | Returns a [VectorBuilder](./vector.vectorbuilder.md) which will build new vectors of the same type |
-|  [combine(other, combineEntries)](./vector.vector.combine.md) | Constructs a vector by combining the values of two other vectors |
-|  [equals(other)](./vector.vector.equals.md) | Tests if two vectors are equal |
-|  [forEach(callback)](./vector.vector.foreach.md) | Executes the <code>callback</code> function for each entry in the vector. |
-|  [getDimension()](./vector.vector.getdimension.md) | Returns the dimension of the vector |
-|  [getEntry(index)](./vector.vector.getentry.md) | Returns the entry of the matrix located at the provided index (<code>index</code>) |
-|  [getSparseData()](./vector.vector.getsparsedata.md) | Returns the contents of the vector as a map of indices to nonzero values |
-|  [innerProduct(other)](./vector.vector.innerproduct.md) | Implements the inner product (scalar product or dot product) of two vectors |
-|  [map(valueFromEntry)](./vector.vector.map.md) | Constructs a vector by transforming the values of another vector. |
-|  [matrixBuilder()](./vector.vector.matrixbuilder.md) | Returns a [MatrixBuilder](./vector.matrixbuilder.md) which will build new matrices of a compatible type |
-|  [ops()](./vector.vector.ops.md) | Returns a [ScalarOperations](./vector.scalaroperations.md) object which will allow consumers to work generically with the scalars contained in the vector. |
-|  [outerProduct(other)](./vector.vector.outerproduct.md) | Implements the outer product (matrix product) of two vectors |
-|  [projectOnto(u)](./vector.vector.projectonto.md) | Returns a new vector in the direction of <code>u</code> but with magnitude equal to the amount of the original vector that lies in that direction |
-|  [scalarMultiply(scalar)](./vector.vector.scalarmultiply.md) | Implements vector multiplication by a scalar |
-|  [set(index, value)](./vector.vector.set.md) | Returns a new vector equal to the old one, except with the entry at <code>index</code> replaced with <code>value</code> |
-|  [toArray()](./vector.vector.toarray.md) | Returns the contents of the vector as an array |
+<table><thead><tr><th>
+
+Method
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[add(other)](./vector.vector.add.md)
+
+
+</td><td>
+
+Implements vector addition
+
+
+</td></tr>
+<tr><td>
+
+[builder()](./vector.vector.builder.md)
+
+
+</td><td>
+
+Returns a [VectorBuilder](./vector.vectorbuilder.md) which will build new vectors of the same type
+
+
+</td></tr>
+<tr><td>
+
+[combine(other, combineEntries)](./vector.vector.combine.md)
+
+
+</td><td>
+
+Constructs a vector by combining the values of two other vectors
+
+
+</td></tr>
+<tr><td>
+
+[equals(other)](./vector.vector.equals.md)
+
+
+</td><td>
+
+Tests if two vectors are equal
+
+
+</td></tr>
+<tr><td>
+
+[forEach(callback)](./vector.vector.foreach.md)
+
+
+</td><td>
+
+Executes the `callback` function for each entry in the vector.
+
+
+</td></tr>
+<tr><td>
+
+[getDimension()](./vector.vector.getdimension.md)
+
+
+</td><td>
+
+Returns the dimension of the vector
+
+
+</td></tr>
+<tr><td>
+
+[getEntry(index)](./vector.vector.getentry.md)
+
+
+</td><td>
+
+Returns the entry of the matrix located at the provided index (`index`<!-- -->)
+
+
+</td></tr>
+<tr><td>
+
+[getSparseData()](./vector.vector.getsparsedata.md)
+
+
+</td><td>
+
+Returns the contents of the vector as a map of indices to nonzero values
+
+
+</td></tr>
+<tr><td>
+
+[innerProduct(other)](./vector.vector.innerproduct.md)
+
+
+</td><td>
+
+Implements the inner product (scalar product or dot product) of two vectors
+
+
+</td></tr>
+<tr><td>
+
+[map(valueFromEntry)](./vector.vector.map.md)
+
+
+</td><td>
+
+Constructs a vector by transforming the values of another vector.
+
+
+</td></tr>
+<tr><td>
+
+[matrixBuilder()](./vector.vector.matrixbuilder.md)
+
+
+</td><td>
+
+Returns a [MatrixBuilder](./vector.matrixbuilder.md) which will build new matrices of a compatible type
+
+
+</td></tr>
+<tr><td>
+
+[ops()](./vector.vector.ops.md)
+
+
+</td><td>
+
+Returns a [ScalarOperations](./vector.scalaroperations.md) object which will allow consumers to work generically with the scalars contained in the vector.
+
+
+</td></tr>
+<tr><td>
+
+[outerProduct(other)](./vector.vector.outerproduct.md)
+
+
+</td><td>
+
+Implements the outer product (matrix product) of two vectors
+
+
+</td></tr>
+<tr><td>
+
+[projectOnto(u)](./vector.vector.projectonto.md)
+
+
+</td><td>
+
+Returns a new vector in the direction of `u` but with magnitude equal to the amount of the original vector that lies in that direction
+
+
+</td></tr>
+<tr><td>
+
+[scalarMultiply(scalar)](./vector.vector.scalarmultiply.md)
+
+
+</td><td>
+
+Implements vector multiplication by a scalar
+
+
+</td></tr>
+<tr><td>
+
+[set(index, value)](./vector.vector.set.md)
+
+
+</td><td>
+
+Returns a new vector equal to the old one, except with the entry at `index` replaced with `value`
+
+
+</td></tr>
+<tr><td>
+
+[toArray()](./vector.vector.toarray.md)
+
+
+</td><td>
+
+Returns the contents of the vector as an array
+
+
+</td></tr>
+</tbody></table>
 

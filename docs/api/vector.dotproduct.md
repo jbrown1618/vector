@@ -6,7 +6,7 @@
 
 Computes the dot/inner/scalar product of two vectors. See [Vector.innerProduct()](./vector.vector.innerproduct.md)<!-- -->.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function dotProduct<S>(first: Vector<S>, second: Vector<S>): S;
@@ -14,12 +14,57 @@ export declare function dotProduct<S>(first: Vector<S>, second: Vector<S>): S;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  first | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | the left vector in the product |
-|  second | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | the right vector in the product |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+first
+
+
+</td><td>
+
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+the left vector in the product
+
+
+</td></tr>
+<tr><td>
+
+second
+
+
+</td><td>
+
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+the right vector in the product
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 S
 

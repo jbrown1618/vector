@@ -6,7 +6,7 @@
 
 Constructs a matrix that has ones on and above the diagonal, and zeros elsewhere.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 triangularMask(shape: MatrixShape, lower?: boolean, includeDiagonal?: boolean): M;
@@ -14,13 +14,73 @@ triangularMask(shape: MatrixShape, lower?: boolean, includeDiagonal?: boolean): 
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  shape | [MatrixShape](./vector.matrixshape.md) | The shape of the matrix as a tuple <code>[m, n]</code> |
-|  lower | boolean | If <code>true</code>, the matrix will have ones below the diagonal rather than above. <code>false</code> by default. |
-|  includeDiagonal | boolean | If <code>false</code>, entries on the diagonal will be zero. <code>true</code> by default. |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+shape
+
+
+</td><td>
+
+[MatrixShape](./vector.matrixshape.md)
+
+
+</td><td>
+
+The shape of the matrix as a tuple `[m, n]`
+
+
+</td></tr>
+<tr><td>
+
+lower
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ If `true`<!-- -->, the matrix will have ones below the diagonal rather than above. `false` by default.
+
+
+</td></tr>
+<tr><td>
+
+includeDiagonal
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ If `false`<!-- -->, entries on the diagonal will be zero. `true` by default.
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 M
 
@@ -50,6 +110,5 @@ const strictUpper = matrixBuilder.triangularMask([4, 4], false, false);
 // [ 0 0 1 1 ]
 // [ 0 0 0 1 ]
 // [ 0 0 0 0 ]
-
 ```
 

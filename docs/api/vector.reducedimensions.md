@@ -6,7 +6,7 @@
 
 Reduce the number of dimensions of a data matrix `A` while losing as little information as possible.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function reduceDimensions(A: Matrix, options: DimensionReductionOptions): Matrix;
@@ -14,12 +14,57 @@ export declare function reduceDimensions(A: Matrix, options: DimensionReductionO
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  A | [Matrix](./vector.matrix.md) | The data matrix |
-|  options | [DimensionReductionOptions](./vector.dimensionreductionoptions.md) | Specify how the dimension reduction should be done. <code>useCorrelation: boolean</code> - use the correlation rather than covariance matrix when conducting the PCA; <code>keep: number</code> - the desired number of dimensions; <code>remove: number</code> - the number of dimensions to remove; <code>proportionOfVariance: number</code> - the desired proportion of the total variance in the data that should be explained by the remaining columns |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+A
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)
+
+
+</td><td>
+
+The data matrix
+
+
+</td></tr>
+<tr><td>
+
+options
+
+
+</td><td>
+
+[DimensionReductionOptions](./vector.dimensionreductionoptions.md)
+
+
+</td><td>
+
+Specify how the dimension reduction should be done. `useCorrelation: boolean` - use the correlation rather than covariance matrix when conducting the PCA; `keep: number` - the desired number of dimensions; `remove: number` - the number of dimensions to remove; `proportionOfVariance: number` - the desired proportion of the total variance in the data that should be explained by the remaining columns
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [Matrix](./vector.matrix.md)
 

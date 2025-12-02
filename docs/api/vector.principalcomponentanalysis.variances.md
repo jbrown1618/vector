@@ -6,7 +6,7 @@
 
 The variances in the directions of the corresponding principal components
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 variances: S[];

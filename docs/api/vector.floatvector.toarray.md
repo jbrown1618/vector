@@ -6,12 +6,12 @@
 
 Returns the contents of the vector as an array
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 toArray(): number[];
 ```
-<b>Returns:</b>
+**Returns:**
 
 number\[\]
 

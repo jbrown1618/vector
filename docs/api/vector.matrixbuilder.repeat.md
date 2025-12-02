@@ -6,7 +6,7 @@
 
 Constructs a new matrix consisted of repetitions of a smaller matrix.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 repeat(matrix: Matrix<S>, rows: number, columns: number): M;
@@ -14,13 +14,73 @@ repeat(matrix: Matrix<S>, rows: number, columns: number): M;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  matrix | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The matrix to be repeated |
-|  rows | number | The number of times to repeat the matrix vertically |
-|  columns | number | The number of times to repeat the matrix horizontally |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+matrix
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+The matrix to be repeated
+
+
+</td></tr>
+<tr><td>
+
+rows
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+The number of times to repeat the matrix vertically
+
+
+</td></tr>
+<tr><td>
+
+columns
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+The number of times to repeat the matrix horizontally
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 M
 
@@ -35,6 +95,5 @@ const repeated = matrixBuilder.repeat(I, 1, 2);
 
 // [ 1 0 1 0 ]
 // [ 0 1 0 1 ]
-
 ```
 

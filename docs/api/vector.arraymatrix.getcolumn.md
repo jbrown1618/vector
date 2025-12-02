@@ -6,7 +6,7 @@
 
 Returns a vector corresponding to the column at index `columnIndex`
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 getColumn(j: number): Vector<S>;
@@ -14,11 +14,41 @@ getColumn(j: number): Vector<S>;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  j | number | The index for which to fetch the column |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+j
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+The index for which to fetch the column
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [Vector](./vector.vector.md)<!-- -->&lt;S&gt;
 

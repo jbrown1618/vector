@@ -6,7 +6,7 @@
 
 Implements matrix multiplication
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 multiply(other: Matrix<S>): Matrix<S>;
@@ -14,11 +14,41 @@ multiply(other: Matrix<S>): Matrix<S>;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  other | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The matrix by which to multiply |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+other
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+The matrix by which to multiply
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
 

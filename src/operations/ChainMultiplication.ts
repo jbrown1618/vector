@@ -33,7 +33,7 @@ export function chainProduct<S>(...matrices: Matrix<S>[]): Matrix<S> {
     matrices,
     0,
     matrices.length - 1,
-    new MultiplicationOrderMemo<S>()
+    new MultiplicationOrderMemo<S>(),
   ).parenthesization;
   return multiplyParenthesization(parenthesization);
 }
@@ -63,7 +63,7 @@ function optimalMultiplicationOrderMemo<S>(
   matrices: Matrix<S>[],
   startIndex: number,
   endIndex: number,
-  memo: MultiplicationOrderMemo<S>
+  memo: MultiplicationOrderMemo<S>,
 ): OptimizationResult<S> {
   if (memo.has(startIndex, endIndex)) {
     return memo.get(startIndex, endIndex)!;

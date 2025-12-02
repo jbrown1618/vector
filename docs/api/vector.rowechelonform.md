@@ -6,7 +6,7 @@
 
 Uses Gauss-Jordan elimination with pivoting to convert a matrix to Row-Echelon Form (REF)
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function rowEchelonForm<S>(matrix: Matrix<S>): Matrix<S>;
@@ -14,11 +14,41 @@ export declare function rowEchelonForm<S>(matrix: Matrix<S>): Matrix<S>;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  matrix | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The input matrix |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+matrix
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+The input matrix
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
 

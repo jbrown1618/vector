@@ -53,7 +53,9 @@ export abstract class ArrayMatrix<S = number> implements Matrix<S> {
   public add(other: Matrix<S>): Matrix<S> {
     assertDimensionMatch(this, other);
     return this.builder().fromColumnVectors(
-      this.getColumnVectors().map((column, columnIndex) => column.add(other.getColumn(columnIndex)))
+      this.getColumnVectors().map((column, columnIndex) =>
+        column.add(other.getColumn(columnIndex)),
+      ),
     );
   }
 
@@ -212,8 +214,8 @@ export abstract class ArrayMatrix<S = number> implements Matrix<S> {
 
     return this.builder().fromArray(
       this.getRowVectors().map((row) =>
-        other.getColumnVectors().map((column) => row.innerProduct(column))
-      )
+        other.getColumnVectors().map((column) => row.innerProduct(column)),
+      ),
     );
   }
 
@@ -222,7 +224,7 @@ export abstract class ArrayMatrix<S = number> implements Matrix<S> {
    */
   public scalarMultiply(scalar: S): Matrix<S> {
     return this.builder().fromColumnVectors(
-      this.getColumnVectors().map((column) => column.scalarMultiply(scalar))
+      this.getColumnVectors().map((column) => column.scalarMultiply(scalar)),
     );
   }
 
@@ -259,7 +261,7 @@ export abstract class ArrayMatrix<S = number> implements Matrix<S> {
    */
   public map(entryFunction: (entry: S, rowIndex: number, columnIndex: number) => S): Matrix<S> {
     const newRows = this.getRowVectors().map((row, rowIndex) =>
-      row.map((entry, colIndex) => entryFunction(entry, rowIndex, colIndex))
+      row.map((entry, colIndex) => entryFunction(entry, rowIndex, colIndex)),
     );
     return this.builder().fromRowVectors(newRows);
   }

@@ -365,7 +365,7 @@ export class FloatMatrix implements Matrix<number> {
    * {@inheritDoc Matrix.map}
    */
   public map(
-    entryFunction: (entry: number, rowIndex: number, columnIndex: number) => number
+    entryFunction: (entry: number, rowIndex: number, columnIndex: number) => number,
   ): Matrix<number> {
     const newData = this._data.map((value, arrIndex) => {
       const [i, j] = this.getIndices(arrIndex);
@@ -379,7 +379,7 @@ export class FloatMatrix implements Matrix<number> {
    */
   public combine(
     other: Matrix<number>,
-    combineEntries: (a: number, b: number) => number
+    combineEntries: (a: number, b: number) => number,
   ): Matrix<number> {
     assertDimensionMatch(this, other);
     return this.map((entry, i, j) => combineEntries(entry, other.getEntry(i, j)));

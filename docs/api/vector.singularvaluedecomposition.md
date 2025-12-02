@@ -6,7 +6,7 @@
 
 The result of a Singular Value Decomposition
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface SingularValueDecomposition<S> 
@@ -14,9 +14,77 @@ export interface SingularValueDecomposition<S>
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [Sigma](./vector.singularvaluedecomposition.sigma.md) | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; |  |
-|  [U](./vector.singularvaluedecomposition.u.md) | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; |  |
-|  [V](./vector.singularvaluedecomposition.v.md) | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; |  |
+<table><thead><tr><th>
+
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[Sigma](./vector.singularvaluedecomposition.sigma.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[U](./vector.singularvaluedecomposition.u.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[V](./vector.singularvaluedecomposition.v.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
 

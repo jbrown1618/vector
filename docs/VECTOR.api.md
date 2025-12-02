@@ -866,7 +866,7 @@ export class SupportVectorMachineClassifier implements Classifier<SupportVectorM
     predict(data: Matrix): Vector;
     predictProbabilities(_data: Matrix): Vector;
     train(data: Matrix, target: Vector): void;
-    }
+}
 
 // @public
 export type SupportVectorMachineHyperparams = GradientDescentParameters & {
@@ -972,6 +972,9 @@ export function zeros(entries: number): Vector;
 // @public
 export function zeros(shape: MatrixShape): Matrix;
 
+// Warnings were encountered during analysis:
+//
+// src/applications/machine-learning/models/LogisticRegressionClassifier.ts:121:3 - (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@josh-brown/vector" does not have an export "GradientDescentClassifier"
 
 // (No @packageDocumentation comment for this package)
 

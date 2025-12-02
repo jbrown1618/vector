@@ -6,41 +6,311 @@
 
 A generalized Matrix - one of the core data types
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface Matrix<S = number> extends LinearTransformation<Vector<S>, Vector<S>> 
 ```
-<b>Extends:</b> [LinearTransformation](./vector.lineartransformation.md)<!-- -->&lt;[Vector](./vector.vector.md)<!-- -->&lt;S&gt;, [Vector](./vector.vector.md)<!-- -->&lt;S&gt;&gt;
+**Extends:** [LinearTransformation](./vector.lineartransformation.md)<!-- -->&lt;[Vector](./vector.vector.md)<!-- -->&lt;S&gt;, [Vector](./vector.vector.md)<!-- -->&lt;S&gt;&gt;
 
 ## Methods
 
-|  Method | Description |
-|  --- | --- |
-|  [add(other)](./vector.matrix.add.md) | Implements matrix addition |
-|  [adjoint()](./vector.matrix.adjoint.md) | Returns the adjoint of the matrix |
-|  [apply(vector)](./vector.matrix.apply.md) | Applies the matrix as a linear transformation to the given vector. Implements matrix-vector multiplication. |
-|  [builder()](./vector.matrix.builder.md) | Returns a [MatrixBuilder](./vector.matrixbuilder.md) which will build new matrices of the same type |
-|  [combine(other, combineEntries)](./vector.matrix.combine.md) | Builds a matrix by combining element-wise the values of this matrix with the values of another matrix. |
-|  [equals(other)](./vector.matrix.equals.md) | Tests if two matrices are equal |
-|  [forEach(callback)](./vector.matrix.foreach.md) | Executes the <code>callback</code> function for each entry in the matrix. |
-|  [getColumn(j)](./vector.matrix.getcolumn.md) | Returns a vector corresponding to the column at index <code>columnIndex</code> |
-|  [getColumnVectors()](./vector.matrix.getcolumnvectors.md) | An array of vectors corresponding to the columns of the matrix |
-|  [getDiagonal()](./vector.matrix.getdiagonal.md) | Returns a vector containing the elements of the main diagonal of the matrix |
-|  [getEntry(i, j)](./vector.matrix.getentry.md) | Returns the entry of the matrix at the specified indices <code>i</code> and <code>j</code> |
-|  [getNumberOfColumns()](./vector.matrix.getnumberofcolumns.md) | Returns the number of columns in the matrix |
-|  [getNumberOfRows()](./vector.matrix.getnumberofrows.md) | Returns the number of rows in the matrix |
-|  [getRow(i)](./vector.matrix.getrow.md) | Returns a vector corresponding to the row at index <code>rowIndex</code> |
-|  [getRowVectors()](./vector.matrix.getrowvectors.md) | Returns an array of vectors corresponding to the rows of the matrix |
-|  [getShape()](./vector.matrix.getshape.md) | Returns a tuple representing the dimensions of the matrix. The first entry is the number of rows, and the second entry is the number of columns. |
-|  [getSparseData()](./vector.matrix.getsparsedata.md) | Returns the contents of the matrix as a nested map of rowIndex to columnIndex to nonzero value |
-|  [map(entryFunction)](./vector.matrix.map.md) | Builds a matrix by transforming the values of the current matrix. |
-|  [multiply(other)](./vector.matrix.multiply.md) | Implements matrix multiplication |
-|  [ops()](./vector.matrix.ops.md) | Returns a [ScalarOperations](./vector.scalaroperations.md) object which will allow consumers to work generically with the scalars contained in the vector. |
-|  [scalarMultiply(scalar)](./vector.matrix.scalarmultiply.md) | Implements multiplication of a matrix by a scalar |
-|  [set(i, j, value)](./vector.matrix.set.md) | Returns a new matrix equal to the old one, except with the entry at <code>(i, j)</code> replaced with <code>value</code> |
-|  [toArray()](./vector.matrix.toarray.md) | Returns the contents of the matrix as a 2-D array. |
-|  [trace()](./vector.matrix.trace.md) | Returns the trace of the matrix |
-|  [transpose()](./vector.matrix.transpose.md) | Returns the transpose of the matrix |
-|  [vectorBuilder()](./vector.matrix.vectorbuilder.md) | Returns a [VectorBuilder](./vector.vectorbuilder.md) which will build new vectors of a compatible type |
+<table><thead><tr><th>
+
+Method
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[add(other)](./vector.matrix.add.md)
+
+
+</td><td>
+
+Implements matrix addition
+
+
+</td></tr>
+<tr><td>
+
+[adjoint()](./vector.matrix.adjoint.md)
+
+
+</td><td>
+
+Returns the adjoint of the matrix
+
+
+</td></tr>
+<tr><td>
+
+[apply(vector)](./vector.matrix.apply.md)
+
+
+</td><td>
+
+Applies the matrix as a linear transformation to the given vector. Implements matrix-vector multiplication.
+
+
+</td></tr>
+<tr><td>
+
+[builder()](./vector.matrix.builder.md)
+
+
+</td><td>
+
+Returns a [MatrixBuilder](./vector.matrixbuilder.md) which will build new matrices of the same type
+
+
+</td></tr>
+<tr><td>
+
+[combine(other, combineEntries)](./vector.matrix.combine.md)
+
+
+</td><td>
+
+Builds a matrix by combining element-wise the values of this matrix with the values of another matrix.
+
+
+</td></tr>
+<tr><td>
+
+[equals(other)](./vector.matrix.equals.md)
+
+
+</td><td>
+
+Tests if two matrices are equal
+
+
+</td></tr>
+<tr><td>
+
+[forEach(callback)](./vector.matrix.foreach.md)
+
+
+</td><td>
+
+Executes the `callback` function for each entry in the matrix.
+
+
+</td></tr>
+<tr><td>
+
+[getColumn(j)](./vector.matrix.getcolumn.md)
+
+
+</td><td>
+
+Returns a vector corresponding to the column at index `columnIndex`
+
+
+</td></tr>
+<tr><td>
+
+[getColumnVectors()](./vector.matrix.getcolumnvectors.md)
+
+
+</td><td>
+
+An array of vectors corresponding to the columns of the matrix
+
+
+</td></tr>
+<tr><td>
+
+[getDiagonal()](./vector.matrix.getdiagonal.md)
+
+
+</td><td>
+
+Returns a vector containing the elements of the main diagonal of the matrix
+
+
+</td></tr>
+<tr><td>
+
+[getEntry(i, j)](./vector.matrix.getentry.md)
+
+
+</td><td>
+
+Returns the entry of the matrix at the specified indices `i` and `j`
+
+
+</td></tr>
+<tr><td>
+
+[getNumberOfColumns()](./vector.matrix.getnumberofcolumns.md)
+
+
+</td><td>
+
+Returns the number of columns in the matrix
+
+
+</td></tr>
+<tr><td>
+
+[getNumberOfRows()](./vector.matrix.getnumberofrows.md)
+
+
+</td><td>
+
+Returns the number of rows in the matrix
+
+
+</td></tr>
+<tr><td>
+
+[getRow(i)](./vector.matrix.getrow.md)
+
+
+</td><td>
+
+Returns a vector corresponding to the row at index `rowIndex`
+
+
+</td></tr>
+<tr><td>
+
+[getRowVectors()](./vector.matrix.getrowvectors.md)
+
+
+</td><td>
+
+Returns an array of vectors corresponding to the rows of the matrix
+
+
+</td></tr>
+<tr><td>
+
+[getShape()](./vector.matrix.getshape.md)
+
+
+</td><td>
+
+Returns a tuple representing the dimensions of the matrix. The first entry is the number of rows, and the second entry is the number of columns.
+
+
+</td></tr>
+<tr><td>
+
+[getSparseData()](./vector.matrix.getsparsedata.md)
+
+
+</td><td>
+
+Returns the contents of the matrix as a nested map of rowIndex to columnIndex to nonzero value
+
+
+</td></tr>
+<tr><td>
+
+[map(entryFunction)](./vector.matrix.map.md)
+
+
+</td><td>
+
+Builds a matrix by transforming the values of the current matrix.
+
+
+</td></tr>
+<tr><td>
+
+[multiply(other)](./vector.matrix.multiply.md)
+
+
+</td><td>
+
+Implements matrix multiplication
+
+
+</td></tr>
+<tr><td>
+
+[ops()](./vector.matrix.ops.md)
+
+
+</td><td>
+
+Returns a [ScalarOperations](./vector.scalaroperations.md) object which will allow consumers to work generically with the scalars contained in the vector.
+
+
+</td></tr>
+<tr><td>
+
+[scalarMultiply(scalar)](./vector.matrix.scalarmultiply.md)
+
+
+</td><td>
+
+Implements multiplication of a matrix by a scalar
+
+
+</td></tr>
+<tr><td>
+
+[set(i, j, value)](./vector.matrix.set.md)
+
+
+</td><td>
+
+Returns a new matrix equal to the old one, except with the entry at `(i, j)` replaced with `value`
+
+
+</td></tr>
+<tr><td>
+
+[toArray()](./vector.matrix.toarray.md)
+
+
+</td><td>
+
+Returns the contents of the matrix as a 2-D array.
+
+
+</td></tr>
+<tr><td>
+
+[trace()](./vector.matrix.trace.md)
+
+
+</td><td>
+
+Returns the trace of the matrix
+
+
+</td></tr>
+<tr><td>
+
+[transpose()](./vector.matrix.transpose.md)
+
+
+</td><td>
+
+Returns the transpose of the matrix
+
+
+</td></tr>
+<tr><td>
+
+[vectorBuilder()](./vector.matrix.vectorbuilder.md)
+
+
+</td><td>
+
+Returns a [VectorBuilder](./vector.vectorbuilder.md) which will build new vectors of a compatible type
+
+
+</td></tr>
+</tbody></table>
 

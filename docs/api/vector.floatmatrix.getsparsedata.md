@@ -6,12 +6,12 @@
 
 Returns the contents of the matrix as a nested map of rowIndex to columnIndex to nonzero value
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 getSparseData(): Map<number, Map<number, number>>;
 ```
-<b>Returns:</b>
+**Returns:**
 
 Map&lt;number, Map&lt;number, number&gt;&gt;
 

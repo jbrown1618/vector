@@ -86,7 +86,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
     }
 
     return this.fromIndexFunction([numberOfRows, numberOfColumns], (i, j) =>
-      columns[j].getEntry(i)
+      columns[j].getEntry(i),
     );
   }
 
@@ -240,7 +240,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
    */
   public identity(size: number): M {
     return this.fromIndexFunction([size, size], (i, j) =>
-      i === j ? this.ops().one() : this.ops().zero()
+      i === j ? this.ops().one() : this.ops().zero(),
     );
   }
 
@@ -508,7 +508,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
   public diagonal(diagonalEntries: Vector<S>): M {
     const size = diagonalEntries.getDimension();
     return this.fromIndexFunction([size, size], (i, j) =>
-      i === j ? diagonalEntries.getEntry(i) : this.ops().zero()
+      i === j ? diagonalEntries.getEntry(i) : this.ops().zero(),
     );
   }
 
@@ -542,7 +542,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
   public tridiagonal(
     leftEntries: Vector<S>,
     diagonalEntries: Vector<S>,
-    rightEntries: Vector<S>
+    rightEntries: Vector<S>,
   ): M {
     const size = diagonalEntries.getDimension();
     const hasSizeMismatch =
@@ -736,7 +736,7 @@ export class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> {
     rowStartIndex = 0,
     columnStartIndex = 0,
     rowEndIndex: number = matrix.getNumberOfRows(),
-    columnEndIndex: number = matrix.getNumberOfColumns()
+    columnEndIndex: number = matrix.getNumberOfColumns(),
   ): M {
     if (rowStartIndex < 0 || columnStartIndex < 0 || rowEndIndex < 0 || columnEndIndex < 0) {
       throw Error('indices must be positive');

@@ -6,7 +6,7 @@
 
 Constructs a square diagonal matrix whose diagonal entries come from `diagonalEntries`
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 diagonal(diagonalEntries: Vector<S>): M;
@@ -14,11 +14,41 @@ diagonal(diagonalEntries: Vector<S>): M;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  diagonalEntries | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | A vector whose entries will be used as the diagonal entries of the new matrix |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+diagonalEntries
+
+
+</td><td>
+
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+A vector whose entries will be used as the diagonal entries of the new matrix
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 M
 
@@ -34,6 +64,5 @@ matrixBuilder.diagonal(diagonalEntries);
 // [ 1 0 0 ]
 // [ 0 2 0 ]
 // [ 0 0 3 ]
-
 ```
 

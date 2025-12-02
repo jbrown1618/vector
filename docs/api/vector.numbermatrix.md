@@ -6,12 +6,12 @@
 
 A dense matrix of JavaScript `number` primitives, implemented as an [ArrayMatrix](./vector.arraymatrix.md)
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare class NumberMatrix extends ArrayMatrix<number> 
 ```
-<b>Extends:</b> [ArrayMatrix](./vector.arraymatrix.md)<!-- -->&lt;number&gt;
+**Extends:** [ArrayMatrix](./vector.arraymatrix.md)<!-- -->&lt;number&gt;
 
 ## Remarks
 
@@ -19,12 +19,105 @@ The constructor for this class is marked as internal. Third-party code should no
 
 ## Methods
 
-|  Method | Modifiers | Description |
-|  --- | --- | --- |
-|  [builder()](./vector.numbermatrix.builder.md) |  | Returns a [MatrixBuilder](./vector.matrixbuilder.md) which will build new matrices of the same type |
-|  [builder()](./vector.numbermatrix.builder.md) | <code>static</code> |  |
-|  [ops()](./vector.numbermatrix.ops.md) |  | Returns a [ScalarOperations](./vector.scalaroperations.md) object which will allow consumers to work generically with the scalars contained in the vector. |
-|  [ops()](./vector.numbermatrix.ops.md) | <code>static</code> |  |
-|  [vectorBuilder()](./vector.numbermatrix.vectorbuilder.md) |  | Returns a [VectorBuilder](./vector.vectorbuilder.md) which will build new vectors of a compatible type |
-|  [vectorBuilder()](./vector.numbermatrix.vectorbuilder.md) | <code>static</code> |  |
+<table><thead><tr><th>
+
+Method
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[builder()](./vector.numbermatrix.builder.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns a [MatrixBuilder](./vector.matrixbuilder.md) which will build new matrices of the same type
+
+
+</td></tr>
+<tr><td>
+
+[builder()](./vector.numbermatrix.builder.md)
+
+
+</td><td>
+
+`static`
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[ops()](./vector.numbermatrix.ops.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns a [ScalarOperations](./vector.scalaroperations.md) object which will allow consumers to work generically with the scalars contained in the vector.
+
+
+</td></tr>
+<tr><td>
+
+[ops()](./vector.numbermatrix.ops.md)
+
+
+</td><td>
+
+`static`
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[vectorBuilder()](./vector.numbermatrix.vectorbuilder.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns a [VectorBuilder](./vector.vectorbuilder.md) which will build new vectors of a compatible type
+
+
+</td></tr>
+<tr><td>
+
+[vectorBuilder()](./vector.numbermatrix.vectorbuilder.md)
+
+
+</td><td>
+
+`static`
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
 

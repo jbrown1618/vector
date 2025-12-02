@@ -6,7 +6,7 @@
 
 The result of a Cholesky Decomposition
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface CholeskyDecomposition<S> 
@@ -14,7 +14,43 @@ export interface CholeskyDecomposition<S>
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [L](./vector.choleskydecomposition.l.md) | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; |  |
+<table><thead><tr><th>
+
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[L](./vector.choleskydecomposition.l.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
 

@@ -6,7 +6,7 @@
 
 Constructs a Toeplitz matrix from the specified first column and first row. A Toeplitz matrix has constant diagonals. If `firstRow` is not given, then the complex conjugate of `firstColumn` is assumed. The first entry must be real because the first entry of the first column must equal the first entry of the first row.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 toeplitz(firstColumn: Vector<S>, firstRow?: Vector<S>): M;
@@ -14,12 +14,57 @@ toeplitz(firstColumn: Vector<S>, firstRow?: Vector<S>): M;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  firstColumn | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | The first column of the Toeplitz matrix |
-|  firstRow | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | The first row of the Toeplitz matrix |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+firstColumn
+
+
+</td><td>
+
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+The first column of the Toeplitz matrix
+
+
+</td></tr>
+<tr><td>
+
+firstRow
+
+
+</td><td>
+
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+_(Optional)_ The first row of the Toeplitz matrix
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 M
 
@@ -41,6 +86,5 @@ const toeplitzWithSpecifiedRow = matrixBuilder.toeplitz(
 // [ 1 3 5 7 ]
 // [ 2 1 3 5 ]
 // [ 3 2 1 3 ]
-
 ```
 

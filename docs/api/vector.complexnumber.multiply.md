@@ -4,7 +4,7 @@
 
 ## ComplexNumber.multiply() method
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 multiply(other: ComplexNumber): ComplexNumber;
@@ -12,11 +12,39 @@ multiply(other: ComplexNumber): ComplexNumber;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  other | [ComplexNumber](./vector.complexnumber.md) |  |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+other
+
+
+</td><td>
+
+[ComplexNumber](./vector.complexnumber.md)
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [ComplexNumber](./vector.complexnumber.md)
 

@@ -197,7 +197,7 @@ function clearEntriesBelow<S>(matrix: Matrix<S>, pivotRow: number, pivotColumn: 
 function checkPreconditionsForClearingBelow<S>(
   matrix: Matrix<S>,
   pivotRow: number,
-  pivotColumn: number
+  pivotColumn: number,
 ): void {
   const ops = matrix.ops();
 
@@ -228,7 +228,7 @@ function clearEntriesAbove<S>(matrix: Matrix<S>, pivotRow: number, pivotColumn: 
       matrix,
       rowIndex,
       pivotRow,
-      ops.getAdditiveInverse(entry)
+      ops.getAdditiveInverse(entry),
     );
   }
   return matrix;
@@ -241,7 +241,7 @@ function clearEntriesAbove<S>(matrix: Matrix<S>, pivotRow: number, pivotColumn: 
 function checkPreconditionsForClearingAbove<S>(
   matrix: Matrix<S>,
   pivotRow: number,
-  pivotColumn: number
+  pivotColumn: number,
 ): void {
   const ops = matrix.ops();
 

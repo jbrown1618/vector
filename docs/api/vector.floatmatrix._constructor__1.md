@@ -6,7 +6,7 @@
 
 Constructs a new instance of the `FloatMatrix` class
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 constructor(data: Float64Array, shape: MatrixShape);
@@ -14,8 +14,49 @@ constructor(data: Float64Array, shape: MatrixShape);
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  data | Float64Array |  |
-|  shape | [MatrixShape](./vector.matrixshape.md) |  |
+<table><thead><tr><th>
+
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+data
+
+
+</td><td>
+
+Float64Array
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+shape
+
+
+</td><td>
+
+[MatrixShape](./vector.matrixshape.md)
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
 

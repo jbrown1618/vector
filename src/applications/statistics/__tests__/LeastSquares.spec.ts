@@ -113,7 +113,7 @@ describe('LeastSquares', () => {
     test('rejects non-homogeneous data', () => {
       const nonHomogeneousData = [vec([1, 1]), vec([1, 1, 1])];
       expect(() =>
-        calculateGeneralLeastSquares(nonHomogeneousData, uselessFunctionTemplate, 0)
+        calculateGeneralLeastSquares(nonHomogeneousData, uselessFunctionTemplate, 0),
       ).toThrow();
     });
 

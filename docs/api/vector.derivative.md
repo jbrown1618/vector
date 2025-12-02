@@ -6,7 +6,7 @@
 
 Uses finite differences to build a vector containing approximate values of the derivative of `f`<!-- -->.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function derivative(f: (x: number) => number, xMin: number, xMax: number, binCount: number): Vector;
@@ -14,14 +14,89 @@ export declare function derivative(f: (x: number) => number, xMin: number, xMax:
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  f | (x: number) =&gt; number | A deterministic function with no side effects |
-|  xMin | number | The minimum value for which the derivative will be approximated |
-|  xMax | number | The maximum (exclusive) value for which the derivative will be approximated |
-|  binCount | number | The number of approximations |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+f
+
+
+</td><td>
+
+(x: number) =&gt; number
+
+
+</td><td>
+
+A deterministic function with no side effects
+
+
+</td></tr>
+<tr><td>
+
+xMin
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+The minimum value for which the derivative will be approximated
+
+
+</td></tr>
+<tr><td>
+
+xMax
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+The maximum (exclusive) value for which the derivative will be approximated
+
+
+</td></tr>
+<tr><td>
+
+binCount
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+The number of approximations
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [Vector](./vector.vector.md)
 
@@ -33,6 +108,5 @@ A linearly spaced vector whose values represent the values of the derivative
 ```
 // Approximates Math.cos at 100 points between 0 and 2*PI
 derivative(Math.sin, 0, 2*Math.PI, 100);
-
 ```
 

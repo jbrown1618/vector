@@ -6,7 +6,7 @@
 
 Returns the product of the given array of matrices.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function chainProduct<S>(...matrices: Matrix<S>[]): Matrix<S>;
@@ -14,11 +14,41 @@ export declare function chainProduct<S>(...matrices: Matrix<S>[]): Matrix<S>;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  matrices | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;\[\] | The array of matrices to multiply |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+matrices
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;\[\]
+
+
+</td><td>
+
+The array of matrices to multiply
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
 

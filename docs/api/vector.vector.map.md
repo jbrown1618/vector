@@ -6,7 +6,7 @@
 
 Constructs a vector by transforming the values of another vector.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 map(valueFromEntry: (entry: S, index: number) => S): Vector<S>;
@@ -14,11 +14,41 @@ map(valueFromEntry: (entry: S, index: number) => S): Vector<S>;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  valueFromEntry | (entry: S, index: number) =&gt; S | A function which takes an entry of the original vector and its index, and returns the corresponding entry of the new vector |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+valueFromEntry
+
+
+</td><td>
+
+(entry: S, index: number) =&gt; S
+
+
+</td><td>
+
+A function which takes an entry of the original vector and its index, and returns the corresponding entry of the new vector
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [Vector](./vector.vector.md)<!-- -->&lt;S&gt;
 
@@ -35,6 +65,5 @@ const originalPlusOne = original.map(value => value + 1);
 
 const originalPlusIndex = original.map((value, index) => value + index);
 // [1, 3, 5, 7]
-
 ```
 

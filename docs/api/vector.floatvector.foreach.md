@@ -6,7 +6,7 @@
 
 Returns the dimension of the vector
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 forEach(callback: (entry: number, index: number) => void): void;
@@ -14,11 +14,39 @@ forEach(callback: (entry: number, index: number) => void): void;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  callback | (entry: number, index: number) =&gt; void |  |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+callback
+
+
+</td><td>
+
+(entry: number, index: number) =&gt; void
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 void
 

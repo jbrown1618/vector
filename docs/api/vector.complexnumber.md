@@ -6,7 +6,7 @@
 
 A number of the form \_a + bi\_ where \_i\_ is the imaginary unit.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare class ComplexNumber 
@@ -14,29 +14,260 @@ export declare class ComplexNumber
 
 ## Constructors
 
-|  Constructor | Modifiers | Description |
-|  --- | --- | --- |
-|  [(constructor)(real, imaginary)](./vector.complexnumber._constructor_.md) |  | Constructs a new instance of the <code>ComplexNumber</code> class |
+<table><thead><tr><th>
+
+Constructor
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[(constructor)(real, imaginary)](./vector.complexnumber._constructor_.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Constructs a new instance of the `ComplexNumber` class
+
+
+</td></tr>
+</tbody></table>
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [I](./vector.complexnumber.i.md) | <code>static</code> | [ComplexNumber](./vector.complexnumber.md) |  |
-|  [NEG\_ONE](./vector.complexnumber.neg_one.md) | <code>static</code> | [ComplexNumber](./vector.complexnumber.md) |  |
-|  [ONE](./vector.complexnumber.one.md) | <code>static</code> | [ComplexNumber](./vector.complexnumber.md) |  |
-|  [ZERO](./vector.complexnumber.zero.md) | <code>static</code> | [ComplexNumber](./vector.complexnumber.md) |  |
+<table><thead><tr><th>
+
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[I](./vector.complexnumber.i.md)
+
+
+</td><td>
+
+`static`
+
+`readonly`
+
+
+</td><td>
+
+[ComplexNumber](./vector.complexnumber.md)
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[NEG\_ONE](./vector.complexnumber.neg_one.md)
+
+
+</td><td>
+
+`static`
+
+`readonly`
+
+
+</td><td>
+
+[ComplexNumber](./vector.complexnumber.md)
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[ONE](./vector.complexnumber.one.md)
+
+
+</td><td>
+
+`static`
+
+`readonly`
+
+
+</td><td>
+
+[ComplexNumber](./vector.complexnumber.md)
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[ZERO](./vector.complexnumber.zero.md)
+
+
+</td><td>
+
+`static`
+
+`readonly`
+
+
+</td><td>
+
+[ComplexNumber](./vector.complexnumber.md)
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
 
 ## Methods
 
-|  Method | Modifiers | Description |
-|  --- | --- | --- |
-|  [add(other)](./vector.complexnumber.add.md) |  |  |
-|  [conjugate()](./vector.complexnumber.conjugate.md) |  |  |
-|  [equals(other)](./vector.complexnumber.equals.md) |  |  |
-|  [getAdditiveInverse()](./vector.complexnumber.getadditiveinverse.md) |  |  |
-|  [getImaginaryPart()](./vector.complexnumber.getimaginarypart.md) |  |  |
-|  [getMultiplicativeInverse()](./vector.complexnumber.getmultiplicativeinverse.md) |  |  |
-|  [getRealPart()](./vector.complexnumber.getrealpart.md) |  |  |
-|  [multiply(other)](./vector.complexnumber.multiply.md) |  |  |
+<table><thead><tr><th>
+
+Method
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[add(other)](./vector.complexnumber.add.md)
+
+
+</td><td>
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[conjugate()](./vector.complexnumber.conjugate.md)
+
+
+</td><td>
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[equals(other)](./vector.complexnumber.equals.md)
+
+
+</td><td>
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[getAdditiveInverse()](./vector.complexnumber.getadditiveinverse.md)
+
+
+</td><td>
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[getImaginaryPart()](./vector.complexnumber.getimaginarypart.md)
+
+
+</td><td>
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[getMultiplicativeInverse()](./vector.complexnumber.getmultiplicativeinverse.md)
+
+
+</td><td>
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[getRealPart()](./vector.complexnumber.getrealpart.md)
+
+
+</td><td>
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[multiply(other)](./vector.complexnumber.multiply.md)
+
+
+</td><td>
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
 

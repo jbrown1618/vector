@@ -6,12 +6,12 @@
 
 Implements [Matrix](./vector.matrix.md) with a map of indices to nonzero values.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare abstract class SparseMatrix<S = number> implements Matrix<S> 
 ```
-<b>Implements:</b> [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
+**Implements:** [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
 
 ## Remarks
 
@@ -21,32 +21,391 @@ The constructor for this class is marked as internal. Third-party code should no
 
 ## Methods
 
-|  Method | Modifiers | Description |
-|  --- | --- | --- |
-|  [add(other)](./vector.sparsematrix.add.md) |  | Implements matrix addition |
-|  [adjoint()](./vector.sparsematrix.adjoint.md) |  | Returns the adjoint of the matrix |
-|  [apply(vector)](./vector.sparsematrix.apply.md) |  | Applies the matrix as a linear transformation to the given vector. Implements matrix-vector multiplication. |
-|  [builder()](./vector.sparsematrix.builder.md) |  | Returns a [MatrixBuilder](./vector.matrixbuilder.md) which will build new matrices of the same type |
-|  [combine(other, combineEntries)](./vector.sparsematrix.combine.md) |  | Builds a matrix by combining element-wise the values of this matrix with the values of another matrix. |
-|  [equals(other)](./vector.sparsematrix.equals.md) |  | Tests if two matrices are equal |
-|  [forEach(cb)](./vector.sparsematrix.foreach.md) |  | Executes the <code>callback</code> function for each entry in the matrix. |
-|  [getColumn(j)](./vector.sparsematrix.getcolumn.md) |  | Returns a vector corresponding to the column at index <code>columnIndex</code> |
-|  [getColumnVectors()](./vector.sparsematrix.getcolumnvectors.md) |  | An array of vectors corresponding to the columns of the matrix |
-|  [getDiagonal()](./vector.sparsematrix.getdiagonal.md) |  | Returns a vector containing the elements of the main diagonal of the matrix |
-|  [getEntry(i, j)](./vector.sparsematrix.getentry.md) |  | Returns the entry of the matrix at the specified indices <code>i</code> and <code>j</code> |
-|  [getNumberOfColumns()](./vector.sparsematrix.getnumberofcolumns.md) |  | Returns the number of columns in the matrix |
-|  [getNumberOfRows()](./vector.sparsematrix.getnumberofrows.md) |  | Returns the number of rows in the matrix |
-|  [getRow(i)](./vector.sparsematrix.getrow.md) |  | Returns a vector corresponding to the row at index <code>rowIndex</code> |
-|  [getRowVectors()](./vector.sparsematrix.getrowvectors.md) |  | Returns an array of vectors corresponding to the rows of the matrix |
-|  [getShape()](./vector.sparsematrix.getshape.md) |  | Returns a tuple representing the dimensions of the matrix. The first entry is the number of rows, and the second entry is the number of columns. |
-|  [getSparseData()](./vector.sparsematrix.getsparsedata.md) |  | Returns the contents of the matrix as a nested map of rowIndex to columnIndex to nonzero value |
-|  [map(entryFunction)](./vector.sparsematrix.map.md) |  | Builds a matrix by transforming the values of the current matrix. |
-|  [multiply(other)](./vector.sparsematrix.multiply.md) |  | Implements matrix multiplication |
-|  [ops()](./vector.sparsematrix.ops.md) |  | Returns a [ScalarOperations](./vector.scalaroperations.md) object which will allow consumers to work generically with the scalars contained in the vector. |
-|  [scalarMultiply(scalar)](./vector.sparsematrix.scalarmultiply.md) |  | Implements multiplication of a matrix by a scalar |
-|  [set(i, j, value)](./vector.sparsematrix.set.md) |  | Returns a new matrix equal to the old one, except with the entry at <code>(i, j)</code> replaced with <code>value</code> |
-|  [toArray()](./vector.sparsematrix.toarray.md) |  | Returns the contents of the matrix as a 2-D array. |
-|  [trace()](./vector.sparsematrix.trace.md) |  | Returns the trace of the matrix |
-|  [transpose()](./vector.sparsematrix.transpose.md) |  | Returns the transpose of the matrix |
-|  [vectorBuilder()](./vector.sparsematrix.vectorbuilder.md) |  | Returns a [VectorBuilder](./vector.vectorbuilder.md) which will build new vectors of a compatible type |
+<table><thead><tr><th>
+
+Method
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[add(other)](./vector.sparsematrix.add.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Implements matrix addition
+
+
+</td></tr>
+<tr><td>
+
+[adjoint()](./vector.sparsematrix.adjoint.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns the adjoint of the matrix
+
+
+</td></tr>
+<tr><td>
+
+[apply(vector)](./vector.sparsematrix.apply.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Applies the matrix as a linear transformation to the given vector. Implements matrix-vector multiplication.
+
+
+</td></tr>
+<tr><td>
+
+[builder()](./vector.sparsematrix.builder.md)
+
+
+</td><td>
+
+`abstract`
+
+
+</td><td>
+
+Returns a [MatrixBuilder](./vector.matrixbuilder.md) which will build new matrices of the same type
+
+
+</td></tr>
+<tr><td>
+
+[combine(other, combineEntries)](./vector.sparsematrix.combine.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Builds a matrix by combining element-wise the values of this matrix with the values of another matrix.
+
+
+</td></tr>
+<tr><td>
+
+[equals(other)](./vector.sparsematrix.equals.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Tests if two matrices are equal
+
+
+</td></tr>
+<tr><td>
+
+[forEach(cb)](./vector.sparsematrix.foreach.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Executes the `callback` function for each entry in the matrix.
+
+
+</td></tr>
+<tr><td>
+
+[getColumn(j)](./vector.sparsematrix.getcolumn.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns a vector corresponding to the column at index `columnIndex`
+
+
+</td></tr>
+<tr><td>
+
+[getColumnVectors()](./vector.sparsematrix.getcolumnvectors.md)
+
+
+</td><td>
+
+
+</td><td>
+
+An array of vectors corresponding to the columns of the matrix
+
+
+</td></tr>
+<tr><td>
+
+[getDiagonal()](./vector.sparsematrix.getdiagonal.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns a vector containing the elements of the main diagonal of the matrix
+
+
+</td></tr>
+<tr><td>
+
+[getEntry(i, j)](./vector.sparsematrix.getentry.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns the entry of the matrix at the specified indices `i` and `j`
+
+
+</td></tr>
+<tr><td>
+
+[getNumberOfColumns()](./vector.sparsematrix.getnumberofcolumns.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns the number of columns in the matrix
+
+
+</td></tr>
+<tr><td>
+
+[getNumberOfRows()](./vector.sparsematrix.getnumberofrows.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns the number of rows in the matrix
+
+
+</td></tr>
+<tr><td>
+
+[getRow(i)](./vector.sparsematrix.getrow.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns a vector corresponding to the row at index `rowIndex`
+
+
+</td></tr>
+<tr><td>
+
+[getRowVectors()](./vector.sparsematrix.getrowvectors.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns an array of vectors corresponding to the rows of the matrix
+
+
+</td></tr>
+<tr><td>
+
+[getShape()](./vector.sparsematrix.getshape.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns a tuple representing the dimensions of the matrix. The first entry is the number of rows, and the second entry is the number of columns.
+
+
+</td></tr>
+<tr><td>
+
+[getSparseData()](./vector.sparsematrix.getsparsedata.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns the contents of the matrix as a nested map of rowIndex to columnIndex to nonzero value
+
+
+</td></tr>
+<tr><td>
+
+[map(entryFunction)](./vector.sparsematrix.map.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Builds a matrix by transforming the values of the current matrix.
+
+
+</td></tr>
+<tr><td>
+
+[multiply(other)](./vector.sparsematrix.multiply.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Implements matrix multiplication
+
+
+</td></tr>
+<tr><td>
+
+[ops()](./vector.sparsematrix.ops.md)
+
+
+</td><td>
+
+`abstract`
+
+
+</td><td>
+
+Returns a [ScalarOperations](./vector.scalaroperations.md) object which will allow consumers to work generically with the scalars contained in the vector.
+
+
+</td></tr>
+<tr><td>
+
+[scalarMultiply(scalar)](./vector.sparsematrix.scalarmultiply.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Implements multiplication of a matrix by a scalar
+
+
+</td></tr>
+<tr><td>
+
+[set(i, j, value)](./vector.sparsematrix.set.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns a new matrix equal to the old one, except with the entry at `(i, j)` replaced with `value`
+
+
+</td></tr>
+<tr><td>
+
+[toArray()](./vector.sparsematrix.toarray.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns the contents of the matrix as a 2-D array.
+
+
+</td></tr>
+<tr><td>
+
+[trace()](./vector.sparsematrix.trace.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns the trace of the matrix
+
+
+</td></tr>
+<tr><td>
+
+[transpose()](./vector.sparsematrix.transpose.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns the transpose of the matrix
+
+
+</td></tr>
+<tr><td>
+
+[vectorBuilder()](./vector.sparsematrix.vectorbuilder.md)
+
+
+</td><td>
+
+`abstract`
+
+
+</td><td>
+
+Returns a [VectorBuilder](./vector.vectorbuilder.md) which will build new vectors of a compatible type
+
+
+</td></tr>
+</tbody></table>
 

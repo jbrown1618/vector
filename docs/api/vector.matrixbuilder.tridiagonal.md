@@ -6,7 +6,7 @@
 
 Constructs a square tridiagonal matrix whose diagonal entries correspond to the entries of `diagonalEntries`<!-- -->, whose entries in the left-off-diagonal correspond to the entries of `leftEntries`<!-- -->, and whose entries in the right-off-diagonal correspond fo the entries of `rightEntries`<!-- -->. The off-diagonals must have one fewer entry than the diagonal. Throws an error if the dimensions are not correct.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 tridiagonal(leftEntries: Vector<S>, diagonalEntries: Vector<S>, rightEntries: Vector<S>): M;
@@ -14,13 +14,73 @@ tridiagonal(leftEntries: Vector<S>, diagonalEntries: Vector<S>, rightEntries: Ve
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  leftEntries | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | A vector whose entries will be used in the left off-diagonal |
-|  diagonalEntries | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | A vector whose entries will be used in the diagonal |
-|  rightEntries | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | A vector whose entries will be used in the right off-diagonal |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+leftEntries
+
+
+</td><td>
+
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+A vector whose entries will be used in the left off-diagonal
+
+
+</td></tr>
+<tr><td>
+
+diagonalEntries
+
+
+</td><td>
+
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+A vector whose entries will be used in the diagonal
+
+
+</td></tr>
+<tr><td>
+
+rightEntries
+
+
+</td><td>
+
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+A vector whose entries will be used in the right off-diagonal
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 M
 
@@ -39,6 +99,5 @@ const tridiagonal = matrixBuilder.tridiagonal(leftEntries, diagonalEntries, righ
 // [ 3 6 0 ]
 // [ 1 4 7 ]
 // [ 0 2 5 ]
-
 ```
 

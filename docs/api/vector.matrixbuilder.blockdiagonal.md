@@ -6,7 +6,7 @@
 
 Creates a block-diagonal matrix.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 blockDiagonal(matrices: Matrix<S>[]): M;
@@ -14,11 +14,41 @@ blockDiagonal(matrices: Matrix<S>[]): M;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  matrices | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;\[\] | The matrices to appear along the primary diagonal of the block matrix |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+matrices
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;\[\]
+
+
+</td><td>
+
+The matrices to appear along the primary diagonal of the block matrix
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 M
 
@@ -38,6 +68,5 @@ const blockDiagonal = matrixBuilder.blockDiagonal([ones, twos, ones]);
 // [ 0 0 2 2 2 0 0 ]
 // [ 0 0 0 0 0 1 1 ]
 // [ 0 0 0 0 0 1 1 ]
-
 ```
 

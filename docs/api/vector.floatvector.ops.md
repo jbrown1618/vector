@@ -4,12 +4,12 @@
 
 ## FloatVector.ops() method
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 static ops(): NumberOperations;
 ```
-<b>Returns:</b>
+**Returns:**
 
 [NumberOperations](./vector.numberoperations.md)
 

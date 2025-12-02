@@ -6,11 +6,12 @@
 
 A function that calculates a norm for a vector.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-export declare type Norm<S = number> = (v: Vector<S>) => number;
+export type Norm<S = number> = (v: Vector<S>) => number;
 ```
+**References:** [Vector](./vector.vector.md)
 
 ## Remarks
 

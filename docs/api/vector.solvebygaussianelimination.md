@@ -6,7 +6,7 @@
 
 Uses Gauss-Jordan elimination with pivoting and backward substitution to solve the linear equation \_Ax=b\_
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function solveByGaussianElimination<S>(A: Matrix<S>, b: Vector<S>): LinearSolution<S>;
@@ -14,12 +14,57 @@ export declare function solveByGaussianElimination<S>(A: Matrix<S>, b: Vector<S>
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  A | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The matrix \_A\_ in \_Ax=b\_ |
-|  b | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | The vector \_b\_ in \_Ax=b\_ |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+A
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+The matrix \_A\_ in \_Ax=b\_
+
+
+</td></tr>
+<tr><td>
+
+b
+
+
+</td><td>
+
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+The vector \_b\_ in \_Ax=b\_
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [LinearSolution](./vector.linearsolution.md)<!-- -->&lt;S&gt;
 

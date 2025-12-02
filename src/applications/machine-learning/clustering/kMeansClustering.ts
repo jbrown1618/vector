@@ -41,7 +41,7 @@ function updateLabels(rows: Vector[], centroids: Vector[], norm: Norm): Vector {
   const m = rows.length;
   const vectorBuilder = rows[0].builder();
   return vectorBuilder.fromIndexFunction(m, (i) =>
-    getIndexOfClosestCentroid(rows[i], centroids, norm)
+    getIndexOfClosestCentroid(rows[i], centroids, norm),
   );
 }
 
@@ -85,8 +85,6 @@ function updateCentroids(rows: Vector[], labels: Vector): Vector[] {
 
 function initializeCentroids(X: Matrix, k: number, n: number): Vector[] {
   const vectorBuilder = X.vectorBuilder();
-  const ops = X.ops();
-  ops.randomNormal;
   const means = mean(X);
   const stdDevs = standardDeviation(X).map((x) => 2 * x);
 

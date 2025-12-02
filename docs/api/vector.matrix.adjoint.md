@@ -6,12 +6,12 @@
 
 Returns the adjoint of the matrix
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 adjoint(): Matrix<S>;
 ```
-<b>Returns:</b>
+**Returns:**
 
 [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
 

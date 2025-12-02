@@ -6,12 +6,12 @@
 
 Returns the unique scalar that, when added to another scalar, returns that scalar
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 abstract getAdditiveIdentity(): S;
 ```
-<b>Returns:</b>
+**Returns:**
 
 S
 

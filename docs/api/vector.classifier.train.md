@@ -6,7 +6,7 @@
 
 Learns the optimal set of parameters for the model.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 train(data: Matrix, target: Vector): void;
@@ -14,12 +14,57 @@ train(data: Matrix, target: Vector): void;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  data | [Matrix](./vector.matrix.md) | A [Matrix](./vector.matrix.md) whose rows are the individual observations in the training set |
-|  target | [Vector](./vector.vector.md) | A [Vector](./vector.vector.md) whose entries are the target values in the training set |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+data
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)
+
+
+</td><td>
+
+A [Matrix](./vector.matrix.md) whose rows are the individual observations in the training set
+
+
+</td></tr>
+<tr><td>
+
+target
+
+
+</td><td>
+
+[Vector](./vector.vector.md)
+
+
+</td><td>
+
+A [Vector](./vector.vector.md) whose entries are the target values in the training set
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 void
 

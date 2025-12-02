@@ -4,7 +4,7 @@
 
 ## MatrixBuilder.fromSparseData() method
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 fromSparseData(shape: MatrixShape, sparseData: SparseMatrixData<S>): M;
@@ -12,12 +12,53 @@ fromSparseData(shape: MatrixShape, sparseData: SparseMatrixData<S>): M;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  shape | [MatrixShape](./vector.matrixshape.md) |  |
-|  sparseData | [SparseMatrixData](./vector.sparsematrixdata.md)<!-- -->&lt;S&gt; |  |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+shape
+
+
+</td><td>
+
+[MatrixShape](./vector.matrixshape.md)
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+sparseData
+
+
+</td><td>
+
+[SparseMatrixData](./vector.sparsematrixdata.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 M
 

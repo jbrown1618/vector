@@ -6,7 +6,7 @@
 
 Creates a new vector of all 1s. See [VectorBuilder.ones()](./vector.vectorbuilder.ones.md)
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function ones(entries: number): Vector;
@@ -14,11 +14,39 @@ export declare function ones(entries: number): Vector;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  entries | number |  |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+entries
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [Vector](./vector.vector.md)
 

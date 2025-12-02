@@ -4,7 +4,7 @@
 
 ## QRDecomposition.R property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 R: Matrix<S>;

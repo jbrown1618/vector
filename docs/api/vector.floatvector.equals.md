@@ -6,7 +6,7 @@
 
 Tests if two vectors are equal
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 equals(other: Vector<number>): boolean;
@@ -14,11 +14,41 @@ equals(other: Vector<number>): boolean;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  other | [Vector](./vector.vector.md)<!-- -->&lt;number&gt; | The vector against which to compare |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+other
+
+
+</td><td>
+
+[Vector](./vector.vector.md)<!-- -->&lt;number&gt;
+
+
+</td><td>
+
+The vector against which to compare
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 boolean
 

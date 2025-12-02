@@ -4,12 +4,12 @@
 
 ## ComplexMatrix.vectorBuilder() method
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 static vectorBuilder(): VectorBuilder<ComplexNumber, ComplexVector>;
 ```
-<b>Returns:</b>
+**Returns:**
 
 [VectorBuilder](./vector.vectorbuilder.md)<!-- -->&lt;[ComplexNumber](./vector.complexnumber.md)<!-- -->, [ComplexVector](./vector.complexvector.md)<!-- -->&gt;
 

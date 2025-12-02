@@ -6,10 +6,12 @@
 
 The set of hyperparameters for a [LinearRegressor](./vector.linearregressor.md)
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-export declare type LinearRegressorHyperparams = GradientDescentParameters & {
+export type LinearRegressorHyperparams = GradientDescentParameters & {
     lambda: number;
 };
 ```
+**References:** [GradientDescentParameters](./vector.gradientdescentparameters.md)
+

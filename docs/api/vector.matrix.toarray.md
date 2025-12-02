@@ -6,12 +6,12 @@
 
 Returns the contents of the matrix as a 2-D array.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 toArray(): S[][];
 ```
-<b>Returns:</b>
+**Returns:**
 
 S\[\]\[\]
 

@@ -6,7 +6,7 @@
 
 Provides methods for constructing [Matrices](./vector.matrix.md) of a given type
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare class MatrixBuilder<S, V extends Vector<S>, M extends Matrix<S>> 
@@ -18,34 +18,407 @@ The constructor for this class is marked as internal. Third-party code should no
 
 ## Methods
 
-|  Method | Modifiers | Description |
-|  --- | --- | --- |
-|  [augment(left, right)](./vector.matrixbuilder.augment.md) |  | Constructs a new matrix consisting of <code>left</code> and <code>right</code> next to one another. Throws an error of <code>left</code> and <code>right</code> do not have the same number of rows. |
-|  [block(grid)](./vector.matrixbuilder.block.md) |  | Constructs a single matrix consisting of a grid of matrices combined together. Throws an error if any of the dimensions are incompatible. |
-|  [blockDiagonal(matrices)](./vector.matrixbuilder.blockdiagonal.md) |  | Creates a block-diagonal matrix. |
-|  [circulant(vector)](./vector.matrixbuilder.circulant.md) |  | Construct a circulant matrix using entries from the input vector |
-|  [diagonal(diagonalEntries)](./vector.matrixbuilder.diagonal.md) |  | Constructs a square diagonal matrix whose diagonal entries come from <code>diagonalEntries</code> |
-|  [empty()](./vector.matrixbuilder.empty.md) |  | Constructs a 0x0 matrix |
-|  [exclude(matrix, rowToExclude, columnToExclude)](./vector.matrixbuilder.exclude.md) |  | Constructs a new matrix with all entries in row <code>rowToExclude</code> and in column <code>columnToExclude</code> removed. |
-|  [fill(value, shape)](./vector.matrixbuilder.fill.md) |  | Constructs a matrix of the specified dimension, whose entries are all the specified value |
-|  [fromArray(data)](./vector.matrixbuilder.fromarray.md) |  |  |
-|  [fromColumnVectors(columns)](./vector.matrixbuilder.fromcolumnvectors.md) |  | Builds a matrix from an array of column vectors |
-|  [fromIndexFunction(shape, indexFunction)](./vector.matrixbuilder.fromindexfunction.md) |  | Builds a matrix with entries given by \_entry = f(i, j)\_ where \_f\_ is <code>indexFunction</code> and <code>i</code> and <code>j</code> are the indices of the element |
-|  [fromNumberArray(numberData)](./vector.matrixbuilder.fromnumberarray.md) |  |  |
-|  [fromRowVectors(rows)](./vector.matrixbuilder.fromrowvectors.md) |  | Builds a matrix from an array of row vectors |
-|  [fromSparseData(shape, sparseData)](./vector.matrixbuilder.fromsparsedata.md) |  |  |
-|  [hankel(firstColumn, lastRow)](./vector.matrixbuilder.hankel.md) |  | Constructs a Hankel matrix from the specified first column and last row. A Hankel matrix has constant anti-diagonals. If <code>lastRow</code> is not given, then a vector with the last entry of the first row in the first entry and zero elsewhere is assumed. The last entry of the first column must equal the first entry of the last row. |
-|  [hilbert(size)](./vector.matrixbuilder.hilbert.md) |  | Constructs a Hilbert matrix of the specified size |
-|  [identity(size)](./vector.matrixbuilder.identity.md) |  | Constructs a <code>size</code> x <code>size</code> identity matrix |
-|  [ones(shape)](./vector.matrixbuilder.ones.md) |  | Constructs a matrix of the specified dimensions, consisting of all ones |
-|  [pascal(size, upper)](./vector.matrixbuilder.pascal.md) |  | Constructs a lower-triangular matrix whose entries are the binomial coefficients (j choose i). Constructs an upper triangular matrix when the second argument is <code>true</code>. |
-|  [pascalSymmetric(size)](./vector.matrixbuilder.pascalsymmetric.md) |  | Constructs a symmetric matrix whose entries are the binomial coefficients (i + j choose i) |
-|  [random(shape, min, max)](./vector.matrixbuilder.random.md) |  | Constructs a matrix of the specified size whose entries are (uniformly-distributed) random numbers between <code>min</code> and <code>max</code> |
-|  [randomNormal(shape, mean, standardDeviation)](./vector.matrixbuilder.randomnormal.md) |  | Constructs a matrix of the specified size whose entries are normally distributed with the specified mean and standard deviation. |
-|  [repeat(matrix, rows, columns)](./vector.matrixbuilder.repeat.md) |  | Constructs a new matrix consisted of repetitions of a smaller matrix. |
-|  [slice(matrix, rowStartIndex, columnStartIndex, rowEndIndex, columnEndIndex)](./vector.matrixbuilder.slice.md) |  | Constructs a new matrix based on a rectangular slice of a larger matrix |
-|  [toeplitz(firstColumn, firstRow)](./vector.matrixbuilder.toeplitz.md) |  | Constructs a Toeplitz matrix from the specified first column and first row. A Toeplitz matrix has constant diagonals. If <code>firstRow</code> is not given, then the complex conjugate of <code>firstColumn</code> is assumed. The first entry must be real because the first entry of the first column must equal the first entry of the first row. |
-|  [triangularMask(shape, lower, includeDiagonal)](./vector.matrixbuilder.triangularmask.md) |  | Constructs a matrix that has ones on and above the diagonal, and zeros elsewhere. |
-|  [tridiagonal(leftEntries, diagonalEntries, rightEntries)](./vector.matrixbuilder.tridiagonal.md) |  | Constructs a square tridiagonal matrix whose diagonal entries correspond to the entries of <code>diagonalEntries</code>, whose entries in the left-off-diagonal correspond to the entries of <code>leftEntries</code>, and whose entries in the right-off-diagonal correspond fo the entries of <code>rightEntries</code>. The off-diagonals must have one fewer entry than the diagonal. Throws an error if the dimensions are not correct. |
-|  [zeros(shape)](./vector.matrixbuilder.zeros.md) |  | Constructs a matrix of the specified dimensions, consisting of all zeros |
+<table><thead><tr><th>
+
+Method
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[augment(left, right)](./vector.matrixbuilder.augment.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Constructs a new matrix consisting of `left` and `right` next to one another. Throws an error of `left` and `right` do not have the same number of rows.
+
+
+</td></tr>
+<tr><td>
+
+[block(grid)](./vector.matrixbuilder.block.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Constructs a single matrix consisting of a grid of matrices combined together. Throws an error if any of the dimensions are incompatible.
+
+
+</td></tr>
+<tr><td>
+
+[blockDiagonal(matrices)](./vector.matrixbuilder.blockdiagonal.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Creates a block-diagonal matrix.
+
+
+</td></tr>
+<tr><td>
+
+[circulant(vector)](./vector.matrixbuilder.circulant.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Construct a circulant matrix using entries from the input vector
+
+
+</td></tr>
+<tr><td>
+
+[diagonal(diagonalEntries)](./vector.matrixbuilder.diagonal.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Constructs a square diagonal matrix whose diagonal entries come from `diagonalEntries`
+
+
+</td></tr>
+<tr><td>
+
+[empty()](./vector.matrixbuilder.empty.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Constructs a 0x0 matrix
+
+
+</td></tr>
+<tr><td>
+
+[exclude(matrix, rowToExclude, columnToExclude)](./vector.matrixbuilder.exclude.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Constructs a new matrix with all entries in row `rowToExclude` and in column `columnToExclude` removed.
+
+
+</td></tr>
+<tr><td>
+
+[fill(value, shape)](./vector.matrixbuilder.fill.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Constructs a matrix of the specified dimension, whose entries are all the specified value
+
+
+</td></tr>
+<tr><td>
+
+[fromArray(data)](./vector.matrixbuilder.fromarray.md)
+
+
+</td><td>
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[fromColumnVectors(columns)](./vector.matrixbuilder.fromcolumnvectors.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Builds a matrix from an array of column vectors
+
+
+</td></tr>
+<tr><td>
+
+[fromIndexFunction(shape, indexFunction)](./vector.matrixbuilder.fromindexfunction.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Builds a matrix with entries given by \_entry = f(i, j)\_ where \_f\_ is `indexFunction` and `i` and `j` are the indices of the element
+
+
+</td></tr>
+<tr><td>
+
+[fromNumberArray(numberData)](./vector.matrixbuilder.fromnumberarray.md)
+
+
+</td><td>
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[fromRowVectors(rows)](./vector.matrixbuilder.fromrowvectors.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Builds a matrix from an array of row vectors
+
+
+</td></tr>
+<tr><td>
+
+[fromSparseData(shape, sparseData)](./vector.matrixbuilder.fromsparsedata.md)
+
+
+</td><td>
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[hankel(firstColumn, lastRow)](./vector.matrixbuilder.hankel.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Constructs a Hankel matrix from the specified first column and last row. A Hankel matrix has constant anti-diagonals. If `lastRow` is not given, then a vector with the last entry of the first row in the first entry and zero elsewhere is assumed. The last entry of the first column must equal the first entry of the last row.
+
+
+</td></tr>
+<tr><td>
+
+[hilbert(size)](./vector.matrixbuilder.hilbert.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Constructs a Hilbert matrix of the specified size
+
+
+</td></tr>
+<tr><td>
+
+[identity(size)](./vector.matrixbuilder.identity.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Constructs a `size` x `size` identity matrix
+
+
+</td></tr>
+<tr><td>
+
+[ones(shape)](./vector.matrixbuilder.ones.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Constructs a matrix of the specified dimensions, consisting of all ones
+
+
+</td></tr>
+<tr><td>
+
+[pascal(size, upper)](./vector.matrixbuilder.pascal.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Constructs a lower-triangular matrix whose entries are the binomial coefficients (j choose i). Constructs an upper triangular matrix when the second argument is `true`<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[pascalSymmetric(size)](./vector.matrixbuilder.pascalsymmetric.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Constructs a symmetric matrix whose entries are the binomial coefficients (i + j choose i)
+
+
+</td></tr>
+<tr><td>
+
+[random(shape, min, max)](./vector.matrixbuilder.random.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Constructs a matrix of the specified size whose entries are (uniformly-distributed) random numbers between `min` and `max`
+
+
+</td></tr>
+<tr><td>
+
+[randomNormal(shape, mean, standardDeviation)](./vector.matrixbuilder.randomnormal.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Constructs a matrix of the specified size whose entries are normally distributed with the specified mean and standard deviation.
+
+
+</td></tr>
+<tr><td>
+
+[repeat(matrix, rows, columns)](./vector.matrixbuilder.repeat.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Constructs a new matrix consisted of repetitions of a smaller matrix.
+
+
+</td></tr>
+<tr><td>
+
+[slice(matrix, rowStartIndex, columnStartIndex, rowEndIndex, columnEndIndex)](./vector.matrixbuilder.slice.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Constructs a new matrix based on a rectangular slice of a larger matrix
+
+
+</td></tr>
+<tr><td>
+
+[toeplitz(firstColumn, firstRow)](./vector.matrixbuilder.toeplitz.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Constructs a Toeplitz matrix from the specified first column and first row. A Toeplitz matrix has constant diagonals. If `firstRow` is not given, then the complex conjugate of `firstColumn` is assumed. The first entry must be real because the first entry of the first column must equal the first entry of the first row.
+
+
+</td></tr>
+<tr><td>
+
+[triangularMask(shape, lower, includeDiagonal)](./vector.matrixbuilder.triangularmask.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Constructs a matrix that has ones on and above the diagonal, and zeros elsewhere.
+
+
+</td></tr>
+<tr><td>
+
+[tridiagonal(leftEntries, diagonalEntries, rightEntries)](./vector.matrixbuilder.tridiagonal.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Constructs a square tridiagonal matrix whose diagonal entries correspond to the entries of `diagonalEntries`<!-- -->, whose entries in the left-off-diagonal correspond to the entries of `leftEntries`<!-- -->, and whose entries in the right-off-diagonal correspond fo the entries of `rightEntries`<!-- -->. The off-diagonals must have one fewer entry than the diagonal. Throws an error if the dimensions are not correct.
+
+
+</td></tr>
+<tr><td>
+
+[zeros(shape)](./vector.matrixbuilder.zeros.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Constructs a matrix of the specified dimensions, consisting of all zeros
+
+
+</td></tr>
+</tbody></table>
 

@@ -43,7 +43,7 @@ export function eig<S>(A: Matrix<S>, numIterations: number = defaultIterations):
  */
 export function calculateEigenvalues<S>(
   A: Matrix<S>,
-  numIterations: number = defaultIterations
+  numIterations: number = defaultIterations,
 ): Vector<S> {
   if (!isSquare(A)) throw Error('Eigenvalues are only defined for square matrices');
   const ops = A.ops();
@@ -149,7 +149,7 @@ export function getEigenvectorForEigenvalue<S>(A: Matrix<S>, lambda: S): Vector<
     eigenvectorSolution.solution.equals(zero)
   ) {
     throw new Error(
-      `Cannot find an eigenvector; ${lambda} is not an eigenvalue of the provided matrix`
+      `Cannot find an eigenvector; ${lambda} is not an eigenvalue of the provided matrix`,
     );
   }
 

@@ -6,7 +6,7 @@
 
 An elementary row operations which returns a new matrix whose row at `rowIndex` is multiplied by `scalar`
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 static multiplyRowByScalar<S>(matrix: Matrix<S>, rowIndex: number, scalar: S): Matrix<S>;
@@ -14,13 +14,73 @@ static multiplyRowByScalar<S>(matrix: Matrix<S>, rowIndex: number, scalar: S): M
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  matrix | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The original matrix |
-|  rowIndex | number | The index of the row to modify |
-|  scalar | S | The factor by which to scale the row |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+matrix
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+The original matrix
+
+
+</td></tr>
+<tr><td>
+
+rowIndex
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+The index of the row to modify
+
+
+</td></tr>
+<tr><td>
+
+scalar
+
+
+</td><td>
+
+S
+
+
+</td><td>
+
+The factor by which to scale the row
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
 

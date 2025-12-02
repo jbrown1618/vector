@@ -6,7 +6,7 @@
 
 Returns the quotient of two scalars `numerator` and `denominator`<!-- -->, or `undefined` if the quotient does not exist.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 divide(numerator: S, denominator: S): S | undefined;
@@ -14,12 +14,53 @@ divide(numerator: S, denominator: S): S | undefined;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  numerator | S |  |
-|  denominator | S |  |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+numerator
+
+
+</td><td>
+
+S
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+denominator
+
+
+</td><td>
+
+S
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 S \| undefined
 

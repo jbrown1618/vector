@@ -4,7 +4,7 @@
 
 ## VectorBuilder.fromSparseData() method
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 fromSparseData(dimension: number, sparseData: SparseVectorData<S>): V;
@@ -12,12 +12,53 @@ fromSparseData(dimension: number, sparseData: SparseVectorData<S>): V;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  dimension | number |  |
-|  sparseData | [SparseVectorData](./vector.sparsevectordata.md)<!-- -->&lt;S&gt; |  |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+dimension
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+sparseData
+
+
+</td><td>
+
+[SparseVectorData](./vector.sparsevectordata.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 V
 

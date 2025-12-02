@@ -48,7 +48,7 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
         const thirdColumn = vectorBuilder.fromValues(3, 1, 9);
 
         expect(
-          builder.fromColumnVectors([firstColumn, secondColumn, thirdColumn]).toArray()
+          builder.fromColumnVectors([firstColumn, secondColumn, thirdColumn]).toArray(),
         ).toStrictEqual(data);
       });
 
@@ -58,7 +58,7 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
         const thirdRow = vectorBuilder.fromArray(data[2]);
 
         expect(builder.fromRowVectors([firstRow, secondRow, thirdRow]).toArray()).toStrictEqual(
-          data
+          data,
         );
       });
 
@@ -429,7 +429,7 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
               [4, 5, 6],
               [7, 8, 9],
             ])
-            .trace()
+            .trace(),
         ).toEqual(15);
       });
     });
@@ -483,7 +483,7 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
           builder.fromArray([
             [15, 26],
             [37, 48],
-          ])
+          ]),
         );
       });
 

@@ -6,7 +6,7 @@
 
 Constructs a vector whose entries are all equal to the provided value
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 fill(value: S, dimension: number): V;
@@ -14,12 +14,57 @@ fill(value: S, dimension: number): V;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  value | S | The value to use as the entries of the new vector |
-|  dimension | number | The dimension of the new vector |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+value
+
+
+</td><td>
+
+S
+
+
+</td><td>
+
+The value to use as the entries of the new vector
+
+
+</td></tr>
+<tr><td>
+
+dimension
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+The dimension of the new vector
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 V
 
@@ -30,6 +75,5 @@ The new vector
 
 ```
 vectorBuilder.fill(3, 5); // [ 3 3 3 3 3 ]
-
 ```
 

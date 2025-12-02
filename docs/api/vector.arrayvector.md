@@ -6,12 +6,12 @@
 
 Implements [Vector](./vector.vector.md) with an array of values.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare abstract class ArrayVector<S = number> implements Vector<S> 
 ```
-<b>Implements:</b> [Vector](./vector.vector.md)<!-- -->&lt;S&gt;
+**Implements:** [Vector](./vector.vector.md)<!-- -->&lt;S&gt;
 
 ## Remarks
 
@@ -21,23 +21,265 @@ The constructor for this class is marked as internal. Third-party code should no
 
 ## Methods
 
-|  Method | Modifiers | Description |
-|  --- | --- | --- |
-|  [add(other)](./vector.arrayvector.add.md) |  | Implements vector addition |
-|  [builder()](./vector.arrayvector.builder.md) |  | Returns a [VectorBuilder](./vector.vectorbuilder.md) which will build new vectors of the same type |
-|  [combine(other, combineEntries)](./vector.arrayvector.combine.md) |  | Returns the dimension of the vector |
-|  [equals(other)](./vector.arrayvector.equals.md) |  | Tests if two vectors are equal |
-|  [forEach(callback)](./vector.arrayvector.foreach.md) |  | Returns the dimension of the vector |
-|  [getDimension()](./vector.arrayvector.getdimension.md) |  | Returns the dimension of the vector |
-|  [getEntry(index)](./vector.arrayvector.getentry.md) |  | Returns the entry of the matrix located at the provided index (<code>index</code>) |
-|  [getSparseData()](./vector.arrayvector.getsparsedata.md) |  | Returns the contents of the vector as a map of indices to nonzero values |
-|  [innerProduct(other)](./vector.arrayvector.innerproduct.md) |  | Implements the inner product (scalar product or dot product) of two vectors |
-|  [map(valueFromEntry)](./vector.arrayvector.map.md) |  | Returns the dimension of the vector |
-|  [matrixBuilder()](./vector.arrayvector.matrixbuilder.md) |  | Returns a [MatrixBuilder](./vector.matrixbuilder.md) which will build new matrices of a compatible type |
-|  [ops()](./vector.arrayvector.ops.md) |  | Returns a [ScalarOperations](./vector.scalaroperations.md) object which will allow consumers to work generically with the scalars contained in the vector. |
-|  [outerProduct(other)](./vector.arrayvector.outerproduct.md) |  | Implements the outer product (matrix product) of two vectors |
-|  [projectOnto(u)](./vector.arrayvector.projectonto.md) |  | Returns a new vector in the direction of <code>u</code> but with magnitude equal to the amount of the original vector that lies in that direction |
-|  [scalarMultiply(scalar)](./vector.arrayvector.scalarmultiply.md) |  | Implements vector multiplication by a scalar |
-|  [set(index, value)](./vector.arrayvector.set.md) |  | Returns a new vector equal to the old one, except with the entry at <code>index</code> replaced with <code>value</code> |
-|  [toArray()](./vector.arrayvector.toarray.md) |  | Returns the contents of the vector as an array |
+<table><thead><tr><th>
+
+Method
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[add(other)](./vector.arrayvector.add.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Implements vector addition
+
+
+</td></tr>
+<tr><td>
+
+[builder()](./vector.arrayvector.builder.md)
+
+
+</td><td>
+
+`abstract`
+
+
+</td><td>
+
+Returns a [VectorBuilder](./vector.vectorbuilder.md) which will build new vectors of the same type
+
+
+</td></tr>
+<tr><td>
+
+[combine(other, combineEntries)](./vector.arrayvector.combine.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns the dimension of the vector
+
+
+</td></tr>
+<tr><td>
+
+[equals(other)](./vector.arrayvector.equals.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Tests if two vectors are equal
+
+
+</td></tr>
+<tr><td>
+
+[forEach(callback)](./vector.arrayvector.foreach.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns the dimension of the vector
+
+
+</td></tr>
+<tr><td>
+
+[getDimension()](./vector.arrayvector.getdimension.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns the dimension of the vector
+
+
+</td></tr>
+<tr><td>
+
+[getEntry(index)](./vector.arrayvector.getentry.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns the entry of the matrix located at the provided index (`index`<!-- -->)
+
+
+</td></tr>
+<tr><td>
+
+[getSparseData()](./vector.arrayvector.getsparsedata.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns the contents of the vector as a map of indices to nonzero values
+
+
+</td></tr>
+<tr><td>
+
+[innerProduct(other)](./vector.arrayvector.innerproduct.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Implements the inner product (scalar product or dot product) of two vectors
+
+
+</td></tr>
+<tr><td>
+
+[map(valueFromEntry)](./vector.arrayvector.map.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns the dimension of the vector
+
+
+</td></tr>
+<tr><td>
+
+[matrixBuilder()](./vector.arrayvector.matrixbuilder.md)
+
+
+</td><td>
+
+`abstract`
+
+
+</td><td>
+
+Returns a [MatrixBuilder](./vector.matrixbuilder.md) which will build new matrices of a compatible type
+
+
+</td></tr>
+<tr><td>
+
+[ops()](./vector.arrayvector.ops.md)
+
+
+</td><td>
+
+`abstract`
+
+
+</td><td>
+
+Returns a [ScalarOperations](./vector.scalaroperations.md) object which will allow consumers to work generically with the scalars contained in the vector.
+
+
+</td></tr>
+<tr><td>
+
+[outerProduct(other)](./vector.arrayvector.outerproduct.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Implements the outer product (matrix product) of two vectors
+
+
+</td></tr>
+<tr><td>
+
+[projectOnto(u)](./vector.arrayvector.projectonto.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns a new vector in the direction of `u` but with magnitude equal to the amount of the original vector that lies in that direction
+
+
+</td></tr>
+<tr><td>
+
+[scalarMultiply(scalar)](./vector.arrayvector.scalarmultiply.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Implements vector multiplication by a scalar
+
+
+</td></tr>
+<tr><td>
+
+[set(index, value)](./vector.arrayvector.set.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns a new vector equal to the old one, except with the entry at `index` replaced with `value`
+
+
+</td></tr>
+<tr><td>
+
+[toArray()](./vector.arrayvector.toarray.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns the contents of the vector as an array
+
+
+</td></tr>
+</tbody></table>
 

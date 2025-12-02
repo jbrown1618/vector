@@ -6,7 +6,7 @@
 
 Constructs a vector by combining the values of two other vectors
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 combine(other: Vector<S>, combineEntries: (a: S, b: S) => S): Vector<S>;
@@ -14,12 +14,57 @@ combine(other: Vector<S>, combineEntries: (a: S, b: S) => S): Vector<S>;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  other | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | The vector with which to combine this one |
-|  combineEntries | (a: S, b: S) =&gt; S | A function which takes an entry from each vector and returns a new entry |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+other
+
+
+</td><td>
+
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+The vector with which to combine this one
+
+
+</td></tr>
+<tr><td>
+
+combineEntries
+
+
+</td><td>
+
+(a: S, b: S) =&gt; S
+
+
+</td><td>
+
+A function which takes an entry from each vector and returns a new entry
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [Vector](./vector.vector.md)<!-- -->&lt;S&gt;
 
@@ -34,6 +79,5 @@ const second = vec([2, 3, 4]);
 
 const combined = first.combine(second, (a, b) => a * b);
 // [2, 6, 12]
-
 ```
 

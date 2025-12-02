@@ -6,7 +6,7 @@
 
 Constructs a vector that has the value 1 at one index, and 0 at the others
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 elementaryVector(dimension: number, oneIndex: number): V;
@@ -14,12 +14,57 @@ elementaryVector(dimension: number, oneIndex: number): V;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  dimension | number | The dimension of the new vector |
-|  oneIndex | number | The index of the element that should be the multiplicative identity |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+dimension
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+The dimension of the new vector
+
+
+</td></tr>
+<tr><td>
+
+oneIndex
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+The index of the element that should be the multiplicative identity
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 V
 
@@ -31,6 +76,5 @@ The new vector
 ```
 vectorBuilder.elementaryVector(4, 2); // [ 0 0 1 0 ]
 vectorBuilder.elementaryVector(3, 0); // [ 1 0 0 ]
-
 ```
 

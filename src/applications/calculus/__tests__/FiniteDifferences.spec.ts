@@ -87,11 +87,11 @@ describe('FiniteDifferences', () => {
       testDifferentiation(Math.sin, Math.cos);
       testDifferentiation(
         (x) => Math.pow(x, 2),
-        (x) => 2 * x
+        (x) => 2 * x,
       );
       testDifferentiation(
         (x) => Math.pow(x, 3),
-        (x) => 3 * Math.pow(x, 2)
+        (x) => 3 * Math.pow(x, 2),
       );
     });
   });

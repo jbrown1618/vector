@@ -6,8 +6,10 @@
 
 A function which expresses the similarity of two [Vector](./vector.vector.md)<!-- -->s as a number between 0 (very dissimilar) and 1 (identical).
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-export declare type SimilarityMetric = (v1: Vector, v2: Vector) => number;
+export type SimilarityMetric = (v1: Vector, v2: Vector) => number;
 ```
+**References:** [Vector](./vector.vector.md)
+

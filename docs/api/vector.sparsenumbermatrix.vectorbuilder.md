@@ -4,12 +4,12 @@
 
 ## SparseNumberMatrix.vectorBuilder() method
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 static vectorBuilder(): VectorBuilder<number, SparseNumberVector>;
 ```
-<b>Returns:</b>
+**Returns:**
 
 [VectorBuilder](./vector.vectorbuilder.md)<!-- -->&lt;number, [SparseNumberVector](./vector.sparsenumbervector.md)<!-- -->&gt;
 

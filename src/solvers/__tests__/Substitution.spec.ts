@@ -41,8 +41,8 @@ describe('Substitution', () => {
             [0, 0, 0],
             [1, 1, 1],
           ]),
-          vec([0, 0, 3])
-        )
+          vec([0, 0, 3]),
+        ),
       ).toBeUndefined();
 
       expect(
@@ -52,8 +52,8 @@ describe('Substitution', () => {
             [1, 0, 0],
             [0, 2, 0],
           ]),
-          vec([0, 0, 0])
-        )
+          vec([0, 0, 0]),
+        ),
       ).toBeUndefined();
     });
 
@@ -64,8 +64,8 @@ describe('Substitution', () => {
             [0, 0],
             [1, 1],
           ]),
-          vec([1, 1])
-        )
+          vec([1, 1]),
+        ),
       ).toBeUndefined();
     });
 
@@ -77,7 +77,7 @@ describe('Substitution', () => {
             [0, 1],
             [0, 1],
           ]),
-          vec([1, 2, 2])
+          vec([1, 2, 2]),
         );
       }).toThrow();
 
@@ -87,7 +87,7 @@ describe('Substitution', () => {
             [1, 0, 0],
             [0, 1, 0],
           ]),
-          vec([1, 2])
+          vec([1, 2]),
         );
       }).toThrow();
     });
@@ -196,8 +196,8 @@ describe('Substitution', () => {
             [0, 1],
             [0, 0],
           ]),
-          vec([1, 2, 0])
-        )
+          vec([1, 2, 0]),
+        ),
       ).toThrow();
 
       expect(() =>
@@ -206,8 +206,8 @@ describe('Substitution', () => {
             [1, 0, 0],
             [0, 1, 0],
           ]),
-          vec([1, 2])
-        )
+          vec([1, 2]),
+        ),
       ).toThrow();
     });
 

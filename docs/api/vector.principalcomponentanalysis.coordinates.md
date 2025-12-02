@@ -6,7 +6,7 @@
 
 The original data in a basis formed by the principal component vectors
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 coordinates: Matrix<S>;

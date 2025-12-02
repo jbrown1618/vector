@@ -6,7 +6,7 @@
 
 Returns the dimension of the vector
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 combine(other: Vector<S>, combineEntries: (a: S, b: S) => S): Vector<S>;
@@ -14,12 +14,53 @@ combine(other: Vector<S>, combineEntries: (a: S, b: S) => S): Vector<S>;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  other | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; |  |
-|  combineEntries | (a: S, b: S) =&gt; S |  |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+other
+
+
+</td><td>
+
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+combineEntries
+
+
+</td><td>
+
+(a: S, b: S) =&gt; S
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [Vector](./vector.vector.md)<!-- -->&lt;S&gt;
 

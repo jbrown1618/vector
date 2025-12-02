@@ -6,7 +6,7 @@
 
 Executes the `callback` function for each entry in the matrix.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 forEach(cb: (value: S, i: number, j: number) => void): void;
@@ -14,11 +14,39 @@ forEach(cb: (value: S, i: number, j: number) => void): void;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  cb | (value: S, i: number, j: number) =&gt; void |  |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+cb
+
+
+</td><td>
+
+(value: S, i: number, j: number) =&gt; void
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 void
 

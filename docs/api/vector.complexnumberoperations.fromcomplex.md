@@ -6,7 +6,7 @@
 
 Returns an instance of the scalar type from its real and imaginary parts. If the scalar type does not support complex numbers, then an error will be thrown.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 fromComplex(real: number, imag: number): ComplexNumber;
@@ -14,12 +14,53 @@ fromComplex(real: number, imag: number): ComplexNumber;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  real | number |  |
-|  imag | number |  |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+real
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+imag
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [ComplexNumber](./vector.complexnumber.md)
 

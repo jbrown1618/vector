@@ -6,7 +6,7 @@
 
 Constructs a vector whose entries match the input vector, but offset by a given amount
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 shift(vector: Vector<S>, offset?: number, reverse?: boolean): V;
@@ -14,13 +14,73 @@ shift(vector: Vector<S>, offset?: number, reverse?: boolean): V;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  vector | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | The vector whose entries to use |
-|  offset | number | The amount by which to shift the indices |
-|  reverse | boolean | Shift entries backward rather than forward |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+vector
+
+
+</td><td>
+
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+The vector whose entries to use
+
+
+</td></tr>
+<tr><td>
+
+offset
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+_(Optional)_ The amount by which to shift the indices
+
+
+</td></tr>
+<tr><td>
+
+reverse
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ Shift entries backward rather than forward
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 V
 
@@ -32,6 +92,5 @@ const original = vectorBuilder.fromArray([1, 2, 3]);
 const rightOne = vectorBuilder.rotate(original); // [2, 3, 1];
 const rightTwo = vectorBuilder.rotate(original, 2); // [3, 1, 2];
 const leftOne = vectorBuilder.rotate(original, 1, true); // [3, 1, 2];
-
 ```
 

@@ -4,7 +4,7 @@
 
 ## MatrixBuilder.fromNumberArray() method
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 fromNumberArray(numberData: MatrixData<number>): M;
@@ -12,11 +12,39 @@ fromNumberArray(numberData: MatrixData<number>): M;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  numberData | [MatrixData](./vector.matrixdata.md)<!-- -->&lt;number&gt; |  |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+numberData
+
+
+</td><td>
+
+[MatrixData](./vector.matrixdata.md)<!-- -->&lt;number&gt;
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 M
 

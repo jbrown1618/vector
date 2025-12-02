@@ -6,7 +6,7 @@
 
 Implements the inner product (scalar product or dot product) of two vectors
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 innerProduct(other: Vector<S>): S;
@@ -14,11 +14,41 @@ innerProduct(other: Vector<S>): S;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  other | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | The vector with which to calculate an inner product |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+other
+
+
+</td><td>
+
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+The vector with which to calculate an inner product
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 S
 

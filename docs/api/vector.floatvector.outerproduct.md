@@ -6,7 +6,7 @@
 
 Implements the outer product (matrix product) of two vectors
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 outerProduct(other: Vector<number>): Matrix<number>;
@@ -14,11 +14,41 @@ outerProduct(other: Vector<number>): Matrix<number>;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  other | [Vector](./vector.vector.md)<!-- -->&lt;number&gt; | The vector with which to calculate an outer product |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+other
+
+
+</td><td>
+
+[Vector](./vector.vector.md)<!-- -->&lt;number&gt;
+
+
+</td><td>
+
+The vector with which to calculate an outer product
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [Matrix](./vector.matrix.md)<!-- -->&lt;number&gt;
 

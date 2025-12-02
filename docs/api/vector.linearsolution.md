@@ -6,8 +6,10 @@
 
 A general type representing any type of solution to a linear system.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-export declare type LinearSolution<S> = UniqueSolution<S> | OverdeterminedSolution | UnderdeterminedSolution<S>;
+export type LinearSolution<S> = UniqueSolution<S> | OverdeterminedSolution | UnderdeterminedSolution<S>;
 ```
+**References:** [UniqueSolution](./vector.uniquesolution.md)<!-- -->, [OverdeterminedSolution](./vector.overdeterminedsolution.md)<!-- -->, [UnderdeterminedSolution](./vector.underdeterminedsolution.md)
+

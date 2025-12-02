@@ -6,7 +6,7 @@
 
 Returns the sum of two scalars `first` and `second`<!-- -->.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 add(first: number, second: number): number;
@@ -14,12 +14,53 @@ add(first: number, second: number): number;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  first | number |  |
-|  second | number |  |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+first
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+second
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 number
 

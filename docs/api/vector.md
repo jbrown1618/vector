@@ -6,165 +6,1622 @@
 
 ## Classes
 
-|  Class | Description |
-|  --- | --- |
-|  [ArrayMatrix](./vector.arraymatrix.md) | Implements [Matrix](./vector.matrix.md) with a 2-dimensional array of values. |
-|  [ArrayVector](./vector.arrayvector.md) | Implements [Vector](./vector.vector.md) with an array of values. |
-|  [ComplexMatrix](./vector.complexmatrix.md) | A dense [Matrix](./vector.matrix.md) of [ComplexNumber](./vector.complexnumber.md)<!-- -->s, implemented as an [ArrayMatrix](./vector.arraymatrix.md) |
-|  [ComplexNumber](./vector.complexnumber.md) | A number of the form \_a + bi\_ where \_i\_ is the imaginary unit. |
-|  [ComplexNumberOperations](./vector.complexnumberoperations.md) | Implements the basic [ScalarOperations](./vector.scalaroperations.md) on [ComplexNumber](./vector.complexnumber.md)<!-- -->s |
-|  [ComplexVector](./vector.complexvector.md) | A dense [Vector](./vector.vector.md) of [ComplexNumber](./vector.complexnumber.md)<!-- -->s implemented as an [ArrayVector](./vector.arrayvector.md) |
-|  [FloatMatrix](./vector.floatmatrix.md) | A dense matrix of JavaScript <code>number</code> primitives, implemented as a column-major <code>Float64Array</code> |
-|  [FloatVector](./vector.floatvector.md) | A dense [Vector](./vector.vector.md) of <code>number</code>s implemented as a <code>Float64Array</code> |
-|  [LinearRegressor](./vector.linearregressor.md) | A [Regressor](./vector.regressor.md) model which uses an ordinary least squares model with regularization to predict a continuous target. The optimal set of parameters is computed with gradient descent. |
-|  [LogisticRegressionClassifier](./vector.logisticregressionclassifier.md) | A [Classifier](./vector.classifier.md) model which uses logistic regression to predict a discrete target. The optimal set of parameters is computed with gradient descent. |
-|  [MatrixBuilder](./vector.matrixbuilder.md) | Provides methods for constructing [Matrices](./vector.matrix.md) of a given type |
-|  [NumberMatrix](./vector.numbermatrix.md) | A dense matrix of JavaScript <code>number</code> primitives, implemented as an [ArrayMatrix](./vector.arraymatrix.md) |
-|  [NumberOperations](./vector.numberoperations.md) | Implements the basic [ScalarOperations](./vector.scalaroperations.md) on <code>number</code>s |
-|  [NumberVector](./vector.numbervector.md) | A dense [Vector](./vector.vector.md) of <code>number</code>s implemented as a [ArrayVector](./vector.arrayvector.md) |
-|  [RowOperations](./vector.rowoperations.md) | A wrapper for static methods representing the elementary row operations |
-|  [ScalarOperations](./vector.scalaroperations.md) | A class which encapsulates the basic arithmetic operations for an arbitrary scalar type. |
-|  [SparseMatrix](./vector.sparsematrix.md) | Implements [Matrix](./vector.matrix.md) with a map of indices to nonzero values. |
-|  [SparseNumberMatrix](./vector.sparsenumbermatrix.md) | A [Matrix](./vector.matrix.md) implemented as a sparse set of JS <code>number</code> primitives keyed by their indices. |
-|  [SparseNumberVector](./vector.sparsenumbervector.md) | A [Vector](./vector.vector.md) implemented as a sparse set of JS <code>number</code> primitives keyed by their indices. |
-|  [SparseVector](./vector.sparsevector.md) | Implements [Vector](./vector.vector.md) as a map of indices to nonzero values. |
-|  [SupportVectorMachineClassifier](./vector.supportvectormachineclassifier.md) | A [Classifier](./vector.classifier.md) model which uses logistic regression to predict a discrete target. The optimal set of parameters is computed with gradient descent. |
-|  [VectorBuilder](./vector.vectorbuilder.md) | Provides methods for constructing [Vector](./vector.vector.md)<!-- -->s of a given type |
+<table><thead><tr><th>
+
+Class
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[ComplexMatrix](./vector.complexmatrix.md)
+
+
+</td><td>
+
+A dense [Matrix](./vector.matrix.md) of [ComplexNumber](./vector.complexnumber.md)<!-- -->s, implemented as an [ArrayMatrix](./vector.arraymatrix.md)
+
+
+</td></tr>
+<tr><td>
+
+[ComplexNumber](./vector.complexnumber.md)
+
+
+</td><td>
+
+A number of the form \_a + bi\_ where \_i\_ is the imaginary unit.
+
+
+</td></tr>
+<tr><td>
+
+[ComplexNumberOperations](./vector.complexnumberoperations.md)
+
+
+</td><td>
+
+Implements the basic [ScalarOperations](./vector.scalaroperations.md) on [ComplexNumber](./vector.complexnumber.md)<!-- -->s
+
+
+</td></tr>
+<tr><td>
+
+[ComplexVector](./vector.complexvector.md)
+
+
+</td><td>
+
+A dense [Vector](./vector.vector.md) of [ComplexNumber](./vector.complexnumber.md)<!-- -->s implemented as an [ArrayVector](./vector.arrayvector.md)
+
+
+</td></tr>
+<tr><td>
+
+[FloatMatrix](./vector.floatmatrix.md)
+
+
+</td><td>
+
+A dense matrix of JavaScript `number` primitives, implemented as a column-major `Float64Array`
+
+
+</td></tr>
+<tr><td>
+
+[FloatVector](./vector.floatvector.md)
+
+
+</td><td>
+
+A dense [Vector](./vector.vector.md) of `number`<!-- -->s implemented as a `Float64Array`
+
+
+</td></tr>
+<tr><td>
+
+[LinearRegressor](./vector.linearregressor.md)
+
+
+</td><td>
+
+A [Regressor](./vector.regressor.md) model which uses an ordinary least squares model with regularization to predict a continuous target. The optimal set of parameters is computed with gradient descent.
+
+
+</td></tr>
+<tr><td>
+
+[LogisticRegressionClassifier](./vector.logisticregressionclassifier.md)
+
+
+</td><td>
+
+A [Classifier](./vector.classifier.md) model which uses logistic regression to predict a discrete target. The optimal set of parameters is computed with gradient descent.
+
+
+</td></tr>
+<tr><td>
+
+[MatrixBuilder](./vector.matrixbuilder.md)
+
+
+</td><td>
+
+Provides methods for constructing [Matrices](./vector.matrix.md) of a given type
+
+
+</td></tr>
+<tr><td>
+
+[NumberMatrix](./vector.numbermatrix.md)
+
+
+</td><td>
+
+A dense matrix of JavaScript `number` primitives, implemented as an [ArrayMatrix](./vector.arraymatrix.md)
+
+
+</td></tr>
+<tr><td>
+
+[NumberOperations](./vector.numberoperations.md)
+
+
+</td><td>
+
+Implements the basic [ScalarOperations](./vector.scalaroperations.md) on `number`<!-- -->s
+
+
+</td></tr>
+<tr><td>
+
+[NumberVector](./vector.numbervector.md)
+
+
+</td><td>
+
+A dense [Vector](./vector.vector.md) of `number`<!-- -->s implemented as a [ArrayVector](./vector.arrayvector.md)
+
+
+</td></tr>
+<tr><td>
+
+[RowOperations](./vector.rowoperations.md)
+
+
+</td><td>
+
+A wrapper for static methods representing the elementary row operations
+
+
+</td></tr>
+<tr><td>
+
+[SparseNumberMatrix](./vector.sparsenumbermatrix.md)
+
+
+</td><td>
+
+A [Matrix](./vector.matrix.md) implemented as a sparse set of JS `number` primitives keyed by their indices.
+
+
+</td></tr>
+<tr><td>
+
+[SparseNumberVector](./vector.sparsenumbervector.md)
+
+
+</td><td>
+
+A [Vector](./vector.vector.md) implemented as a sparse set of JS `number` primitives keyed by their indices.
+
+
+</td></tr>
+<tr><td>
+
+[SupportVectorMachineClassifier](./vector.supportvectormachineclassifier.md)
+
+
+</td><td>
+
+A [Classifier](./vector.classifier.md) model which uses logistic regression to predict a discrete target. The optimal set of parameters is computed with gradient descent.
+
+
+</td></tr>
+<tr><td>
+
+[VectorBuilder](./vector.vectorbuilder.md)
+
+
+</td><td>
+
+Provides methods for constructing [Vector](./vector.vector.md)<!-- -->s of a given type
+
+
+</td></tr>
+</tbody></table>
+
+## Abstract Classes
+
+<table><thead><tr><th>
+
+Abstract Class
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[ArrayMatrix](./vector.arraymatrix.md)
+
+
+</td><td>
+
+Implements [Matrix](./vector.matrix.md) with a 2-dimensional array of values.
+
+
+</td></tr>
+<tr><td>
+
+[ArrayVector](./vector.arrayvector.md)
+
+
+</td><td>
+
+Implements [Vector](./vector.vector.md) with an array of values.
+
+
+</td></tr>
+<tr><td>
+
+[ScalarOperations](./vector.scalaroperations.md)
+
+
+</td><td>
+
+A class which encapsulates the basic arithmetic operations for an arbitrary scalar type.
+
+
+</td></tr>
+<tr><td>
+
+[SparseMatrix](./vector.sparsematrix.md)
+
+
+</td><td>
+
+Implements [Matrix](./vector.matrix.md) with a map of indices to nonzero values.
+
+
+</td></tr>
+<tr><td>
+
+[SparseVector](./vector.sparsevector.md)
+
+
+</td><td>
+
+Implements [Vector](./vector.vector.md) as a map of indices to nonzero values.
+
+
+</td></tr>
+</tbody></table>
 
 ## Enumerations
 
-|  Enumeration | Description |
-|  --- | --- |
-|  [SolutionType](./vector.solutiontype.md) | Types of solution to a linear system. |
+<table><thead><tr><th>
+
+Enumeration
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[SolutionType](./vector.solutiontype.md)
+
+
+</td><td>
+
+Types of solution to a linear system.
+
+
+</td></tr>
+</tbody></table>
 
 ## Functions
 
-|  Function | Description |
-|  --- | --- |
-|  [backwardDifferenceMatrix(binCount)](./vector.backwarddifferencematrix.md) | Builds a matrix that transforms a vector to a vector of backward differences |
-|  [calculateCholeskyDecomposition(A)](./vector.calculatecholeskydecomposition.md) | Uses the serial version of the Cholesky algorith to calculate the Cholesky decomposition of a matrix <code>A</code>. |
-|  [calculateEigenvalues(A, numIterations)](./vector.calculateeigenvalues.md) | Uses the QR algorithm to compute the eigenvalues of a matrix <code>A</code> |
-|  [calculateGeneralLeastSquares(dataPoints, functionTemplate, numberOfTerms)](./vector.calculategeneralleastsquares.md) | Calculates a regression model for an arbitrary function. |
-|  [calculateLinearLeastSquares(dataPoints)](./vector.calculatelinearleastsquares.md) | Calculates a linear regression model for the provided <code>dataPoints</code>. |
-|  [calculateLUDecomposition(A)](./vector.calculateludecomposition.md) | Uses the Doolittle algorithm to calculate the LU Decomposition of a matrix A. |
-|  [calculateQRDecomposition(A)](./vector.calculateqrdecomposition.md) | Uses the Graham-Schmidt process to calculate the QR decomposition of the matrix A. |
-|  [calculateSingularValueDecomposition(A)](./vector.calculatesingularvaluedecomposition.md) | Uses the Power Method to calculate the Singular Value Decomposition of a matrix <code>A</code> |
-|  [center(x)](./vector.center.md) | Returns the vector <code>x</code>, shifted so that its mean is at 0 |
-|  [center(A)](./vector.center_1.md) | Returns the matrix <code>A</code> with each column shifted so that its mean is at 0 |
-|  [centralDifferenceMatrix(binCount)](./vector.centraldifferencematrix.md) | Builds a matrix that transforms a vector to a vector of central differences |
-|  [chainProduct(matrices)](./vector.chainproduct.md) | Returns the product of the given array of matrices. |
-|  [columnSumSupremumNorm(A)](./vector.columnsumsupremumnorm.md) | Calculates the 1-Norm of a matrix <code>A</code> |
-|  [correlation(first, second)](./vector.correlation.md) | Calculates the correlation coefficient r of two vectors |
-|  [correlation(A)](./vector.correlation_1.md) | Calculates the correlation matrix of a matrix <code>A</code> |
-|  [covariance(first, second)](./vector.covariance.md) | Calculates the covariance of two vectors |
-|  [covariance(A)](./vector.covariance_1.md) | Calculates the covariance matrix of a matrix <code>A</code> |
-|  [crossProduct(first, second)](./vector.crossproduct.md) | Calculates the cross-product (vector-product) of two vectors. This is defined only for vectors with three dimensions. |
-|  [derivative(f, xMin, xMax, binCount)](./vector.derivative.md) | Uses finite differences to build a vector containing approximate values of the derivative of <code>f</code>. |
-|  [determinant(matrix)](./vector.determinant.md) | Uses expansion of minors to calculate the determinant of a matrix. Throws an error if the input is not square. |
-|  [diag(elements)](./vector.diag.md) | Creates a new matrix with the specified entries on the diagonal. See [MatrixBuilder.diagonal()](./vector.matrixbuilder.diagonal.md) |
-|  [dotProduct(first, second)](./vector.dotproduct.md) | Computes the dot/inner/scalar product of two vectors. See [Vector.innerProduct()](./vector.vector.innerproduct.md)<!-- -->. |
-|  [eig(A, numIterations)](./vector.eig.md) | Uses the QR algorithm to compute the eigenvalues and eigenvectors of a matrix <code>A</code> |
-|  [euclideanNorm(v)](./vector.euclideannorm.md) | Calculates the Euclidean Norm (or 2-Norm) of a vector <code>v</code> |
-|  [exp(A, order)](./vector.exp.md) | Implements the Pade Approximant to compute the exponential of matrix <code>A</code> |
-|  [eye(size)](./vector.eye.md) | Creates a new identity matrix of size <code>size</code>. See [MatrixBuilder.identity()](./vector.matrixbuilder.identity.md) |
-|  [forwardDifferenceMatrix(binCount)](./vector.forwarddifferencematrix.md) | Builds a matrix that transforms a vector to a vector of forward differences |
-|  [frobeniusNorm(A)](./vector.frobeniusnorm.md) | Calculates the Frobenius Norm of a matrix <code>A</code> |
-|  [GaussianKernel(sigmaSquared)](./vector.gaussiankernel.md) | Creates a gaussian [Kernel](./vector.kernel.md) for use in a [SupportVectorMachineClassifier](./vector.supportvectormachineclassifier.md)<!-- -->. The gaussian kernel converts a data [Matrix](./vector.matrix.md) into a similarity <code>Matrix</code> where the value of entry (i,j) expresses the similarity of rows i and j in the original data set. |
-|  [getEigenvectorForEigenvalue(A, lambda)](./vector.geteigenvectorforeigenvalue.md) | Given a matrix <code>A</code> and an eigenvalue <code>lambda</code> of that matrix, returns the eigenvector of <code>A</code> corresponding to <code>lambda</code> |
-|  [gradientDescent(parameters)](./vector.gradientdescent.md) | Learns an optimal set of parameters <code>theta</code> using gradient descent |
-|  [hadamardProduct(first, second)](./vector.hadamardproduct.md) | Computes the hadamard (element-wise) product of two vectors. |
-|  [hadamardProduct(first, second)](./vector.hadamardproduct_1.md) | Computes the hadamard (element-wise) product of two matrices. |
-|  [inverse(matrix)](./vector.inverse.md) | Uses Gauss-Jordan elimination with pivoting to calculate the inverse of a matrix. |
-|  [isHermitian(matrix)](./vector.ishermitian.md) | Tests if a matrix is Hermitian. |
-|  [isIdentity(matrix)](./vector.isidentity.md) | Tests if a matrix is an identity matrix |
-|  [isLowerTriangular(matrix)](./vector.islowertriangular.md) | Tests if a matrix is lower-triangular. |
-|  [isOrthogonal(matrix)](./vector.isorthogonal.md) | Tests if a matrix is orthogonal |
-|  [isOrthonormal(matrix)](./vector.isorthonormal.md) | Tests if a matrix is orthonormal |
-|  [isSquare(matrix)](./vector.issquare.md) | Tests if a matrix is square. |
-|  [isSymmetric(matrix)](./vector.issymmetric.md) | Tests if a matrix is symmetric. |
-|  [isUpperTriangular(matrix)](./vector.isuppertriangular.md) | Tests if a matrix is upper-triangular. |
-|  [kroneckerProduct(first, second)](./vector.kroneckerproduct.md) | Computes the Kronecker product (generalized outer product) of two matrices. |
-|  [LinearKernel(data)](./vector.linearkernel.md) | A linear kernel for use in a [SupportVectorMachineClassifier](./vector.supportvectormachineclassifier.md)<!-- -->. The linear kernel converts a data [Matrix](./vector.matrix.md) into a matrix which has been prepended with a column of all ones, representing the constant term in a linear model, or the bias term in an SVM. |
-|  [linspace(xMin, xMax, binCount)](./vector.linspace.md) | Builds a vector of <code>binCount</code> evenly spaced numbers between <code>xMin</code> (inclusive) and <code>xMax</code> (exclusive). |
-|  [mat(data)](./vector.mat.md) | Creates a new [Matrix](./vector.matrix.md) of numbers. See [MatrixBuilder.fromArray()](./vector.matrixbuilder.fromarray.md) |
-|  [mean(x)](./vector.mean.md) | Calculates the mean of the values in the vector <code>x</code> |
-|  [mean(A)](./vector.mean_1.md) | Calculates the mean vector of the matrix <code>A</code> |
-|  [normalize(v)](./vector.normalize.md) | Returns a vector with the same direction as the input <code>v</code>, but with a Euclidean norm of 1 |
-|  [ones(entries)](./vector.ones.md) | Creates a new vector of all 1s. See [VectorBuilder.ones()](./vector.vectorbuilder.ones.md) |
-|  [ones(shape)](./vector.ones_1.md) | Creates a new matrix of all 1s. See [MatrixBuilder.ones()](./vector.matrixbuilder.ones.md) |
-|  [pca(A, useCorrelation)](./vector.pca.md) | Conducts a principal component analysis of a matrix <code>A</code>, and returns <code>A</code> in a new basis corresponding to the principal components. |
-|  [pNorm(v, p)](./vector.pnorm.md) | Calculates the P-Norm of a vector <code>v</code> |
-|  [pow(A, n)](./vector.pow.md) | Computes \_A^n\_ recursively. |
-|  [prettyPrint(num)](./vector.prettyprint.md) | Returns an easy-to-read string representing a <code>number</code> |
-|  [prettyPrint(vector)](./vector.prettyprint_1.md) | Returns an easy-to-read string representing the contents of a [Vector](./vector.vector.md) |
-|  [prettyPrint(matrix)](./vector.prettyprint_2.md) | Returns an easy-to-read string representing the contents of a [Matrix](./vector.matrix.md) |
-|  [RadialBasisFunction(distanceMetric)](./vector.radialbasisfunction.md) | Creates a [Kernel](./vector.kernel.md) for use in a [SupportVectorMachineClassifier](./vector.supportvectormachineclassifier.md)<!-- -->. The RBF kernel converts a data [Matrix](./vector.matrix.md) into a similarity <code>Matrix</code> where the value of entry (i,j) expresses the similarity of rows i and j in the original data set. |
-|  [rank(matrix)](./vector.rank.md) | Calculates the rank of a matrix |
-|  [reduceDimensions(A, options)](./vector.reducedimensions.md) | Reduce the number of dimensions of a data matrix <code>A</code> while losing as little information as possible. |
-|  [reducedRowEchelonForm(matrix)](./vector.reducedrowechelonform.md) | Uses Gauss-Jordan elimination with pivoting to convert a matrix to Reduced Row-Echelon Form (RREF) |
-|  [rowEchelonForm(matrix)](./vector.rowechelonform.md) | Uses Gauss-Jordan elimination with pivoting to convert a matrix to Row-Echelon Form (REF) |
-|  [rowSumSupremumNorm(A)](./vector.rowsumsupremumnorm.md) | Calculates the Infinity-Norm of a matrix <code>A</code> |
-|  [solve(A, b)](./vector.solve.md) | Solves the matrix equation \_Ax=b\_ for the vector \_x\_ using the default implementation. See [solveByGaussianElimination()](./vector.solvebygaussianelimination.md) |
-|  [solveByGaussianElimination(A, b)](./vector.solvebygaussianelimination.md) | Uses Gauss-Jordan elimination with pivoting and backward substitution to solve the linear equation \_Ax=b\_ |
-|  [solveOverdeterminedSystem(A, b)](./vector.solveoverdeterminedsystem.md) | Gives an approximate solution to an overdetermined linear system. |
-|  [standardDeviation(x)](./vector.standarddeviation.md) | Calculates the standard deviation of a vector |
-|  [standardDeviation(A)](./vector.standarddeviation_1.md) | Calculates the standard deviation of each column of the matrix <code>A</code> |
-|  [standardize(x)](./vector.standardize.md) | Returns the vector <code>x</code> shifted and scaled to have a mean of 0 and standard deviation of 1 |
-|  [standardize(A)](./vector.standardize_1.md) | Returns the matrix <code>A</code> with each column shifted and scaled to have a mean of 0 and standard deviation of 1 |
-|  [sumNorm(v)](./vector.sumnorm.md) | Calculates the Sum Norm (or 1-Norm) of a vector <code>v</code> |
-|  [supremumNorm(v)](./vector.supremumnorm.md) | Calculates the Supremum Norm (or Infinity-Norm) of a vector <code>v</code> |
-|  [tripleProduct(first, second, third)](./vector.tripleproduct.md) | Calculates the scalar triple-product of three vectors. This is defined only for vectors with three dimensions. |
-|  [variance(x)](./vector.variance.md) | Calculates the variance of a vector |
-|  [variance(A)](./vector.variance_1.md) | Calculates the variance of each column of the matrix <code>A</code> |
-|  [vec(data)](./vector.vec.md) | Creates a new [Vector](./vector.vector.md) of numbers. See [VectorBuilder.fromArray()](./vector.vectorbuilder.fromarray.md) |
-|  [zeros(entries)](./vector.zeros.md) | Creates a new vector of all 0s. See [VectorBuilder.zeros()](./vector.vectorbuilder.zeros.md) |
-|  [zeros(shape)](./vector.zeros_1.md) | Creates a new matrix of all 0s. See [MatrixBuilder.zeros()](./vector.matrixbuilder.zeros.md) |
+<table><thead><tr><th>
+
+Function
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[backwardDifferenceMatrix(binCount)](./vector.backwarddifferencematrix.md)
+
+
+</td><td>
+
+Builds a matrix that transforms a vector to a vector of backward differences
+
+
+</td></tr>
+<tr><td>
+
+[calculateCholeskyDecomposition(A)](./vector.calculatecholeskydecomposition.md)
+
+
+</td><td>
+
+Uses the serial version of the Cholesky algorith to calculate the Cholesky decomposition of a matrix `A`<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[calculateEigenvalues(A, numIterations)](./vector.calculateeigenvalues.md)
+
+
+</td><td>
+
+Uses the QR algorithm to compute the eigenvalues of a matrix `A`
+
+
+</td></tr>
+<tr><td>
+
+[calculateGeneralLeastSquares(dataPoints, functionTemplate, numberOfTerms)](./vector.calculategeneralleastsquares.md)
+
+
+</td><td>
+
+Calculates a regression model for an arbitrary function.
+
+
+</td></tr>
+<tr><td>
+
+[calculateLinearLeastSquares(dataPoints)](./vector.calculatelinearleastsquares.md)
+
+
+</td><td>
+
+Calculates a linear regression model for the provided `dataPoints`<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[calculateLUDecomposition(A)](./vector.calculateludecomposition.md)
+
+
+</td><td>
+
+Uses the Doolittle algorithm to calculate the LU Decomposition of a matrix A.
+
+
+</td></tr>
+<tr><td>
+
+[calculateQRDecomposition(A)](./vector.calculateqrdecomposition.md)
+
+
+</td><td>
+
+Uses the Graham-Schmidt process to calculate the QR decomposition of the matrix A.
+
+
+</td></tr>
+<tr><td>
+
+[calculateSingularValueDecomposition(A)](./vector.calculatesingularvaluedecomposition.md)
+
+
+</td><td>
+
+Uses the Power Method to calculate the Singular Value Decomposition of a matrix `A`
+
+
+</td></tr>
+<tr><td>
+
+[center(x)](./vector.center.md)
+
+
+</td><td>
+
+Returns the vector `x`<!-- -->, shifted so that its mean is at 0
+
+
+</td></tr>
+<tr><td>
+
+[center(A)](./vector.center_1.md)
+
+
+</td><td>
+
+Returns the matrix `A` with each column shifted so that its mean is at 0
+
+
+</td></tr>
+<tr><td>
+
+[centralDifferenceMatrix(binCount)](./vector.centraldifferencematrix.md)
+
+
+</td><td>
+
+Builds a matrix that transforms a vector to a vector of central differences
+
+
+</td></tr>
+<tr><td>
+
+[chainProduct(matrices)](./vector.chainproduct.md)
+
+
+</td><td>
+
+Returns the product of the given array of matrices.
+
+
+</td></tr>
+<tr><td>
+
+[columnSumSupremumNorm(A)](./vector.columnsumsupremumnorm.md)
+
+
+</td><td>
+
+Calculates the 1-Norm of a matrix `A`
+
+
+</td></tr>
+<tr><td>
+
+[correlation(first, second)](./vector.correlation.md)
+
+
+</td><td>
+
+Calculates the correlation coefficient r of two vectors
+
+
+</td></tr>
+<tr><td>
+
+[correlation(A)](./vector.correlation_1.md)
+
+
+</td><td>
+
+Calculates the correlation matrix of a matrix `A`
+
+
+</td></tr>
+<tr><td>
+
+[covariance(first, second)](./vector.covariance.md)
+
+
+</td><td>
+
+Calculates the covariance of two vectors
+
+
+</td></tr>
+<tr><td>
+
+[covariance(A)](./vector.covariance_1.md)
+
+
+</td><td>
+
+Calculates the covariance matrix of a matrix `A`
+
+
+</td></tr>
+<tr><td>
+
+[crossProduct(first, second)](./vector.crossproduct.md)
+
+
+</td><td>
+
+Calculates the cross-product (vector-product) of two vectors. This is defined only for vectors with three dimensions.
+
+
+</td></tr>
+<tr><td>
+
+[derivative(f, xMin, xMax, binCount)](./vector.derivative.md)
+
+
+</td><td>
+
+Uses finite differences to build a vector containing approximate values of the derivative of `f`<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[determinant(matrix)](./vector.determinant.md)
+
+
+</td><td>
+
+Uses expansion of minors to calculate the determinant of a matrix. Throws an error if the input is not square.
+
+
+</td></tr>
+<tr><td>
+
+[diag(elements)](./vector.diag.md)
+
+
+</td><td>
+
+Creates a new matrix with the specified entries on the diagonal. See [MatrixBuilder.diagonal()](./vector.matrixbuilder.diagonal.md)
+
+
+</td></tr>
+<tr><td>
+
+[dotProduct(first, second)](./vector.dotproduct.md)
+
+
+</td><td>
+
+Computes the dot/inner/scalar product of two vectors. See [Vector.innerProduct()](./vector.vector.innerproduct.md)<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[eig(A, numIterations)](./vector.eig.md)
+
+
+</td><td>
+
+Uses the QR algorithm to compute the eigenvalues and eigenvectors of a matrix `A`
+
+
+</td></tr>
+<tr><td>
+
+[euclideanNorm(v)](./vector.euclideannorm.md)
+
+
+</td><td>
+
+Calculates the Euclidean Norm (or 2-Norm) of a vector `v`
+
+
+</td></tr>
+<tr><td>
+
+[exp(A, order)](./vector.exp.md)
+
+
+</td><td>
+
+Implements the Pade Approximant to compute the exponential of matrix `A`
+
+
+</td></tr>
+<tr><td>
+
+[eye(size)](./vector.eye.md)
+
+
+</td><td>
+
+Creates a new identity matrix of size `size`<!-- -->. See [MatrixBuilder.identity()](./vector.matrixbuilder.identity.md)
+
+
+</td></tr>
+<tr><td>
+
+[forwardDifferenceMatrix(binCount)](./vector.forwarddifferencematrix.md)
+
+
+</td><td>
+
+Builds a matrix that transforms a vector to a vector of forward differences
+
+
+</td></tr>
+<tr><td>
+
+[frobeniusNorm(A)](./vector.frobeniusnorm.md)
+
+
+</td><td>
+
+Calculates the Frobenius Norm of a matrix `A`
+
+
+</td></tr>
+<tr><td>
+
+[GaussianKernel(sigmaSquared)](./vector.gaussiankernel.md)
+
+
+</td><td>
+
+Creates a gaussian [Kernel](./vector.kernel.md) for use in a [SupportVectorMachineClassifier](./vector.supportvectormachineclassifier.md)<!-- -->. The gaussian kernel converts a data [Matrix](./vector.matrix.md) into a similarity `Matrix` where the value of entry (i,j) expresses the similarity of rows i and j in the original data set.
+
+
+</td></tr>
+<tr><td>
+
+[getEigenvectorForEigenvalue(A, lambda)](./vector.geteigenvectorforeigenvalue.md)
+
+
+</td><td>
+
+Given a matrix `A` and an eigenvalue `lambda` of that matrix, returns the eigenvector of `A` corresponding to `lambda`
+
+
+</td></tr>
+<tr><td>
+
+[gradientDescent(parameters)](./vector.gradientdescent.md)
+
+
+</td><td>
+
+Learns an optimal set of parameters `theta` using gradient descent
+
+
+</td></tr>
+<tr><td>
+
+[hadamardProduct(first, second)](./vector.hadamardproduct.md)
+
+
+</td><td>
+
+Computes the hadamard (element-wise) product of two vectors.
+
+
+</td></tr>
+<tr><td>
+
+[hadamardProduct(first, second)](./vector.hadamardproduct_1.md)
+
+
+</td><td>
+
+Computes the hadamard (element-wise) product of two matrices.
+
+
+</td></tr>
+<tr><td>
+
+[inverse(matrix)](./vector.inverse.md)
+
+
+</td><td>
+
+Uses Gauss-Jordan elimination with pivoting to calculate the inverse of a matrix.
+
+
+</td></tr>
+<tr><td>
+
+[isHermitian(matrix)](./vector.ishermitian.md)
+
+
+</td><td>
+
+Tests if a matrix is Hermitian.
+
+
+</td></tr>
+<tr><td>
+
+[isIdentity(matrix)](./vector.isidentity.md)
+
+
+</td><td>
+
+Tests if a matrix is an identity matrix
+
+
+</td></tr>
+<tr><td>
+
+[isLowerTriangular(matrix)](./vector.islowertriangular.md)
+
+
+</td><td>
+
+Tests if a matrix is lower-triangular.
+
+
+</td></tr>
+<tr><td>
+
+[isOrthogonal(matrix)](./vector.isorthogonal.md)
+
+
+</td><td>
+
+Tests if a matrix is orthogonal
+
+
+</td></tr>
+<tr><td>
+
+[isOrthonormal(matrix)](./vector.isorthonormal.md)
+
+
+</td><td>
+
+Tests if a matrix is orthonormal
+
+
+</td></tr>
+<tr><td>
+
+[isSquare(matrix)](./vector.issquare.md)
+
+
+</td><td>
+
+Tests if a matrix is square.
+
+
+</td></tr>
+<tr><td>
+
+[isSymmetric(matrix)](./vector.issymmetric.md)
+
+
+</td><td>
+
+Tests if a matrix is symmetric.
+
+
+</td></tr>
+<tr><td>
+
+[isUpperTriangular(matrix)](./vector.isuppertriangular.md)
+
+
+</td><td>
+
+Tests if a matrix is upper-triangular.
+
+
+</td></tr>
+<tr><td>
+
+[kroneckerProduct(first, second)](./vector.kroneckerproduct.md)
+
+
+</td><td>
+
+Computes the Kronecker product (generalized outer product) of two matrices.
+
+
+</td></tr>
+<tr><td>
+
+[LinearKernel(data)](./vector.linearkernel.md)
+
+
+</td><td>
+
+A linear kernel for use in a [SupportVectorMachineClassifier](./vector.supportvectormachineclassifier.md)<!-- -->. The linear kernel converts a data [Matrix](./vector.matrix.md) into a matrix which has been prepended with a column of all ones, representing the constant term in a linear model, or the bias term in an SVM.
+
+
+</td></tr>
+<tr><td>
+
+[linspace(xMin, xMax, binCount)](./vector.linspace.md)
+
+
+</td><td>
+
+Builds a vector of `binCount` evenly spaced numbers between `xMin` (inclusive) and `xMax` (exclusive).
+
+
+</td></tr>
+<tr><td>
+
+[mat(data)](./vector.mat.md)
+
+
+</td><td>
+
+Creates a new [Matrix](./vector.matrix.md) of numbers. See [MatrixBuilder.fromArray()](./vector.matrixbuilder.fromarray.md)
+
+
+</td></tr>
+<tr><td>
+
+[mean(x)](./vector.mean.md)
+
+
+</td><td>
+
+Calculates the mean of the values in the vector `x`
+
+
+</td></tr>
+<tr><td>
+
+[mean(A)](./vector.mean_1.md)
+
+
+</td><td>
+
+Calculates the mean vector of the matrix `A`
+
+
+</td></tr>
+<tr><td>
+
+[normalize(v)](./vector.normalize.md)
+
+
+</td><td>
+
+Returns a vector with the same direction as the input `v`<!-- -->, but with a Euclidean norm of 1
+
+
+</td></tr>
+<tr><td>
+
+[ones(entries)](./vector.ones.md)
+
+
+</td><td>
+
+Creates a new vector of all 1s. See [VectorBuilder.ones()](./vector.vectorbuilder.ones.md)
+
+
+</td></tr>
+<tr><td>
+
+[ones(shape)](./vector.ones_1.md)
+
+
+</td><td>
+
+Creates a new matrix of all 1s. See [MatrixBuilder.ones()](./vector.matrixbuilder.ones.md)
+
+
+</td></tr>
+<tr><td>
+
+[pca(A, useCorrelation)](./vector.pca.md)
+
+
+</td><td>
+
+Conducts a principal component analysis of a matrix `A`<!-- -->, and returns `A` in a new basis corresponding to the principal components.
+
+
+</td></tr>
+<tr><td>
+
+[pNorm(v, p)](./vector.pnorm.md)
+
+
+</td><td>
+
+Calculates the P-Norm of a vector `v`
+
+
+</td></tr>
+<tr><td>
+
+[pow(A, n)](./vector.pow.md)
+
+
+</td><td>
+
+Computes \_A^n\_ recursively.
+
+
+</td></tr>
+<tr><td>
+
+[prettyPrint(num)](./vector.prettyprint.md)
+
+
+</td><td>
+
+Returns an easy-to-read string representing a `number`
+
+
+</td></tr>
+<tr><td>
+
+[prettyPrint(vector)](./vector.prettyprint_1.md)
+
+
+</td><td>
+
+Returns an easy-to-read string representing the contents of a [Vector](./vector.vector.md)
+
+
+</td></tr>
+<tr><td>
+
+[prettyPrint(matrix)](./vector.prettyprint_2.md)
+
+
+</td><td>
+
+Returns an easy-to-read string representing the contents of a [Matrix](./vector.matrix.md)
+
+
+</td></tr>
+<tr><td>
+
+[RadialBasisFunction(distanceMetric)](./vector.radialbasisfunction.md)
+
+
+</td><td>
+
+Creates a [Kernel](./vector.kernel.md) for use in a [SupportVectorMachineClassifier](./vector.supportvectormachineclassifier.md)<!-- -->. The RBF kernel converts a data [Matrix](./vector.matrix.md) into a similarity `Matrix` where the value of entry (i,j) expresses the similarity of rows i and j in the original data set.
+
+
+</td></tr>
+<tr><td>
+
+[rank(matrix)](./vector.rank.md)
+
+
+</td><td>
+
+Calculates the rank of a matrix
+
+
+</td></tr>
+<tr><td>
+
+[reduceDimensions(A, options)](./vector.reducedimensions.md)
+
+
+</td><td>
+
+Reduce the number of dimensions of a data matrix `A` while losing as little information as possible.
+
+
+</td></tr>
+<tr><td>
+
+[reducedRowEchelonForm(matrix)](./vector.reducedrowechelonform.md)
+
+
+</td><td>
+
+Uses Gauss-Jordan elimination with pivoting to convert a matrix to Reduced Row-Echelon Form (RREF)
+
+
+</td></tr>
+<tr><td>
+
+[rowEchelonForm(matrix)](./vector.rowechelonform.md)
+
+
+</td><td>
+
+Uses Gauss-Jordan elimination with pivoting to convert a matrix to Row-Echelon Form (REF)
+
+
+</td></tr>
+<tr><td>
+
+[rowSumSupremumNorm(A)](./vector.rowsumsupremumnorm.md)
+
+
+</td><td>
+
+Calculates the Infinity-Norm of a matrix `A`
+
+
+</td></tr>
+<tr><td>
+
+[solve(A, b)](./vector.solve.md)
+
+
+</td><td>
+
+Solves the matrix equation \_Ax=b\_ for the vector \_x\_ using the default implementation. See [solveByGaussianElimination()](./vector.solvebygaussianelimination.md)
+
+
+</td></tr>
+<tr><td>
+
+[solveByGaussianElimination(A, b)](./vector.solvebygaussianelimination.md)
+
+
+</td><td>
+
+Uses Gauss-Jordan elimination with pivoting and backward substitution to solve the linear equation \_Ax=b\_
+
+
+</td></tr>
+<tr><td>
+
+[solveOverdeterminedSystem(A, b)](./vector.solveoverdeterminedsystem.md)
+
+
+</td><td>
+
+Gives an approximate solution to an overdetermined linear system.
+
+
+</td></tr>
+<tr><td>
+
+[standardDeviation(x)](./vector.standarddeviation.md)
+
+
+</td><td>
+
+Calculates the standard deviation of a vector
+
+
+</td></tr>
+<tr><td>
+
+[standardDeviation(A)](./vector.standarddeviation_1.md)
+
+
+</td><td>
+
+Calculates the standard deviation of each column of the matrix `A`
+
+
+</td></tr>
+<tr><td>
+
+[standardize(x)](./vector.standardize.md)
+
+
+</td><td>
+
+Returns the vector `x` shifted and scaled to have a mean of 0 and standard deviation of 1
+
+
+</td></tr>
+<tr><td>
+
+[standardize(A)](./vector.standardize_1.md)
+
+
+</td><td>
+
+Returns the matrix `A` with each column shifted and scaled to have a mean of 0 and standard deviation of 1
+
+
+</td></tr>
+<tr><td>
+
+[sumNorm(v)](./vector.sumnorm.md)
+
+
+</td><td>
+
+Calculates the Sum Norm (or 1-Norm) of a vector `v`
+
+
+</td></tr>
+<tr><td>
+
+[supremumNorm(v)](./vector.supremumnorm.md)
+
+
+</td><td>
+
+Calculates the Supremum Norm (or Infinity-Norm) of a vector `v`
+
+
+</td></tr>
+<tr><td>
+
+[tripleProduct(first, second, third)](./vector.tripleproduct.md)
+
+
+</td><td>
+
+Calculates the scalar triple-product of three vectors. This is defined only for vectors with three dimensions.
+
+
+</td></tr>
+<tr><td>
+
+[variance(x)](./vector.variance.md)
+
+
+</td><td>
+
+Calculates the variance of a vector
+
+
+</td></tr>
+<tr><td>
+
+[variance(A)](./vector.variance_1.md)
+
+
+</td><td>
+
+Calculates the variance of each column of the matrix `A`
+
+
+</td></tr>
+<tr><td>
+
+[vec(data)](./vector.vec.md)
+
+
+</td><td>
+
+Creates a new [Vector](./vector.vector.md) of numbers. See [VectorBuilder.fromArray()](./vector.vectorbuilder.fromarray.md)
+
+
+</td></tr>
+<tr><td>
+
+[zeros(entries)](./vector.zeros.md)
+
+
+</td><td>
+
+Creates a new vector of all 0s. See [VectorBuilder.zeros()](./vector.vectorbuilder.zeros.md)
+
+
+</td></tr>
+<tr><td>
+
+[zeros(shape)](./vector.zeros_1.md)
+
+
+</td><td>
+
+Creates a new matrix of all 0s. See [MatrixBuilder.zeros()](./vector.matrixbuilder.zeros.md)
+
+
+</td></tr>
+</tbody></table>
 
 ## Interfaces
 
-|  Interface | Description |
-|  --- | --- |
-|  [CholeskyDecomposition](./vector.choleskydecomposition.md) | The result of a Cholesky Decomposition |
-|  [Classifier](./vector.classifier.md) | A machine learning model with a continuous numeric target |
-|  [Cost](./vector.cost.md) | The output of a cost function |
-|  [EigenPair](./vector.eigenpair.md) | An eigenvector and its corresponding eigenvalue |
-|  [LeastSquaresApproximation](./vector.leastsquaresapproximation.md) | The result of a least squares approximation. |
-|  [LinearTransformation](./vector.lineartransformation.md) | An abstract linear transformation between vectors of type <code>V</code> and vectors of type <code>U</code>. |
-|  [LUDecomposition](./vector.ludecomposition.md) | The result of an LU Decomposition |
-|  [Matrix](./vector.matrix.md) | A generalized Matrix - one of the core data types |
-|  [OverdeterminedSolution](./vector.overdeterminedsolution.md) | A type representing the lack of solution to a linear system. |
-|  [PrincipalComponentAnalysis](./vector.principalcomponentanalysis.md) | The result of a principal component analysis. |
-|  [QRDecomposition](./vector.qrdecomposition.md) | The result of a QR decomposition. |
-|  [Regressor](./vector.regressor.md) | A machine learning model with a continuous numeric target |
-|  [RowOperationResult](./vector.rowoperationresult.md) | The result of a row operation (<code>result</code>), and the matrix that we multiply by the original matrix to yield that result (<code>operator</code>) |
-|  [SingularValueDecomposition](./vector.singularvaluedecomposition.md) | The result of a Singular Value Decomposition |
-|  [UnderdeterminedSolution](./vector.underdeterminedsolution.md) | A particular solution to a linear system with infinitely many solutions. |
-|  [UniqueSolution](./vector.uniquesolution.md) | The unique solution to a linear system. |
-|  [Vector](./vector.vector.md) | A generalized Vector - one of the core data types |
+<table><thead><tr><th>
+
+Interface
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[CholeskyDecomposition](./vector.choleskydecomposition.md)
+
+
+</td><td>
+
+The result of a Cholesky Decomposition
+
+
+</td></tr>
+<tr><td>
+
+[Classifier](./vector.classifier.md)
+
+
+</td><td>
+
+A machine learning model with a continuous numeric target
+
+
+</td></tr>
+<tr><td>
+
+[Cost](./vector.cost.md)
+
+
+</td><td>
+
+The output of a cost function
+
+
+</td></tr>
+<tr><td>
+
+[EigenPair](./vector.eigenpair.md)
+
+
+</td><td>
+
+An eigenvector and its corresponding eigenvalue
+
+
+</td></tr>
+<tr><td>
+
+[LeastSquaresApproximation](./vector.leastsquaresapproximation.md)
+
+
+</td><td>
+
+The result of a least squares approximation.
+
+
+</td></tr>
+<tr><td>
+
+[LinearTransformation](./vector.lineartransformation.md)
+
+
+</td><td>
+
+An abstract linear transformation between vectors of type `V` and vectors of type `U`<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[LUDecomposition](./vector.ludecomposition.md)
+
+
+</td><td>
+
+The result of an LU Decomposition
+
+
+</td></tr>
+<tr><td>
+
+[Matrix](./vector.matrix.md)
+
+
+</td><td>
+
+A generalized Matrix - one of the core data types
+
+
+</td></tr>
+<tr><td>
+
+[OverdeterminedSolution](./vector.overdeterminedsolution.md)
+
+
+</td><td>
+
+A type representing the lack of solution to a linear system.
+
+
+</td></tr>
+<tr><td>
+
+[PrincipalComponentAnalysis](./vector.principalcomponentanalysis.md)
+
+
+</td><td>
+
+The result of a principal component analysis.
+
+
+</td></tr>
+<tr><td>
+
+[QRDecomposition](./vector.qrdecomposition.md)
+
+
+</td><td>
+
+The result of a QR decomposition.
+
+
+</td></tr>
+<tr><td>
+
+[Regressor](./vector.regressor.md)
+
+
+</td><td>
+
+A machine learning model with a continuous numeric target
+
+
+</td></tr>
+<tr><td>
+
+[RowOperationResult](./vector.rowoperationresult.md)
+
+
+</td><td>
+
+The result of a row operation (`result`<!-- -->), and the matrix that we multiply by the original matrix to yield that result (`operator`<!-- -->)
+
+
+</td></tr>
+<tr><td>
+
+[SingularValueDecomposition](./vector.singularvaluedecomposition.md)
+
+
+</td><td>
+
+The result of a Singular Value Decomposition
+
+
+</td></tr>
+<tr><td>
+
+[UnderdeterminedSolution](./vector.underdeterminedsolution.md)
+
+
+</td><td>
+
+A particular solution to a linear system with infinitely many solutions.
+
+
+</td></tr>
+<tr><td>
+
+[UniqueSolution](./vector.uniquesolution.md)
+
+
+</td><td>
+
+The unique solution to a linear system.
+
+
+</td></tr>
+<tr><td>
+
+[Vector](./vector.vector.md)
+
+
+</td><td>
+
+A generalized Vector - one of the core data types
+
+
+</td></tr>
+</tbody></table>
 
 ## Type Aliases
 
-|  Type Alias | Description |
-|  --- | --- |
-|  [ApproximationFunction](./vector.approximationfunction.md) | A function that takes a vector of inputs and produces an output. This must always be a pure function that is linear in its coefficients. |
-|  [ApproximationFunctionTemplate](./vector.approximationfunctiontemplate.md) | A higher-order function which is used to generate an <code>ApproximationFunction</code>. This must be linear in its coefficients, or the result of the linear regression will not be correct. |
-|  [CostFunction](./vector.costfunction.md) | A function that evaluates the cost of a set of parameters <code>theta</code> |
-|  [DimensionReductionOptions](./vector.dimensionreductionoptions.md) | Specify how dimension reduction ought to be done. |
-|  [GradientDescentParameters](./vector.gradientdescentparameters.md) | The parameters for [gradientDescent()](./vector.gradientdescent.md) |
-|  [Kernel](./vector.kernel.md) | A function which takes a [Matrix](./vector.matrix.md) of data (and optionally another <code>Matrix</code> of data on which the kernel was trained) and returns a new <code>Matrix</code> which will be used to train a machine learning model.<!-- -->Generally intended for use with a [SupportVectorMachineClassifier](./vector.supportvectormachineclassifier.md)<!-- -->. |
-|  [LearningAlgorithm](./vector.learningalgorithm.md) | An function which, given an initial value of <code>theta</code> and a CostFunction, will compute the optimal value of <code>theta</code> |
-|  [LinearRegressorHyperparams](./vector.linearregressorhyperparams.md) | The set of hyperparameters for a [LinearRegressor](./vector.linearregressor.md) |
-|  [LinearSolution](./vector.linearsolution.md) | A general type representing any type of solution to a linear system. |
-|  [LogisticRegressionHyperparams](./vector.logisticregressionhyperparams.md) | The set of hyperparameters for a [LogisticRegressionClassifier](./vector.logisticregressionclassifier.md) |
-|  [MatrixData](./vector.matrixdata.md) | The data stored in a [Matrix](./vector.matrix.md) represented as a 2-D array |
-|  [MatrixEntryFunction](./vector.matrixentryfunction.md) | A function that generates a matrix entry based on an existing entry <code>entry</code>, its row index <code>i</code>, and its column index <code>j</code> |
-|  [MatrixShape](./vector.matrixshape.md) | A tuple representing the shape of a [Matrix](./vector.matrix.md)<!-- -->. The first entry is the number of rows, and the second entry is the number of columns. |
-|  [Norm](./vector.norm.md) | A function that calculates a norm for a vector. |
-|  [SimilarityMetric](./vector.similaritymetric.md) | A function which expresses the similarity of two [Vector](./vector.vector.md)<!-- -->s as a number between 0 (very dissimilar) and 1 (identical). |
-|  [Solver](./vector.solver.md) | A function that solves a linear system \_Ax=b\_ |
-|  [SparseMatrixData](./vector.sparsematrixdata.md) | The data stored in a [Matrix](./vector.matrix.md) represented as a map |
-|  [SparseVectorData](./vector.sparsevectordata.md) | The data stored in a [Vector](./vector.vector.md) represented as a map |
-|  [SupportVectorMachineHyperparams](./vector.supportvectormachinehyperparams.md) | The set of hyperparameters for a [SupportVectorMachineClassifier](./vector.supportvectormachineclassifier.md) |
-|  [VectorData](./vector.vectordata.md) | The data stored in a [Vector](./vector.vector.md) represented as a map |
-|  [VectorIndexFunction](./vector.vectorindexfunction.md) | A function that generates a vector entry based on its index |
+<table><thead><tr><th>
+
+Type Alias
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[ApproximationFunction](./vector.approximationfunction.md)
+
+
+</td><td>
+
+A function that takes a vector of inputs and produces an output. This must always be a pure function that is linear in its coefficients.
+
+
+</td></tr>
+<tr><td>
+
+[ApproximationFunctionTemplate](./vector.approximationfunctiontemplate.md)
+
+
+</td><td>
+
+A higher-order function which is used to generate an `ApproximationFunction`<!-- -->. This must be linear in its coefficients, or the result of the linear regression will not be correct.
+
+
+</td></tr>
+<tr><td>
+
+[CostFunction](./vector.costfunction.md)
+
+
+</td><td>
+
+A function that evaluates the cost of a set of parameters `theta`
+
+
+</td></tr>
+<tr><td>
+
+[DimensionReductionOptions](./vector.dimensionreductionoptions.md)
+
+
+</td><td>
+
+Specify how dimension reduction ought to be done.
+
+
+</td></tr>
+<tr><td>
+
+[GradientDescentParameters](./vector.gradientdescentparameters.md)
+
+
+</td><td>
+
+The parameters for [gradientDescent()](./vector.gradientdescent.md)
+
+
+</td></tr>
+<tr><td>
+
+[Kernel](./vector.kernel.md)
+
+
+</td><td>
+
+A function which takes a [Matrix](./vector.matrix.md) of data (and optionally another `Matrix` of data on which the kernel was trained) and returns a new `Matrix` which will be used to train a machine learning model.
+
+Generally intended for use with a [SupportVectorMachineClassifier](./vector.supportvectormachineclassifier.md)<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[LearningAlgorithm](./vector.learningalgorithm.md)
+
+
+</td><td>
+
+An function which, given an initial value of `theta` and a CostFunction, will compute the optimal value of `theta`
+
+
+</td></tr>
+<tr><td>
+
+[LinearRegressorHyperparams](./vector.linearregressorhyperparams.md)
+
+
+</td><td>
+
+The set of hyperparameters for a [LinearRegressor](./vector.linearregressor.md)
+
+
+</td></tr>
+<tr><td>
+
+[LinearSolution](./vector.linearsolution.md)
+
+
+</td><td>
+
+A general type representing any type of solution to a linear system.
+
+
+</td></tr>
+<tr><td>
+
+[LogisticRegressionHyperparams](./vector.logisticregressionhyperparams.md)
+
+
+</td><td>
+
+The set of hyperparameters for a [LogisticRegressionClassifier](./vector.logisticregressionclassifier.md)
+
+
+</td></tr>
+<tr><td>
+
+[MatrixData](./vector.matrixdata.md)
+
+
+</td><td>
+
+The data stored in a [Matrix](./vector.matrix.md) represented as a 2-D array
+
+
+</td></tr>
+<tr><td>
+
+[MatrixEntryFunction](./vector.matrixentryfunction.md)
+
+
+</td><td>
+
+A function that generates a matrix entry based on an existing entry `entry`<!-- -->, its row index `i`<!-- -->, and its column index `j`
+
+
+</td></tr>
+<tr><td>
+
+[MatrixShape](./vector.matrixshape.md)
+
+
+</td><td>
+
+A tuple representing the shape of a [Matrix](./vector.matrix.md)<!-- -->. The first entry is the number of rows, and the second entry is the number of columns.
+
+
+</td></tr>
+<tr><td>
+
+[Norm](./vector.norm.md)
+
+
+</td><td>
+
+A function that calculates a norm for a vector.
+
+
+</td></tr>
+<tr><td>
+
+[SimilarityMetric](./vector.similaritymetric.md)
+
+
+</td><td>
+
+A function which expresses the similarity of two [Vector](./vector.vector.md)<!-- -->s as a number between 0 (very dissimilar) and 1 (identical).
+
+
+</td></tr>
+<tr><td>
+
+[Solver](./vector.solver.md)
+
+
+</td><td>
+
+A function that solves a linear system \_Ax=b\_
+
+
+</td></tr>
+<tr><td>
+
+[SparseMatrixData](./vector.sparsematrixdata.md)
+
+
+</td><td>
+
+The data stored in a [Matrix](./vector.matrix.md) represented as a map
+
+
+</td></tr>
+<tr><td>
+
+[SparseVectorData](./vector.sparsevectordata.md)
+
+
+</td><td>
+
+The data stored in a [Vector](./vector.vector.md) represented as a map
+
+
+</td></tr>
+<tr><td>
+
+[SupportVectorMachineHyperparams](./vector.supportvectormachinehyperparams.md)
+
+
+</td><td>
+
+The set of hyperparameters for a [SupportVectorMachineClassifier](./vector.supportvectormachineclassifier.md)
+
+
+</td></tr>
+<tr><td>
+
+[VectorData](./vector.vectordata.md)
+
+
+</td><td>
+
+The data stored in a [Vector](./vector.vector.md) represented as a map
+
+
+</td></tr>
+<tr><td>
+
+[VectorIndexFunction](./vector.vectorindexfunction.md)
+
+
+</td><td>
+
+A function that generates a vector entry based on its index
+
+
+</td></tr>
+</tbody></table>
 

@@ -6,7 +6,7 @@
 
 Returns an easy-to-read string representing the contents of a [Vector](./vector.vector.md)
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function prettyPrint<S>(vector: Vector<S>): string;
@@ -14,11 +14,39 @@ export declare function prettyPrint<S>(vector: Vector<S>): string;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  vector | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; |  |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+vector
+
+
+</td><td>
+
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 string
 

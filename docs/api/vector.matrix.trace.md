@@ -6,12 +6,12 @@
 
 Returns the trace of the matrix
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 trace(): S;
 ```
-<b>Returns:</b>
+**Returns:**
 
 S
 

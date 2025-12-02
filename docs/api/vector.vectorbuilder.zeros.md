@@ -6,7 +6,7 @@
 
 Constructs a vector of all zeros
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 zeros(dimension: number): V;
@@ -14,11 +14,41 @@ zeros(dimension: number): V;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  dimension | number | The dimension of the vector to construct |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+dimension
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+The dimension of the vector to construct
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 V
 
@@ -29,6 +59,5 @@ The new vector
 
 ```
 vectorBuilder.zeros(3); // [ 0 0 0 ]
-
 ```
 
