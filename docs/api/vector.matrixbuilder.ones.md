@@ -6,7 +6,7 @@
 
 Constructs a matrix of the specified dimensions, consisting of all ones
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 ones(shape: MatrixShape): M;
@@ -14,11 +14,41 @@ ones(shape: MatrixShape): M;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  shape | [MatrixShape](./vector.matrixshape.md) | The shape of the matrix as a tuple <code>[m, n]</code> |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+shape
+
+
+</td><td>
+
+[MatrixShape](./vector.matrixshape.md)
+
+
+</td><td>
+
+The shape of the matrix as a tuple `[m, n]`
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 M
 
@@ -32,6 +62,5 @@ const allOnes = matrixBuilder.ones(2, 3);
 
 // [ 1 1 1 ]
 // [ 1 1 1 ]
-
 ```
 

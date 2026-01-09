@@ -45,10 +45,10 @@ describe('LogisticRegressionClassifier', () => {
   describe('an untrained model', () => {
     it('throws when making predictions', () => {
       expect(() =>
-        new LogisticRegressionClassifier({}).predict(FloatMatrix.builder().empty())
+        new LogisticRegressionClassifier({}).predict(FloatMatrix.builder().empty()),
       ).toThrow();
       expect(() =>
-        new LogisticRegressionClassifier({}).predictProbabilities(FloatMatrix.builder().empty())
+        new LogisticRegressionClassifier({}).predictProbabilities(FloatMatrix.builder().empty()),
       ).toThrow();
     });
   });

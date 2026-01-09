@@ -121,13 +121,13 @@ describe('ComplexNumberOperations', () => {
       expect(ops.getPrincipalSquareRoot(ComplexNumber.ZERO)).toStrictEqual(ComplexNumber.ZERO);
       expect(ops.getPrincipalSquareRoot(ComplexNumber.ONE)).toStrictEqual(ComplexNumber.ONE);
       expect(ops.getPrincipalSquareRoot(ComplexNumber.I)).toStrictEqual(
-        new ComplexNumber(0.7071067811865476, 0.7071067811865475)
+        new ComplexNumber(0.7071067811865476, 0.7071067811865475),
       );
       expect(ops.getPrincipalSquareRoot(new ComplexNumber(1, 1))).toStrictEqual(
-        new ComplexNumber(1.0986841134678098, 0.45508986056222733)
+        new ComplexNumber(1.0986841134678098, 0.45508986056222733),
       );
       expect(ops.getPrincipalSquareRoot(new ComplexNumber(1, -0.2))).toStrictEqual(
-        new ComplexNumber(1.0049387799061584, -0.09950854917683442)
+        new ComplexNumber(1.0049387799061584, -0.09950854917683442),
       );
     });
 

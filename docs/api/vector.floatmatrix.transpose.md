@@ -6,12 +6,12 @@
 
 Returns the transpose of the matrix
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 transpose(): Matrix<number>;
 ```
-<b>Returns:</b>
+**Returns:**
 
 [Matrix](./vector.matrix.md)<!-- -->&lt;number&gt;
 

@@ -4,12 +4,12 @@
 
 ## ComplexVector.ops() method
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 static ops(): ComplexNumberOperations;
 ```
-<b>Returns:</b>
+**Returns:**
 
 [ComplexNumberOperations](./vector.complexnumberoperations.md)
 

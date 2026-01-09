@@ -6,7 +6,7 @@
 
 Returns the complex conjugate of a scalar.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 abstract conjugate(scalar: S): S;
@@ -14,11 +14,41 @@ abstract conjugate(scalar: S): S;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  scalar | S | The scalar to conjugate |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+scalar
+
+
+</td><td>
+
+S
+
+
+</td><td>
+
+The scalar to conjugate
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 S
 

@@ -6,12 +6,12 @@
 
 Implements [Matrix](./vector.matrix.md) with a 2-dimensional array of values.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare abstract class ArrayMatrix<S = number> implements Matrix<S> 
 ```
-<b>Implements:</b> [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
+**Implements:** [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
 
 ## Remarks
 
@@ -21,32 +21,391 @@ The constructor for this class is marked as internal. Third-party code should no
 
 ## Methods
 
-|  Method | Modifiers | Description |
-|  --- | --- | --- |
-|  [add(other)](./vector.arraymatrix.add.md) |  | Implements matrix addition |
-|  [adjoint()](./vector.arraymatrix.adjoint.md) |  | Returns the adjoint of the matrix |
-|  [apply(vector)](./vector.arraymatrix.apply.md) |  | Applies the matrix as a linear transformation to the given vector. Implements matrix-vector multiplication. |
-|  [builder()](./vector.arraymatrix.builder.md) |  | Returns a [MatrixBuilder](./vector.matrixbuilder.md) which will build new matrices of the same type |
-|  [combine(other, combineEntries)](./vector.arraymatrix.combine.md) |  | Builds a matrix by combining element-wise the values of this matrix with the values of another matrix. |
-|  [equals(other)](./vector.arraymatrix.equals.md) |  | Tests if two matrices are equal |
-|  [forEach(cb)](./vector.arraymatrix.foreach.md) |  | Executes the <code>callback</code> function for each entry in the matrix. |
-|  [getColumn(j)](./vector.arraymatrix.getcolumn.md) |  | Returns a vector corresponding to the column at index <code>columnIndex</code> |
-|  [getColumnVectors()](./vector.arraymatrix.getcolumnvectors.md) |  | An array of vectors corresponding to the columns of the matrix |
-|  [getDiagonal()](./vector.arraymatrix.getdiagonal.md) |  | Returns a vector containing the elements of the main diagonal of the matrix |
-|  [getEntry(i, j)](./vector.arraymatrix.getentry.md) |  | Returns the entry of the matrix at the specified indices <code>i</code> and <code>j</code> |
-|  [getNumberOfColumns()](./vector.arraymatrix.getnumberofcolumns.md) |  | Returns the number of columns in the matrix |
-|  [getNumberOfRows()](./vector.arraymatrix.getnumberofrows.md) |  | Returns the number of rows in the matrix |
-|  [getRow(i)](./vector.arraymatrix.getrow.md) |  | Returns a vector corresponding to the row at index <code>rowIndex</code> |
-|  [getRowVectors()](./vector.arraymatrix.getrowvectors.md) |  | Returns an array of vectors corresponding to the rows of the matrix |
-|  [getShape()](./vector.arraymatrix.getshape.md) |  | Returns a tuple representing the dimensions of the matrix. The first entry is the number of rows, and the second entry is the number of columns. |
-|  [getSparseData()](./vector.arraymatrix.getsparsedata.md) |  | Returns the contents of the matrix as a nested map of rowIndex to columnIndex to nonzero value |
-|  [map(entryFunction)](./vector.arraymatrix.map.md) |  | Builds a matrix by transforming the values of the current matrix. |
-|  [multiply(other)](./vector.arraymatrix.multiply.md) |  | Implements matrix multiplication |
-|  [ops()](./vector.arraymatrix.ops.md) |  | Returns a [ScalarOperations](./vector.scalaroperations.md) object which will allow consumers to work generically with the scalars contained in the vector. |
-|  [scalarMultiply(scalar)](./vector.arraymatrix.scalarmultiply.md) |  | Implements multiplication of a matrix by a scalar |
-|  [set(i, j, value)](./vector.arraymatrix.set.md) |  | Returns a new matrix equal to the old one, except with the entry at <code>(i, j)</code> replaced with <code>value</code> |
-|  [toArray()](./vector.arraymatrix.toarray.md) |  | Returns the contents of the matrix as a 2-D array. |
-|  [trace()](./vector.arraymatrix.trace.md) |  | Returns the trace of the matrix |
-|  [transpose()](./vector.arraymatrix.transpose.md) |  | Returns the transpose of the matrix |
-|  [vectorBuilder()](./vector.arraymatrix.vectorbuilder.md) |  | Returns a [VectorBuilder](./vector.vectorbuilder.md) which will build new vectors of a compatible type |
+<table><thead><tr><th>
+
+Method
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[add(other)](./vector.arraymatrix.add.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Implements matrix addition
+
+
+</td></tr>
+<tr><td>
+
+[adjoint()](./vector.arraymatrix.adjoint.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns the adjoint of the matrix
+
+
+</td></tr>
+<tr><td>
+
+[apply(vector)](./vector.arraymatrix.apply.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Applies the matrix as a linear transformation to the given vector. Implements matrix-vector multiplication.
+
+
+</td></tr>
+<tr><td>
+
+[builder()](./vector.arraymatrix.builder.md)
+
+
+</td><td>
+
+`abstract`
+
+
+</td><td>
+
+Returns a [MatrixBuilder](./vector.matrixbuilder.md) which will build new matrices of the same type
+
+
+</td></tr>
+<tr><td>
+
+[combine(other, combineEntries)](./vector.arraymatrix.combine.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Builds a matrix by combining element-wise the values of this matrix with the values of another matrix.
+
+
+</td></tr>
+<tr><td>
+
+[equals(other)](./vector.arraymatrix.equals.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Tests if two matrices are equal
+
+
+</td></tr>
+<tr><td>
+
+[forEach(cb)](./vector.arraymatrix.foreach.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Executes the `callback` function for each entry in the matrix.
+
+
+</td></tr>
+<tr><td>
+
+[getColumn(j)](./vector.arraymatrix.getcolumn.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns a vector corresponding to the column at index `columnIndex`
+
+
+</td></tr>
+<tr><td>
+
+[getColumnVectors()](./vector.arraymatrix.getcolumnvectors.md)
+
+
+</td><td>
+
+
+</td><td>
+
+An array of vectors corresponding to the columns of the matrix
+
+
+</td></tr>
+<tr><td>
+
+[getDiagonal()](./vector.arraymatrix.getdiagonal.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns a vector containing the elements of the main diagonal of the matrix
+
+
+</td></tr>
+<tr><td>
+
+[getEntry(i, j)](./vector.arraymatrix.getentry.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns the entry of the matrix at the specified indices `i` and `j`
+
+
+</td></tr>
+<tr><td>
+
+[getNumberOfColumns()](./vector.arraymatrix.getnumberofcolumns.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns the number of columns in the matrix
+
+
+</td></tr>
+<tr><td>
+
+[getNumberOfRows()](./vector.arraymatrix.getnumberofrows.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns the number of rows in the matrix
+
+
+</td></tr>
+<tr><td>
+
+[getRow(i)](./vector.arraymatrix.getrow.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns a vector corresponding to the row at index `rowIndex`
+
+
+</td></tr>
+<tr><td>
+
+[getRowVectors()](./vector.arraymatrix.getrowvectors.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns an array of vectors corresponding to the rows of the matrix
+
+
+</td></tr>
+<tr><td>
+
+[getShape()](./vector.arraymatrix.getshape.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns a tuple representing the dimensions of the matrix. The first entry is the number of rows, and the second entry is the number of columns.
+
+
+</td></tr>
+<tr><td>
+
+[getSparseData()](./vector.arraymatrix.getsparsedata.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns the contents of the matrix as a nested map of rowIndex to columnIndex to nonzero value
+
+
+</td></tr>
+<tr><td>
+
+[map(entryFunction)](./vector.arraymatrix.map.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Builds a matrix by transforming the values of the current matrix.
+
+
+</td></tr>
+<tr><td>
+
+[multiply(other)](./vector.arraymatrix.multiply.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Implements matrix multiplication
+
+
+</td></tr>
+<tr><td>
+
+[ops()](./vector.arraymatrix.ops.md)
+
+
+</td><td>
+
+`abstract`
+
+
+</td><td>
+
+Returns a [ScalarOperations](./vector.scalaroperations.md) object which will allow consumers to work generically with the scalars contained in the vector.
+
+
+</td></tr>
+<tr><td>
+
+[scalarMultiply(scalar)](./vector.arraymatrix.scalarmultiply.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Implements multiplication of a matrix by a scalar
+
+
+</td></tr>
+<tr><td>
+
+[set(i, j, value)](./vector.arraymatrix.set.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns a new matrix equal to the old one, except with the entry at `(i, j)` replaced with `value`
+
+
+</td></tr>
+<tr><td>
+
+[toArray()](./vector.arraymatrix.toarray.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns the contents of the matrix as a 2-D array.
+
+
+</td></tr>
+<tr><td>
+
+[trace()](./vector.arraymatrix.trace.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns the trace of the matrix
+
+
+</td></tr>
+<tr><td>
+
+[transpose()](./vector.arraymatrix.transpose.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns the transpose of the matrix
+
+
+</td></tr>
+<tr><td>
+
+[vectorBuilder()](./vector.arraymatrix.vectorbuilder.md)
+
+
+</td><td>
+
+`abstract`
+
+
+</td><td>
+
+Returns a [VectorBuilder](./vector.vectorbuilder.md) which will build new vectors of a compatible type
+
+
+</td></tr>
+</tbody></table>
 

@@ -6,12 +6,12 @@
 
 Returns a [ScalarOperations](./vector.scalaroperations.md) object which will allow consumers to work generically with the scalars contained in the vector.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 ops(): ScalarOperations<S>;
 ```
-<b>Returns:</b>
+**Returns:**
 
 [ScalarOperations](./vector.scalaroperations.md)<!-- -->&lt;S&gt;
 

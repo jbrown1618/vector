@@ -6,7 +6,7 @@
 
 Tests if the scalars are equal. Implementors should ensure that the operation is reflexive, associative, and transitive.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 equals(first: number, second: number): boolean;
@@ -14,12 +14,53 @@ equals(first: number, second: number): boolean;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  first | number |  |
-|  second | number |  |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+first
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+second
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 boolean
 

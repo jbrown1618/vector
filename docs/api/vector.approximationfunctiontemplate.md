@@ -6,8 +6,10 @@
 
 A higher-order function which is used to generate an `ApproximationFunction`<!-- -->. This must be linear in its coefficients, or the result of the linear regression will not be correct.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-export declare type ApproximationFunctionTemplate<S> = (coefficients: Vector<S>) => ApproximationFunction<S>;
+export type ApproximationFunctionTemplate<S> = (coefficients: Vector<S>) => ApproximationFunction<S>;
 ```
+**References:** [Vector](./vector.vector.md)<!-- -->, [ApproximationFunction](./vector.approximationfunction.md)
+

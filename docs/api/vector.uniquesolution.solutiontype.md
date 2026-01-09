@@ -4,7 +4,7 @@
 
 ## UniqueSolution.solutionType property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 solutionType: SolutionType.UNIQUE;

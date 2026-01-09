@@ -6,7 +6,7 @@
 
 Returns an easy-to-read string representing the contents of a [Matrix](./vector.matrix.md)
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function prettyPrint<S>(matrix: Matrix<S>): string;
@@ -14,11 +14,39 @@ export declare function prettyPrint<S>(matrix: Matrix<S>): string;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  matrix | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; |  |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+matrix
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 string
 

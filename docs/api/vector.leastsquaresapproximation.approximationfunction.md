@@ -6,7 +6,7 @@
 
 A function which takes a vector of the independent variable values, and returns the predicted value of the dependent variable
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 approximationFunction: ApproximationFunction<S>;

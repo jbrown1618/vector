@@ -4,7 +4,7 @@
 
 ## EigenPair.eigenvector property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 eigenvector: Vector<S>;

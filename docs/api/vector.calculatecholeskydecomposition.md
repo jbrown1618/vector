@@ -6,7 +6,7 @@
 
 Uses the serial version of the Cholesky algorith to calculate the Cholesky decomposition of a matrix `A`<!-- -->.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function calculateCholeskyDecomposition<S>(A: Matrix<S>): CholeskyDecomposition<S> | undefined;
@@ -14,11 +14,41 @@ export declare function calculateCholeskyDecomposition<S>(A: Matrix<S>): Cholesk
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  A | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The matrix to decompose |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+A
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+The matrix to decompose
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [CholeskyDecomposition](./vector.choleskydecomposition.md)<!-- -->&lt;S&gt; \| undefined
 

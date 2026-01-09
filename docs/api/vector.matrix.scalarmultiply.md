@@ -6,7 +6,7 @@
 
 Implements multiplication of a matrix by a scalar
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 scalarMultiply(scalar: S): Matrix<S>;
@@ -14,11 +14,41 @@ scalarMultiply(scalar: S): Matrix<S>;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  scalar | S | The scalar by which to multiply |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+scalar
+
+
+</td><td>
+
+S
+
+
+</td><td>
+
+The scalar by which to multiply
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
 

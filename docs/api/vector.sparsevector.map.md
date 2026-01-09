@@ -6,7 +6,7 @@
 
 Returns the dimension of the vector
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 map(valueFromEntry: (entry: S, index: number) => S): Vector<S>;
@@ -14,11 +14,39 @@ map(valueFromEntry: (entry: S, index: number) => S): Vector<S>;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  valueFromEntry | (entry: S, index: number) =&gt; S |  |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+valueFromEntry
+
+
+</td><td>
+
+(entry: S, index: number) =&gt; S
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [Vector](./vector.vector.md)<!-- -->&lt;S&gt;
 

@@ -6,7 +6,7 @@
 
 An elementary row operations which returns a new matrix whose row at index `first` has been exchanged with the row at index `second`
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 static exchangeRows<S>(matrix: Matrix<S>, first: number, second: number): Matrix<S>;
@@ -14,13 +14,73 @@ static exchangeRows<S>(matrix: Matrix<S>, first: number, second: number): Matrix
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  matrix | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The original matrix |
-|  first | number | The index of the first row to exchange |
-|  second | number | The index of the second row to exchange |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+matrix
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+The original matrix
+
+
+</td></tr>
+<tr><td>
+
+first
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+The index of the first row to exchange
+
+
+</td></tr>
+<tr><td>
+
+second
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+The index of the second row to exchange
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
 

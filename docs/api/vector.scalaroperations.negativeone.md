@@ -6,12 +6,12 @@
 
 Returns the additive inverse of the multiplicative identity.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 negativeOne(): S;
 ```
-<b>Returns:</b>
+**Returns:**
 
 S
 

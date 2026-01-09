@@ -6,7 +6,7 @@
 
 Returns a random scalar value from a normal distribution centered on `mean` with standard deviation `standardDeviation`
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 abstract randomNormal(mean: number, standardDeviation: number): S;
@@ -14,12 +14,53 @@ abstract randomNormal(mean: number, standardDeviation: number): S;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  mean | number |  |
-|  standardDeviation | number |  |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+mean
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+standardDeviation
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 S
 

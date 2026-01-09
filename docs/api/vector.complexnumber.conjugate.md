@@ -4,12 +4,12 @@
 
 ## ComplexNumber.conjugate() method
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 conjugate(): ComplexNumber;
 ```
-<b>Returns:</b>
+**Returns:**
 
 [ComplexNumber](./vector.complexnumber.md)
 

@@ -6,7 +6,7 @@
 
 Tests if the scalars are equal. Implementors should ensure that the operation is reflexive, associative, and transitive.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 abstract equals(first: S, second: S): boolean;
@@ -14,12 +14,53 @@ abstract equals(first: S, second: S): boolean;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  first | S |  |
-|  second | S |  |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+first
+
+
+</td><td>
+
+S
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+second
+
+
+</td><td>
+
+S
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 boolean
 

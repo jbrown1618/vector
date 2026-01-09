@@ -6,7 +6,7 @@
 
 A wrapper for static methods representing the elementary row operations
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare class RowOperations 
@@ -14,11 +14,101 @@ export declare class RowOperations
 
 ## Methods
 
-|  Method | Modifiers | Description |
-|  --- | --- | --- |
-|  [addRowToRow(matrix, targetRow, rowToAdd)](./vector.rowoperations.addrowtorow.md) | <code>static</code> | An elementary row operations which returns a new matrix whose row at <code>targetRow</code> has had the row at <code>rowToAdd</code> added to it. |
-|  [addScalarMultipleOfRowToRow(matrix, targetRow, rowToAdd, scalar)](./vector.rowoperations.addscalarmultipleofrowtorow.md) | <code>static</code> | An elementary row operations which returns a new matrix whose row at <code>targetRow</code> has had a scalar multiple of <code>rowToAdd</code> added to it. |
-|  [exchangeRows(matrix, first, second)](./vector.rowoperations.exchangerows.md) | <code>static</code> | An elementary row operations which returns a new matrix whose row at index <code>first</code> has been exchanged with the row at index <code>second</code> |
-|  [multiplyRowByScalar(matrix, rowIndex, scalar)](./vector.rowoperations.multiplyrowbyscalar.md) | <code>static</code> | An elementary row operations which returns a new matrix whose row at <code>rowIndex</code> is multiplied by <code>scalar</code> |
-|  [pivot(matrix)](./vector.rowoperations.pivot.md) | <code>static</code> | Sorts the rows of a matrix according to the number of leading zeros and the magnitude of the first nonzero entry |
+<table><thead><tr><th>
+
+Method
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[addRowToRow(matrix, targetRow, rowToAdd)](./vector.rowoperations.addrowtorow.md)
+
+
+</td><td>
+
+`static`
+
+
+</td><td>
+
+An elementary row operations which returns a new matrix whose row at `targetRow` has had the row at `rowToAdd` added to it.
+
+
+</td></tr>
+<tr><td>
+
+[addScalarMultipleOfRowToRow(matrix, targetRow, rowToAdd, scalar)](./vector.rowoperations.addscalarmultipleofrowtorow.md)
+
+
+</td><td>
+
+`static`
+
+
+</td><td>
+
+An elementary row operations which returns a new matrix whose row at `targetRow` has had a scalar multiple of `rowToAdd` added to it.
+
+
+</td></tr>
+<tr><td>
+
+[exchangeRows(matrix, first, second)](./vector.rowoperations.exchangerows.md)
+
+
+</td><td>
+
+`static`
+
+
+</td><td>
+
+An elementary row operations which returns a new matrix whose row at index `first` has been exchanged with the row at index `second`
+
+
+</td></tr>
+<tr><td>
+
+[multiplyRowByScalar(matrix, rowIndex, scalar)](./vector.rowoperations.multiplyrowbyscalar.md)
+
+
+</td><td>
+
+`static`
+
+
+</td><td>
+
+An elementary row operations which returns a new matrix whose row at `rowIndex` is multiplied by `scalar`
+
+
+</td></tr>
+<tr><td>
+
+[pivot(matrix)](./vector.rowoperations.pivot.md)
+
+
+</td><td>
+
+`static`
+
+
+</td><td>
+
+Sorts the rows of a matrix according to the number of leading zeros and the magnitude of the first nonzero entry
+
+
+</td></tr>
+</tbody></table>
 

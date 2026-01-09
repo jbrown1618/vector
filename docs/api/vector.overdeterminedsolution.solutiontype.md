@@ -4,7 +4,7 @@
 
 ## OverdeterminedSolution.solutionType property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 solutionType: SolutionType.OVERDETERMINED;

@@ -123,7 +123,7 @@ describe('GaussJordan', () => {
           [1, 2, 3],
           [0, -1, -2],
           [0, 0, 0],
-        ])
+        ]),
       );
 
       // Matrix B has an unexpected row of zeros occur, necessitating an extra swap
@@ -138,7 +138,7 @@ describe('GaussJordan', () => {
           [-3, 9, 9, 0],
           [0, 5, 5, 0],
           [0, 0, 0, 0],
-        ])
+        ]),
       );
     });
 

@@ -6,26 +6,134 @@
 
 A [Classifier](./vector.classifier.md) model which uses logistic regression to predict a discrete target. The optimal set of parameters is computed with gradient descent.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare class SupportVectorMachineClassifier implements Classifier<SupportVectorMachineHyperparams> 
 ```
-<b>Implements:</b> [Classifier](./vector.classifier.md)<!-- -->&lt;[SupportVectorMachineHyperparams](./vector.supportvectormachinehyperparams.md)<!-- -->&gt;
+**Implements:** [Classifier](./vector.classifier.md)<!-- -->&lt;[SupportVectorMachineHyperparams](./vector.supportvectormachinehyperparams.md)<!-- -->&gt;
 
 ## Constructors
 
-|  Constructor | Modifiers | Description |
-|  --- | --- | --- |
-|  [(constructor)(hyperParameters)](./vector.supportvectormachineclassifier._constructor_.md) |  | Constructs a new instance of the <code>SupportVectorMachineClassifier</code> class |
+<table><thead><tr><th>
+
+Constructor
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[(constructor)(hyperParameters)](./vector.supportvectormachineclassifier._constructor_.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Constructs a new instance of the `SupportVectorMachineClassifier` class
+
+
+</td></tr>
+</tbody></table>
 
 ## Methods
 
-|  Method | Modifiers | Description |
-|  --- | --- | --- |
-|  [getHyperParameters()](./vector.supportvectormachineclassifier.gethyperparameters.md) |  | Return the full set of hyperparameters used to train the model, including defaults. |
-|  [getParameters()](./vector.supportvectormachineclassifier.getparameters.md) |  | Get the weights of the trained SVM, or <code>undefined</code> if the model has not been trained. |
-|  [predict(data)](./vector.supportvectormachineclassifier.predict.md) |  | Uses the learned parameters to make predictions based on a set of input data. |
-|  [predictProbabilities(\_data)](./vector.supportvectormachineclassifier.predictprobabilities.md) |  | Uses the learned parameters to make predictions for the probability of an event based on a set of input data. |
-|  [train(data, target)](./vector.supportvectormachineclassifier.train.md) |  | Learns the optimal set of parameters for the model. |
+<table><thead><tr><th>
+
+Method
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[getHyperParameters()](./vector.supportvectormachineclassifier.gethyperparameters.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Return the full set of hyperparameters used to train the model, including defaults.
+
+
+</td></tr>
+<tr><td>
+
+[getParameters()](./vector.supportvectormachineclassifier.getparameters.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Get the weights of the trained SVM, or `undefined` if the model has not been trained.
+
+
+</td></tr>
+<tr><td>
+
+[predict(data)](./vector.supportvectormachineclassifier.predict.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Uses the learned parameters to make predictions based on a set of input data.
+
+
+</td></tr>
+<tr><td>
+
+[predictProbabilities(\_data)](./vector.supportvectormachineclassifier.predictprobabilities.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Uses the learned parameters to make predictions for the probability of an event based on a set of input data.
+
+
+</td></tr>
+<tr><td>
+
+[train(data, target)](./vector.supportvectormachineclassifier.train.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Learns the optimal set of parameters for the model.
+
+
+</td></tr>
+</tbody></table>
 

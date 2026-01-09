@@ -6,7 +6,7 @@
 
 The result of a QR decomposition.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface QRDecomposition<S> 
@@ -14,8 +14,60 @@ export interface QRDecomposition<S>
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [Q](./vector.qrdecomposition.q.md) | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; |  |
-|  [R](./vector.qrdecomposition.r.md) | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; |  |
+<table><thead><tr><th>
+
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[Q](./vector.qrdecomposition.q.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[R](./vector.qrdecomposition.r.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
 

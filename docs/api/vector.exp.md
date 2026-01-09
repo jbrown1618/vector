@@ -6,7 +6,7 @@
 
 Implements the Pade Approximant to compute the exponential of matrix `A`
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function exp<S>(A: Matrix<S>, order?: number): Matrix<S>;
@@ -14,12 +14,57 @@ export declare function exp<S>(A: Matrix<S>, order?: number): Matrix<S>;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  A | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The matrix to exponentiate |
-|  order | number | The order of the approximation - higher numbers yield more accurate results |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+A
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+The matrix to exponentiate
+
+
+</td></tr>
+<tr><td>
+
+order
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+_(Optional)_ The order of the approximation - higher numbers yield more accurate results
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
 

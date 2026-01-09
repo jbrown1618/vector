@@ -22,7 +22,7 @@ export interface CholeskyDecomposition<S> {
  * @public
  */
 export function calculateCholeskyDecomposition<S>(
-  A: Matrix<S>
+  A: Matrix<S>,
 ): CholeskyDecomposition<S> | undefined {
   if (!isHermitian(A)) return undefined;
 

@@ -6,7 +6,7 @@
 
 Construct a circulant matrix using entries from the input vector
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 circulant(vector: Vector<S>): M;
@@ -14,11 +14,41 @@ circulant(vector: Vector<S>): M;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  vector | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | The vector whose entries to use in the circulant matrix |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+vector
+
+
+</td><td>
+
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+The vector whose entries to use in the circulant matrix
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 M
 
@@ -31,6 +61,5 @@ const circulant = matrixBuilder.circulant(vectorBuilder.fromArray([1, 2, 3]));
 // [ 1 3 2 ]
 // [ 2 1 3 ]
 // [ 3 2 1 ]
-
 ```
 

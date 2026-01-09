@@ -46,7 +46,7 @@ describe('DescriptiveStatistics', () => {
           [-6, 0, 0],
           [-6, 0, 30],
           [-36, -30, -30],
-        ])
+        ]),
       );
     });
 
@@ -101,7 +101,7 @@ describe('DescriptiveStatistics', () => {
 
     test('calculates the standard deviations for the columns of a matrix', () => {
       expect(standardDeviation(sample)).toStrictEqual(
-        vec([Math.sqrt(504), Math.sqrt(360), Math.sqrt(720)])
+        vec([Math.sqrt(504), Math.sqrt(360), Math.sqrt(720)]),
       );
     });
 
@@ -126,7 +126,7 @@ describe('DescriptiveStatistics', () => {
           [504, 360, 180],
           [360, 360, 0],
           [180, 0, 720],
-        ])
+        ]),
       );
     });
 

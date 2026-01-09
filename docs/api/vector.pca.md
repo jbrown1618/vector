@@ -6,7 +6,7 @@
 
 Conducts a principal component analysis of a matrix `A`<!-- -->, and returns `A` in a new basis corresponding to the principal components.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function pca<S>(A: Matrix<S>, useCorrelation?: boolean): PrincipalComponentAnalysis<S>;
@@ -14,12 +14,57 @@ export declare function pca<S>(A: Matrix<S>, useCorrelation?: boolean): Principa
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  A | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The matrix to analyze |
-|  useCorrelation | boolean | Whether to use correlation rather than covariance to determine principal components. Equivalently, whether to standardize rather than merely center the data. This option should be used if the variables in the data naturally fall on different scales. |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+A
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+The matrix to analyze
+
+
+</td></tr>
+<tr><td>
+
+useCorrelation
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ Whether to use correlation rather than covariance to determine principal components. Equivalently, whether to standardize rather than merely center the data. This option should be used if the variables in the data naturally fall on different scales.
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [PrincipalComponentAnalysis](./vector.principalcomponentanalysis.md)<!-- -->&lt;S&gt;
 

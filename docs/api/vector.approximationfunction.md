@@ -6,8 +6,10 @@
 
 A function that takes a vector of inputs and produces an output. This must always be a pure function that is linear in its coefficients.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-export declare type ApproximationFunction<S> = (input: Vector<S>) => S;
+export type ApproximationFunction<S> = (input: Vector<S>) => S;
 ```
+**References:** [Vector](./vector.vector.md)
+

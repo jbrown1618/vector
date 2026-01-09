@@ -6,7 +6,7 @@
 
 Returns the entry of the matrix at the specified indices `i` and `j`
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 getEntry(i: number, j: number): number;
@@ -14,12 +14,53 @@ getEntry(i: number, j: number): number;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  i | number |  |
-|  j | number |  |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+i
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+j
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 number
 

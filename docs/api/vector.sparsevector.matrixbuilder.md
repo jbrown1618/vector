@@ -4,12 +4,12 @@
 
 ## SparseVector.matrixBuilder() method
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 abstract matrixBuilder(): MatrixBuilder<S, Vector<S>, Matrix<S>>;
 ```
-<b>Returns:</b>
+**Returns:**
 
 [MatrixBuilder](./vector.matrixbuilder.md)<!-- -->&lt;S, [Vector](./vector.vector.md)<!-- -->&lt;S&gt;, [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;&gt;
 

@@ -6,12 +6,12 @@
 
 Returns the number of rows in the matrix
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 getNumberOfRows(): number;
 ```
-<b>Returns:</b>
+**Returns:**
 
 number
 

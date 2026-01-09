@@ -4,7 +4,7 @@
 
 ## SingularValueDecomposition.V property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 V: Matrix<S>;

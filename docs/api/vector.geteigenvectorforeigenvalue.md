@@ -6,7 +6,7 @@
 
 Given a matrix `A` and an eigenvalue `lambda` of that matrix, returns the eigenvector of `A` corresponding to `lambda`
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function getEigenvectorForEigenvalue<S>(A: Matrix<S>, lambda: S): Vector<S>;
@@ -14,12 +14,57 @@ export declare function getEigenvectorForEigenvalue<S>(A: Matrix<S>, lambda: S):
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  A | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The matrix with eigenvalue <code>lambda</code> |
-|  lambda | S | The eigenvalue for which to find an eigenvector |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+A
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+The matrix with eigenvalue `lambda`
+
+
+</td></tr>
+<tr><td>
+
+lambda
+
+
+</td><td>
+
+S
+
+
+</td><td>
+
+The eigenvalue for which to find an eigenvector
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [Vector](./vector.vector.md)<!-- -->&lt;S&gt;
 

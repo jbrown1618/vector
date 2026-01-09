@@ -4,12 +4,12 @@
 
 ## NumberVector.builder() method
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 static builder(): VectorBuilder<number, NumberVector>;
 ```
-<b>Returns:</b>
+**Returns:**
 
 [VectorBuilder](./vector.vectorbuilder.md)<!-- -->&lt;number, [NumberVector](./vector.numbervector.md)<!-- -->&gt;
 

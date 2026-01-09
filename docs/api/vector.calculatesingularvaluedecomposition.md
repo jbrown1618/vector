@@ -6,7 +6,7 @@
 
 Uses the Power Method to calculate the Singular Value Decomposition of a matrix `A`
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function calculateSingularValueDecomposition<S>(A: Matrix<S>): SingularValueDecomposition<S>;
@@ -14,11 +14,41 @@ export declare function calculateSingularValueDecomposition<S>(A: Matrix<S>): Si
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  A | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | the matrix to decompose |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+A
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+the matrix to decompose
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [SingularValueDecomposition](./vector.singularvaluedecomposition.md)<!-- -->&lt;S&gt;
 

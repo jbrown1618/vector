@@ -6,10 +6,10 @@
 
 A function that generates a matrix entry based on an existing entry `entry`<!-- -->, its row index `i`<!-- -->, and its column index `j`
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-export declare type MatrixEntryFunction<S> = (entry: S, i: number, j: number) => S;
+export type MatrixEntryFunction<S> = (entry: S, i: number, j: number) => S;
 ```
 
 ## Remarks

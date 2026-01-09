@@ -6,12 +6,12 @@
 
 Returns an array of vectors corresponding to the rows of the matrix
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 getRowVectors(): Vector<S>[];
 ```
-<b>Returns:</b>
+**Returns:**
 
 [Vector](./vector.vector.md)<!-- -->&lt;S&gt;\[\]
 

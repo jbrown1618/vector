@@ -6,12 +6,12 @@
 
 Returns a [MatrixBuilder](./vector.matrixbuilder.md) which will build new matrices of a compatible type
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 matrixBuilder(): MatrixBuilder<ComplexNumber, ComplexVector, ComplexMatrix>;
 ```
-<b>Returns:</b>
+**Returns:**
 
 [MatrixBuilder](./vector.matrixbuilder.md)<!-- -->&lt;[ComplexNumber](./vector.complexnumber.md)<!-- -->, [ComplexVector](./vector.complexvector.md)<!-- -->, [ComplexMatrix](./vector.complexmatrix.md)<!-- -->&gt;
 

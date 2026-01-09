@@ -8,8 +8,10 @@ A function which takes a [Matrix](./vector.matrix.md) of data (and optionally an
 
 Generally intended for use with a [SupportVectorMachineClassifier](./vector.supportvectormachineclassifier.md)<!-- -->.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-export declare type Kernel = (data: Matrix, trainingData?: Matrix) => Matrix;
+export type Kernel = (data: Matrix, trainingData?: Matrix) => Matrix;
 ```
+**References:** [Matrix](./vector.matrix.md)
+

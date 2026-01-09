@@ -6,7 +6,7 @@
 
 Creates a new [Matrix](./vector.matrix.md) of numbers. See [MatrixBuilder.fromArray()](./vector.matrixbuilder.fromarray.md)
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function mat(data: number[][]): Matrix;
@@ -14,11 +14,39 @@ export declare function mat(data: number[][]): Matrix;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  data | number\[\]\[\] |  |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+data
+
+
+</td><td>
+
+number\[\]\[\]
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [Matrix](./vector.matrix.md)
 

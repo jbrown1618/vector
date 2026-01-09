@@ -6,7 +6,7 @@
 
 Builds a matrix that transforms a vector to a vector of central differences
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function centralDifferenceMatrix(binCount: number): NumberMatrix;
@@ -14,11 +14,41 @@ export declare function centralDifferenceMatrix(binCount: number): NumberMatrix;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  binCount | number | The size of the vector to which the output ought to be applied |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+binCount
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+The size of the vector to which the output ought to be applied
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [NumberMatrix](./vector.numbermatrix.md)
 
@@ -40,6 +70,5 @@ centralDifferenceMatrix(4);
 // [ -1/2   0   1/2   0  ]
 // [   0  -1/2   0   1/2 ]
 // [   0    0  -1/2   0  ]
-
 ```
 

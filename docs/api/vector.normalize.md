@@ -6,7 +6,7 @@
 
 Returns a vector with the same direction as the input `v`<!-- -->, but with a Euclidean norm of 1
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function normalize<S>(v: Vector<S>): Vector<S> | undefined;
@@ -14,11 +14,41 @@ export declare function normalize<S>(v: Vector<S>): Vector<S> | undefined;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  v | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | The vector to normalize |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+v
+
+
+</td><td>
+
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+The vector to normalize
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [Vector](./vector.vector.md)<!-- -->&lt;S&gt; \| undefined
 
@@ -28,6 +58,5 @@ export declare function normalize<S>(v: Vector<S>): Vector<S> | undefined;
 ```
 const v = vec(3, 4);
 const normalized = normalize(v); // [ 0.6, 0.8 ]
-
 ```
 

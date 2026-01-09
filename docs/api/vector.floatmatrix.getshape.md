@@ -6,12 +6,12 @@
 
 Returns a tuple representing the dimensions of the matrix. The first entry is the number of rows, and the second entry is the number of columns.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 getShape(): MatrixShape;
 ```
-<b>Returns:</b>
+**Returns:**
 
 [MatrixShape](./vector.matrixshape.md)
 

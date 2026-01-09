@@ -6,12 +6,12 @@
 
 Return the full set of hyperparameters used to train the model, including defaults.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 getHyperParameters(): LinearRegressorHyperparams;
 ```
-<b>Returns:</b>
+**Returns:**
 
 [LinearRegressorHyperparams](./vector.linearregressorhyperparams.md)
 

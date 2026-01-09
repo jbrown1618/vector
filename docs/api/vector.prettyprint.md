@@ -6,7 +6,7 @@
 
 Returns an easy-to-read string representing a `number`
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function prettyPrint(num: number): string;
@@ -14,11 +14,39 @@ export declare function prettyPrint(num: number): string;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  num | number |  |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+num
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 string
 

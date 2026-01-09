@@ -6,7 +6,7 @@
 
 Constructs a vector of all ones
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 ones(dimension: number): V;
@@ -14,11 +14,41 @@ ones(dimension: number): V;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  dimension | number | The dimension of the new vector |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+dimension
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+The dimension of the new vector
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 V
 
@@ -29,6 +59,5 @@ The new vector
 
 ```
 vectorBuilder.ones(3); // [ 1 1 1 ]
-
 ```
 

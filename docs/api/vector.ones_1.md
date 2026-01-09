@@ -6,7 +6,7 @@
 
 Creates a new matrix of all 1s. See [MatrixBuilder.ones()](./vector.matrixbuilder.ones.md)
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function ones(shape: MatrixShape): Matrix;
@@ -14,11 +14,39 @@ export declare function ones(shape: MatrixShape): Matrix;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  shape | [MatrixShape](./vector.matrixshape.md) |  |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+shape
+
+
+</td><td>
+
+[MatrixShape](./vector.matrixshape.md)
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [Matrix](./vector.matrix.md)
 

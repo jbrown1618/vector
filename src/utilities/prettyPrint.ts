@@ -55,7 +55,7 @@ function prettyPrintMatrix<S>(matrix: Matrix<S>): string {
       (rowArr) =>
         '[ ' +
         rowArr.map((val, colIndex) => spaces(widthByCol[colIndex] - val.length) + val).join('  ') +
-        ' ]'
+        ' ]',
     )
     .join('\n');
 }

@@ -129,7 +129,7 @@ export class SupportVectorMachineClassifier implements Classifier<SupportVectorM
         if (rowCost === 0) return 0;
 
         return y === 0 ? 1 : -1;
-      })
+      }),
     );
 
     const unscaledGradient = X.transpose().apply(failsMarginCondition);

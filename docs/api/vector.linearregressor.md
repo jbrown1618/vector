@@ -6,25 +6,120 @@
 
 A [Regressor](./vector.regressor.md) model which uses an ordinary least squares model with regularization to predict a continuous target. The optimal set of parameters is computed with gradient descent.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare class LinearRegressor implements Regressor<LinearRegressorHyperparams> 
 ```
-<b>Implements:</b> [Regressor](./vector.regressor.md)<!-- -->&lt;[LinearRegressorHyperparams](./vector.linearregressorhyperparams.md)<!-- -->&gt;
+**Implements:** [Regressor](./vector.regressor.md)<!-- -->&lt;[LinearRegressorHyperparams](./vector.linearregressorhyperparams.md)<!-- -->&gt;
 
 ## Constructors
 
-|  Constructor | Modifiers | Description |
-|  --- | --- | --- |
-|  [(constructor)(hyperParameters)](./vector.linearregressor._constructor_.md) |  | Constructs a new instance of the <code>LinearRegressor</code> class |
+<table><thead><tr><th>
+
+Constructor
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[(constructor)(hyperParameters)](./vector.linearregressor._constructor_.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Constructs a new instance of the `LinearRegressor` class
+
+
+</td></tr>
+</tbody></table>
 
 ## Methods
 
-|  Method | Modifiers | Description |
-|  --- | --- | --- |
-|  [getHyperParameters()](./vector.linearregressor.gethyperparameters.md) |  | Return the full set of hyperparameters used to train the model, including defaults. |
-|  [getParameters()](./vector.linearregressor.getparameters.md) |  | Get the coefficients of the trained linear regression model, or <code>undefined</code> if the model has not been trained. |
-|  [predict(data)](./vector.linearregressor.predict.md) |  | Uses the learned parameters to make predictions based on a set of input data. |
-|  [train(data, target)](./vector.linearregressor.train.md) |  | Learns the optimal set of parameters for the model. |
+<table><thead><tr><th>
+
+Method
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[getHyperParameters()](./vector.linearregressor.gethyperparameters.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Return the full set of hyperparameters used to train the model, including defaults.
+
+
+</td></tr>
+<tr><td>
+
+[getParameters()](./vector.linearregressor.getparameters.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Get the coefficients of the trained linear regression model, or `undefined` if the model has not been trained.
+
+
+</td></tr>
+<tr><td>
+
+[predict(data)](./vector.linearregressor.predict.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Uses the learned parameters to make predictions based on a set of input data.
+
+
+</td></tr>
+<tr><td>
+
+[train(data, target)](./vector.linearregressor.train.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Learns the optimal set of parameters for the model.
+
+
+</td></tr>
+</tbody></table>
 

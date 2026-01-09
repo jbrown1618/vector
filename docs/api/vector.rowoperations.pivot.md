@@ -6,7 +6,7 @@
 
 Sorts the rows of a matrix according to the number of leading zeros and the magnitude of the first nonzero entry
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 static pivot<S>(matrix: Matrix<S>): RowOperationResult<S>;
@@ -14,11 +14,39 @@ static pivot<S>(matrix: Matrix<S>): RowOperationResult<S>;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  matrix | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; |  |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+matrix
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [RowOperationResult](./vector.rowoperationresult.md)<!-- -->&lt;S&gt;
 

@@ -6,7 +6,7 @@
 
 Tests if a matrix is square.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function isSquare<S>(matrix: Matrix<S>): boolean;
@@ -14,11 +14,41 @@ export declare function isSquare<S>(matrix: Matrix<S>): boolean;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  matrix | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The matrix to check |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+matrix
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+The matrix to check
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 boolean
 

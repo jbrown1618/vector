@@ -6,7 +6,7 @@
 
 Types of solution to a linear system.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare enum SolutionType 
@@ -14,9 +14,69 @@ export declare enum SolutionType
 
 ## Enumeration Members
 
-|  Member | Value | Description |
-|  --- | --- | --- |
-|  OVERDETERMINED | <code>&quot;Overdetermined&quot;</code> | A system with no solution. |
-|  UNDERDETERMINED | <code>&quot;Underdetermined&quot;</code> | A system with infinitely many solutions. An arbitrary example is provided. |
-|  UNIQUE | <code>&quot;Unique&quot;</code> | A system with exactly one solution. |
+<table><thead><tr><th>
+
+Member
+
+
+</th><th>
+
+Value
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+OVERDETERMINED
+
+
+</td><td>
+
+`"Overdetermined"`
+
+
+</td><td>
+
+A system with no solution.
+
+
+</td></tr>
+<tr><td>
+
+UNDERDETERMINED
+
+
+</td><td>
+
+`"Underdetermined"`
+
+
+</td><td>
+
+A system with infinitely many solutions. An arbitrary example is provided.
+
+
+</td></tr>
+<tr><td>
+
+UNIQUE
+
+
+</td><td>
+
+`"Unique"`
+
+
+</td><td>
+
+A system with exactly one solution.
+
+
+</td></tr>
+</tbody></table>
 

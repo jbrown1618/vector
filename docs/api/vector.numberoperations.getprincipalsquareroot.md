@@ -6,7 +6,7 @@
 
 Returns the principal square root of a scalar.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 getPrincipalSquareRoot(x: number): number | undefined;
@@ -14,11 +14,39 @@ getPrincipalSquareRoot(x: number): number | undefined;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  x | number |  |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+x
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 number \| undefined
 

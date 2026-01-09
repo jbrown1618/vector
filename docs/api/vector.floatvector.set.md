@@ -6,7 +6,7 @@
 
 Returns a new vector equal to the old one, except with the entry at `index` replaced with `value`
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 set(index: number, value: number): Vector<number>;
@@ -14,12 +14,57 @@ set(index: number, value: number): Vector<number>;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  index | number | The index of the value to replace |
-|  value | number | The new value |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+index
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+The index of the value to replace
+
+
+</td></tr>
+<tr><td>
+
+value
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+The new value
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [Vector](./vector.vector.md)<!-- -->&lt;number&gt;
 

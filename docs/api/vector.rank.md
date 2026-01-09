@@ -6,7 +6,7 @@
 
 Calculates the rank of a matrix
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function rank<S>(matrix: Matrix<S>): number;
@@ -14,11 +14,41 @@ export declare function rank<S>(matrix: Matrix<S>): number;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  matrix | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | the matrix for which to determine the rank |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+matrix
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+the matrix for which to determine the rank
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 number
 

@@ -84,7 +84,7 @@ function getScaleFactorExponent<S>(A: Matrix<S>): number {
  */
 function deScaleSolution<S>(
   exponentialOfScaledMatrix: Matrix<S>,
-  scaleFactorExponent: number
+  scaleFactorExponent: number,
 ): Matrix<S> {
   let exponentialOfOriginalMatrix = exponentialOfScaledMatrix;
   for (let i = 0; i < scaleFactorExponent; i++) {

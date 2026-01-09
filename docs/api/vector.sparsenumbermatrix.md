@@ -6,12 +6,12 @@
 
 A [Matrix](./vector.matrix.md) implemented as a sparse set of JS `number` primitives keyed by their indices.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare class SparseNumberMatrix extends SparseMatrix<number> 
 ```
-<b>Extends:</b> [SparseMatrix](./vector.sparsematrix.md)<!-- -->&lt;number&gt;
+**Extends:** [SparseMatrix](./vector.sparsematrix.md)<!-- -->&lt;number&gt;
 
 ## Remarks
 
@@ -19,12 +19,105 @@ The constructor for this class is marked as internal. Third-party code should no
 
 ## Methods
 
-|  Method | Modifiers | Description |
-|  --- | --- | --- |
-|  [builder()](./vector.sparsenumbermatrix.builder.md) |  | Returns a [MatrixBuilder](./vector.matrixbuilder.md) which will build new matrices of the same type |
-|  [builder()](./vector.sparsenumbermatrix.builder.md) | <code>static</code> |  |
-|  [ops()](./vector.sparsenumbermatrix.ops.md) |  | Returns a [ScalarOperations](./vector.scalaroperations.md) object which will allow consumers to work generically with the scalars contained in the vector. |
-|  [ops()](./vector.sparsenumbermatrix.ops.md) | <code>static</code> |  |
-|  [vectorBuilder()](./vector.sparsenumbermatrix.vectorbuilder.md) |  | Returns a [VectorBuilder](./vector.vectorbuilder.md) which will build new vectors of a compatible type |
-|  [vectorBuilder()](./vector.sparsenumbermatrix.vectorbuilder.md) | <code>static</code> |  |
+<table><thead><tr><th>
+
+Method
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[builder()](./vector.sparsenumbermatrix.builder.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns a [MatrixBuilder](./vector.matrixbuilder.md) which will build new matrices of the same type
+
+
+</td></tr>
+<tr><td>
+
+[builder()](./vector.sparsenumbermatrix.builder.md)
+
+
+</td><td>
+
+`static`
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[ops()](./vector.sparsenumbermatrix.ops.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns a [ScalarOperations](./vector.scalaroperations.md) object which will allow consumers to work generically with the scalars contained in the vector.
+
+
+</td></tr>
+<tr><td>
+
+[ops()](./vector.sparsenumbermatrix.ops.md)
+
+
+</td><td>
+
+`static`
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[vectorBuilder()](./vector.sparsenumbermatrix.vectorbuilder.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns a [VectorBuilder](./vector.vectorbuilder.md) which will build new vectors of a compatible type
+
+
+</td></tr>
+<tr><td>
+
+[vectorBuilder()](./vector.sparsenumbermatrix.vectorbuilder.md)
+
+
+</td><td>
+
+`static`
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
 

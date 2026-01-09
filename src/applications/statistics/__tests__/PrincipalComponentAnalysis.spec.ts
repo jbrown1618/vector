@@ -36,7 +36,7 @@ describe('PrincipalComponentAnalysis', () => {
 
     test('reduces the dimensionality of a data set by specifying the amount of variance to explain', () => {
       expect(reduceDimensions(sample, { proportionOfVariance: 0.95 }).getNumberOfColumns()).toEqual(
-        2
+        2,
       );
     });
 

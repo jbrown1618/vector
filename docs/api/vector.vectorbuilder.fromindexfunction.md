@@ -6,7 +6,7 @@
 
 Constructs a vector with entries given by \_entry = f(i)\_ where \_f\_ is `valueFromIndex` and `i` is the index of the element
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 fromIndexFunction(dimension: number, valueFromIndex: VectorIndexFunction<S>): V;
@@ -14,12 +14,57 @@ fromIndexFunction(dimension: number, valueFromIndex: VectorIndexFunction<S>): V;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  dimension | number | The dimension of the vector to generate |
-|  valueFromIndex | [VectorIndexFunction](./vector.vectorindexfunction.md)<!-- -->&lt;S&gt; | A function returning the entry for a given index |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+dimension
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+The dimension of the vector to generate
+
+
+</td></tr>
+<tr><td>
+
+valueFromIndex
+
+
+</td><td>
+
+[VectorIndexFunction](./vector.vectorindexfunction.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+A function returning the entry for a given index
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 V
 
@@ -30,6 +75,5 @@ The new vector
 
 ```
 vectorBuilder.fromIndexFunction(4, i => i + 3); // [ 3 4 5 6 ]
-
 ```
 

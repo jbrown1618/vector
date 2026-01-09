@@ -6,7 +6,7 @@
 
 Calculates the Euclidean Norm (or 2-Norm) of a vector `v`
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function euclideanNorm<S>(v: Vector<S>): number;
@@ -14,11 +14,41 @@ export declare function euclideanNorm<S>(v: Vector<S>): number;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  v | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | The vector for which to calculate the norm |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+v
+
+
+</td><td>
+
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+The vector for which to calculate the norm
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 number
 
@@ -28,6 +58,5 @@ number
 ```
 const v = vec([3, 4]);
 const norm = euclideanNorm(v); // 5
-
 ```
 

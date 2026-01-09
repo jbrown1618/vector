@@ -6,7 +6,7 @@
 
 Uses the Doolittle algorithm to calculate the LU Decomposition of a matrix A.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function calculateLUDecomposition<S>(A: Matrix<S>): LUDecomposition<S>;
@@ -14,11 +14,41 @@ export declare function calculateLUDecomposition<S>(A: Matrix<S>): LUDecompositi
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  A | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The matrix to decompose |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+A
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+The matrix to decompose
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [LUDecomposition](./vector.ludecomposition.md)<!-- -->&lt;S&gt;
 

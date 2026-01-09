@@ -6,7 +6,7 @@
 
 Constructs a lower-triangular matrix whose entries are the binomial coefficients (j choose i). Constructs an upper triangular matrix when the second argument is `true`<!-- -->.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 pascal(size: number, upper?: boolean): M;
@@ -14,12 +14,57 @@ pascal(size: number, upper?: boolean): M;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  size | number | The size of the Pascal matrix |
-|  upper | boolean | Construct an upper-triangular matrix (i choose j) |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+size
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+The size of the Pascal matrix
+
+
+</td></tr>
+<tr><td>
+
+upper
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ Construct an upper-triangular matrix (i choose j)
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 M
 
@@ -40,6 +85,5 @@ const pascalUpper = matrixBuilder.pascal(4, true);
 // [ 0 1 2 3 ]
 // [ 0 0 1 3 ]
 // [ 0 0 0 1 ]
-
 ```
 

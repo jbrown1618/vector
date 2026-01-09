@@ -6,10 +6,10 @@
 
 Specify how dimension reduction ought to be done.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-export declare type DimensionReductionOptions = DimensionReductionType & {
+export type DimensionReductionOptions = DimensionReductionType & {
     useCorrelation?: boolean;
 };
 ```

@@ -6,7 +6,7 @@
 
 Executes the `callback` function for each entry in the vector.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 forEach(callback: (entry: S, index: number) => void): void;
@@ -14,11 +14,41 @@ forEach(callback: (entry: S, index: number) => void): void;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  callback | (entry: S, index: number) =&gt; void | The function to execute for each entry |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+callback
+
+
+</td><td>
+
+(entry: S, index: number) =&gt; void
+
+
+</td><td>
+
+The function to execute for each entry
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 void
 

@@ -6,7 +6,7 @@
 
 Returns a random scalar value between `min` and `max`
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 random(min?: number, max?: number): ComplexNumber;
@@ -14,12 +14,57 @@ random(min?: number, max?: number): ComplexNumber;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  min | number |  |
-|  max | number |  |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+min
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+<tr><td>
+
+max
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [ComplexNumber](./vector.complexnumber.md)
 

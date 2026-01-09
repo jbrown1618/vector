@@ -6,7 +6,7 @@
 
 Returns a vector corresponding to the row at index `rowIndex`
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 getRow(i: number): Vector<number>;
@@ -14,11 +14,41 @@ getRow(i: number): Vector<number>;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  i | number | The index for which to fetch the row |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+i
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+The index for which to fetch the row
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [Vector](./vector.vector.md)<!-- -->&lt;number&gt;
 

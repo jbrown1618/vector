@@ -6,7 +6,7 @@
 
 Implements vector addition
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 add(other: Vector<number>): Vector<number>;
@@ -14,11 +14,41 @@ add(other: Vector<number>): Vector<number>;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  other | [Vector](./vector.vector.md)<!-- -->&lt;number&gt; | The vector to add |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+other
+
+
+</td><td>
+
+[Vector](./vector.vector.md)<!-- -->&lt;number&gt;
+
+
+</td><td>
+
+The vector to add
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [Vector](./vector.vector.md)<!-- -->&lt;number&gt;
 

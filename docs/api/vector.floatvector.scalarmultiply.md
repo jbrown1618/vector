@@ -6,7 +6,7 @@
 
 Implements vector multiplication by a scalar
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 scalarMultiply(scalar: number): Vector<number>;
@@ -14,11 +14,41 @@ scalarMultiply(scalar: number): Vector<number>;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  scalar | number | The scalar by which to multiply |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+scalar
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+The scalar by which to multiply
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [Vector](./vector.vector.md)<!-- -->&lt;number&gt;
 

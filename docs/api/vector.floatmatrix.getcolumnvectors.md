@@ -6,12 +6,12 @@
 
 An array of vectors corresponding to the columns of the matrix
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 getColumnVectors(): Vector<number>[];
 ```
-<b>Returns:</b>
+**Returns:**
 
 [Vector](./vector.vector.md)<!-- -->&lt;number&gt;\[\]
 

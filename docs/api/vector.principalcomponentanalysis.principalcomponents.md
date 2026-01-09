@@ -6,7 +6,7 @@
 
 The directions in which the data varies the most, ordered by the proportion of variation explained by each direction
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 principalComponents: Vector<S>[];

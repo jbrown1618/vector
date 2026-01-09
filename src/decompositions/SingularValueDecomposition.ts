@@ -30,7 +30,7 @@ interface SingularValueAndVectors<S> {
  * @public
  */
 export function calculateSingularValueDecomposition<S>(
-  A: Matrix<S>
+  A: Matrix<S>,
 ): SingularValueDecomposition<S> {
   const ops = A.ops();
   const builder = A.builder();

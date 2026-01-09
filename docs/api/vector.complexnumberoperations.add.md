@@ -6,7 +6,7 @@
 
 Returns the sum of two scalars `first` and `second`<!-- -->.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 add(first: ComplexNumber, second: ComplexNumber): ComplexNumber;
@@ -14,12 +14,53 @@ add(first: ComplexNumber, second: ComplexNumber): ComplexNumber;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  first | [ComplexNumber](./vector.complexnumber.md) |  |
-|  second | [ComplexNumber](./vector.complexnumber.md) |  |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+first
+
+
+</td><td>
+
+[ComplexNumber](./vector.complexnumber.md)
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+second
+
+
+</td><td>
+
+[ComplexNumber](./vector.complexnumber.md)
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [ComplexNumber](./vector.complexnumber.md)
 

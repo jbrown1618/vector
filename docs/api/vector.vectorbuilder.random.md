@@ -6,7 +6,7 @@
 
 Constructs a vector whose entries are (uniformly-distributed) random numbers between `min` and `max`
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 random(dimension: number, min?: number, max?: number): V;
@@ -14,13 +14,73 @@ random(dimension: number, min?: number, max?: number): V;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  dimension | number | The dimension of the new vector |
-|  min | number | The lower limit of the random numbers to include |
-|  max | number | The upper limit of the random numbers to include |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+dimension
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+The dimension of the new vector
+
+
+</td></tr>
+<tr><td>
+
+min
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+_(Optional)_ The lower limit of the random numbers to include
+
+
+</td></tr>
+<tr><td>
+
+max
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+_(Optional)_ The upper limit of the random numbers to include
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 V
 

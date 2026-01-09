@@ -102,7 +102,7 @@ export abstract class SparseVector<S = number> implements Vector<S> {
     this._sparseData.forEach((value, index) => {
       innerProduct = this.ops().add(
         innerProduct,
-        this.ops().multiply(value, this.ops().conjugate(other.getEntry(index)))
+        this.ops().multiply(value, this.ops().conjugate(other.getEntry(index))),
       );
     });
     return innerProduct;

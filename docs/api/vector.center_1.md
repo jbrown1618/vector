@@ -6,7 +6,7 @@
 
 Returns the matrix `A` with each column shifted so that its mean is at 0
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function center<S>(A: Matrix<S>): Matrix<S>;
@@ -14,11 +14,41 @@ export declare function center<S>(A: Matrix<S>): Matrix<S>;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  A | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The matrix to center |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+A
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+The matrix to center
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
 

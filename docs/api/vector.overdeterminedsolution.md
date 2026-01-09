@@ -6,7 +6,7 @@
 
 A type representing the lack of solution to a linear system.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface OverdeterminedSolution 
@@ -14,7 +14,43 @@ export interface OverdeterminedSolution
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [solutionType](./vector.overdeterminedsolution.solutiontype.md) | [SolutionType.OVERDETERMINED](./vector.solutiontype.overdetermined.md) |  |
+<table><thead><tr><th>
+
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[solutionType](./vector.overdeterminedsolution.solutiontype.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[SolutionType.OVERDETERMINED](./vector.solutiontype.md)
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
 

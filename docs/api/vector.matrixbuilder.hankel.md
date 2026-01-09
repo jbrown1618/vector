@@ -6,7 +6,7 @@
 
 Constructs a Hankel matrix from the specified first column and last row. A Hankel matrix has constant anti-diagonals. If `lastRow` is not given, then a vector with the last entry of the first row in the first entry and zero elsewhere is assumed. The last entry of the first column must equal the first entry of the last row.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 hankel(firstColumn: Vector<S>, lastRow?: Vector<S>): M;
@@ -14,12 +14,57 @@ hankel(firstColumn: Vector<S>, lastRow?: Vector<S>): M;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  firstColumn | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | The first column of the Hankel matrix |
-|  lastRow | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | The last row of the Hankel matrix |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+firstColumn
+
+
+</td><td>
+
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+The first column of the Hankel matrix
+
+
+</td></tr>
+<tr><td>
+
+lastRow
+
+
+</td><td>
+
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+_(Optional)_ The last row of the Hankel matrix
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 M
 
@@ -43,6 +88,5 @@ const hankelWithSpecifiedRow = matrixBuilder.hankel(
 // [ 2 3 4 ]
 // [ 3 4 9 ]
 // [ 4 9 9 ]
-
 ```
 

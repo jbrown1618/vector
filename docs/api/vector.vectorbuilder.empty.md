@@ -6,12 +6,12 @@
 
 Constructs a Vector of dimension 0
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 empty(): V;
 ```
-<b>Returns:</b>
+**Returns:**
 
 V
 
@@ -22,6 +22,5 @@ The new vector
 
 ```
 vectorBuilder.empty(); // []
-
 ```
 

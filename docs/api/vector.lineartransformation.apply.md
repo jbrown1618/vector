@@ -6,7 +6,7 @@
 
 Apply the linear transformation to a vector
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 apply(vector: V): U;
@@ -14,11 +14,41 @@ apply(vector: V): U;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  vector | V | A vector in the domain of the transformation |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+vector
+
+
+</td><td>
+
+V
+
+
+</td><td>
+
+A vector in the domain of the transformation
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 U
 

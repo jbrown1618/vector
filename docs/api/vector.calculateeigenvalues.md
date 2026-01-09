@@ -6,7 +6,7 @@
 
 Uses the QR algorithm to compute the eigenvalues of a matrix `A`
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function calculateEigenvalues<S>(A: Matrix<S>, numIterations?: number): Vector<S>;
@@ -14,12 +14,57 @@ export declare function calculateEigenvalues<S>(A: Matrix<S>, numIterations?: nu
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  A | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The matrix for which to compute eigenvalues |
-|  numIterations | number | The number of iterations to take |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+A
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+The matrix for which to compute eigenvalues
+
+
+</td></tr>
+<tr><td>
+
+numIterations
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+_(Optional)_ The number of iterations to take
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [Vector](./vector.vector.md)<!-- -->&lt;S&gt;
 

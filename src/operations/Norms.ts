@@ -146,7 +146,7 @@ export function frobeniusNorm<S>(A: Matrix<S>): number {
   const vb = A.vectorBuilder();
   const allEntries = A.getColumnVectors().reduce(
     (all, next) => vb.concatenate(all, next),
-    vb.empty()
+    vb.empty(),
   );
   return euclideanNorm(allEntries);
 }

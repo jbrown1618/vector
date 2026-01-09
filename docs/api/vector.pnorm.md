@@ -6,7 +6,7 @@
 
 Calculates the P-Norm of a vector `v`
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function pNorm<S>(v: Vector<S>, p: number): number;
@@ -14,12 +14,57 @@ export declare function pNorm<S>(v: Vector<S>, p: number): number;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  v | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | The vector for which to calculate the norm |
-|  p | number | The power used to calculate the norm |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+v
+
+
+</td><td>
+
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+The vector for which to calculate the norm
+
+
+</td></tr>
+<tr><td>
+
+p
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+The power used to calculate the norm
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 number
 
@@ -31,6 +76,5 @@ const v = vec([3, 4]);
 const norm1 = pNorm(v, 1); // 7
 const norm2 = pNorm(v, 2); // 5
 const norm3 = pNorm(v, 3); // 4.49794...
-
 ```
 

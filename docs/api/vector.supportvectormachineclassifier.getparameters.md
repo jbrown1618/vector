@@ -6,12 +6,12 @@
 
 Get the weights of the trained SVM, or `undefined` if the model has not been trained.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 getParameters(): Vector | undefined;
 ```
-<b>Returns:</b>
+**Returns:**
 
 [Vector](./vector.vector.md) \| undefined
 

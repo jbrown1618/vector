@@ -6,7 +6,7 @@
 
 An eigenvector and its corresponding eigenvalue
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface EigenPair<S> 
@@ -14,8 +14,60 @@ export interface EigenPair<S>
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [eigenvalue](./vector.eigenpair.eigenvalue.md) | S |  |
-|  [eigenvector](./vector.eigenpair.eigenvector.md) | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; |  |
+<table><thead><tr><th>
+
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[eigenvalue](./vector.eigenpair.eigenvalue.md)
+
+
+</td><td>
+
+
+</td><td>
+
+S
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[eigenvector](./vector.eigenpair.eigenvector.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
 

@@ -6,7 +6,7 @@
 
 Calculates a linear regression model for the provided `dataPoints`<!-- -->.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function calculateLinearLeastSquares<S>(dataPoints: Vector<S>[]): LeastSquaresApproximation<S>;
@@ -14,11 +14,41 @@ export declare function calculateLinearLeastSquares<S>(dataPoints: Vector<S>[]):
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  dataPoints | [Vector](./vector.vector.md)<!-- -->&lt;S&gt;\[\] | An array of vectors, each of which represents a single data point where the last entry is the variable to be predicted, and the other entries are the values of the independent variables |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+dataPoints
+
+
+</td><td>
+
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;\[\]
+
+
+</td><td>
+
+An array of vectors, each of which represents a single data point where the last entry is the variable to be predicted, and the other entries are the values of the independent variables
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [LeastSquaresApproximation](./vector.leastsquaresapproximation.md)<!-- -->&lt;S&gt;
 

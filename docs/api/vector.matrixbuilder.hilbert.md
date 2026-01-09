@@ -6,7 +6,7 @@
 
 Constructs a Hilbert matrix of the specified size
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 hilbert(size: number): M;
@@ -14,11 +14,41 @@ hilbert(size: number): M;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  size | number | The size of the Hilbert matrix |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+size
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+The size of the Hilbert matrix
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 M
 
@@ -31,6 +61,5 @@ const H = matrixBuilder.hilbert(3);
 // [  1   1/2  1/3 ]
 // [ 1/2  1/3  1/4 ]
 // [ 1/3  1/4  1/5 ]
-
 ```
 

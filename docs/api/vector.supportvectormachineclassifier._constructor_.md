@@ -6,7 +6,7 @@
 
 Constructs a new instance of the `SupportVectorMachineClassifier` class
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 constructor(hyperParameters: Partial<SupportVectorMachineHyperparams>);
@@ -14,7 +14,35 @@ constructor(hyperParameters: Partial<SupportVectorMachineHyperparams>);
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  hyperParameters | Partial&lt;[SupportVectorMachineHyperparams](./vector.supportvectormachinehyperparams.md)<!-- -->&gt; |  |
+<table><thead><tr><th>
+
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+hyperParameters
+
+
+</td><td>
+
+Partial&lt;[SupportVectorMachineHyperparams](./vector.supportvectormachinehyperparams.md)<!-- -->&gt;
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
 

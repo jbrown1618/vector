@@ -6,10 +6,12 @@
 
 The set of hyperparameters for a [LogisticRegressionClassifier](./vector.logisticregressionclassifier.md)
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-export declare type LogisticRegressionHyperparams = GradientDescentParameters & {
+export type LogisticRegressionHyperparams = GradientDescentParameters & {
     lambda: number;
 };
 ```
+**References:** [GradientDescentParameters](./vector.gradientdescentparameters.md)
+

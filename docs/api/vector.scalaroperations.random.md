@@ -6,7 +6,7 @@
 
 Returns a random scalar value between `min` and `max`
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 abstract random(min: number, max: number): S;
@@ -14,12 +14,53 @@ abstract random(min: number, max: number): S;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  min | number |  |
-|  max | number |  |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+min
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+max
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 S
 

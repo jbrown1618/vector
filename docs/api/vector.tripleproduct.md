@@ -6,7 +6,7 @@
 
 Calculates the scalar triple-product of three vectors. This is defined only for vectors with three dimensions.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function tripleProduct<S>(first: Vector<S>, second: Vector<S>, third: Vector<S>): S;
@@ -14,13 +14,73 @@ export declare function tripleProduct<S>(first: Vector<S>, second: Vector<S>, th
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  first | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | a vector with dimension 3 |
-|  second | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | another vector with dimension 3 |
-|  third | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | another vector with dimension 3 |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+first
+
+
+</td><td>
+
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+a vector with dimension 3
+
+
+</td></tr>
+<tr><td>
+
+second
+
+
+</td><td>
+
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+another vector with dimension 3
+
+
+</td></tr>
+<tr><td>
+
+third
+
+
+</td><td>
+
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+another vector with dimension 3
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 S
 

@@ -4,7 +4,7 @@
 
 ## SingularValueDecomposition.Sigma property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 Sigma: Matrix<S>;

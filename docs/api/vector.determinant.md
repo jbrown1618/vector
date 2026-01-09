@@ -6,7 +6,7 @@
 
 Uses expansion of minors to calculate the determinant of a matrix. Throws an error if the input is not square.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function determinant<S>(matrix: Matrix<S>): S;
@@ -14,11 +14,41 @@ export declare function determinant<S>(matrix: Matrix<S>): S;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  matrix | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | A square matrix |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+matrix
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+A square matrix
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 S
 

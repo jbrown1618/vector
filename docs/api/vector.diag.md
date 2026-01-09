@@ -6,7 +6,7 @@
 
 Creates a new matrix with the specified entries on the diagonal. See [MatrixBuilder.diagonal()](./vector.matrixbuilder.diagonal.md)
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function diag(elements: number[]): Matrix;
@@ -14,11 +14,39 @@ export declare function diag(elements: number[]): Matrix;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  elements | number\[\] |  |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+elements
+
+
+</td><td>
+
+number\[\]
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [Matrix](./vector.matrix.md)
 

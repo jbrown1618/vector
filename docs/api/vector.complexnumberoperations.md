@@ -6,30 +6,240 @@
 
 Implements the basic [ScalarOperations](./vector.scalaroperations.md) on [ComplexNumber](./vector.complexnumber.md)<!-- -->s
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare class ComplexNumberOperations extends ScalarOperations<ComplexNumber> 
 ```
-<b>Extends:</b> [ScalarOperations](./vector.scalaroperations.md)<!-- -->&lt;[ComplexNumber](./vector.complexnumber.md)<!-- -->&gt;
+**Extends:** [ScalarOperations](./vector.scalaroperations.md)<!-- -->&lt;[ComplexNumber](./vector.complexnumber.md)<!-- -->&gt;
 
 ## Methods
 
-|  Method | Modifiers | Description |
-|  --- | --- | --- |
-|  [add(first, second)](./vector.complexnumberoperations.add.md) |  | Returns the sum of two scalars <code>first</code> and <code>second</code>. |
-|  [conjugate(scalar)](./vector.complexnumberoperations.conjugate.md) |  | Returns the complex conjugate of a scalar. |
-|  [equals(first, second)](./vector.complexnumberoperations.equals.md) |  | Tests if the scalars are equal. Implementors should ensure that the operation is reflexive, associative, and transitive. |
-|  [fromComplex(real, imag)](./vector.complexnumberoperations.fromcomplex.md) |  | Returns an instance of the scalar type from its real and imaginary parts. If the scalar type does not support complex numbers, then an error will be thrown. |
-|  [fromNumber(num)](./vector.complexnumberoperations.fromnumber.md) |  | Returns an instance of the scalar type which most accurately corresponds to the value of <code>num</code> |
-|  [getAdditiveIdentity()](./vector.complexnumberoperations.getadditiveidentity.md) |  | Returns the unique scalar that, when added to another scalar, returns that scalar |
-|  [getAdditiveInverse(scalar)](./vector.complexnumberoperations.getadditiveinverse.md) |  | Returns the unique value that, when added to <code>x</code>, returns the additive identity |
-|  [getMultiplicativeIdentity()](./vector.complexnumberoperations.getmultiplicativeidentity.md) |  | Returns the unique scalar that, when multiplied by another scalar, returns that scalar |
-|  [getMultiplicativeInverse(scalar)](./vector.complexnumberoperations.getmultiplicativeinverse.md) |  | Returns the unique scalar that, when multiplied by <code>scalar</code>, returns the multiplicative identity |
-|  [getPrincipalSquareRoot(x)](./vector.complexnumberoperations.getprincipalsquareroot.md) |  | Returns the principal square root of a scalar. |
-|  [multiply(first, second)](./vector.complexnumberoperations.multiply.md) |  | Returns the product of two scalars <code>first</code> and <code>second</code>. |
-|  [norm(x)](./vector.complexnumberoperations.norm.md) |  | Returns the norm (absolute value or magnitude) of a scalar |
-|  [prettyPrint(x)](./vector.complexnumberoperations.prettyprint.md) |  | Returns a readable string that represents the value of the scalar |
-|  [random(min, max)](./vector.complexnumberoperations.random.md) |  | Returns a random scalar value between <code>min</code> and <code>max</code> |
-|  [randomNormal(mean, standardDeviation)](./vector.complexnumberoperations.randomnormal.md) |  | Returns a random scalar value from a normal distribution centered on <code>mean</code> with standard deviation <code>standardDeviation</code> |
+<table><thead><tr><th>
+
+Method
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[add(first, second)](./vector.complexnumberoperations.add.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns the sum of two scalars `first` and `second`<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[conjugate(scalar)](./vector.complexnumberoperations.conjugate.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns the complex conjugate of a scalar.
+
+
+</td></tr>
+<tr><td>
+
+[equals(first, second)](./vector.complexnumberoperations.equals.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Tests if the scalars are equal. Implementors should ensure that the operation is reflexive, associative, and transitive.
+
+
+</td></tr>
+<tr><td>
+
+[fromComplex(real, imag)](./vector.complexnumberoperations.fromcomplex.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns an instance of the scalar type from its real and imaginary parts. If the scalar type does not support complex numbers, then an error will be thrown.
+
+
+</td></tr>
+<tr><td>
+
+[fromNumber(num)](./vector.complexnumberoperations.fromnumber.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns an instance of the scalar type which most accurately corresponds to the value of `num`
+
+
+</td></tr>
+<tr><td>
+
+[getAdditiveIdentity()](./vector.complexnumberoperations.getadditiveidentity.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns the unique scalar that, when added to another scalar, returns that scalar
+
+
+</td></tr>
+<tr><td>
+
+[getAdditiveInverse(scalar)](./vector.complexnumberoperations.getadditiveinverse.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns the unique value that, when added to `x`<!-- -->, returns the additive identity
+
+
+</td></tr>
+<tr><td>
+
+[getMultiplicativeIdentity()](./vector.complexnumberoperations.getmultiplicativeidentity.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns the unique scalar that, when multiplied by another scalar, returns that scalar
+
+
+</td></tr>
+<tr><td>
+
+[getMultiplicativeInverse(scalar)](./vector.complexnumberoperations.getmultiplicativeinverse.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns the unique scalar that, when multiplied by `scalar`<!-- -->, returns the multiplicative identity
+
+
+</td></tr>
+<tr><td>
+
+[getPrincipalSquareRoot(x)](./vector.complexnumberoperations.getprincipalsquareroot.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns the principal square root of a scalar.
+
+
+</td></tr>
+<tr><td>
+
+[multiply(first, second)](./vector.complexnumberoperations.multiply.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns the product of two scalars `first` and `second`<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[norm(x)](./vector.complexnumberoperations.norm.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns the norm (absolute value or magnitude) of a scalar
+
+
+</td></tr>
+<tr><td>
+
+[prettyPrint(x)](./vector.complexnumberoperations.prettyprint.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns a readable string that represents the value of the scalar
+
+
+</td></tr>
+<tr><td>
+
+[random(min, max)](./vector.complexnumberoperations.random.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns a random scalar value between `min` and `max`
+
+
+</td></tr>
+<tr><td>
+
+[randomNormal(mean, standardDeviation)](./vector.complexnumberoperations.randomnormal.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns a random scalar value from a normal distribution centered on `mean` with standard deviation `standardDeviation`
+
+
+</td></tr>
+</tbody></table>
 

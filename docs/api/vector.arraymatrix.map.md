@@ -6,7 +6,7 @@
 
 Builds a matrix by transforming the values of the current matrix.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 map(entryFunction: (entry: S, rowIndex: number, columnIndex: number) => S): Matrix<S>;
@@ -14,11 +14,41 @@ map(entryFunction: (entry: S, rowIndex: number, columnIndex: number) => S): Matr
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  entryFunction | (entry: S, rowIndex: number, columnIndex: number) =&gt; S | A function which takes an entry of the original matrix and its indices, and returns the corresponding entry of the new matrix |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+entryFunction
+
+
+</td><td>
+
+(entry: S, rowIndex: number, columnIndex: number) =&gt; S
+
+
+</td><td>
+
+A function which takes an entry of the original matrix and its indices, and returns the corresponding entry of the new matrix
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
 

@@ -6,7 +6,7 @@
 
 Gives an approximate solution to an overdetermined linear system.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function solveOverdeterminedSystem<S>(A: Matrix<S>, b: Vector<S>): Vector<S>;
@@ -14,12 +14,57 @@ export declare function solveOverdeterminedSystem<S>(A: Matrix<S>, b: Vector<S>)
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  A | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The matrix \_A\_ in \_Ax = b\_ |
-|  b | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | The vector \_b\_ in \_Ax = b\_ |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+A
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+The matrix \_A\_ in \_Ax = b\_
+
+
+</td></tr>
+<tr><td>
+
+b
+
+
+</td><td>
+
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+The vector \_b\_ in \_Ax = b\_
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [Vector](./vector.vector.md)<!-- -->&lt;S&gt;
 

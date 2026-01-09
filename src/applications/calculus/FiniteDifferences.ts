@@ -61,7 +61,7 @@ export function forwardDifferenceMatrix(binCount: number): NumberMatrix {
   return NumberMatrix.builder().tridiagonal(
     zeros(binCount - 1),
     ones(binCount).scalarMultiply(-1),
-    ones(binCount - 1)
+    ones(binCount - 1),
   );
 }
 
@@ -89,7 +89,7 @@ export function backwardDifferenceMatrix(binCount: number): NumberMatrix {
   return NumberMatrix.builder().tridiagonal(
     ones(binCount - 1).scalarMultiply(-1),
     ones(binCount),
-    zeros(binCount - 1)
+    zeros(binCount - 1),
   );
 }
 
@@ -121,7 +121,7 @@ export function centralDifferenceMatrix(binCount: number): NumberMatrix {
   return NumberMatrix.builder().tridiagonal(
     ones(binCount - 1).scalarMultiply(-1 / 2),
     zeros(binCount),
-    ones(binCount - 1).scalarMultiply(1 / 2)
+    ones(binCount - 1).scalarMultiply(1 / 2),
   );
 }
 
@@ -145,7 +145,7 @@ export function derivative(
   f: (x: number) => number,
   xMin: number,
   xMax: number,
-  binCount: number
+  binCount: number,
 ): Vector {
   const x = linspace(xMin, xMax, binCount);
   const y = x.map(f);

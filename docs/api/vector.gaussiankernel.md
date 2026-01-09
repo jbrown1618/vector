@@ -6,7 +6,7 @@
 
 Creates a gaussian [Kernel](./vector.kernel.md) for use in a [SupportVectorMachineClassifier](./vector.supportvectormachineclassifier.md)<!-- -->. The gaussian kernel converts a data [Matrix](./vector.matrix.md) into a similarity `Matrix` where the value of entry (i,j) expresses the similarity of rows i and j in the original data set.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function GaussianKernel(sigmaSquared: number): Kernel;
@@ -14,11 +14,41 @@ export declare function GaussianKernel(sigmaSquared: number): Kernel;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  sigmaSquared | number | The variance of the gaussian distribution used in the kernel |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+sigmaSquared
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+The variance of the gaussian distribution used in the kernel
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [Kernel](./vector.kernel.md)
 

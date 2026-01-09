@@ -6,10 +6,10 @@
 
 A function that generates a vector entry based on its index
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-export declare type VectorIndexFunction<S> = (index: number) => S;
+export type VectorIndexFunction<S> = (index: number) => S;
 ```
 
 ## Remarks

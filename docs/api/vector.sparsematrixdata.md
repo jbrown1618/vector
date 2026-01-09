@@ -6,8 +6,8 @@
 
 The data stored in a [Matrix](./vector.matrix.md) represented as a map
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-export declare type SparseMatrixData<S> = ReadonlyMap<number, ReadonlyMap<number, S>>;
+export type SparseMatrixData<S> = ReadonlyMap<number, ReadonlyMap<number, S>>;
 ```

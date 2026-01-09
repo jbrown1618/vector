@@ -6,7 +6,7 @@
 
 Returns the unique value that, when added to `x`<!-- -->, returns the additive identity
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 abstract getAdditiveInverse(x: S): S;
@@ -14,11 +14,39 @@ abstract getAdditiveInverse(x: S): S;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  x | S |  |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+x
+
+
+</td><td>
+
+S
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 S
 

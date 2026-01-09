@@ -6,7 +6,7 @@
 
 An abstract linear transformation between vectors of type `V` and vectors of type `U`<!-- -->.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface LinearTransformation<V, U> 
@@ -22,7 +22,27 @@ Implementors should take care to ensure that the transformation is linear. That 
 
 ## Methods
 
-|  Method | Description |
-|  --- | --- |
-|  [apply(vector)](./vector.lineartransformation.apply.md) | Apply the linear transformation to a vector |
+<table><thead><tr><th>
+
+Method
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[apply(vector)](./vector.lineartransformation.apply.md)
+
+
+</td><td>
+
+Apply the linear transformation to a vector
+
+
+</td></tr>
+</tbody></table>
 

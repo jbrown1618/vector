@@ -6,12 +6,12 @@
 
 Constructs a 0x0 matrix
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 empty(): M;
 ```
-<b>Returns:</b>
+**Returns:**
 
 M
 
@@ -20,6 +20,5 @@ M
 
 ```
 matrixBuilder.empty(); // []
-
 ```
 

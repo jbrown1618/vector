@@ -6,7 +6,7 @@
 
 Returns the unique value that, when added to `x`<!-- -->, returns the additive identity
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 getAdditiveInverse(scalar: ComplexNumber): ComplexNumber;
@@ -14,11 +14,39 @@ getAdditiveInverse(scalar: ComplexNumber): ComplexNumber;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  scalar | [ComplexNumber](./vector.complexnumber.md) |  |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+scalar
+
+
+</td><td>
+
+[ComplexNumber](./vector.complexnumber.md)
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [ComplexNumber](./vector.complexnumber.md)
 

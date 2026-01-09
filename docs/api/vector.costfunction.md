@@ -6,8 +6,10 @@
 
 A function that evaluates the cost of a set of parameters `theta`
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-export declare type CostFunction = (theta: Vector) => Cost;
+export type CostFunction = (theta: Vector) => Cost;
 ```
+**References:** [Vector](./vector.vector.md)<!-- -->, [Cost](./vector.cost.md)
+

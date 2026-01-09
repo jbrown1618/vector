@@ -6,12 +6,12 @@
 
 Alias for [ScalarOperations.getMultiplicativeIdentity()](./vector.scalaroperations.getmultiplicativeidentity.md)
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 one(): S;
 ```
-<b>Returns:</b>
+**Returns:**
 
 S
 

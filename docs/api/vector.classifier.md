@@ -6,7 +6,7 @@
 
 A machine learning model with a continuous numeric target
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface Classifier<H> 
@@ -14,10 +14,60 @@ export interface Classifier<H>
 
 ## Methods
 
-|  Method | Description |
-|  --- | --- |
-|  [getHyperParameters()](./vector.classifier.gethyperparameters.md) | Return the full set of hyperparameters used to train the model, including defaults. |
-|  [predict(data, pThreshold)](./vector.classifier.predict.md) | Uses the learned parameters to make predictions based on a set of input data. |
-|  [predictProbabilities(data)](./vector.classifier.predictprobabilities.md) | Uses the learned parameters to make predictions for the probability of an event based on a set of input data. |
-|  [train(data, target)](./vector.classifier.train.md) | Learns the optimal set of parameters for the model. |
+<table><thead><tr><th>
+
+Method
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[getHyperParameters()](./vector.classifier.gethyperparameters.md)
+
+
+</td><td>
+
+Return the full set of hyperparameters used to train the model, including defaults.
+
+
+</td></tr>
+<tr><td>
+
+[predict(data, pThreshold)](./vector.classifier.predict.md)
+
+
+</td><td>
+
+Uses the learned parameters to make predictions based on a set of input data.
+
+
+</td></tr>
+<tr><td>
+
+[predictProbabilities(data)](./vector.classifier.predictprobabilities.md)
+
+
+</td><td>
+
+Uses the learned parameters to make predictions for the probability of an event based on a set of input data.
+
+
+</td></tr>
+<tr><td>
+
+[train(data, target)](./vector.classifier.train.md)
+
+
+</td><td>
+
+Learns the optimal set of parameters for the model.
+
+
+</td></tr>
+</tbody></table>
 

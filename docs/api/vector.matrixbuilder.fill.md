@@ -6,7 +6,7 @@
 
 Constructs a matrix of the specified dimension, whose entries are all the specified value
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 fill(value: S, shape: MatrixShape): M;
@@ -14,12 +14,57 @@ fill(value: S, shape: MatrixShape): M;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  value | S | The value that should be used for every entry in the new matrix |
-|  shape | [MatrixShape](./vector.matrixshape.md) | The shape of the matrix as a tuple <code>[m, n]</code> |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+value
+
+
+</td><td>
+
+S
+
+
+</td><td>
+
+The value that should be used for every entry in the new matrix
+
+
+</td></tr>
+<tr><td>
+
+shape
+
+
+</td><td>
+
+[MatrixShape](./vector.matrixshape.md)
+
+
+</td><td>
+
+The shape of the matrix as a tuple `[m, n]`
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 M
 
@@ -34,6 +79,5 @@ const allTwos = matrixBuilder.fill(2, 3, 4)
 // [ 2 2 2 2 ]
 // [ 2 2 2 2 ]
 // [ 2 2 2 2 ]
-
 ```
 

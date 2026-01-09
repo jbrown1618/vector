@@ -4,7 +4,7 @@
 
 ## VectorBuilder.fromNumberArray() method
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 fromNumberArray(data: VectorData<number>): V;
@@ -12,11 +12,39 @@ fromNumberArray(data: VectorData<number>): V;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  data | [VectorData](./vector.vectordata.md)<!-- -->&lt;number&gt; |  |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+data
+
+
+</td><td>
+
+[VectorData](./vector.vectordata.md)<!-- -->&lt;number&gt;
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 V
 

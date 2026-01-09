@@ -105,7 +105,7 @@ export function assertValidShape(shape: MatrixShape, message?: string): void {
 export function assertValidVectorIndex<T>(
   vector: Vector<T>,
   index: number,
-  message?: string
+  message?: string,
 ): void {
   assertValidIndex(index, vector.getDimension(), message);
 }
@@ -117,7 +117,7 @@ export function assertValidMatrixIndex<T>(
   matrix: Matrix<T>,
   rowIndex: number,
   colIndex: number,
-  message?: string
+  message?: string,
 ): void {
   const [rows, cols] = matrix.getShape();
   message =
@@ -143,7 +143,7 @@ export function assertValidIndex(index: number, size: number, message?: string):
 export function assertDimensionMatch<S>(
   first: Matrix<S>,
   second: Matrix<S>,
-  message?: string
+  message?: string,
 ): void {
   const [m1, n1] = first.getShape();
   const [m2, n2] = second.getShape();

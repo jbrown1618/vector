@@ -6,7 +6,7 @@
 
 Constructs a single matrix consisting of a grid of matrices combined together. Throws an error if any of the dimensions are incompatible.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 block(grid: Matrix<S>[][]): M;
@@ -14,11 +14,41 @@ block(grid: Matrix<S>[][]): M;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  grid | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;\[\]\[\] | A 2-dimensional array of matrices that will be combined into the new matrix |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+grid
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;\[\]\[\]
+
+
+</td><td>
+
+A 2-dimensional array of matrices that will be combined into the new matrix
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 M
 
@@ -43,6 +73,5 @@ const block = matrixBuilder.block(grid);
 // [ 1 2 2 ]
 // [ 3 4 4 ]
 // [ 3 4 4 ]
-
 ```
 

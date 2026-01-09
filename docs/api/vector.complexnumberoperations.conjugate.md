@@ -6,7 +6,7 @@
 
 Returns the complex conjugate of a scalar.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 conjugate(scalar: ComplexNumber): ComplexNumber;
@@ -14,11 +14,41 @@ conjugate(scalar: ComplexNumber): ComplexNumber;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  scalar | [ComplexNumber](./vector.complexnumber.md) | The scalar to conjugate |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+scalar
+
+
+</td><td>
+
+[ComplexNumber](./vector.complexnumber.md)
+
+
+</td><td>
+
+The scalar to conjugate
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [ComplexNumber](./vector.complexnumber.md)
 

@@ -6,7 +6,7 @@
 
 The result of a row operation (`result`<!-- -->), and the matrix that we multiply by the original matrix to yield that result (`operator`<!-- -->)
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface RowOperationResult<S> 
@@ -14,8 +14,60 @@ export interface RowOperationResult<S>
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [operator](./vector.rowoperationresult.operator.md) | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; |  |
-|  [result](./vector.rowoperationresult.result.md) | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; |  |
+<table><thead><tr><th>
+
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[operator](./vector.rowoperationresult.operator.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[result](./vector.rowoperationresult.result.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
 

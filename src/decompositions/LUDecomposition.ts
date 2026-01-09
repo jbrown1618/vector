@@ -79,7 +79,7 @@ export function calculateLUDecomposition<S>(A: Matrix<S>): LUDecomposition<S> {
  */
 function getNextDoolittleIteration<S>(
   columnIndex: number,
-  previousU: Matrix<S>
+  previousU: Matrix<S>,
 ): DoolittleIteration<S> {
   const ln = getNthLowerTriangularMatrix(columnIndex, previousU);
   const un = ln.multiply(previousU);

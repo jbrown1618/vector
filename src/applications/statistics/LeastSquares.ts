@@ -35,7 +35,7 @@ export type ApproximationFunction<S> = (input: Vector<S>) => S;
  * @public
  */
 export type ApproximationFunctionTemplate<S> = (
-  coefficients: Vector<S>
+  coefficients: Vector<S>,
 ) => ApproximationFunction<S>;
 
 /**
@@ -56,7 +56,7 @@ export type ApproximationFunctionTemplate<S> = (
  * @public
  */
 export function calculateLinearLeastSquares<S>(
-  dataPoints: Vector<S>[]
+  dataPoints: Vector<S>[],
 ): LeastSquaresApproximation<S> {
   assertNonEmpty(dataPoints);
   assertHomogeneous(dataPoints);
@@ -78,7 +78,7 @@ export function calculateLinearLeastSquares<S>(
   return calculateGeneralLeastSquares(
     dataPoints,
     linearFunctionTemplate,
-    numberOfIndependentVariables + 1
+    numberOfIndependentVariables + 1,
   );
 }
 
@@ -104,7 +104,7 @@ export function calculateLinearLeastSquares<S>(
 export function calculateGeneralLeastSquares<S>(
   dataPoints: Vector<S>[],
   functionTemplate: ApproximationFunctionTemplate<S>,
-  numberOfTerms: number
+  numberOfTerms: number,
 ): LeastSquaresApproximation<S> {
   assertNonEmpty(dataPoints);
   assertHomogeneous(dataPoints);
@@ -117,7 +117,7 @@ export function calculateGeneralLeastSquares<S>(
 
   const getEntryInA: (dataPointIndex: number, coefficientIndex: number) => S = (
     dataPointIndex,
-    coefficientIndex
+    coefficientIndex,
   ) => {
     // Use the output value that would occur at this data point if this
     // were the only nonzero coefficient and it were one

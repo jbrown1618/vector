@@ -6,7 +6,7 @@
 
 Computes the Kronecker product (generalized outer product) of two matrices.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function kroneckerProduct<S>(first: Matrix<S>, second: Matrix<S>): Matrix<S>;
@@ -14,12 +14,57 @@ export declare function kroneckerProduct<S>(first: Matrix<S>, second: Matrix<S>)
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  first | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | the left matrix in the product |
-|  second | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | the right matrix in the product |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+first
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+the left matrix in the product
+
+
+</td></tr>
+<tr><td>
+
+second
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+the right matrix in the product
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
 

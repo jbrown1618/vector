@@ -6,7 +6,7 @@
 
 Returns the difference of two scalars.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 subtract(first: S, second: S): S;
@@ -14,12 +14,53 @@ subtract(first: S, second: S): S;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  first | S |  |
-|  second | S |  |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+first
+
+
+</td><td>
+
+S
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+second
+
+
+</td><td>
+
+S
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 S
 

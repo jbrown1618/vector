@@ -6,8 +6,8 @@
 
 A tuple representing the shape of a [Matrix](./vector.matrix.md)<!-- -->. The first entry is the number of rows, and the second entry is the number of columns.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-export declare type MatrixShape = [number, number];
+export type MatrixShape = [number, number];
 ```

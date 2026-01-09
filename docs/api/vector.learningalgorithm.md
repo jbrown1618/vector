@@ -6,8 +6,10 @@
 
 An function which, given an initial value of `theta` and a CostFunction, will compute the optimal value of `theta`
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-export declare type LearningAlgorithm = (initialTheta: Vector, costFn: CostFunction) => Vector;
+export type LearningAlgorithm = (initialTheta: Vector, costFn: CostFunction) => Vector;
 ```
+**References:** [Vector](./vector.vector.md)<!-- -->, [CostFunction](./vector.costfunction.md)
+

@@ -116,7 +116,7 @@ export function reduceDimensions(A: Matrix, options: DimensionReductionOptions):
     (options.proportionOfVariance < 0 || options.proportionOfVariance > 1)
   ) {
     throw Error(
-      `${options.proportionOfVariance} is not a valid proportion - expected between 0 and 1`
+      `${options.proportionOfVariance} is not a valid proportion - expected between 0 and 1`,
     );
   }
 
@@ -143,19 +143,19 @@ export function reduceDimensions(A: Matrix, options: DimensionReductionOptions):
 }
 
 function hasKeep(
-  options: DimensionReductionOptions
+  options: DimensionReductionOptions,
 ): options is { useCorrelation: boolean; keep: number } {
   return (options as any).keep;
 }
 
 function hasRemove(
-  options: DimensionReductionOptions
+  options: DimensionReductionOptions,
 ): options is { useCorrelation: boolean; remove: number } {
   return (options as any).remove;
 }
 
 function hasPropVar(
-  options: DimensionReductionOptions
+  options: DimensionReductionOptions,
 ): options is { useCorrelation: boolean; proportionOfVariance: number } {
   return (options as any).proportionOfVariance;
 }

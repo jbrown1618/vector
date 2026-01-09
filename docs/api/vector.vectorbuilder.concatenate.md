@@ -6,7 +6,7 @@
 
 Constructs a vector consisting of two vectors end-to-end
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 concatenate(first: Vector<S>, second: Vector<S>): V;
@@ -14,12 +14,57 @@ concatenate(first: Vector<S>, second: Vector<S>): V;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  first | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | The vector which will be used for the entries starting with index 0 |
-|  second | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | The vector which will be used for the entries starting with <code>first.getDimension()</code> |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+first
+
+
+</td><td>
+
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+The vector which will be used for the entries starting with index 0
+
+
+</td></tr>
+<tr><td>
+
+second
+
+
+</td><td>
+
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+The vector which will be used for the entries starting with `first.getDimension()`
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 V
 
@@ -33,6 +78,5 @@ const first = vectorBuilder.ones(3);
 const second = vectorBuilder.zeros(2);
 
 vectorBuilder.concatenate(first, second); // [ 1 1 1 0 0 ]
-
 ```
 

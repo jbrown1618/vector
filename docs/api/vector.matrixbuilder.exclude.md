@@ -6,7 +6,7 @@
 
 Constructs a new matrix with all entries in row `rowToExclude` and in column `columnToExclude` removed.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 exclude(matrix: Matrix<S>, rowToExclude: number, columnToExclude: number): M;
@@ -14,13 +14,73 @@ exclude(matrix: Matrix<S>, rowToExclude: number, columnToExclude: number): M;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  matrix | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The input matrix |
-|  rowToExclude | number | The index of the row that will be removed |
-|  columnToExclude | number | The index of the column that will be removed |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+matrix
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+The input matrix
+
+
+</td></tr>
+<tr><td>
+
+rowToExclude
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+The index of the row that will be removed
+
+
+</td></tr>
+<tr><td>
+
+columnToExclude
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+The index of the column that will be removed
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 M
 
@@ -37,6 +97,5 @@ const excluded = matrixBuilder.slice(I, 1, 2)
 // [  0* 1* 0* 0* ]  =>  [ 1 0 0 ]
 // [  0  0  1* 0  ]      [ 0 0 0 ]
 // [  0  0  0* 1  ]      [ 0 0 1 ]
-
 ```
 

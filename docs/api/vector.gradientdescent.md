@@ -6,7 +6,7 @@
 
 Learns an optimal set of parameters `theta` using gradient descent
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function gradientDescent(parameters: Partial<GradientDescentParameters>): LearningAlgorithm;
@@ -14,11 +14,41 @@ export declare function gradientDescent(parameters: Partial<GradientDescentParam
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  parameters | Partial&lt;[GradientDescentParameters](./vector.gradientdescentparameters.md)<!-- -->&gt; | The [GradientDescentParameters](./vector.gradientdescentparameters.md) which determine how the learning will run |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+parameters
+
+
+</td><td>
+
+Partial&lt;[GradientDescentParameters](./vector.gradientdescentparameters.md)<!-- -->&gt;
+
+
+</td><td>
+
+The [GradientDescentParameters](./vector.gradientdescentparameters.md) which determine how the learning will run
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [LearningAlgorithm](./vector.learningalgorithm.md)
 

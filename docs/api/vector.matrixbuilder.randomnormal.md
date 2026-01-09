@@ -6,7 +6,7 @@
 
 Constructs a matrix of the specified size whose entries are normally distributed with the specified mean and standard deviation.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 randomNormal(shape: MatrixShape, mean?: number, standardDeviation?: number): M;
@@ -14,13 +14,73 @@ randomNormal(shape: MatrixShape, mean?: number, standardDeviation?: number): M;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  shape | [MatrixShape](./vector.matrixshape.md) | The shape of the matrix as a tuple <code>[m, n]</code> |
-|  mean | number | The center of the distribution of random numbers to include |
-|  standardDeviation | number | The standard deviation of the distribution of random numbers to include |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+shape
+
+
+</td><td>
+
+[MatrixShape](./vector.matrixshape.md)
+
+
+</td><td>
+
+The shape of the matrix as a tuple `[m, n]`
+
+
+</td></tr>
+<tr><td>
+
+mean
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+_(Optional)_ The center of the distribution of random numbers to include
+
+
+</td></tr>
+<tr><td>
+
+standardDeviation
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+_(Optional)_ The standard deviation of the distribution of random numbers to include
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 M
 

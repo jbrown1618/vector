@@ -6,8 +6,10 @@
 
 The data stored in a [Matrix](./vector.matrix.md) represented as a 2-D array
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-export declare type MatrixData<S> = readonly VectorData<S>[];
+export type MatrixData<S> = readonly VectorData<S>[];
 ```
+**References:** [VectorData](./vector.vectordata.md)
+

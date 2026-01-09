@@ -6,7 +6,7 @@
 
 Builds a vector of `binCount` evenly spaced numbers between `xMin` (inclusive) and `xMax` (exclusive).
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function linspace(xMin: number, xMax: number, binCount: number): NumberVector;
@@ -14,13 +14,73 @@ export declare function linspace(xMin: number, xMax: number, binCount: number): 
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  xMin | number | The smallest value in the vector |
-|  xMax | number | The largest value in the vector |
-|  binCount | number | The number of entries |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+xMin
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+The smallest value in the vector
+
+
+</td></tr>
+<tr><td>
+
+xMax
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+The largest value in the vector
+
+
+</td></tr>
+<tr><td>
+
+binCount
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+The number of entries
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [NumberVector](./vector.numbervector.md)
 
@@ -35,6 +95,5 @@ Throws an error if `xMin` is greater than or equal to `xMax` or if `binCount` is
 
 ```
 linspace(0, 1, 5); // [ 0, 0.2, 0.4, 0.6, 0.8 ]
-
 ```
 

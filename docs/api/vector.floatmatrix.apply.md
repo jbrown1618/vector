@@ -6,7 +6,7 @@
 
 Applies the matrix as a linear transformation to the given vector. Implements matrix-vector multiplication.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 apply(vector: Vector<number>): Vector<number>;
@@ -14,11 +14,41 @@ apply(vector: Vector<number>): Vector<number>;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  vector | [Vector](./vector.vector.md)<!-- -->&lt;number&gt; | the vector that should be transformed by the matrix |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+vector
+
+
+</td><td>
+
+[Vector](./vector.vector.md)<!-- -->&lt;number&gt;
+
+
+</td><td>
+
+the vector that should be transformed by the matrix
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [Vector](./vector.vector.md)<!-- -->&lt;number&gt;
 

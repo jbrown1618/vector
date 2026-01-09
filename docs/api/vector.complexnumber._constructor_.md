@@ -6,7 +6,7 @@
 
 Constructs a new instance of the `ComplexNumber` class
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 constructor(real: number, imaginary: number);
@@ -14,8 +14,49 @@ constructor(real: number, imaginary: number);
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  real | number |  |
-|  imaginary | number |  |
+<table><thead><tr><th>
+
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+real
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+imaginary
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
 

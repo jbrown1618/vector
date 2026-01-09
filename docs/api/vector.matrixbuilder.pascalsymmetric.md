@@ -6,7 +6,7 @@
 
 Constructs a symmetric matrix whose entries are the binomial coefficients (i + j choose i)
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 pascalSymmetric(size: number): M;
@@ -14,11 +14,41 @@ pascalSymmetric(size: number): M;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  size | number | The size of the Pascal matrix |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+size
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+The size of the Pascal matrix
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 M
 
@@ -32,6 +62,5 @@ const pascalSymmetric = matrixBuilder.pascalSymmetric(4);
 // [ 1  2  3  4  ]
 // [ 1  3  6  10 ]
 // [ 1  4  10 20 ]
-
 ```
 

@@ -6,7 +6,7 @@
 
 Returns the vector `x`<!-- -->, shifted so that its mean is at 0
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function center<S>(x: Vector<S>): Vector<S>;
@@ -14,11 +14,41 @@ export declare function center<S>(x: Vector<S>): Vector<S>;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  x | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | The vector to center |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+x
+
+
+</td><td>
+
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+The vector to center
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [Vector](./vector.vector.md)<!-- -->&lt;S&gt;
 

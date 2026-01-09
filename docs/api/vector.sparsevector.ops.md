@@ -4,12 +4,12 @@
 
 ## SparseVector.ops() method
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 abstract ops(): ScalarOperations<S>;
 ```
-<b>Returns:</b>
+**Returns:**
 
 [ScalarOperations](./vector.scalaroperations.md)<!-- -->&lt;S&gt;
 

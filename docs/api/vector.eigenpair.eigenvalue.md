@@ -4,7 +4,7 @@
 
 ## EigenPair.eigenvalue property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 eigenvalue: S;

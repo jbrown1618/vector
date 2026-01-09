@@ -89,7 +89,9 @@ export abstract class SparseMatrix<S = number> implements Matrix<S> {
    */
   public add(other: Matrix<S>): Matrix<S> {
     return this.builder().fromColumnVectors(
-      this.getColumnVectors().map((column, columnIndex) => column.add(other.getColumn(columnIndex)))
+      this.getColumnVectors().map((column, columnIndex) =>
+        column.add(other.getColumn(columnIndex)),
+      ),
     );
   }
 
@@ -266,8 +268,8 @@ export abstract class SparseMatrix<S = number> implements Matrix<S> {
     // TODO - can probably be optimized for the case of two sparse matrices
     return this.builder().fromArray(
       this.getRowVectors().map((row) =>
-        other.getColumnVectors().map((column) => row.innerProduct(column))
-      )
+        other.getColumnVectors().map((column) => row.innerProduct(column)),
+      ),
     );
   }
 
@@ -338,7 +340,7 @@ export abstract class SparseMatrix<S = number> implements Matrix<S> {
    */
   public map(entryFunction: (entry: S, rowIndex: number, columnIndex: number) => S): Matrix<S> {
     const newRows = this.getRowVectors().map((row, rowIndex) =>
-      row.map((entry, colIndex) => entryFunction(entry, rowIndex, colIndex))
+      row.map((entry, colIndex) => entryFunction(entry, rowIndex, colIndex)),
     );
     return this.builder().fromRowVectors(newRows);
   }

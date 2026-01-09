@@ -6,11 +6,13 @@
 
 The set of hyperparameters for a [SupportVectorMachineClassifier](./vector.supportvectormachineclassifier.md)
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-export declare type SupportVectorMachineHyperparams = GradientDescentParameters & {
+export type SupportVectorMachineHyperparams = GradientDescentParameters & {
     C: number;
     kernel: Kernel;
 };
 ```
+**References:** [GradientDescentParameters](./vector.gradientdescentparameters.md)<!-- -->, [Kernel](./vector.kernel.md)
+

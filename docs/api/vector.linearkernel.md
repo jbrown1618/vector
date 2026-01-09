@@ -6,7 +6,7 @@
 
 A linear kernel for use in a [SupportVectorMachineClassifier](./vector.supportvectormachineclassifier.md)<!-- -->. The linear kernel converts a data [Matrix](./vector.matrix.md) into a matrix which has been prepended with a column of all ones, representing the constant term in a linear model, or the bias term in an SVM.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function LinearKernel(data: Matrix): Matrix;
@@ -14,11 +14,41 @@ export declare function LinearKernel(data: Matrix): Matrix;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  data | [Matrix](./vector.matrix.md) | The variance of the gaussian distribution used in the kernel |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+data
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)
+
+
+</td><td>
+
+The variance of the gaussian distribution used in the kernel
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [Matrix](./vector.matrix.md)
 

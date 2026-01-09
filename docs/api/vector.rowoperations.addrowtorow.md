@@ -6,7 +6,7 @@
 
 An elementary row operations which returns a new matrix whose row at `targetRow` has had the row at `rowToAdd` added to it.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 static addRowToRow<S>(matrix: Matrix<S>, targetRow: number, rowToAdd: number): Matrix<S>;
@@ -14,13 +14,73 @@ static addRowToRow<S>(matrix: Matrix<S>, targetRow: number, rowToAdd: number): M
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  matrix | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The original matrix |
-|  targetRow | number | The index of the row to modify |
-|  rowToAdd | number | The index of the row to add |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+matrix
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+The original matrix
+
+
+</td></tr>
+<tr><td>
+
+targetRow
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+The index of the row to modify
+
+
+</td></tr>
+<tr><td>
+
+rowToAdd
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+The index of the row to add
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
 

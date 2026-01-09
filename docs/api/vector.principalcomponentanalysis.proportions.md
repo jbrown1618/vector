@@ -6,7 +6,7 @@
 
 The proportion of the total variance explained by each principal component
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 proportions: S[];

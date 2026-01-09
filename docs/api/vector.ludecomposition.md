@@ -6,7 +6,7 @@
 
 The result of an LU Decomposition
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface LUDecomposition<S> 
@@ -14,9 +14,77 @@ export interface LUDecomposition<S>
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [L](./vector.ludecomposition.l.md) | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; |  |
-|  [P](./vector.ludecomposition.p.md) | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; |  |
-|  [U](./vector.ludecomposition.u.md) | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; |  |
+<table><thead><tr><th>
+
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[L](./vector.ludecomposition.l.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[P](./vector.ludecomposition.p.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[U](./vector.ludecomposition.u.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
 

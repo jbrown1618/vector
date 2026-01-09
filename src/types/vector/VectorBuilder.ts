@@ -148,7 +148,7 @@ export class VectorBuilder<S, V extends Vector<S>> {
     assertValidDimension(dimension);
     assertValidIndex(oneIndex, dimension);
     return this.fromIndexFunction(dimension, (i) =>
-      i === oneIndex ? this.ops().one() : this.ops().zero()
+      i === oneIndex ? this.ops().one() : this.ops().zero(),
     );
   }
 
@@ -203,7 +203,7 @@ export class VectorBuilder<S, V extends Vector<S>> {
       throw Error(`Expected standardDeviation > 0; got ${standardDeviation}`);
     }
     return this.fromIndexFunction(dimension, () =>
-      this.ops().randomNormal(mean, standardDeviation)
+      this.ops().randomNormal(mean, standardDeviation),
     );
   }
 

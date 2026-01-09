@@ -6,7 +6,7 @@
 
 Uses the learned parameters to make predictions for the probability of an event based on a set of input data.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 predictProbabilities(data: Matrix): Vector;
@@ -14,11 +14,41 @@ predictProbabilities(data: Matrix): Vector;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  data | [Matrix](./vector.matrix.md) | A [Vector](./vector.vector.md) whose rows are the observations in the test set |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+data
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)
+
+
+</td><td>
+
+A [Vector](./vector.vector.md) whose rows are the observations in the test set
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [Vector](./vector.vector.md)
 

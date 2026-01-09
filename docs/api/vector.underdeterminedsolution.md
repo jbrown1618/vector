@@ -6,7 +6,7 @@
 
 A particular solution to a linear system with infinitely many solutions.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface UnderdeterminedSolution<S> 
@@ -14,8 +14,62 @@ export interface UnderdeterminedSolution<S>
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [solution](./vector.underdeterminedsolution.solution.md) | [Vector](./vector.vector.md)<!-- -->&lt;S&gt; | An arbitrarily chosen vector \_x\_ which satisfies \_Ax=b\_ |
-|  [solutionType](./vector.underdeterminedsolution.solutiontype.md) | [SolutionType.UNDERDETERMINED](./vector.solutiontype.underdetermined.md) |  |
+<table><thead><tr><th>
+
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[solution](./vector.underdeterminedsolution.solution.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[Vector](./vector.vector.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+An arbitrarily chosen vector \_x\_ which satisfies \_Ax=b\_
+
+
+</td></tr>
+<tr><td>
+
+[solutionType](./vector.underdeterminedsolution.solutiontype.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[SolutionType.UNDERDETERMINED](./vector.solutiontype.md)
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
 

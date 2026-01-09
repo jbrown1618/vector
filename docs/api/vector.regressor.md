@@ -6,7 +6,7 @@
 
 A machine learning model with a continuous numeric target
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface Regressor<H> 
@@ -14,9 +14,49 @@ export interface Regressor<H>
 
 ## Methods
 
-|  Method | Description |
-|  --- | --- |
-|  [getHyperParameters()](./vector.regressor.gethyperparameters.md) | Return the full set of hyperparameters used to train the model, including defaults. |
-|  [predict(data)](./vector.regressor.predict.md) | Uses the learned parameters to make predictions based on a set of input data. |
-|  [train(data, target)](./vector.regressor.train.md) | Learns the optimal set of parameters for the model. |
+<table><thead><tr><th>
+
+Method
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[getHyperParameters()](./vector.regressor.gethyperparameters.md)
+
+
+</td><td>
+
+Return the full set of hyperparameters used to train the model, including defaults.
+
+
+</td></tr>
+<tr><td>
+
+[predict(data)](./vector.regressor.predict.md)
+
+
+</td><td>
+
+Uses the learned parameters to make predictions based on a set of input data.
+
+
+</td></tr>
+<tr><td>
+
+[train(data, target)](./vector.regressor.train.md)
+
+
+</td><td>
+
+Learns the optimal set of parameters for the model.
+
+
+</td></tr>
+</tbody></table>
 

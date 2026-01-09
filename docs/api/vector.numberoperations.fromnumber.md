@@ -6,7 +6,7 @@
 
 Returns an instance of the scalar type which most accurately corresponds to the value of `num`
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 fromNumber(num: number): number;
@@ -14,11 +14,39 @@ fromNumber(num: number): number;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  num | number |  |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+num
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 number
 

@@ -6,7 +6,7 @@
 
 Tests if two matrices are equal
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 equals(other: Matrix<number>): boolean;
@@ -14,11 +14,41 @@ equals(other: Matrix<number>): boolean;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  other | [Matrix](./vector.matrix.md)<!-- -->&lt;number&gt; | The matrix against which to compare |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+other
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)<!-- -->&lt;number&gt;
+
+
+</td><td>
+
+The matrix against which to compare
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 boolean
 

@@ -6,7 +6,7 @@
 
 Returns the unique scalar that, when multiplied by `scalar`<!-- -->, returns the multiplicative identity
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 getMultiplicativeInverse(scalar: ComplexNumber): ComplexNumber | undefined;
@@ -14,11 +14,39 @@ getMultiplicativeInverse(scalar: ComplexNumber): ComplexNumber | undefined;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  scalar | [ComplexNumber](./vector.complexnumber.md) |  |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+scalar
+
+
+</td><td>
+
+[ComplexNumber](./vector.complexnumber.md)
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 [ComplexNumber](./vector.complexnumber.md) \| undefined
 

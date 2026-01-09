@@ -6,12 +6,12 @@
 
 A [Vector](./vector.vector.md) implemented as a sparse set of JS `number` primitives keyed by their indices.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare class SparseNumberVector extends SparseVector<number> 
 ```
-<b>Extends:</b> [SparseVector](./vector.sparsevector.md)<!-- -->&lt;number&gt;
+**Extends:** [SparseVector](./vector.sparsevector.md)<!-- -->&lt;number&gt;
 
 ## Remarks
 
@@ -19,11 +19,88 @@ The constructor for this class is marked as internal. Third-party code should no
 
 ## Methods
 
-|  Method | Modifiers | Description |
-|  --- | --- | --- |
-|  [builder()](./vector.sparsenumbervector.builder.md) |  |  |
-|  [builder()](./vector.sparsenumbervector.builder.md) | <code>static</code> |  |
-|  [matrixBuilder()](./vector.sparsenumbervector.matrixbuilder.md) |  |  |
-|  [ops()](./vector.sparsenumbervector.ops.md) |  |  |
-|  [ops()](./vector.sparsenumbervector.ops.md) | <code>static</code> |  |
+<table><thead><tr><th>
+
+Method
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[builder()](./vector.sparsenumbervector.builder.md)
+
+
+</td><td>
+
+
+</td><td>
+
+
+
+</td></tr>
+<tr><td>
+
+[builder()](./vector.sparsenumbervector.builder.md)
+
+
+</td><td>
+
+`static`
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[matrixBuilder()](./vector.sparsenumbervector.matrixbuilder.md)
+
+
+</td><td>
+
+
+</td><td>
+
+
+
+</td></tr>
+<tr><td>
+
+[ops()](./vector.sparsenumbervector.ops.md)
+
+
+</td><td>
+
+
+</td><td>
+
+
+
+</td></tr>
+<tr><td>
+
+[ops()](./vector.sparsenumbervector.ops.md)
+
+
+</td><td>
+
+`static`
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
 

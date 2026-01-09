@@ -6,7 +6,7 @@
 
 Constructs a new matrix based on a rectangular slice of a larger matrix
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 slice(matrix: Matrix<S>, rowStartIndex?: number, columnStartIndex?: number, rowEndIndex?: number, columnEndIndex?: number): M;
@@ -14,15 +14,105 @@ slice(matrix: Matrix<S>, rowStartIndex?: number, columnStartIndex?: number, rowE
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  matrix | [Matrix](./vector.matrix.md)<!-- -->&lt;S&gt; | The original matrix |
-|  rowStartIndex | number | The (inclusive) first row of the slice |
-|  columnStartIndex | number | The (inclusive) first column of the slice |
-|  rowEndIndex | number | The (exclusive) last row of the slice |
-|  columnEndIndex | number | The (exclusive) last column of the slice |
+<table><thead><tr><th>
 
-<b>Returns:</b>
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+matrix
+
+
+</td><td>
+
+[Matrix](./vector.matrix.md)<!-- -->&lt;S&gt;
+
+
+</td><td>
+
+The original matrix
+
+
+</td></tr>
+<tr><td>
+
+rowStartIndex
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+_(Optional)_ The (inclusive) first row of the slice
+
+
+</td></tr>
+<tr><td>
+
+columnStartIndex
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+_(Optional)_ The (inclusive) first column of the slice
+
+
+</td></tr>
+<tr><td>
+
+rowEndIndex
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+_(Optional)_ The (exclusive) last row of the slice
+
+
+</td></tr>
+<tr><td>
+
+columnEndIndex
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+_(Optional)_ The (exclusive) last column of the slice
+
+
+</td></tr>
+</tbody></table>
+
+**Returns:**
 
 M
 
@@ -39,6 +129,5 @@ const slice = matrixBuilder.slice(matrix, 2, 2, 3, 4);
 // [  0  1* 0* 0* ]  =>  [ 1 0 0 ]
 // [  0  0* 1* 0* ]      [ 0 1 0 ]
 // [  0  0  0  1  ]
-
 ```
 
