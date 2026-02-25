@@ -73,5 +73,14 @@ describe('LUDecomposition', () => {
       const A = mat([[1, 2]]);
       expect(() => calculateLUDecomposition(A)).toThrow();
     });
+
+    test('throws when a singular matrix produces a zero diagonal entry after pivoting', () => {
+      // After pivoting, the first column is all zeros, causing division by zero
+      const A = mat([
+        [0, 1],
+        [0, 2],
+      ]);
+      expect(() => calculateLUDecomposition(A)).toThrow();
+    });
   });
 });

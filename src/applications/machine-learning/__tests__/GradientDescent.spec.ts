@@ -37,4 +37,14 @@ describe('GradientDescent', () => {
     const theta = gradientDescent({ alpha: 1 })(initial, costFn);
     expect(theta).toStrictEqual(vec([10000, 10000]));
   });
+
+  it('uses default alpha of 0.1', () => {
+    const costFn: CostFunction = (_theta) => ({
+      cost: 1,
+      gradient: vec([-1, -1]),
+    });
+    const initial = vec([0, 0]);
+    const theta = gradientDescent({ maxIterations: 10 })(initial, costFn);
+    expect(theta.equals(vec([1, 1]))).toBe(true);
+  });
 });

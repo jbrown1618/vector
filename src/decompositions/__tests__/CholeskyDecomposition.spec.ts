@@ -43,5 +43,16 @@ describe('CholeskyDecomposition', () => {
       const A = mat([[-1]]);
       expect(calculateCholeskyDecomposition(A)).toBeUndefined;
     });
+
+    test('returns undefined for a positive semi-definite matrix where division by zero occurs', () => {
+      // This 3x3 PSD matrix causes Ljj = 0 during the decomposition,
+      // which makes the subsequent off-diagonal division undefined
+      const A = mat([
+        [1, 1, 0],
+        [1, 1, 0],
+        [0, 0, 1],
+      ]);
+      expect(calculateCholeskyDecomposition(A)).toBeUndefined();
+    });
   });
 });

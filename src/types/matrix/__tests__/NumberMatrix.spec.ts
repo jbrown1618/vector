@@ -185,6 +185,15 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
           expect(() => testMatrix.getEntry(0, 3)).toThrow();
           expect(() => testMatrix.getEntry(2, 3)).toThrow();
         });
+
+        test('returns zero for all positions in an all-zero row', () => {
+          const sparse = builder.fromArray([
+            [5, 0],
+            [0, 0],
+          ]);
+          expect(sparse.getEntry(1, 0)).toEqual(0);
+          expect(sparse.getEntry(1, 1)).toEqual(0);
+        });
       });
 
       describe('getDiagonal', () => {
@@ -214,13 +223,27 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
       });
 
       describe('getSparseData', () => {
-        const A = builder.identity(3);
-        const data = A.getSparseData();
-        const expected = new Map();
-        expected.set(0, new Map().set(0, 1));
-        expected.set(1, new Map().set(1, 1));
-        expected.set(2, new Map().set(2, 1));
-        expect(data).toStrictEqual(expected);
+        test('returns sparse representation of an identity matrix', () => {
+          const A = builder.identity(3);
+          const data = A.getSparseData();
+          const expected = new Map();
+          expected.set(0, new Map().set(0, 1));
+          expected.set(1, new Map().set(1, 1));
+          expected.set(2, new Map().set(2, 1));
+          expect(data).toStrictEqual(expected);
+        });
+
+        test('handles multiple non-zero entries in the same row', () => {
+          const A = builder.fromArray([
+            [1, 2],
+            [3, 4],
+          ]);
+          const data = A.getSparseData();
+          expect(data.get(0)?.get(0)).toEqual(1);
+          expect(data.get(0)?.get(1)).toEqual(2);
+          expect(data.get(1)?.get(0)).toEqual(3);
+          expect(data.get(1)?.get(1)).toEqual(4);
+        });
       });
     });
 
@@ -490,6 +513,15 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
       test('handles an empty matrix', () => {
         expect(builder.empty().combine(builder.empty(), () => 1)).toStrictEqual(builder.empty());
       });
+    });
+  });
+});
+
+describe('FloatMatrix', () => {
+  describe('constructor', () => {
+    test('throws when Float64Array length does not match the given shape', () => {
+      const arr = new Float64Array([1, 2, 3]);
+      expect(() => new FloatMatrix(arr, [2, 3])).toThrow();
     });
   });
 });

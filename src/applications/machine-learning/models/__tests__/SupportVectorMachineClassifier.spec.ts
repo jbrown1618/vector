@@ -68,4 +68,8 @@ describe('SupportVectorMachineClassifier', () => {
   it('cannot predict probabilities', () => {
     expect(() => new SupportVectorMachineClassifier({}).predictProbabilities(mat([]))).toThrow();
   });
+
+  it('throws when predicting with an untrained model', () => {
+    expect(() => new SupportVectorMachineClassifier({}).predict(mat([]))).toThrow();
+  });
 });

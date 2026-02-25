@@ -17,6 +17,7 @@ describe('LogisticRegressionClassifier', () => {
     cls.train(xTrain, yTrain);
 
     const predictions = cls.predict(xTrain);
+    const probabilities = cls.predictProbabilities(xTrain);
     let numIncorrect = 0;
     predictions.forEach((pred, i) => {
       const actual = yTrain.getEntry(i);
@@ -29,6 +30,7 @@ describe('LogisticRegressionClassifier', () => {
     const accuracy = (total - numIncorrect) / total;
 
     expect(accuracy).toBeGreaterThan(0.99);
+    expect(probabilities.getDimension()).toBe(total);
 
     const expectedParams = [
       0.1750568949973106, 0.2678094914078278, 0.9230718461298334, -1.4696586168060346,

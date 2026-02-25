@@ -81,6 +81,30 @@ describe('GaussJordan', () => {
 
       expect(solution.solutionType).toEqual(SolutionType.OVERDETERMINED);
     });
+
+    test('solves a non-square underdetermined system (more unknowns than equations)', () => {
+      const A = mat([
+        [1, 2, 3],
+        [4, 5, 6],
+      ]);
+      const b = vec([1, 2]);
+      const solution = solveByGaussianElimination(A, b);
+
+      expect(solution.solutionType).toEqual(SolutionType.UNDERDETERMINED);
+    });
+
+    test('gives a unique solution for a consistent overdetermined system (more equations than unknowns)', () => {
+      const A = mat([
+        [1, 0],
+        [0, 1],
+        [1, 1],
+      ]);
+      const b = vec([1, 2, 3]);
+      const solution = solveByGaussianElimination(A, b);
+
+      expect(solution.solutionType).toEqual(SolutionType.UNIQUE);
+      expect((solution as UniqueSolution<number>).solution).toStrictEqual(vec([1, 2]));
+    });
   });
 
   describe('rowEchelonForm', () => {
