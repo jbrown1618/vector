@@ -19,9 +19,10 @@ describe('Eigenvalues', () => {
       let expectedVectors = [vec([1, 0, 0]), vec([0, 1, 0]), vec([0, 0, 1])];
 
       let pairs = eig(A);
-      pairs.forEach((pair, i) => {
-        expect(pair.eigenvalue).toBeCloseTo(expectedValues[i], 5);
-        expect(pair.eigenvector.equals(expectedVectors[i])).toBe(true);
+      expectedValues.forEach((val, i) => {
+        const match = pairs.find((p) => Math.abs(p.eigenvalue - val) < 1e-5);
+        expect(match).toBeDefined();
+        expect(match!.eigenvector.equals(expectedVectors[i])).toBe(true);
       });
 
       A = mat([
@@ -33,9 +34,10 @@ describe('Eigenvalues', () => {
       expectedVectors = [vec([1 / 3, -1 / 3, 1]), vec([0, -1, 1]), vec([1 / 2, -1 / 2, 1])];
 
       pairs = eig(A);
-      pairs.forEach((pair, i) => {
-        expect(pair.eigenvalue).toBeCloseTo(expectedValues[i], 5);
-        expect(pair.eigenvector.equals(expectedVectors[i])).toBe(true);
+      expectedValues.forEach((val, i) => {
+        const match = pairs.find((p) => Math.abs(p.eigenvalue - val) < 1e-5);
+        expect(match).toBeDefined();
+        expect(match!.eigenvector.equals(expectedVectors[i])).toBe(true);
       });
     });
 
@@ -49,9 +51,10 @@ describe('Eigenvalues', () => {
       const expectedVectors = [vec([-2, 1, 1]), vec([-2, 1, 1]), vec([1, 1, 1])];
 
       const pairs = eig(A);
-      pairs.forEach((pair, i) => {
-        expect(pair.eigenvalue).toBeCloseTo(expectedValues[i], 5);
-        expect(pair.eigenvector.equals(expectedVectors[i])).toBe(true);
+      expectedValues.forEach((val, i) => {
+        const match = pairs.find((p) => Math.abs(p.eigenvalue - val) < 1e-5);
+        expect(match).toBeDefined();
+        expect(match!.eigenvector.equals(expectedVectors[i])).toBe(true);
       });
     });
   });
@@ -69,11 +72,11 @@ describe('Eigenvalues', () => {
         [2, 1],
         [2, 3],
       ]);
-      const eigenvalues = calculateEigenvalues(A);
-      const expected = vec([4, 1]);
+      const eigenvalues = calculateEigenvalues(A).toArray().sort();
+      const expected = [1, 4];
 
-      expect(eigenvalues.getEntry(0)).toBeCloseTo(expected.getEntry(0), 5);
-      expect(eigenvalues.getEntry(1)).toBeCloseTo(expected.getEntry(1), 5);
+      expect(eigenvalues[0]).toBeCloseTo(expected[0], 5);
+      expect(eigenvalues[1]).toBeCloseTo(expected[1], 5);
     });
 
     test('calculates the eigenvalues of a 3x3 matrix', () => {
@@ -82,12 +85,12 @@ describe('Eigenvalues', () => {
         [-1, -4, -2],
         [-3, 9, 7],
       ]);
-      const eigenvalues = calculateEigenvalues(A, 30);
-      const expected = vec([3, -2, 1]);
+      const eigenvalues = calculateEigenvalues(A, 30).toArray().sort();
+      const expected = [-2, 1, 3];
 
-      expect(eigenvalues.getEntry(0)).toBeCloseTo(expected.getEntry(0), 5);
-      expect(eigenvalues.getEntry(1)).toBeCloseTo(expected.getEntry(1), 5);
-      expect(eigenvalues.getEntry(2)).toBeCloseTo(expected.getEntry(2), 5);
+      expected.forEach((val, i) => {
+        expect(eigenvalues[i]).toBeCloseTo(val, 5);
+      });
     });
 
     test('throws an error when eigenvalues are complex for a real-valued scalar type', () => {
@@ -104,8 +107,11 @@ describe('Eigenvalues', () => {
         [1, 0],
       ]);
       const eigenvalues = calculateEigenvalues(A);
-      expect(eigenvalues.getEntry(0)).toStrictEqual(ComplexNumber.I);
-      expect(eigenvalues.getEntry(1)).toStrictEqual(new ComplexNumber(0, -1));
+      const vals = [eigenvalues.getEntry(0), eigenvalues.getEntry(1)];
+      const hasI = vals.some((v) => v.equals(ComplexNumber.I));
+      const hasNegI = vals.some((v) => v.equals(new ComplexNumber(0, -1)));
+      expect(hasI).toBe(true);
+      expect(hasNegI).toBe(true);
     });
 
     test('rejects a non-square matrix', () => {

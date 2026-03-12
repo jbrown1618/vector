@@ -37,8 +37,9 @@ export function eig<S>(A: Matrix<S>, numIterations: number = defaultIterations):
  * Uses the QR algorithm to compute the eigenvalues of a matrix `A`.
  *
  * @remarks
- * The QR algorithm iterates A_{k+1} = R_k * Q_k and terminates early
- * when all subdiagonal elements converge below a threshold.
+ * The matrix is first reduced to upper Hessenberg form using Householder
+ * reflections for faster convergence, then the QR algorithm is applied
+ * with early termination when all subdiagonal elements converge.
  *
  * @param A - The matrix for which to compute eigenvalues
  * @param numIterations - The maximum number of QR iterations to take
@@ -54,7 +55,7 @@ export function calculateEigenvalues<S>(
   if (m === 1) return A.getColumnVectors()[0];
   if (m === 2) return getTwoByTwoEigenvalues(A);
 
-  let nthA = A;
+  let nthA = reduceToHessenberg(A);
 
   let n = 0;
   while (n < numIterations) {
