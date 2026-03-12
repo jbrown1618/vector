@@ -39,6 +39,8 @@ export function calculateQRDecomposition<S>(A: Matrix<S>): QRDecomposition<S> {
 
     let nonOrthogonalPart = vectorBuilder.zeros(dim);
     for (let j = 0; j < k; j++) {
+      // Skip zero u-columns (from rank-deficient matrices)
+      if (ops.equals(ops.zero(), uColumns[j].innerProduct(uColumns[j]))) continue;
       // Add the part of Ak that is not orthogonal to the already-calculated jth column of U
       nonOrthogonalPart = nonOrthogonalPart.add(columnK.projectOnto(uColumns[j]));
     }

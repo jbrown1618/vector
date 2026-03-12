@@ -5,9 +5,8 @@ import { solveByGaussianElimination } from '../operations/GaussJordan';
 import { SolutionType } from '../solvers/LinearSolution';
 import { calculateQRDecomposition } from '../decompositions/QRDecomposition';
 
-// TODO - convert to an upper Hessenberg matrix to improve rate of convergence
-
 const defaultIterations = 100;
+const convergenceThreshold = 1e-10;
 
 /**
  * An eigenvector and its corresponding eigenvalue
@@ -35,10 +34,14 @@ export function eig<S>(A: Matrix<S>, numIterations: number = defaultIterations):
 }
 
 /**
- * Uses the QR algorithm to compute the eigenvalues of a matrix `A`
+ * Uses the QR algorithm to compute the eigenvalues of a matrix `A`.
+ *
+ * @remarks
+ * The QR algorithm iterates A_{k+1} = R_k * Q_k and terminates early
+ * when all subdiagonal elements converge below a threshold.
  *
  * @param A - The matrix for which to compute eigenvalues
- * @param numIterations - The number of iterations to take
+ * @param numIterations - The maximum number of QR iterations to take
  * @public
  */
 export function calculateEigenvalues<S>(
@@ -51,20 +54,23 @@ export function calculateEigenvalues<S>(
   if (m === 1) return A.getColumnVectors()[0];
   if (m === 2) return getTwoByTwoEigenvalues(A);
 
-  let n = 0;
   let nthA = A;
 
+  let n = 0;
   while (n < numIterations) {
-    const { Q, R } = calculateQRDecomposition(nthA);
-    n++;
-    nthA = R.multiply(Q);
+    // Check convergence: all subdiagonal elements below threshold
+    let converged = true;
+    for (let i = 1; i < m; i++) {
+      if (ops.norm(nthA.getEntry(i, i - 1)) > convergenceThreshold) {
+        converged = false;
+        break;
+      }
+    }
+    if (converged) break;
 
-    // TODO - this early return causes us to have worse accuracy than we otherwise
-    // would.  If we want to be able to return early, we need to be able to pass
-    // equality tolerances around.
-    // if (isUpperTriangular(nthA)) {
-    //   return nthA.getDiagonal();
-    // }
+    const { Q, R } = calculateQRDecomposition(nthA);
+    nthA = R.multiply(Q);
+    n++;
   }
 
   const eigenvalues: S[] = [];
@@ -82,15 +88,104 @@ export function calculateEigenvalues<S>(
       continue;
     }
 
-    // If we're here, then either we failed to converge, or we
-    // are looking at a pair of complex eigenvalues
+    // Either we failed to converge, or we are looking at a pair of complex eigenvalues
     const subMatrix = A.builder().slice(nthA, i, i, i + 2, i + 2);
     const subEigenvalues = getTwoByTwoEigenvalues(subMatrix);
     eigenvalues.push(subEigenvalues.getEntry(0));
     eigenvalues.push(subEigenvalues.getEntry(1));
-    i++; // We covered two eigenvalues, so jump ahead
+    i++;
   }
   return A.vectorBuilder().fromArray(eigenvalues);
+}
+
+/**
+ * Reduces a matrix to upper Hessenberg form using Householder reflections.
+ * A matrix H is upper Hessenberg if H[i][j] = 0 for all i \> j + 1.
+ * This is a similarity transformation (H = Q^T A Q), so eigenvalues are preserved.
+ * @public
+ */
+export function reduceToHessenberg<S>(A: Matrix<S>): Matrix<S> {
+  const ops = A.ops();
+  const builder = A.builder();
+  const n = A.getNumberOfRows();
+
+  if (n <= 2) return A;
+
+  // Work with a mutable copy for efficiency
+  const H: S[][] = A.toArray().map((row) => [...row]);
+
+  for (let k = 0; k < n - 2; k++) {
+    const subLen = n - k - 1;
+
+    // Extract x = H[k+1:n, k]
+    const x: S[] = new Array(subLen);
+    for (let i = 0; i < subLen; i++) {
+      x[i] = H[k + 1 + i][k];
+    }
+
+    // Compute sigma = ||x||₂
+    let sigmaSq = 0;
+    for (let i = 0; i < subLen; i++) {
+      const ni = ops.norm(x[i]);
+      sigmaSq += ni * ni;
+    }
+    const sigma = Math.sqrt(sigmaSq);
+
+    if (sigma === 0) continue;
+
+    // Compute alpha = -(x₀/|x₀|)·σ to avoid catastrophic cancellation
+    const x0Norm = ops.norm(x[0]);
+    let alpha: S;
+    if (x0Norm === 0) {
+      alpha = ops.fromNumber(-sigma);
+    } else {
+      alpha = ops.multiply(x[0], ops.fromNumber(-sigma / x0Norm));
+    }
+
+    // v = x - alpha·e₁
+    const v: S[] = new Array(subLen);
+    v[0] = ops.subtract(x[0], alpha);
+    for (let i = 1; i < subLen; i++) {
+      v[i] = x[i];
+    }
+
+    // Compute v^H·v
+    let vTv: S = ops.zero();
+    for (let i = 0; i < subLen; i++) {
+      vTv = ops.add(vTv, ops.multiply(ops.conjugate(v[i]), v[i]));
+    }
+
+    if (ops.norm(vTv) === 0) continue;
+
+    const factor = ops.divide(ops.fromNumber(2), vTv);
+    if (factor === undefined) continue;
+
+    // Left multiply: H[k+1:n, :] -= factor·v·(v^H·H[k+1:n, :])
+    for (let j = 0; j < n; j++) {
+      let dot: S = ops.zero();
+      for (let i = 0; i < subLen; i++) {
+        dot = ops.add(dot, ops.multiply(ops.conjugate(v[i]), H[k + 1 + i][j]));
+      }
+      const scaled = ops.multiply(factor, dot);
+      for (let i = 0; i < subLen; i++) {
+        H[k + 1 + i][j] = ops.subtract(H[k + 1 + i][j], ops.multiply(v[i], scaled));
+      }
+    }
+
+    // Right multiply: H[:, k+1:n] -= factor·(H[:, k+1:n]·v)·v^H
+    for (let i = 0; i < n; i++) {
+      let dot: S = ops.zero();
+      for (let j = 0; j < subLen; j++) {
+        dot = ops.add(dot, ops.multiply(H[i][k + 1 + j], v[j]));
+      }
+      const scaled = ops.multiply(factor, dot);
+      for (let j = 0; j < subLen; j++) {
+        H[i][k + 1 + j] = ops.subtract(H[i][k + 1 + j], ops.multiply(scaled, ops.conjugate(v[j])));
+      }
+    }
+  }
+
+  return builder.fromArray(H);
 }
 
 function getTwoByTwoEigenvalues<S>(A: Matrix<S>): Vector<S> {
