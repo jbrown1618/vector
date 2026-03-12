@@ -15,6 +15,7 @@ export * from './applications/statistics/DescriptiveStatistics';
 export * from './applications/statistics/LeastSquares';
 export * from './applications/statistics/PrincipalComponentAnalysis';
 export * from './decompositions/CholeskyDecomposition';
+export * from './decompositions/HessenbergDecomposition';
 export * from './decompositions/LUDecomposition';
 export * from './decompositions/QRDecomposition';
 export * from './decompositions/SingularValueDecomposition';
