@@ -5,6 +5,7 @@ import {
   calculateEigenvalues,
   eig,
   getEigenvectorForEigenvalue,
+  reduceToHessenberg,
 } from '../../eigenvalues/Eigenvalues';
 
 describe('Eigenvalues', () => {
@@ -120,6 +121,25 @@ describe('Eigenvalues', () => {
         [4, 5, 6],
       ]);
       expect(() => calculateEigenvalues(A)).toThrow();
+    });
+  });
+
+  describe('reduceToHessenberg', () => {
+    test('handles a matrix with zero leading subdiagonal element', () => {
+      // This triggers the x0Norm === 0 branch in the Householder reflection
+      const A = mat([
+        [0, 0, 1],
+        [0, 0, 0],
+        [1, 0, 0],
+      ]);
+      const H = reduceToHessenberg(A);
+      // Verify upper Hessenberg form: H[i][j] = 0 for i > j + 1
+      expect(H.getEntry(2, 0)).toBeCloseTo(0, 10);
+      // Eigenvalues should be preserved (eigenvalues of A are 1, -1, 0)
+      const eigenvalues = calculateEigenvalues(A).toArray().sort();
+      expect(eigenvalues[0]).toBeCloseTo(-1, 5);
+      expect(eigenvalues[1]).toBeCloseTo(0, 5);
+      expect(eigenvalues[2]).toBeCloseTo(1, 5);
     });
   });
 
