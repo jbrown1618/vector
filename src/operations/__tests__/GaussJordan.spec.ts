@@ -27,6 +27,29 @@ describe('GaussJordan', () => {
       const x = (solution as UniqueSolution<number>).solution;
       expect(A.apply(x).equals(b)).toBe(true);
     });
+
+    test('solves a non-square (tall) system', () => {
+      const A = mat([
+        [1, 2],
+        [3, 4],
+        [5, 6],
+      ]);
+      const b = vec([3, 7, 11]);
+      const solution = solve(A, b);
+      expect(solution.solutionType).toBe(SolutionType.UNIQUE);
+      const x = (solution as UniqueSolution<number>).solution;
+      expect(A.apply(x).equals(b)).toBe(true);
+    });
+
+    test('solves a non-square (wide) underdetermined system', () => {
+      const A = mat([
+        [1, 2, 3],
+        [4, 5, 6],
+      ]);
+      const b = vec([1, 2]);
+      const solution = solve(A, b);
+      expect(solution.solutionType).toBe(SolutionType.UNDERDETERMINED);
+    });
   });
 
   describe('solveByGaussianElimination', () => {

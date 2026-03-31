@@ -214,13 +214,27 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
       });
 
       describe('getSparseData', () => {
-        const A = builder.identity(3);
-        const data = A.getSparseData();
-        const expected = new Map();
-        expected.set(0, new Map().set(0, 1));
-        expected.set(1, new Map().set(1, 1));
-        expected.set(2, new Map().set(2, 1));
-        expect(data).toStrictEqual(expected);
+        test('returns sparse data for an identity matrix', () => {
+          const A = builder.identity(3);
+          const data = A.getSparseData();
+          const expected = new Map();
+          expected.set(0, new Map().set(0, 1));
+          expected.set(1, new Map().set(1, 1));
+          expected.set(2, new Map().set(2, 1));
+          expect(data).toStrictEqual(expected);
+        });
+
+        test('returns sparse data for a dense matrix with multiple non-zeros per row', () => {
+          const A = builder.fromArray([
+            [1, 2],
+            [3, 4],
+          ]);
+          const data = A.getSparseData();
+          const expected = new Map();
+          expected.set(0, new Map().set(0, 1).set(1, 2));
+          expected.set(1, new Map().set(0, 3).set(1, 4));
+          expect(data).toStrictEqual(expected);
+        });
       });
     });
 
@@ -491,5 +505,19 @@ configs.forEach(({ testClassName, builder, vectorBuilder }) => {
         expect(builder.empty().combine(builder.empty(), () => 1)).toStrictEqual(builder.empty());
       });
     });
+  });
+});
+
+describe('FloatMatrix', () => {
+  test('throws on dimension mismatch when constructing from Float64Array', () => {
+    const data = new Float64Array([1, 2, 3, 4, 5, 6]);
+    expect(() => new FloatMatrix(data, [2, 2])).toThrow('Dimension mismatch');
+  });
+
+  test('can be constructed from Float64Array with correct shape', () => {
+    const data = new Float64Array([1, 2, 3, 4]);
+    const M = new FloatMatrix(data, [2, 2]);
+    expect(M.getNumberOfRows()).toBe(2);
+    expect(M.getNumberOfColumns()).toBe(2);
   });
 });

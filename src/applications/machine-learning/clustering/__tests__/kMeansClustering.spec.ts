@@ -17,4 +17,12 @@ describe('kMeansClustering', () => {
     expect(centroids).toHaveLength(15);
     expect(labels.getDimension()).toBe(X.getNumberOfRows());
   });
+
+  it('uses default parameters when not provided', () => {
+    const X = loadTestData('2-gaussian-clusters');
+    const { centroids, labels } = kMeansClustering(X, {});
+
+    expect(centroids).toHaveLength(5);
+    expect(labels.getDimension()).toBe(X.getNumberOfRows());
+  });
 });

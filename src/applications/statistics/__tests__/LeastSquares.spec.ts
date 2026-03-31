@@ -141,6 +141,20 @@ describe('LeastSquares', () => {
       expect(solution).not.toBeUndefined;
     });
 
+    test('handles rank-deficient overdetermined system', () => {
+      // A is 4x3 but rank 2, so A^T*A is 3x3 rank 2 → underdetermined normal equation
+      const A = mat([
+        [1, 0, 1],
+        [0, 1, 1],
+        [2, 0, 2],
+        [0, 2, 2],
+      ]);
+      const b = vec([1, 1, 2, 2]);
+
+      const solution = solveOverdeterminedSystem(A, b);
+      expect(solution).not.toBeUndefined();
+    });
+
     test('rejects a system with a dimension mismatch', () => {
       const A = mat([
         [1, 2],

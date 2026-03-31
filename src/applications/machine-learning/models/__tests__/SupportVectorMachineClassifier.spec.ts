@@ -68,4 +68,9 @@ describe('SupportVectorMachineClassifier', () => {
   it('cannot predict probabilities', () => {
     expect(() => new SupportVectorMachineClassifier({}).predictProbabilities(mat([]))).toThrow();
   });
+
+  it('throws when predicting before training', () => {
+    const cls = new SupportVectorMachineClassifier({});
+    expect(() => cls.predict(mat([[1, 2]]))).toThrow('Cannot call predict before train');
+  });
 });
