@@ -43,5 +43,17 @@ describe('CholeskyDecomposition', () => {
       const A = mat([[-1]]);
       expect(calculateCholeskyDecomposition(A)).toBeUndefined;
     });
+
+    test('returns undefined for a positive-semidefinite matrix with zero diagonal', () => {
+      // This matrix has eigenvalues [6, 0, 0] — positive semidefinite but not positive definite
+      // Cholesky fails because Ljj becomes 0 and subsequent division is undefined
+      const A = mat([
+        [4, 2, 2],
+        [2, 1, 1],
+        [2, 1, 1],
+      ]);
+      const result = calculateCholeskyDecomposition(A);
+      expect(result).toBeUndefined();
+    });
   });
 });

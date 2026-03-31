@@ -73,5 +73,16 @@ describe('LUDecomposition', () => {
       const A = mat([[1, 2]]);
       expect(() => calculateLUDecomposition(A)).toThrow();
     });
+
+    test('handles a singular matrix with zero pivot', () => {
+      // All rows are linearly dependent → after elimination, a zero diagonal appears
+      // causing division by 0 in getNthLowerTriangularMatrix
+      const A = mat([
+        [1, 2, 3],
+        [2, 4, 6],
+        [3, 6, 9],
+      ]);
+      expect(() => calculateLUDecomposition(A)).toThrow();
+    });
   });
 });
