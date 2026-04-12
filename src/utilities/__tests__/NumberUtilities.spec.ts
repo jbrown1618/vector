@@ -5,6 +5,7 @@ import {
   mod,
   random,
   randomNormal,
+  softmax,
 } from '../NumberUtilities';
 
 describe('NumberUtilities', () => {
@@ -141,6 +142,54 @@ describe('NumberUtilities', () => {
       expect(binomial(7, 1)).toEqual(7);
       expect(binomial(10, 5)).toEqual(252);
       expect(binomial(50, 30)).toEqual(47129212243960);
+    });
+  });
+
+  describe('softmax', () => {
+    test('output sums to approximately 1', () => {
+      const result = softmax([1, 2, 3, 4]);
+      const sum = result.reduce((a, b) => a + b, 0);
+      expect(approximatelyEqual(sum, 1)).toBe(true);
+    });
+
+    test('larger inputs get larger probabilities', () => {
+      const result = softmax([1, 2, 3]);
+      expect(result[2]).toBeGreaterThan(result[1]);
+      expect(result[1]).toBeGreaterThan(result[0]);
+    });
+
+    test('all-equal inputs produce uniform distribution', () => {
+      const result = softmax([5, 5, 5, 5]);
+      result.forEach((p) => {
+        expect(approximatelyEqual(p, 0.25)).toBe(true);
+      });
+    });
+
+    test('single element returns [1]', () => {
+      const result = softmax([42]);
+      expect(result).toEqual([1]);
+    });
+
+    test('empty array returns empty array', () => {
+      expect(softmax([])).toEqual([]);
+    });
+
+    test('is numerically stable for very large inputs', () => {
+      const result = softmax([1000, 1001, 1002]);
+      result.forEach((p) => {
+        expect(Number.isFinite(p)).toBe(true);
+        expect(Number.isNaN(p)).toBe(false);
+      });
+      const sum = result.reduce((a, b) => a + b, 0);
+      expect(approximatelyEqual(sum, 1)).toBe(true);
+    });
+
+    test('handles negative inputs correctly', () => {
+      const result = softmax([-1, -2, -3]);
+      const sum = result.reduce((a, b) => a + b, 0);
+      expect(approximatelyEqual(sum, 1)).toBe(true);
+      expect(result[0]).toBeGreaterThan(result[1]);
+      expect(result[1]).toBeGreaterThan(result[2]);
     });
   });
 });
