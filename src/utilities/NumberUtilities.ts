@@ -66,3 +66,18 @@ export function sigmoid(x: number): number {
   const ex = Math.exp(x);
   return ex / (1 + ex);
 }
+
+/**
+ * Computes the softmax of an array of numbers, returning a probability distribution.
+ * Uses the max-subtraction trick for numerical stability.
+ */
+export function softmax(values: number[]): number[] {
+  if (values.length === 0) {
+    return [];
+  }
+
+  const max = Math.max(...values);
+  const exps = values.map((v) => Math.exp(v - max));
+  const sum = exps.reduce((a, b) => a + b, 0);
+  return exps.map((e) => e / sum);
+}

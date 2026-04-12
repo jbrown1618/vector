@@ -27,6 +27,7 @@ A linear algebra library written in TypeScript that focuses on generality, exten
   - Regularized linear regression
   - Logistic Regression
   - Support Vector Machines
+  - Character-level language model (toy transformer)
 - And more to come!
 
 ## Using Vector
